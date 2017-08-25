@@ -1,0 +1,8 @@
+{
+  "name": "myProfile",
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ]
+}
