@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+
+            {# mediaScreen #}
+            {% stylesheets
+            'assets/bootstrap/css/bootstrap.min.css'
+            'assets/css/font-awesome.min.css'
+            'assets/css/style.css'
+            filter='cssrewrite' output='compiled/css/app_media_screen.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
+            {# relstyle #}
+            {% stylesheets
+            'assets/css/animate.css'
+            'assets/css/magnific-popup.css'
+            'assets/css/responsive.css'
+            filter='cssrewrite' output='compiled/css/app.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
+
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('assets/images/ico/favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('images/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('mages/ico/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('mages/ico/apple-touch-icon-57-precomposed.png') }}">
+    </head>
+    <body>
+
+        {% include 'default/partials/flashmessages.html.twig' %}
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts
+            'assets/js/jquery.js'
+            'assets/bootstrap/js/bootstrap.min.js'
+            'assets/js/jquery.stellar.min.js'
+            'assets/js/jquery.sticky.js'
+            'assets/js/smoothscroll.js'
+            'assets/js/wow.min.js'
+            'assets/js/jquery.countTo.js'
+            'assets/js/jquery.inview.min.js'
+            'assets/js/jquery.easypiechart.js'
+            'assets/js/jquery.shuffle.min.js'
+            'assets/js/jquery.magnific-popup.min.js'
+            'assets/js/froogaloop2.min.js'
+            'assets/js/jquery.fitvids.js'
+            'assets/js/scripts.js'
+            output='compiled/js/app.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>
