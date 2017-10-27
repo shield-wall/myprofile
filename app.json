@@ -1,5 +1,31 @@
 {
   "name": "myProfile",
+  "env": {
+    "SYMFONY_ENV": {
+      "description" : "env prod",
+      "value": "prod"
+    },
+    "MAILER_TRANSPORT": {
+      "description" : "smtp",
+      "value": "smtp"
+    },
+    "MAILER_HOST": {
+      "description": "info your host 127.0.0.1",
+      "value": "127.0.0.1"
+    },
+    "MAILER_USER": {
+      "description": "report your user"
+    },
+    "MAILER_PASSWORD": {
+      "description": "report your password"
+    },
+    "MAILER_TO": {
+      "description": "report about your email for received eg: email_to@teste.com"
+    },
+    "MAILER_FROM": {
+      "description": "report about your configured email email_from@teste.com"
+    }
+  },
   "buildpacks": [
     {
       "url": "heroku/php"
