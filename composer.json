@@ -1,5 +1,5 @@
 {
-    "name": "erison/teste_s",
+    "name": "erison/myprofile",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -23,6 +23,7 @@
         "php": ">=7.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "friendsofsymfony/user-bundle": "~2.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
@@ -53,7 +54,8 @@
             "@symfony-scripts"
         ],
         "compile": [
-            "bin/console assetic:dump"
+            "bin/console assetic:dump",
+            "bin/console doctrine:schema:update --force"
         ]
     },
     "config": {

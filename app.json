@@ -26,6 +26,14 @@
       "description": "report about your configured email email_from@teste.com"
     }
   },
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    }
+  ],
   "buildpacks": [
     {
       "url": "heroku/php"
