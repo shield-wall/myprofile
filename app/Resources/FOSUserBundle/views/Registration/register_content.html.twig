@@ -1,0 +1,57 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}Register{% endblock %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.first_name) }}</label>
+    {{ form_widget(form.first_name) }}
+    {{ form_errors(form.first_name) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.last_name) }}</label>
+    {{ form_widget(form.last_name) }}
+    {{ form_errors(form.last_name) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.email) }}</label>
+    {{ form_widget(form.email) }}
+    {{ form_errors(form.email) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.gender) }}</label>
+    {{ form_widget(form.gender) }}
+    {{ form_errors(form.gender) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.birthday) }}</label>
+    {{ form_widget(form.birthday) }}
+    {{ form_errors(form.birthday) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.username) }}</label>
+    {{ form_widget(form.username) }}
+    {{ form_errors(form.username) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.plainPassword.first) }}</label>
+    {{ form_widget(form.plainPassword.first) }}
+    {{ form_errors(form.plainPassword.first) }}
+</div>
+
+<div class="form-group">
+    <label for="name">{{ form_label(form.plainPassword.second) }}</label>
+    {{ form_widget(form.plainPassword.second) }}
+    {{ form_errors(form.plainPassword.second) }}
+</div>
+
+<div>
+    <input type="submit" value="{{ 'registration.submit'|trans }}" />
+</div>
+{{ form_end(form) }}
