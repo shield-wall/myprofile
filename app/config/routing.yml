@@ -1,6 +1,23 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+app_profile:
+    path:   /{_locale}
+    host: "{username}.%domain%"
+    defaults: {_controller: AppBundle:Default:profile, _locale: en }
+    requirements:
+        _locale: "en|pt_br"
+
+app_send_contact:
+    path:   /{_locale}/send_contact
+    host: "{username}.%domain%"
+    defaults: {_controller: AppBundle:Default:sendContact, _locale: en}
+    requirements:
+        _locale: "en|pt_br"
+
+app_homepage:
+    path:   /{_locale}
+    defaults: {_controller: AppBundle:Default:index, _locale: en}
+    requirements:
+        _locale: "en|pt_br"
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /{_locale}

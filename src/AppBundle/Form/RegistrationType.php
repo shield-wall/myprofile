@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use FOS\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\{
     BirthdayType,
@@ -25,7 +26,7 @@ class RegistrationType extends AbstractType
 
     public function getParent()
     {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+        return RegistrationFormType::class;
     }
 
     public function getBlockPrefix()

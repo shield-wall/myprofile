@@ -15,5 +15,8 @@ parameters:
     mailer_to: '%env(MAILER_TO)%'
     mailer_from: '%env(MAILER_FROM)%'
 
+
+    domain: '%env(DOMAIN)%'
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

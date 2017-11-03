@@ -1,0 +1,48 @@
+{% trans_default_domain 'MyProfile' %}
+
+<section id="about" class="about-section section-padding">
+    <div class="container">
+        <h2 class="section-title wow fadeInUp">{{ 'about.about' | trans }}</h2>
+
+        <div class="row">
+
+            <div class="col-md-4 col-md-push-8">
+                <div class="biography">
+                    <div class="myphoto">
+                        <img src="assets/images/myphoto.jpg" alt="">
+                    </div>
+                    <ul>
+                        <li><strong>{{ 'about.name' | trans}}:</strong> {{ user.getFirstName() }} {{ user.getLastName() }}</li>
+                        <li><strong>{{ 'about.country' | trans}}:</strong> {{ user.country }}</li>
+                        <li><strong>{{ 'about.email' | trans}}:</strong> {{ user.email }}</li>
+                    </ul>
+                </div>
+            </div> <!-- col-md-4 -->
+
+            <div class="col-md-8 col-md-pull-4">
+                <div class="short-info wow fadeInUp">
+                    <h3>{{ 'about.objective' | trans }}</h3>
+                    <p>{{ user.summary }}</p>
+                </div>
+
+                <div class="short-info wow fadeInUp">
+                    <ul class="list-check">
+                        <li>Prototipação</li>
+                        <li>UX designer</li>
+                        <li>Design de Interfaces</li>
+                        <li>Desenvolvimento Front-End</li>
+                        <li>Processos</li>
+                        <li>Designer gráfico</li>
+                    </ul>
+                </div>
+
+                <div class="download-button">
+                    <a class="btn btn-info btn-lg" href="#contact"><i class="fa fa-paper-plane"></i>Enviar-me Mensagem</a>
+                    <!-- <a class="btn btn-primary btn-lg" href="#"><i class="fa fa-download"></i>Download Currículo</a> -->
+                </div>
+            </div>
+
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</section><!-- End About Section -->

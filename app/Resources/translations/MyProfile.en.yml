@@ -1,0 +1,14 @@
+navegation:
+    home: Home
+    about: About
+    resume: Resume
+    skills: Skills
+    portfolio: Portfólio
+    contact: Contact
+
+about:
+    about: About
+    objective: Objective
+    name: Name
+    country: Country
+    email: E-mail
