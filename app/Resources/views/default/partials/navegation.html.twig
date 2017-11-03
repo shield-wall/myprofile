@@ -1,0 +1,28 @@
+{% trans_default_domain 'MyProfile' %}
+
+<header class="header">
+    <nav class="navbar navbar-custom" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('app_homepage') }}">{{ user.getFirstName() }} {{ user.getLastName() }}</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="custom-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home">{{ 'navegation.home' | trans }}</a></li>
+                    <li><a href="#about">{{ 'navegation.about' | trans }}</a></li>
+                    <li><a href="#resume">{{ 'navegation.resume' | trans }}</a></li>
+                    <li><a href="#skills">{{ 'navegation.skills' | trans }}</a></li>
+                    <li><a href="#works">{{ 'navegation.portfolio' | trans }}</a></li>
+                    <li><a href="#contact">{{ 'navegation.contact' | trans }}</a></li>
+                </ul>
+            </div>
+        </div><!-- .container -->
+    </nav>
+</header><!-- End Navigation -->

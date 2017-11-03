@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\{
     Route,
@@ -12,15 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
         $formContact = $this->createForm(ContactType::class, null, [
             'method' => 'POST',
-            'action' => $this->generateUrl('sendContact')
+            'action' => $this->generateUrl('app_send_contact', ['username' => 'lilian'])
         ]);
 
         return $this->render('default/index.html.twig', [
@@ -28,10 +26,19 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/sendContact", name="sendContact")
-     * @Method("POST")
-     */
+    public function profileAction(Request $request, User $user)
+    {
+        $formContact = $this->createForm(ContactType::class, null, [
+            'method' => 'POST',
+            'action' => $this->generateUrl('app_send_contact', ['username' => $request->get('username')])
+        ]);
+
+        return $this->render('default/profile.html.twig', [
+            'user' => $user,
+            'formContact' => $formContact->createView(),
+        ]);
+    }
+
     public function sendContactAction(Request $request)
     {
         try {
@@ -65,7 +72,7 @@ class DefaultController extends Controller
         } catch (\Throwable $e) {
             $this->addFlash('danger', $e->getMessage());
         } finally {
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_profile', ['username' => $request->get('username')]);
         }
     }
 }
