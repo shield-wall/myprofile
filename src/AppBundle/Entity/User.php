@@ -46,6 +46,11 @@ class User extends BaseUser
     protected $photo;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $background;
+
+    /**
      * @ORM\Column(type="text", length=350, nullable=true)
      */
     protected $summary;
@@ -241,6 +246,24 @@ class User extends BaseUser
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBackground()
+    {
+        return $this->background;
+    }
+
+    /**
+     * @param mixed $background
+     * @return User
+     */
+    public function setBackground($background)
+    {
+        $this->background = $background;
         return $this;
     }
 
