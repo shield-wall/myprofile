@@ -5,6 +5,7 @@
 /vendor/
 /web/bundles/
 /web/compiled/
+/web/uploads/
 /var/
 !var/cache/.gitkeep
 !var/logs/.gitkeep

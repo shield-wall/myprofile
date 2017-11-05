@@ -1,13 +1,11 @@
 app_profile:
-    path:   /{_locale}
-    host: "{username}.%domain%"
+    path:   /{username}/{_locale}
     defaults: {_controller: AppBundle:Default:profile, _locale: en }
     requirements:
         _locale: "en|pt_br"
 
 app_send_contact:
-    path:   /{_locale}/send_contact
-    host: "{username}.%domain%"
+    path:   /{username}/{_locale}/send_contact
     defaults: {_controller: AppBundle:Default:sendContact, _locale: en}
     requirements:
         _locale: "en|pt_br"
@@ -21,3 +19,6 @@ app_homepage:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     prefix:   /{_locale}
+    defaults: {_locale: en}
+    requirements:
+            _locale: "en|pt_br"
