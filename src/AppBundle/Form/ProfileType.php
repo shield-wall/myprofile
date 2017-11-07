@@ -1,12 +1,13 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Entity\User;
 use FOS\UserBundle\Form\Type\ProfileFormType;
 use Symfony\Component\Form\Extension\Core\Type\{
-    TextareaType,
-    TextType
+    FileType, TextareaType, TextType
 };
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileType extends RegistrationType
 {
@@ -25,6 +26,13 @@ class ProfileType extends RegistrationType
             ->add('summary', TextareaType::class)
 
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
     }
 
     public function getParent()
