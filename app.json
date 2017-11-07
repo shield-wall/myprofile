@@ -24,9 +24,6 @@
     },
     "MAILER_FROM": {
       "description": "report about your configured email email_from@teste.com"
-    },
-    "DOMAIN": {
-      "description": "domain."
     }
   },
   "addons": [

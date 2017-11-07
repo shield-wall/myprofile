@@ -15,15 +15,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        $formContact = $this->createForm(ContactType::class, null, [
-            'method' => 'POST',
-            'action' => $this->generateUrl('app_send_contact', ['username' => 'lilian'])
-        ]);
-
-        return $this->render('default/index.html.twig', [
-            'formContact' => $formContact->createView(),
-        ]);
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
     public function profileAction(Request $request, User $user)
