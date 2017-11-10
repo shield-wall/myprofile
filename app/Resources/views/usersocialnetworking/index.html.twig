@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Usersocialnetworkings list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>rede social</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userSocialNetworking in userSocialNetworkings %}
+            <tr>
+                <td><a href="{{ path('user_usersocialnetworking_show', { 'id': userSocialNetworking.id }) }}">{{ userSocialNetworking.id }}</a></td>
+                <td>{{ userSocialNetworking.social_networking }}</td>
+                <td>{{ userSocialNetworking.link }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_usersocialnetworking_show', { 'id': userSocialNetworking.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_usersocialnetworking_edit', { 'id': userSocialNetworking.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_usersocialnetworking_new') }}">Create a new userSocialNetworking</a>
+        </li>
+    </ul>
+{% endblock %}

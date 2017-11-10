@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -83,11 +84,38 @@ class User extends BaseUser
      */
     protected $birthday;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
+     */
+    protected $user_social_networks;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+
+        $this->user_social_networks = new ArrayCollection();
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUserSocialNetworks()
+    {
+        return $this->user_social_networks;
+    }
+
+    public function setUserSocialNetworks(UserSocialNetworking $socialNetworking)
+    {
+        $socialNetworking->setUser($this);
+        $this->getUserSocialNetworks()->add($socialNetworking);
+    }
+
+    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking)
+    {
+        $this->getUserSocialNetworks()->removeElement($socialNetworking);
+        return $this;
+    }
+
 
     /**
      * @return mixed

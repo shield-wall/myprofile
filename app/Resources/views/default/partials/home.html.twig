@@ -4,14 +4,17 @@
         <h1>{{ user.role }}</h1>
         <p>{{ user.headline }}</p>
 
-        <!--
         <div class="social-icons">
             <ul class="list-inline">
-                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                {% for social in user.getUserSocialNetworks() %}
+                    <li>
+                        <a href="{{ social.link }}" target="_blank" title="{{ social.social_networking.name }}">
+                            <i class="{{ social.social_networking.icon }}"></i>
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
-        </div> <!-- /.social-icons -->
+        </div>
     </div>
 
     <div class="mouse-icon">

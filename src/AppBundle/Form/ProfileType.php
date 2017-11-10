@@ -4,7 +4,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\User;
 use FOS\UserBundle\Form\Type\ProfileFormType;
 use Symfony\Component\Form\Extension\Core\Type\{
-    FileType, TextareaType, TextType
+    CollectionType, FileType, TextareaType, TextType
 };
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,7 +24,6 @@ class ProfileType extends RegistrationType
             ->add('state', TextType::class)
             ->add('city', TextType::class)
             ->add('summary', TextareaType::class)
-
         ;
     }
 

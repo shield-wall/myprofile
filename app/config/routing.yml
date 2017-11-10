@@ -1,3 +1,11 @@
+app_user_social_networking:
+    resource: "@AppBundle/Controller/UserSocialNetworkingController.php"
+    type:     annotation
+
+app_social_networking:
+    resource: "@AppBundle/Controller/SocialNetworkingController.php"
+    type:     annotation
+
 app_profile:
     path:   /{username}/{_locale}
     defaults: {_controller: AppBundle:Default:profile, _locale: en }
