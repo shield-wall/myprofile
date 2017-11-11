@@ -7,8 +7,10 @@ use AppBundle\Entity\UserSocialNetworking;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Usersocialnetworking controller.
@@ -27,7 +29,7 @@ class UserSocialNetworkingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $userSocialNetworkings = $em->getRepository('AppBundle:UserSocialNetworking')->findAll();
+        $userSocialNetworkings = $em->getRepository('AppBundle:UserSocialNetworking')->findBy(['user_id' => $this->getUser()]);
 
         return $this->render('usersocialnetworking/index.html.twig', array(
             'userSocialNetworkings' => $userSocialNetworkings,
@@ -43,7 +45,7 @@ class UserSocialNetworkingController extends Controller
     public function newAction(Request $request)
     {
         $userSocialNetworking = new Usersocialnetworking();
-        $userSocialNetworking->setUser($this->getUser());
+        $userSocialNetworking->setUserId($this->getUser());
         $form = $this->createForm('AppBundle\Form\UserSocialNetworkingType', $userSocialNetworking);
         $form->handleRequest($request);
 
@@ -65,6 +67,7 @@ class UserSocialNetworkingController extends Controller
      * Finds and displays a userSocialNetworking entity.
      *
      * @Route("/{id}", name="user_usersocialnetworking_show")
+     * @Security("user.getId() == userSocialNetworking.getUserId()")
      * @Method("GET")
      */
     public function showAction(UserSocialNetworking $userSocialNetworking)
@@ -81,11 +84,11 @@ class UserSocialNetworkingController extends Controller
      * Displays a form to edit an existing userSocialNetworking entity.
      *
      * @Route("/{id}/edit", name="user_usersocialnetworking_edit")
+     * @Security("user.getId() == userSocialNetworking.getUserId()")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, UserSocialNetworking $userSocialNetworking)
     {
-        $userSocialNetworking->setUser($this->getUser());
         $deleteForm = $this->createDeleteForm($userSocialNetworking);
         $editForm = $this->createForm('AppBundle\Form\UserSocialNetworkingType', $userSocialNetworking);
         $editForm->handleRequest($request);
@@ -107,6 +110,7 @@ class UserSocialNetworkingController extends Controller
      * Deletes a userSocialNetworking entity.
      *
      * @Route("/{id}", name="user_usersocialnetworking_delete")
+     * @Security("user.getId() == userSocialNetworking.getUserId()")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking)

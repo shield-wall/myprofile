@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('fos_user_profile_edit') }}">My profile</a>
+                <a class="navbar-brand" href="{{ path('user_usersocialnetworking_index') }}">rede social</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a class="navbar-brand" href="{{ path('admin_socialnetworking_index') }}">rede social (admin)</a>
+                {% endif %}
+                <a class="navbar-brand" href="{{ path('user_education_index') }}">Educação</a>
+                <a class="navbar-brand" href="{{path('fos_user_security_logout')}}">Sair</a>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+    {% block container_profile %}
+    {% endblock container_profile %}
+    </div>
+{% endblock body %}

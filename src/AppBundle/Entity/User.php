@@ -23,7 +23,6 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     *
      * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
      */
     protected $first_name;
@@ -85,15 +84,21 @@ class User extends BaseUser
     protected $birthday;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user_id")
      */
     protected $user_social_networks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Education", mappedBy="user_id")
+     */
+    protected $educations;
 
     public function __construct()
     {
         parent::__construct();
 
         $this->user_social_networks = new ArrayCollection();
+        $this->educations = new ArrayCollection();
     }
 
     /**
@@ -116,6 +121,25 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getEducations()
+    {
+        return $this->educations;
+    }
+
+    /**
+     * @param Education $education
+     * @return User
+     */
+    public function addEducations(Education $education)
+    {
+        if(!$this->educations->contains($this->educations))
+            $this->educations->add($education);
+
+        return $this;
+    }
 
     /**
      * @return mixed

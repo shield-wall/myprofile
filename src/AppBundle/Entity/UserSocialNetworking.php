@@ -19,6 +19,8 @@ class UserSocialNetworking
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="user_social_networks")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user_id;
 
@@ -26,12 +28,6 @@ class UserSocialNetworking
      * @ORM\Column(type="integer")
      */
     protected $social_networking_id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="user_social_networks")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="SocialNetworking", inversedBy="user_social_networks", fetch="EAGER")
@@ -44,50 +40,82 @@ class UserSocialNetworking
      */
     protected $link;
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return User
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return UserSocialNetworking
      */
-    public function getUser()
+    public function setUserId($userId)
     {
-        return $this->user;
+        $this->user_id = $userId;
+
+        return $this;
     }
 
     /**
-     * @param User $user
+     * Get userId
+     *
+     * @return integer
      */
-    public function setUser(User $user)
+    public function getUserId()
     {
-        $this->user = $user;
+        return $this->user_id;
     }
 
     /**
-     * @return mixed
+     * Set socialNetworkingId
+     *
+     * @param integer $socialNetworkingId
+     *
+     * @return UserSocialNetworking
      */
-    public function getSocialNetworking()
+    public function setSocialNetworkingId($socialNetworkingId)
     {
-        return $this->social_networking;
-    }
+        $this->social_networking_id = $socialNetworkingId;
 
-    public function getSocial_networking()
-    {
-        return $this->social_networking;
+        return $this;
     }
 
     /**
-     * @param mixed $social_networking
+     * Get socialNetworkingId
+     *
+     * @return integer
      */
-    public function setSocialNetworking($social_networking)
+    public function getSocialNetworkingId()
     {
-        $this->social_networking = $social_networking;
+        return $this->social_networking_id;
     }
 
     /**
-     * @return mixed
+     * Set link
+     *
+     * @param string $link
+     *
+     * @return UserSocialNetworking
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
      */
     public function getLink()
     {
@@ -95,17 +123,36 @@ class UserSocialNetworking
     }
 
     /**
-     * @param mixed $link
+     * Set socialNetworking
+     *
+     * @param \AppBundle\Entity\SocialNetworking $socialNetworking
+     *
      * @return UserSocialNetworking
      */
-    public function setLink($link)
+    public function setSocialNetworking(\AppBundle\Entity\SocialNetworking $socialNetworking = null)
     {
-        $this->link = $link;
+        $this->social_networking = $socialNetworking;
+
         return $this;
     }
 
-    public function __toString()
+    /**
+     * Get socialNetworking
+     *
+     * @return \AppBundle\Entity\SocialNetworking
+     */
+    public function getSocialNetworking()
     {
-        return $this->getLink();
+        return $this->social_networking;
+    }
+
+    /**
+     * Get socialNetworking
+     *
+     * @return \AppBundle\Entity\SocialNetworking
+     */
+    public function getSocial_networking()
+    {
+        return $this->social_networking;
     }
 }

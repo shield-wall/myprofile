@@ -1,3 +1,7 @@
+app_education:
+    resource: "@AppBundle/Controller/EducationController.php"
+    type:     annotation
+
 app_user_social_networking:
     resource: "@AppBundle/Controller/UserSocialNetworkingController.php"
     type:     annotation

@@ -1,0 +1,47 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block container_profile %}
+    <h1>Educations list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Institution</th>
+                <th>Description</th>
+                <th>Period_start</th>
+                <th>Period_end</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for education in educations %}
+            <tr>
+                <td><a href="{{ path('user_education_show', { 'id': education.id }) }}">{{ education.id }}</a></td>
+                <td>{{ education.title }}</td>
+                <td>{{ education.institution }}</td>
+                <td>{{ education.description }}</td>
+                <td>{% if education.periodstart %}{{ education.periodstart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if education.periodend %}{{ education.periodend|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_education_show', { 'id': education.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_education_edit', { 'id': education.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_education_new') }}">Create a new education</a>
+        </li>
+    </ul>
+{% endblock %}
