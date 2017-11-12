@@ -31,7 +31,7 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function sendContactAction(Request $request)
+    public function sendContactAction(Request $request, User $user)
     {
         try {
             $formContact = $this->createForm(ContactType::class, null);
@@ -44,7 +44,7 @@ class DefaultController extends Controller
             $message
                 ->setSubject($formContact->get('subject')->getData())
                 ->setFrom($this->getParameter('mailer_from'))
-                ->setTo($this->getUser()->getEmail())
+                ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(
                         'templates/contacts/simple.html.twig',
