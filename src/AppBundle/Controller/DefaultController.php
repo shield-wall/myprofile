@@ -44,7 +44,7 @@ class DefaultController extends Controller
             $message
                 ->setSubject($formContact->get('subject')->getData())
                 ->setFrom($this->getParameter('mailer_from'))
-                ->setTo($this->getParameter('mailer_to'))
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     $this->renderView(
                         'templates/contacts/simple.html.twig',
