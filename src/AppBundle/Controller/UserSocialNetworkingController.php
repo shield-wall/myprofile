@@ -29,7 +29,7 @@ class UserSocialNetworkingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $userSocialNetworkings = $em->getRepository('AppBundle:UserSocialNetworking')->findBy(['user_id' => $this->getUser()]);
+        $userSocialNetworkings = $em->getRepository('AppBundle:UserSocialNetworking')->findBy(['user' => $this->getUser()]);
 
         return $this->render('usersocialnetworking/index.html.twig', array(
             'userSocialNetworkings' => $userSocialNetworkings,
@@ -45,7 +45,7 @@ class UserSocialNetworkingController extends Controller
     public function newAction(Request $request)
     {
         $userSocialNetworking = new Usersocialnetworking();
-        $userSocialNetworking->setUserId($this->getUser());
+        $userSocialNetworking->setUser($this->getUser());
         $form = $this->createForm('AppBundle\Form\UserSocialNetworkingType', $userSocialNetworking);
         $form->handleRequest($request);
 
@@ -67,7 +67,7 @@ class UserSocialNetworkingController extends Controller
      * Finds and displays a userSocialNetworking entity.
      *
      * @Route("/{id}", name="user_usersocialnetworking_show")
-     * @Security("user.getId() == userSocialNetworking.getUserId()")
+     * @Security("user == userSocialNetworking.getUser()")
      * @Method("GET")
      */
     public function showAction(UserSocialNetworking $userSocialNetworking)
@@ -84,7 +84,7 @@ class UserSocialNetworkingController extends Controller
      * Displays a form to edit an existing userSocialNetworking entity.
      *
      * @Route("/{id}/edit", name="user_usersocialnetworking_edit")
-     * @Security("user.getId() == userSocialNetworking.getUserId()")
+     * @Security("user == userSocialNetworking.getUser()")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, UserSocialNetworking $userSocialNetworking)
@@ -110,7 +110,7 @@ class UserSocialNetworkingController extends Controller
      * Deletes a userSocialNetworking entity.
      *
      * @Route("/{id}", name="user_usersocialnetworking_delete")
-     * @Security("user.getId() == userSocialNetworking.getUserId()")
+     * @Security("user == userSocialNetworking.getUser()")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking)

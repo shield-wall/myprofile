@@ -2,50 +2,69 @@
 
 {% block stylesheets %}
 
-            {# mediaScreen #}
-            {% stylesheets
-            'assets/bootstrap/css/bootstrap.min.css'
-            'assets/css/font-awesome.min.css'
-            'assets/css/fos_user/login.css'
-            filter='cssrewrite' output='compiled/css/app_login.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
+    {# mediaScreen #}
+    {% stylesheets
+    'assets/bootstrap/css/bootstrap.min.css'
+    'assets/css/font-awesome.min.css'
+    'assets/css/fos_user/login.css'
+    filter='cssrewrite' output='compiled/css/app_login.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 
-        {% endblock %}
-
+{% endblock %}
 
 <div class="container">
   <div class="row" id="pwd-container">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-md-offset-4">
       <section class="login-form">
-        <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
-            <h3 class="text-center"><b>My</b> Profile</h3><br/>
-          
-            {% if csrf_token %}
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            {% endif %}
 
-          <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
-          
-          <input type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
+              <h3 class="text-center">
+                  {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+              </h3>
+              <a href="{{ path('app_profile', {'username': app.user.username}) }}" class="btn btn-success btn-block">
+                  <i class="fa fa-eye"></i>
+                  visualizar meu perfil
+              </a>
+              <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary btn-block">
+                  <i class="fa fa-edit"></i>
+                  editar meu perfil
+              </a>
+              <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger btn-block">
+                  <i class="fa fa-close"></i>
+                  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+              </a>
+          </form>
+          {% else %}
+              <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
+                  <h3 class="text-center"><b>My</b> Profile</h3><br/>
 
-          <input type="checkbox" id="remember_me" name="_remember_me" value="on" />          
-          <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-          
-          <div class="pwstrength_viewport_progress"></div>
-          
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}         
-          
-          <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
-          <div>
-            <a href="{{path('fos_user_registration_register')}}">{{'layout.register'| trans}}</a> or <a href="{{path('fos_user_resetting_request')}}">{{'resetting.email.subject' | trans}}</a>
-          </div>
-        </form>
+                  {% if csrf_token %}
+                      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                  {% endif %}
+
+                  <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
+
+                  <input type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+
+                  <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                  <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                  <div class="pwstrength_viewport_progress"></div>
+
+                  {% if error %}
+                      <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                  {% endif %}
+
+                  <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
+                  <div>
+                      <a href="{{path('fos_user_registration_register')}}">{{'layout.register'| trans}}</a> or <a href="{{path('fos_user_resetting_request')}}">{{'resetting.email.subject' | trans}}</a>
+                  </div>
+              </form>
+          {% endif %}
+
       </section>  
     </div>
-    <div class="col-md-4"></div>
   </div>  
 </div>

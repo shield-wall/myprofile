@@ -84,7 +84,7 @@ class User extends BaseUser
     protected $birthday;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
      */
     protected $user_social_networks;
 

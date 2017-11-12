@@ -19,8 +19,6 @@ class UserSocialNetworking
 
     /**
      * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="user_social_networks")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user_id;
 
@@ -28,6 +26,12 @@ class UserSocialNetworking
      * @ORM\Column(type="integer")
      */
     protected $social_networking_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="user_social_networks")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="SocialNetworking", inversedBy="user_social_networks", fetch="EAGER")
@@ -51,27 +55,22 @@ class UserSocialNetworking
     }
 
     /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
+     * @param User $user
      * @return UserSocialNetworking
      */
-    public function setUserId($userId)
+    public function setUser(User $user)
     {
-        $this->user_id = $userId;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get userId
-     *
-     * @return integer
+     * @return User
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 
     /**

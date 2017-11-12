@@ -1,0 +1,28 @@
+<div class="resume-title">
+    <h3>Educação</h3>
+</div>
+
+<div class="resume">
+    <ul class="timeline">
+        {% for education in user.educations %}
+            <li class="{{ cycle(['', 'timeline-inverted'], loop.index0) }}">
+                <div class="posted-date">
+                    <span class="month">{{ education.getPeriodStart() | date('Y') }} - {{ education.getPeriodEnd() | date('Y') }}</span>
+                </div><!-- /posted-date -->
+
+                <div class="timeline-panel wow fadeInUp">
+                    <div class="timeline-content">
+                        <div class="timeline-heading">
+                            <h3>{{ education.title }}</h3>
+                            <span>{{ education.institution }}</span>
+                        </div><!-- /timeline-heading -->
+
+                        <div class="timeline-body">
+                            <p>{{ education.description }}</p>
+                        </div><!-- /timeline-body -->
+                    </div> <!-- /timeline-content -->
+                </div><!-- /timeline-panel -->
+            </li>
+        {% endfor %}
+    </ul>
+</div>
