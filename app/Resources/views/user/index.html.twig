@@ -1,0 +1,41 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block container_profile %}
+    <h1>Users list : {{ users | length }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Role</th>
+                <th>Photo</th>
+                <th>Birthday</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.role }}</td>
+                <td>{% if user.photo %}<img src="{{ user.photo }}" class="img-thumbnail img-circle" style="width: 50px"/>{% endif %}</td>
+                <td>{{ user.gender }}</td>
+                <td>{% if user.birthday %}{{ user.birthday|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

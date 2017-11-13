@@ -93,12 +93,18 @@ class User extends BaseUser
      */
     protected $educations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Experience", mappedBy="user_id")
+     */
+    protected $experiences;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->user_social_networks = new ArrayCollection();
         $this->educations = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
     /**
@@ -135,8 +141,28 @@ class User extends BaseUser
      */
     public function addEducations(Education $education)
     {
-        if(!$this->educations->contains($this->educations))
+        if(!$this->educations->contains($education))
             $this->educations->add($education);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * @param Experience $experience
+     * @return User
+     */
+    public function addExperiences(Experience $experience)
+    {
+        if(!$this->experiences->contains($experience))
+            $this->experiences->add($experience);
 
         return $this;
     }

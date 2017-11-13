@@ -1,0 +1,68 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block container_profile %}
+    <h1>User</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Headline</th>
+                <td>{{ user.headline }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ user.photo }}</td>
+            </tr>
+            <tr>
+                <th>Background</th>
+                <td>{{ user.background }}</td>
+            </tr>
+            <tr>
+                <th>Summary</th>
+                <td>{{ user.summary }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ user.country }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ user.state }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ user.city }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+                <th>Birthday</th>
+                <td>{% if user.birthday %}{{ user.birthday|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_user_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

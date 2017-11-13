@@ -15,8 +15,10 @@
                 <a class="navbar-brand" href="{{ path('user_usersocialnetworking_index') }}">rede social</a>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a class="navbar-brand" href="{{ path('admin_socialnetworking_index') }}">rede social (admin)</a>
+                <a class="navbar-brand" href="{{ path('admin_user_index') }}">lista de usuarios (admin)</a>
                 {% endif %}
                 <a class="navbar-brand" href="{{ path('user_education_index') }}">Educação</a>
+                <a class="navbar-brand" href="{{ path('user_experience_index') }}">experiência</a>
                 <a class="navbar-brand" href="{{path('fos_user_security_logout')}}">Sair</a>
             </div>
 

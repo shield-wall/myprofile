@@ -6,9 +6,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="education")
+ * @ORM\Table(name="experience")
  */
-class Education
+class Experience
 {
     /**
      * @ORM\Id
@@ -18,7 +18,7 @@ class Education
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="experiences")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user_id;
@@ -31,7 +31,7 @@ class Education
     /**
      * @ORM\Column(type="string", length=50, nullable=false)
      */
-    protected $institution;
+    protected $company;
 
     /**
      * @ORM\Column(type="text", nullable=false)
@@ -48,7 +48,6 @@ class Education
      */
     protected $period_end;
 
-
     /**
      * Get id
      *
@@ -64,7 +63,7 @@ class Education
      *
      * @param string $title
      *
-     * @return Education
+     * @return Experience
      */
     public function setTitle($title)
     {
@@ -84,27 +83,27 @@ class Education
     }
 
     /**
-     * Set institution
+     * Set company
      *
-     * @param string $institution
+     * @param string $company
      *
-     * @return Education
+     * @return Experience
      */
-    public function setInstitution($institution)
+    public function setCompany($company)
     {
-        $this->institution = $institution;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * Get institution
+     * Get company
      *
      * @return string
      */
-    public function getInstitution()
+    public function getCompany()
     {
-        return $this->institution;
+        return $this->company;
     }
 
     /**
@@ -112,7 +111,7 @@ class Education
      *
      * @param string $description
      *
-     * @return Education
+     * @return Experience
      */
     public function setDescription($description)
     {
@@ -136,7 +135,7 @@ class Education
      *
      * @param \DateTime $periodStart
      *
-     * @return Education
+     * @return Experience
      */
     public function setPeriodStart($periodStart)
     {
@@ -160,7 +159,7 @@ class Education
      *
      * @param \DateTime $periodEnd
      *
-     * @return Education
+     * @return Experience
      */
     public function setPeriodEnd($periodEnd)
     {
@@ -184,7 +183,7 @@ class Education
      *
      * @param \AppBundle\Entity\User $userId
      *
-     * @return Education
+     * @return Experience
      */
     public function setUserId(\AppBundle\Entity\User $userId = null)
     {

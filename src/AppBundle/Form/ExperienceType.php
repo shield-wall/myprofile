@@ -4,10 +4,11 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EducationType extends AbstractType
+class ExperienceType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -16,8 +17,12 @@ class EducationType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('institution')
-            ->add('description', TextareaType::class, ['attr' => ['rows' => 5]])
+            ->add('company')
+            ->add('description', TextareaType::class, [
+                'attr' =>
+                    ['rows' => 5]
+                ]
+            )
             ->add('period_start')
             ->add('period_end')
         ;
@@ -29,7 +34,7 @@ class EducationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Education'
+            'data_class' => 'AppBundle\Entity\Experience'
         ));
     }
 
@@ -38,7 +43,7 @@ class EducationType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_education';
+        return 'appbundle_experience';
     }
 
 

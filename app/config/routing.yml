@@ -1,3 +1,11 @@
+app_experience:
+    resource: "@AppBundle/Controller/ExperienceController.php"
+    type:     annotation
+
+app_user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
+
 app_education:
     resource: "@AppBundle/Controller/EducationController.php"
     type:     annotation

@@ -1,0 +1,48 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block container_profile %}
+    <h1>Experience</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ experience.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ experience.title }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ experience.company }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ experience.description }}</td>
+            </tr>
+            <tr>
+                <th>Period_start</th>
+                <td>{% if experience.periodstart %}{{ experience.periodstart|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Period_end</th>
+                <td>{% if experience.periodend %}{{ experience.periodend|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_experience_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('user_experience_edit', { 'id': experience.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

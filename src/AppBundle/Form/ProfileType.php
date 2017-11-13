@@ -23,7 +23,11 @@ class ProfileType extends RegistrationType
             ->add('country', TextType::class)
             ->add('state', TextType::class)
             ->add('city', TextType::class)
-            ->add('summary', TextareaType::class)
+            ->add('summary', TextareaType::class, [
+                'attr' => [
+                    'rows' => 5
+                ]
+            ])
         ;
     }
 
