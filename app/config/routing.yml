@@ -24,25 +24,25 @@ app_social_networking:
 
 app_profile:
     path:   /{username}/{_locale}
-    defaults: {_controller: AppBundle:Default:profile, _locale: pt_br }
+    defaults: {_controller: AppBundle:Default:profile, _locale: pt_BR }
     requirements:
-        _locale: "en|pt_br"
+        _locale: "en|pt_BR"
 
 app_send_contact:
     path:   /{username}/{_locale}/send_contact
-    defaults: {_controller: AppBundle:Default:sendContact, _locale: pt_br}
+    defaults: {_controller: AppBundle:Default:sendContact, _locale: pt_BR}
     requirements:
-        _locale: "en|pt_br"
+        _locale: "en|pt_BR"
 
 app_homepage:
     path:   /{_locale}
-    defaults: {_controller: AppBundle:Default:index, _locale: pt_br}
+    defaults: {_controller: AppBundle:Default:index, _locale: pt_BR}
     requirements:
-        _locale: "en|pt_br"
+        _locale: "en|pt_BR"
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     prefix:   /{_locale}
-    defaults: {_locale: pt_br}
+    defaults: {_locale: pt_BR}
     requirements:
-            _locale: "en|pt_br"
+            _locale: "en|pt_BR"
