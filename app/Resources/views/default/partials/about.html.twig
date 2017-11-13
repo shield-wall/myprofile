@@ -27,12 +27,9 @@
 
                 <div class="short-info wow fadeInUp">
                     <ul class="list-check">
-                        <li>Prototipação</li>
-                        <li>UX designer</li>
-                        <li>Design de Interfaces</li>
-                        <li>Desenvolvimento Front-End</li>
-                        <li>Processos</li>
-                        <li>Designer gráfico</li>
+                        {% for skill in user.skills | slice(0,4) %}
+                        <li>{{ skill.name }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
 

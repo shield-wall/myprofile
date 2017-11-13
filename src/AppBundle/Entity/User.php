@@ -98,6 +98,12 @@ class User extends BaseUser
      */
     protected $experiences;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Skill", mappedBy="user_id")
+     * @ORM\OrderBy({"priority" = "ASC"})
+     */
+    protected $skills;
+
     public function __construct()
     {
         parent::__construct();
@@ -105,6 +111,7 @@ class User extends BaseUser
         $this->user_social_networks = new ArrayCollection();
         $this->educations = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->skills = new ArrayCollection();
     }
 
     /**
@@ -166,6 +173,27 @@ class User extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param Skill $skill
+     * @return User
+     */
+    public function addSkills(Skill $skill)
+    {
+        if(!$this->skills->contains($skill))
+            $this->skills->add($skill);
+
+        return $this;
+    }
+
 
     /**
      * @return mixed

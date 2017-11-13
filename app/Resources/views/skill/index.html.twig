@@ -1,0 +1,43 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block container_profile %}
+    <h1>Skills list</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Levelexperience</th>
+                <th>Priority</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for skill in skills %}
+            <tr>
+                <td><a href="{{ path('user_skill_show', { 'id': skill.id }) }}">{{ skill.id }}</a></td>
+                <td>{{ skill.name }}</td>
+                <td>{{ skill.levelExperience }}</td>
+                <td>{{ skill.priority }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_skill_show', { 'id': skill.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_skill_edit', { 'id': skill.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_skill_new') }}">Create a new skill</a>
+        </li>
+    </ul>
+{% endblock %}

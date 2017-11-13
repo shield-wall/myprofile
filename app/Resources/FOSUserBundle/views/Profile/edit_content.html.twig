@@ -1,5 +1,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<div class="alert alert-info">
+    Estamos em uma versão BETA, caso queira informar algum problema, envie um e-mail para:
+    <strong>contato@myprofile.pro</strong>
+</div>
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
     {{ form_widget(form) }}
     <div>
