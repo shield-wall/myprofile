@@ -23,11 +23,11 @@
             </tr>
             <tr>
                 <th>Period_start</th>
-                <td>{% if experience.periodstart %}{{ experience.periodstart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if experience.periodstart %}{{ experience.periodstart|date('d/m/Y') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Period_end</th>
-                <td>{% if experience.periodend %}{{ experience.periodend|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if experience.periodend %}{{ experience.periodend|date('d/m/Y') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

@@ -9,7 +9,6 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Company</th>
-                <th>Description</th>
                 <th>Period_start</th>
                 <th>Period_end</th>
                 <th>Actions</th>
@@ -21,9 +20,8 @@
                 <td><a href="{{ path('user_experience_show', { 'id': experience.id }) }}">{{ experience.id }}</a></td>
                 <td>{{ experience.title }}</td>
                 <td>{{ experience.company }}</td>
-                <td>{{ experience.description }}</td>
-                <td>{% if experience.periodstart %}{{ experience.periodstart|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if experience.periodend %}{{ experience.periodend|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if experience.periodstart %}{{ experience.periodstart|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if experience.periodend %}{{ experience.periodend|date('d/m/Y') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>

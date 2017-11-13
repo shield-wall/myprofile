@@ -23,11 +23,11 @@
             </tr>
             <tr>
                 <th>Period_start</th>
-                <td>{% if education.periodstart %}{{ education.periodstart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if education.periodstart %}{{ education.periodstart|date('d/m/Y') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Period_end</th>
-                <td>{% if education.periodend %}{{ education.periodend|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if education.periodend %}{{ education.periodend|date('d/m/Y') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
