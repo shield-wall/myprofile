@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
+use AppBundle\Utils\Gravatar;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -104,7 +105,7 @@ class User extends BaseUser
      */
     protected $skills;
 
-    public function __construct()
+    public function __construct(Gravatar $gravatar)
     {
         parent::__construct();
 
@@ -353,6 +354,7 @@ class User extends BaseUser
      */
     public function setPhoto($photo)
     {
+
         $this->photo = $photo;
         return $this;
     }

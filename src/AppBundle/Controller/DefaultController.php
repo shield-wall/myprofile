@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\ContactType;
+use AppBundle\Utils\Gravatar;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\{
     Route,
     Method
