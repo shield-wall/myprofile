@@ -35,6 +35,8 @@ framework:
 
 # Twig Configuration
 twig:
+    globals:
+        app_gravatar : '@AppBundle\Utils\Gravatar'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_3_layout.html.twig']

@@ -34,6 +34,9 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    AppBundle\Utils\Gravatar:
+        public: true
+
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
