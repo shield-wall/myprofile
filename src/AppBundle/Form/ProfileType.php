@@ -18,8 +18,6 @@ class ProfileType extends RegistrationType
         $builder
             ->add('role', TextType::class)
             ->add('headline', TextareaType::class)
-            ->add('photo', TextType::class)
-            ->add('background', TextType::class)
             ->add('country', TextType::class)
             ->add('state', TextType::class)
             ->add('city', TextType::class)
