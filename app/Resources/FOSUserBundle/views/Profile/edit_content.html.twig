@@ -4,10 +4,28 @@
     Estamos em uma versão BETA, caso queira informar algum problema, envie um e-mail para:
     <strong>contato@myprofile.pro</strong>
 </div>
-{% if not app_gravatar.isProfile(app.user.email) %}
+{% if app_gravatar.isProfile(app.user.email) %}
+
+
+    <div class="row">
+
+        {# fundo #}
+        {% for images in [app_gravatar.getAvatar(app.user.email, 200), app_gravatar.getBackground(app.user.email, 200)] %}
+        <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">
+                <img src=" {{ images }}" alt="" style="width: auto; height: 150px;"/>
+                <div class="text-center">
+                    <p><a href="https://br.gravatar.com/emails/" target="_blank" class="btn btn-link" role="button">Editar</a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+{% else %}
     <div class="alert alert-warning">
         <i class="fa fa-warning"></i>
-        Por favor, configure ou crie uma conta no <a href="https://pt.gravatar.com" target="_blank">Gravatar</a> com seu e-mail : <strong>{{ app.user.email }}</strong>,
+        Por favor, configure ou crie uma conta no <a href="https://br.gravatar.com/" target="_blank">Gravatar</a> com seu e-mail : <strong>{{ app.user.email }}</strong>,
         <p>Obs: A imagem do seu perfil e a imagem de fundo vai ser seu gravatar, o mesmo permanecerá na pagina inicial!</p>
     </div>
 {% endif %}
