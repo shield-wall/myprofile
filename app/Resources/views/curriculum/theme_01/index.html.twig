@@ -1,0 +1,97 @@
+{% extends 'curriculum/base.html.twig' %}
+{% trans_default_domain 'MyProfile' %}
+{% block stylesheets_add %}
+    {% stylesheets 'assets/css/curriculum/theme_01/styles.css*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ absolute_url(asset_url) }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="sidebar-wrapper">
+            <div class="profile-container">
+                <img class="profile img-circle" src="{{ app_gravatar.getAvatar(user.email) }}" alt="" />
+                <h1 class="name">{{ user.getFirstName() }} {{ user.getLastName() }}</h1>
+                <h3 class="tagline">{{ user.role }}</h3>
+            </div><!--//profile-container-->
+
+            <div class="contact-container container-block">
+                <ul class="list-unstyled contact-list">
+                    <li class="email"><i class="fa fa-envelope"></i><a href="mailto: yourname@email.com">{{ user.email }}</a></li>
+                    <li class="website"><i class="fa fa-globe"></i><a href="https://myprofile.pro/{{ user.username }}" target="_blank">myprofile.pro/{{ user.username }}</a></li>
+                    {% for social in user.getUserSocialNetworks() %}
+                        <li>
+                            <a href="{{ social.link }}" target="_blank" title="{{ social.social_networking.name }}">
+                                <i class="{{ social.social_networking.icon }}"></i>
+                                {{ social.link | replace({'https://': '', 'http://': '', 'www.':''}) }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div><!--//contact-container-->
+
+            <div class="education-container container-block">
+                <h2 class="container-block-title">{{ 'navegation.education' | trans }}</h2>
+                {% for education in user.educations %}
+                    <div class="item">
+                        <h4 class="degree">{{ education.title }}</h4>
+                        <h5 class="meta">{{ education.institution }}</h5>
+                        <div class="time">
+                            {{ education.getPeriodStart() | date('m/Y') }} - {{ education.getPeriodEnd() | date('m/Y') }}
+                        </div>
+                    </div><!--//item-->
+                {% endfor %}
+            </div><!--//education-container-->
+
+        </div><!--//sidebar-wrapper-->
+
+        <div class="main-wrapper">
+
+            <section class="section summary-section">
+                <h2 class="section-title"><i class="fa fa-user"></i>{{ 'navegation.about' | trans }}</h2>
+                <div class="summary">
+                    <p>{{ user.summary }}</p>
+                </div><!--//summary-->
+            </section><!--//section-->
+
+            <section class="section experiences-section">
+                <h2 class="section-title"><i class="fa fa-briefcase"></i>{{ 'navegation.experience' | trans }}</h2>
+
+                {% for experience in user.experiences %}
+                    <div class="item">
+                        <div class="meta">
+                            <div class="upper-row">
+                                <h3 class="job-title">{{ experience.title }}</h3>
+                                <div class="time">{{ experience.getPeriodStart() | date('m/Y') }} - {{ experience.getPeriodEnd() | date('m/Y') }}</div>
+                            </div><!--//upper-row-->
+                            <div class="company">{{ experience.company }}</div>
+                        </div><!--//meta-->
+                        <div class="details">
+                            {{ experience.description }}
+                        </div><!--//details-->
+                    </div><!--//item-->
+                {% endfor %}
+
+            </section><!--//section-->
+
+            <section class="skills-section section">
+                <h2 class="section-title"><i class="fa fa-rocket"></i>{{ 'navegation.skills' | trans }}</h2>
+                <div class="skillset">
+                    {% for skill in user.skills | slice(0,4) %}
+                        <div class="item col-md-3">
+                            <h3 class="level-title">{{ skill.name }}</h3>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.getLevelExperience() }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.getLevelExperience() }}%;">
+                                    {{ skill.getLevelExperience() }}%
+                                </div>
+                            </div>
+                        </div><!--//item-->
+                    {% endfor %}
+
+                </div>
+            </section><!--//skills-section-->
+
+        </div><!--//main-body-->
+    </div>
+
+{% endblock %}

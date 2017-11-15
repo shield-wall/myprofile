@@ -35,7 +35,15 @@
 
                 <div class="download-button">
                     <a class="btn btn-info btn-lg" href="#contact"><i class="fa fa-paper-plane"></i>Enviar-me Mensagem</a>
-                    <!-- <a class="btn btn-primary btn-lg" href="#"><i class="fa fa-download"></i>Download Currículo</a> -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-download"></i> Download Currículo <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('app_curriculum', { 'username': user.username, 'generate': 'pdf', '_locale': 'en' }) }}">Inglês</a></li>
+                            <li><a href="{{ path('app_curriculum', { 'username': user.username, 'generate': 'pdf', '_locale': 'pt_BR' }) }}">Português</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

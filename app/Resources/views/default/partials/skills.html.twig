@@ -1,6 +1,8 @@
+{% trans_default_domain 'MyProfile' %}
+
 <section id="skills" class="skills-section section-padding">
     <div class="container">
-        <h2 class="section-title wow fadeInUp">Skills</h2>
+        <h2 class="section-title wow fadeInUp">{{ 'navegation.skills' | trans }}</h2>
 
         <div class="row">
             {% for skill in user.skills | slice(0,4) %}

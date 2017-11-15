@@ -80,3 +80,9 @@ fos_user:
     profile:
         form:
             type: AppBundle\Form\ProfileType
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     '%kernel.project_dir%/bin/wkhtmltopdf'
+        options:    []

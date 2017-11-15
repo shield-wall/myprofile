@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\{
 };
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -67,5 +69,24 @@ class DefaultController extends Controller
         } finally {
             return $this->redirectToRoute('app_profile', ['username' => $request->get('username')]);
         }
+    }
+
+    public function curriculumAction(User $user, $generate)
+    {
+        $html = $this->renderView('curriculum/theme_01/index.html.twig', [
+            'user' => $user,
+        ]);
+
+        if($generate == 'html')
+            return new Response($html);
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="my_profile.pdf"'
+            )
+        );
     }
 }
