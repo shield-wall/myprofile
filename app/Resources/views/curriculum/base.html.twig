@@ -1,0 +1,12 @@
+{% block stylesheets %}
+    {% stylesheets
+    'assets/bootstrap/css/bootstrap.min.css'
+    'assets/css/font-awesome.min.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ absolute_url(asset_url) }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block stylesheets_add %}
+{% endblock %}
+{% block body %}{% endblock %}
