@@ -44,6 +44,16 @@ class User extends BaseUser
     protected $role;
 
     /**
+     * @ORM\Column(type="string",length=20, nullable=true)
+     */
+    protected $phone;
+
+    /**
+     * @ORM\Column(type="string",length=20, nullable=true)
+     */
+    protected $cell;
+
+    /**
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $photo;
@@ -348,6 +358,42 @@ class User extends BaseUser
     public function setRole($role)
     {
         $this->role = $role;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCell()
+    {
+        return $this->cell;
+    }
+
+    /**
+     * @param mixed $cell
+     * @return User
+     */
+    public function setCell($cell)
+    {
+        $this->cell = $cell;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
         return $this;
     }
 
