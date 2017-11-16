@@ -77,8 +77,8 @@
             <section class="skills-section section">
                 <h2 class="section-title"><i class="fa fa-rocket"></i>{{ 'navegation.skills' | trans }}</h2>
                 <div class="skillset">
-                    {% for skill in user.skills | slice(0,4) %}
-                        <div class="item col-md-3">
+                    {% for skill in user.skills %}
+                        <div class="item col-xs-3">
                             <h3 class="level-title">{{ skill.name }}</h3>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.getLevelExperience() }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.getLevelExperience() }}%;">
