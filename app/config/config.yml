@@ -85,4 +85,4 @@ knp_snappy:
     pdf:
         enabled:    true
         binary:     '%kernel.project_dir%/bin/wkhtmltopdf'
-        options:    []
+        options:    ['zoom': 1]
