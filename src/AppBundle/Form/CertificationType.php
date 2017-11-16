@@ -4,12 +4,10 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ExperienceType extends AbstractType
+class CertificationType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,21 +16,18 @@ class ExperienceType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('company')
-            ->add('description', TextareaType::class, [
-                'attr' =>
-                    ['rows' => 5]
-                ]
-            )
-            ->add('period_start', DateType::class, [
+            ->add('periodStart', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
-            ->add('period_end', DateType::class, [
+            ->add('periodEnd', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'required' => false,
             ])
+            ->add('institution')
+            ->add('link')
+            ->add('image')
         ;
     }
     
@@ -42,7 +37,7 @@ class ExperienceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Experience'
+            'data_class' => 'AppBundle\Entity\Certification'
         ));
     }
 
@@ -51,7 +46,7 @@ class ExperienceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_experience';
+        return 'appbundle_certification';
     }
 
 

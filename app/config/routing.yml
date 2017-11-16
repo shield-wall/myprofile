@@ -1,3 +1,7 @@
+app_certification:
+    resource: "@AppBundle/Controller/CertificationController.php"
+    type:     annotation
+
 app_skill:
     resource: "@AppBundle/Controller/SkillController.php"
     type:     annotation

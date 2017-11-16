@@ -14,3 +14,10 @@ about:
     name: Nome
     country: País
     email: E-mail
+
+curriculum:
+    about: Sobre
+    skills: Habilidades
+    education: Educação
+    experiences: Experiências
+    certifications: Certificações
