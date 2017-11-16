@@ -176,6 +176,11 @@ p {
 .main-wrapper .experiences-section .item {
   margin-bottom: 30px;
 }
+
+.main-wrapper .certification-section .item {
+  margin-bottom: 30px;
+}
+
 .main-wrapper .upper-row {
   position: relative;
   overflow: hidden;

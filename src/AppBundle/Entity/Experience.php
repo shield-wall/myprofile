@@ -44,7 +44,7 @@ class Experience
     protected $period_start;
 
     /**
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $period_end;
 
@@ -161,7 +161,7 @@ class Experience
      *
      * @return Experience
      */
-    public function setPeriodEnd($periodEnd)
+    public function setPeriodEnd(\DateTime $periodEnd = null)
     {
         $this->period_end = $periodEnd;
 

@@ -7,7 +7,14 @@
         {% for experience in user.experiences %}
             <li class="{{ cycle(['', 'timeline-inverted'], loop.index0) }}">
                 <div class="posted-date">
-                    <span class="month">{{ experience.getPeriodStart() | date('Y') }} - {{ experience.getPeriodEnd() | date('Y') }}</span>
+                    <span class="month">
+                        {{ experience.getPeriodStart() | date('m/Y') }} -
+                        {% if experience.getPeriodEnd() %}
+                            {{ experience.getPeriodEnd() | date('m/Y') }}
+                        {% else %}
+                            present
+                        {% endif %}
+                    </span>
                 </div><!-- /posted-date -->
 
                 <div class="timeline-panel wow fadeInUp">

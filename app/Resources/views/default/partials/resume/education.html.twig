@@ -7,7 +7,7 @@
         {% for education in user.educations %}
             <li class="{{ cycle(['', 'timeline-inverted'], loop.index0) }}">
                 <div class="posted-date">
-                    <span class="month">{{ education.getPeriodStart() | date('Y') }} - {{ education.getPeriodEnd() | date('Y') }}</span>
+                    <span class="month">{{ education.getPeriodStart() | date('m/Y') }} - {{ education.getPeriodEnd() | date('m/Y') }}</span>
                 </div><!-- /posted-date -->
 
                 <div class="timeline-panel wow fadeInUp">

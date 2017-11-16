@@ -91,11 +91,13 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToMany(targetEntity="Education", mappedBy="user_id")
+     * @ORM\OrderBy({"period_start" = "DESC"})
      */
     protected $educations;
 
     /**
      * @ORM\OneToMany(targetEntity="Experience", mappedBy="user_id")
+     * @ORM\OrderBy({"period_start" = "DESC"})
      */
     protected $experiences;
 
@@ -105,6 +107,12 @@ class User extends BaseUser
      */
     protected $skills;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Certification", mappedBy="user_id")
+     * @ORM\OrderBy({"periodStart" = "DESC"})
+     */
+    protected $certifications;
+
     public function __construct()
     {
         parent::__construct();
@@ -113,6 +121,7 @@ class User extends BaseUser
         $this->educations = new ArrayCollection();
         $this->experiences = new ArrayCollection();
         $this->skills = new ArrayCollection();
+        $this->certifications = new ArrayCollection();
     }
 
     /**
@@ -191,6 +200,26 @@ class User extends BaseUser
     {
         if(!$this->skills->contains($skill))
             $this->skills->add($skill);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCertifications()
+    {
+        return $this->certifications;
+    }
+
+    /**
+     * @param Certification $certification
+     * @return User
+     */
+    public function addCertifications(Certification $certification)
+    {
+        if(!$this->certifications->contains($certification))
+            $this->certifications->add($certification);
 
         return $this;
     }

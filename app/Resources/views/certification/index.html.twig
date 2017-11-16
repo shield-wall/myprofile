@@ -1,0 +1,49 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block container_profile %}
+    <h1>Certifications list</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Periodstart</th>
+                <th>Periodend</th>
+                <th>Institution</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for certification in certifications %}
+            <tr>
+                <td><a href="{{ path('user_certification_show', { 'id': certification.id }) }}">{{ certification.id }}</a></td>
+                <td>{{ certification.title }}</td>
+                <td>{% if certification.periodStart %}{{ certification.periodStart|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if certification.periodEnd %}{{ certification.periodEnd|date('d/m/Y') }}{% endif %}</td>
+                <td>{{ certification.institution }}</td>
+                <td>{% if certification.image %}<img src="{{ certification.image }}" class="img-thumbnail" style="width: 50px;" />{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_certification_show', { 'id': certification.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_certification_edit', { 'id': certification.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ certification.link }}" target="_blank">certification</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_certification_new') }}">Create a new certification</a>
+        </li>
+    </ul>
+{% endblock %}
