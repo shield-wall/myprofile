@@ -135,8 +135,9 @@ p {
 .sidebar-wrapper .interests-list li:last-child {
   margin-bottom: 0;
 }
-.main-wrapper {
+.main-wrapper {s
   background: #fff;
+  padding: 5px;
   padding-right: 300px;
 }
 .main-wrapper .section-title {
