@@ -81,7 +81,7 @@ class DefaultController extends Controller
             return new Response($html);
 
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            $this->get('knp_snappy.pdf')->setOption('zoom', 1)->getOutputFromHtml($html),
             200,
             array(
                 'Content-Type' => 'application/pdf',
