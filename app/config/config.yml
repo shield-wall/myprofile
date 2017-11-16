@@ -85,4 +85,8 @@ knp_snappy:
     pdf:
         enabled:    true
         binary:     '%kernel.project_dir%/bin/wkhtmltopdf'
-        options: []
+        options:
+            margin-top: 10mm
+            margin-right: 10mm
+            margin-bottom: 10mm
+            margin-left: 10mm

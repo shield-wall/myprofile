@@ -64,15 +64,15 @@
                 <h2 class="section-title"><i class="fa fa-certificate"></i>{{ 'curriculum.certifications' | trans }}</h2>
 
                 {% for certification in user.certifications %}
-                    <a href="{{ certification.link }}" target="_blank" class="item col-xs-4">
-                        <div class="text-primary col-xs-4">
+                    <a href="{{ certification.link }}" target="_blank" class="item text-center col-xs-4">
+                        <div class="text-primary">
                             {% if certification.image %}
                                 <img src="{{ certification.image }}" style="width: 50px;" />
                             {% else %}
                                 <i class="fa fa-certificate fa-4x"></i>
                             {% endif %}
                         </div>
-                        <div class="col-xs-8">
+                        <div>
                             <strong>{{ certification.title }}</strong>
                             <div>
                                 {{ certification.periodStart | date('M Y') }} -
