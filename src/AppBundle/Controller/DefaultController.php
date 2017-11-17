@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\ContactType;
 use AppBundle\Utils\Gravatar;
+use Doctrine\ORM\EntityManager;
+use FOS\UserBundle\Doctrine\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\{
     Route,
     Method
@@ -16,9 +18,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, EntityManager $entityManager)
     {
-        return $this->redirectToRoute('fos_user_security_login');
+        $users = $entityManager->getRepository('AppBundle:User')->findBy([], ['id' => 'desc'], 10);
+
+        return $this->render('default/index.html.twig', [
+            'users' => $users,
+        ]);
     }
 
     public function profileAction(Request $request, User $user)

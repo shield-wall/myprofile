@@ -1,0 +1,37 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <p>
+            <h1>My profile!</h1>
+            </p>
+
+            <p>
+            <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}" role="button">
+                {{ 'security.login.submit'|trans }}
+            </a>
+            </p>
+
+        </div>
+
+        <h3>ultimos cadastros</h3>
+
+        <div class="list-group">
+            {% for user in users %}
+                <a href="{{ path('app_profile', {'username': user.username}) }}" class="list-group-item" target="_blank">
+                    <img src="{{ app_gravatar.getAvatar(user.email, 20) }}" alt="" style="width: auto;" class="img-thumbnail" />
+                    {{ user.getFirstName() }} {{ user.getLastName() }}
+                    {% if user.city %}- {{ user.city }}{% endif %}
+                    {% if user.state %}, {{ user.state }}{% endif %}
+                    {% if user.country %}, {{ user.country }}{% endif %}
+
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
