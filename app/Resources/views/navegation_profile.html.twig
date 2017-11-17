@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('app_profile', {'username': app.user.username}) }}"><i class="fa fa-user-circle"></i></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil"></i> editar perfil</a></li>
+                <li><a href="{{ path('user_usersocialnetworking_index') }}"><i class="fa fa-comment"></i> rede social</a></li>
+                <li><a href="{{ path('user_education_index') }}"><i class="fa fa-mortar-board"></i> Educação</a></li>
+                <li><a href="{{ path('user_experience_index') }}"><i class="fa fa-book"></i> experiência</a></li>
+                <li><a href="{{ path('user_certification_index') }}"><i class="fa fa-certificate"></i> certificação</a></li>
+                <li><a href="{{ path('user_skill_index') }}"><i class="fa fa-rocket"></i> {{ 'navegation.skills' | trans }}</a></li>
+                <li><a href="{{path('fos_user_change_password')}}"><i class="fa fa-key"></i> Alterar senha</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-secret"></i> Admin <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('admin_socialnetworking_index') }}">rede social</a></li>
+                            <li><a href="{{ path('admin_user_index') }}">lista de usuarios</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+                <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-close"></i> Sair</a></li>
+            </ul>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>

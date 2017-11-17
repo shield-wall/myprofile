@@ -8,6 +8,9 @@
         </div>
     </div>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% include 'navegation_profile.html.twig' %}
+    {% endif %}
     {% include 'default/partials/home.html.twig' %}
     {% include 'default/partials/navegation.html.twig' %}
     {% include 'default/partials/about.html.twig' %}
