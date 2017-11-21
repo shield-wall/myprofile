@@ -26,6 +26,12 @@ app_social_networking:
     resource: "@AppBundle/Controller/SocialNetworkingController.php"
     type:     annotation
 
+app_homepage:
+    path:   /{_locale}
+    defaults: {_controller: AppBundle:Default:index, _locale: pt_BR}
+    requirements:
+        _locale: "en|pt_BR"
+
 app_curriculum:
     path:   /{username}/curriculum/{generate}/{_locale}
     defaults: {_controller: AppBundle:Default:curriculum, _locale: pt_BR, generate: pdf}
@@ -42,12 +48,6 @@ app_send_contact:
 app_profile:
     path:   /{username}/{_locale}
     defaults: {_controller: AppBundle:Default:profile, _locale: pt_BR }
-    requirements:
-        _locale: "en|pt_BR"
-
-app_homepage:
-    path:   /{_locale}
-    defaults: {_controller: AppBundle:Default:index, _locale: pt_BR}
     requirements:
         _locale: "en|pt_BR"
 
