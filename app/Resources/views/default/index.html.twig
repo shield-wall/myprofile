@@ -11,9 +11,18 @@
             </p>
 
             <p>
-            <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}" role="button">
-                {{ 'security.login.submit'|trans }}
-            </a>
+            <h6>
+                Crie seu curriculum vitae e seu site profissional gratuitamente em poucos minutos
+                <a href="{{ path('fos_user_registration_register') }}">clicando aqui</a>
+            </h6>
+            </p>
+
+            <p>
+                <a class="btn btn-primary" href="{{ path('fos_user_security_login') }}" role="button">
+                    {{ 'security.login.submit'|trans }}
+                </a>
+
+                <!-- <a href="#" class="btn btn-success">Criar meu site grátis</a> -->
             </p>
 
         </div>
@@ -22,7 +31,7 @@
 
         <div class="list-group">
             {% for user in users %}
-                <a href="{{ path('app_profile', {'username': user.username}) }}" class="list-group-item" target="_blank">
+                <a href="{{ path('app_profile', {'username': user.username}) }}" class="list-group-item">
                     <img src="{{ app_gravatar.getAvatar(user.email, 20) }}" alt="" style="width: auto;" class="img-thumbnail" />
                     {{ user.getFirstName() }} {{ user.getLastName() }}
                     {% if user.city %}- {{ user.city }}{% endif %}
