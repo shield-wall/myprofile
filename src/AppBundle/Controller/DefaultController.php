@@ -20,7 +20,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request, EntityManager $entityManager)
     {
-        $users = $entityManager->getRepository('AppBundle:User')->findBy([], ['id' => 'desc'], 10);
+        $users = $entityManager->getRepository('AppBundle:User')->findBy(['enabled' => true], ['id' => 'desc'], 10);
 
         return $this->render('default/index.html.twig', [
             'users' => $users,

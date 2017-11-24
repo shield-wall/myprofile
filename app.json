@@ -10,8 +10,7 @@
       "value": "smtp"
     },
     "MAILER_HOST": {
-      "description": "info your host 127.0.0.1",
-      "value": "127.0.0.1"
+      "description": "info your host 127.0.0.1"
     },
     "MAILER_USER": {
       "description": "report your user"
