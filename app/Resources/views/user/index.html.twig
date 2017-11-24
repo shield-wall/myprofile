@@ -11,7 +11,9 @@
                 <th>Last_name</th>
                 <th>Role</th>
                 <th>Photo</th>
+                <th>Gender</th>
                 <th>Birthday</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,6 +27,12 @@
                 <td>{% if user.photo %}<img src="{{ user.photo }}" class="img-thumbnail" style="width: 50px"/>{% endif %}</td>
                 <td>{{ user.gender }}</td>
                 <td>{% if user.birthday %}{{ user.birthday|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    {%  if user.enabled %}
+                        <i class="fa fa-check text-success"></i>
+                    {% else %}
+                        <i class="fa fa-close text-danger"></i>
+                    {% endif %}</td>
                 <td>
                     <ul>
                         <li>
