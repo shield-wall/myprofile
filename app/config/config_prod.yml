@@ -20,3 +20,8 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+
+fos_user:
+    registration:
+        confirmation:
+            enabled: true
