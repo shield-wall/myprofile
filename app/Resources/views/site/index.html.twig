@@ -1,30 +1,17 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Criação de sites profissionais e curriculum vitae grátis">
-  <meta name="keywords" content="sites profissionais,curriculum,resume,vitae,grátis,my profile,meu site">
-  <meta name="author" content="My Profile">
+{% block stylesheets %}
+  {% stylesheets
+  'assets/bootstrap4/css/bootstrap.min.css'
+  'assets/css/font-awesome.min.css'
+  'assets/css/new-age.css'
+  filter='cssrewrite' output='compiled/css/site.css'
+  %}
+  <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+  {% endstylesheets %}
+{% endblock %}
 
-  <title>My profile</title>
-
-    {% stylesheets
-    'assets/bootstrap4/css/bootstrap.min.css'
-    'assets/css/font-awesome.min.css'
-    'assets/css/new-age.css'
-    filter='cssrewrite' %}
-  <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
+{% block body %}
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -105,15 +92,16 @@
   </div>
 </footer>
 
-{% javascripts
-'assets/js/jquery.js'
-'assets/bootstrap4/js/bootstrap.bundle.min.js'
-'assets/js/jquery.easing.min.js'
-'assets/js/new-age.min.js'
-%}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+{% endblock %}
 
-</body>
-
-</html>
+{% block javascripts %}
+  {% javascripts
+  'assets/js/jquery.js'
+  'assets/bootstrap4/js/bootstrap.bundle.min.js'
+  'assets/js/jquery.easing.min.js'
+  'assets/js/new-age.min.js'
+  output='compiled/css/site.js'
+  %}
+  <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+{% endblock %}

@@ -1,7 +1,10 @@
 {% extends 'curriculum/base.html.twig' %}
 {% trans_default_domain 'MyProfile' %}
 {% block stylesheets_add %}
-    {% stylesheets 'assets/css/curriculum/theme_01/styles.css*' filter='cssrewrite' %}
+    {% stylesheets
+    'assets/css/curriculum/theme_01/styles.css'
+    filter='cssrewrite' output='compiled/css/curriculum_theme01.css'
+    %}
     <link rel="stylesheet" href="{{ absolute_url(asset_url) }}" />
     {% endstylesheets %}
 {% endblock %}

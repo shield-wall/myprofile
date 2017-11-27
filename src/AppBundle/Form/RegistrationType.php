@@ -20,7 +20,10 @@ class RegistrationType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'choices' => ['Male' => 'male', 'Female' => 'female']
             ])
-            ->add('birthday', BirthdayType::class)
+            ->add('birthday', BirthdayType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
         ;
     }
 
