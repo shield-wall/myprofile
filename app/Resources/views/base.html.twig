@@ -8,24 +8,13 @@
         <title>My profile - {% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
 
-            {# mediaScreen #}
             {% stylesheets
-            'assets/bootstrap/css/bootstrap.min.css'
+            'assets/bootstrap4/css/bootstrap.min.css'
             'assets/css/font-awesome.min.css'
-            'assets/css/style.css'
-            filter='cssrewrite' output='compiled/css/app_media_screen.css' %}
+            filter='cssrewrite' output='compiled/css/base.css'
+            %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
-
-            {# relstyle #}
-            {% stylesheets
-            'assets/css/animate.css'
-            'assets/css/magnific-popup.css'
-            'assets/css/responsive.css'
-            filter='cssrewrite' output='compiled/css/app.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
-
 
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('assets/images/ico/favicon.png') }}">
@@ -51,20 +40,9 @@
         {% block javascripts %}
             {% javascripts
             'assets/js/jquery.js'
-            'assets/bootstrap/js/bootstrap.min.js'
-            'assets/js/jquery.stellar.min.js'
-            'assets/js/jquery.sticky.js'
-            'assets/js/smoothscroll.js'
-            'assets/js/wow.min.js'
-            'assets/js/jquery.countTo.js'
-            'assets/js/jquery.inview.min.js'
-            'assets/js/jquery.easypiechart.js'
-            'assets/js/jquery.shuffle.min.js'
-            'assets/js/jquery.magnific-popup.min.js'
-            'assets/js/froogaloop2.min.js'
-            'assets/js/jquery.fitvids.js'
-            'assets/js/scripts.js'
-            output='compiled/js/app.js' %}
+            'assets/bootstrap4/js/bootstrap.bundle.min.js'
+            output='compiled/js/base.js'
+            %}
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}

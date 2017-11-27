@@ -1,11 +1,82 @@
 {% trans_default_domain 'MyProfile' %}
 
-{% extends 'base.html.twig' %}
-{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Criação de sites profissionais e curriculum vitae grátis">
+    <meta name="keywords" content="sites profissionais,curriculum,resume,vitae,grátis,my profile,meu site">
+    <meta name="author" content="My Profile">
+    <title>My profile - {% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
 
-    {% include 'navegation_profile.html.twig' %}
-    <div class="container">
+        {# mediaScreen #}
+        {% stylesheets
+        'assets/bootstrap/css/bootstrap.min.css'
+        'assets/css/font-awesome.min.css'
+        'assets/css/style.css'
+        filter='cssrewrite' output='compiled/css/profile_1.css'
+        %}
+        <link rel="stylesheet" media="screen" type="text/css" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {# relstyle #}
+        {% stylesheets
+        'assets/css/animate.css'
+        'assets/css/magnific-popup.css'
+        'assets/css/responsive.css'
+        filter='cssrewrite' output='compiled/css/profile_2.css'
+        %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('assets/images/ico/favicon.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('images/ico/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('images/ico/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('images/ico/apple-touch-icon-57-precomposed.png') }}">
+
+    <!-- google Adsense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2280017530957932",
+            enable_page_level_ads: true
+        });
+    </script>
+</head>
+<body>
+{% include 'default/partials/flashmessages.html.twig' %}
+
+
+
+{% include 'navegation_profile.html.twig' %}
+<div class="container">
     {% block container_profile %}
     {% endblock container_profile %}
-    </div>
-{% endblock body %}
+</div>
+
+{% block javascripts %}
+    {% javascripts
+    'assets/js/jquery.js'
+    'assets/bootstrap/js/bootstrap.min.js'
+    'assets/js/jquery.stellar.min.js'
+    'assets/js/jquery.sticky.js'
+    'assets/js/smoothscroll.js'
+    'assets/js/wow.min.js'
+    'assets/js/jquery.countTo.js'
+    'assets/js/jquery.inview.min.js'
+    'assets/js/jquery.easypiechart.js'
+    'assets/js/jquery.shuffle.min.js'
+    'assets/js/jquery.magnific-popup.min.js'
+    'assets/js/froogaloop2.min.js'
+    'assets/js/jquery.fitvids.js'
+    'assets/js/scripts.js'
+    output='compiled/css/profile.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>
