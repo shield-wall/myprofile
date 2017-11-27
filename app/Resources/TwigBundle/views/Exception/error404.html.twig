@@ -1,15 +1,48 @@
-{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Page not found</h1>
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        {# ... #}
-    {% endif %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 offset-3 display-1 text-center">
 
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
-    </p>
+                <!-- line 01 -->
+                <div class="row text-danger">
+
+                    <div class="col-4">
+                        <div class="border border-danger rounded">4</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border border-danger rounded">0</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border border-danger rounded">4</div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-danger"><i class="fa fa-warning"></i></div>
+                    <div class="col-12 text-center text-uppercase display-4 text-dark">Page not found</div>
+                </div>
+
+                <div class="row">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="col-6">
+                    {% else %}
+                    <div class="col-6 offset-3">
+                    {% endif %}
+                        <a href="{{ path('app_homepage') }}" class="btn btn-danger btn-block"><i class="fa fa-home "></i> Return to the homepage </a>
+                    </div>
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="col-6">
+                        <a href="{{ path('app_profile', {'username': app.user.username}) }}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> My profile </a>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

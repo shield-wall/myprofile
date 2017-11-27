@@ -2,74 +2,77 @@
 
 {% block stylesheets %}
 
-            {# mediaScreen #}
-            {% stylesheets
-            'assets/bootstrap/css/bootstrap.min.css'
-            'assets/css/font-awesome.min.css'
-            'assets/css/fos_user/login.css'
-            filter='cssrewrite'%}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
+    {# mediaScreen #}
+    {% stylesheets
+    'assets/bootstrap4/css/bootstrap.min.css'
+    'assets/css/font-awesome.min.css'
+    output='compiled/css/fos_user_register.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 
-        {% endblock %}
+{% endblock %}
 
-<div class="container" ></br></br>
-  <div class="row" id="pwd-container">
-    <div class="thumbnail">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 offset-3 rounded p-2" style="color: #5d5d5d;background: #f2f2f2;">
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
             <h3 class="text-center"><b>Register</b></h3><br/>
-            <div class="form-group">
+            <div class="row">
                 <div class="col-md-6">
-                    </br><label for="name">{{ form_label(form.first_name) }} <span class="obrigatorio">*</span></label>
+                    <label for="name">{{ form_label(form.first_name) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.first_name) }}
                     {{ form_errors(form.first_name) }}
                 </div>
                 <div class="col-md-6">
-                    </br><label for="name">{{ form_label(form.last_name) }} <span class="obrigatorio">*</span></label>
+                    <label for="name">{{ form_label(form.last_name) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.last_name) }}
-                    {{ form_errors(form.last_name) }}</br>   
+                    {{ form_errors(form.last_name) }}
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-4">
-                    <label for="name">{{ form_label(form.email) }} <span class="obrigatorio">*</span></label>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">{{ form_label(form.email) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.email) }}
                     {{ form_errors(form.email) }}
                 </div>
-                <div class="col-md-4">
-                    <label for="name">{{ form_label(form.gender) }} <span class="obrigatorio">*</span></label>
+                <div class="col-md-6">
+                    <label for="name">{{ form_label(form.gender) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.gender) }}
                     {{ form_errors(form.gender) }}    
                 </div>
-                <div class="col-md-4">
-                    <label for="name">{{ form_label(form.birthday) }} <span class="obrigatorio">*</span></label>
-                    {{ form_widget(form.birthday) }}
-                    {{ form_errors(form.birthday) }}</br>
-                </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-4">
-                    <label for="name">{{ form_label(form.username) }} <span class="obrigatorio">*</span></label>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">{{ form_label(form.username) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.username) }}
                     {{ form_errors(form.username) }}
                 </div>
-                <div class="col-md-4">
-                    <label for="name">{{ form_label(form.plainPassword.first) }} <span class="obrigatorio">*</span></label>
+                <div class="col-md-6">
+                    <label for="name">{{ form_label(form.birthday) }} <strong class="text-danger">*</strong></label>
+                    {{ form_widget(form.birthday) }}
+                    {{ form_errors(form.birthday) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">{{ form_label(form.plainPassword.first) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.plainPassword.first) }}
                     {{ form_errors(form.plainPassword.first) }}    
                 </div>
-                <div class="col-md-4">
-                    <label for="name">{{ form_label(form.plainPassword.second) }} <span class="obrigatorio">*</span></label>
+                <div class="col-md-6">
+                    <label for="name">{{ form_label(form.plainPassword.second) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.plainPassword.second) }}
-                    {{ form_errors(form.plainPassword.second) }}</br>
+                    {{ form_errors(form.plainPassword.second) }}
                 </div>
             </div>
-            <div class="form-group">
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;{{ 'registration.submit'|trans }}</button>
-                    </div>
+            <div class="row">
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;{{ 'registration.submit'|trans }}</button>
+                </div>
             </div>
         {{ form_end(form) }}
     </div>
