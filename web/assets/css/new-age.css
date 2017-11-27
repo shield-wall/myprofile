@@ -50,7 +50,7 @@ section {
 
 #mainNav {
   border-color: rgba(34, 34, 34, 0.05);
-  background-color: #1d2124;
+  background-color: white;
   -webkit-transition: all .35s;
   -moz-transition: all .35s;
   transition: all .35s;
@@ -118,9 +118,9 @@ header.masthead {
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("../images/bg-pattern.png"), #7b4397;
-  background: url("../images/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #1d2124);
-  background: url("../images/bg-pattern.png"), linear-gradient(to left, #7b4397, #1d2124); }
+  background: url("/assets/images/bg-pattern.png"), #7b4397;
+  background: url("/assets/images/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #1d2124);
+  background: url("/assets/images/bg-pattern.png"), linear-gradient(to left, #7b4397, #1d2124); }
   header.masthead .header-content {
     max-width: 500px;
     margin-bottom: 100px;
@@ -149,7 +149,7 @@ header.masthead {
 
 section.cta {
   position: relative;
-  background-image: url("../images/bg-cta.jpg");
+  background-image: url("/assets/images/bg-cta.jpg");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;

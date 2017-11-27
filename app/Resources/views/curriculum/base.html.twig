@@ -7,7 +7,7 @@
             {% stylesheets
             'assets/bootstrap/css/bootstrap.min.css'
             'assets/css/font-awesome.min.css'
-            filter='cssrewrite' %}
+            filter='cssrewrite' output='compiled/css/curriculum_base.css' %}
             <link rel="stylesheet" href="{{ absolute_url(asset_url) }}" />
             {% endstylesheets %}
         {% endblock %}
