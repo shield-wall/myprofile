@@ -1,12 +1,12 @@
-<!-- Contact Section -->
+{% trans_default_domain 'MyProfile' %}
 <section id="contact" class="contact-section section-padding">
     <div class="container">
-        <h2 class="section-title wow fadeInUp">Contato</h2>
+        <h2 class="section-title wow fadeInUp">{{ 'navegation.contact' | trans }}</h2>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="contact-form">
-                    <strong>Envie-me uma mensagem:</strong>
+                    <strong>{{ 'default.send_me_message' | trans }}</strong>
 
                     {{ form_start(formContact) }}
 
@@ -34,7 +34,7 @@
                             {{ form_errors(formContact.message) }}
                         </div>
 
-                        <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;Enviar Mensagem</button>
+                        <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{ 'default.send_message' | trans }}</button>
                     {{ form_end(formContact) }}
 
                 </div><!-- /.contact-form -->

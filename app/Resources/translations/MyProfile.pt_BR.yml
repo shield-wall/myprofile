@@ -7,6 +7,7 @@ navegation:
     contact: Contato
     education: Educação
     experience: Experiência
+    registration: Criar meu site grátis
 
 about:
     about: Sobre
@@ -21,3 +22,14 @@ curriculum:
     education: Educação
     experiences: Experiências
     certifications: Certificações
+
+default:
+  last_registrations: Últimos cadastros
+  send_message: Enviar mensagem
+  send_me_message: Envie-me uma mensagem
+  download_resume: Download currículo
+  resume: Resumo
+  more_skills: Mais habilidades
+
+site:
+  title_message: Crie seu curriculum e site profissional gratuitamente em poucos minutos!
