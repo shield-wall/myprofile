@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ user.firstName ~ ' ' ~ user. lastName }}{% endblock %}
+
+{% block description %}{{ user.headline }}{% endblock %}
+
+{% block keywords %}{{ user.keyWords }}{% endblock %}
+
 {% block stylesheets %}
 
     {# mediaScreen #}
