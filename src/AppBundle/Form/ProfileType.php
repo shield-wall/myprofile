@@ -23,6 +23,7 @@ class ProfileType extends RegistrationType
             ->add('city', TextType::class)
             ->add('phone', IntegerType::class)
             ->add('cell', IntegerType::class)
+            ->add('keyWords', TextType::class)
             ->add('summary', TextareaType::class, [
                 'attr' => [
                     'rows' => 5

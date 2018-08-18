@@ -123,6 +123,11 @@ class User extends BaseUser
      */
     protected $certifications;
 
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $keyWords;
+
     public function __construct()
     {
         parent::__construct();
@@ -485,6 +490,24 @@ class User extends BaseUser
     public function setState($state)
     {
         $this->state = $state;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKeyWords()
+    {
+        return $this->keyWords;
+    }
+
+    /**
+     * @param string $keyWords
+     * @return User
+     */
+    public function setKeyWords(string $keyWords)
+    {
+        $this->keyWords = $keyWords;
         return $this;
     }
 }

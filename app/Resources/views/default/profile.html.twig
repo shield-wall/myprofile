@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ user.firstName ~ ' ' ~ user. lastName }}{% endblock %}
+
+{% if user.headline is not empty %}
+    {% block description %}{{ user.headline }}{% endblock %}
+{% endif %}
+
+{% if user.keyWords is not empty %}
+    {% block keywords %}{{ user.keyWords }}{% endblock %}
+{% endif %}
+
 {% block stylesheets %}
 
     {# mediaScreen #}

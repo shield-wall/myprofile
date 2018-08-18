@@ -4,10 +4,8 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Criação de sites profissionais e curriculum vitae grátis">
-    <meta name="keywords" content="sites profissionais,curriculum,resume,vitae,grátis,my profile,meu site">
     <meta name="author" content="My Profile">
-    <title>My profile - {% block title %}Welcome!{% endblock %}</title>
+    <title>My profile | {% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
 
         {# mediaScreen #}
@@ -36,15 +34,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('images/ico/apple-touch-icon-57-precomposed.png') }}">
-
-    <!-- google Adsense -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-2280017530957932",
-            enable_page_level_ads: true
-        });
-    </script>
 </head>
 <body>
 {% include 'default/partials/flashmessages.html.twig' %}
