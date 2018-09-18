@@ -18,11 +18,6 @@ monolog:
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
             channels: ['!event']
-            handler: sentry
-        sentry:
-            type: raven
-            dsn: '%sentry_dsn%'
-            level: info
         console:
             type: console
             process_psr_3_messages: false
