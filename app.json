@@ -23,6 +23,9 @@
     },
     "MAILER_FROM": {
       "description": "report about your configured email email_from@teste.com"
+    },
+    "SENTRY_DSN": {
+      "description": "Please set here SDK dsn sentry."
     }
   },
   "addons": [

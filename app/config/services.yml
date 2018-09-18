@@ -41,3 +41,16 @@ services:
         class: AppBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    AppBundle\Logger\SentryContextProcessor:
+        arguments:
+            - '%kernel.environment%'
+            - '%locale%'
+        tags:
+             - { name: monolog.processor }
+
+    AppBundle\Logger\UserProcessor:
+       arguments:
+           - '@security.token_storage'
+       tags:
+            - { name: monolog.processor }
