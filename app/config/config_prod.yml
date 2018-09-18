@@ -10,21 +10,14 @@ imports:
 monolog:
     handlers:
         main:
-            type: fingers_crossed
-            action_level: error
-            handler: nested
-            handler: grouped
-        grouped:
-            type:    group
-            members: [nested, sentry]
-        sentry:
-            type: raven
-            dsn: '%sentry_dsn%'
-            level: info
-        nested:
             type: stream
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
+            handler: sentry
+        sentry:
+            type: raven
+            dsn: '%sentry_dsn%'
+            level: error
         console:
             type: console
             process_psr_3_messages: false
