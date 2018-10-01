@@ -27,7 +27,7 @@ http://www.bootstrapzen.com/item/135/simple-login-form-logo/
 	}
 
 body {
-	background: url('../images/fundo_login.jpg'), no-repeat center center fixed;
+	background: url('/assets/images/fundo_login.jpg'), no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
