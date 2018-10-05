@@ -13,14 +13,14 @@ monolog:
             type: fingers_crossed
             action_level: error
             handler: sentry
+        applog:
+            type: fingers_crossed
+            action_level: debug
+            channels: ['app', 'request']
+            handler: sentry
         sentry:
             type: raven
             dsn: '%sentry_dsn%'
-        applog:
-            type: raven
-            dsn: '%sentry_dsn%'
-            level: debug
-            channels: ['app']
         default:
             type: rotating_file
             path:  '%kernel.logs_dir%/%kernel.environment%.log'
