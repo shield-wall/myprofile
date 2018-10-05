@@ -10,14 +10,23 @@ imports:
 monolog:
     handlers:
         main:
-            type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: debug
+            type: fingers_crossed
+            action_level: error
             handler: sentry
         sentry:
             type: raven
             dsn: '%sentry_dsn%'
             level: error
+        applog:
+            type: raven
+            dsn: '%sentry_dsn%'
+            level: debug
+            channels: ['app']
+        default:
+            type: rotating_file
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
+            max_files: 5
+            level: debug
         console:
             type: console
             process_psr_3_messages: false
