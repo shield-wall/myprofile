@@ -7,6 +7,7 @@ use AppBundle\Form\ContactType;
 use AppBundle\Utils\Gravatar;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Doctrine\UserManager;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\{
     Route,
     Method
@@ -40,7 +41,7 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function sendContactAction(Request $request, User $user)
+    public function sendContactAction(Request $request, User $user, LoggerInterface $logger)
     {
         try {
             $formContact = $this->createForm(ContactType::class, null);
@@ -49,6 +50,12 @@ class DefaultController extends Controller
             if(!$formContact->isValid())
                 throw new \Exception('Erro na validação dos campos');
 
+            $body = [
+                'email' => $formContact->get('email')->getData(),
+                'subject' => $formContact->get('subject')->getData(),
+                'name' => $formContact->get('name')->getData(),
+                'message' => $formContact->get('message')->getData()
+            ];
             $message = \Swift_Message::newInstance();
             $message
                 ->setSubject($formContact->get('subject')->getData())
@@ -57,17 +64,14 @@ class DefaultController extends Controller
                 ->setBody(
                     $this->renderView(
                         'templates/contacts/simple.html.twig',
-                        [
-                            'email' => $formContact->get('email')->getData(),
-                            'subject' => $formContact->get('subject')->getData(),
-                            'name' => $formContact->get('name')->getData(),
-                            'message' => $formContact->get('message')->getData()
-                        ]), 'text/html')
-            ;
+                        $body), 'text/html');
 
             if(!$this->get('mailer')->send($message))
                 throw new \Exception('Erro ao enviar o e-mail');
 
+            $logger->debug('Email sending.', [
+                'email_body' => $body,
+            ]);
             $this->addFlash('success', 'Email enviado com sucesso!');
 
         } catch (\Throwable $e) {
