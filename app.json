@@ -2,8 +2,7 @@
   "name": "myProfile",
   "env": {
     "SYMFONY_ENV": {
-      "description" : "env prod",
-      "value": "prod"
+      "description" : "eg. dev, test, qa or prod"
     },
     "MAILER_TRANSPORT": {
       "description" : "smtp",
