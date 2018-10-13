@@ -1,0 +1,30 @@
+imports:
+    - { resource: config.yml }
+
+monolog:
+    handlers:
+        main:
+            type: fingers_crossed
+            action_level: error
+            handler: sentry
+        applog:
+            type: fingers_crossed
+            action_level: debug
+            channels: ['app']
+            handler: sentry
+        sentry:
+            type: raven
+            dsn: '%sentry_dsn%'
+        default:
+            type: rotating_file
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
+            max_files: 5
+            level: debug
+        console:
+            type: console
+            process_psr_3_messages: false
+
+fos_user:
+    registration:
+        confirmation:
+            enabled: true
