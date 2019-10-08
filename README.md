@@ -6,29 +6,23 @@
 
 ## Getting Started
 
-  My profile have the goal of help peoples the create your site professional and resume!
-  when the user finish the acount's acount going to create the site, similar this: https://myprofile.pro/erison
-
+  ["My Profile"](https://www.myprofile.pro/) is a project to goal of help people to create your professional web site and CV!
+  
 ### Installing
 
-  after clone project and configure the file : **app/config/parameters.yml** execute the command :
+  after to clone the project and configure the file : **app/config/parameters.yml** execute the command :
+
+  ```
+    docker run --name myprofile -p 5432:5432 -e POSTGRES_PASSWORD=myprofile -d postgres
+  ```
 
   ```
   composer install
   ```
-## Built With
 
-  * [Symfony](https://symfony.com/) - The framework php used
-  * [Bootstrap](https://getbootstrap.com/docs/4.0) - The web framwork used
-  * [composer](https://getcomposer.org/doc/)
-
-## Authors
-
-  |   |  |
-  | ------------- | ------------- |
-  | [<img src="https://avatars2.githubusercontent.com/u/6358755?s=100&v=4" /><br /><sub>Erison Silva</sub>](https://github.com/eerison)<br />:earth_africa: :metro: :art: [:computer:](https://github.com/eerison/myprofile/commits?author=eerison) | [<img src="https://avatars1.githubusercontent.com/u/17271315?s=100&v=4" /><br /><sub>Lilian Vasconcelos</sub>](https://github.com/LilianVasconcelos)<br />[:art:](https://github.com/eerison/myprofile/commits?author=LilianVasconcelos)  |
-
-
+   ```
+    bin/console assetic:dump
+   ```
 ## License
 
   This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details
