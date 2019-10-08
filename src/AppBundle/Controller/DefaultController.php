@@ -106,7 +106,6 @@ class DefaultController extends Controller
             200,
             array(
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="my_profile.pdf"'
             )
         );
     }
