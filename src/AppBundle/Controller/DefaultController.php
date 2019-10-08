@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\ContactType;
 use Doctrine\ORM\EntityManager;
+use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -86,24 +87,21 @@ class DefaultController extends Controller
 
     /**
      * @Route(
-     *     "/{username}/curriculum/{generate}/{_locale}",
+     *     "/{username}/curriculum/{_locale}",
      *     name="app_curriculum",
-     *     defaults={"_locale": "pt_BR", "generate": "pdf"},
-     *     requirements={"_locale": "en|pt_BR", "generate": "html|pdf"}
+     *     defaults={"_locale": "pt_BR"},
+     *     requirements={"_locale": "en|pt_BR"}
      *     )
      */
-    public function curriculumAction(User $user, $generate)
+    public function curriculumAction(User $user, Pdf $pdf)
     {
         $html = $this->renderView('curriculum/theme_01/index.html.twig', [
             'user' => $user,
         ]);
 
-        if($generate == 'html')
-            return new Response($html);
-
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            200,
+            $pdf->getOutputFromHtml($html),
+            Response::HTTP_OK,
             array(
                 'Content-Type' => 'application/pdf',
             )
