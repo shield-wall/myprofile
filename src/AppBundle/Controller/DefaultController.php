@@ -4,21 +4,18 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\ContactType;
-use AppBundle\Utils\Gravatar;
 use Doctrine\ORM\EntityManager;
-use FOS\UserBundle\Doctrine\UserManager;
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\{
-    Route,
-    Method
-};
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @Route("/{_locale}", name="app_homepage", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+     */
     public function indexAction(Request $request, EntityManager $entityManager)
     {
         $users = $entityManager->getRepository('AppBundle:User')->findBy(['enabled' => true], ['id' => 'desc'], 20);
@@ -28,6 +25,9 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/{username}/{_locale}", name="app_profile", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+     */
     public function profileAction(Request $request, User $user)
     {
         $formContact = $this->createForm(ContactType::class, null, [
@@ -41,6 +41,9 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/{username}/send_contact/{_locale}", name="app_send_contact", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+     */
     public function sendContactAction(Request $request, User $user, LoggerInterface $logger)
     {
         try {
@@ -81,6 +84,14 @@ class DefaultController extends Controller
         }
     }
 
+    /**
+     * @Route(
+     *     "/{username}/curriculum/{generate}/{_locale}",
+     *     name="app_curriculum",
+     *     defaults={"_locale": "pt_BR", "generate": "pdf"},
+     *     requirements={"_locale": "en|pt_BR", "generate": "html|pdf"}
+     *     )
+     */
     public function curriculumAction(User $user, $generate)
     {
         $html = $this->renderView('curriculum/theme_01/index.html.twig', [
