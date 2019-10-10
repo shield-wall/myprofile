@@ -14,6 +14,7 @@ security:
     firewalls:
         main:
             pattern: ^/
+            logout_on_user_change: ~ # TODO to remove it when migrate to symfony 4
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager

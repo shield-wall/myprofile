@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\ContactType;
-use Doctrine\ORM\EntityManager;
+use AppBundle\Repository\UserRepository;
 use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -17,9 +17,9 @@ class DefaultController extends Controller
     /**
      * @Route("/{_locale}", name="app_homepage", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
      */
-    public function indexAction(Request $request, EntityManager $entityManager)
+    public function indexAction(Request $request, UserRepository $userRepository)
     {
-        $users = $entityManager->getRepository('AppBundle:User')->findBy(['enabled' => true], ['id' => 'desc'], 20);
+        $users = $userRepository->findBy(['enabled' => true], ['id' => 'desc'], 20);
 
         return $this->render('site/index.html.twig', [
             'users' => $users,
@@ -51,7 +51,7 @@ class DefaultController extends Controller
             $formContact = $this->createForm(ContactType::class, null);
             $formContact->handleRequest($request);
 
-            if(!$formContact->isValid())
+            if (!$formContact->isValid())
                 throw new \Exception('Erro na validação dos campos');
 
             $body = [
@@ -70,7 +70,7 @@ class DefaultController extends Controller
                         'templates/contacts/simple.html.twig',
                         $body), 'text/html');
 
-            if(!$this->get('mailer')->send($message))
+            if (!$this->get('mailer')->send($message))
                 throw new \Exception('Erro ao enviar o e-mail');
 
             $logger->debug('Email sending.', [
