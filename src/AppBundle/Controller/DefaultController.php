@@ -100,7 +100,7 @@ class DefaultController extends Controller
         ]);
 
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            $pdf->getOutputFromHtml($html),
             Response::HTTP_OK,
             array(
                 'Content-Type' => 'application/pdf',

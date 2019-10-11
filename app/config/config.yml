@@ -82,7 +82,13 @@ fos_user:
             type: AppBundle\Form\ProfileType
 
 knp_snappy:
+    temporary_folder: '%kernel.cache_dir%/snappy'
     pdf:
         enabled:    true
         binary:     '%kernel.project_dir%/bin/wkhtmltopdf'
-        options: []
+        options:
+            disable_smart_shrinking: true
+            margin-left: 0mm
+            margin-right: 0mm
+            margin-bottom: 0mm
+            margin-top: 0mm

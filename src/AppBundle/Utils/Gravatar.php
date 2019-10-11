@@ -1,7 +1,7 @@
 <?php
+
 namespace AppBundle\Utils;
 
-use FOS\UserBundle\Model\UserManagerInterface;
 
 class Gravatar
 {
@@ -17,12 +17,12 @@ class Gravatar
      * @return String containing either just a URL or a complete image tag
      * @source https://gravatar.com/site/implement/images/php/
      */
-    public function getAvatar($email, $s = 80, $d = 'mm', $r = 'g') : string
+    public function getAvatar($email, $s = 80, $d = 'mm', $r = 'g'): string
     {
-        return sprintf('%s/avatar/%s?s=%s&d=%s&r=%s', $this->url, md5( strtolower( trim( $email ) ) ), $s, $d, $r);
+        return sprintf('%s/avatar/%s?s=%s&d=%s&r=%s', $this->url, md5(strtolower(trim($email))), $s, $d, $r);
     }
 
-    public function getBackground($email) :? string
+    public function getBackground($email): ?string
     {
         try {
             $profile = $this->getProfile($email);
@@ -33,11 +33,12 @@ class Gravatar
     }
 
 
-    public function getProfile($email) :? Array {
-        $str = file_get_contents( sprintf('%s/%s.php', $this->url, md5( strtolower( trim( $email ) ) )) );
+    public function getProfile($email): ?Array
+    {
+        $str = file_get_contents(sprintf('%s/%s.php', $this->url, md5(strtolower(trim($email)))));
         $profile = unserialize($str);
 
-        if ( is_array( $profile ) && isset( $profile['entry'] ) )
+        if (is_array($profile) && isset($profile['entry']))
             return $profile['entry'][0];
     }
 
