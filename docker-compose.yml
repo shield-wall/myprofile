@@ -1,0 +1,23 @@
+version: '3'
+services:
+  php:
+    build: .
+    working_dir: /app
+    ports:
+    - "8000:8000"
+    command: composer install
+    entrypoint: docker/entrypoint.sh
+    env_file:
+      - .env
+    volumes:
+    - .:/app
+    links:
+    - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: myprofile
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: myprofile

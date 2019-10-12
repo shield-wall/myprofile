@@ -10,19 +10,18 @@
   
 ### Installing
 
-  after to clone the project and configure the file : **app/config/parameters.yml** execute the command :
+  Run [docker-composer](https://docs.docker.com/compose/install/) in your terminal.
 
   ```
-    docker run --name myprofile -p 5432:5432 -e POSTGRES_PASSWORD=myprofile -d postgres
+    docker-compose up
   ```
 
+  Open this link in your browser.
+
   ```
-  composer install
+    [localhost:8000](http://localhost:8000)
   ```
 
-   ```
-    bin/console assetic:dump
-   ```
 ## License
 
   This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details

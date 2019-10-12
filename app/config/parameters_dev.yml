@@ -1,3 +1,0 @@
-# This file is auto-generated during the composer install
-parameters:
-    database_url: 'postgres://postgres:myprofile@localhost:5432/myprofile'
