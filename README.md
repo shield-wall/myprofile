@@ -16,11 +16,7 @@
     docker-compose up
   ```
 
-  Open this link in your browser.
-
-  ```
-    [localhost:8000](http://localhost:8000)
-  ```
+  Open this link in your browser: [localhost:8000](http://localhost:8000)
 
 ## License
 
