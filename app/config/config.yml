@@ -61,12 +61,6 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: false
-    filters:
-        cssrewrite: ~
-
 fos_user:
     db_driver: orm
     firewall_name: main
