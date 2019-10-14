@@ -1,11 +1,10 @@
 version: '3'
 services:
   php:
-    build: .
+    build: docker/.
     working_dir: /app
     ports:
     - "8000:8000"
-    command: composer install
     entrypoint: docker/entrypoint.sh
     env_file:
       - .env
