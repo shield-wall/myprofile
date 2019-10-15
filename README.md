@@ -17,6 +17,15 @@
   ```
 
   Open this link in your browser: [localhost:8000](http://localhost:8000)
+  
+### Commands
+
+   You can execute the symfony commands this way:
+    
+   ```
+     docker-compose exec php bin/console assetic:watch
+   ```
+
 
 ## License
 
