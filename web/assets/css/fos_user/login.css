@@ -130,6 +130,7 @@ form[role=login] > div {
 	margin-left: 30px !important;
 	margin-top: 20px !important;
 	font-family: sans-serif;
+	display: inline-block;
 }
 
 .my_remember {
