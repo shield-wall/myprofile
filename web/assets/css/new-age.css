@@ -69,7 +69,6 @@ section h2 {
 #mainNav .navbar-brand {
   color: #fdcc52;
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
   letter-spacing: 1px; 
 }
 
@@ -125,7 +124,7 @@ section h2 {
 
   #mainNav .navbar-nav > li > a,
   #mainNav .navbar-nav > li > a:focus {
-    color: rgba(255, 255, 255, 0.7); 
+    color: #fdcc52; 
   }
 
   #mainNav .navbar-nav > li > a:hover,
@@ -153,6 +152,14 @@ section h2 {
   #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover {
     color: #fdcc52; 
   } 
+}
+
+.navbar-brand-component {
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-color: white;
+  border: solid 1px;
 }
 
 header.masthead {
@@ -302,9 +309,13 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
   width: 60px !important;
   height: 3px !important;
   background: #fff !important;
-  margin: 5px 135px !important;  
+  margin: 5px 139px !important;  
 }
 
 .text-white {
   color: #ffffff !important;
+}
+
+.list-inline {
+  margin: 10px;
 }
