@@ -20,7 +20,7 @@
       <section class="login-form">
 
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
+          <form class="form-login" action="{{ path("fos_user_security_check") }}" method="post" role="login">
               <img src=" {{ app_gravatar.getAvatar(app.user.email) }}" alt="" class="img-circle" style="width: auto" />
               <p class="text-center">
                   {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
@@ -43,15 +43,15 @@
                   <h3 class="text-center"><b>My</b> Profile</h3><br/>
 
                   {% if csrf_token %}
-                      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                      <input class="form-input" type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                   {% endif %}
 
-                  <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
+                  <input class="form-input" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
 
-                  <input type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+                  <input class="form-input" type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
 
-                  <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                  <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                  <input class="my-box" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                  <label class="my_remember" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
                   <div class="pwstrength_viewport_progress"></div>
 
@@ -59,7 +59,7 @@
                       <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                   {% endif %}
 
-                  <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
+                  <button class="btn-login" type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
                   <div>
                       <a href="{{path('fos_user_registration_register')}}">{{'layout.register'| trans}}</a> or <a href="{{path('fos_user_resetting_request')}}">{{'resetting.email.subject' | trans}}</a>
                   </div>

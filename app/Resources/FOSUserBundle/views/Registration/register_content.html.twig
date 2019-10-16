@@ -6,19 +6,20 @@
     {% stylesheets
     'assets/bootstrap4/css/bootstrap.min.css'
     'assets/css/font-awesome.min.css'
+    'assets/css/fos_user/register.css'
     output='compiled/css/fos_user_register.css'
     %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+    <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 
 {% endblock %}
 
 <div class="container mt-5">
   <div class="row">
-    <div class="col-lg-12 rounded p-2" style="color: #5d5d5d;background: #f2f2f2;">
+    <div class=" rounded p-2" style="color: #5d5d5d;background: #f2f2f2;">
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
             <h3 class="text-center"><b>Register</b></h3><br/>
-            <div class="row">
+            <div class="row-one">
                 <div class="col-6">
                     <label for="name">{{ form_label(form.first_name) }} <strong class="text-danger">*</strong></label>
                     {{ form_widget(form.first_name) }}

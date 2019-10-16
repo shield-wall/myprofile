@@ -19,12 +19,30 @@ http://www.bootstrapzen.com/item/135/simple-login-form-logo/
 	outline: none;
 }
 
-    .form-control {
-	  position: relative;
-	  font-size: 16px;
-	  height: auto;
-	  padding: 10px;
-	}
+.form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+}
+
+h3 {
+	font-family: "Roboto", sans-serif;
+    color: rgb(65, 62, 62);
+	margin: 0 0 20px;
+	margin-bottom: -20px;
+    padding: 20px;
+    box-sizing: border-box;
+	font-size: 30px;
+}
+
+a {
+	font-family: sans-serif;
+	text-transform: lowercase;
+	font-size: 12px;
+	color: rgb(79, 132, 148);
+	padding: 15px;
+}
 
 body {
 	background: url('/assets/images/fundo_login.jpg'), no-repeat center center fixed;
@@ -39,36 +57,83 @@ body {
 }
 
 form[role=login] {
-	color: #5d5d5d;
-	background: #f2f2f2;
-	padding: 26px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	position: relative;
+    background: rgb(231, 230, 230);
+    height: 330px;
+	max-width: 300px;
+    margin: 20px auto 100px;
+    border-radius: 0.225rem;
+    padding: 17px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.24);
 }
-	form[role=login] img {
-		display: block;
-		margin: 0 auto;
-		margin-bottom: 35px;
-	}
-	form[role=login] input,
-	form[role=login] button {
-		font-size: 18px;
-		margin: 16px 0;
-	}
-	form[role=login] > div {
-		text-align: center;
-	}
+
+.form-input {
+    font-size: 10px;
+    font-style: normal;
+	width: 230px;
+	height: 30px;
+	padding: 0.5rem 0.75rem;
+	border: solid 1px #b1b1c3;
+	border-radius: 0.25rem;
+	margin: 16px 0;
+	margin-bottom: 0;
+}
+
+.form-input::placeholder {
+	color: rgb(196, 191, 191);
+}
+
+.form-input:focus{
+	border: 1.8px solid rgb(114, 136, 233);
+}
+
+.btn-login {
+	font-size: 13px;
+	font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #5e78c0;
+    width: 90%;
+    border: 0;
+	padding: 10px;
+	margin: 10px;
+    border-radius: 0.225rem;
+    color: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 8px 30px 0 rgba(0, 0, 0, 0.24);
+}
+
+.btn-login:hover {
+	transform: scale(1.05);
+}
+
+form[role=login] > div {
+	text-align: center;
+}
 	
 .form-links {
 	text-align: center;
 	margin-top: 1em;
 	margin-bottom: 50px;
 }
-	.form-links a {
-		color: #fff;
-	}
+
+.form-links a {
+	color: #fff;
+}
 
 .login-form {
     margin-top: 60px;
+}
+
+.my-box{
+	margin-left: 30px !important;
+	margin-top: 20px !important;
+	font-family: sans-serif;
+}
+
+.my_remember {
+	font-family: sans-serif;
+	color: rgb(67, 71, 71);
+	font-size: 13px;
 }
