@@ -7,6 +7,7 @@
     'assets/bootstrap/css/bootstrap.min.css'
     'assets/css/font-awesome.min.css'
     'assets/css/fos_user/login.css'
+    'assets/css/fos_user/grid-login.css'
     output='compiled/css/fos_user_login.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
@@ -39,7 +40,7 @@
               </a>
           </form>
           {% else %}
-              <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
+              <form  class="grid-16" action="{{ path("fos_user_security_check") }}" method="post" role="login">
                   <h3 class="text-center"><b>My</b> Profile</h3><br/>
 
                   {% if csrf_token %}

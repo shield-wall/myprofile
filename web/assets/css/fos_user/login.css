@@ -45,11 +45,7 @@ a {
 }
 
 body {
-	background: url('/assets/images/fundo_login.jpg'), no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+	background: rgb(130, 204, 226);
 }
 
 .login-form {
@@ -57,7 +53,6 @@ body {
 }
 
 form[role=login] {
-	position: relative;
     background: rgb(231, 230, 230);
     height: 330px;
 	max-width: 300px;
