@@ -42,7 +42,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
   margin-bottom: 20px; 
 }
@@ -90,7 +90,7 @@ section h2 {
 }
 
 #mainNav .navbar-nav > li > a.active {
-  color: #fdcc52 !important;
+  color: #222222;
   background-color: transparent;
 }
 
