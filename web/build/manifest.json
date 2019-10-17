@@ -1,5 +1,9 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
-  "build/runtime.js": "/build/runtime.js"
+  "build/runtime.js": "/build/runtime.js",
+  "build/web_site.css": "/build/web_site.css",
+  "build/web_site.js": "/build/web_site.js",
+  "build/images/bg-cta.jpg": "/build/images/bg-cta.36ddbb2d.jpg",
+  "build/images/bg-pattern.png": "/build/images/bg-pattern.3c646727.png"
 }

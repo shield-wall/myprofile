@@ -2,15 +2,16 @@
 {% trans_default_domain 'MyProfile' %}
 
 {% block stylesheets %}
-  {% stylesheets
-  'assets/bootstrap4/css/bootstrap.min.css'
-  'assets/css/font-awesome.min.css'
-  'assets/css/new-age.css'
-  'assets/fonts/icomoon/style.css'
-  filter='cssrewrite' output='compiled/css/site.css'
-  %}
-  <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-  {% endstylesheets %}
+  {{ encore_entry_link_tags('web_site') }}
+{#  {% stylesheets#}
+{#  'assets/bootstrap4/css/bootstrap.min.css'#}
+{#  'assets/css/font-awesome.min.css'#}
+{#  'assets/css/new-age.css'#}
+{#  'assets/fonts/icomoon/style.css'#}
+{#  filter='cssrewrite' output='compiled/css/site.css'#}
+{#  %}#}
+{#  <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />#}
+{#  {% endstylesheets %}#}
 {% endblock %}
 
 {% block body %}
@@ -93,7 +94,7 @@
       </li>
       <li class="list-inline-item">
         <a href="https://www.jetbrains.com" target="_blank">
-          <img src="{{ asset('assets/images/ico/jetbrains.svg') }}" style="width: 25px;" />
+          <img src="{{ asset('./assets/images/ico/jetbrains.svg') }}" style="width: 25px;" />
         </a>
       </li>
       <li class="list-inline-item">
@@ -108,13 +109,14 @@
 {% endblock %}
 
 {% block javascripts %}
-  {% javascripts
-  'assets/js/jquery.js'
-  'assets/bootstrap4/js/bootstrap.bundle.min.js'
-  'assets/js/jquery.easing.min.js'
-  'assets/js/new-age.min.js'
-  output='compiled/css/site.js'
-  %}
-  <script src="{{ asset_url }}"></script>
-  {% endjavascripts %}
+  {{ encore_entry_script_tags('web_site') }}
+{#  {% javascripts#}
+{#  'assets/js/jquery.js'#}
+{#  'assets/bootstrap4/js/bootstrap.bundle.min.js'#}
+{#  'assets/js/jquery.easing.min.js'#}
+{#  'assets/js/new-age.min.js'#}
+{#  output='compiled/css/site.js'#}
+{#  %}#}
+{#  <script src="{{ asset_url }}"></script>#}
+{#  {% endjavascripts %}#}
 {% endblock %}

@@ -61,6 +61,9 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
+webpack_encore:
+    output_path: "%kernel.root_dir%/../web/build"
+
 fos_user:
     db_driver: orm
     firewall_name: main

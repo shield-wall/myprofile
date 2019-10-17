@@ -12,3 +12,4 @@
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
 /phpunit.xml
+/node_modules/
