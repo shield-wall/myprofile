@@ -3,15 +3,6 @@
 
 {% block stylesheets %}
   {{ encore_entry_link_tags('web_site') }}
-{#  {% stylesheets#}
-{#  'assets/bootstrap4/css/bootstrap.min.css'#}
-{#  'assets/css/font-awesome.min.css'#}
-{#  'assets/css/new-age.css'#}
-{#  'assets/fonts/icomoon/style.css'#}
-{#  filter='cssrewrite' output='compiled/css/site.css'#}
-{#  %}#}
-{#  <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />#}
-{#  {% endstylesheets %}#}
 {% endblock %}
 
 {% block body %}
@@ -89,12 +80,12 @@
       </li>
       <li class="list-inline-item">
         <a href="https://github.com/eerison/myprofile" target="_blank">
-          <i class="fa fa-github fa-2x"></i>
+          <i class="icon-github fa-2x"></i>
         </a>
       </li>
       <li class="list-inline-item">
         <a href="https://www.jetbrains.com" target="_blank">
-          <img src="{{ asset('./assets/images/ico/jetbrains.svg') }}" style="width: 25px;" />
+          <span class="icon-jetbrains fa-2x"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span></span>
         </a>
       </li>
       <li class="list-inline-item">
@@ -110,13 +101,4 @@
 
 {% block javascripts %}
   {{ encore_entry_script_tags('web_site') }}
-{#  {% javascripts#}
-{#  'assets/js/jquery.js'#}
-{#  'assets/bootstrap4/js/bootstrap.bundle.min.js'#}
-{#  'assets/js/jquery.easing.min.js'#}
-{#  'assets/js/new-age.min.js'#}
-{#  output='compiled/css/site.js'#}
-{#  %}#}
-{#  <script src="{{ asset_url }}"></script>#}
-{#  {% endjavascripts %}#}
 {% endblock %}

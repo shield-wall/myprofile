@@ -1,22 +1,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block stylesheets %}
-
-    {# mediaScreen #}
-    {% stylesheets
-    'assets/bootstrap/css/bootstrap.min.css'
-    'assets/css/font-awesome.min.css'
-    'assets/css/fos_user/login.css'
-    output='compiled/css/fos_user_login.css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-
+    {{ encore_entry_link_tags('login') }}
 {% endblock %}
 
 <div class="container">
   <div class="row" id="pwd-container">
-    <div class="col-sm-12 col-lg-4 col-lg-offset-4">
+    <div class="col-md-4 offset-md-4 col align-self-center">
       <section class="login-form">
 
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

@@ -17,6 +17,33 @@
       "css": [
         "/build/web_site.css"
       ]
+    },
+    "login": {
+      "js": [
+        "/build/runtime.js",
+        "/build/login.js"
+      ],
+      "css": [
+        "/build/login.css"
+      ]
+    },
+    "register": {
+      "js": [
+        "/build/runtime.js",
+        "/build/register.js"
+      ],
+      "css": [
+        "/build/register.css"
+      ]
+    },
+    "profile": {
+      "js": [
+        "/build/runtime.js",
+        "/build/profile.js"
+      ],
+      "css": [
+        "/build/profile.css"
+      ]
     }
   }
 }

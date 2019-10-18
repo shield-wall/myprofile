@@ -1,6 +1,7 @@
+require('./image.js');
 require('../css/global.scss');
-require('../css/new-age.css');
-
+require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
-require('@fortawesome/fontawesome-free/js/all.js');
-require('../js/new-age.min.js');
+
+require('../css/new-age.css');
+require('../fonts/icomoon/style.css');

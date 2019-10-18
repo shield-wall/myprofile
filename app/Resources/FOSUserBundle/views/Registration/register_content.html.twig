@@ -1,16 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block stylesheets %}
-
-    {# mediaScreen #}
-    {% stylesheets
-    'assets/bootstrap4/css/bootstrap.min.css'
-    'assets/css/font-awesome.min.css'
-    output='compiled/css/fos_user_register.css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-
+    {{ encore_entry_link_tags('register') }}
 {% endblock %}
 
 <div class="container mt-5">

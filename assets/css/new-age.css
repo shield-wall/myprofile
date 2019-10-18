@@ -111,7 +111,7 @@ section h2 {
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
-    background-color: transparent; 
+    background-color: transparent;
   }
 
   #mainNav .navbar-brand {
@@ -168,9 +168,9 @@ header.masthead {
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("/assets/images/bg-pattern.png"), #7b4397;
-  background: url("/assets/images/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #1d2124);
-  background: url("/assets/images/bg-pattern.png"), linear-gradient(to left, #7b4397, #1d2124); 
+  background: url("../images/bg-pattern.png"), #7b4397;
+  background: url("../images/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #1d2124);
+  background: url("../images/bg-pattern.png"), linear-gradient(to left, #7b4397, #1d2124);
 }
 
 header.masthead .header-content {
