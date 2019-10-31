@@ -1,5 +1,5 @@
 body {
-    background-image: url(../images/fundo_login.jpg) !important;
+    background: url('/assets/images/fundo_login.jpg'), no-repeat;
     background-size: cover;
 }
 
@@ -24,6 +24,7 @@ body {
 .form-register {
     max-width: 768px;
     margin: 60px auto;
+    border-radius: 5px !important;    
 }
 
 .fos_user_registration_register {
@@ -70,14 +71,18 @@ body {
     width: 100%;
 }
 
+.btn-primary {
+    background: #337AB7;
+}
+
 .btn {
-    width: 140px;
+    width: 100%;
     color: #fff;
-    height: 45px;
+    height: 47px;
 }
 
 .btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .text-center {
