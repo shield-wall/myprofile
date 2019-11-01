@@ -101,3 +101,11 @@ hr {
     color: #5d5d5d;
     margin-bottom: -10px;
 }
+
+
+@media (max-width:400px) {
+	.input-group-data{
+        flex-direction: column !important;
+        width: 580px;
+    }
+}

@@ -69,14 +69,15 @@ p {
 }
 
 .text-center {
+	color: slategrey;
 	margin-top: -10px;
 	margin-bottom: -10px;
-
 }
 
 .icon-img {
 	width: 90px;
 	height: 90px;
+	margin-top: 5px;
 	margin-bottom: 1px;
 }
 	
