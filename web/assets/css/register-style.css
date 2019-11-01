@@ -3,6 +3,11 @@ body {
     background-size: cover;
 }
 
+hr {
+    margin-bottom: 30px;
+    margin-top: -20px;
+}
+
 .form-control {
     font-family: "Roboto", sans-serif;
     position: relative;
@@ -28,7 +33,7 @@ body {
 }
 
 .fos_user_registration_register {
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px !important;
     margin-top: 60px;
     color: #f2f2f2;
@@ -59,8 +64,9 @@ body {
 }
 
 .input-group > div{
-   width: 49%;
-   margin-bottom: 20px;
+    height: 30px;
+    width: 49%;
+    margin-bottom: 50px;
 }
 
 .div-element-btn {
