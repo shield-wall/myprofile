@@ -40,29 +40,31 @@
           </form>
           {% else %}
               <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
-                  <h3 class="text-center"><b>My</b> Profile</h3><br/>
 
-                  {% if csrf_token %}
-                      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                  {% endif %}
+                    <img class="icon-img" src="{{ asset('assets/images/man.svg') }}"> 
+                    <h3 class="text-center"><b>My</b> Profile</h3><br/>
 
-                  <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {% endif %}
 
-                  <input type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
 
-                  <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                  <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    <input type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
 
-                  <div class="pwstrength_viewport_progress"></div>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <p for="remember_me">{{ 'security.login.remember_me'|trans }}</p>
 
-                  {% if error %}
-                      <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                  {% endif %}
+                    <div class="pwstrength_viewport_progress"></div>
 
-                  <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
-                  <div>
-                      <a href="{{path('fos_user_registration_register')}}">{{'layout.register'| trans}}</a> or <a href="{{path('fos_user_resetting_request')}}">{{'resetting.email.subject' | trans}}</a>
-                  </div>
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
+                    <div>
+                        <a href="{{path('fos_user_registration_register')}}">{{'layout.register'| trans}}</a> or <a href="{{path('fos_user_resetting_request')}}">{{'resetting.email.subject' | trans}}</a>
+                    </div>
               </form>
           {% endif %}
 
