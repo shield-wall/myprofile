@@ -160,6 +160,7 @@ section h2 {
   padding-right: 10px;
   border-color: white;
   border: solid 1px;
+  border-radius: 2rem;
 }
 
 header.masthead {
