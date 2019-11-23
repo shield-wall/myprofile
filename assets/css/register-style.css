@@ -1,5 +1,5 @@
 body {
-    background: url('/assets/images/fundo_login.jpg'), no-repeat;
+    background: url('../images/fundo_login.jpg'), no-repeat;
     background-size: cover;
 }
 
