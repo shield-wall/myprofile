@@ -22,6 +22,7 @@ Encore
     .addEntry('login', './assets/js/login.js')
     .addEntry('register', './assets/js/register.js')
     .addEntry('profile', './assets/js/profile.js')
+    .addEntry('curriculum_theme_01', './assets/js/curriculum_theme_01.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -36,16 +37,21 @@ Encore
 //.enableTypeScriptLoader()
 
 // uncomment if you use Sass/SCSS files
-.enableSassLoader()
-.copyFiles([
-    { from: './assets/images', to: 'images/[path][name].[ext]',},
-])
-.configureFilenames({
-    images: '[path][name].[hash:8].[ext]',
-})
+    .enableSassLoader()
+    .copyFiles([
+        { from: './assets/images', to: 'images/[path][name].[ext]',},
+    ])
+    .configureFilenames({
+        images: '[path][name].[hash:8].[ext]',
+    })
 
 // uncomment if you're having problems with a jQuery plugin
-.autoProvidejQuery()
+    .autoProvidejQuery()
+    .autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

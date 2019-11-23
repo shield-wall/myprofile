@@ -41,15 +41,15 @@ jQuery(function ($) {
     // Animated scrolling / Scroll Up
     // -------------------------------------------------------------
 
-    (function () {
-        $('a[href*=#]').bind("click", function(e){
-            var anchor = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $(anchor.attr('href')).offset().top
-            }, 1000);
-            e.preventDefault();
-        });
-    }());
+    // (function () {
+    //     $('a[href*=#]').bind("click", function(e){
+    //         var anchor = $(this);
+    //         $('html, body').stop().animate({
+    //             scrollTop: $(anchor.attr('href')).offset().top
+    //         }, 1000);
+    //         e.preventDefault();
+    //     });
+    // }());
 
 
 
@@ -165,9 +165,9 @@ jQuery(function ($) {
 
         var $grid = $('#grid');
 
-        $grid.shuffle({
-            itemSelector: '.portfolio-item'
-        });
+        // $grid.shuffle({
+        //     itemSelector: '.portfolio-item'
+        // });
 
         /* reshuffle when user clicks a filter item */
         $('#filter a').click(function (e) {
@@ -191,32 +191,32 @@ jQuery(function ($) {
     // -------------------------------------------------------------
     // Magnific Popup
     // -------------------------------------------------------------
+    //
+    // (function () {
+    //   $('.image-link').magnificPopup({
+    //
+    //     gallery: {
+    //       enabled: true
+    //     },
+    //     removalDelay: 300, // Delay in milliseconds before popup is removed
+    //     mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+    //     type:'image'
+    //   });
+    //
+    // }());
 
-    (function () {
-      $('.image-link').magnificPopup({
-
-        gallery: {
-          enabled: true
-        },
-        removalDelay: 300, // Delay in milliseconds before popup is removed
-        mainClass: 'mfp-with-zoom', // this class is for CSS animation below
-        type:'image'
-      });
-
-    }());
 
 
-
-    (function () {
-        $('.popup-video').magnificPopup({
-            disableOn: 700,
-            type: 'iframe',
-            mainClass: 'mfp-with-zoom',
-            removalDelay: 300,
-            preloader: false,
-            fixedContentPos: false
-        });
-    }());
+    // (function () {
+    //     $('.popup-video').magnificPopup({
+    //         disableOn: 700,
+    //         type: 'iframe',
+    //         mainClass: 'mfp-with-zoom',
+    //         removalDelay: 300,
+    //         preloader: false,
+    //         fixedContentPos: false
+    //     });
+    // }());
 
 
 
@@ -225,9 +225,9 @@ jQuery(function ($) {
     // -------------------------------------------------------------
     // Fit Vids
     // -------------------------------------------------------------
-    (function () {
-        $(".video-container").fitVids();
-    }());
+    // (function () {
+    //     $(".video-container").fitVids();
+    // }());
 
 
 
@@ -240,7 +240,7 @@ jQuery(function ($) {
     
         var iframe = document.getElementById('nofocusvideo');
         // $f == Froogaloop
-        var player = $f(iframe);
+        // var player = $f(iframe);
 
         $('.modal').on('hidden.bs.modal', function () {
         player.api('pause');
