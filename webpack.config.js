@@ -23,6 +23,7 @@ Encore
     .addEntry('register', './assets/js/register.js')
     .addEntry('profile', './assets/js/profile.js')
     .addEntry('curriculum_theme_01', './assets/js/curriculum_theme_01.js')
+    .addEntry('exception', './assets/js/exception.js')
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
