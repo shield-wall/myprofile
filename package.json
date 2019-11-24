@@ -12,9 +12,9 @@
     "sass-loader": "^7.3.1",
     "yarn": "^1.19.1"
   },
-  "start": "node index.js",
-  "build": "webpack",
   "scripts": {
-    "heroku-postbuild" : "yarn encore production"
+    "build": "webpack -p --config ./resources/webpack/webpack.config.js --display-error-details",
+    "watch": "webpack -d --watch --config ./resources/webpack/webpack.config.js --display-error-details",
+    "heroku-postbuild": "webpack -p --config ./resources/webpack/webpack.config.js"
   }
 }
