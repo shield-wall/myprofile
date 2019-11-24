@@ -13,6 +13,6 @@
     "yarn": "^1.19.1"
   },
   "scripts": {
-    "heroku-postbuild" : "yarn run encore production"
+    "heroku-postbuild" : "node_modules/.bin/encore production"
   }
 }
