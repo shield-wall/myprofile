@@ -56,7 +56,8 @@
             "@symfony-scripts"
         ],
         "compile": [
-            "bin/console doctrine:schema:update --force"
+            "bin/console doctrine:schema:update --force",
+            "node_modules/.bin/encore production"
         ]
     },
     "config": {
