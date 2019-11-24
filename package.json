@@ -12,7 +12,9 @@
     "sass-loader": "^7.3.1",
     "yarn": "^1.19.1"
   },
+  "start": "node index.js",
+  "build": "webpack",
   "scripts": {
-    "heroku-postbuild" : "node_modules/.bin/encore production"
+    "heroku-postbuild" : "yarn encore production"
   }
 }
