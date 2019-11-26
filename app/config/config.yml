@@ -82,10 +82,10 @@ knp_snappy:
     temporary_folder: '%kernel.cache_dir%/snappy'
     pdf:
         enabled:    true
-        binary:     '%kernel.project_dir%/bin/wkhtmltopdf'
+        binary:     '/usr/local/bin/wkhtmltopdf'
         options:
             disable_smart_shrinking: true
-            margin-left: 0mm
-            margin-right: 0mm
-            margin-bottom: 0mm
-            margin-top: 0mm
+            margin-left: 5mm
+            margin-right: 5mm
+            margin-bottom: 5mm
+            margin-top: 5mm
