@@ -2,7 +2,7 @@
 {% trans_default_domain 'MyProfile' %}
 
 {% block stylesheets %}
-        <script src="https://kit.fontawesome.com/a8322ae82c.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
         {% for file in encore_entry_css_files('curriculum_theme_01') %}
             <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />
         {% endfor %}
