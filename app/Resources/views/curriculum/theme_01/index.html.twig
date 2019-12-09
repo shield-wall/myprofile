@@ -1,15 +1,11 @@
 {% extends 'curriculum/base.html.twig' %}
 {% trans_default_domain 'MyProfile' %}
-{#{% block stylesheets %}#}
-{#    {{ encore_entry_link_tags('curriculum_theme_01') }}#}
-{#{% endblock %}#}
 
 {% block stylesheets %}
-{#    {% macro encore_absolute_link_tags("curriculum_theme_01") %}#}
+        <script src="https://kit.fontawesome.com/a8322ae82c.js" crossorigin="anonymous"></script>
         {% for file in encore_entry_css_files('curriculum_theme_01') %}
             <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />
         {% endfor %}
-{#    {% endmacro %}#}
 {% endblock %}
 
 {% block body %}
