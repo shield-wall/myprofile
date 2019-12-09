@@ -34,7 +34,7 @@
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "^3.4",
         "symfony/twig-bundle": "^3.4",
-        "symfony/webpack-encore-bundle": "^1.6",
+        "symfony/webpack-encore-bundle": "^1.7",
         "vich/uploader-bundle": "^1.6"
     },
     "require-dev": {

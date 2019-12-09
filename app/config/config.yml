@@ -78,6 +78,7 @@ fos_user:
         form:
             type: AppBundle\Form\ProfileType
 
+# TODO fix binary to use the container.
 knp_snappy:
     temporary_folder: '%kernel.cache_dir%/snappy'
     pdf:

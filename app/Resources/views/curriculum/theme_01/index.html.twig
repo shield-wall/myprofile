@@ -4,6 +4,14 @@
 {#    {{ encore_entry_link_tags('curriculum_theme_01') }}#}
 {#{% endblock %}#}
 
+{% block stylesheets %}
+{#    {% macro encore_absolute_link_tags("curriculum_theme_01") %}#}
+        {% for file in encore_entry_css_files('curriculum_theme_01') %}
+            <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />
+        {% endfor %}
+{#    {% endmacro %}#}
+{% endblock %}
+
 {% block body %}
     <div class="wrapper">
         <div class="sidebar-wrapper">
