@@ -29,12 +29,12 @@
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "sentry/sentry": "^1.9",
-        "symfony/assetic-bundle": "^2.8",
         "symfony/monolog-bundle": "^3.1",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "^3.4",
         "symfony/twig-bundle": "^3.4",
+        "symfony/webpack-encore-bundle": "^1.7",
         "vich/uploader-bundle": "^1.6"
     },
     "require-dev": {
@@ -46,7 +46,6 @@
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
@@ -57,7 +56,6 @@
             "@symfony-scripts"
         ],
         "compile": [
-            "bin/console assetic:dump",
             "bin/console doctrine:schema:update --force"
         ]
     },

@@ -7,21 +7,11 @@
         <meta name="author" content="My Profile">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %} | My profile</title>
-        {% block stylesheets %}
 
-            {% stylesheets
-            'assets/bootstrap4/css/bootstrap.min.css'
-            'assets/css/font-awesome.min.css'
-            filter='cssrewrite' output='compiled/css/base.css'
-            %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
-
-        {% endblock %}
-        <link rel="shortcut icon" href="{{ asset('assets/images/ico/favicon.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/images/ico/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/images/ico/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/images/ico/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="shortcut icon" href="{{ asset('../images/ico/favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('../images/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('../images/ico/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('../images/ico/apple-touch-icon-72-precomposed.png') }}">
         <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/images/ico/apple-touch-icon-57-precomposed.png') }}">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -34,20 +24,15 @@
           gtag('config', 'UA-124183493-1');
         </script>
 
+        <script src="https://kit.fontawesome.com/a8322ae82c.js" crossorigin="anonymous"></script>
+        {% block stylesheets %}{% endblock %}
+
     </head>
     <body>
 
         {% include 'default/partials/flashmessages.html.twig' %}
 
         {% block body %}{% endblock %}
-        {% block javascripts %}
-            {% javascripts
-            'assets/js/jquery.js'
-            'assets/bootstrap4/js/bootstrap.bundle.min.js'
-            output='compiled/js/base.js'
-            %}
-            <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

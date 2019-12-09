@@ -61,11 +61,8 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: false
-    filters:
-        cssrewrite: ~
+webpack_encore:
+    output_path: "%kernel.root_dir%/../web/build"
 
 fos_user:
     db_driver: orm
@@ -81,11 +78,12 @@ fos_user:
         form:
             type: AppBundle\Form\ProfileType
 
+# TODO fix binary to use the container.
 knp_snappy:
     temporary_folder: '%kernel.cache_dir%/snappy'
     pdf:
         enabled:    true
-        binary:     '%kernel.project_dir%/bin/wkhtmltopdf'
+        binary:     '%kernel.project_dir%//bin/wkhtmltopdf'
         options:
             disable_smart_shrinking: true
             margin-left: 0mm

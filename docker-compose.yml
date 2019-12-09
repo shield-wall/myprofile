@@ -4,14 +4,23 @@ services:
     build: docker/.
     working_dir: /app
     ports:
-    - "8000:8000"
-    entrypoint: docker/entrypoint.sh
+      - "8000:8000"
+    entrypoint: docker/entrypoint_php.sh
     env_file:
       - .env
     volumes:
-    - .:/app
+      - .:/app
     links:
-    - db
+      - db
+
+  client:
+    image: node:10
+    working_dir: /app
+    entrypoint: docker/entrypoint_client.sh
+    volumes:
+      - .:/app
+    depends_on:
+      - php
 
   db:
     image: postgres

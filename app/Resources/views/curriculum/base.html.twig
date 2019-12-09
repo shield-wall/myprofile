@@ -3,15 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>My profile</title>
-        {% block stylesheets %}
-            {% stylesheets
-            'assets/bootstrap/css/bootstrap.min.css'
-            'assets/css/font-awesome.min.css'
-            filter='cssrewrite' output='compiled/css/curriculum_base.css' %}
-            <link rel="stylesheet" href="{{ absolute_url(asset_url) }}" />
-            {% endstylesheets %}
-        {% endblock %}
-        {% block stylesheets_add %}{% endblock %}
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}

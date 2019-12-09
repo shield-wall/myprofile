@@ -1,0 +1,111 @@
+body {
+    background: url('../images/fundo_login.jpg'), no-repeat;
+    background-size: cover;
+}
+
+hr {
+    margin-bottom: 30px;
+    margin-top: -20px;
+}
+
+.form-control {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    background: #ffffff;
+    width: 100% !important;
+    height: 40px;
+    border: 1px solid #ccc;
+    margin: 0 0 13px;
+    border-radius: 5px !important;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px; 
+}
+
+.form-control:focus {
+    border: 1.8px solid #4f9ff5;
+}
+
+.form-register {
+    max-width: 768px;
+    margin: 60px auto;
+    border-radius: 5px !important;    
+}
+
+.fos_user_registration_register {
+    padding: 30px;
+    border-radius: 5px !important;
+    margin-top: 60px;
+    color: #f2f2f2;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(61, 61, 61, 0.6);
+    max-width: 768px;
+    margin: 60px auto;
+}
+
+.select-group #fos_user_registration_form_birthday_month,
+.select-group #fos_user_registration_form_birthday_day {
+    margin-left: 10px !important;
+    width: 30%;
+}
+
+
+.form-inline {
+    display: contents;
+}
+
+.select-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group > div{
+    height: 30px;
+    width: 49%;
+    margin-bottom: 50px;
+}
+
+.div-element-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.btn-primary {
+    background: #337AB7;
+}
+
+.btn {
+    width: 100%;
+    color: #fff;
+    height: 47px;
+}
+
+.btn:hover {
+    transform: scale(1.02);
+}
+
+.text-center {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    color: #5d5d5d;
+    margin-bottom: 20px;
+}
+
+.control-label {
+    color: #5d5d5d;
+    margin-bottom: -10px;
+}
+
+
+@media (max-width:400px) {
+	.input-group-data{
+        flex-direction: column !important;
+        width: 580px;
+    }
+}

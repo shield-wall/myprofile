@@ -4,6 +4,12 @@
     "SYMFONY_ENV": {
       "description" : "eg. dev, test, qa or prod"
     },
+    "NPM_CONFIG_PRODUCTION": {
+      "description" : "eg. true or false"
+    },
+    "YARN_PRODUCTION": {
+      "description" : "eg. true or false"
+    },
     "MAILER_TRANSPORT": {
       "description" : "smtp",
       "value": "smtp"
@@ -38,6 +44,9 @@
   "buildpacks": [
     {
       "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
     }
   ]
 }

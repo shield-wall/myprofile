@@ -1,12 +1,11 @@
 {% extends 'curriculum/base.html.twig' %}
 {% trans_default_domain 'MyProfile' %}
-{% block stylesheets_add %}
-    {% stylesheets
-    'assets/css/curriculum/theme_01/styles.css'
-    filter='cssrewrite' output='compiled/css/curriculum_theme01.css'
-    %}
-    <link rel="stylesheet" href="{{ absolute_url(asset_url) }}" />
-    {% endstylesheets %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+        {% for file in encore_entry_css_files('curriculum_theme_01') %}
+            <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />
+        {% endfor %}
 {% endblock %}
 
 {% block body %}

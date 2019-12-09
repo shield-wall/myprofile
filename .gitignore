@@ -1,6 +1,6 @@
 .idea
 /app/config/parameters.yml
-/build/
+/web/build/
 /composer.phar
 /vendor/
 /web/bundles/
@@ -12,3 +12,4 @@
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
 /phpunit.xml
+/node_modules/
