@@ -99,8 +99,6 @@ class DefaultController extends Controller
             'user' => $user,
         ]);
 
-        return new Response($html);
-
         return new Response(
             $pdf->getOutputFromHtml($html),
             Response::HTTP_OK,
