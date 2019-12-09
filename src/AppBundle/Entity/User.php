@@ -1,16 +1,13 @@
 <?php
 namespace AppBundle\Entity;
 
-use AppBundle\Utils\Gravatar;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- * @Vich\Uploadable
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
