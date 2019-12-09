@@ -2,3 +2,4 @@ exclude_patterns:
 - "web/"
 - "var/"
 - "src/AppBundle/Entity"
+- "assets/"
