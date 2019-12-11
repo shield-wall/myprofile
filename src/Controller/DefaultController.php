@@ -45,7 +45,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{username}/send_contact/{_locale}", name="app_send_contact", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
      */
-    public function sendContactAction(Request $request, User $user, LoggerInterface $logger)
+    public function sendContactAction(Request $request, User $user, LoggerInterface $logger, \Swift_Mailer $mailer)
     {
         try {
             $formContact = $this->createForm(ContactType::class, null);
@@ -60,7 +60,7 @@ class DefaultController extends AbstractController
                 'name' => $formContact->get('name')->getData(),
                 'message' => $formContact->get('message')->getData()
             ];
-            $message = \Swift_Message::newInstance();
+            $message = new \Swift_Message();
             $message
                 ->setSubject($formContact->get('subject')->getData())
                 ->setFrom($this->getParameter('mailer_from'))
@@ -70,7 +70,7 @@ class DefaultController extends AbstractController
                         'templates/contacts/simple.html.twig',
                         $body), 'text/html');
 
-            if (!$this->get('mailer')->send($message))
+            if (!$mailer->send($message))
                 throw new \Exception('Erro ao enviar o e-mail');
 
             $logger->debug('Email sending.', [

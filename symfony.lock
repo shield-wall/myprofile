@@ -129,6 +129,9 @@
     "symfony/doctrine-bridge": {
         "version": "v4.4.1"
     },
+    "symfony/dotenv": {
+        "version": "v4.4.1"
+    },
     "symfony/expression-language": {
         "version": "v4.4.1"
     },
