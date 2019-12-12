@@ -72,10 +72,6 @@
         "symfony": {
             "allow-contrib": false,
             "require": "4.4.*"
-        },
-        "bin-dir": "bin",
-        "var-dir": "var",
-        "web-dir": "public",
-        "tests-dir": "tests"
+        }
     }
 }
