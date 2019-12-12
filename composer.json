@@ -9,7 +9,7 @@
         "friendsofsymfony/user-bundle": "^2.1",
         "knplabs/knp-snappy-bundle": "^1.6",
         "sensio/framework-extra-bundle": "^5.5",
-        "sentry/sentry": "^1.9",
+        "sentry/sentry-symfony": "^3.2",
         "symfony/console": "^4.4",
         "symfony/dotenv": "4.4.*",
         "symfony/expression-language": "4.4.*",

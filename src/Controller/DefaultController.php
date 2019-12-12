@@ -17,7 +17,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{_locale}", name="app_homepage", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
      */
-    public function indexAction(Request $request, UserRepository $userRepository)
+    public function indexAction(Request $request, UserRepository $userRepository, LoggerInterface $logger)
     {
         $users = $userRepository->findBy(['enabled' => true], ['id' => 'desc'], 20);
 

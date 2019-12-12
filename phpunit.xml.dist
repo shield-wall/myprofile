@@ -30,6 +30,10 @@
         <env name="WKHTMLTOPDF_PATH" value="/usr/local/bin/wkhtmltopdf"/>
         <env name="WKHTMLTOIMAGE_PATH" value="/usr/local/bin/wkhtmltoimage"/>
         <!-- ###- knplabs/knp-snappy-bundle ### -->
+
+        <!-- ###+ sentry/sentry-symfony ### -->
+        <env name="SENTRY_DSN" value=""/>
+        <!-- ###- sentry/sentry-symfony ### -->
     </php>
 
     <testsuites>

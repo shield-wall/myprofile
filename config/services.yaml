@@ -34,16 +34,3 @@ services:
         class: App\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
-
-    App\Logger\SentryContextProcessor:
-        arguments:
-            - '%kernel.environment%'
-            - '%locale%'
-        tags:
-            - { name: monolog.processor }
-
-    App\Logger\UserProcessor:
-        arguments:
-            - '@security.token_storage'
-        tags:
-            - { name: monolog.processor }
