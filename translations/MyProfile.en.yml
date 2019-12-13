@@ -7,7 +7,7 @@ navegation:
     contact: Contact
     education: Education
     experience: Experience
-    registration: Create my site free
+    registration: Create your free profile
 
 about:
     about: About
@@ -32,4 +32,4 @@ default:
   more_skills: More skills
 
 site:
-  title_message: Create my resume and site professional free in a few minutes!
+  title_message: Create your resume and professional site free in few minutes!
