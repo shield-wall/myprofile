@@ -87,6 +87,9 @@
     "guzzlehttp/psr7": {
         "version": "1.6.1"
     },
+    "h4cc/wkhtmltopdf-amd64": {
+        "version": "0.12.4"
+    },
     "http-interop/http-factory-guzzle": {
         "version": "1.0.0"
     },
