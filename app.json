@@ -1,7 +1,7 @@
 {
   "name": "myProfile",
   "env": {
-    "SYMFONY_ENV": {
+    "APP_ENV": {
       "description" : "eg. dev, test, qa or prod"
     },
     "NPM_CONFIG_PRODUCTION": {

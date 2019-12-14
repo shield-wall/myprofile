@@ -2,75 +2,77 @@
     "name": "erison/myprofile",
     "license": "proprietary",
     "type": "project",
+    "require": {
+        "php": "^7.1",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "friendsofsymfony/user-bundle": "^2.1",
+        "knplabs/knp-snappy-bundle": "^1.6",
+        "sensio/framework-extra-bundle": "^5.5",
+        "sentry/sentry-symfony": "^3.2",
+        "symfony/apache-pack": "^1.0",
+        "symfony/console": "^4.4",
+        "symfony/dotenv": "4.4.*",
+        "symfony/expression-language": "4.4.*",
+        "symfony/flex": "^1.3",
+        "symfony/framework-bundle": "4.4.*",
+        "symfony/monolog-bundle": "^3.4",
+        "symfony/orm-pack": "^1.0",
+        "symfony/swiftmailer-bundle": "^3.4",
+        "symfony/translation": "4.4.*",
+        "symfony/twig-pack": "^1.0",
+        "symfony/webpack-encore-bundle": "^1.7",
+        "symfony/yaml": "^4.4"
+    },
+    "require-dev": {
+        "symfony/profiler-pack": "^1.0"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
-        },
-        "classmap": [
-            "app/AppKernel.php",
-            "app/AppCache.php"
-        ]
+            "App\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
-        },
-        "files": [
-            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
-        ]
+            "App\\Tests\\": "tests/"
+        }
     },
-    "require": {
-        "php": "^7.1",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.5",
-        "friendsofsymfony/user-bundle": "~2.0",
-        "incenteev/composer-parameter-handler": "^2.0",
-        "knplabs/knp-snappy-bundle": "^1.6",
-        "sensio/distribution-bundle": "^5.0.19",
-        "sensio/framework-extra-bundle": "^3.0.2",
-        "sentry/sentry": "^1.9",
-        "symfony/monolog-bundle": "^3.1",
-        "symfony/polyfill-apcu": "^1.0",
-        "symfony/swiftmailer-bundle": "^2.3.10",
-        "symfony/symfony": "^3.4",
-        "symfony/twig-bundle": "^3.4",
-        "symfony/webpack-encore-bundle": "^1.7"
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
     },
-    "require-dev": {
-        "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+    "conflict": {
+        "symfony/symfony": "*"
     },
     "scripts": {
-        "symfony-scripts": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
         "post-install-cmd": [
-            "@symfony-scripts"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@symfony-scripts"
+            "@auto-scripts"
         ],
         "compile": [
             "bin/console doctrine:schema:update --force"
         ]
     },
-    "config": {
-        "sort-packages": true
-    },
     "extra": {
-        "symfony-app-dir": "app",
-        "symfony-bin-dir": "bin",
-        "symfony-var-dir": "var",
-        "symfony-web-dir": "web",
-        "symfony-tests-dir": "tests",
-        "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
-        },
-        "branch-alias": null
+        "symfony": {
+            "allow-contrib": false,
+            "require": "4.4.*"
+        }
     }
 }

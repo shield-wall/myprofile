@@ -1,0 +1,13 @@
+parameters:
+    mailer_from: '%env(MAILER_FROM)%'
+
+swiftmailer:
+#    url: '%env(MAILER_URL)%'
+    transport: '%env(MAILER_TRANSPORT)%'
+    host: '%env(MAILER_HOST)%'
+    encryption: '%env(MAILER_ENCRYPTION)%'
+    port: '%env(MAILER_PORT)%'
+    username: '%env(MAILER_USER)%'
+    password: '%env(MAILER_PASSWORD)%'
+    spool: { type: 'memory' }
+
