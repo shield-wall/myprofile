@@ -19,18 +19,16 @@
 
             <div class="contact-container container-block">
                 <ul class="list-unstyled contact-list">
-                    <li class="email"><i class="fa fa-envelope"></i><a href="mailto: yourname@email.com">{{ user.email }}</a></li>
-                    <li class="website"><i class="fa fa-globe"></i><a href="{{app.request.schemeAndHttpHost ~ '/' ~ user.username }}" target="_blank">{{app.request.schemeAndHttpHost ~ '/' ~ user.username }}</a></li>
+                    <li class="email"><i class="fa fa-envelope"></i>{{ user.email }}</li>
+                    <li class="website"><i class="fa fa-globe"></i>{{app.request.schemeAndHttpHost ~ '/' ~ user.username }}</li>
                     {% if user.phone %}<li><i class="fa fa-phone-square"></i>{{ user.phone }}</li>{% endif %}
                     {% if user.cell %}<li><i class="fa fa-mobile"></i>{{ user.cell }}</li>{% endif %}
                     <li><i class="fa fa-address-card"></i> {{ user.city }}, {{ user.state }}, {{ user.country }}</li>
 
                     {% for social in user.getUserSocialNetworks() %}
                         <li>
-                            <a href="{{ social.link }}" target="_blank" title="{{ social.social_networking.name }}">
-                                <i class="{{ social.social_networking.icon }}"></i>
-                                {{ social.link | replace({'https://': '', 'http://': '', 'www.':''}) }}
-                            </a>
+                            <i class="{{ social.social_networking.icon }}"></i>
+                            {{ social.link | replace({'https://': '', 'http://': '', 'www.':''}) }}
                         </li>
                     {% endfor %}
                 </ul>
@@ -39,7 +37,9 @@
             {# educations #}
             {% if user.educations | length > 0 %}
             <div class="education-container container-block">
-                <h2 class="container-block-title">{{ 'curriculum.education' | trans }}</h2>
+                <h2 class="container-block-title">
+                    <i class="fas fa-graduation-cap"></i> {{ 'curriculum.education' | trans }}
+                </h2>
                 {% for education in user.educations %}
                     <div class="item">
                         <h4 class="degree">{{ education.title }}</h4>
@@ -50,6 +50,17 @@
                     </div><!--//item-->
                 {% endfor %}
             </div><!--//education-container-->
+            {% endif %}
+
+            {% if user.skills | length > 0 %}
+                <div class="container-block">
+                    <h2 class="container-block-title">
+                        <i class="fas fa-rocket"></i> {{ 'curriculum.main_skills' | trans }}
+                    </h2>
+                    {% for skill in user.skills | slice(0,4) %}
+                        <div class="item">{{ skill.name }}</div>
+                    {% endfor %}
+                </div><!--//skill-container-->
             {% endif %}
 
         </div><!--//sidebar-wrapper-->
@@ -64,86 +75,63 @@
                 </div><!--//summary-->
             </section><!--//section-->
 
-            {# certifications #}
-            {% if user.certifications | length > 0 %}
-            <section class="section certification-section clearfix">
-                <h2 class="section-title"><i class="fa fa-certificate"></i>{{ 'curriculum.certifications' | trans }}</h2>
-
-                {% for certification in user.certifications %}
-                    <a href="{{ certification.link }}" target="_blank" class="item text-center col-xs-4">
-                        <div class="text-primary">
-                            {% if certification.image %}
-                                <img src="{{ certification.image }}" style="width: 50px;" />
-                            {% else %}
-                                <i class="fa fa-certificate fa-4x"></i>
-                            {% endif %}
-                        </div>
-                        <div>
-                            <strong>{{ certification.title }}</strong>
-                            <div>
-                                {{ certification.periodStart | date('M Y') }} -
-                                {% if certification.periodEnd %}
-                                    {{ certification.periodEnd | date('M Y') }}
-                                {% else %}
-                                    present
-                                {% endif %}
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </section><!--//section-->
-
-            {% endif %}
-
             {# experience #}
             {% if user.experiences | length > 0 %}
-            <section class="section experiences-section">
-                <h2 class="section-title"><i class="fa fa-briefcase"></i>{{ 'curriculum.experiences' | trans }}</h2>
+                <section class="section experiences-section">
+                    <h2 class="section-title"><i class="fa fa-briefcase"></i>{{ 'curriculum.experiences' | trans }}</h2>
 
-                {% for experience in user.experiences %}
-                    <div class="item">
-                        <div class="meta">
-                            <div class="upper-row">
-                                <h3 class="job-title">{{ experience.title }}</h3>
-                                <div class="time">
-                                    {{ experience.getPeriodStart() | date('M Y') }} -
-                                    {% if experience.getPeriodEnd() %}
-                                        {{ experience.getPeriodEnd() | date('M Y') }}
+                    {% for experience in user.experiences %}
+                        <div class="item">
+                            <div class="meta">
+                                <div class="upper-row">
+                                    <h3 class="job-title">{{ experience.title }}</h3>
+                                    <div class="time">
+                                        {{ experience.getPeriodStart() | date('M Y') }} -
+                                        {% if experience.getPeriodEnd() %}
+                                            {{ experience.getPeriodEnd() | date('M Y') }}
+                                        {% else %}
+                                            present
+                                        {% endif %}
+                                    </div>
+                                </div><!--//upper-row-->
+                                <div class="company">{{ experience.company }}</div>
+                            </div><!--//meta-->
+                            <div class="details">
+                                {{ experience.description }}
+                            </div><!--//details-->
+                        </div><!--//item-->
+                    {% endfor %}
+                </section><!--//section-->
+            {% endif %}
+
+            {# certifications #}
+            {% if user.certifications | length > 0 %}
+                <section class="section certification-section clearfix">
+                    <h2 class="section-title"><i class="fa fa-certificate"></i>{{ 'curriculum.certifications' | trans }}</h2>
+
+                    {% for certification in user.certifications %}
+                        <div class="item text-center col-xs-4">
+                            <div class="text-primary">
+                                {% if certification.image %}
+                                    <img src="{{ certification.image }}" style="width: 50px;" />
+                                {% else %}
+                                    <i class="fa fa-certificate fa-4x"></i>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <strong>{{ certification.title }}</strong>
+                                <div>
+                                    {{ certification.periodStart | date('M Y') }} -
+                                    {% if certification.periodEnd %}
+                                        {{ certification.periodEnd | date('M Y') }}
                                     {% else %}
                                         present
                                     {% endif %}
                                 </div>
-                            </div><!--//upper-row-->
-                            <div class="company">{{ experience.company }}</div>
-                        </div><!--//meta-->
-                        <div class="details">
-                            {{ experience.description }}
-                        </div><!--//details-->
-                    </div><!--//item-->
-                {% endfor %}
-
-            </section><!--//section-->
-            {% endif %}
-
-            {# skills #}
-            {% if user.skills | length > 0 %}
-            <section class="skills-section section">
-                <h2 class="section-title"><i class="fa fa-rocket"></i>{{ 'curriculum.skills' | trans }}</h2>
-
-                <div class="skillset">
-                    {% for skill in user.skills %}
-                        <div class="item col-xs-3">
-                            <h3 class="level-title">{{ skill.name }}</h3>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.getLevelExperience() }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.getLevelExperience() }}%;">
-                                    {{ skill.getLevelExperience() }}%
-                                </div>
                             </div>
-                        </div><!--//item-->
+                        </div>
                     {% endfor %}
-                </div>
-
-            </section><!--//skills-section-->
+                </section><!--//section-->
             {% endif %}
 
         </div><!--//main-body-->
