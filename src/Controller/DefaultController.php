@@ -88,7 +88,6 @@ class DefaultController extends AbstractController
      * @Route(
      *     "/{username}/curriculum/{_locale}",
      *     name="app_curriculum",
-     *     defaults={"_locale": "pt_BR"},
      *     requirements={"_locale": "en|pt_BR"}
      *     )
      */

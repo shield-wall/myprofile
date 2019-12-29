@@ -7,7 +7,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofsymfony/user-bundle": "^2.1",
-        "knplabs/knp-snappy-bundle": "^1.6",
         "sensio/framework-extra-bundle": "^5.5",
         "sentry/sentry-symfony": "^3.2",
         "symfony/apache-pack": "^1.0",
@@ -22,7 +21,8 @@
         "symfony/translation": "4.4.*",
         "symfony/twig-pack": "^1.0",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "^4.4"
+        "symfony/yaml": "^4.4",
+        "transloadit/php-sdk": "^2.1"
     },
     "require-dev": {
         "symfony/profiler-pack": "^1.0"

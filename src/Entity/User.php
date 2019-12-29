@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
+ * @ORM\EntityListeners({"App\EventListener\MakeCurriculumPdfEventListener"})
  */
 class User extends BaseUser
 {
@@ -506,5 +507,10 @@ class User extends BaseUser
     {
         $this->keyWords = $keyWords;
         return $this;
+    }
+
+    public function getCurriculumPath(): string
+    {
+        return sprintf('users/%s/curriculum/', md5($this->getEmail()));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Service\CurriculumService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,5 +40,16 @@ class UserController extends AbstractController
         return $this->render('user/show.html.twig', array(
             'user' => $user,
         ));
+    }
+
+    /**
+     * @Route("/{username}/make_pdf", name="admin_user_make_pdf")
+     */
+    public function makePdfAction(User $user, CurriculumService $curriculumService)
+    {
+        $curriculumService->makePdfOnTransloadit($user);
+
+        $this->addFlash('success', 'pdf generated with success!');
+        return $this->redirectToRoute('admin_user_index');
     }
 }

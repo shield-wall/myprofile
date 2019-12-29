@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="experience")
  * @ORM\Entity(repositoryClass="App\Repository\ExperienceRepository")
+ * @ORM\EntityListeners({"App\EventListener\MakeCurriculumPdfEventListener"})
  */
 class Experience
 {

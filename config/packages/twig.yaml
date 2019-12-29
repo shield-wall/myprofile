@@ -1,6 +1,9 @@
 twig:
     globals:
         app_gravatar: '@App\Utils\Gravatar'
+        bucket_name: '%bucket.name%'
+        bucket_dns: '%bucket.dns%'
+        cdn_dns: '%cdn.dns%'
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
