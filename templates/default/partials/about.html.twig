@@ -40,8 +40,8 @@
                             <i class="fa fa-download"></i> {{ 'default.download_resume' | trans }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('app_curriculum', { 'username': user.username, '_locale': 'en' }) }}" target="_blank">Inglês</a></li>
-                            <li><a href="{{ path('app_curriculum', { 'username': user.username, '_locale': 'pt_BR' }) }}" target="_blank">Português</a></li>
+                            <li><a href="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getCurriculumPath() ~ 'en.pdf'}}" target="_blank">English</a></li>
+                            <li><a href="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getCurriculumPath() ~ 'pt_BR.pdf'}}" target="_blank">Português</a></li>
                         </ul>
                     </div>
                 </div>

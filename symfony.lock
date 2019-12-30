@@ -96,21 +96,6 @@
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
-    "knplabs/knp-snappy": {
-        "version": "v1.2.0"
-    },
-    "knplabs/knp-snappy-bundle": {
-        "version": "1.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "1.5",
-            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
-        },
-        "files": [
-            "config/packages/knp_snappy.yaml"
-        ]
-    },
     "monolog/monolog": {
         "version": "1.25.2"
     },
@@ -263,9 +248,6 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.13.1"
     },
-    "symfony/process": {
-        "version": "v4.4.1"
-    },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
     },
@@ -391,6 +373,9 @@
     },
     "symfony/yaml": {
         "version": "v4.4.1"
+    },
+    "transloadit/php-sdk": {
+        "version": "v2.1.0"
     },
     "twig/extra-bundle": {
         "version": "v3.0.0"

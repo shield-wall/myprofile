@@ -34,6 +34,15 @@
                         </ul>
                     </li>
                 {% endif %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-info" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-paperclip"></i> {{ 'curriculum.view_curriculum' | trans }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getCurriculumPath() ~ 'en.pdf'}}" target="_blank">English</a></li>
+                        <li><a href="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getCurriculumPath() ~ 'pt_BR.pdf'}}" target="_blank">Português</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-close"></i> Sair</a></li>
             </ul>
         </div>

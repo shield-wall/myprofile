@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ContactType;
 use App\Repository\UserRepository;
-use Knp\Snappy\Pdf;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,22 +88,15 @@ class DefaultController extends AbstractController
      * @Route(
      *     "/{username}/curriculum/{_locale}",
      *     name="app_curriculum",
-     *     defaults={"_locale": "pt_BR"},
      *     requirements={"_locale": "en|pt_BR"}
      *     )
      */
-    public function curriculumAction(User $user, Pdf $pdf)
+    public function curriculumAction(User $user)
     {
         $html = $this->renderView('curriculum/theme_01/index.html.twig', [
             'user' => $user,
         ]);
 
-        return new Response(
-            $pdf->getOutputFromHtml($html),
-            Response::HTTP_OK,
-            array(
-                'Content-Type' => 'application/pdf',
-            )
-        );
+        return new Response($html);
     }
 }

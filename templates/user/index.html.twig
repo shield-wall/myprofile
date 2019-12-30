@@ -41,6 +41,9 @@
                         <li>
                             <a href="{{ path('app_profile', { 'username': user.username}) }}" target="_blank">view profile</a>
                         </li>
+                        <li>
+                            <a href="{{ path('admin_user_make_pdf', { 'username': user.username}) }}">make pdf</a>
+                        </li>
                     </ul>
                 </td>
             </tr>

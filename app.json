@@ -31,6 +31,30 @@
     },
     "SENTRY_DSN": {
       "description": "Please set here SDK dsn sentry."
+    },
+    "TRANSLOADIT_KEY": {
+      "description": "Transloadit key."
+    },
+    "TRANSLOADIT_SECRET": {
+      "description": "Transloadit secret."
+    },
+    "TRANSLOADIT_TEMPLATE_ID": {
+      "description": "Transloadit template id."
+    },
+    "TRANSLOADIT_CREDENTIALS": {
+      "description": "Transloadit credentials."
+    },
+    "TRANSLOADIT_DELIVERY": {
+      "description": "Transloadit delivery flag 1 or 0."
+    },
+    "BUCKET_DNS": {
+      "description": "Bucket dns."
+    },
+    "BUCKET_NAME": {
+      "description": "Bucket name."
+    },
+    "CDN_DNS": {
+      "description": "CDN host."
     }
   },
   "addons": [

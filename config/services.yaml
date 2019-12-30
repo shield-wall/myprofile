@@ -5,6 +5,15 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: pt_BR
+    transloadit.key: '%env(TRANSLOADIT_KEY)%'
+    transloadit.secret: '%env(TRANSLOADIT_SECRET)%'
+    transloadit.template_id: '%env(TRANSLOADIT_TEMPLATE_ID)%'
+    transloadit.credentials: '%env(TRANSLOADIT_CREDENTIALS)%'
+    transloadit.delivery: '%env(TRANSLOADIT_DELIVERY)%'
+
+    bucket.name: '%env(BUCKET_NAME)%'
+    bucket.dns: '%env(BUCKET_DNS)%'
+    cdn.dns: '%env(CDN_DNS)%'
 
 services:
     # default configuration for services in *this* file
@@ -34,3 +43,12 @@ services:
         class: App\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    transloadit\Transloadit:
+        - key: '%transloadit.key%'
+        - secret: '%transloadit.secret%'
+
+
+    App\EventListener\MakeCurriculumPdfEventListener:
+        tags:
+            - { name: doctrine.orm.entity_listener, lazy: true}

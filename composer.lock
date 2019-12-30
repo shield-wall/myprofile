@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05ad2557d7113a8f6feb353fea10344d",
+    "content-hash": "adb0e55961c7a83146277fab9db5d9d2",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1598,137 +1598,6 @@
                 "versions"
             ],
             "time": "2018-06-13T13:22:40+00:00"
-        },
-        {
-            "name": "knplabs/knp-snappy",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/snappy.git",
-                "reference": "162633e3143f7f03b395e1dbd53df25e1e87d2f5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/162633e3143f7f03b395e1dbd53df25e1e87d2f5",
-                "reference": "162633e3143f7f03b395e1dbd53df25e1e87d2f5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1",
-                "psr/log": "^1.0",
-                "symfony/process": "~3.4||~4.3||~5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~7.4"
-            },
-            "suggest": {
-                "h4cc/wkhtmltoimage-amd64": "Provides wkhtmltoimage-amd64 binary for Linux-compatible machines, use version `~0.12` as dependency",
-                "h4cc/wkhtmltoimage-i386": "Provides wkhtmltoimage-i386 binary for Linux-compatible machines, use version `~0.12` as dependency",
-                "h4cc/wkhtmltopdf-amd64": "Provides wkhtmltopdf-amd64 binary for Linux-compatible machines, use version `~0.12` as dependency",
-                "h4cc/wkhtmltopdf-i386": "Provides wkhtmltopdf-i386 binary for Linux-compatible machines, use version `~0.12` as dependency",
-                "wemersonjanuario/wkhtmltopdf-windows": "Provides wkhtmltopdf executable for Windows, use version `~0.12` as dependency"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Knp\\Snappy\\": "src/Knp/Snappy"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://github.com/KnpLabs/snappy/contributors"
-                }
-            ],
-            "description": "PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
-            "homepage": "http://github.com/KnpLabs/snappy",
-            "keywords": [
-                "knp",
-                "knplabs",
-                "pdf",
-                "snapshot",
-                "thumbnail",
-                "wkhtmltopdf"
-            ],
-            "time": "2019-12-02T16:06:55+00:00"
-        },
-        {
-            "name": "knplabs/knp-snappy-bundle",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
-                "reference": "87acf8544a2bd498585b3d49b2bb551f088551b1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/87acf8544a2bd498585b3d49b2bb551f088551b1",
-                "reference": "87acf8544a2bd498585b3d49b2bb551f088551b1",
-                "shasum": ""
-            },
-            "require": {
-                "knplabs/knp-snappy": "~1.0,>=1.0.1",
-                "php": ">=7.1",
-                "symfony/framework-bundle": "~2.7|~3.0|^4.0"
-            },
-            "require-dev": {
-                "doctrine/annotations": "~1.0",
-                "phpunit/phpunit": "~7.4",
-                "symfony/asset": "~2.7|~3.0|^4.0",
-                "symfony/finder": "~2.7|~3.0|^4.0",
-                "symfony/security-csrf": "~2.7|~3.0|^4.0",
-                "symfony/templating": "~2.7|~3.0|^4.0",
-                "symfony/validator": "~2.7|~3.0|^4.0",
-                "symfony/yaml": "~3.0|~4.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Knp\\Bundle\\SnappyBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://github.com/KnpLabs/KnpSnappyBundle/contributors"
-                }
-            ],
-            "description": "Easily create PDF and images in Symfony2 by converting Twig/HTML templates.",
-            "homepage": "http://github.com/KnpLabs/KnpSnappyBundle",
-            "keywords": [
-                "bundle",
-                "knp",
-                "knplabs",
-                "pdf",
-                "snappy"
-            ],
-            "time": "2018-12-13T12:14:08+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3686,16 +3555,16 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v4.4.1",
+            "version": "v4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
-                "reference": "7abe2c6d7d232cf5a88e79a57479876b35704a01"
+                "reference": "c387ab37887f997162a8579d335b38f328d27859"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/7abe2c6d7d232cf5a88e79a57479876b35704a01",
-                "reference": "7abe2c6d7d232cf5a88e79a57479876b35704a01",
+                "url": "https://api.github.com/repos/symfony/dotenv/zipball/c387ab37887f997162a8579d335b38f328d27859",
+                "reference": "c387ab37887f997162a8579d335b38f328d27859",
                 "shasum": ""
             },
             "require": {
@@ -3739,7 +3608,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2019-11-23T14:53:46+00:00"
+            "time": "2019-12-19T15:57:49+00:00"
         },
         {
             "name": "symfony/error-handler",
@@ -5183,55 +5052,6 @@
             "time": "2019-11-27T16:25:15+00:00"
         },
         {
-            "name": "symfony/process",
-            "version": "v4.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/process.git",
-                "reference": "51c0135ef3f44c5803b33dc60e96bf4f77752726"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/51c0135ef3f44c5803b33dc60e96bf4f77752726",
-                "reference": "51c0135ef3f44c5803b33dc60e96bf4f77752726",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Process\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Process Component",
-            "homepage": "https://symfony.com",
-            "time": "2019-11-28T13:33:56+00:00"
-        },
-        {
             "name": "symfony/property-access",
             "version": "v4.4.1",
             "source": {
@@ -6450,6 +6270,55 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2019-11-12T14:51:11+00:00"
+        },
+        {
+            "name": "transloadit/php-sdk",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/transloadit/php-sdk.git",
+                "reference": "b6f3740567a9ab8b5e993c4ffdae79567d5b3046"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/transloadit/php-sdk/zipball/b6f3740567a9ab8b5e993c4ffdae79567d5b3046",
+                "reference": "b6f3740567a9ab8b5e993c4ffdae79567d5b3046",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "0.7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "transloadit": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Transloadit SDK",
+            "homepage": "https://github.com/transloadit/php-sdk",
+            "keywords": [
+                "Thumbnails",
+                "audio",
+                "document",
+                "encoding",
+                "file",
+                "image",
+                "processing",
+                "resizing",
+                "transloadit",
+                "uploading",
+                "video",
+                "waveform"
+            ],
+            "time": "2016-06-28T17:19:40+00:00"
         },
         {
             "name": "twig/extra-bundle",
