@@ -1,0 +1,9 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('request-style') }}
+{% endblock %}
+
+{% block fos_user_content %}
+{% include "@FOSUser/Resetting/request_content.html.twig" %}
+{% endblock fos_user_content %}
+
