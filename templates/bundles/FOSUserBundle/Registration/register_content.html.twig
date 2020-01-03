@@ -1,9 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
-{% block stylesheets %}
-    {{ encore_entry_link_tags('register') }}
-{% endblock %}
 
-<div>   
+<div>
   <div>
     <div class="form-register" style="color: #5d5d5d;background: #f2f2f2;">
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
