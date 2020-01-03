@@ -2,13 +2,12 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block title %}{{ 'resetting.request.submit'|trans }}{% endblock %}
-
 {% block stylesheets %}
-    {{ encore_entry_link_tags('request-style') }}
+    {{ encore_entry_link_tags('login') }}
 {% endblock %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Resetting/request_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}{{'layout.login'| trans}}{% endblock %}
 
+{% block fos_user_content %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+{% endblock fos_user_content %}
