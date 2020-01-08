@@ -1,5 +1,5 @@
 body {
-    background: url('../images/fundo_login.jpg'), no-repeat center center fixed;
+    background: url('../images/fundo_login.jpg'), no-repeat center fixed;
     background-size: cover;
 }
 label {
