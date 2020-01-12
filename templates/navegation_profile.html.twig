@@ -21,6 +21,7 @@
                 <li><a href="{{ path('user_education_index') }}"><i class="fa fa-mortar-board"></i> Educação</a></li>
                 <li><a href="{{ path('user_experience_index') }}"><i class="fa fa-book"></i> experiência</a></li>
                 <li><a href="{{ path('user_certification_index') }}"><i class="fa fa-certificate"></i> certificação</a></li>
+                <li><a href="{{ path('user_language_index') }}"><i class="fa fa-language"></i> {{ 'navegation.languages' | trans }}</a></li>
                 <li><a href="{{ path('user_skill_index') }}"><i class="fa fa-rocket"></i> {{ 'navegation.skills' | trans }}</a></li>
                 <li><a href="{{path('fos_user_change_password')}}"><i class="fa fa-key"></i> Alterar senha</a></li>
                 {% if is_granted('ROLE_ADMIN') %}
