@@ -2,6 +2,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -126,6 +127,11 @@ class User extends BaseUser
      */
     protected $keyWords;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserLanguage", mappedBy="user_id")
+     */
+    private $userLanguages;
+
     public function __construct()
     {
         parent::__construct();
@@ -135,6 +141,7 @@ class User extends BaseUser
         $this->experiences = new ArrayCollection();
         $this->skills = new ArrayCollection();
         $this->certifications = new ArrayCollection();
+        $this->userLanguages = new ArrayCollection();
     }
 
     /**
@@ -512,5 +519,36 @@ class User extends BaseUser
     public function getCurriculumPath(): string
     {
         return sprintf('users/%s/curriculum/', md5($this->getEmail()));
+    }
+
+    /**
+     * @return Collection|UserLanguage[]
+     */
+    public function getUserLanguages(): Collection
+    {
+        return $this->userLanguages;
+    }
+
+    public function addUserLanguage(UserLanguage $userLanguage): self
+    {
+        if (!$this->userLanguages->contains($userLanguage)) {
+            $this->userLanguages[] = $userLanguage;
+            $userLanguage->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserLanguage(UserLanguage $userLanguage): self
+    {
+        if ($this->userLanguages->contains($userLanguage)) {
+            $this->userLanguages->removeElement($userLanguage);
+            // set the owning side to null (unless already changed)
+            if ($userLanguage->getUserId() === $this) {
+                $userLanguage->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 }

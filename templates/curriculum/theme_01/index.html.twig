@@ -41,7 +41,7 @@
                 {% for education in user.educations %}
                     <div class="item">
                         <h4 class="degree">{{ education.title }}</h4>
-                        <h5 class="meta">{{ education.institution }}</h5>
+                        <h5 clasrs="meta">{{ education.institution }}</h5>
                         <div class="time">
                             {{ education.getPeriodStart() | date('M Y') }} - {{ education.getPeriodEnd() | date('M Y') }}
                         </div>
@@ -57,6 +57,17 @@
                     </h2>
                     {% for skill in user.skills | slice(0,4) %}
                         <div class="item">{{ skill.name }}</div>
+                    {% endfor %}
+                </div><!--//skill-container-->
+            {% endif %}
+
+            {% if user.getUserLanguages() | length > 0 %}
+                <div class="container-block">
+                    <h2 class="container-block-title">
+                        <i class="fas fa-language"></i> {{ 'curriculum.languages' | trans }}
+                    </h2>
+                    {% for laguage in user.getUserLanguages() %}
+                        <div class="item">{{ laguage.name }} - {{ laguage.levelName }}</div>
                     {% endfor %}
                 </div><!--//skill-container-->
             {% endif %}

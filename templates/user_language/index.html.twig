@@ -1,0 +1,37 @@
+{% extends 'base_profile.html.twig' %}
+
+{% block title %}UserLanguage index{% endblock %}
+
+{% block container_profile %}
+    <h1>UserLanguage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_language in user_languages %}
+            <tr>
+                <td>{{ user_language.id }}</td>
+                <td>{{ user_language.name }}</td>
+                <td>{{ user_language.level }}</td>
+                <td>
+                    <a href="{{ path('user_language_show', {'id': user_language.id}) }}">show</a>
+                    <a href="{{ path('user_language_edit', {'id': user_language.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_language_new') }}">Create new</a>
+{% endblock %}

@@ -8,6 +8,7 @@ navegation:
     education: Education
     experience: Experience
     registration: Create your free profile
+    languages: Languages
 
 about:
     about: About
@@ -24,6 +25,7 @@ curriculum:
     experiences: Experiences
     certifications: Certifications
     view_curriculum: View curriculum.
+    languages: Languages
 
 default:
   last_registrations: Last registrations
