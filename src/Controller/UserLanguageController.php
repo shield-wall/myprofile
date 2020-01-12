@@ -52,7 +52,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_language_show", methods={"GET"})
-     * @Security("user == skill.getUserId()")
+     * @Security("user == userLanguage.getUserId()")
      */
     public function show(UserLanguage $userLanguage): Response
     {
@@ -84,7 +84,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_language_delete", methods={"DELETE"})
-     * @Security("user == skill.getUserId()")
+     * @Security("user == userLanguage.getUserId()")
      */
     public function delete(Request $request, UserLanguage $userLanguage): Response
     {
