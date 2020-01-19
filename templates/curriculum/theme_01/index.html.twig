@@ -80,7 +80,7 @@
             <section class="section summary-section block-text">
                 <h2 class="section-title"><i class="fa fa-user"></i>{{ 'curriculum.about' | trans }}</h2>
                 <div class="summary">
-                    <p>{{ user.summary }}</p>
+                    <p>{{ user.summary | nl2br }}</p>
                 </div><!--//summary-->
             </section><!--//section-->
 
@@ -106,7 +106,7 @@
                                 <div class="company">{{ experience.company }}</div>
                             </div><!--//meta-->
                             <div class="details">
-                                {{ experience.description }}
+                                {{ experience.description | nl2br }}
                             </div><!--//details-->
                         </div><!--//item-->
                     {% endfor %}
