@@ -1,6 +1,6 @@
 body {
     background: url('../images/fundo_login.jpg'), no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
 
 hr {
@@ -15,7 +15,7 @@ hr {
     width: 100% !important;
     height: 40px;
     border: 1px solid #ccc;
-    margin: 0 0 13px;
+    margin: 5px 0 13px;
     border-radius: 5px !important;
     padding: 10px;
     box-sizing: border-box;
@@ -43,11 +43,11 @@ hr {
 }
 
 .select-group #fos_user_registration_form_birthday_month,
-.select-group #fos_user_registration_form_birthday_day {
+.select-group #fos_user_registration_form_birthday_day,
+.select-group #fos_user_registration_form_birthday_year {
     margin-left: 10px !important;
     width: 30%;
-}
-
+} 
 
 .form-inline {
     display: contents;
@@ -82,6 +82,7 @@ hr {
 }
 
 .btn {
+    font-size: 15px;
     width: 100%;
     color: #fff;
     height: 47px;
@@ -93,6 +94,7 @@ hr {
 
 .text-center {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    text-align: center;
     color: #5d5d5d;
     margin-bottom: 20px;
 }
@@ -102,10 +104,34 @@ hr {
     margin-bottom: -10px;
 }
 
-
 @media (max-width:400px) {
 	.input-group-data{
         flex-direction: column !important;
         width: 580px;
     }
 }
+
+.list-unstyled {
+    font-size: 12px;
+    color: red;
+    list-style: none;
+    display: inline-block;
+    margin: 0px;
+    margin-left: -30px;
+}
+@media (max-width: 533px) { 
+    .list-unstyled {
+        font-size: 10px;
+    }
+    .fos_user_registration_register {
+        max-width: 460px;
+    }
+}
+@media (max-width: 380px) {
+    .list-unstyled li {
+        font-size: 6px;
+        margin-left: -10px;
+    }
+}
+
+
