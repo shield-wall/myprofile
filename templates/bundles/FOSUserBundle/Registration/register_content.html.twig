@@ -28,8 +28,8 @@
                 </div>
                 <div class"element-righ">
                     <label> {{ form_label(form.gender) }}</label>
-                    {{ form_widget(form.gender) }}
-                    {{ form_errors(form.gender) }}    
+                    {{ form_errors(form.gender) }}
+                    {{ form_widget(form.gender) }}    
                 </div>
             </div>
 
@@ -41,11 +41,11 @@
                 </div>
                 <div class="input-group-data">
                     <label for="name">{{ form_label(form.birthday) }}</label>
-
+                    {{ form_errors(form.birthday) }}
+                    
                     <div class="select-group">
                     {{ form_widget(form.birthday) }}
                     </div>
-                    {{ form_errors(form.birthday) }}
                 </div>
             </div>
 
