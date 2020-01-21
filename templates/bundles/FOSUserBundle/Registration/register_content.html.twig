@@ -10,55 +10,55 @@
             <div class="input-group">
                 <div>
                     <label for="name">{{ form_label(form.first_name) }}</label>
-                    {{ form_widget(form.first_name) }}
                     {{ form_errors(form.first_name) }}
+                    {{ form_widget(form.first_name) }}
                 </div>
                 <div class"element-right">
                     <label for="name">{{ form_label(form.last_name) }}</label>
-                    {{ form_widget(form.last_name) }}
                     {{ form_errors(form.last_name) }}
+                    {{ form_widget(form.last_name) }}
                 </div>
             </div>
 
             <div class="input-group">
                 <div>
                     <label for="name">{{ form_label(form.email) }}</label>
+                    {{ form_errors(form.email) }}  
                     {{ form_widget(form.email) }}
-                    {{ form_errors(form.email) }}
                 </div>
                 <div class"element-righ">
                     <label> {{ form_label(form.gender) }}</label>
-                    {{ form_widget(form.gender) }}
-                    {{ form_errors(form.gender) }}    
+                    {{ form_errors(form.gender) }}
+                    {{ form_widget(form.gender) }}    
                 </div>
             </div>
 
             <div class="input-group input-group-data">
                 <div>
                     <label for="name">{{ form_label(form.username) }}</label>
-                    {{ form_widget(form.username) }}
                     {{ form_errors(form.username) }}
+                    {{ form_widget(form.username) }}
                 </div>
                 <div class="input-group-data">
                     <label for="name">{{ form_label(form.birthday) }}</label>
-
+                    {{ form_errors(form.birthday) }}
+                    
                     <div class="select-group">
                     {{ form_widget(form.birthday) }}
                     </div>
-                    {{ form_errors(form.birthday) }}
                 </div>
             </div>
 
             <div class="input-group">
                 <div>
                     <label for="name">{{ form_label(form.plainPassword.first) }}</label>
+                    {{ form_errors(form.plainPassword.first) }} 
                     {{ form_widget(form.plainPassword.first) }}
-                    {{ form_errors(form.plainPassword.first) }}    
                 </div>
                 <div>
                     <label for="name">{{ form_label(form.plainPassword.second) }}</label>
-                    {{ form_widget(form.plainPassword.second) }}
-                    {{ form_errors(form.plainPassword.second) }}
+                    {{ form_errors(form.plainPassword.second) }} 
+                    {{ form_widget(form.plainPassword.second) }}                        
                 </div>
             </div>
             <div>
