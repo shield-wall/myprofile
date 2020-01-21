@@ -44,8 +44,7 @@ hr {
 .select-group #fos_user_registration_form_birthday_month,
 .select-group #fos_user_registration_form_birthday_day, 
 .select-group #fos_user_registration_form_birthday_year {
-    margin-left: 10px !important;
-    width: 30%;
+    width: 32%;
 }
 
 
