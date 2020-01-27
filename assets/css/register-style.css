@@ -15,14 +15,10 @@ hr {
     width: 100%;
     height: 40px;
     border: 1px solid #ccc;
-    margin: 5px 0 13px;
     border-radius: 5px;
+    margin: 5px 0 13px;
     padding: 10px;
     box-sizing: border-box;
-}
-
-.form-control:focus {
-    border: 1.8px solid #4f9ff5;
 }
 
 .form-register {
@@ -84,9 +80,10 @@ hr {
 
 .btn {
     font-size: 14px;
-    width: 100%;
     color: #fff;
+    width: 100%;
     height: 47px;
+    border-radius: 5px;
 }
 
 .btn:hover {
@@ -94,10 +91,10 @@ hr {
 }
 
 .text-center {
-    text-align: center;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    text-align: center;
     color: #5d5d5d;
-    margin-bottom: 20px;
+    margin: 5px 0 20px;
 }
 
 .control-label {
@@ -111,26 +108,18 @@ hr {
         flex-direction: column !important;
         width: 580px;
     }
+    .fos_user_registration_register {
+        width: auto;
+    }
 }
+
 .list-unstyled {
-    font-size: 12px;
+    font-size: 8px;
     color: red;
     list-style: none;
     display: inline-block;
     margin: 0px;
     margin-left: -30px;
-}
-@media (max-width: 533px) { 
-    .list-unstyled {
-        font-size: 10px;
-    }
-    .fos_user_registration_register {
-        max-width: 460px;
-    }
-}
-@media (max-width: 380px) {
-    .list-unstyled li {
-        font-size: 6px;
-        margin-left: -10px;
-    }
+    margin-left: -10px;
+    
 }
