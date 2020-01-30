@@ -62,6 +62,10 @@ hr {
         width: 243px;
     }
 }
+@media (max-width: 360px) {
+    #fos_user_registration_form_username {
+        width: 284px;
+    }
 
 .form-inline {
     display: contents;
