@@ -1,5 +1,7 @@
 {
-  "devDependencies": {},
+  "devDependencies": {
+    "bulma": "^0.8.0"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@symfony/webpack-encore": "^0.28.0",
@@ -13,6 +15,6 @@
     "yarn": "^1.19.1"
   },
   "scripts": {
-    "heroku-postbuild" : "yarn run encore production"
+    "heroku-postbuild": "yarn run encore production"
   }
 }
