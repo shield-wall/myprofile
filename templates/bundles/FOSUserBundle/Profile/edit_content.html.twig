@@ -1,36 +1,38 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="alert alert-info">
-    Estamos em uma versão BETA, caso queira informar algum problema, envie um e-mail para:
-    <strong>contato@myprofile.pro</strong>
-</div>
-{% if app_gravatar.isProfile(app.user.email) %}
-
+{{ form_start(form, { 'action': path('profile_edit'), 'attr': { 'class': 'profile_edit' } }) }}
 
     <div class="row">
-
-        {# fundo #}
-        {% for images in [app_gravatar.getAvatar(app.user.email, 200), app_gravatar.getBackground(app.user.email, 200)] %}
+        <!-- profile image -->
         <div class="col-sm-6 col-md-2">
             <div class="thumbnail">
-                <img src=" {{ images }}" alt="" style="width: auto; height: 150px;"/>
+                <object data="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage()}}" style="width:150px">
+
+                    <!-- default image -->
+                    <img src="{{ bucket_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.jpg'}}" alt="profile image" style="width:150px">
+                </object>
                 <div class="text-center">
-                    <p><a href="https://br.gravatar.com/emails/" target="_blank" class="btn btn-link" role="button">Editar</a></p>
+                    {{ form_widget(form.profile_image) }}
+                    {{ form_errors(form.profile_image) }}
                 </div>
             </div>
         </div>
-        {% endfor %}
 
+        <!-- background image -->
+        <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">
+                <object data="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getBackgroundImage() }}" style="width:150px">
+                    <!-- default image -->
+                    <img src="{{ bucket_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.jpg'}}" alt="profile image" style="width:150px">
+                </object>
+                <div class="text-center">
+                    {{ form_widget(form.background_image) }}
+                    {{ form_errors(form.background_image) }}
+                </div>
+            </div>
+        </div>
     </div>
-{% else %}
-    <div class="alert alert-warning">
-        <i class="fa fa-warning"></i>
-        Por favor, configure ou crie uma conta no <a href="https://br.gravatar.com/" target="_blank">Gravatar</a> com seu e-mail : <strong>{{ app.user.email }}</strong>,
-        <p>Obs: A imagem do seu perfil e a imagem de fundo vai ser seu gravatar, o mesmo permanecerá na pagina inicial!</p>
-    </div>
-{% endif %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
     {{ form_widget(form) }}
     <div>
         <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />

@@ -38,8 +38,14 @@
     "TRANSLOADIT_SECRET": {
       "description": "Transloadit secret."
     },
-    "TRANSLOADIT_TEMPLATE_ID": {
-      "description": "Transloadit template id."
+    "TRANSLOADIT_TEMPLATE_ID_CURRICULUM": {
+      "description": "Transloadit curriculum template id."
+    },
+    "TRANSLOADIT_TEMPLATE_ID_IMAGE_PROFILE": {
+      "description": "Transloadit image profile template id."
+    },
+    "TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND": {
+      "description": "Transloadit image background template id."
     },
     "TRANSLOADIT_CREDENTIALS": {
       "description": "Transloadit credentials."

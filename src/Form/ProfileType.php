@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\{
 };
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProfileType extends RegistrationType
 {
@@ -16,6 +17,34 @@ class ProfileType extends RegistrationType
         parent::buildForm($builder, $options);
 
         $builder
+            ->add('profile_image', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '10M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                        ],
+                    ])
+                ],
+            ])
+            ->add('background_image', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '10M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                        ],
+                    ])
+                ],
+            ])
             ->add('role', TextType::class, [
                 'required' => false,
             ])
@@ -46,6 +75,7 @@ class ProfileType extends RegistrationType
                     'rows' => 5
                 ],
             ])
+            ->remove('current_password')
         ;
     }
 

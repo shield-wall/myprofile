@@ -22,11 +22,11 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 check_path: fos_user_security_check
                 login_path: fos_user_security_login
-                default_target_path: fos_user_profile_edit
+                default_target_path: profile_edit
 
             logout:
                 path: fos_user_security_logout
-                target: fos_user_profile_edit
+                target: fos_user_security_login
 
             anonymous:    true
 

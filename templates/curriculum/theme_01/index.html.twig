@@ -10,7 +10,12 @@
     <div class="wrapper">
         <div class="sidebar-wrapper">
             <div class="profile-container">
-                <img class="profile img-circle" src="{{ app_gravatar.getAvatar(user.email) }}" alt="" />
+                  <object data="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage()}}" class="profile img-circle" style="width: 100px;">
+
+                      <!-- default image -->
+                      <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.jpg'}}" alt="profile image" class="profile img-circle" style="width: 100px;">
+                  </object>
+
                 <h1 class="name">{{ user.getFirstName() }} {{ user.getLastName() }}</h1>
                 <h3 class="tagline">{{ user.role }}</h3>
             </div><!--//profile-container-->
