@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Service;
-
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\User\User;
 use transloadit\Transloadit;
 
-class CurriculumService
+class BackgroundImageService
 {
     private $router;
     private $transloadit;
@@ -26,39 +23,35 @@ class CurriculumService
         $this->params = $params;
     }
 
-    public function makePdfOnTransloadit($user)
+    public function upload($user, $file)
     {
-        if (!$this->params->get('transloadit.delivery'))
+    	if (!$this->params->get('transloadit.delivery'))
             return;
+
+        if (null == $file)
+        	return;
 
         $url_prefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
 
+        $file->move($this->params->get('transloadit.tmp'), $file->getClientOriginalName());
+        $fileFullPath = sprintf('%s/%s',$this->params->get('transloadit.tmp'), $file->getClientOriginalName());
+
         $this->transloadit->createAssembly([
+        	'files' => [
+        		$fileFullPath,
+        	],
             'params' => [
-                'template_id' => $this->params->get('transloadit.template_id.curriculum'),
+                'template_id' => $this->params->get('transloadit.template_id.image.background'),
                 "steps" => [
-                    "screenshot_en" => [
-                        "url" => $this->getAbsoluteUrl($user, 'en'),
-                    ],
-                    "screenshot_pt_BR" => [
-                        "url" => $this->getAbsoluteUrl($user, 'pt_BR'),
-                    ],
-                    'store' => [
+                    'export' => [
                         'credentials' => $this->params->get('transloadit.credentials'),
                         'url_prefix' => $url_prefix,
-                        'path' => sprintf('%s${file.name}', $user->getCurriculumPath()),
+                        'path' => $user->getBackgroundImage(),
                     ],
                 ],
             ],
         ]);
-    }
 
-    private function getAbsoluteUrl($user, $locale)
-    {
-        return $this->router->generate(
-            'app_curriculum',
-            ['username' => $user, '_locale' => $locale],
-            UrlGeneratorInterface::ABSOLUTE_URL
-        );
+        unlink($fileFullPath);
     }
 }

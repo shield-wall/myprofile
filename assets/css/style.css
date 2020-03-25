@@ -599,9 +599,10 @@ SOCIAL ICON
     background-size: contain;
 }
 
-.myphoto img{
+.myphoto #image{
     position: relative;
     z-index: -1;
+    width: 100%;
 }
 
 .biography ul{

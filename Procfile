@@ -1,1 +1,1 @@
-web: $(composer config bin-dir)/heroku-php-apache2 public/
+web: $(composer config bin-dir)/heroku-php-apache2 -i docker/upload.ini public/

@@ -521,6 +521,16 @@ class User extends BaseUser
         return sprintf('users/%s/curriculum/', md5($this->getEmail()));
     }
 
+    public function getProfileImage(): string
+    {
+        return sprintf('users/%s/profile.jpg', md5($this->getEmail()));
+    }
+
+    public function getBackgroundImage(): string
+    {
+        return sprintf('users/%s/background.jpg', md5($this->getEmail()));
+    }
+
     /**
      * @return Collection|UserLanguage[]
      */
