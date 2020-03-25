@@ -17,10 +17,6 @@ class RegistrationType extends AbstractType
         $builder
             ->add('first_name', TextType::class)
             ->add('last_name', TextType::class)
-            ->add('gender', ChoiceType::class, [
-                'choices' => ['Male' => 'male', 'Female' => 'female']
-            ])
-            ->add('birthday', BirthdayType::class)
         ;
     }
 
