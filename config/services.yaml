@@ -42,11 +42,6 @@ services:
     App\Utils\Gravatar:
         public: true
 
-    app.form.registration:
-        class: App\Form\RegistrationType
-        tags:
-            - { name: form.type, alias: app_user_registration }
-
     transloadit\Transloadit:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'

@@ -23,7 +23,6 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
      */
     protected $first_name;
 

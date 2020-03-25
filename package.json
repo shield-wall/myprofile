@@ -5,6 +5,7 @@
     "@symfony/webpack-encore": "^0.28.0",
     "add": "^2.0.6",
     "bootstrap": "^4.3.1",
+    "bulma": "^0.8.1",
     "jquery": "^3.4.1",
     "jquery.stellar": "^0.6.2",
     "node-sass": "^4.12.0",
@@ -13,6 +14,6 @@
     "yarn": "^1.19.1"
   },
   "scripts": {
-    "heroku-postbuild" : "yarn run encore production"
+    "heroku-postbuild": "yarn run encore production"
   }
 }

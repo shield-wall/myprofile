@@ -1,22 +1,29 @@
 <?php
+
 namespace App\Form;
 
 use App\Entity\User;
 use FOS\UserBundle\Form\Type\ProfileFormType;
 use Symfony\Component\Form\Extension\Core\Type\{
-    CollectionType, FileType, IntegerType, NumberType, TextareaType, TextType
+    FileType,
+    IntegerType,
+    TextareaType,
+    TextType
 };
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\AbstractType;
 
-class ProfileType extends RegistrationType
+class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
 
         $builder
+            ->add('first_name', TextType::class)
+            ->add('last_name', TextType::class)
             ->add('profile_image', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -75,8 +82,7 @@ class ProfileType extends RegistrationType
                     'rows' => 5
                 ],
             ])
-            ->remove('current_password')
-        ;
+            ->remove('current_password');
     }
 
     public function configureOptions(OptionsResolver $resolver)
