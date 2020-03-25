@@ -1,56 +1,56 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div>
-  <div>
-    <div class="form-register" style="color: #5d5d5d;background: #f2f2f2;">
-        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-            <h2 class="text-center"><b>Register</b></h2><br/>
-            <hr>
 
-            <div class="input-group">
-                <div>
-                    <label for="name">{{ form_label(form.first_name) }}</label>
-                    {{ form_errors(form.first_name) }}
-                    {{ form_widget(form.first_name) }}
-                </div>
-                <div class"element-right">
-                    <label for="name">{{ form_label(form.last_name) }}</label>
-                    {{ form_errors(form.last_name) }}
-                    {{ form_widget(form.last_name) }}
-                </div>
-            </div>
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
 
-            <div class="input-group">
-                <div>
-                    <label for="name">{{ form_label(form.username) }}</label>
-                    {{ form_errors(form.username) }}
-                    {{ form_widget(form.username) }}
-                </div>
-                <div>
-                    <label for="name">{{ form_label(form.email) }}</label>
-                    {{ form_errors(form.email) }}  
-                    {{ form_widget(form.email) }}
-                </div>
-            </div>
 
-            <div class="input-group">
-                <div>
-                    <label for="name">{{ form_label(form.plainPassword.first) }}</label>
-                    {{ form_errors(form.plainPassword.first) }} 
-                    {{ form_widget(form.plainPassword.first) }}
-                </div>
-                <div>
-                    <label for="name">{{ form_label(form.plainPassword.second) }}</label>
-                    {{ form_errors(form.plainPassword.second) }} 
-                    {{ form_widget(form.plainPassword.second) }}                        
-                </div>
-            </div>
-            <div>
-                <div class="div-element-btn" >
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;{{ 'registration.submit'|trans }}</button>
-                </div>
-            </div>
-        {{ form_end(form) }}
-    </div>
-  </div>  
+<div class="field">
+	<label class="label">{{ form_label(form.username) }}</label>
+	<div class="control has-icons-left">
+		{{ form_widget(form.username, {'attr': {'class': 'input'}}) }}
+		<span class="icon is-small is-left">
+			<i class="fa fa-user"></i>
+		</span>
+		<p class="help is-danger">{{ form_errors(form.username) }}</p>
+	</div>
 </div>
+
+<div class="field">
+	<label class="label">{{ form_label(form.email) }}</label>
+	<div class="control has-icons-left">
+		{{ form_widget(form.email, {'attr': {'class': 'input'}}) }}
+		<span class="icon is-small is-left">
+			<i class="fa fa-envelope"></i>
+		</span>
+		<p class="help is-danger">{{ form_errors(form.email) }}</p>
+	</div>
+</div>
+
+<div class="field">
+	<label class="label">{{ form_label(form.plainPassword.first) }}</label>
+	<div class="control has-icons-left">
+		{{ form_widget(form.plainPassword.first, {'attr': {'class': 'input'}}) }}
+		<span class="icon is-small is-left">
+			<i class="fa fa-lock"></i>
+		</span>
+		<p class="help is-danger">{{ form_errors(form.plainPassword.first) }}</p>
+	</div>
+</div>
+
+<div class="field">
+	<label class="label">{{ form_label(form.plainPassword.second) }}</label>
+	<div class="control has-icons-left">
+		{{ form_widget(form.plainPassword.second, {'attr': {'class': 'input'}}) }}
+		<span class="icon is-small is-left">
+			<i class="fa fa-lock"></i>
+		</span>
+		<p class="help is-danger">{{ form_errors(form.plainPassword.second) }}</p>
+	</div>
+</div>
+
+<div class="field">
+	<button type="submit" class="button is-primary">{{ 'registration.submit'|trans }}</button>
+	<a href="{{ path('fos_user_security_login') }}" class="button is-text">{{ 'security.login.submit'|trans }}</a>
+</div>
+
+{{ form_end(form) }}

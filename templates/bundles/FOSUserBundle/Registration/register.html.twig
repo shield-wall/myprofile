@@ -4,11 +4,53 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('register') }}
+	{{ encore_entry_link_tags('register') }}
 {% endblock %}
 
-{% block title %}{{'layout.register'| trans}}{% endblock %}
+{% block title %}
+	{{'registration.title'| trans}}
+{% endblock %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
+	<section class="section">
+		<div
+			class="container">
+			<!-- language -->
+			<div
+				class="columns is-multiline">
+				<!-- form box -->
+				<div class="column is-8 is-offset-2">
+					<div class="card">
+						<div class="columns ">
+
+							<div class="column has-background-primary has-text-white has-text-centered">
+								<h1 class="is-hidden-desktop">{{ 'registration.title'|trans }}</h1>
+								<div class="hero is-hidden-touch">
+									<div class="hero-body">
+										<h1 class="is-size-3">{{ 'registration.title'|trans }}</h1>
+										<h2>{{ 'registration.message'|trans }}</h2>
+										<div class="check-icon">
+											<i class="fa fa-check-circle fa-5x"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="column has-background-white">
+								{% include "@FOSUser/Registration/register_content.html.twig" %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column is-2 is-offset-8">
+				<div class="is-pulled-right">
+					<a href="{{path('fos_user_registration_register', {'_locale': 'en'}) }}" class="button is-text is-small">English</a>
+					<a href="{{path('fos_user_registration_register', {'_locale': 'pt_BR'}) }}" class="button is-text is-small">Português</a>
+				</div>
+			</div>
+
+		</div>
+	</section>
 {% endblock fos_user_content %}

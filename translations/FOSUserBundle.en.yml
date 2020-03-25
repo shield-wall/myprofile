@@ -13,3 +13,8 @@ Phone: Phone
 Cell: Cell
 Summary: Summary
 Key words: Keywords (separated by commas)
+
+registration:
+  title: Sign up
+  submit: Sign up
+  message: to use all features of the application

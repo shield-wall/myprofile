@@ -1,0 +1,10 @@
+@import '~bulma/sass/utilities/initial-variables';
+
+$body-background-color: $white-ter;
+$primary: $grey-dark;
+
+@import "~bulma/bulma";
+
+.check-icon {
+    margin-top: 10rem;
+}

@@ -13,3 +13,7 @@ Phone: Telefone
 Cell: Celular
 Summary: Resumo
 Key words: Palavras chaves (separado por vírgulas)
+
+registration:
+  title: Registre-se
+  message: para usar todas as funcionalidades da aplicação
