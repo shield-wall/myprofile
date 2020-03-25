@@ -22,30 +22,14 @@
 
             <div class="input-group">
                 <div>
-                    <label for="name">{{ form_label(form.email) }}</label>
-                    {{ form_errors(form.email) }}  
-                    {{ form_widget(form.email) }}
-                </div>
-                <div class"element-righ">
-                    <label> {{ form_label(form.gender) }}</label>
-                    {{ form_errors(form.gender) }}
-                    {{ form_widget(form.gender) }}    
-                </div>
-            </div>
-
-            <div class="input-group input-group-data">
-                <div>
                     <label for="name">{{ form_label(form.username) }}</label>
                     {{ form_errors(form.username) }}
                     {{ form_widget(form.username) }}
                 </div>
-                <div class="input-group-data">
-                    <label for="name">{{ form_label(form.birthday) }}</label>
-                    {{ form_errors(form.birthday) }}
-                    
-                    <div class="select-group">
-                    {{ form_widget(form.birthday) }}
-                    </div>
+                <div>
+                    <label for="name">{{ form_label(form.email) }}</label>
+                    {{ form_errors(form.email) }}  
+                    {{ form_widget(form.email) }}
                 </div>
             </div>
 
