@@ -57,8 +57,12 @@
     <div class="row">
         {% for user in users %}
           <div class="col mt-2">
-            <a href="{{ path('app_profile', {'username': user.username}) }}">
-              <img src="{{ app_gravatar.getAvatar(user.email, 80, 'wavatar') }}" class="rounded-circle" title="{{ user.getFirstName() }} {{ user.getLastName() }}" />
+            <a href="{{ path('app_profile', {'username': user.username}) }}" title="{{ user.getFirstName() }} {{ user.getLastName() }}">
+              <object data="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage()}}" class="rounded-circle" style="width:80px;">
+
+                  <!-- default image -->
+                  <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.jpg'}}" alt="profile image" class="rounded-circle" style="width:80px;">
+              </object>
             </a>
           </div>
 

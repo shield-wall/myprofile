@@ -7,9 +7,12 @@ parameters:
     locale: pt_BR
     transloadit.key: '%env(TRANSLOADIT_KEY)%'
     transloadit.secret: '%env(TRANSLOADIT_SECRET)%'
-    transloadit.template_id: '%env(TRANSLOADIT_TEMPLATE_ID)%'
+    transloadit.template_id.curriculum: '%env(TRANSLOADIT_TEMPLATE_ID_CURRICULUM)%'
+    transloadit.template_id.image.profile: '%env(TRANSLOADIT_TEMPLATE_ID_IMAGE_PROFILE)%'
+    transloadit.template_id.image.background: '%env(TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND)%'
     transloadit.credentials: '%env(TRANSLOADIT_CREDENTIALS)%'
     transloadit.delivery: '%env(TRANSLOADIT_DELIVERY)%'
+    transloadit.tmp: '%kernel.project_dir%/var/tmp'
 
     bucket.name: '%env(BUCKET_NAME)%'
     bucket.dns: '%env(BUCKET_DNS)%'
