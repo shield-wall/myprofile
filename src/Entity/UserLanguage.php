@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserLanguageRepository")
- * @ORM\EntityListeners({"App\EventListener\MakeCurriculumPdfEventListener"})
  */
 class UserLanguage
 {

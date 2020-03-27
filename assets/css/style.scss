@@ -1,10 +1,9 @@
 @import '~bulma/sass/utilities/initial-variables';
-
-$body-background-color: $white-ter;
-$primary: $grey-dark;
-
+@import './initial-variables.scss';
 @import "~bulma/bulma";
 
+// TODO remove it, It is used on register page.
 .check-icon {
     margin-top: 10rem;
 }
+  

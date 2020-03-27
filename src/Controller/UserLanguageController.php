@@ -12,12 +12,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/user/language")
+ * @Route(
+ *     "/{_locale}/user/language",
+ *     name="user_language_",
+ *     defaults={"_locale": "pt_BR"},
+ *     requirements={"_locale": "en|pt_BR"}
+ *     )
  */
 class UserLanguageController extends AbstractController
 {
     /**
-     * @Route("/", name="user_language_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function index(UserLanguageRepository $userLanguageRepository): Response
     {
@@ -27,7 +33,8 @@ class UserLanguageController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="user_language_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function new(Request $request): Response
     {
@@ -41,28 +48,18 @@ class UserLanguageController extends AbstractController
             $entityManager->persist($userLanguage);
             $entityManager->flush();
 
+            $this->addFlash('success', 'messages.item_saved');
             return $this->redirectToRoute('user_language_index');
         }
 
-        return $this->render('user_language/new.html.twig', [
+        return $this->render('user_language/save.html.twig', [
             'user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="user_language_show", methods={"GET"})
-     * @Security("user == userLanguage.getUserId()")
-     */
-    public function show(UserLanguage $userLanguage): Response
-    {
-        return $this->render('user_language/show.html.twig', [
-            'user_language' => $userLanguage,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="user_language_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      * @Security("user == userLanguage.getUserId()")
      */
     public function edit(Request $request, UserLanguage $userLanguage): Response
@@ -73,17 +70,18 @@ class UserLanguageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'messages.item_saved');
             return $this->redirectToRoute('user_language_index');
         }
 
-        return $this->render('user_language/edit.html.twig', [
+        return $this->render('user_language/save.html.twig', [
             'user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="user_language_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == userLanguage.getUserId()")
      */
     public function delete(Request $request, UserLanguage $userLanguage): Response
@@ -92,6 +90,8 @@ class UserLanguageController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($userLanguage);
             $entityManager->flush();
+
+            $this->addFlash('success', 'messages.item_removed');
         }
 
         return $this->redirectToRoute('user_language_index');

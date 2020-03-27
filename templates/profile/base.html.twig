@@ -1,0 +1,28 @@
+{% trans_default_domain 'MyProfile' %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="author" content="My Profile">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Welcome!{% endblock %} | My profile</title>
+		<script src="https://kit.fontawesome.com/a8322ae82c.js" crossorigin="anonymous"></script>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('profile') }}
+		{% endblock %}
+	</head>
+	<body>
+		{% include 'profile/partial/navegation/main.html.twig' %}
+
+		<div class="section">
+			<div class="columns is-centered">
+				<div class="column is-10">
+					{% include 'profile/partial/flashmessages.html.twig' %}
+					{% block body %}{% endblock body %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

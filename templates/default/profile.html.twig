@@ -7,7 +7,7 @@
 {% block keywords %}{{ user.keyWords }}{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('profile') }}
+    {{ encore_entry_link_tags('web_site_profile') }}
 {% endblock %}
 
 {% block body %}
@@ -17,10 +17,6 @@
             <div class="preload-placeholder"></div>
         </div>
     </div>
-
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    {% include 'navegation_profile.html.twig' %}
-    {% endif %}
     {% include 'default/partials/home.html.twig' %}
     {% include 'default/partials/navegation.html.twig' %}
     {% include 'default/partials/about.html.twig' %}
@@ -52,5 +48,5 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-    {{ encore_entry_script_tags('profile') }}
+    {{ encore_entry_script_tags('web_site_profile') }}
 {% endblock %}

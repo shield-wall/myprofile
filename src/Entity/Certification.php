@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="certification")
  * @ORM\Entity(repositoryClass="App\Repository\CertificationRepository")
- * @ORM\EntityListeners({"App\EventListener\MakeCurriculumPdfEventListener"})
  */
 class Certification
 {

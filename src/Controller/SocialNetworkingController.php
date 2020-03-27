@@ -9,16 +9,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Socialnetworking controller.
- *
- * @Route("admin/socialnetworking")
+ * @Route(
+ *     "/{_locale}/admin/socialnetworking",
+ *     name="admin_socialnetworking_",
+ *     defaults={"_locale": "pt_BR"},
+ *     requirements={"_locale": "en|pt_BR"}
+ *     )
  */
 class SocialNetworkingController extends AbstractController
 {
     /**
      * Lists all socialNetworking entities.
      *
-     * @Route("/", name="admin_socialnetworking_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function indexAction(SocialNetworkingRepository $socialNetworkingRepository)
     {
@@ -32,7 +35,7 @@ class SocialNetworkingController extends AbstractController
     /**
      * Creates a new socialNetworking entity.
      *
-     * @Route("/new", name="admin_socialnetworking_new", methods={"GET", "POST"})
+     * @Route("/new", name="new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -45,7 +48,7 @@ class SocialNetworkingController extends AbstractController
             $em->persist($socialNetworking);
             $em->flush();
 
-            return $this->redirectToRoute('admin_socialnetworking_show', array('id' => $socialNetworking->getId()));
+            return $this->redirectToRoute('admin_socialnetworking_index');
         }
 
         return $this->render('socialnetworking/new.html.twig', array(
@@ -57,7 +60,7 @@ class SocialNetworkingController extends AbstractController
     /**
      * Finds and displays a socialNetworking entity.
      *
-     * @Route("/{id}", name="admin_socialnetworking_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function showAction(SocialNetworking $socialNetworking)
     {
@@ -72,7 +75,7 @@ class SocialNetworkingController extends AbstractController
     /**
      * Displays a form to edit an existing socialNetworking entity.
      *
-     * @Route("/{id}/edit", name="admin_socialnetworking_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, SocialNetworking $socialNetworking)
     {
@@ -96,7 +99,7 @@ class SocialNetworkingController extends AbstractController
     /**
      * Deletes a socialNetworking entity.
      *
-     * @Route("/{id}", name="admin_socialnetworking_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      */
     public function deleteAction(Request $request, SocialNetworking $socialNetworking)
     {

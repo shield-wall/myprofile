@@ -9,6 +9,15 @@ navegation:
     experience: Experience
     registration: Create your free profile
     languages: Languages
+    social_network: Social network
+    main: Main
+    certification: Certification
+    update_cv: Update curriculum
+    change_password: Change password
+    sign_out: Sign out
+    users_list: User list
+    cv_download_en: CV in english
+    cv_download_pt_BR: CV in portuguese
 
 about:
     about: About
@@ -36,4 +45,107 @@ default:
   more_skills: More skills
 
 site:
+  sign_up:
+    title: Sign up
+    submit: Sign up
+    message: to use all features of the application
+  
   title_message: Create your resume and professional site free in few minutes!
+
+form:
+  default:
+    actions: Actions
+  
+  submit:
+    edit: Edit
+    create: Create
+    new: New
+    back: Back
+
+  modal:
+    delete_item:
+      title: Delete item
+      message: Are you sure you want to delete this item?
+      button:
+        yes: Yes
+        no: No
+
+  main:
+    head:
+      title: Main
+    first_name: First name
+    last_name: Last name
+    profile_image: Profile image
+    background_image: Background image
+    birthday: Birthday
+    gender: Gender
+    male: Male
+    female: Female
+    role: Professional Position
+    headline: Headline
+    country: Country
+    state: State
+    city: City
+    phone: Phone
+    cell: Cell
+    summary: Summary
+    key_words: Keywords (separated by commas)
+
+  social_network:
+    head:
+      title: Social network
+    social_network: Social network
+
+  education:
+    head:
+      title: Educations
+    title: Course name
+    institution: Institution
+    description: Description
+    start_period: Start period
+    end_period: End period
+
+  experience:
+    head:
+      title: Experiences
+    title: Role name
+    company: Company
+    start_period: Start period
+    end_period: End period
+
+  certification:
+    head:
+      title: Certifications
+    title: Title
+    institution: Institution
+    image: Logo
+    image_url: Logo url
+    link: Link
+    start_period: Start period
+    end_period: End period
+
+  language:
+    head:
+      title: Languages
+    name: Language
+    level: Level
+
+  skill:
+    head:
+      title: Skills
+    name: Name
+    level_experience: Level experience (%)
+    priority: Priority
+
+language:
+  english: English
+  portuguese: Portuguese
+
+messages:
+  item_saved: Save with success!
+  item_removed: Removed with success!
+  generate_curriculum: we're processing your curriculum and in few minutes it'll avaible to you download.
+  empty_list:
+      title: You have not any item
+      sub_title: Hey, But you can resolve it, clicking here
+      new_item: New item

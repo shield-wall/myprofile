@@ -10,16 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Experience controller.
- *
- * @Route("user/experience")
+ * @Route(
+ *     "/{_locale}/user/experience",
+ *     name="user_experience_",
+ *     defaults={"_locale": "pt_BR"},
+ *     requirements={"_locale": "en|pt_BR"}
+ *     )
  */
 class ExperienceController extends AbstractController
 {
     /**
-     * Lists all experience entities.
-     *
-     * @Route("/", name="user_experience_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function indexAction(ExperienceRepository $experienceRepository)
     {
@@ -33,7 +34,7 @@ class ExperienceController extends AbstractController
     /**
      * Creates a new experience entity.
      *
-     * @Route("/new", name="user_experience_new", methods={"GET", "POST"})
+     * @Route("/new", name="new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -47,89 +48,52 @@ class ExperienceController extends AbstractController
             $em->persist($experience);
             $em->flush();
 
-            return $this->redirectToRoute('user_experience_show', array('id' => $experience->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_experience_index');
         }
 
-        return $this->render('experience/new.html.twig', array(
+        return $this->render('experience/save.html.twig', array(
             'experience' => $experience,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a experience entity.
-     *
-     * @Route("/{id}", name="user_experience_show", methods={"GET"})
-     * @Security("user == experience.getUserId()")
-     */
-    public function showAction(Experience $experience)
-    {
-        $deleteForm = $this->createDeleteForm($experience);
-
-        return $this->render('experience/show.html.twig', array(
-            'experience' => $experience,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing experience entity.
-     *
-     * @Route("/{id}/edit", name="user_experience_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @Security("user == experience.getUserId()")
      */
     public function editAction(Request $request, Experience $experience)
     {
-        $deleteForm = $this->createDeleteForm($experience);
-        $editForm = $this->createForm('App\Form\ExperienceType', $experience);
-        $editForm->handleRequest($request);
+        $form = $this->createForm('App\Form\ExperienceType', $experience);
+        $form->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_experience_edit', array('id' => $experience->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_experience_index');
         }
 
-        return $this->render('experience/edit.html.twig', array(
+        return $this->render('experience/save.html.twig', array(
             'experience' => $experience,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * Deletes a experience entity.
-     *
-     * @Route("/{id}", name="user_experience_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == experience.getUserId()")
      */
     public function deleteAction(Request $request, Experience $experience)
     {
-        $form = $this->createDeleteForm($experience);
-        $form->handleRequest($request);
+        if ($this->isCsrfTokenValid('delete' . $experience->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($experience);
+            $entityManager->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($experience);
-            $em->flush();
+            $this->addFlash('success', 'messages.item_removed');
         }
 
         return $this->redirectToRoute('user_experience_index');
-    }
-
-    /**
-     * Creates a form to delete a experience entity.
-     *
-     * @param Experience $experience The experience entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Experience $experience)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_experience_delete', array('id' => $experience->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

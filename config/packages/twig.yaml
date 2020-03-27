@@ -8,4 +8,4 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: null
-    form_themes: ['bootstrap_3_layout.html.twig']
+    form_themes: ['bulma_0_layout.html.twig']
