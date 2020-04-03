@@ -8,6 +8,7 @@
                 <div class="contact-form">
                     <strong>{{ 'default.send_me_message' | trans }}</strong>
 
+                    {% form_theme formContact 'bootstrap_4_layout.html.twig' %}
                     {{ form_start(formContact) }}
 
                         <div class="form-group">

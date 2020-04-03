@@ -10,16 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Usersocialnetworking controller.
- *
- * @Route("user/usersocialnetworking")
+ * @Route(
+ *     "/{_locale}/user/usersocialnetworking",
+ *     name="user_usersocialnetworking_",
+ *     defaults={"_locale": "pt_BR"},
+ *     requirements={"_locale": "en|pt_BR"}
+ *     )
  */
 class UserSocialNetworkingController extends AbstractController
 {
     /**
      * Lists all userSocialNetworking entities.
      *
-     * @Route("/", name="user_usersocialnetworking_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function indexAction(UserSocialNetworkingRepository $userSocialNetworkingRepository)
     {
@@ -33,7 +36,7 @@ class UserSocialNetworkingController extends AbstractController
     /**
      * Creates a new userSocialNetworking entity.
      *
-     * @Route("/new", name="user_usersocialnetworking_new", methods={"GET", "POST"})
+     * @Route("/new", name="new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -47,89 +50,56 @@ class UserSocialNetworkingController extends AbstractController
             $em->persist($userSocialNetworking);
             $em->flush();
 
-            return $this->redirectToRoute('user_usersocialnetworking_show', array('id' => $userSocialNetworking->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_usersocialnetworking_index');
         }
 
-        return $this->render('usersocialnetworking/new.html.twig', array(
+        return $this->render('usersocialnetworking/save.html.twig', array(
             'userSocialNetworking' => $userSocialNetworking,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a userSocialNetworking entity.
-     *
-     * @Route("/{id}", name="user_usersocialnetworking_show" , methods={"GET"})
-     * @Security("user == userSocialNetworking.getUser()")
-     */
-    public function showAction(UserSocialNetworking $userSocialNetworking)
-    {
-        $deleteForm = $this->createDeleteForm($userSocialNetworking);
-
-        return $this->render('usersocialnetworking/show.html.twig', array(
-            'userSocialNetworking' => $userSocialNetworking,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing userSocialNetworking entity.
      *
-     * @Route("/{id}/edit", name="user_usersocialnetworking_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @Security("user == userSocialNetworking.getUser()")
      */
     public function editAction(Request $request, UserSocialNetworking $userSocialNetworking)
     {
-        $deleteForm = $this->createDeleteForm($userSocialNetworking);
-        $editForm = $this->createForm('App\Form\UserSocialNetworkingType', $userSocialNetworking);
-        $editForm->handleRequest($request);
+        $form = $this->createForm('App\Form\UserSocialNetworkingType', $userSocialNetworking);
+        $form->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('user_usersocialnetworking_edit', array('id' => $userSocialNetworking->getId()));
+            
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_usersocialnetworking_index', array('id' => $userSocialNetworking->getId()));
         }
 
-        return $this->render('usersocialnetworking/edit.html.twig', array(
+        return $this->render('usersocialnetworking/save.html.twig', array(
             'userSocialNetworking' => $userSocialNetworking,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
      * Deletes a userSocialNetworking entity.
      *
-     * @Route("/{id}", name="user_usersocialnetworking_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == userSocialNetworking.getUser()")
      */
     public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking)
     {
-        $form = $this->createDeleteForm($userSocialNetworking);
-        $form->handleRequest($request);
+        if ($this->isCsrfTokenValid('delete'.$userSocialNetworking->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($userSocialNetworking);
+            $entityManager->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($userSocialNetworking);
-            $em->flush();
+            $this->addFlash('success', 'messages.item_removed');
         }
 
         return $this->redirectToRoute('user_usersocialnetworking_index');
-    }
-
-    /**
-     * Creates a form to delete a userSocialNetworking entity.
-     *
-     * @param UserSocialNetworking $userSocialNetworking The userSocialNetworking entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(UserSocialNetworking $userSocialNetworking)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_usersocialnetworking_delete', array('id' => $userSocialNetworking->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

@@ -1,0 +1,100 @@
+{% trans_default_domain 'MyProfile' %}
+
+{% set current_router = app.request.attributes.get('_route') %}
+
+<div class="tabs is-boxed is-centered">
+	<div class="container">
+		<ul>
+			{% if 'profile_edit' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('profile_edit') }}">
+					<span class="icon is-small">
+						<i class="fa fa-id-card"></i>
+					</span>
+					<span>{{ 'navegation.main' | trans }}</span>
+				</a>
+			</li>
+
+			{% if 'user_usersocialnetworking' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('user_usersocialnetworking_index') }}">
+					<span class="icon is-small">
+						<i class="fa fa-comment"></i>
+					</span>
+					<span>{{ 'navegation.social_network' | trans }}</span>
+				</a>
+			</li>
+
+			{% if 'user_education' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('user_education_index') }}">
+					<span class="icon is-small">
+						<i class="fa fa-mortar-board"></i>
+					</span>
+					<span>{{ 'navegation.education' | trans }}</span>
+				</a>
+			</li>
+
+			{% if 'user_experience' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('user_experience_index') }}">
+					<span class="icon is-small">
+						<i class="fa fa-book"></i>
+					</span>
+					<span>{{ 'navegation.experience' | trans }}</span>
+				</a>
+			</li>
+
+			{% if 'user_certification' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('user_certification_index') }}">
+					<span class="icon is-small">
+						<i class="fa fa-certificate"></i>
+					</span>
+					<span>{{ 'navegation.certification' | trans }}</span>
+				</a>
+			</li>
+
+			{% if 'user_language' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('user_language_index') }}">
+					<span class="icon is-small">
+						<i class="fa fa-language"></i>
+					</span>
+					<span>{{ 'navegation.languages' | trans }}</span>
+				</a>
+			</li>
+
+			{% if 'user_skill' in current_router %}
+			<li class="is-active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="{{ path('user_skill_index') }}">
+					<span class="icon is-small">
+						<i class="fa fa-rocket"></i>
+					</span>
+					<span>{{ 'navegation.skills' | trans }}</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

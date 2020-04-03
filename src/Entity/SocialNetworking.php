@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="social_networking")
  * @ORM\Entity(repositoryClass="App\Repository\SocialNetworkingRepository")
- * @ORM\EntityListeners({"App\EventListener\MakeCurriculumPdfEventListener"})
  */
 class SocialNetworking
 {

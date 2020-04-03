@@ -8,5 +8,5 @@
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
 
-    <a href="{{ path('app_profile', {'username': user.username}) }}">show my profile</a>
+    <a href="{{ path('profile_edit') }}">show my profile</a>
 {% endblock fos_user_content %}

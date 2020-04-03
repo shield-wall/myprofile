@@ -1,0 +1,30 @@
+@import '~bulma/sass/utilities/initial-variables';
+@import './initial-variables.scss';
+
+$navbar-item-color: $white;
+$navbar-background-color: $grey-dark;
+$navbar-item-hover-background-color:none;
+$navbar-dropdown-background-color:$grey-dark;
+
+$tabs-boxed-link-active-background-color: $white-ter;
+$tabs-boxed-link-radius: 10px;
+$tabs-link-color: $white;
+$tabs-link-hover-color: $red;
+
+@import "~bulma/bulma";
+
+.hero.has-background {
+    position: relative;
+    overflow: hidden;
+}
+.hero-background {
+    position: absolute;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+}
+.hero-background.is-transparent {
+    opacity: 0.3;
+}
+  

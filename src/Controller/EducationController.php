@@ -10,16 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Education controller.
- *
- * @Route("user/education")
+ * @Route(
+ *     "/{_locale}/user/education",
+ *     name="user_education_",
+ *     defaults={"_locale": "pt_BR"},
+ *     requirements={"_locale": "en|pt_BR"}
+ *     )
  */
 class EducationController extends AbstractController
 {
     /**
      * Lists all education entities.
      *
-     * @Route("/", name="user_education_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function indexAction(EducationRepository $educationRepository)
     {
@@ -31,9 +34,7 @@ class EducationController extends AbstractController
     }
 
     /**
-     * Creates a new education entity.
-     *
-     * @Route("/new", name="user_education_new", methods={"GET", "POST"})
+     * @Route("/new", name="new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -47,89 +48,55 @@ class EducationController extends AbstractController
             $em->persist($education);
             $em->flush();
 
-            return $this->redirectToRoute('user_education_show', array('id' => $education->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_education_index');
         }
 
-        return $this->render('education/new.html.twig', array(
+        return $this->render('education/save.html.twig', array(
             'education' => $education,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a education entity.
-     *
-     * @Route("/{id}", name="user_education_show", methods={"GET"})
-     * @Security("user == education.getUserId()")
-     */
-    public function showAction(Education $education)
-    {
-        $deleteForm = $this->createDeleteForm($education);
-
-        return $this->render('education/show.html.twig', array(
-            'education' => $education,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing education entity.
-     *
-     * @Route("/{id}/edit", name="user_education_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @Security("user == education.getUserId()")
      */
     public function editAction(Request $request, Education $education)
     {
-        $deleteForm = $this->createDeleteForm($education);
         $education->setUserId($this->getUser());
-        $editForm = $this->createForm('App\Form\EducationType', $education);
-        $editForm->handleRequest($request);
+        $form = $this->createForm('App\Form\EducationType', $education);
+        $form->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_education_edit', array('id' => $education->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_education_index');
         }
 
-        return $this->render('education/edit.html.twig', array(
+        return $this->render('education/save.html.twig', array(
             'education' => $education,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
      * Deletes a education entity.
      *
-     * @Route("/{id}", name="user_education_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == education.getUserId()")
      */
     public function deleteAction(Request $request, Education $education)
     {
-        $form = $this->createDeleteForm($education);
-        $form->handleRequest($request);
+        if ($this->isCsrfTokenValid('delete'.$education->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($education);
+            $entityManager->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($education);
-            $em->flush();
+            $this->addFlash('success', 'messages.item_removed');
         }
 
         return $this->redirectToRoute('user_education_index');
-    }
-
-    /**
-     * Creates a form to delete a education entity.
-     *
-     * @param Education $education The education entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Education $education)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_education_delete', array('id' => $education->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
     }
 }

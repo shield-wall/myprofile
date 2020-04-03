@@ -1,49 +1,66 @@
-{% extends 'base_profile.html.twig' %}
+{% extends 'profile/base.html.twig' %}
+{% trans_default_domain 'MyProfile' %}
 
-{% block container_profile %}
-    <h1>Certifications list</h1>
+{% block title %}{{'form.certification.head.title'|trans}}{% endblock %}
+{% block body %}
+    {% if certifications %}
+        <div class="columns is-multiline">
+            <div class="column is-2 is-offset-10">
+                {% include "profile/partial/form/button.html.twig" with {
+                    'path': path('user_certification_new'),
+                    'name': 'form.submit.new'|trans,
+                    'icon': 'fa fa-plus',
+                } %}
+            </div>
+            <div class="column is-full">
+                <table class="table is-fullwidth">
+                    <thead>
+                    <tr>
+                        <th>{{ 'form.certification.title'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.certification.institution'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.certification.start_period'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.certification.end_period'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.certification.image'|trans }}</th>
+                        <th>{{ 'form.default.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for certification in certifications %}
+                        {% set path = path('user_certification_edit', { 'id': certification.id }) %}
+                        <tr>
+                            <td>{{ certification.title }}</td>
+                            <td class="is-hidden-touch">{{ certification.institution }}</td>
+                            <td class="is-hidden-touch">{% if certification.periodStart %}{{ certification.periodStart|date('d/m/Y') }}{% endif %}</td>
+                            <td class="is-hidden-touch">{% if certification.periodEnd %}{{ certification.periodEnd|date('d/m/Y') }}{% endif %}</td>
+                            <td class="is-hidden-touch">
+                                {% if certification.image %}
+                                    <figure class="image is-32x32">
+                                        <img class="is-rounded" src="{{ certification.image }}" />
+                                    </figure>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% include "profile/partial/form/button.html.twig" with {
+                                    'path': path,
+                                    'icon': 'fa fa-pencil',
+                                    'class': 'is-text',
+                                } %}
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Periodstart</th>
-                <th>Periodend</th>
-                <th>Institution</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for certification in certifications %}
-            <tr>
-                <td><a href="{{ path('user_certification_show', { 'id': certification.id }) }}">{{ certification.id }}</a></td>
-                <td>{{ certification.title }}</td>
-                <td>{% if certification.periodStart %}{{ certification.periodStart|date('d/m/Y') }}{% endif %}</td>
-                <td>{% if certification.periodEnd %}{{ certification.periodEnd|date('d/m/Y') }}{% endif %}</td>
-                <td>{{ certification.institution }}</td>
-                <td>{% if certification.image %}<img src="{{ certification.image }}" class="img-thumbnail" style="width: 50px;" />{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_certification_show', { 'id': certification.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_certification_edit', { 'id': certification.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{{ certification.link }}" target="_blank">certification</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('user_certification_new') }}">Create a new certification</a>
-        </li>
-    </ul>
+                                {% include "profile/partial/form/delete_button.html.twig" with {
+                                    'router': 'user_certification_delete',
+                                    'id': certification.id,
+                                } %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        {% include "profile/partial/form/empty_list.html.twig" with {
+            'path': path('user_certification_new')
+        } %}
+    {% endif %}
 {% endblock %}
+

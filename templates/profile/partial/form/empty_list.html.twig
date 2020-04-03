@@ -1,0 +1,23 @@
+{% trans_default_domain 'MyProfile' %}
+
+<div class="section is-multiline has-text-centered">
+	<div class="column is-half is-offset-one-quarter">
+		<div class="is-size-5">
+			<span class="icon">
+				<i class="fa fa-sad-tear"></i>
+			</span>
+			<span>{{'messages.empty_list.title'|trans}}</span>
+		</div>
+		<span class="is-size-6 is-block">
+			{{'messages.empty_list.sub_title'|trans}}
+		</span>
+	</div>
+	<div class="column is-half is-offset-one-quarter">
+		{% include "profile/partial/form/button.html.twig" with {
+        'path': path,
+        'name': 'messages.empty_list.new_item'|trans,
+        'icon': 'fa fa-laugh-beam',
+        'class': 'is-success'
+    } %}
+	</div>
+</div>

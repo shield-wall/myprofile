@@ -10,16 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Certification controller.
- *
- * @Route("user/certification")
+ * @Route(
+ *     "/{_locale}/user/certification",
+ *     name="user_certification_",
+ *     defaults={"_locale": "pt_BR"},
+ *     requirements={"_locale": "en|pt_BR"}
+ *     )
  */
 class CertificationController extends AbstractController
 {
     /**
-     * Lists all certification entities.
-     *
-     * @Route("/", name="user_certification_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function indexAction(CertificationRepository $certificationRepository)
     {
@@ -31,9 +32,7 @@ class CertificationController extends AbstractController
     }
 
     /**
-     * Creates a new certification entity.
-     *
-     * @Route("/new", name="user_certification_new", methods={"GET", "POST"})
+     * @Route("/new", name="new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -47,88 +46,54 @@ class CertificationController extends AbstractController
             $em->persist($certification);
             $em->flush();
 
-            return $this->redirectToRoute('user_certification_show', array('id' => $certification->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_certification_index');
         }
 
-        return $this->render('certification/new.html.twig', array(
+        return $this->render('certification/save.html.twig', array(
             'certification' => $certification,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a certification entity.
-     *
-     * @Route("/{id}", name="user_certification_show", methods={"GET"})
-     * @Security("user == certification.getUserId()")
-     */
-    public function showAction(Certification $certification)
-    {
-        $deleteForm = $this->createDeleteForm($certification);
-
-        return $this->render('certification/show.html.twig', array(
-            'certification' => $certification,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing certification entity.
-     *
-     * @Route("/{id}/edit", name="user_certification_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @Security("user == certification.getUserId()")
      */
     public function editAction(Request $request, Certification $certification)
     {
-        $deleteForm = $this->createDeleteForm($certification);
-        $editForm = $this->createForm('App\Form\CertificationType', $certification);
-        $editForm->handleRequest($request);
+        $form = $this->createForm('App\Form\CertificationType', $certification);
+        $form->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_certification_edit', array('id' => $certification->getId()));
+            $this->addFlash('success', 'messages.item_saved');
+            return $this->redirectToRoute('user_certification_index');
         }
 
-        return $this->render('certification/edit.html.twig', array(
+        return $this->render('certification/save.html.twig', array(
             'certification' => $certification,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
      * Deletes a certification entity.
      *
-     * @Route("/{id}", name="user_certification_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == certification.getUserId()")
      */
     public function deleteAction(Request $request, Certification $certification)
     {
-        $form = $this->createDeleteForm($certification);
-        $form->handleRequest($request);
+        if ($this->isCsrfTokenValid('delete' . $certification->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($certification);
+            $entityManager->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($certification);
-            $em->flush();
+            $this->addFlash('success', 'messages.item_removed');
         }
 
         return $this->redirectToRoute('user_certification_index');
-    }
-
-    /**
-     * Creates a form to delete a certification entity.
-     *
-     * @param Certification $certification The certification entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Certification $certification)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_certification_delete', array('id' => $certification->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
     }
 }

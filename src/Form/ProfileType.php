@@ -4,12 +4,12 @@ namespace App\Form;
 
 use App\Entity\User;
 use FOS\UserBundle\Form\Type\ProfileFormType;
-use Symfony\Component\Form\Extension\Core\Type\{
+use Symfony\Component\Form\Extension\Core\Type\{BirthdayType,
+    ChoiceType,
     FileType,
     IntegerType,
     TextareaType,
-    TextType
-};
+    TextType};
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -22,9 +22,15 @@ class ProfileType extends AbstractType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('first_name', TextType::class)
-            ->add('last_name', TextType::class)
+            ->add('first_name', TextType::class, [
+                'label' => 'form.main.first_name',
+                
+            ])
+            ->add('last_name', TextType::class, [
+                'label' => 'form.main.last_name',
+            ])
             ->add('profile_image', FileType::class, [
+                'label' => 'form.main.profile_image',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -39,6 +45,7 @@ class ProfileType extends AbstractType
                 ],
             ])
             ->add('background_image', FileType::class, [
+                'label' => 'form.main.background_image',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -52,35 +59,55 @@ class ProfileType extends AbstractType
                     ])
                 ],
             ])
-            ->add('role', TextType::class, [
+            ->add('gender', ChoiceType::class, [
+                'choices' => [
+                    'form.main.male' => 'male',
+                    'form.main.female' => 'female'
+                ],
+                'label' => 'form.main.gender',
                 'required' => false,
             ])
-            ->add('headline', TextareaType::class, [
+            ->add('birthday', BirthdayType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'label' => 'form.main.birthday',
+                'required' => false,
+            ])
+            ->add('role', TextType::class, [
+                'label' => 'form.main.role',
                 'required' => false,
             ])
             ->add('country', TextType::class, [
+                'label' => 'form.main.country',
                 'required' => false,
             ])
             ->add('state', TextType::class, [
+                'label' => 'form.main.state',
                 'required' => false,
             ])
             ->add('city', TextType::class, [
+                'label' => 'form.main.city',
                 'required' => false,
             ])
             ->add('phone', IntegerType::class, [
+                'label' => 'form.main.phone',
                 'required' => false,
             ])
             ->add('cell', IntegerType::class, [
+                'label' => 'form.main.cell',
                 'required' => false,
             ])
             ->add('keyWords', TextType::class, [
+                'label' => 'form.main.key_words',
+                'required' => false,
+            ])
+            ->add('headline', TextareaType::class, [
+                'label' => 'form.main.headline',
                 'required' => false,
             ])
             ->add('summary', TextareaType::class, [
+                'label' => 'form.main.summary',
                 'required' => false,
-                'attr' => [
-                    'rows' => 5
-                ],
             ])
             ->remove('current_password');
     }
@@ -89,6 +116,7 @@ class ProfileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'MyProfile',
         ]);
     }
 

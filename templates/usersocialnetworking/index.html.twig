@@ -1,41 +1,57 @@
-{% extends 'base_profile.html.twig' %}
+{% extends 'profile/base.html.twig' %}
+{% trans_default_domain 'MyProfile' %}
 
-{% block container_profile %}
-    <h1>Usersocialnetworkings list</h1>
+{% block title %}{{'form.social_network.head.title'|trans}}{% endblock %}
+{% block body %}
+	{% if userSocialNetworkings %}
+		<div class="columns is-multiline">
+			<div class="column is-2 is-offset-10">
+				{% include "profile/partial/form/button.html.twig" with {
+					'path': path('user_usersocialnetworking_new'),
+					'name': 'form.submit.new'|trans,
+					'icon': 'fa fa-plus',
+				} %}
+			</div>
+			<div class="column is-full">
+				<table class="table is-fullwidth">
+					<thead>
+						<tr>
+							<th>{{'form.social_network.social_network'|trans}}</th>
+							<th>{{'form.default.actions'|trans}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for userSocialNetworking in userSocialNetworkings %}
+							{% set path = path('user_usersocialnetworking_edit', { 'id': userSocialNetworking.id }) %}
+							<tr>
+								<td>
+									<a href="{{path}}">
+										<i class="{{ userSocialNetworking.social_networking.icon }}"></i>
+										{{ userSocialNetworking.social_networking }}
+									</a>
+								</td>
+								<td>
+									{% include "profile/partial/form/button.html.twig" with {
+										'path': path,
+										'icon': 'fa fa-pencil',
+										'class': 'is-text',
+									} %}
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>rede social</th>
-                <th>Link</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for userSocialNetworking in userSocialNetworkings %}
-            <tr>
-                <td><a href="{{ path('user_usersocialnetworking_show', { 'id': userSocialNetworking.id }) }}">{{ userSocialNetworking.id }}</a></td>
-                <td>{{ userSocialNetworking.social_networking }}</td>
-                <td>{{ userSocialNetworking.link }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_usersocialnetworking_show', { 'id': userSocialNetworking.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_usersocialnetworking_edit', { 'id': userSocialNetworking.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+									{% include "profile/partial/form/delete_button.html.twig" with {
+										'router': 'user_usersocialnetworking_delete',
+										'id': userSocialNetworking.id,
+									} %}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{% else %}
+		{% include "profile/partial/form/empty_list.html.twig" with {
+			'path': path('user_usersocialnetworking_new')
+		} %}
+	{% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('user_usersocialnetworking_new') }}">Create a new userSocialNetworking</a>
-        </li>
-    </ul>
 {% endblock %}
