@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\UserSocialNetworking;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,18 +16,16 @@ class UserSocialNetworkingType extends AbstractType
     {
         $builder
             ->add('link')
-            ->add('social_networking', TextType::class, [
-                'label' => 'form.social_network.social_network'
-            ]);
+            ->add('social_networking');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\UserSocialNetworking',
+            'data_class' => UserSocialNetworking::class,
             'translation_domain' => 'MyProfile',
         ));
     }
