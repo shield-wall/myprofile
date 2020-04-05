@@ -62,10 +62,12 @@ class ProfileType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'form.main.male' => 'male',
-                    'form.main.female' => 'female'
+                    'form.main.female' => 'female',
                 ],
                 'label' => 'form.main.gender',
                 'required' => false,
+                'expanded' => true,
+                'placeholder' => false,
             ])
             ->add('birthday', BirthdayType::class, [
                 'widget' => 'single_text',
