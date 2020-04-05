@@ -47,6 +47,23 @@
     </div>
 {%- endblock choice_widget_collapsed -%}
 
+{% block choice_widget_expanded -%}
+    {% set type_class = multiple == true and expanded == true ? 'checkbox' : 'radio' %}
+
+    <div class="control">
+        {% for child_value, child in form %}
+            <label class="{{type_class}}">
+                {{ form_widget(child) }}
+                {% if choice_translation_domain is same as(false) %}
+                    child.vars.label
+                {% else %}
+                    {{child.vars.label|trans({}, choice_translation_domain)}}
+                {% endif %}
+            </label>
+        {% endfor %}
+    </div>
+{%- endblock choice_widget_expanded %}
+
 {%- block file_row -%}
     {% set onChange = "document.getElementById('" ~ id ~ "_file_name').innerHTML = this.value;" %}
         <div class="column is-6">
