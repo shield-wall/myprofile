@@ -18,6 +18,11 @@
 
   Open this link in your browser: [localhost:8000](http://localhost:8000)
   
+### Testing
+
+```
+    docker-compose run --rm  -e APP_ENV=test php-cli bin/phpunit
+```
 
 ## License
 

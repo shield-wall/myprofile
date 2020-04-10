@@ -12,16 +12,14 @@ class UserLanguageIntegrationTest extends WebTestCase
     {
         $this->client = static::createClient([], [
             'PHP_AUTH_USER' => 'username',
-            'PHP_AUTH_PW'   => 'pa$$word',
+            'PHP_AUTH_PW' => 'pa$$word',
         ]);
     }
 
     public function testListLanguages()
     {
-        $this->client->request('GET', '/user/language/');
-
-        var_dump($this->client->getResponse());
-
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $client = static::createClient();
+        $client->request('GET', '/en/register');
+        $this->assertNotEquals(500, $client->getResponse()->getStatusCode());
     }
 }
