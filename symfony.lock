@@ -84,6 +84,9 @@
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.2"
+    },
     "guzzlehttp/promises": {
         "version": "v1.3.1"
     },
@@ -117,11 +120,11 @@
     "php-http/client-common": {
         "version": "2.1.0"
     },
-    "php-http/curl-client": {
-        "version": "2.0.0"
-    },
     "php-http/discovery": {
         "version": "1.7.0"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "v2.0.1"
     },
     "php-http/httplug": {
         "version": "v2.0.0"
@@ -155,9 +158,6 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
-    },
-    "ramsey/uuid": {
-        "version": "3.9.1"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -381,6 +381,9 @@
     "symfony/polyfill-php73": {
         "version": "v1.13.1"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.15.0"
+    },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
     },
@@ -401,9 +404,6 @@
             "config/routes.yaml"
         ]
     },
-    "symfony/security": {
-        "version": "v4.4.1"
-    },
     "symfony/security-bundle": {
         "version": "4.4",
         "recipe": {
@@ -415,6 +415,15 @@
         "files": [
             "config/packages/security.yaml"
         ]
+    },
+    "symfony/security-core": {
+        "version": "v4.4.7"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.4.7"
+    },
+    "symfony/security-guard": {
+        "version": "v4.4.7"
     },
     "symfony/security-http": {
         "version": "v4.4.1"
@@ -547,9 +556,6 @@
     },
     "zendframework/zend-code": {
         "version": "3.4.1"
-    },
-    "zendframework/zend-diactoros": {
-        "version": "2.2.1"
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"

@@ -7,7 +7,7 @@
 
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
-              <img src=" {{ app_gravatar.getAvatar(app.user.email) }}" alt="" class="img-circle" style="width: auto" />
+              <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage()}}" alt="profile image" class="rounded-circle" style="width: 100px;">
               <p class="text-center">
                   {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
               </p>
