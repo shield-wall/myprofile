@@ -1,0 +1,36 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/php:7.3-cli
+        environment:
+          APP_ENV: test
+          DATABASE_URL: ''
+          BUCKET_DNS: ''
+          BUCKET_NAME: ''
+          CDN_DNS: ''
+          APP_SECRET: f7959631cf78a0283382a84670d55b53
+          SENTRY_DSN: ''
+          TRANSLOADIT_KEY: ''
+          TRANSLOADIT_SECRET: ''
+          TRANSLOADIT_TEMPLATE_ID_CURRICULUM: ''
+          TRANSLOADIT_TEMPLATE_ID_IMAGE_PROFILE: ''
+          TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND: ''
+          TRANSLOADIT_CREDENTIALS: ''
+          TRANSLOADIT_DELIVERY: 0
+    steps:
+      - checkout
+      - run: pwd
+      - run: ls -l
+      - run: php -m
+      - run: sudo composer self-update
+      - run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
+      - run: bin/phpunit
+
+
+workflows:
+  version: 2.1
+  test-and-deploy:
+    jobs:
+      - test

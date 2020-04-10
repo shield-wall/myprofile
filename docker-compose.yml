@@ -13,6 +13,16 @@ services:
     links:
       - db
 
+  php-cli:
+    build: docker/.
+    working_dir: /app
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    links:
+      - db
+
   composer:
     image: prooph/composer:7.3
     volumes:
