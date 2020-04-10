@@ -1,6 +1,7 @@
 framework:
-    templating:
-        engines: ['twig', 'php']
+    fragments:
+        hinclude_default_template: hinclude.html.twig
+
     default_locale: en
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true

@@ -8,3 +8,5 @@ fos_user:
   profile:
     form:
       type: App\Form\ProfileType
+  service:
+    mailer: fos_user.mailer.twig_swift
