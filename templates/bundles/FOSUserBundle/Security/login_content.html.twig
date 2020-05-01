@@ -11,7 +11,7 @@
               <p class="text-center">
                   {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
               </p>
-              <a href="{{ path('app_profile', {'username': app.user.username}) }}" class="btn btn-success btn-block">
+              <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="btn btn-success btn-block">
                   <i class="fa fa-eye"></i>
                   visualizar meu perfil
               </a>

@@ -57,7 +57,7 @@ class CurriculumService
     {
         return $this->router->generate(
             'app_curriculum',
-            ['username' => $user, '_locale' => $locale],
+            ['slug' => $user->getSlug(), '_locale' => $locale],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
     }

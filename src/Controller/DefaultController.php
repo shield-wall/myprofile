@@ -11,15 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route(name="app_", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+ */
 class DefaultController extends AbstractController
 {
     /**
-     * @Route(
-     *     "/{_locale}",
-     *     name="app_homepage",
-     *     defaults={"_locale": "pt_BR"},
-     *     requirements={"_locale": "en|pt_BR"}
-     *     )
+     * @Route("/{_locale}", name="homepage")
      */
     public function indexAction(Request $request, UserRepository $userRepository, LoggerInterface $logger)
     {
@@ -31,13 +29,13 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{username}/{_locale}", name="app_profile", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+     * @Route("/{slug}/{_locale}", name="profile")
      */
     public function profileAction(Request $request, User $user)
     {
         $formContact = $this->createForm(ContactType::class, null, [
             'method' => 'POST',
-            'action' => $this->generateUrl('app_send_contact', ['username' => $request->get('username')])
+            'action' => $this->generateUrl('app_send_contact', ['slug' => $request->get('slug')])
         ]);
 
         return $this->render('default/profile.html.twig', [
@@ -47,7 +45,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{username}/send_contact/{_locale}", name="app_send_contact", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+     * @Route("/{_locale}/{slug}/send_contact", name="send_contact")
      */
     public function sendContactAction(Request $request, User $user, LoggerInterface $logger, \Swift_Mailer $mailer)
     {
@@ -85,16 +83,12 @@ class DefaultController extends AbstractController
         } catch (\Throwable $e) {
             $this->addFlash('danger', $e->getMessage());
         } finally {
-            return $this->redirectToRoute('app_profile', ['username' => $request->get('username')]);
+            return $this->redirectToRoute('app_profile', ['slug' => $request->get('slug')]);
         }
     }
 
     /**
-     * @Route(
-     *     "/{username}/curriculum/{_locale}",
-     *     name="app_curriculum",
-     *     requirements={"_locale": "en|pt_BR"}
-     *     )
+     * @Route("/{_locale}/{slug}/curriculum", name="curriculum")
      */
     public function curriculumAction(User $user)
     {

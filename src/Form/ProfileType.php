@@ -59,6 +59,9 @@ class ProfileType extends AbstractType
                     ])
                 ],
             ])
+            ->add('slug', TextType::class, [
+                'label' => 'form.main.slug',
+            ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'form.main.male' => 'male',

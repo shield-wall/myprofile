@@ -1,5 +1,6 @@
 exclude_patterns:
-- "web/"
-- "var/"
-- "src/AppBundle/Entity"
+- "public/"
+- "bin/"
+- "src/Entity"
+- "src/Migrations"
 - "assets/"

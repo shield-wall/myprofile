@@ -79,6 +79,7 @@ form:
     background_image: Imagem de fundo
     birthday: Aniversário
     gender: Sexo
+    slug: Url do site
     male: Masculino
     female: Femenino
     role: Cargo profissional
