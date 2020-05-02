@@ -88,7 +88,9 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/{slug}/curriculum", name="curriculum")
+     * _locale need to be the last parameter because it'll be curriculum name.
+     *
+     * @Route("/{slug}/curriculum/{_locale}", name="curriculum")
      */
     public function curriculumAction(User $user)
     {
