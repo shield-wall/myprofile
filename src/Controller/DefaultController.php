@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(name="app_", defaults={"_locale": "pt_BR"}, requirements={"_locale": "en|pt_BR"})
+ * @Route(name="app_", requirements={"_locale": "en|pt_BR"})
  */
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/{_locale}", name="homepage")
+     * @Route("/{_locale}", defaults={"_locale": "pt_BR"}, name="homepage")
      */
     public function indexAction(Request $request, UserRepository $userRepository, LoggerInterface $logger)
     {
@@ -29,7 +29,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/{_locale}", name="profile")
+     * @Route("/{slug}/{_locale}", defaults={"_locale": "pt_BR"}, name="profile")
      */
     public function profileAction(Request $request, User $user)
     {
@@ -45,7 +45,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/{slug}/send_contact", name="send_contact")
+     * @Route("/{_locale}/{slug}/send_contact", defaults={"_locale": "pt_BR"}, name="send_contact")
      */
     public function sendContactAction(Request $request, User $user, LoggerInterface $logger, \Swift_Mailer $mailer)
     {
@@ -89,6 +89,7 @@ class DefaultController extends AbstractController
 
     /**
      * _locale need to be the last parameter because it'll be curriculum name.
+     * I removed _locale default from Class because here it's required, but it can be resolved creating other controller.
      *
      * @Route("/{slug}/curriculum/{_locale}", name="curriculum")
      */
