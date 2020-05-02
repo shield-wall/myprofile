@@ -44,3 +44,5 @@ services:
       POSTGRES_USER: myprofile
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: myprofile
+    ports:
+      - 5432

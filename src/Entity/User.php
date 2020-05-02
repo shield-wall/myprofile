@@ -1,15 +1,20 @@
 <?php
+
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
+ * @UniqueEntity("slug")
  */
 class User extends BaseUser
 {
@@ -29,6 +34,12 @@ class User extends BaseUser
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $last_name;
+
+    /**
+     * @Gedmo\Slug(fields={"first_name", "last_name", "id"}, updatable=false, unique=false)
+     * @ORM\Column(type="string", length=50, unique=true)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="text", length=250, nullable=true)
@@ -130,6 +141,18 @@ class User extends BaseUser
      */
     private $userLanguages;
 
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         parent::__construct();
@@ -140,6 +163,18 @@ class User extends BaseUser
         $this->skills = new ArrayCollection();
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -176,7 +211,7 @@ class User extends BaseUser
      */
     public function addEducations(Education $education)
     {
-        if(!$this->educations->contains($education))
+        if (!$this->educations->contains($education))
             $this->educations->add($education);
 
         return $this;
@@ -196,7 +231,7 @@ class User extends BaseUser
      */
     public function addExperiences(Experience $experience)
     {
-        if(!$this->experiences->contains($experience))
+        if (!$this->experiences->contains($experience))
             $this->experiences->add($experience);
 
         return $this;
@@ -216,7 +251,7 @@ class User extends BaseUser
      */
     public function addSkills(Skill $skill)
     {
-        if(!$this->skills->contains($skill))
+        if (!$this->skills->contains($skill))
             $this->skills->add($skill);
 
         return $this;
@@ -236,7 +271,7 @@ class User extends BaseUser
      */
     public function addCertifications(Certification $certification)
     {
-        if(!$this->certifications->contains($certification))
+        if (!$this->certifications->contains($certification))
             $this->certifications->add($certification);
 
         return $this;
@@ -558,5 +593,15 @@ class User extends BaseUser
         }
 
         return $this;
+    }
+
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
     }
 }

@@ -23,7 +23,7 @@
             <div class="contact-container container-block">
                 <ul class="list-unstyled contact-list">
                     <li class="email"><i class="fa fa-envelope"></i>{{ user.email }}</li>
-                    <li class="website"><i class="fa fa-globe"></i>{{app.request.schemeAndHttpHost ~ '/' ~ user.username }}</li>
+                    <li class="website"><i class="fa fa-globe"></i>{{app.request.schemeAndHttpHost ~ path('app_profile', { 'slug': user.slug}) }}</li>
                     {% if user.phone %}<li><i class="fa fa-phone-square"></i>{{ user.phone }}</li>{% endif %}
                     {% if user.cell %}<li><i class="fa fa-mobile"></i>{{ user.cell }}</li>{% endif %}
                     <li><i class="fa fa-address-card"></i> {{ user.city }}, {{ user.state }}, {{ user.country }}</li>

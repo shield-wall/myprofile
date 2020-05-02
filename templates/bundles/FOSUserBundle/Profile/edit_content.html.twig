@@ -1,6 +1,45 @@
 {% trans_default_domain 'MyProfile' %}
 
 {{ form_start(form, { 'action': path('profile_edit') }) }}
-	{{ form_widget(form) }}
+    <div class="columns">
+        <div class="column">
+            {{ form_label(form.slug) }}
+            <div class="field is-horizontal">
+                <div class="field-body">
+                    <div class="field is-expanded">
+                        <div class="field has-addons">
+                            <p class="control">
+                                <a class="button is-static">
+                                    www.myprofile.pro/
+                                </a>
+                            </p>
+                            <p class="control is-expanded">
+                                {{ form_widget(form.slug, {'attr': {'class': 'input'}}) }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_errors(form.slug) }}
+        </div>
+
+        <div class="column">
+            {{ form_label(form.role) }}
+            {{ form_widget(form.role, {'attr': {'class': 'input'}}) }}
+        </div>
+    </div>
+
+{#    <div class="field has-addons">#}
+{#        <p class="control">#}
+{#            <a class="button is-static">#}
+{#                www.myprofile.pro/#}
+{#            </a>#}
+{#        </p>#}
+{#        <p class="control">#}
+{#            {{ form_widget(form.slug, {'attr': {'class': 'input'}}) }}#}
+{#        </p>#}
+{#    </div>#}
+
+    {{ form_widget(form) }}
 	{% include "profile/partial/form/submit_button.html.twig" %}
 {{ form_end(form) }}

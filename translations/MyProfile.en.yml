@@ -79,6 +79,7 @@ form:
     background_image: Background image
     birthday: Birthday
     gender: Gender
+    slug: Site url
     male: Male
     female: Female
     role: Professional Position
