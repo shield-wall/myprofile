@@ -19,6 +19,8 @@ parameters:
     bucket.dns: '%env(BUCKET_DNS)%'
     cdn.dns: '%env(CDN_DNS)%'
 
+    router.request_context.scheme: https
+
 services:
     # default configuration for services in *this* file
     _defaults:
