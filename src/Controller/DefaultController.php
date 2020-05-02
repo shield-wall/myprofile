@@ -19,7 +19,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{_locale}", defaults={"_locale": "pt_BR"}, name="homepage")
      */
-    public function indexAction(Request $request, UserRepository $userRepository, LoggerInterface $logger)
+    public function indexAction(UserRepository $userRepository)
     {
         $users = $userRepository->findBy(['enabled' => true], ['id' => 'desc'], 20);
 
@@ -31,11 +31,11 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{slug}/{_locale}", defaults={"_locale": "pt_BR"}, name="profile")
      */
-    public function profileAction(Request $request, User $user)
+    public function profileAction(User $user)
     {
         $formContact = $this->createForm(ContactType::class, null, [
             'method' => 'POST',
-            'action' => $this->generateUrl('app_send_contact', ['slug' => $request->get('slug')])
+            'action' => $this->generateUrl('app_send_contact', ['slug' => $user->getSlug()])
         ]);
 
         return $this->render('default/profile.html.twig', [
@@ -83,7 +83,7 @@ class DefaultController extends AbstractController
         } catch (\Throwable $e) {
             $this->addFlash('danger', $e->getMessage());
         } finally {
-            return $this->redirectToRoute('app_profile', ['slug' => $request->get('slug')]);
+            return $this->redirectToRoute('app_profile', ['slug' => $user->getSlug()]);
         }
     }
 
@@ -95,9 +95,7 @@ class DefaultController extends AbstractController
      */
     public function curriculumAction(User $user)
     {
-        $html = $this->renderView('curriculum/theme_01/index.html.twig', [
-            'user' => $user,
-        ]);
+        $html = $this->renderView('curriculum/theme_01/index.html.twig', ['user' => $user]);
 
         return new Response($html);
     }

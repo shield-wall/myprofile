@@ -7,6 +7,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "friendsofsymfony/user-bundle": "^2.1",
+        "presta/sitemap-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.5",
         "sentry/sentry-symfony": "^3.2",
         "stof/doctrine-extensions-bundle": "^1.4",
