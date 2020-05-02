@@ -1,35 +1,8 @@
+# TODO symfony 5.1 use priority: https://symfony.com/blog/new-in-symfony-5-1-route-annotations-priority
+# config/packages/presta_sitemap.yaml
+presta_sitemap:
+    resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
+
 controllers:
     resource: ../../src/Controller/
     type: annotation
-
-#app_certification:
-#    resource: "@App/Controller/CertificationController.php"
-#    type:     annotation
-#
-#app_skill:
-#    resource: "@App/Controller/SkillController.php"
-#    type:     annotation
-#
-#app_experience:
-#    resource: "@App/Controller/ExperienceController.php"
-#    type:     annotation
-#
-#app_user:
-#    resource: "@App/Controller/UserController.php"
-#    type:     annotation
-#
-#app_education:
-#    resource: "@App/Controller/EducationController.php"
-#    type:     annotation
-#
-#app_user_social_networking:
-#    resource: "@App/Controller/UserSocialNetworkingController.php"
-#    type:     annotation
-#
-#app_social_networking:
-#    resource: "@App/Controller/SocialNetworkingController.php"
-#    type:     annotation
-#
-#app:
-#    resource: "@App/Controller/DefaultController.php"
-#    type:     annotation

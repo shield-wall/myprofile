@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: pt_BR
+    locales: ['en', 'pt_BR']
     transloadit.key: '%env(TRANSLOADIT_KEY)%'
     transloadit.secret: '%env(TRANSLOADIT_SECRET)%'
     transloadit.template_id.curriculum: '%env(TRANSLOADIT_TEMPLATE_ID_CURRICULUM)%'
@@ -34,13 +35,21 @@ services:
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+        tags:
+            - 'controller.service_arguments'
 
     transloadit\Transloadit:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'
 
     App\EventListener\ChangePasswordListener:
-        arguments: ['@router']
+        arguments:
+            - '@router'
         tags:
             - { name: kernel.event_subscriber }
+
+    App\EventSubscriber\SitemapSubscriber:
+        arguments:
+            $locales: '%locales%'
+        tags:
+            - { name: "kernel.event_subscriber", priority: 100 }
