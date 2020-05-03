@@ -556,12 +556,12 @@ class User extends BaseUser
 
     public function getProfileImage(): string
     {
-        return sprintf('users/%s/profile.jpg', md5($this->getEmail()));
+        return sprintf('users/%s/profile.webp', md5($this->getEmail()));
     }
 
     public function getBackgroundImage(): string
     {
-        return sprintf('users/%s/background.jpg', md5($this->getEmail()));
+        return sprintf('users/%s/background.webp', md5($this->getEmail()));
     }
 
     /**
