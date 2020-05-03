@@ -217,7 +217,7 @@ header.masthead .device-container .screen img {
 
 section.cta {
   position: relative;
-  background-image: url("../images/bg-cta.jpg");
+  background-image: url("../images/bg-cta.webp");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
