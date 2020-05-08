@@ -28,25 +28,19 @@ class Skill
     protected $user_id;
 
     /**
-     * @var string
-     *
+     * @Assert\Length(max="50")
      * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
     /**
      * @var int
-     * @Assert\Range(
-     *      min = 0,
-     *      max = 100
-     * )
+     * @Assert\Range(min = 0, max = 100)
      * @ORM\Column(name="level_experience", type="smallint")
      */
     private $levelExperience;
 
     /**
-     * @var int
-     *
      * @ORM\Column(name="priority", type="smallint", nullable=true)
      */
     private $priority;

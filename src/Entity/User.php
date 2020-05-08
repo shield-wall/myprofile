@@ -26,28 +26,33 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $first_name;
 
     /**
+     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $last_name;
 
     /**
+     * @Assert\Length(max="50")
      * @Gedmo\Slug(fields={"first_name", "last_name", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
      */
     private $slug;
 
     /**
+     * @Assert\Length(max="250")
      * @ORM\Column(type="text", length=250, nullable=true)
      */
     protected $headline;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(max="100")
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $role;
 
@@ -57,19 +62,10 @@ class User extends BaseUser
     protected $phone;
 
     /**
+     * @Assert\Length(max="20")
      * @ORM\Column(type="string",length=20, nullable=true)
      */
     protected $cell;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $photo;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $background;
 
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
@@ -455,43 +451,6 @@ class User extends BaseUser
     public function setGender($gender)
     {
         $this->gender = $gender;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
-     * @param mixed $photo
-     * @return User
-     */
-    public function setPhoto($photo)
-    {
-
-        $this->photo = $photo;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBackground()
-    {
-        return $this->background;
-    }
-
-    /**
-     * @param mixed $background
-     * @return User
-     */
-    public function setBackground($background)
-    {
-        $this->background = $background;
         return $this;
     }
 

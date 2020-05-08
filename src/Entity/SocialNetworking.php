@@ -3,6 +3,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="social_networking")
@@ -18,11 +19,13 @@ class SocialNetworking
     protected $id;
 
     /**
+     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
     protected $name;
 
     /**
+     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
     protected $icon;

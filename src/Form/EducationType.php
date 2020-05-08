@@ -35,6 +35,7 @@ class EducationType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'label' => 'form.education.end_period',
+                'required' => false,
             ])
         ;
     }
