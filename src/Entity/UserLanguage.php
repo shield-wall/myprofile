@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserLanguageRepository")
@@ -28,11 +29,13 @@ class UserLanguage
     private $id;
 
     /**
+     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
     private $name;
 
     /**
+     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
     private $level;

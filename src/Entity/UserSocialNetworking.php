@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="user_social_networking",uniqueConstraints={@ORM\UniqueConstraint(name="relations_idx", columns={"user_id", "social_networking_id"})})
@@ -40,6 +41,7 @@ class UserSocialNetworking
     protected $social_networking;
 
     /**
+     * @Assert\Length(max="200")
      * @ORM\Column(type="string", length=200)
      */
     protected $link;

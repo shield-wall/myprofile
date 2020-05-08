@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Certification
@@ -28,8 +29,7 @@ class Certification
     protected $user_id;
 
     /**
-     * @var string
-     *
+     * @Assert\Length(max="100")
      * @ORM\Column(name="title", type="string", length=100)
      */
     private $title;
@@ -49,22 +49,19 @@ class Certification
     private $periodEnd;
 
     /**
-     * @var string
-     *
+     * @Assert\Length(max="100")
      * @ORM\Column(name="institution", type="string", length=100)
      */
     private $institution;
 
     /**
-     * @var string
-     *
+     * @Assert\Length(max="500")
      * @ORM\Column(name="link", type="string", length=500, nullable=true)
      */
     private $link;
 
     /**
-     * @var string
-     *
+     * @Assert\Length(max="255")
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;

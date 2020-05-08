@@ -24,21 +24,27 @@ class Experience
     protected $user_id;
 
     /**
+     * @Assert\Length(max="150")
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=150, nullable=false)
      */
     protected $title;
 
     /**
+     * @Assert\Length(max="50")
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=50, nullable=false)
      */
     protected $company;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="text", nullable=false)
      */
     protected $description;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="date", nullable=false)
      */
     protected $period_start;
