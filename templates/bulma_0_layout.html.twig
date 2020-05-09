@@ -1,7 +1,8 @@
-{% extends "form_div_layout.html.twig" %}
+{% use "form_div_layout.html.twig" %}
 
 {%- block form_widget_compound -%}
-    <div {{ block('widget_container_attributes') }} class="columns is-multiline">
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' columns is-multiline')|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
         {%- if form is rootform -%}
             {{ form_errors(form) }}
         {%- endif -%}
@@ -47,7 +48,7 @@
     </div>
 {%- endblock choice_widget_collapsed -%}
 
-{% block choice_widget_expanded -%}
+{% block choice_widget -%}
     {% set type_class = multiple == true and expanded == true ? 'checkbox' : 'radio' %}
 
     <div class="control">
@@ -62,7 +63,7 @@
             </label>
         {% endfor %}
     </div>
-{%- endblock choice_widget_expanded %}
+{%- endblock choice_widget %}
 
 {%- block file_row -%}
     {% set onChange = "document.getElementById('" ~ id ~ "_file_name').innerHTML = this.value;" %}
