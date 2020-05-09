@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7955999973f38c0263ecad7e82993f21",
+    "content-hash": "45fe2abb67a6de175ae26525a003b28e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3190,16 +3190,16 @@
         },
         {
             "name": "sentry/sentry-symfony",
-            "version": "3.4.4",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-symfony.git",
-                "reference": "d48d50dfdcb93df1eb00719418a43f5976743f71"
+                "reference": "b5d6407d4127b0be5b315768ee197e086b71f234"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-symfony/zipball/d48d50dfdcb93df1eb00719418a43f5976743f71",
-                "reference": "d48d50dfdcb93df1eb00719418a43f5976743f71",
+                "url": "https://api.github.com/repos/getsentry/sentry-symfony/zipball/b5d6407d4127b0be5b315768ee197e086b71f234",
+                "reference": "b5d6407d4127b0be5b315768ee197e086b71f234",
                 "shasum": ""
             },
             "require": {
@@ -3213,17 +3213,22 @@
                 "symfony/http-kernel": "^3.4||^4.0||^5.0",
                 "symfony/security-core": "^3.4||^4.0||^5.0"
             },
+            "conflict": {
+                "ocramius/package-versions": "<1.3"
+            },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.8",
-                "jangregor/phpstan-prophecy": "^0.3.0",
+                "jangregor/phpstan-prophecy": "^0.6.2",
                 "monolog/monolog": "^1.11||^2.0",
                 "php-http/mock-client": "^1.0",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-shim": "^0.11",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.19",
+                "phpstan/phpstan-phpunit": "^0.12.8",
                 "phpunit/phpunit": "^7.5||^8.5",
                 "symfony/browser-kit": "^3.4||^4.0||^5.0",
                 "symfony/expression-language": "^3.4||^4.0||^5.0",
                 "symfony/framework-bundle": "^3.4||^4.0||^5.0",
+                "symfony/messenger": "^4.3||^5.0",
                 "symfony/monolog-bundle": "^3.4",
                 "symfony/phpunit-bridge": "^5.0",
                 "symfony/yaml": "^3.4||^4.0||^5.0"
@@ -3267,7 +3272,7 @@
                 "sentry",
                 "symfony"
             ],
-            "time": "2020-03-16T09:07:07+00:00"
+            "time": "2020-05-07T13:11:22+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -7585,6 +7590,5 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

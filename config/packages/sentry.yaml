@@ -3,6 +3,7 @@ sentry:
     register_error_listener: false
     options:
         environment: '%kernel.environment%'
+        send_default_pii: true
     monolog:
         error_handler:
             enabled: true
