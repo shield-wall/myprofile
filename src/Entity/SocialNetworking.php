@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="social_networking")
  * @ORM\Entity(repositoryClass="App\Repository\SocialNetworkingRepository")
+ * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class SocialNetworking
 {

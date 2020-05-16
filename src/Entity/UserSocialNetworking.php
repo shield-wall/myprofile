@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="user_social_networking",uniqueConstraints={@ORM\UniqueConstraint(name="relations_idx", columns={"user_id", "social_networking_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
+ * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class UserSocialNetworking
 {
