@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="certification")
  * @ORM\Entity(repositoryClass="App\Repository\CertificationRepository")
+ * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class Certification
 {

@@ -52,4 +52,8 @@ services:
         arguments:
             $locales: '%locales%'
         tags:
-            - { name: "kernel.event_subscriber", priority: 100 }
+            - { name: kernel.event_subscriber, priority: 100 }
+
+    App\EventListener\UpdateCurriculumListener:
+        tags:
+            - { name: doctrine.orm.entity_listener, lazy: true}
