@@ -1,25 +1,22 @@
 version: '3'
 services:
-  php:
-    build: docker/.
-    working_dir: /app
+  web:
+    image: nginx:1.17
+    volumes:
+    - ./:/app
+    - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8000:8000"
-    entrypoint: docker/entrypoint_php.sh
-    env_file:
-      - .env
-    volumes:
-      - .:/app
+    - 8000:80
     links:
-      - db
+      - php
 
-  php-cli:
-    build: docker/.
+  php:
+    image: eerison/myprofile
     working_dir: /app
     env_file:
       - .env
     volumes:
-      - .:/app
+      - ./:/app
     links:
       - db
 
@@ -31,7 +28,6 @@ services:
   client:
     image: node:10
     working_dir: /app
-    entrypoint: docker/entrypoint_client.sh
     volumes:
       - .:/app
     depends_on:
@@ -44,5 +40,7 @@ services:
       POSTGRES_USER: myprofile
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: myprofile
+    volumes:
+      - .docker/database/data:/var/lib/postgresql/data
     ports:
       - 5432

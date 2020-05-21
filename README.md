@@ -10,18 +10,22 @@
   
 ### Installing
 
-  Run [docker-composer](https://docs.docker.com/compose/install/) in your terminal.
-
   ```
-    docker-compose up
+    make install
   ```
 
-  Open this link in your browser: [localhost:8000](http://localhost:8000)
+Open this link in your browser: [localhost:8000](http://localhost:8000)
+  
+  other commands:
+   - `make restart`
+   - `make build`
+   - `make watch`
+  
   
 ### Testing
 
 ```
-    docker-compose run --rm  -e APP_ENV=test php-cli bin/phpunit
+    make test
 ```
 
 ## License

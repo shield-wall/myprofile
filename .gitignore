@@ -2,6 +2,10 @@
 .idea
 ###> ide/jetbrains ###
 
+###> doker ###
+.docker/database
+###> doker ###
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
