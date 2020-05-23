@@ -1,9 +1,9 @@
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
-      - image: circleci/php:7.3-cli
+      - image: prooph/composer:7.3
         environment:
           APP_ENV: test
           DATABASE_URL: ''
@@ -21,11 +21,23 @@ jobs:
           TRANSLOADIT_DELIVERY: 0
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "composer.lock" }}
+            - deps-
       - run: pwd
       - run: ls -l
-      - run: php -m
-      - run: sudo composer self-update
       - run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
+
+  test:
+    docker:
+      - image: circleci/php:7.3-cli
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "composer.lock" }}
+            - deps-
       - run: bin/phpunit
 
 
@@ -33,4 +45,7 @@ workflows:
   version: 2.1
   test-and-deploy:
     jobs:
-      - test
+      - build
+      - test:
+          requires:
+            - build
