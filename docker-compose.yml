@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   web:
     image: nginx:1.17
@@ -11,12 +11,16 @@ services:
       - php
 
   php:
-    image: eerison/myprofile
+#    image: eerison/myprofile
+    build:
+      context: ./.docker/.
+      target: dev
     working_dir: /app
     env_file:
       - .env
     volumes:
       - ./:/app
+      - .docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     links:
       - db
 
