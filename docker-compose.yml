@@ -11,16 +11,12 @@ services:
       - php
 
   php:
-#    image: eerison/myprofile
-    build:
-      context: ./.docker/.
-      target: dev
+    image: eerison/myprofile:dev
     working_dir: /app
     env_file:
-      - .env
+      - .docker/common.env
     volumes:
       - ./:/app
-      - .docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     links:
       - db
 
