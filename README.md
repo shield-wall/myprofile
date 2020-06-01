@@ -30,7 +30,8 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
 
 ### Xdebug
 
-    Xdebug is listening on port [10000](.docker/common.env)
+
+Xdebug is listening on port [10000](.docker/common.env)
 
 ## License
 
