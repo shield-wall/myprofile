@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   web:
     image: nginx:1.17
@@ -11,10 +11,10 @@ services:
       - php
 
   php:
-    image: eerison/myprofile
+    image: eerison/myprofile:dev
     working_dir: /app
     env_file:
-      - .env
+      - .docker/common.env
     volumes:
       - ./:/app
     links:

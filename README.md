@@ -28,6 +28,10 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
     make test
 ```
 
+### Xdebug
+
+    Xdebug is listening on port [10000](.docker/common.env)
+
 ## License
 
   This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details
