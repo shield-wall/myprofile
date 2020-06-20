@@ -2,7 +2,7 @@ install:
 	docker-compose up -d
 	docker-compose run --rm composer install
 	docker-compose exec php bin/console doctrine:database:create  --if-not-exists
-	docker-compose exec php bin/console doctrine:migrations:migrate --no-interaction
+	docker-compose exec php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
 	docker-compose run --rm client yarn encore dev
 
 test:
