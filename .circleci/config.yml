@@ -3,10 +3,10 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/php:7.3-cli
+      - image: eerison/myprofile
         environment:
           APP_ENV: test
-          DATABASE_URL: ''
+          DATABASE_URL: 'postgres://root:123456@localhost:5432/myprofile_test'
           BUCKET_DNS: ''
           BUCKET_NAME: ''
           CDN_DNS: ''
@@ -19,15 +19,16 @@ jobs:
           TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND: ''
           TRANSLOADIT_CREDENTIALS: ''
           TRANSLOADIT_DELIVERY: 0
+      - image: postgres
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: 123456
     steps:
       - checkout
       - run: pwd
       - run: ls -l
-      - run: php -m
-      - run: sudo composer self-update
-      - run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
-      - run: bin/phpunit
-
+      - run: make init
+      - run: make test
 
 workflows:
   version: 2.1
