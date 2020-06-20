@@ -19,6 +19,11 @@ final class Version20200620144307 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
+        $this->skipIf(
+            false === $schema->hasTable('migration_versions'),
+            'Migration table was deleted.'
+        );
+
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP TABLE migration_versions');
     }

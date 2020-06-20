@@ -1,7 +1,7 @@
 install:
 	docker-compose up -d  --remove-orphans
 	docker-compose exec php $(MAKE) init
-	docker-compose run --rm client yarn encore dev
+	docker-compose run --rm client $(MAKE) yarn
 
 init:
 	composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
@@ -18,5 +18,9 @@ build:
 	sudo chmod 777 -R .docker/database
 	docker-compose up -d --build
 
+yarn:
+	yarn
+	yarn encore dev
+
 watch:
-	docker-compose run --rm client yarn encore dev --watch
+	docker-compose run --rm client $(MAKE) yarn --watch

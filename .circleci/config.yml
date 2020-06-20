@@ -1,37 +1,82 @@
 version: 2.1
 
-jobs:
-  test:
+executors:
+  build:
     docker:
       - image: eerison/myprofile
         environment:
           APP_ENV: test
-          DATABASE_URL: 'postgres://root:123456@localhost:5432/myprofile_test'
-          BUCKET_DNS: ''
-          BUCKET_NAME: ''
-          CDN_DNS: ''
-          APP_SECRET: f7959631cf78a0283382a84670d55b53
-          SENTRY_DSN: ''
-          TRANSLOADIT_KEY: ''
-          TRANSLOADIT_SECRET: ''
-          TRANSLOADIT_TEMPLATE_ID_CURRICULUM: ''
-          TRANSLOADIT_TEMPLATE_ID_IMAGE_PROFILE: ''
-          TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND: ''
-          TRANSLOADIT_CREDENTIALS: ''
-          TRANSLOADIT_DELIVERY: 0
       - image: postgres
         environment:
-          POSTGRES_USER: root
+          POSTGRES_USER: myprofile
           POSTGRES_PASSWORD: 123456
+    working_directory: /app
+
+jobs:
+  build-composer:
+    executor: build
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+      - run: echo 127.0.0.1 db | tee -a /etc/hosts
+      - run: make init
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - vendor
+
+  build-webpack:
+    executor: build
+    docker:
+      - image: node:10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+      - attach_workspace:
+          at: /app
       - run: pwd
       - run: ls -l
-      - run: make init
+      - run: ls -l vendor
+      - run: make yarn
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - node_modules
+            - public
+
+  test:
+    executor: build
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+      - run: echo 127.0.0.1 db | tee -a /etc/hosts
+      - attach_workspace:
+          at: /app
+      - run: pwd
+      - run: ls -l
       - run: make test
+      - save_cache:
+          key: v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+          paths:
+            - vendor
+            - node_modules
+            - public
+            - bin/.phpunit
 
 workflows:
   version: 2.1
-  test-and-deploy:
+  build-and-test:
     jobs:
-      - test
+      - build-composer
+      - build-webpack:
+          requires:
+            - build-composer
+      - test:
+          requires:
+            - build-webpack
