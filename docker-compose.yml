@@ -20,11 +20,6 @@ services:
     links:
       - db
 
-  composer:
-    image: prooph/composer:7.3
-    volumes:
-      - .:/app
-
   client:
     image: node:10
     working_dir: /app
