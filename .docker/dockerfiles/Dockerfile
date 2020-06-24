@@ -9,5 +9,8 @@ RUN apt-get install -y libpq-dev libzip-dev zlib1g-dev \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
+FROM base as builder
+COPY . /app
+
 FROM base as dev
 RUN pecl install xdebug && docker-php-ext-enable xdebug
