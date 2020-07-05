@@ -9,6 +9,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('web_site', './assets/js/web_site.js')
     .addEntry('web_site_profile', './assets/js/profile.js')
+    .addEntry('admin_profile', './assets/js/admin_profile.js')
     .addEntry('login', './assets/js/login.js')
     .addEntry('curriculum_theme_01', './assets/js/curriculum_theme_01.js')
     .addEntry('exception', './assets/js/exception.js')
