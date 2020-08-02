@@ -23,4 +23,4 @@ yarn:
 	yarn encore dev
 
 watch:
-	docker-compose run --rm client $(MAKE) yarn --watch
+	docker-compose run --rm client yarn encore dev --watch
