@@ -24,3 +24,10 @@ yarn:
 
 watch:
 	docker-compose run --rm client yarn encore dev --watch
+
+deploy:
+	docker run -e APP_ENV=prod eerison/myprofile make init
+	docker build --tag web --target build --file ./.docker/dockerfiles/Dockerfile .
+	docker tag web registry.heroku.com/mighty-eyrie-46636/web
+	docker push registry.heroku.com/mighty-eyrie-46636/web
+	heroku container:release web
