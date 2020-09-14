@@ -48,7 +48,7 @@
     </div>
 {%- endblock choice_widget_collapsed -%}
 
-{% block choice_widget -%}
+{% block choice_widget_expanded -%}
     {% set type_class = multiple == true and expanded == true ? 'checkbox' : 'radio' %}
 
     <div class="control">
@@ -63,7 +63,7 @@
             </label>
         {% endfor %}
     </div>
-{%- endblock choice_widget %}
+{%- endblock choice_widget_expanded %}
 
 {%- block file_row -%}
     <div class="column is-6">
