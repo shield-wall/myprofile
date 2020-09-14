@@ -25,16 +25,16 @@ class Education
     protected $user_id;
 
     /**
-     * @Assert\Length(max="150")
+     * @Assert\Length(max="200")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=150, nullable=false)
+     * @ORM\Column(type="string", length=200, nullable=false)
      */
     protected $title;
 
     /**
-     * @Assert\Length(max="50")
+     * @Assert\Length(max="200")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=200, nullable=false)
      */
     protected $institution;
 
