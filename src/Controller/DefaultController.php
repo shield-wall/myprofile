@@ -21,7 +21,7 @@ class DefaultController extends AbstractController
      */
     public function indexAction(UserRepository $userRepository)
     {
-        $users = $userRepository->findBy(['enabled' => true], ['id' => 'desc'], 20);
+        $users = $userRepository->findBy(['enabled' => true], ['updatedAt' => 'desc'], 20);
 
         return $this->render('site/index.html.twig', [
             'users' => $users,
