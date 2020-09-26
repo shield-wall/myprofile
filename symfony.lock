@@ -93,9 +93,6 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.39"
     },
-    "guzzlehttp/guzzle": {
-        "version": "6.5.2"
-    },
     "guzzlehttp/promises": {
         "version": "v1.3.1"
     },
@@ -137,9 +134,6 @@
     },
     "php-http/discovery": {
         "version": "1.7.0"
-    },
-    "php-http/guzzle6-adapter": {
-        "version": "v2.0.1"
     },
     "php-http/httplug": {
         "version": "v2.0.0"
@@ -333,6 +327,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.4.13"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/http-foundation": {
         "version": "v4.4.1"
     },
@@ -400,6 +400,9 @@
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.18.1"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.13.1"
