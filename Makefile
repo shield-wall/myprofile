@@ -1,7 +1,7 @@
 install:
 	docker-compose up -d  --remove-orphans
-	docker-compose exec php $(MAKE) init
-	docker-compose run --rm client $(MAKE) yarn
+	docker-compose exec php make init
+	docker-compose run --rm client make yarn
 
 init:
 	composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
