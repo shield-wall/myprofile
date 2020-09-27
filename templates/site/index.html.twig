@@ -2,107 +2,104 @@
 {% trans_default_domain 'MyProfile' %}
 
 {% block stylesheets %}
-  {{ encore_entry_link_tags('web_site') }}
+  {{ encore_entry_link_tags('web-site') }}
 {% endblock %}
 
 {% block body %}
 
-<!-- Navigation -->
-<div id="page-top">
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger navbar-brand-component" href="#page-top">My profile</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#last_sings">{{ 'default.last_registrations' | trans }}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{{ path('fos_user_security_login') }}">{{ 'security.login.submit'|trans({}, 'FOSUserBundle')}}</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-globe fa-lg"></i> {{ app.request.locale }}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ path('app_homepage', {'_locale': 'pt_BR'}) }}">pt_BR</a>
-            <a class="dropdown-item" href="{{ path('app_homepage', {'_locale': 'en'}) }}">en</a>
+  <section class="hero is-transparent is-fullheight" id="homepageHero">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item">
+              <p class="title has-text-white">My profile</p>
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
           </div>
-        </li>
-      </ul>
+          <div id="navbarMenuHeroB" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="{{ path('app_homepage', {'_locale': 'pt_BR'}) }}">Português</a>
+              <a class="navbar-item" href="{{ path('app_homepage', {'_locale': 'en'}) }}">English</a>
+              <span class="navbar-item">
+              <a class="button is-primary is-inverted is-outlined" href="{{ path('fos_user_security_login') }}">
+                <span>{{ 'security.login.submit'|trans({}, 'FOSUserBundle')}}</span>
+              </a>
+            </span>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
-  </div>
-</nav>
 
-<header class="masthead">
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-lg-7 my-auto">
-        <div class="header-content mx-auto">
-          <h1 class="mb-5">{{ 'site.title_message' | trans }}</h1>
-          <a href="{{ path('fos_user_registration_register') }}" class="btn btn-outline btn-xl js-scroll-trigger">{{ 'navegation.registration' | trans }}</a>
+    <div class="hero-body">
+      <div class="container has-text-centered-mobile">
+        <div class="columns">
+          <div class="column is-three-fifths">
+            <h2 class="title is-1 has-text-white">
+              {{ 'site.title_message' | trans }}
+            </h2>
+            <p class="subtitle has-text-centered-mobile mt-6">
+              <a href="{{ path('fos_user_registration_register') }}" class="button is-medium is-primary is-inverted is-outlined">{{ 'navegation.registration' | trans }}</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </section>
 
-<section class="cta" id="last_sings">
-  <div class="container cta-content">
-    <h1 class="text-white">{{ 'default.last_registrations' | trans }}</h1>
-    <div class="row">
-        {% for user in users %}
-          <div class="col mt-2">
-            <a href="{{ path('app_profile', {'slug': user.slug}) }}" title="{{ user.getFirstName() }} {{ user.getLastName() }}">
-              <object data="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage()}}" class="rounded-circle" style="width:80px;">
-
-                  <!-- default image -->
-                  <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'}}" alt="profile image" class="rounded-circle" style="width:80px;">
-              </object>
-            </a>
-          </div>
-
-        {% endfor %}
+  <section class="container is-fullheight mt-6">
+    <p class="subtitle is-2 has-text-centered-mobile">{{ 'default.last_registrations' | trans }}</p>
+    <div class="columns is-multiline is-mobile is-centered">
+      {% for user in users %}
+        <a
+                class="column is-narrow {% if loop.index > 6 %}is-hidden-mobile{% endif %}"
+                href="{{ path('app_profile', {'slug': user.slug}) }}"
+                title="{{ user.getFirstName() }} {{ user.getLastName() }}">
+          {% include 'component/image.html.twig' with {
+            'url': cdn_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage(),
+            'urlDefault': cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'
+          } %}
+        </a>
+      {% endfor %}
     </div>
+  </section>
 
-  </div>
-  <div class="overlay"></div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2017 - {{ "now" | date('Y') }} My profile. All Rights Reserved.</p>
-    <ul class="list-inline">
-      <li class="list-inline-item">
-        <a href="mailto:contato@myprofile.pro">
-          <i class="fa fa-envelope fa-2x"></i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://github.com/eerison/myprofile" target="_blank">
-          <i class="icon-github fa-2x"></i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.jetbrains.com" target="_blank">
-          <span class="icon-jetbrains fa-2x"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span></span>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://sentry.io" target="_blank">
-          <i class="icon-sentry fa-2x"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</footer>
+  <footer class="footer has-background-dark has-text-white">
+    <div class="content has-text-centered">
+      <p>
+        &copy; 2017 - {{ "now" | date('Y') }} My profile. All Rights Reserved.
+      </p>
+      <div class="buttons is-centered">
+        <div class="">
+          <a href="mailto:contato@myprofile.pro" class="button is-primary is-outlined">
+            <i class="fa fa-envelope fa-2x"></i>
+          </a>
+        </div>
+        <div class="">
+          <a href="https://github.com/eerison/myprofile" class="button is-primary is-outlined" target="_blank">
+            <i class="icon-github fa-2x"></i>
+          </a>
+        </div>
+        <div class="">
+          <a href="https://www.jetbrains.com" class="button is-primary is-outlined" target="_blank">
+            <span class="icon-jetbrains fa-2x"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span></span>
+          </a>
+        </div>
+        <div class="">
+          <a href="https://sentry.io" class="button is-primary is-outlined" target="_blank">
+            <i class="icon-sentry fa-2x"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 {% endblock %}
-
 {% block javascripts %}
-  {{ encore_entry_script_tags('web_site') }}
+  {{ encore_entry_script_tags('main') }}
 {% endblock %}

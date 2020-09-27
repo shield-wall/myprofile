@@ -5,7 +5,7 @@
     "@symfony/webpack-encore": "^0.28.0",
     "add": "^2.0.6",
     "bootstrap": "^4.3.1",
-    "bulma": "^0.8.1",
+    "bulma": "0.9",
     "jquery": "^3.5.0",
     "jquery.stellar": "^0.6.2",
     "node-sass": "^4.12.0",
