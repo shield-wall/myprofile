@@ -7,7 +7,7 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('app', './assets/js/app.js')
-    .addEntry('web_site', './assets/js/web_site.js')
+    .addEntry('main', './assets/js/main.js')
     .addEntry('web_site_profile', './assets/js/profile.js')
     .addEntry('admin_profile', './assets/js/admin_profile.js')
     .addEntry('login', './assets/js/login.js')
@@ -18,6 +18,7 @@ Encore
 
     .addStyleEntry('style', './assets/css/style.scss')
     .addStyleEntry('profile', './assets/css/profile.scss')
+    .addStyleEntry('web-site', './assets/css/web-site.scss')
 
     .enableSingleRuntimeChunk()
 

@@ -3,13 +3,10 @@
 <div class="container">
     <div class="columns is-multiline is-mobile is-centered">
         <div>
-            <figure class="column image is-128x128">
-                <object class="is-rounded object-image"
-                        data="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage() }}">
-                    <img class="is-rounded"
-                         src="{{ bucket_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp' }}">
-                </object>
-            </figure>
+            {% include 'component/image.html.twig' with {
+                'url': bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage(),
+                'urlDefault': bucket_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'
+            } %}
         </div>
 
         <div class="column is-12 has-text-centered">
