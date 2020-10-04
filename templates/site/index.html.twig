@@ -52,15 +52,14 @@
     </div>
   </section>
 
-  <section class="container is-fullheight mt-6">
-    <p class="subtitle is-2 has-text-centered-mobile">{{ 'default.last_registrations' | trans }}</p>
-    <div class="columns is-multiline is-mobile is-centered">
-      {% for user in users %}
-        <a
-                class="column is-narrow {% if loop.index > 6 %}is-hidden-mobile{% endif %}"
-                href="{{ path('app_profile', {'slug': user.slug}) }}"
-                title="{{ user.getFirstName() }} {{ user.getLastName() }}">
-          {% include 'component/image.html.twig' with {
+  <section class="container is-fullheight my-6 px-4 px-lg-0">
+    <p class="subtitle mb-5 is-2 has-text-centered">{{ 'default.last_updates' | trans }}</p>
+    <div class="columns is-multiline is-centered is-mobile pb-3">
+      {% for user in users|slice(0,14) %}
+        <a class="column is-narrow {% if loop.index > 6 %}is-hidden-mobile{% endif %}"
+           href="{{ path('app_profile', {'slug': user.slug}) }}"
+           title="{{ user.getFirstName() }} {{ user.getLastName() }}">
+            {% include 'component/image.html.twig' with {
             'url': cdn_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage(),
             'urlDefault': cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'
           } %}

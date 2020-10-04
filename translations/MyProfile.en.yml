@@ -37,7 +37,7 @@ curriculum:
     languages: Languages
 
 default:
-  last_registrations: Last registrations
+  last_updates: Last updates
   send_message: Send message
   send_me_message: Send me an message
   download_resume: Download resume
