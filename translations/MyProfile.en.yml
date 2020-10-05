@@ -49,13 +49,17 @@ site:
     title: Sign up
     submit: Sign up
     message: to use all features of the application
-  
+
   title_message: Create your resume and professional site free in few minutes!
 
 form:
   default:
     actions: Actions
-  
+
+  login:
+    show_my_profile: Show my profile
+    edit_my_profile: Edit my profile
+
   submit:
     edit: Edit
     create: Create

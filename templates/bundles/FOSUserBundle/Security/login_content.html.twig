@@ -1,59 +1,108 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="container">
-  <div class="row" id="pwd-container">
-    <div class="col-md-4 offset-md-4 col align-self-center">
-      <section class="login-form">
+{{ encore_entry_link_tags('web-site') }}
 
-          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
-              <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage()}}" alt="profile image" class="rounded-circle" style="width: 100px;">
-              <p class="text-center">
-                  {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-              </p>
-              <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="btn btn-success btn-block">
-                  <i class="fa fa-eye"></i>
-                  visualizar meu perfil
-              </a>
-              <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary btn-block">
-                  <i class="fa fa-edit"></i>
-                  editar meu perfil
-              </a>
-              <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger btn-block">
-                  <i class="fa fa-close"></i>
-                  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-              </a>
-          </form>
-          {% else %}
-              <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
-
-                    <h3 class="text-center"><b>My</b> Profile</h3><br/>
-
-                    {% if csrf_token %}
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                    {% endif %}
-
-                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control" />
-
-                    <input type="password" name="_password" class="form-control input-lg" id="password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
-
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                    <p for="remember_me">{{ 'security.login.remember_me'|trans }}</p>
-
-                    <div class="pwstrength_viewport_progress"></div>
-
-                    {% if error %}
-                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
-
-                    <button type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block">{{ 'security.login.submit'|trans }}</button>
-                    <div>
-                        <a href="{{path('fos_user_registration_register')}}">{{'layout.register'| trans}}</a> or <a href="{{path('fos_user_resetting_request')}}">{{'resetting.email.subject' | trans}}</a>
+<section class="section">
+    <div class="container">
+        <div class="column is-4 is-offset-4">
+            <div class="card">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="columns is-multiline is-marginless is-variable">
+                    <div class="column is-12">
+                        <figure class="image is-96x96" id="login-profile-image">
+                            <img class="is-rounded" src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage()}}" alt="profile image">
+                        </figure>
                     </div>
-              </form>
-          {% endif %}
+                    <div class="column is-12 is-centered">
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                    </div>
+                    <div class="column is-12">
+                        <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="button is-success is-fullwidth">
+                            <span class="icon">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                            <span>{{ 'form.login.show_my_profile' | trans({}, 'MyProfile') }}</span>
+                        </a>
+                        <a href="{{ path('fos_user_profile_edit') }}" class="button is-primary is-fullwidth">
+                            <span class="icon">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                            <span>{{ 'form.login.edit_my_profile' | trans({}, 'MyProfile') }}</span>
+                        </a>
+                        <a href="{{ path('fos_user_security_logout') }}" class="button is-danger is-fullwidth">
+                            <span class="icon">
+                                <i class="fa fa-close"></i>
+                            </span>
+                            <span>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card-header">
+                    <div class="card-header-title has-background-primary has-text-white">
+                        <h3 class="has-text-centered"><b>My</b> Profile</h3><br/>
+                    </div>
+                </div>
+                <div class="columns is-multiline is-marginless">
+                    <div class="column">
+                        <form action="{{ path("fos_user_security_check") }}" method="post" role="login">
 
-      </section>  
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            {% endif %}
+
+                            <div class="column is-12">
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}"  class="input" autofocus>
+                                        <span class="icon is-small is-left">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <input type="password" id="_password" name="_password" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.password'|trans }}"  class="input">
+                                        <span class="icon is-small is-left">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="checkbox" for="remember_me">
+                                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                        {{ 'security.login.remember_me'|trans }}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="pwstrength_viewport_progress"></div>
+
+                            {% if error %}
+                                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            <div class="columns is-vcentered">
+                                <div class="column is-5">
+                                    <button type="submit" id="_submit" name="_submit" class="button is-primary">{{ 'security.login.submit'|trans }}</button>
+                                </div>
+                                <div class="column is-7">
+                                    <a href="{{path('fos_user_registration_register')}}" class="button is-text is-small">{{'layout.register'| trans}}</a>
+                                    <a href="{{path('fos_user_resetting_request')}}" class="button is-text is-small">{{'resetting.email.subject' | trans}}</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+
+        <div class="column is-4 is-offset-4">
+            <div class="is-pulled-right">
+                <a href="{{path('fos_user_security_login', {'_locale': 'en'}) }}" class="button is-text is-small">English</a>
+                <a href="{{path('fos_user_security_login', {'_locale': 'pt_BR'}) }}" class="button is-text is-small">Português</a>
+            </div>
+        </div>
     </div>
-  </div>  
-</div>
+</section>
