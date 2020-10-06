@@ -56,6 +56,10 @@ form:
   default:
     actions: Ações
 
+  login:
+    show_my_profile: visualizar meu perfil
+    edit_my_profile: editar meu perfil
+
   submit:
     edit: Editar
     create: Cadastrar
