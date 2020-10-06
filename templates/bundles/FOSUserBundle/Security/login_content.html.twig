@@ -81,7 +81,7 @@
                             {% if error %}
                                 <div class="columns">
                                     <div class="column is-12">
-                                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                        <span class="is-text has-text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
                                     </div>
                                 </div>
                             {% endif %}
