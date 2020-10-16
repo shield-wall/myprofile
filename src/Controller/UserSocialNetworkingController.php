@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\UserSocialNetworking;
 use App\Repository\UserSocialNetworkingRepository;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,12 +47,17 @@ class UserSocialNetworkingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($userSocialNetworking);
-            $em->flush();
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($userSocialNetworking);
+                $em->flush();
+                $this->addFlash('success', 'messages.item_saved');
+                return $this->redirectToRoute('user_usersocialnetworking_index');
+            } catch (UniqueConstraintViolationException $exception){
+                $this->addFlash('danger', 'messages.item_repeated');
+                return $this->redirectToRoute('user_usersocialnetworking_index');
+            }
 
-            $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_usersocialnetworking_index');
         }
 
         return $this->render('usersocialnetworking/save.html.twig', array(
@@ -73,7 +79,7 @@ class UserSocialNetworkingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            
+
             $this->addFlash('success', 'messages.item_saved');
             return $this->redirectToRoute('user_usersocialnetworking_index', array('id' => $userSocialNetworking->getId()));
         }

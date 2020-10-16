@@ -148,6 +148,7 @@ language:
 
 messages:
   item_saved: Save with success!
+  item_repeated: Item repeated. Try again
   item_removed: Removed with success!
   generate_curriculum: we're processing your curriculum and in few minutes it'll avaible to you download.
   empty_list:
