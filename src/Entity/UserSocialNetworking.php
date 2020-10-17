@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="user_social_networking",uniqueConstraints={@ORM\UniqueConstraint(name="relations_idx", columns={"user_id", "social_networking_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
+ * @UniqueEntity("social_networking")
  */
 class UserSocialNetworking
 {
