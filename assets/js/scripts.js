@@ -21,6 +21,9 @@ Author URL: trendytheme.net
 
 */
 
+import scrollSpy from '../js/simple-scrollspy.min.js'
+import SmoothScroll from '../../node_modules/smooth-scroll/src/js/smooth-scroll/smooth-scroll.js'
+
 jQuery(function ($) {
 
     'use strict';
@@ -32,6 +35,27 @@ jQuery(function ($) {
     $(window).ready(function() {
         $('#pre-status').fadeOut();
         $('#tt-preloader').delay(350).fadeOut('slow');
+
+        new SmoothScroll('a[href*="#"]', {
+            speed: 750,
+            // easing: 'Linear',
+            speedAsDuration: true
+        })
+
+        $('.btn-group').each(function() {
+            const group = this
+            $(this).find('button').click(function() {
+                // settimeout will queue opening of the dropdown menu 1 tick
+                // after is gets closed because of body click
+                setTimeout(() => {
+                    $(group).find('.dropdown-menu').toggleClass('shown')
+                }, 0)
+            })
+        })
+
+        $('body').click(function(e) {
+            $('.btn-group .dropdown-menu.shown').removeClass('shown')
+        })
     });
 
 
@@ -75,8 +99,9 @@ jQuery(function ($) {
             topSpacing: 0
         });
 
-        $('body').scrollspy({
-            target: '.navbar-custom',
+        scrollSpy('.navbar-end', {
+            menuActiveTarget: '.navbar-item',
+            activeClass: 'is-active',
             offset: 70
         })
     }());
@@ -122,16 +147,17 @@ jQuery(function ($) {
     // -------------------------------------------------------------
     // Progress Bar
     // -------------------------------------------------------------
- 
+
     $('.skill-progress').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
         if (visible) {
-            $.each($('div.progress-bar'),function(){
-                $(this).css('width', $(this).attr('aria-valuenow')+'%');
+            $.each($('progress.progress'),function(){
+                const value = $(this).attr('aria-valuenow')
+                $(this).animate({ value }, 2000, 'swing');
             });
             $(this).unbind('inview');
         }
     });
-    
+
     // -------------------------------------------------------------
     // More skill
     // -------------------------------------------------------------
@@ -235,9 +261,9 @@ jQuery(function ($) {
     // Vidio auto play
     // -------------------------------------------------------------
     (function () {
-    
+
     /* Vimeo API: http://developer.vimeo.com/player/js-api */
-    
+
         var iframe = document.getElementById('nofocusvideo');
         // $f == Froogaloop
         // var player = $f(iframe);
@@ -261,7 +287,7 @@ jQuery(function ($) {
     $(window).load(function() {
 
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-         
+
         }else {
             $.stellar({
                 horizontalScrolling: false,
@@ -322,7 +348,7 @@ jQuery(function ($) {
 
 
 
-   
+
 
 
 });

@@ -11,6 +11,12 @@ $tabs-boxed-link-radius: 10px;
 $tabs-link-color: $white;
 $tabs-link-hover-color: $red;
 
+$progress-bar-background-color: #2a2f35;
+
+$orange: #F26651;
+$orange-invert: #FFF;
+$custom-colors: ("orange": ($orange, $orange-invert));
+
 @import "~bulma/bulma";
 
 .hero.has-background {
@@ -27,4 +33,53 @@ $tabs-link-hover-color: $red;
 .hero-background.is-transparent {
     opacity: 0.3;
 }
-  
+
+.skill-progress {
+    position: relative;
+}
+
+.progress-value {
+    position: absolute;
+    right: 0;
+    top: -100%;
+    transform: translateY(-15px);
+}
+
+.footer-wrapper {
+    text-align: center;
+}
+
+.biography {
+    z-index: 1;
+}
+
+.btn-group {
+    position: relative;
+
+    .dropdown-menu.shown {
+      display: block;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      top: calc(100% + 4px);
+      padding: 5px 0;
+
+      a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: 400;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+        margin: 0;
+
+        &:hover {
+          color: #262626;
+          text-decoration: none;
+          background-color: #f5f5f5;
+        }
+      }
+    }
+}

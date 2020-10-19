@@ -1,28 +1,30 @@
 {% trans_default_domain 'MyProfile' %}
 
 <header class="header">
-    <nav class="navbar navbar-custom" role="navigation">
+    <nav class="navbar is-light navbar-custom" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#home">{{ user.getFirstName() }} {{ user.getLastName() }}</a>
-            </div>
+            {#        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">#}
+            {#            <span class="sr-only">Toggle navigation</span>#}
+            {#            <span class="icon-bar"></span>#}
+            {#            <span class="icon-bar"></span>#}
+            {#            <span class="icon-bar"></span>#}
+            {#        </button>#}
+            <a class="navbar-brand" href="#home">
+                <span class="navbar-item">
+                    {{ user.getFirstName() }} {{ user.getLastName() }}
+                </span>
+            </a>
 
-            <div class="collapse navbar-collapse" id="custom-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home">{{ 'navegation.home' | trans }}</a></li>
-                    <li><a href="#about">{{ 'navegation.about' | trans }}</a></li>
-                    <li><a href="#resume">{{ 'navegation.resume' | trans }}</a></li>
-                    <li><a href="#skills">{{ 'navegation.skills' | trans }}</a></li>
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="#home">{{ 'navegation.home' | trans }}</a>
+                    <a class="navbar-item" href="#about">{{ 'navegation.about' | trans }}</a>
+                    <a class="navbar-item" href="#resume">{{ 'navegation.resume' | trans }}</a>
+                    <a class="navbar-item" href="#skills">{{ 'navegation.skills' | trans }}</a>
                     <!-- <li><a href="#works">{{ 'navegation.portfolio' | trans }}</a></li> -->
-                    <li><a href="#contact">{{ 'navegation.contact' | trans }}</a></li>
-                </ul>
+                    <a class="navbar-item" href="#contact">{{ 'navegation.contact' | trans }}</a>
+                </div>
             </div>
-        </div><!-- .container -->
+        </div>
     </nav>
 </header><!-- End Navigation -->
