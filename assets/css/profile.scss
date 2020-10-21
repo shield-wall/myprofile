@@ -52,3 +52,8 @@ $custom-colors: ("orange": ($orange, $orange-invert));
 .biography {
     z-index: 1;
 }
+
+.myphoto #image {
+    transform: translateY(9px);
+    margin-top: -9px;
+}
