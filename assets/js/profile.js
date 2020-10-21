@@ -15,7 +15,3 @@ require('../js/froogaloop2.min.js')
 require('../js/jquery.fitvids.js')
 
 require('../css/style.css')
-
-require('../css/animate.css')
-require('../css/magnific-popup.css')
-require('../css/responsive.css')

@@ -378,14 +378,10 @@ ul.list-check li::before {
 /*
 SOCIAL ICON
 -------------------------------------------*/
-.social-icons {
-    margin-top: 20px;
-}
 .social-icons a i{
     position: relative;
     color: #fff;
     font-size: 18px;
-    margin: 0 7px;
     line-height: 40px;
     text-align: center;
     width: 40px;
