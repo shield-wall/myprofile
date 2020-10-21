@@ -9,13 +9,19 @@
             {#            <span class="icon-bar"></span>#}
             {#            <span class="icon-bar"></span>#}
             {#        </button>#}
-            <a class="navbar-brand" href="#home">
-                <span class="navbar-item">
+            <div class="navbar-brand">
+                <a href="#home" class="navbar-item">
                     {{ user.getFirstName() }} {{ user.getLastName() }}
-                </span>
-            </a>
+                </a>
 
-            <div class="navbar-menu">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-main">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu" id="navbar-main">
                 <div class="navbar-end">
                     <a class="navbar-item" href="#home">{{ 'navegation.home' | trans }}</a>
                     <a class="navbar-item" href="#about">{{ 'navegation.about' | trans }}</a>

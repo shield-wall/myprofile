@@ -23,7 +23,8 @@ Author URL: trendytheme.net
 
 import scrollSpy from '../js/simple-scrollspy.min.js'
 import SmoothScroll from '../../node_modules/smooth-scroll/src/js/smooth-scroll/smooth-scroll.js'
-import Navbar from '../../node_modules/@vizuaalog/bulmajs/src/plugins/dropdown.js'
+import Dropddown from '../../node_modules/@vizuaalog/bulmajs/src/plugins/dropdown.js'
+import Navbar from '../../node_modules/@vizuaalog/bulmajs/src/plugins/navbar.js'
 
 jQuery(function ($) {
 
