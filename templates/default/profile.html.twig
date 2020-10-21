@@ -30,8 +30,12 @@
 
     {% include 'default/partials/about.html.twig' %}
     {# include 'default/partials/hire.html.twig' #}
-    {% include 'default/partials/resume.html.twig' %}
-    {% include 'default/partials/skills.html.twig' %}
+    {% if user.educations | length > 0 or user.experiences | length > 0 %}
+        {% include 'default/partials/resume.html.twig' %}
+    {% endif %}
+    {% if user.skills  | length > 0 %}
+        {% include 'default/partials/skills.html.twig' %}
+    {% endif %}
     {# include 'default/partials/works.html.twig' #}
     {# include 'default/partials/hire.html.twig' #}
 
