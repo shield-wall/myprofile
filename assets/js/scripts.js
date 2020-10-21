@@ -23,6 +23,7 @@ Author URL: trendytheme.net
 
 import scrollSpy from '../js/simple-scrollspy.min.js'
 import SmoothScroll from '../../node_modules/smooth-scroll/src/js/smooth-scroll/smooth-scroll.js'
+import Navbar from '../../node_modules/@vizuaalog/bulmajs/src/plugins/dropdown.js'
 
 jQuery(function ($) {
 
@@ -40,21 +41,6 @@ jQuery(function ($) {
             speed: 750,
             // easing: 'Linear',
             speedAsDuration: true
-        })
-
-        $('.btn-group').each(function() {
-            const group = this
-            $(this).find('button').click(function() {
-                // settimeout will queue opening of the dropdown menu 1 tick
-                // after is gets closed because of body click
-                setTimeout(() => {
-                    $(group).find('.dropdown-menu').toggleClass('shown')
-                }, 0)
-            })
-        })
-
-        $('body').click(function(e) {
-            $('.btn-group .dropdown-menu.shown').removeClass('shown')
         })
     });
 

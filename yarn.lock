@@ -706,6 +706,11 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
+"@vizuaalog/bulmajs@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@vizuaalog/bulmajs/-/bulmajs-0.11.0.tgz#4da8df7e5840e9f069a89f0223c8b8f55d4c1ec8"
+  integrity sha512-Zv7RYZuY3o9OMixtFN3syeKFfDg/aU/4BcyIEl7WBXFZmf55p24la3KDEv9tgpPFtRPhjo3IMbdbvWPFwpnNXg==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
