@@ -1,40 +1,43 @@
 {% trans_default_domain 'MyProfile' %}
 
-<section id="skills" class="skills-section section-padding">
-    <div class="container">
-        <h2 class="section-title wow fadeInUp">{{ 'navegation.skills' | trans }}</h2>
+<section id="skills" class="skills-section section-padding scrollspy">
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title wow fadeInUp">{{ 'navegation.skills' | trans }}</h2>
 
-        <div class="row">
-            {% for skill in user.skills | slice(0,4) %}
-                <div class="col-md-6">
-                    <div class="skill-progress">
-                        <div class="skill-title"><h3>{{ skill.name }}</h3></div>
-                        <div class="progress">
-                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="{{ skill.getLevelExperience() }}" aria-valuemin="0" aria-valuemax="100" ><span>{{ skill.getLevelExperience() }}%</span>
-                            </div>
-                        </div><!-- /.progress -->
-                    </div><!-- /.skill-progress -->
-                </div><!-- /.col-md-6 -->
-            {% endfor %}
+            <div class="columns is-multiline">
+                {% for skill in user.skills | slice(0,4) %}
+                    <div class="column is-6">
+                        <div class="skill-progress">
+                            <div class="skill-title"><h3>{{ skill.name }}</h3></div>
+                            <progress class="progress is-orange" aria-valuenow="{{ skill.getLevelExperience() }}" value="0" max="100"></progress>
+                            <span class="progress-value">{{ skill.getLevelExperience() }}%</span>
+                        </div><!-- /.skill-progress -->
+                    </div><!-- /.col-md-6 -->
+                {% endfor %}
 
-        </div><!-- /.row -->
+            </div><!-- /.row -->
 
-        <div class="skill-chart text-center">
-            <h3>{{ 'default.more_skills' | trans }}</h3>
-        </div>
-
-        <div class="row more-skill text-center">
-
-            {% for skill in user.skills | slice(4) %}
-                <div class="col-xs-12 col-sm-4 col-md-2">
-                    <div class="chart" data-percent="{{ skill.getLevelExperience() }}" data-color="e74c3c">
-                        <span class="percent"></span>
-                        <div class="chart-text">
-                            <span>{{ skill.name }}</span>
-                        </div>
-                    </div>
+            {% if user.skills | length > 4 %}
+                <div class="column is-12">
+                    <h3>{{ 'default.more_skills' | trans }}</h3>
                 </div>
-            {% endfor %}
 
-    </div><!-- /.container -->
+                <div class="row more-skill text-center">
+
+                    {% for skill in user.skills | slice(4) %}
+                        <div class="col-xs-12 col-sm-4 col-md-2">
+                            <div class="chart" data-percent="{{ skill.getLevelExperience() }}" data-color="e74c3c">
+                                <span class="percent"></span>
+                                <div class="chart-text">
+                                    <span>{{ skill.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </div><!-- /.container -->
+    </div>
 </section><!-- End Skills Section -->

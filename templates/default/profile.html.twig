@@ -9,6 +9,8 @@
     <meta property="og:title" content="{{ user.firstName ~ ' ' ~ user. lastName }}" />
     <meta property="og:image" content="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage()}}">
     <meta property="og:url" content="{{app.request.schemeAndHttpHost ~ path('app_profile', { 'slug': user.slug}) }}">
+
+    {{ encore_entry_link_tags('web-site') }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -22,8 +24,10 @@
             <div class="preload-placeholder"></div>
         </div>
     </div>
+
     {% include 'default/partials/home.html.twig' %}
     {% include 'default/partials/navegation.html.twig' %}
+
     {% include 'default/partials/about.html.twig' %}
     {# include 'default/partials/hire.html.twig' #}
     {% include 'default/partials/resume.html.twig' %}
@@ -31,12 +35,13 @@
     {# include 'default/partials/works.html.twig' #}
     {# include 'default/partials/hire.html.twig' #}
 
+
     <!-- Footer Section -->
     <footer class="footer-wrapper">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright text-center">
+            <div class="columns">
+                <div class="column is-12">
+                    <div class="copyright">
                         <p>2017 - {{ "now" | date('Y') }} &copy; <a href="https://www.myprofile.pro" target="_blank">My Profile</a></p>
                         <p><a href="https://github.com/eerison/myprofile" target="_blank"> <i class="fab fa-github fa-2x"></i> </a></p>
                     </div>
