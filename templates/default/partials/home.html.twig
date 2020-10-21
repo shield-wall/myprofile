@@ -1,4 +1,4 @@
-<section id="home" class="tt-fullHeight scrollspy" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" style="background: url({{ "https://bucket.myprofile.pro/myprofile-prod/users/e5d3a8a762db6fa77519789443a99c98/background.webp" }}) no-repeat center center">
+<section id="home" class="tt-fullHeight" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" style="background: url({{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.getBackgroundImage()}}) no-repeat center center">
     <div class="intro">
         <div class="intro-sub">{{ user.getFirstName() }} {{ user.getLastName() }}</div>
         <h1>{{ user.role }}</h1>
