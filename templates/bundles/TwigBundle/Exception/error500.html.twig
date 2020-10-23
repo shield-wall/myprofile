@@ -1,4 +1,4 @@
-{% extends 'bundles/TwigBundle/Exception/error.html.twig' %}
+{% include 'bundles/TwigBundle/Exception/error.html.twig'
+    with {'message': 'Error 500 unexpected Error', 'icon': 'fa-dizzy'}
+%}
 
-{% set code = '500' | split('') %}
-{% set icon = 'fa-exclamation-circle' %}

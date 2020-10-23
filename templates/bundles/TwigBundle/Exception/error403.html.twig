@@ -1,5 +1,4 @@
-{% extends 'bundles/TwigBundle/Exception/error.html.twig' %}
+{% include 'bundles/TwigBundle/Exception/error.html.twig'
+    with {'message': 'Error 403 Forbidden', 'icon': 'fa-hand-stop-o'}
+%}
 
-{% set message = 'Forbidden' %}
-{% set code = '403' | split('') %}
-{% set icon = 'fa-hand-stop-o' %}
