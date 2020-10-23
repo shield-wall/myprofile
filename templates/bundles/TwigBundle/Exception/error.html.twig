@@ -1,61 +1,55 @@
 {% extends 'base.html.twig' %}
-
 {% block stylesheets %}
-    {{ encore_entry_link_tags('exception') }}
+    {{ encore_entry_link_tags('web-site') }}
+    <style>
+        .error-code-item {
+            background-color: white;
+            border: 1px solid;
+            margin: 1rem;
+        }
+    </style>
 {% endblock %}
+
 
 {% block body %}
-
-    <div class="container mt-5">
-    <div class="row">
-        <div class="col-8 offset-2 display-1 text-center">
-
-            <!-- line 01 -->
-            <div class="row text-danger">
-
-                <div class="col-2">
-                    <div class="border border-danger rounded">E</div>
-                </div>
-                <div class="col-2">
-                    <div class="border border-danger rounded">R</div>
-                </div>
-                <div class="col-2">
-                    <div class="border border-danger rounded">R</div>
-                </div>
-                <div class="col-2">
-                    <div class="border border-danger rounded">O</div>
-                </div>
-                <div class="col-2">
-                    <div class="border border-danger rounded">R</div>
-                </div>
-                <div class="col-2">
-                    <div class="border border-danger rounded">!</div>
-                </div>
-
+    <div class="container mt-5 has-text-centered" style="width: 40%; margin: 0 auto">
+        <div class="columns has-text-danger is-size-1 ">
+            {% for char in code|default('ERROR' | split('')) %}
+            <div class="column  error-code-item ">
+                {{ char }}
             </div>
-
-            <div class="row">
-                <div class="col-12 text-danger"><i class="fa fa-warning"></i></div>
-                <div class="col-12 text-center text-uppercase  h1 text-dark">Internal Server Error</div>
+            {% endfor %}
+        </div>
+        <i class="fa {{ icon | default('fa-warning')}} is-centered has-text-danger is-size-1"></i>
+        <h1 class="is-size-2">{{ message| default('Internal server error') }}</h1>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="col-6">
+            {% else %}
+            <div class="col-6 offset-3">
+                {% endif %}
+                <a href="{{ path('app_homepage') }}" class="button is-danger ">
+                      <span class="icon is-small">
+                        <i class="fa fa-home "></i>
+                      </span>
+                    <span>
+                Return to the homepage
+                    </span>
+                </a>
             </div>
-
-            <div class="row">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <div class="col-6">
-                    {% else %}
-                    <div class="col-6 offset-3">
-                        {% endif %}
-                        <a href="{{ path('app_homepage') }}" class="btn btn-danger btn-block"><i class="fa fa-home "></i> Return to the homepage </a>
-                    </div>
-
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <div class="col-6">
-                            <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> My profile </a>
-                        </div>
-                    {% endif %}
+                    <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="button is-danger ">
+                    <span class="icon is-small">
+                    <i class="fa fa-user-circle"></i>
+                    </span>
+                        <span>
+                    My profile
+                    </span>
+                    </a>
                 </div>
-
-            </div>
+            {% endif %}
         </div>
     </div>
+
 {% endblock %}
+
