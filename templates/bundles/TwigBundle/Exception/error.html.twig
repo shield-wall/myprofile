@@ -2,39 +2,30 @@
 {% block stylesheets %}
     {{ encore_entry_link_tags('web-site') }}
 {% endblock %}
-
 {% block body %}
-    <div class="container mt-5 has-text-centered" >
+    <div class="container mt-5 has-text-centered">
         <h1 class="is-size-4">{{ message| default('Internal server error') }}</h1>
         <i class="fa {{ icon | default('fa-warning') }} is-centered is-primary is-size-1 mb-5 mt-5"></i>
+        <br>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <div class="col-6">
-            {% else %}
-            <div class="col-6 offset-3">
-                {% endif %}
-                <a href="{{ path('app_homepage') }}" class="button is-primary ">
-                      <span class="icon is-small">
-                        <i class="fa fa-home "></i>
-                      </span>
-                    <span>
+            <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="button is-primary ">
+            <span class="icon is-small">
+              <i class="fa fa-user-circle"></i>
+              </span>
+                <span>
+                 My profile
+               </span>
+            </a>
+        {% else %}
+            <a href="{{ path('app_homepage') }}" class="button is-primary ">
+              <span class="icon is-small">
+               <i class="fa fa-home "></i>
+             </span>
+                <span>
                 Return to the homepage
-                    </span>
-                </a>
-            </div>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <div class="col-6">
-                    <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="button is-primary ">
-                    <span class="icon is-small">
-                    <i class="fa fa-user-circle"></i>
-                    </span>
-                        <span>
-                    My profile
-                    </span>
-                    </a>
-                </div>
-            {% endif %}
-        </div>
+             </span>
+            </a>
+        {% endif %}
     </div>
-
 {% endblock %}
 
