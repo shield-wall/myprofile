@@ -50,7 +50,7 @@ site:
     submit: Registrar
     message: para usar todas as funcionalidades da aplicação
 
-  title_message: Crie seu currículo e site profissional gratuitamente em poucos minutos!
+  title_message: Crie seu currículo e site profissional em poucos minutos!
 
 form:
   default:
