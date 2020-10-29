@@ -1,13 +1,14 @@
+{% trans_default_domain 'MyProfile' %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="{% block description %}Criação de sites profissionais e seu curriculo em poucos minutos{% endblock %}">
-        <meta name="keywords" content="{% block keywords %}sites profissionais,curriculo,resume,fazer curriculo,gratis,my profile,meu site,modelo,modelo de curriculo,modelo de curriculo 2018,modelo de curriculo 2019{% endblock %}">
+        <meta name="description" content="{% block description %}{{ 'site.title_message' | trans }}{% endblock %}">
+        <meta name="keywords" content="{% block keywords %}sites profissionais,curriculo,resume,fazer curriculo,gratis,my profile,meu site,modelo,modelo de curriculo,modelo de curriculo {{ 'now' | date('Y') }}, curriculum vitae{% endblock %}">
         <meta name="author" content="My Profile">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block metaTags %}{% endblock %}
-        <title>{% block title %}Welcome!{% endblock %} | My profile</title>
+        <title>{% block title %}{{ 'site.welcome' | trans }}{% endblock %} | My profile</title>
 
         <link rel="shortcut icon" href="{{ asset('../images/ico/favicon.png') }}">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('../images/ico/apple-touch-icon-144-precomposed.png') }}">

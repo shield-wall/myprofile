@@ -7,7 +7,7 @@ navegation:
     contact: Contact
     education: Education
     experience: Experience
-    registration: Create your free profile
+    registration: Make my curriculum vitae %year%
     languages: Languages
     social_network: Social network
     main: Main
@@ -37,7 +37,7 @@ curriculum:
     languages: Languages
 
 default:
-  last_registrations: Last registrations
+  last_registrations: Look some curriculum vitae example
   send_message: Send message
   send_me_message: Send me an message
   download_resume: Download resume
@@ -49,8 +49,8 @@ site:
     title: Sign up
     submit: Sign up
     message: to use all features of the application
-
-  title_message: Create your curriculum and professional site in few minutes!
+  welcome: Welcome
+  title_message: Make your curriculum vitae in PDF or personal website in few minutes!
 
 form:
   default:
