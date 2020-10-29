@@ -7,7 +7,7 @@ navegation:
   contact: Contato
   education: Educação
   experience: Experiência
-  registration: Criar sua conta grátis
+  registration: Criar meu currículo %year%
   languages: Idiomas
   social_network: Rede social
   main: Principal
@@ -37,7 +37,7 @@ curriculum:
   languages: Idiomas
 
 default:
-  last_registrations: Últimos cadastros
+  last_registrations: Veja alguns exemplos de currículos
   send_message: Enviar mensagem
   send_me_message: Envie-me uma mensagem
   download_resume: Download currículo
@@ -49,8 +49,8 @@ site:
     title: Registre-se
     submit: Registrar
     message: para usar todas as funcionalidades da aplicação
-
-  title_message: Crie seu currículo e site profissional em poucos minutos!
+  welcome: Bem-vindo
+  title_message: Crie seu currículo em PDF e site pessoal em poucos minutos!
 
 form:
   default:
