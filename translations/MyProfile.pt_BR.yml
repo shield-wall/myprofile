@@ -155,3 +155,15 @@ messages:
     title: Você não tem nenhum registro cadastrado
     sub_title: Mas ei, você pode resolver isso clicando aqui
     new_item: Novo registro
+
+security:
+  page:
+    register: Registrar
+    resetting: Redefinir senha
+  login:
+    title: Entrar
+    username: Usuário
+    password: Senha
+    remember_me: Permanecer conectado
+    submit: Entrar
+

@@ -17,17 +17,19 @@ security:
         main:
             pattern: ^/
             form_login:
-                provider: fos_userbundle
+#                provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                check_path: fos_user_security_check
-                login_path: fos_user_security_login
+#                check_path: fos_user_security_check
+                login_path: app_login
                 default_target_path: profile_edit
-
             logout:
-                path: fos_user_security_logout
-                target: fos_user_security_login
+                path: app_logout
+                target: app_login
 
             anonymous:    true
+            guard:
+                authenticators:
+                    - App\Security\FormAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

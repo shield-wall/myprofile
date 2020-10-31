@@ -1,6 +1,6 @@
 fos_user:
   resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-  prefix:   /{_locale}
+  prefix:   /fos/{_locale}
   defaults: {_locale: pt_BR}
   requirements:
     _locale: "en|pt_BR"

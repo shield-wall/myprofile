@@ -154,3 +154,14 @@ messages:
       title: You have not any item
       sub_title: Hey, But you can resolve it, clicking here
       new_item: New item
+
+security:
+  page:
+    register: Register
+    resetting: Reset passwords
+  login:
+    title: Log in
+    username: Username
+    password: Password
+    remember_me: Remember me
+    submit: Log in
