@@ -6,9 +6,9 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,14 +17,26 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  * @UniqueEntity("slug")
  */
-class User extends BaseUser
+class User implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     protected $id;
+
+
+    /**
+     * @Assert\Length(max="200")
+     * @Assert\Email
+     * @ORM\Column(type="string", length=200)
+     *
+     * @var string
+     */
+    protected $email;
 
     /**
      * @Assert\Length(max="50")
@@ -139,6 +151,30 @@ class User extends BaseUser
     private $userLanguages;
 
     /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var string|null
+     * @Assert\Length(min=6)
+     */
+    private $plainPassword;
+
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $salt;
+
+    /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
@@ -150,16 +186,45 @@ class User extends BaseUser
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
     public function __construct()
     {
-        parent::__construct();
-
         $this->user_social_networks = new ArrayCollection();
         $this->educations = new ArrayCollection();
         $this->experiences = new ArrayCollection();
         $this->skills = new ArrayCollection();
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return User
+     */
+    public function setEmail(string $email): User
+    {
+        $this->email = $email;
+        return $this;
     }
 
     public function getSlug()
@@ -563,5 +628,99 @@ class User extends BaseUser
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     * @return User
+     */
+    public function setPassword(string $password): User
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     * @return User
+     */
+    public function setPlainPassword(?string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @param string|null $salt
+     * @return User
+     */
+    public function setSalt(?string $salt): User
+    {
+        $this->salt = $salt;
+        return $this;
+    }
+
+    public function getUsername()
+    {
+        return $this->getEmail();
+    }
+
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getUsername();
     }
 }

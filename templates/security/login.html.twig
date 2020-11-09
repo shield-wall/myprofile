@@ -7,11 +7,6 @@
 {% endblock %}
 
 {% block body %}
-
-
-
-
-
     <section class="section">
         <div class="container">
             <div class="column is-4 is-offset-4">
@@ -99,7 +94,7 @@
                                             <button type="submit" id="_submit" name="_submit" class="button is-primary">{{ 'security.login.submit'|trans }}</button>
                                         </div>
                                         <div class="column is-8 has-text-right">
-                                            <a href="{{path('fos_user_registration_register')}}" class="button is-text is-small">{{'security.page.register'| trans}}</a>
+                                            <a href="{{path('app_register')}}" class="button is-text is-small">{{'security.page.register'| trans}}</a>
                                             <a href="{{path('fos_user_resetting_request')}}" class="button is-text is-small">{{'security.page.resetting' | trans}}</a>
                                         </div>
                                     </div>

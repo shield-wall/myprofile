@@ -4,9 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,7 +18,7 @@ class DefaultController extends AbstractController
      */
     public function indexAction(UserRepository $userRepository)
     {
-        $users = $userRepository->findBy(['enabled' => true], ['updatedAt' => 'desc'], 18);
+        $users = $userRepository->findBy(['isVerified' => true], ['updatedAt' => 'desc'], 18);
 
         return $this->render('site/index.html.twig', [
             'users' => $users,
