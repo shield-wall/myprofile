@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
                     ->from(new Address('contato@myprofile.pro', 'My profile'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->htmlTemplate('security/registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
@@ -65,7 +65,7 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('security/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

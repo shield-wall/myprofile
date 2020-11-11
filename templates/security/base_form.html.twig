@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets encore_entry_link_tags('style') %}
+
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <!-- language -->
+            <div class="columns is-multiline">
+                <!-- form box -->
+                <div class="column is-8 is-offset-2">
+                    <div class="card">
+                        <div class="columns ">
+                            <div class="column has-background-primary has-text-white has-text-centered">
+                                <h1 class="is-hidden-desktop">{{ title|trans}}</h1>
+                                <div class="hero is-hidden-touch">
+                                    <div class="hero-body">
+                                        <h1 class="is-size-3" id="page-title">{{ title|trans }}</h1>
+                                        <h2 class="mt-1">{{ message|trans }}</h2>
+                                        <div class="mt-6">{{ icon|raw }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column has-background-white">
+                                {% block security_form %}{% endblock security_form %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-2 is-offset-8">
+                <div class="is-pulled-right">
+                    <a href="{{path(app.request.get('_route'), {'_locale': 'en'}) }}" class="button is-text is-small">English</a>
+                    <a href="{{path(app.request.get('_route'), {'_locale': 'pt_BR'}) }}" class="button is-text is-small">Português</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body %}

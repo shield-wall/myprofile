@@ -1,0 +1,25 @@
+page:
+  title:
+    login: Entrar
+    registration: Registrar
+    resetting: Redefinir senha
+
+security:
+  registration:
+    title: Registre-se
+    message: para usar todas as funcionalidades da aplicação
+    submit: Registrar
+  login:
+    title: Bem-vindo novamente!
+    message: Por favor, Informe seus dados para acessar sua conta
+    remember_me: Permanecer conectado
+    submit: Entrar
+  reset_password:
+    submit: Redefinir senha
+
+user:
+  first_name: Nome
+  last_name: Sobrenome
+  email: Email
+  password: Senha
+  password_confirmation: Repita a senha

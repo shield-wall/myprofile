@@ -1,0 +1,25 @@
+page:
+  title:
+    login: Welcome
+    registration: Sign up
+    resetting: Reset password
+
+security:
+  registration:
+    title: Hello, Friend!
+    submit: Sign up
+    message: Enter your personal detail and start journey with us
+  login:
+    title: Welcome back!
+    message: Please login to access your account
+    remember_me: Remember me
+    submit: Log in
+  reset_password:
+    submit: Reset password
+
+user:
+  first_name: First Name
+  last_name: Last Name
+  email: Email
+  password: Password
+  password_confirmation: Repeat password

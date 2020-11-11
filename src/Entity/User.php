@@ -39,12 +39,14 @@ class User implements UserInterface
     protected $email;
 
     /**
+     * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $first_name;
 
     /**
+     * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
@@ -163,6 +165,7 @@ class User implements UserInterface
 
     /**
      * @var string|null
+     * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(min=6)
      */
     private $plainPassword;

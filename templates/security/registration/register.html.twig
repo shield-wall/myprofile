@@ -1,0 +1,95 @@
+{% extends 'security/base_form.html.twig' %}
+
+{% block title 'page.title.registration'| trans %}
+
+{% set title = 'security.registration.title' %}
+{% set message = 'security.registration.message' %}
+{% set icon = '<i class="fa fa-check-circle fa-5x"></i>' %}
+
+{% block security_form %}
+    {{ form_start(registrationForm) }}
+
+    <div class="columns">
+        <div class="column is-6">
+            <div class="field">
+                {{ form_label(registrationForm.first_name) }}
+                <div class="control has-icons-left">
+                    {{ form_widget(registrationForm.first_name, {'attr': {'class': 'input'}}) }}
+                    <span class="icon is-small is-left">
+					<i class="fa fa-user"></i>
+				</span>
+                    {{ form_errors(registrationForm.first_name) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-6">
+            <div class="field">
+                {{ form_label(registrationForm.last_name) }}
+                <div class="control has-icons-left">
+                    {{ form_widget(registrationForm.last_name, {'attr': {'class': 'input'}}) }}
+                    <span class="icon is-small is-left">
+					<i class="fa fa-user"></i>
+				</span>
+                    {{ form_errors(registrationForm.last_name) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                {{ form_label(registrationForm.email) }}
+                <div class="control has-icons-left">
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'input'}}) }}
+                    <span class="icon is-small is-left">
+					<i class="fa fa-envelope"></i>
+				</span>
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                {{ form_label(registrationForm.plainPassword.first) }}
+                <div class="control has-icons-left">
+                    {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'input'}}) }}
+                    <span class="icon is-small is-left">
+					<i class="fa fa-lock"></i>
+				</span>
+                    {{ form_errors(registrationForm.plainPassword.first) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                {{ form_label(registrationForm.plainPassword.second) }}
+                <div class="control has-icons-left">
+                    {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'input'}}) }}
+                    <span class="icon is-small is-left">
+					<i class="fa fa-lock"></i>
+				</span>
+                    {{ form_errors(registrationForm.plainPassword.second) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <button type="submit" class="button is-primary">{{ 'security.registration.submit'|trans }}</button>
+                <a href="{{ path('app_login') }}" class="button is-text">{{ 'security.login.submit'|trans }}</a>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(registrationForm) }}
+{% endblock %}
