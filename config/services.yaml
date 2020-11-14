@@ -37,12 +37,6 @@ services:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'
 
-    App\EventListener\ChangePasswordListener:
-        arguments:
-            - '@router'
-        tags:
-            - { name: kernel.event_subscriber }
-
     App\EventSubscriber\SitemapSubscriber:
         arguments:
             $locales: '%locales%'

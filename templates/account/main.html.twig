@@ -1,6 +1,8 @@
-{% trans_default_domain 'MyProfile' %}
+{% extends 'profile/base.html.twig' %}
 
-{{ form_start(form, { 'action': path('profile_edit') }) }}
+{% block title %}{{'form.main.head.title'|trans}}{% endblock %}
+{% block body %}
+    {{ form_start(form, { 'action': path('profile_edit') }) }}
     <div class="columns">
         <div class="column">
             {{ form_label(form.slug) }}
@@ -31,5 +33,6 @@
     </div>
 
     {{ form_widget(form) }}
-	{% include "profile/partial/form/submit_button.html.twig" %}
-{{ form_end(form) }}
+    {% include "profile/partial/form/submit_button.html.twig" %}
+    {{ form_end(form) }}
+{% endblock body %}

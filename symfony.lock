@@ -87,9 +87,6 @@
     "egulias/email-validator": {
         "version": "2.1.11"
     },
-    "friendsofsymfony/user-bundle": {
-        "version": "v2.1.2"
-    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.39"
     },
@@ -308,7 +305,7 @@
         ]
     },
     "symfony/form": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/framework-bundle": {
         "version": "4.4",
@@ -343,10 +340,10 @@
         "version": "v4.4.1"
     },
     "symfony/inflector": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/intl": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/mailer": {
         "version": "4.3",
@@ -420,7 +417,7 @@
         ]
     },
     "symfony/polyfill-intl-icu": {
-        "version": "v1.13.1"
+        "version": "v1.20.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
@@ -447,7 +444,7 @@
         "version": "v1.0.4"
     },
     "symfony/property-access": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/routing": {
         "version": "4.2",
@@ -469,7 +466,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "4.4",
-            "ref": "30efd98dd3b4ead6e9ad4713b1efc43bbe94bf77"
+            "ref": "7b4408dc203049666fe23fabed23cbadc6d8440f"
         },
         "files": [
             "config/packages/security.yaml"
@@ -479,21 +476,18 @@
         "version": "v4.4.7"
     },
     "symfony/security-csrf": {
-        "version": "v4.4.7"
+        "version": "v4.4.16"
     },
     "symfony/security-guard": {
-        "version": "v4.4.7"
+        "version": "v4.4.16"
     },
     "symfony/security-http": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
     "symfony/stopwatch": {
-        "version": "v4.4.1"
-    },
-    "symfony/templating": {
         "version": "v4.4.1"
     },
     "symfony/test-pack": {

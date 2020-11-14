@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\User;
-use FOS\UserBundle\Form\Type\ProfileFormType;
 use Symfony\Component\Form\Extension\Core\Type\{BirthdayType,
     ChoiceType,
     FileType,
@@ -123,11 +122,6 @@ class ProfileType extends AbstractType
             'data_class' => User::class,
             'translation_domain' => 'MyProfile',
         ]);
-    }
-
-    public function getParent()
-    {
-        return ProfileFormType::class;
     }
 
     public function getBlockPrefix()
