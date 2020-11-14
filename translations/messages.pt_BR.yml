@@ -42,3 +42,8 @@ email:
   link_suggestion: Se isso não funcionar, copie e cole o seguinte link no seu navegador
   help: Se você tiver alguma dúvida, responda a este email, estaremos sempre dispostos a ajudar.
   signature: Equipe My profile
+
+site:
+  title_message: Crie seu currículo em PDF e site pessoal em poucos minutos!
+  registration: Criar meu currículo %year%
+  last_updates: Veja alguns exemplos de currículos
