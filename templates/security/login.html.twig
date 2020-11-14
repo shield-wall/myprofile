@@ -1,12 +1,11 @@
-{% extends 'security/base_form.html.twig' %}
+{% extends 'security/base.html.twig' %}
 
 {% block title 'page.title.login'| trans %}
-
 {% set title = 'security.login.title' %}
 {% set message = 'security.login.message' %}
 {% set icon = '<i class="fa fa-user-circle fa-5x"></i>' %}
 
-{% block security_form %}
+{% block security_content %}
 
     <div class="columns is-multiline is-marginless">
         <div class="column">
@@ -65,17 +64,26 @@
                 {% endif %}
 
                 <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <button type="submit" id="_submit" name="_submit"
-                                    class="button is-primary">{{ 'security.login.submit'|trans }}</button>
-                            <a href="{{ path('app_register') }}"
-                               class="button is-text">{{ 'security.registration.submit'| trans }}</a>
-                            <a href="{{ path('fos_user_resetting_request') }}"
-                               class="button is-text">{{ 'security.reset_password.submit' | trans }}</a>
-                        </div>
-                    </div>
+                    {% include 'component/buttons.html.twig' with {
+                        buttons : [
+                            {
+                                'type': 'submit',
+                                'name': 'security.login.submit'
+                            },
+                            {
+                                'type': 'link',
+                                'name': 'security.registration.submit',
+                                'link': path('app_register')
+                            },
+                            {
+                                'type': 'link',
+                                'name': 'security.reset_password.submit',
+                                'link': path('app_forgot_password_request')
+                            },
+                        ]
+                    } %}
                 </div>
+
             </form>
         </div>
     </div>

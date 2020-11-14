@@ -1,0 +1,24 @@
+{% extends 'security/base.html.twig' %}
+
+{% block title 'page.title.check_email'|trans %}
+{% set title = 'page.title.check_email' %}
+{#{% set message = 'security.reset_password.message' %}#}
+{% set icon = '<i class="fa fa-paper-plane fa-5x"></i>' %}
+
+{% block security_content %}
+    <div class="subtitle mt-6">
+        {{ 'security.change_password.message'|trans({'%try_again_link%': path("app_forgot_password_request") })|raw|nl2br }}
+    </div>
+
+    <div class="columns">
+        {% include 'component/buttons.html.twig' with {
+            buttons : [
+                {
+                    'type': 'link',
+                    'name': 'security.login.submit',
+                    'link': path('app_login')
+                },
+            ]
+        } %}
+    </div>
+{% endblock %}

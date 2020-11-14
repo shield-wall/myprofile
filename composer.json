@@ -24,6 +24,7 @@
         "symfony/twig-pack": "^1.0",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "^4.4",
+        "symfonycasts/reset-password-bundle": "^1.1",
         "symfonycasts/verify-email-bundle": "^1.0",
         "transloadit/php-sdk": "^2.1"
     },

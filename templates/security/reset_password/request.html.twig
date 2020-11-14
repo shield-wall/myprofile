@@ -1,0 +1,43 @@
+{% extends 'security/base.html.twig' %}
+
+{% block title 'page.title.reset_password'|trans %}
+{% set title = 'security.reset_password.title' %}
+{% set message = 'security.reset_password.message' %}
+{% set icon = '<i class="fa fa-key fa-5x"></i>' %}
+
+{% block security_content %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="notification is-primary" role="doc-notice">{{ flashError }}</div>
+    {% endfor %}
+
+    {{ form_start(requestForm) }}
+
+    <div class="columns">
+        {% include 'component/fields.html.twig' with {
+            'fields': [
+                {
+                    'name': requestForm.email,
+                    'icon': '<i class="fa fa-envelope"></i>'
+                },
+            ]
+        } %}
+    </div>
+
+    <div class="columns">
+        {% include 'component/buttons.html.twig' with {
+            buttons : [
+                {
+                    'type': 'submit',
+                    'name': 'security.reset_password.submit'
+                },
+                {
+                    'type': 'link',
+                    'name': 'security.login.submit',
+                    'link': path('app_login')
+                },
+            ]
+        } %}
+    </div>
+
+    {{ form_end(requestForm) }}
+{% endblock %}

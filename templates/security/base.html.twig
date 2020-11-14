@@ -12,17 +12,19 @@
                     <div class="card">
                         <div class="columns ">
                             <div class="column has-background-primary has-text-white has-text-centered">
-                                <h1 class="is-hidden-desktop">{{ title|trans}}</h1>
+                                <h1 class="is-hidden-desktop">{{ title|trans }}</h1>
                                 <div class="hero is-hidden-touch">
                                     <div class="hero-body">
                                         <h1 class="is-size-3" id="page-title">{{ title|trans }}</h1>
-                                        <h2 class="mt-1">{{ message|trans }}</h2>
+                                        {% if message is defined %}
+                                            <h2 class="mt-1">{{ message|trans }}</h2>
+                                        {% endif %}
                                         <div class="mt-6">{{ icon|raw }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="column has-background-white">
-                                {% block security_form %}{% endblock security_form %}
+                                {% block security_content %}{% endblock security_content %}
                             </div>
                         </div>
                     </div>
@@ -31,8 +33,9 @@
 
             <div class="column is-2 is-offset-8">
                 <div class="is-pulled-right">
-                    <a href="{{path(app.request.get('_route'), {'_locale': 'en'}) }}" class="button is-text is-small">English</a>
-                    <a href="{{path(app.request.get('_route'), {'_locale': 'pt_BR'}) }}" class="button is-text is-small">Português</a>
+                    <a href="{{ path(app.request.get('_route'), {'_locale': 'en'}) }}" class="button is-text is-small">English</a>
+                    <a href="{{ path(app.request.get('_route'), {'_locale': 'pt_BR'}) }}"
+                       class="button is-text is-small">Português</a>
                 </div>
             </div>
         </div>

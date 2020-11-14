@@ -2,7 +2,8 @@ page:
   title:
     login: Welcome
     registration: Sign up
-    resetting: Reset password
+    reset_password: Reset password
+    check_email: Password Reset Email Sent
 
 security:
   registration:
@@ -15,7 +16,16 @@ security:
     remember_me: Remember me
     submit: Log in
   reset_password:
+    title: Reset your password
+    message: Enter your email address and we will send you a link to reset your password.
     submit: Reset password
+  change_password:
+    message: |
+      An email has been sent that contains a link that you can click to reset your password. This link will expire in 1 hour.
+
+      If you don't receive an email please check your spam folder or <a href="%try_again_link%">try again</a>.
+
+
 
 user:
   first_name: First Name

@@ -2,7 +2,8 @@ page:
   title:
     login: Entrar
     registration: Registrar
-    resetting: Redefinir senha
+    reset_password: Redefinir senha
+    check_email: Email para redefinição de senha enviado
 
 security:
   registration:
@@ -15,7 +16,15 @@ security:
     remember_me: Permanecer conectado
     submit: Entrar
   reset_password:
+    title: Redefinir minha senha
+    message: Informe seu email e nós enviaremos um link para você resetar sua senha
     submit: Redefinir senha
+  change_password:
+    message: |
+      Foi enviado um email contendo um link no qual você pode clicar para redefinir sua senha. Este link irá expirar em 1 hora.
+
+      Se você não receber um email, verifique sua pasta de spam ou <a href="%try_again_link%">tente novamente</a>.
+
 
 user:
   first_name: Nome
