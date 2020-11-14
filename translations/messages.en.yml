@@ -25,11 +25,25 @@ security:
 
       If you don't receive an email please check your spam folder or <a href="%try_again_link%">try again</a>.
 
-
-
 user:
   first_name: First Name
   last_name: Last Name
   email: Email
   password: Password
   password_confirmation: Repeat password
+
+email:
+  registration:
+    is_verified: Your email address has been verified.
+    subject: Please Confirm your Email
+    title: Hi, %firstName% %lastName%
+    message: We're excited to have you get started. First, you need to confirm your account. Just press the button below.
+    message_hidden: We're thrilled to have you here! Get ready to dive into your new account.
+    button: Confirm your account
+  link_suggestion: If that does not work, copy and paste the following link in your browser
+  help: If you have any questions, just reply to this email, we're always happy to help out.
+  signature: |
+    Regards,
+    My profile Team
+
+

@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="fos_user")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  * @UniqueEntity("slug")
+ * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
@@ -32,7 +33,7 @@ class User implements UserInterface
     /**
      * @Assert\Length(max="200")
      * @Assert\Email
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=200, unique=true)
      *
      * @var string
      */

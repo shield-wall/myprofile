@@ -1,11 +1,9 @@
-<h1>Hi! Please confirm your email!</h1>
-
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAt|date('g') }} hour(s).
-</p>
-
-<p>
-    Cheers!
-</p>
+{% include 'component/email.html.twig' with {
+    'title': 'email.registration.title'|trans({ '%firstName%': user.firstName, '%lastName%': user.lastName }),
+    'message_hidden': 'email.registration.message_hidden'|trans,
+    'message': 'email.registration.message'|trans,
+    'button': {
+        'name' : 'email.registration.button'|trans,
+        'link': signedUrl
+    }
+} %}

@@ -6,10 +6,6 @@
 {% set icon = '<i class="fa fa-key fa-5x"></i>' %}
 
 {% block security_content %}
-    {% for flashError in app.flashes('reset_password_error') %}
-        <div class="notification is-primary" role="doc-notice">{{ flashError }}</div>
-    {% endfor %}
-
     {{ form_start(requestForm) }}
 
     <div class="columns">

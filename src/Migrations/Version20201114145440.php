@@ -36,7 +36,7 @@ final class Version20201114145440 extends AbstractMigration
         $this->addSql('ALTER TABLE fos_user DROP confirmation_token');
         $this->addSql('ALTER TABLE fos_user DROP password_requested_at');
         $this->addSql('ALTER TABLE fos_user ALTER email TYPE VARCHAR(200)');
-        $this->addSql('ALTER TABLE fos_user ALTER roles TYPE JSON');
+        $this->addSql('ALTER TABLE fos_user ALTER roles TYPE JSON USING to_json(roles)');
         $this->addSql('ALTER TABLE fos_user ALTER roles DROP DEFAULT');
         $this->addSql('ALTER TABLE fos_user RENAME COLUMN enabled TO is_verified');
         $this->addSql('COMMENT ON COLUMN fos_user.roles IS NULL');

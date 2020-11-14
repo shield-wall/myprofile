@@ -25,10 +25,20 @@ security:
 
       Se você não receber um email, verifique sua pasta de spam ou <a href="%try_again_link%">tente novamente</a>.
 
-
 user:
   first_name: Nome
   last_name: Sobrenome
   email: Email
   password: Senha
   password_confirmation: Repita a senha
+
+email:
+  registration:
+    subject: Por favor confirme seu email
+    title: Olá, %firstName% %lastName%
+    message: Estamos ansiosos para que você comece. Primeiro, você precisa confirmar sua conta. Basta pressionar o botão abaixo.
+    message_hidden: Estamos muito felizes em ter você aqui! Prepare-se para mergulhar em sua nova conta.
+    button: Confirme sua conta
+  link_suggestion: Se isso não funcionar, copie e cole o seguinte link no seu navegador
+  help: Se você tiver alguma dúvida, responda a este email, estaremos sempre dispostos a ajudar.
+  signature: Equipe My profile

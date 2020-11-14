@@ -330,6 +330,9 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.4.16"
+    },
     "symfony/http-client-contracts": {
         "version": "v2.3.1"
     },
