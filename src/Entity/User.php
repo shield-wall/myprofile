@@ -166,7 +166,7 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     * @Assert\NotBlank(groups={"registration"})
+     * @Assert\NotBlank(groups={"registration", "resetPassword"})
      * @Assert\Length(min=6)
      */
     private $plainPassword;

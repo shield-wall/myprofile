@@ -4,6 +4,8 @@ page:
     registration: Sign up
     reset_password: Reset password
     check_email: Password Reset Email Sent
+    account:
+      main: Main
 
 security:
   registration:
@@ -36,10 +38,17 @@ email:
   registration:
     is_verified: Your email address has been verified.
     subject: Please Confirm your Email
-    title: Hi, %firstName% %lastName%
     message: We're excited to have you get started. First, you need to confirm your account. Just press the button below.
     message_hidden: We're thrilled to have you here! Get ready to dive into your new account.
+    additional_info: This link will expire in %hour% hour.
     button: Confirm your account
+  reset_password:
+    subject: Your password reset request
+    message: You recently requested to reset your password for your My profile account. Click the link below to reset it.
+    message_hidden: Reset your password for your My profile account.
+    additional_info: This link will expire in %hour% hour.
+    button: Reset my password
+  hello: Hi, %firstName% %lastName%
   link_suggestion: If that does not work, copy and paste the following link in your browser
   help: If you have any questions, just reply to this email, we're always happy to help out.
   signature: |
@@ -51,4 +60,12 @@ site:
   registration: Make my curriculum vitae %year%
   last_updates: Look some curriculum vitae example
 
+messages:
+  item_saved: Save with success!
+  item_removed: Removed with success!
+  generate_curriculum: we're processing your curriculum and in few minutes it'll avaible to you download.
+  empty_list:
+    title: You have not any item
+    sub_title: Hey, But you can resolve it, clicking here
+    new_item: New item
 

@@ -1,6 +1,7 @@
 {% extends 'profile/base.html.twig' %}
 
-{% block title %}{{'form.main.head.title'|trans}}{% endblock %}
+{% block title 'page.title.account.main'|trans %}
+
 {% block body %}
     {{ form_start(form, { 'action': path('profile_edit') }) }}
     <div class="columns">

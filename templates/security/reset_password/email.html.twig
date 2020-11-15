@@ -1,9 +1,10 @@
-<h1>Hi!</h1>
-
-<p>To reset your password, please visit the following link</p>
-
-<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
-
-<p>This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
-
-<p>Cheers!</p>
+{% include 'component/email.html.twig' with {
+    'title': 'email.hello'|trans({ '%firstName%': user.firstName, '%lastName%': user.lastName }),
+    'message_hidden': 'email.reset_password.message_hidden'|trans,
+    'message': 'email.reset_password.message'|trans,
+    'additional_info': 'email.reset_password.additional_info'|trans({ '%hour%': tokenLifetime|date('g') }),
+    'button': {
+        'name' : 'email.reset_password.button'|trans,
+        'link': url('app_reset_password', {token: resetToken.token})
+    }
+} %}

@@ -4,6 +4,8 @@ page:
     registration: Registrar
     reset_password: Redefinir senha
     check_email: Email para redefinição de senha enviado
+    account:
+      main: Principal
 
 security:
   registration:
@@ -47,3 +49,12 @@ site:
   title_message: Crie seu currículo em PDF e site pessoal em poucos minutos!
   registration: Criar meu currículo %year%
   last_updates: Veja alguns exemplos de currículos
+
+messages:
+  item_saved: Salvo com sucesso!
+  item_removed: Removido com sucesso!
+  generate_curriculum: Estamos processando seu currículo e em alguns minutos ele estara disponível para você baixar.
+  empty_list:
+    title: Você não tem nenhum registro cadastrado
+    sub_title: Mas ei, você pode resolver isso clicando aqui
+    new_item: Novo registro
