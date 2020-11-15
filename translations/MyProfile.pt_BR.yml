@@ -1,3 +1,5 @@
+#PLEASE DO NOT CHANGE THIS FILE, IT WILL BE REMOVED.
+
 navegation:
   home: Início
   about: Sobre
@@ -146,3 +148,12 @@ form:
 language:
   english: Inglês
   portuguese: Português
+
+messages:
+  item_saved: Salvo com sucesso!
+  item_removed: Removido com sucesso!
+  generate_curriculum: Estamos processando seu currículo e em alguns minutos ele estara disponível para você baixar.
+  empty_list:
+    title: Você não tem nenhum registro cadastrado
+    sub_title: Mas ei, você pode resolver isso clicando aqui
+    new_item: Novo registro
