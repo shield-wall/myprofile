@@ -25,7 +25,7 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'validation_groups' => ['Default', 'resetPassword'],
+            'validation_groups' => ['resetPassword'],
             'data_class' => User::class,
         ]);
     }
