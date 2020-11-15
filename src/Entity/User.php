@@ -70,7 +70,7 @@ class User implements UserInterface
      * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $role;
+    protected $role = [];
 
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
