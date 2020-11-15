@@ -41,7 +41,9 @@ class ResetPasswordController extends AbstractController
     public function request(
         Request $request,
         MailerInterface $mailer,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        string $mailerFrom,
+        string $mailerFromName
     ): Response {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
@@ -50,7 +52,9 @@ class ResetPasswordController extends AbstractController
             return $this->processSendingPasswordResetEmail(
                 $form->get('email')->getData(),
                 $mailer,
-                $translator
+                $translator,
+                $mailerFrom,
+                $mailerFromName
             );
         }
 
@@ -138,7 +142,9 @@ class ResetPasswordController extends AbstractController
     private function processSendingPasswordResetEmail(
         string $emailFormData,
         MailerInterface $mailer,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        string $mailerFrom,
+        string $mailerFromName
     ): RedirectResponse {
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
             'email' => $emailFormData,
@@ -161,7 +167,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('contato@myprofile.pro', 'My profile'))
+            ->from(new Address($mailerFrom, $mailerFromName))
             ->to($user->getEmail())
             ->subject($translator->trans('email.reset_password.subject'))
             ->htmlTemplate('security/reset_password/email.html.twig')

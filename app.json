@@ -10,24 +10,15 @@
     "YARN_PRODUCTION": {
       "description" : "eg. true or false"
     },
-    "MAILER_TRANSPORT": {
-      "description" : "smtp",
+    "MAILER_DSN": {
+      "description" : "Add your mailer dsn, exaple: MAILER_DSN=mailgun://KEY:DOMAIN@default?region=us",
       "value": "smtp"
     },
-    "MAILER_HOST": {
-      "description": "info your host 127.0.0.1"
-    },
-    "MAILER_USER": {
-      "description": "report your user"
-    },
-    "MAILER_PASSWORD": {
-      "description": "report your password"
-    },
-    "MAILER_TO": {
-      "description": "report about your email for received eg: email_to@teste.com"
-    },
     "MAILER_FROM": {
-      "description": "report about your configured email email_from@teste.com"
+      "description": "Add your email that will be used to send emails."
+    },
+    "MAILER_FROM_NAME": {
+      "description": "Add your name that will be used to send emails."
     },
     "SENTRY_DSN": {
       "description": "Please set here SDK dsn sentry."

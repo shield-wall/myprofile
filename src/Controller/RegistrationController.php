@@ -34,7 +34,9 @@ class RegistrationController extends AbstractController
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
         FormAuthenticator $authenticator,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        string $mailerFrom,
+        string $mailerFromName
     ): Response
     {
         $user = new User();
@@ -57,7 +59,7 @@ class RegistrationController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('contato@myprofile.pro', 'My profile'))
+                    ->from(new Address($mailerFrom, $mailerFromName))
                     ->to($user->getEmail())
                     ->subject($translator->trans('email.registration.subject'))
                     ->htmlTemplate('security/registration/confirmation_email.html.twig')
