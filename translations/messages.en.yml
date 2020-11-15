@@ -4,6 +4,7 @@ page:
     registration: Sign up
     reset_password: Reset password
     check_email: Password Reset Email Sent
+    change_password: Change password
     account:
       main: Main
 
@@ -33,6 +34,7 @@ user:
   email: Email
   password: Password
   password_confirmation: Repeat password
+  current_password: Current password
 
 email:
   registration:

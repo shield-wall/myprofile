@@ -4,6 +4,7 @@ page:
     registration: Registrar
     reset_password: Redefinir senha
     check_email: Email para redefinição de senha enviado
+    change_password: Trocar senha
     account:
       main: Principal
 
@@ -33,6 +34,7 @@ user:
   email: Email
   password: Senha
   password_confirmation: Repita a senha
+  current_password: Senha atual
 
 email:
   registration:

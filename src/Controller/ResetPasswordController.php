@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ChangePasswordAccountFormType;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -181,5 +183,33 @@ class ResetPasswordController extends AbstractController
         $mailer->send($email);
 
         return $this->redirectToRoute('app_check_email');
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/change-pasword", name="app_change_password")
+     */
+    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(ChangePasswordAccountFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Encode the plain password, and set it.
+            $encodedPassword = $passwordEncoder->encodePassword(
+                $this->getUser(),
+                $form->get('plainPassword')->getData()
+            );
+
+            $user->setPassword($encodedPassword);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'messages.item_saved');
+        }
+
+        return $this->render('account/change-password.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
