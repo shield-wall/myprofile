@@ -87,9 +87,6 @@
     "egulias/email-validator": {
         "version": "2.1.11"
     },
-    "friendsofsymfony/user-bundle": {
-        "version": "v2.1.2"
-    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.39"
     },
@@ -219,9 +216,6 @@
             "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
-    "swiftmailer/swiftmailer": {
-        "version": "v6.2.3"
-    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -311,7 +305,7 @@
         ]
     },
     "symfony/form": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/framework-bundle": {
         "version": "4.4",
@@ -333,6 +327,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.4.16"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
+    },
     "symfony/http-foundation": {
         "version": "v4.4.1"
     },
@@ -340,10 +340,31 @@
         "version": "v4.4.1"
     },
     "symfony/inflector": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/intl": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
+    },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "15658c2a0176cda2e7dba66276a2030b52bd81b2"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
+    },
+    "symfony/mailgun-mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "addcb559b32d9dbb4843826b063565e1b15a2a57"
+        }
     },
     "symfony/maker-bundle": {
         "version": "1.0",
@@ -396,10 +417,13 @@
         ]
     },
     "symfony/polyfill-intl-icu": {
-        "version": "v1.13.1"
+        "version": "v1.20.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.20.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.13.1"
@@ -420,7 +444,7 @@
         "version": "v1.0.4"
     },
     "symfony/property-access": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/routing": {
         "version": "4.2",
@@ -442,7 +466,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "4.4",
-            "ref": "30efd98dd3b4ead6e9ad4713b1efc43bbe94bf77"
+            "ref": "7b4408dc203049666fe23fabed23cbadc6d8440f"
         },
         "files": [
             "config/packages/security.yaml"
@@ -452,35 +476,18 @@
         "version": "v4.4.7"
     },
     "symfony/security-csrf": {
-        "version": "v4.4.7"
+        "version": "v4.4.16"
     },
     "symfony/security-guard": {
-        "version": "v4.4.7"
+        "version": "v4.4.16"
     },
     "symfony/security-http": {
-        "version": "v4.4.1"
+        "version": "v4.4.16"
     },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
     "symfony/stopwatch": {
-        "version": "v4.4.1"
-    },
-    "symfony/swiftmailer-bundle": {
-        "version": "2.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.5",
-            "ref": "ae4d22af30bbd484506bc1817c5a3ef72c855b93"
-        },
-        "files": [
-            "config/packages/dev/swiftmailer.yaml",
-            "config/packages/swiftmailer.yaml",
-            "config/packages/test/swiftmailer.yaml"
-        ]
-    },
-    "symfony/templating": {
         "version": "v4.4.1"
     },
     "symfony/test-pack": {
@@ -576,6 +583,21 @@
     },
     "symfony/yaml": {
         "version": "v4.4.1"
+    },
+    "symfonycasts/reset-password-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "97c1627c0384534997ae1047b93be517ca16de43"
+        },
+        "files": [
+            "config/packages/reset_password.yaml"
+        ]
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.0.0"
     },
     "transloadit/php-sdk": {
         "version": "v2.1.0"

@@ -1,36 +1,36 @@
-{% trans_default_domain 'MyProfile' %}
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-    $notification = $delete.parentNode;
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            $notification = $delete.parentNode;
 
-    setTimeout(
-        function() {
-            $notification.parentNode.removeChild($notification);
-    }, 5000);
+            {% if auto_hide %}
+            setTimeout(
+                function () {
+                    $notification.parentNode.removeChild($notification);
+                }, 5000);
+            {% endif %}
 
-    $delete.addEventListener('click', () => {
-      $notification.parentNode.removeChild($notification);
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
     });
-  });
-});
 </script>
 
 <style>
-.notification {
-    position: fixed;
-    z-index: 1;
-    right: 10%;
-    bottom: 10%;
-}
+    .notification {
+        position: fixed;
+        z-index: 1;
+        right: 10%;
+        bottom: 10%;
+    }
 </style>
 
 {% for label, messages in app.flashes %}
-	{% for message in messages %}
-		<div class="notification is-{{label}}">
-			<button class="delete"></button>
-			{{ message|trans }}
-		</div>
-	{% endfor %}
+    {% for message in messages %}
+        <div class="notification is-{{ label }} is-light">
+            <button class="delete"></button>
+            {{ message|trans }}
+        </div>
+    {% endfor %}
 {% endfor %}

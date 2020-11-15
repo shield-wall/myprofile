@@ -1,0 +1,62 @@
+page:
+  title:
+    login: Entrar
+    registration: Registrar
+    reset_password: Redefinir senha
+    check_email: Email para redefinição de senha enviado
+    change_password: Trocar senha
+    account:
+      main: Principal
+
+security:
+  registration:
+    title: Registre-se
+    message: para usar todas as funcionalidades da aplicação
+    submit: Registrar
+  login:
+    title: Bem-vindo novamente!
+    message: Por favor, Informe seus dados para acessar sua conta
+    remember_me: Permanecer conectado
+    submit: Entrar
+  reset_password:
+    title: Redefinir minha senha
+    message: Informe seu email e nós enviaremos um link para você resetar sua senha
+    submit: Redefinir senha
+  change_password:
+    message: |
+      Foi enviado um email contendo um link no qual você pode clicar para redefinir sua senha. Este link irá expirar em 1 hora.
+
+      Se você não receber um email, verifique sua pasta de spam ou <a href="%try_again_link%">tente novamente</a>.
+
+user:
+  first_name: Nome
+  last_name: Sobrenome
+  email: Email
+  password: Senha
+  password_confirmation: Repita a senha
+  current_password: Senha atual
+
+email:
+  registration:
+    subject: Por favor confirme seu email
+    title: Olá, %firstName% %lastName%
+    message: Estamos ansiosos para que você comece. Primeiro, você precisa confirmar sua conta. Basta pressionar o botão abaixo.
+    message_hidden: Estamos muito felizes em ter você aqui! Prepare-se para mergulhar em sua nova conta.
+    button: Confirme sua conta
+  link_suggestion: Se isso não funcionar, copie e cole o seguinte link no seu navegador
+  help: Se você tiver alguma dúvida, responda a este email, estaremos sempre dispostos a ajudar.
+  signature: Equipe My profile
+
+site:
+  title_message: Crie seu currículo em PDF e site pessoal em poucos minutos!
+  registration: Criar meu currículo %year%
+  last_updates: Veja alguns exemplos de currículos
+
+messages:
+  item_saved: Salvo com sucesso!
+  item_removed: Removido com sucesso!
+  generate_curriculum: Estamos processando seu currículo e em alguns minutos ele estara disponível para você baixar.
+  empty_list:
+    title: Você não tem nenhum registro cadastrado
+    sub_title: Mas ei, você pode resolver isso clicando aqui
+    new_item: Novo registro

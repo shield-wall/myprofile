@@ -151,6 +151,6 @@ messages:
   item_removed: Removed with success!
   generate_curriculum: we're processing your curriculum and in few minutes it'll avaible to you download.
   empty_list:
-      title: You have not any item
-      sub_title: Hey, But you can resolve it, clicking here
-      new_item: New item
+    title: You have not any item
+    sub_title: Hey, But you can resolve it, clicking here
+    new_item: New item

@@ -41,7 +41,7 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile_edit');
         }
 
-        return $this->render('@FOSUser/Profile/edit.html.twig', array(
+        return $this->render('account/main.html.twig', array(
             'form' => $form->createView(),
         ));
     }

@@ -59,8 +59,8 @@ class SitemapSubscriber implements EventSubscriberInterface
     {
         $static_routers = [
             'app_homepage',
-            'fos_user_registration_register',
-            'fos_user_security_login',
+            'app_register',
+            'app_login',
         ];
 
         foreach ($static_routers as $static_router) {

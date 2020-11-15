@@ -1,0 +1,41 @@
+{% extends 'security/base.html.twig' %}
+
+{% block title 'page.title.reset_password'|trans %}
+{% set title = 'security.reset_password.title' %}
+{% set icon = '<i class="fa fa-key fa-5x"></i>' %}
+
+{% block security_content %}
+    {{ form_start(resetForm) }}
+    <div class="columns is-multiline">
+        {% include 'component/fields.html.twig' with {
+            'multiple': true,
+            'fields': [
+                {
+                    'name': resetForm.plainPassword.first,
+                    'icon': '<i class="fa fa-lock"></i>',
+                },
+                {
+                    'name': resetForm.plainPassword.second,
+                    'icon': '<i class="fa fa-lock"></i>',
+                },
+            ]
+        } %}
+    </div>
+
+    <div class="columns">
+        {% include 'component/buttons.html.twig' with {
+            buttons : [
+                {
+                    'type': 'submit',
+                    'name': 'security.reset_password.submit'
+                },
+                {
+                    'type': 'link',
+                    'name': 'security.login.submit',
+                    'link': path('app_login')
+                }
+            ]
+        } %}
+    </div>
+    {{ form_end(resetForm) }}
+{% endblock %}

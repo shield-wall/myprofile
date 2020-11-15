@@ -13,12 +13,17 @@ parameters:
     bucket.name: '%env(BUCKET_NAME)%'
     bucket.dns: '%env(BUCKET_DNS)%'
     cdn.dns: '%env(CDN_DNS)%'
+    mailer.from: '%env(MAILER_FROM)%'
+    mailer.from_name: '%env(MAILER_FROM_NAME)%'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            string $mailerFrom: '%mailer.from%'
+            string $mailerFromName: '%mailer.from_name%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -36,12 +41,6 @@ services:
     transloadit\Transloadit:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'
-
-    App\EventListener\ChangePasswordListener:
-        arguments:
-            - '@router'
-        tags:
-            - { name: kernel.event_subscriber }
 
     App\EventSubscriber\SitemapSubscriber:
         arguments:
