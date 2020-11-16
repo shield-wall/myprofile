@@ -67,10 +67,12 @@ class User implements UserInterface
     protected $headline;
 
     /**
+     * This field is used in user`s profile
+     *
      * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $role = [];
+    protected $role;
 
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
@@ -156,7 +158,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles = [];
 
     /**
      * @var string
