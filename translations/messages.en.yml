@@ -45,6 +45,7 @@ email:
     additional_info: This link will expire in %hour% hour.
     button: Confirm your account
   reset_password:
+    success_message: Password reseted with success!
     subject: Your password reset request
     message: You recently requested to reset your password for your My profile account. Click the link below to reset it.
     message_hidden: Reset your password for your My profile account.

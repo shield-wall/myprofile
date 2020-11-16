@@ -43,6 +43,14 @@ email:
     message: Estamos ansiosos para que você comece. Primeiro, você precisa confirmar sua conta. Basta pressionar o botão abaixo.
     message_hidden: Estamos muito felizes em ter você aqui! Prepare-se para mergulhar em sua nova conta.
     button: Confirme sua conta
+  reset_password:
+    success_message: Senha redefinida com sucesso!
+    subject: Sua solicitação de redefinição de senha
+    message: Recentemente, você solicitou a redefinição da senha da sua conta do My profile. Clique no link abaixo para redefini-la.
+    message_hidden: Redefina a senha da sua conta do My profile.
+    additional_info: Este link irá expirar em %hour% hora.
+    button: Resetar minha senha
+  hello: Olá, %firstName% %lastName%
   link_suggestion: Se isso não funcionar, copie e cole o seguinte link no seu navegador
   help: Se você tiver alguma dúvida, responda a este email, estaremos sempre dispostos a ajudar.
   signature: Equipe My profile
