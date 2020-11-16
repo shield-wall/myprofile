@@ -11,4 +11,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
 FROM base as dev
+RUN apt-get install -y git
 RUN pecl install xdebug && docker-php-ext-enable xdebug
