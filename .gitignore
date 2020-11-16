@@ -10,6 +10,10 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
