@@ -1,7 +1,5 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
-    fragments:
-        hinclude_default_template: hinclude.html.twig
-
     default_locale: en
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
