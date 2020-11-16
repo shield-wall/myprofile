@@ -1,8 +1,10 @@
-# TODO symfony 5.1 use priority: https://symfony.com/blog/new-in-symfony-5-1-route-annotations-priority
-# config/packages/presta_sitemap.yaml
 presta_sitemap:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
 
 controllers:
     resource: ../../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../../src/Kernel.php
     type: annotation

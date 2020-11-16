@@ -1,9 +1,10 @@
 security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         App\Entity\User: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -11,7 +12,6 @@ security:
             entity:
                 class: 'App\Entity\User'
                 property: 'username'
-
 
     firewalls:
         dev:
@@ -27,7 +27,7 @@ security:
                 path: app_logout
                 target: app_login
 
-            anonymous:    true
+            anonymous: true
             guard:
                 authenticators:
                     - App\Security\FormAuthenticator
@@ -41,6 +41,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
