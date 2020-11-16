@@ -6,6 +6,7 @@
         "php": "^7.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-intl" : "*",
         "doctrine/annotations": "^1.11",
         "presta/sitemap-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.6",
