@@ -1,3 +1,8 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: pt_BR
     locales: ['en', 'pt_BR']
@@ -28,15 +33,18 @@ services:
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/Controller'
-        tags:
-            - 'controller.service_arguments'
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
 
     transloadit\Transloadit:
         - key: '%transloadit.key%'
@@ -50,4 +58,4 @@ services:
 
     App\EventListener\UpdateCurriculumListener:
         tags:
-            - { name: doctrine.orm.entity_listener, lazy: true}
+            - { name: doctrine.orm.entity_listener, lazy: true }

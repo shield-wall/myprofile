@@ -4,7 +4,4 @@ twig:
         bucket_dns: '%bucket.dns%'
         cdn_dns: '%cdn.dns%'
     default_path: '%kernel.project_dir%/templates'
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
-    exception_controller: null
     form_themes: ['bulma_0_layout.html.twig']

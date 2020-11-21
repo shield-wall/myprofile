@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Migrations;
+namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200620144307 extends AbstractMigration
+final class Version20200914155828 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,14 +20,15 @@ final class Version20200620144307 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE IF EXISTS migration_versions');
+        $this->addSql('ALTER TABLE education ALTER title TYPE VARCHAR(200)');
+        $this->addSql('ALTER TABLE education ALTER institution TYPE VARCHAR(200)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('CREATE TABLE migration_versions (version VARCHAR(14) NOT NULL, executed_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(version))');
-        $this->addSql('COMMENT ON COLUMN migration_versions.executed_at IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('ALTER TABLE education ALTER title TYPE VARCHAR(150)');
+        $this->addSql('ALTER TABLE education ALTER institution TYPE VARCHAR(50)');
     }
 }
