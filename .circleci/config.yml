@@ -22,14 +22,13 @@ jobs:
             - v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
             - v4-build
       - run: echo 127.0.0.1 db | tee -a /etc/hosts
+      - attach_workspace:
+          at: /app
       - run: make init
       - save_cache:
           key: v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - vendor
-            - node_modules
-            - public
-            - bin/.phpunit
 
   webpack:
     executor: environment_configuration
@@ -78,16 +77,13 @@ jobs:
             - v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
             - v4-build
       - run: echo 127.0.0.1 db | tee -a /etc/hosts
-      - run: ls -l
       - attach_workspace:
           at: /app
+      - run: ls -l
       - run: make test
       - save_cache:
           key: v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
-            - vendor
-            - node_modules
-            - public
             - bin/.phpunit
 
 workflows:
