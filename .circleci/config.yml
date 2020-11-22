@@ -19,14 +19,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
-            - v4-build
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
       - run: echo 127.0.0.1 db | tee -a /etc/hosts
       - attach_workspace:
           at: /app
       - run: make init
       - save_cache:
-          key: v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+          key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - vendor
 
@@ -38,15 +38,15 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
-            - v4-build
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
       - run: ls -l
       - attach_workspace:
           at: /app
       - run: make yarn
       - run: ls -l
       - save_cache:
-          key: v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+          key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
             - public
@@ -62,8 +62,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
-            - v4-build
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
       - attach_workspace:
           at: /app
       - run: make phpcs
@@ -74,15 +74,15 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
-            - v4-build
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
       - run: echo 127.0.0.1 db | tee -a /etc/hosts
       - attach_workspace:
           at: /app
       - run: ls -l
       - run: make test
       - save_cache:
-          key: v4-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+          key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - bin/.phpunit
 
