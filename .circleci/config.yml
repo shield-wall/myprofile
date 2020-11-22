@@ -50,11 +50,11 @@ jobs:
           paths:
             - node_modules
             - public
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - node_modules
-            - public
+#      - persist_to_workspace:
+#          root: ./
+#          paths:
+#            - node_modules
+#            - public
 
   phpcs:
     executor: environment_configuration
