@@ -26,8 +26,7 @@ class ProfileController extends AbstractController
         Request $request,
         ProfileImageService $profileImageService,
         BackgroundImageService $backgroundImageService
-    )
-    {
+    ) {
         $user = $this->getUser();
         $form = $this->createForm('App\Form\ProfileType', $user);
         $form->handleRequest($request);

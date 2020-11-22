@@ -279,8 +279,9 @@ class User implements UserInterface
      */
     public function addEducations(Education $education)
     {
-        if (!$this->educations->contains($education))
+        if (!$this->educations->contains($education)) {
             $this->educations->add($education);
+        }
 
         return $this;
     }
@@ -299,8 +300,9 @@ class User implements UserInterface
      */
     public function addExperiences(Experience $experience)
     {
-        if (!$this->experiences->contains($experience))
+        if (!$this->experiences->contains($experience)) {
             $this->experiences->add($experience);
+        }
 
         return $this;
     }
@@ -319,8 +321,9 @@ class User implements UserInterface
      */
     public function addSkills(Skill $skill)
     {
-        if (!$this->skills->contains($skill))
+        if (!$this->skills->contains($skill)) {
             $this->skills->add($skill);
+        }
 
         return $this;
     }
@@ -339,8 +342,9 @@ class User implements UserInterface
      */
     public function addCertifications(Certification $certification)
     {
-        if (!$this->certifications->contains($certification))
+        if (!$this->certifications->contains($certification)) {
             $this->certifications->add($certification);
+        }
 
         return $this;
     }

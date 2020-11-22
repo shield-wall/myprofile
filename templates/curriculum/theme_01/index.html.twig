@@ -30,7 +30,7 @@
 
                     {% for social in user.getUserSocialNetworks() %}
                         <li>
-                            <i class="{{ social.social_networking.icon }}"></i>
+                            <i class="{{ social.socialNetworking.icon }}"></i>
                             {{ social.link | replace({'https://': '', 'http://': '', 'www.':''}) }}
                         </li>
                     {% endfor %}

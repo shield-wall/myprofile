@@ -43,7 +43,7 @@ class CertificationType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -62,6 +62,4 @@ class CertificationType extends AbstractType
     {
         return 'App_certification';
     }
-
-
 }

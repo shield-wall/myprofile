@@ -77,6 +77,5 @@ class SitemapSubscriber implements EventSubscriberInterface
                 );
             }
         }
-
     }
 }

@@ -32,7 +32,7 @@ class SkillType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -51,6 +51,4 @@ class SkillType extends AbstractType
     {
         return 'App_skill';
     }
-
-
 }

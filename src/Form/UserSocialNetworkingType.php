@@ -38,6 +38,4 @@ class UserSocialNetworkingType extends AbstractType
     {
         return 'App_usersocialnetworking';
     }
-
-
 }

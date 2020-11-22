@@ -60,6 +60,7 @@ jobs:
           at: /app
       - run: pwd
       - run: ls -l
+      - run: make phpcs
       - run: make test
       - save_cache:
           key: v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}

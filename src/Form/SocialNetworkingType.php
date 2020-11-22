@@ -15,7 +15,7 @@ class SocialNetworkingType extends AbstractType
     {
         $builder->add('name')->add('icon');
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -33,6 +33,4 @@ class SocialNetworkingType extends AbstractType
     {
         return 'App_socialnetworking';
     }
-
-
 }

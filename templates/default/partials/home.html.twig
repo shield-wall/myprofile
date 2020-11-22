@@ -7,8 +7,8 @@
         <div class="columns is-mobile is-centered social-icons">
                 {% for social in user.getUserSocialNetworks() %}
                     <div class="column is-narrow">
-                        <a href="{{ social.link }}" target="_blank" title="{{ social.social_networking.name }}">
-                            <i class="{{ social.social_networking.icon }}"></i>
+                        <a href="{{ social.link }}" target="_blank" title="{{ social.socialNetworking.name }}">
+                            <i class="{{ social.socialNetworking.icon }}"></i>
                         </a>
                     </div>
                 {% endfor %}

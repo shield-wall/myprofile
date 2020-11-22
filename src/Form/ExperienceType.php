@@ -39,7 +39,7 @@ class ExperienceType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -58,6 +58,4 @@ class ExperienceType extends AbstractType
     {
         return 'App_experience';
     }
-
-
 }
