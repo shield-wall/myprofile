@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  heroku: circleci/heroku@1.2.3
 
 executors:
   environment_configuration:
@@ -86,18 +88,48 @@ jobs:
           paths:
             - bin/.phpunit
 
+  pr_deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+#      - attach_workspace:
+#            at: /app
+#      - restore_cache:
+#          keys:
+#            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+#            - v5-build
+#      - run:
+#          name: Create App
+#          command: |
+#            heroku create staging-myprofile-pr-400
+#            exit 0
+      - run:
+          name: Authenticate in heroku
+          command: |
+            heroku config:set USERNAME=$HEROKU_USERNAME
+            heroku config:set PASSWORD=$HEROKU_API_KEY
+      - heroku/release-docker-image:
+          app-name: staging-myprofile-pr-400
+      - heroku/push-docker-image:
+          app-name: staging-myprofile-pr-400
+
 workflows:
   version: 2.1
   build-and-test:
     jobs:
-      - composer
-      - webpack:
-          requires:
-            - composer
-      - phpcs:
-          requires:
-            - composer
-      - phpunit:
-          requires:
-            - webpack
-            - phpcs
+#      - composer
+#      - webpack:
+#          requires:
+#            - composer
+#      - phpcs:
+#          requires:
+#            - composer
+#      - phpunit:
+#          requires:
+#            - webpack
+#            - phpcs
+#      - heroku_pr_deploy:
+#          requires:
+#            - phpunit
+      - pr_deploy
