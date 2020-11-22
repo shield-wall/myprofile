@@ -13,7 +13,7 @@ executors:
     working_directory: /app
 
 jobs:
-  build-composer:
+  composer:
     executor: environment_configuration
     steps:
       - checkout
@@ -27,7 +27,7 @@ jobs:
           paths:
             - vendor
 
-  build-webpack:
+  webpack:
     executor: environment_configuration
     docker:
       - image: node:10
@@ -57,7 +57,7 @@ jobs:
           at: /app
       - run: make phpcs
 
-  test:
+  phpunit:
     executor: environment_configuration
     steps:
       - checkout
@@ -79,13 +79,14 @@ workflows:
   version: 2.1
   build-and-test:
     jobs:
-      - build-composer
-      - build-webpack:
+      - composer
+      - webpack:
           requires:
-            - build-composer
+            - composer
       - phpcs:
           requires:
-            - build-webpack
-      - test:
+            - composer
+      - phpunit:
           requires:
-            - build-webpack
+            - webpack
+            - phpcs
