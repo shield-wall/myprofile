@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  build:
+  environment_configuration:
     docker:
       - image: eerison/myprofile
         environment:
@@ -13,71 +13,91 @@ executors:
     working_directory: /app
 
 jobs:
-  build-composer:
-    executor: build
+  composer:
+    executor: environment_configuration
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
       - run: echo 127.0.0.1 db | tee -a /etc/hosts
+      - attach_workspace:
+          at: /app
       - run: make init
-      - persist_to_workspace:
-          root: ./
+      - save_cache:
+          key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - vendor
 
-  build-webpack:
-    executor: build
+  webpack:
+    executor: environment_configuration
     docker:
       - image: node:10
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
+      - run: ls -l
       - attach_workspace:
           at: /app
-      - run: pwd
-      - run: ls -l
-      - run: ls -l vendor
       - run: make yarn
+      - run: ls -l
+      - save_cache:
+          key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - public
       - persist_to_workspace:
           root: ./
           paths:
             - node_modules
             - public
 
-  test:
-    executor: build
+  phpcs:
+    executor: environment_configuration
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
+      - attach_workspace:
+          at: /app
+      - run: make phpcs
+
+  phpunit:
+    executor: environment_configuration
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
+            - v5-build
       - run: echo 127.0.0.1 db | tee -a /etc/hosts
       - attach_workspace:
           at: /app
-      - run: pwd
       - run: ls -l
-      - run: make phpcs
       - run: make test
       - save_cache:
-          key: v2-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}-{{ checksum "phpunit.xml.dist" }}
+          key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
-            - vendor
-            - node_modules
-            - public
             - bin/.phpunit
 
 workflows:
   version: 2.1
   build-and-test:
     jobs:
-      - build-composer
-      - build-webpack:
+      - composer
+      - webpack:
           requires:
-            - build-composer
-      - test:
+            - composer
+      - phpcs:
           requires:
-            - build-webpack
+            - composer
+      - phpunit:
+          requires:
+            - webpack
+            - phpcs
