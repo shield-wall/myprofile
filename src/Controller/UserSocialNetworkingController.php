@@ -7,6 +7,7 @@ use App\Repository\UserSocialNetworkingRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -23,8 +24,10 @@ class UserSocialNetworkingController extends AbstractController
      * Lists all userSocialNetworking entities.
      *
      * @Route("/", name="index", methods={"GET"})
+     *
+     * @param UserSocialNetworkingRepository $userSocialNetworkingRepository
      */
-    public function indexAction(UserSocialNetworkingRepository $userSocialNetworkingRepository)
+    public function indexAction(UserSocialNetworkingRepository $userSocialNetworkingRepository): Response
     {
         $userSocialNetworkings = $userSocialNetworkingRepository->findBy(['user' => $this->getUser()]);
 
@@ -37,8 +40,11 @@ class UserSocialNetworkingController extends AbstractController
      * Creates a new userSocialNetworking entity.
      *
      * @Route("/new", name="new", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @return Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $userSocialNetworking = new Usersocialnetworking();
         $userSocialNetworking->setUser($this->getUser());
@@ -73,9 +79,14 @@ class UserSocialNetworkingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            
+
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_usersocialnetworking_index', array('id' => $userSocialNetworking->getId()));
+            return $this->redirectToRoute(
+                'user_usersocialnetworking_index',
+                [
+                    'id' => $userSocialNetworking->getId()
+                ]
+            );
         }
 
         return $this->render('usersocialnetworking/save.html.twig', array(
@@ -89,10 +100,14 @@ class UserSocialNetworkingController extends AbstractController
      *
      * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == userSocialNetworking.getUser()")
+     *
+     * @param Request $request
+     * @param UserSocialNetworking $userSocialNetworking
+     * @return Response
      */
-    public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking)
+    public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$userSocialNetworking->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $userSocialNetworking->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($userSocialNetworking);
             $entityManager->flush();

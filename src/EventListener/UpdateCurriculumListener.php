@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\EventListener;
 
 use App\Entity\User;
@@ -20,8 +19,9 @@ class UpdateCurriculumListener
 
     public function postPersist($entity)
     {
-        if ($entity instanceof User)
+        if ($entity instanceof User) {
             return;
+        }
 
         $this->curriculumService->makePdfOnTransloadit($this->user);
     }
@@ -29,8 +29,9 @@ class UpdateCurriculumListener
     public function postUpdate($entity)
     {
         # TODO when the user is creating a new account this variable come null.
-        if (null === $this->user)
+        if (null === $this->user) {
             return;
+        }
 
         $this->curriculumService->makePdfOnTransloadit($this->user);
     }

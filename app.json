@@ -11,8 +11,7 @@
       "description" : "eg. true or false"
     },
     "MAILER_DSN": {
-      "description" : "Add your mailer dsn, exaple: MAILER_DSN=mailgun://KEY:DOMAIN@default?region=us",
-      "value": "smtp"
+      "description" : "Add your mailer dsn, exaple: MAILER_DSN=mailgun://KEY:DOMAIN@default?region=us"
     },
     "SENTRY_DSN": {
       "description": "Please set here SDK dsn sentry."

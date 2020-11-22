@@ -37,7 +37,8 @@ class DefaultController extends AbstractController
 
     /**
      * _locale need to be the last parameter because it'll be curriculum name.
-     * I removed _locale default from Class because here it's required, but it can be resolved creating other controller.
+     * I removed _locale default from Class because here it's required,
+     *      but it can be resolved creating other controller.
      *
      * @Route("/{slug}/curriculum/{_locale}", name="curriculum")
      */

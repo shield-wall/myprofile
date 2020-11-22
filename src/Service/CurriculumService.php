@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -19,8 +17,7 @@ class CurriculumService
         Transloadit $transloadit,
         UrlGeneratorInterface $router,
         ParameterBagInterface $params
-    )
-    {
+    ) {
         $this->router = $router;
         $this->transloadit = $transloadit;
         $this->params = $params;
@@ -28,8 +25,9 @@ class CurriculumService
 
     public function makePdfOnTransloadit($user)
     {
-        if (!$this->params->get('transloadit.delivery'))
+        if (!$this->params->get('transloadit.delivery')) {
             return;
+        }
 
         $url_prefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
 

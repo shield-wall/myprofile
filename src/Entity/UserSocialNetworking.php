@@ -4,10 +4,18 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="user_social_networking",uniqueConstraints={@ORM\UniqueConstraint(name="relations_idx", columns={"user_id", "social_networking_id"})})
+ * @ORM\Table(
+ *     name="user_social_networking",
+ *     uniqueConstraints={
+ *          @ORM\UniqueConstraint(
+ *              name="relations_idx",
+ *              columns={"user_id", "social_networking_id"})
+ *      }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  * @UniqueEntity("social_networking")
@@ -60,10 +68,10 @@ class UserSocialNetworking
     }
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      * @return UserSocialNetworking
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
 
@@ -127,13 +135,10 @@ class UserSocialNetworking
     }
 
     /**
-     * Set socialNetworking
-     *
-     * @param \App\Entity\SocialNetworking $socialNetworking
-     *
-     * @return UserSocialNetworking
+     * @param SocialNetworking|null $socialNetworking
+     * @return $this
      */
-    public function setSocialNetworking(\App\Entity\SocialNetworking $socialNetworking = null)
+    public function setSocialNetworking(SocialNetworking $socialNetworking = null)
     {
         $this->social_networking = $socialNetworking;
 
@@ -143,19 +148,9 @@ class UserSocialNetworking
     /**
      * Get socialNetworking
      *
-     * @return \App\Entity\SocialNetworking
+     * @return SocialNetworking
      */
     public function getSocialNetworking()
-    {
-        return $this->social_networking;
-    }
-
-    /**
-     * Get socialNetworking
-     *
-     * @return \App\Entity\SocialNetworking
-     */
-    public function getSocial_networking()
     {
         return $this->social_networking;
     }

@@ -11,6 +11,9 @@ init:
 test:
 	bin/phpunit
 
+phpcs:
+	vendor/bin/phpcs
+
 restart:
 	docker-compose restart
 

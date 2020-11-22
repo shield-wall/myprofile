@@ -39,7 +39,7 @@ class EducationType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -58,6 +58,4 @@ class EducationType extends AbstractType
     {
         return 'App_education';
     }
-
-
 }

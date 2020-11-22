@@ -37,8 +37,7 @@ class RegistrationController extends AbstractController
         TranslatorInterface $translator,
         string $mailerFrom,
         string $mailerFromName
-    ): Response
-    {
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -57,7 +56,9 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
                 (new TemplatedEmail())
                     ->from(new Address($mailerFrom, $mailerFromName))
                     ->to($user->getEmail())
