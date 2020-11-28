@@ -9,6 +9,7 @@
     <arg name="extensions" value="php"/>
 
     <rule ref="PSR12"/>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
 
     <file>src/</file>
 

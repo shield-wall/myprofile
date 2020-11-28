@@ -24,7 +24,7 @@ class ExperienceController extends AbstractController
      */
     public function indexAction(ExperienceRepository $experienceRepository)
     {
-        $experiences = $experienceRepository->findBy(['user_id' => $this->getUser()]);
+        $experiences = $experienceRepository->findBy(['user' => $this->getUser()]);
 
         return $this->render('experience/index.html.twig', array(
             'experiences' => $experiences,
@@ -39,7 +39,7 @@ class ExperienceController extends AbstractController
     public function newAction(Request $request)
     {
         $experience = new Experience();
-        $experience->setUserId($this->getUser());
+        $experience->setUser($this->getUser());
         $form = $this->createForm('App\Form\ExperienceType', $experience);
         $form->handleRequest($request);
 
@@ -60,7 +60,7 @@ class ExperienceController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
-     * @Security("user == experience.getUserId()")
+     * @Security("user == experience.getUser()")
      */
     public function editAction(Request $request, Experience $experience)
     {
@@ -82,7 +82,7 @@ class ExperienceController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @Security("user == experience.getUserId()")
+     * @Security("user == experience.getUser()")
      */
     public function deleteAction(Request $request, Experience $experience)
     {

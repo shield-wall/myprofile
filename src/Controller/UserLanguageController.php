@@ -39,7 +39,7 @@ class UserLanguageController extends AbstractController
     public function new(Request $request): Response
     {
         $userLanguage = new UserLanguage();
-        $userLanguage->setUserId($this->getUser());
+        $userLanguage->setUser($this->getUser());
         $form = $this->createForm(UserLanguageType::class, $userLanguage);
         $form->handleRequest($request);
 
@@ -60,7 +60,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
-     * @Security("user == userLanguage.getUserId()")
+     * @Security("user == userLanguage.getUser()")
      */
     public function edit(Request $request, UserLanguage $userLanguage): Response
     {
@@ -82,7 +82,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @Security("user == userLanguage.getUserId()")
+     * @Security("user == userLanguage.getUser()")
      */
     public function delete(Request $request, UserLanguage $userLanguage): Response
     {

@@ -6,11 +6,11 @@
     <table class="table table-hover">
         <thead>
             <tr>
+                <th>Photo</th>
                 <th>Id</th>
                 <th>First_name</th>
                 <th>Last_name</th>
                 <th>Role</th>
-                <th>Photo</th>
                 <th>Gender</th>
                 <th>Birthday</th>
                 <th>Status</th>
@@ -20,15 +20,15 @@
         <tbody>
         {% for user in users %}
             <tr>
+                <td><img src="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage()}}" class="image is-48x48 is-rounded"/></td>
                 <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.role }}</td>
-                <td>{% if user.photo %}<img src="{{ user.photo }}" class="img-thumbnail" style="width: 50px"/>{% endif %}</td>
                 <td>{{ user.gender }}</td>
                 <td>{% if user.birthday %}{{ user.birthday|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    {%  if user.enabled %}
+                    {%  if user.verified %}
                         <i class="fa fa-check text-success"></i>
                     {% else %}
                         <i class="fa fa-close text-danger"></i>

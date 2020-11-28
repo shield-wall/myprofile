@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
 
 /**
  * @ORM\Table(name="experience")
@@ -16,122 +17,124 @@ class Experience
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="experiences")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     * @var User
      */
-    protected $user_id;
+    protected $user;
 
     /**
      * @Assert\Length(max="150")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=150, nullable=false)
+     * @ORM\Column(type="string", length=150)
+     *
+     * @var string
      */
     protected $title;
 
     /**
      * @Assert\Length(max="50")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=50)
+     *
+     * @var string
      */
     protected $company;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text")
+     *
+     * @var $description
      */
     protected $description;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="date")
+     *
+     * @var DateTimeInterface
      */
-    protected $period_start;
+    protected $periodStart;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     *
+     * @var DateTimeInterface|null
      */
-    protected $period_end;
+    protected $periodEnd;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
      * @return Experience
      */
-    public function setTitle($title)
+    public function setUser(User $user): Experience
     {
-        $this->title = $title;
-
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Set company
-     *
-     * @param string $company
-     *
+     * @param string $title
      * @return Experience
      */
-    public function setCompany($company)
+    public function setTitle(string $title): Experience
     {
-        $this->company = $company;
-
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get company
-     *
      * @return string
      */
-    public function getCompany()
+    public function getCompany(): string
     {
         return $this->company;
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     *
+     * @param string $company
      * @return Experience
      */
-    public function setDescription($description)
+    public function setCompany(string $company): Experience
     {
-        $this->description = $description;
-
+        $this->company = $company;
         return $this;
     }
 
     /**
-     * Get description
-     *
-     * @return string
+     * @return mixed
      */
     public function getDescription()
     {
@@ -139,74 +142,48 @@ class Experience
     }
 
     /**
-     * Set periodStart
-     *
-     * @param \DateTime $periodStart
-     *
+     * @param mixed $description
      * @return Experience
      */
-    public function setPeriodStart($periodStart)
+    public function setDescription($description)
     {
-        $this->period_start = $periodStart;
-
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * Get periodStart
-     *
-     * @return \DateTime
+     * @return DateTimeInterface
      */
-    public function getPeriodStart()
+    public function getPeriodStart(): ?DateTimeInterface
     {
-        return $this->period_start;
+        return $this->periodStart;
     }
 
     /**
-     * Set periodEnd
-     *
-     * @param \DateTime $periodEnd
-     *
+     * @param DateTimeInterface $periodStart
      * @return Experience
      */
-    public function setPeriodEnd(\DateTime $periodEnd = null)
+    public function setPeriodStart(DateTimeInterface $periodStart): Experience
     {
-        $this->period_end = $periodEnd;
-
+        $this->periodStart = $periodStart;
         return $this;
     }
 
     /**
-     * Get periodEnd
-     *
-     * @return \DateTime
+     * @return DateTimeInterface|null
      */
-    public function getPeriodEnd()
+    public function getPeriodEnd(): ?DateTimeInterface
     {
-        return $this->period_end;
+        return $this->periodEnd;
     }
 
     /**
-     * Set userId
-     *
-     * @param \App\Entity\User $userId
-     *
+     * @param DateTimeInterface|null $periodEnd
      * @return Experience
      */
-    public function setUserId(\App\Entity\User $userId = null)
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): Experience
     {
-        $this->user_id = $userId;
-
+        $this->periodEnd = $periodEnd;
         return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return \App\Entity\User
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 }

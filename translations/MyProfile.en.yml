@@ -99,7 +99,7 @@ form:
   social_network:
     head:
       title: Social network
-    social_network: Social network
+    socialNetwork: Social network
 
   education:
     head:
