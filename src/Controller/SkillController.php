@@ -24,7 +24,7 @@ class SkillController extends AbstractController
      */
     public function indexAction(SkillRepository $skillRepository)
     {
-        $skills = $skillRepository->findBy(['user_id' => $this->getUser()]);
+        $skills = $skillRepository->findBy(['user' => $this->getUser()]);
 
         return $this->render('skill/index.html.twig', array(
             'skills' => $skills,
@@ -37,7 +37,7 @@ class SkillController extends AbstractController
     public function newAction(Request $request)
     {
         $skill = new Skill();
-        $skill->setUserId($this->getUser());
+        $skill->setUser($this->getUser());
         $form = $this->createForm('App\Form\SkillType', $skill);
         $form->handleRequest($request);
 
@@ -58,7 +58,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
-     * @Security("user == skill.getUserId()")
+     * @Security("user == skill.getUser()")
      */
     public function editAction(Request $request, Skill $skill)
     {
@@ -80,7 +80,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @Security("user == skill.getUserId()")
+     * @Security("user == skill.getUser()")
      */
     public function deleteAction(Request $request, Skill $skill)
     {

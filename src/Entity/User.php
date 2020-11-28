@@ -44,18 +44,18 @@ class User implements UserInterface
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $first_name;
+    protected $firstName;
 
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $last_name;
+    protected $lastName;
 
     /**
      * @Assert\Length(max="50")
-     * @Gedmo\Slug(fields={"first_name", "last_name", "id"}, updatable=false, unique=false)
+     * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
      */
     private $slug;
@@ -119,28 +119,28 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
      */
-    protected $user_social_networks;
+    protected $userSocialNetworks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Education", mappedBy="user_id")
-     * @ORM\OrderBy({"period_start" = "DESC"})
+     * @ORM\OneToMany(targetEntity="Education", mappedBy="user")
+     * @ORM\OrderBy({"periodStart" = "DESC"})
      */
     protected $educations;
 
     /**
-     * @ORM\OneToMany(targetEntity="Experience", mappedBy="user_id")
-     * @ORM\OrderBy({"period_start" = "DESC"})
+     * @ORM\OneToMany(targetEntity="Experience", mappedBy="user")
+     * @ORM\OrderBy({"periodStart" = "DESC"})
      */
     protected $experiences;
 
     /**
-     * @ORM\OneToMany(targetEntity="Skill", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="Skill", mappedBy="user")
      * @ORM\OrderBy({"priority" = "ASC"})
      */
     protected $skills;
 
     /**
-     * @ORM\OneToMany(targetEntity="Certification", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="Certification", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
     protected $certifications;
@@ -151,7 +151,7 @@ class User implements UserInterface
     protected $keyWords;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserLanguage", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
      */
     private $userLanguages;
 
@@ -199,7 +199,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->user_social_networks = new ArrayCollection();
+        $this->userSocialNetworks = new ArrayCollection();
         $this->educations = new ArrayCollection();
         $this->experiences = new ArrayCollection();
         $this->skills = new ArrayCollection();
@@ -250,7 +250,7 @@ class User implements UserInterface
      */
     public function getUserSocialNetworks()
     {
-        return $this->user_social_networks;
+        return $this->userSocialNetworks;
     }
 
     public function setUserSocialNetworks(UserSocialNetworking $socialNetworking)
@@ -409,16 +409,16 @@ class User implements UserInterface
      */
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
-     * @param mixed $first_name
+     * @param mixed $firstName
      * @return User
      */
-    public function setFirstName($first_name)
+    public function setFirstName($firstName)
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
         return $this;
     }
 
@@ -427,16 +427,16 @@ class User implements UserInterface
      */
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     /**
-     * @param mixed $last_name
+     * @param mixed $lastName
      * @return User
      */
-    public function setLastName($last_name)
+    public function setLastName($lastName)
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
         return $this;
     }
 
@@ -575,7 +575,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $keyWords
+     * @param string|null $keyWords
      * @return User
      */
     public function setKeyWords(?string $keyWords)
@@ -611,7 +611,7 @@ class User implements UserInterface
     {
         if (!$this->userLanguages->contains($userLanguage)) {
             $this->userLanguages[] = $userLanguage;
-            $userLanguage->setUserId($this);
+            $userLanguage->setUser($this);
         }
 
         return $this;
@@ -622,8 +622,8 @@ class User implements UserInterface
         if ($this->userLanguages->contains($userLanguage)) {
             $this->userLanguages->removeElement($userLanguage);
             // set the owning side to null (unless already changed)
-            if ($userLanguage->getUserId() === $this) {
-                $userLanguage->setUserId(null);
+            if ($userLanguage->getUser() === $this) {
+                $userLanguage->setUser(null);
             }
         }
 

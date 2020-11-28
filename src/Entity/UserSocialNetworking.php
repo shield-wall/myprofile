@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -18,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- * @UniqueEntity("social_networking")
+ * @UniqueEntity("socialNetworking")
  */
 class UserSocialNetworking
 {
@@ -26,132 +25,94 @@ class UserSocialNetworking
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $user_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $social_networking_id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="user_social_networks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userSocialNetworks")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     * @var User
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SocialNetworking", inversedBy="user_social_networks", fetch="EAGER")
-     * @ORM\JoinColumn(name="social_networking_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="SocialNetworking", inversedBy="userSocialNetworks", fetch="EAGER")
+     * @ORM\JoinColumn(name="social_networking_id", referencedColumnName="id", nullable=false)
+     *
+     * @var SocialNetworking|null
      */
-    protected $social_networking;
+    protected $socialNetworking;
 
     /**
      * @Assert\Length(max="200")
      * @ORM\Column(type="string", length=200)
+     *
+     * @var string
      */
     protected $link;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param UserInterface $user
-     * @return UserSocialNetworking
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
      * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
 
     /**
-     * Set socialNetworkingId
-     *
-     * @param integer $socialNetworkingId
-     *
+     * @param User $user
      * @return UserSocialNetworking
      */
-    public function setSocialNetworkingId($socialNetworkingId)
+    public function setUser(User $user): UserSocialNetworking
     {
-        $this->social_networking_id = $socialNetworkingId;
-
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * Get socialNetworkingId
-     *
-     * @return integer
+     * @return SocialNetworking|null
      */
-    public function getSocialNetworkingId()
+    public function getSocialNetworking(): ?SocialNetworking
     {
-        return $this->social_networking_id;
+        return $this->socialNetworking;
     }
 
     /**
-     * Set link
-     *
-     * @param string $link
-     *
+     * @param SocialNetworking|null $socialNetworking
      * @return UserSocialNetworking
      */
-    public function setLink($link)
+    public function setSocialNetworking(?SocialNetworking $socialNetworking): UserSocialNetworking
     {
-        $this->link = $link;
-
+        $this->socialNetworking = $socialNetworking;
         return $this;
     }
 
     /**
-     * Get link
-     *
      * @return string
      */
-    public function getLink()
+    public function getLink(): string
     {
         return $this->link;
     }
 
     /**
-     * @param SocialNetworking|null $socialNetworking
-     * @return $this
+     * @param string $link
+     * @return UserSocialNetworking
      */
-    public function setSocialNetworking(SocialNetworking $socialNetworking = null)
+    public function setLink(string $link): UserSocialNetworking
     {
-        $this->social_networking = $socialNetworking;
-
+        $this->link = $link;
         return $this;
-    }
-
-    /**
-     * Get socialNetworking
-     *
-     * @return SocialNetworking
-     */
-    public function getSocialNetworking()
-    {
-        return $this->social_networking;
     }
 }

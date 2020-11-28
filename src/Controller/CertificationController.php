@@ -24,7 +24,7 @@ class CertificationController extends AbstractController
      */
     public function indexAction(CertificationRepository $certificationRepository)
     {
-        $certifications = $certificationRepository->findBy(['user_id' => $this->getUser()]);
+        $certifications = $certificationRepository->findBy(['user' => $this->getUser()]);
 
         return $this->render('certification/index.html.twig', array(
             'certifications' => $certifications,
@@ -37,7 +37,7 @@ class CertificationController extends AbstractController
     public function newAction(Request $request)
     {
         $certification = new Certification();
-        $certification->setUserId($this->getUser());
+        $certification->setUser($this->getUser());
         $form = $this->createForm('App\Form\CertificationType', $certification);
         $form->handleRequest($request);
 
@@ -58,7 +58,7 @@ class CertificationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
-     * @Security("user == certification.getUserId()")
+     * @Security("user == certification.getUser()")
      */
     public function editAction(Request $request, Certification $certification)
     {
@@ -82,7 +82,7 @@ class CertificationController extends AbstractController
      * Deletes a certification entity.
      *
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @Security("user == certification.getUserId()")
+     * @Security("user == certification.getUser()")
      */
     public function deleteAction(Request $request, Certification $certification)
     {

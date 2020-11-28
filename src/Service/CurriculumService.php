@@ -29,7 +29,7 @@ class CurriculumService
             return;
         }
 
-        $url_prefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
+        $urlPrefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
 
         $this->transloadit->createAssembly([
             'params' => [
@@ -43,7 +43,7 @@ class CurriculumService
                     ],
                     'store' => [
                         'credentials' => $this->params->get('transloadit.credentials'),
-                        'url_prefix' => $url_prefix,
+                        'url_prefix' => $urlPrefix,
                         'path' => sprintf('%s${file.name}', $user->getCurriculumPath()),
                     ],
                 ],

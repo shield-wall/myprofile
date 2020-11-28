@@ -26,7 +26,7 @@ class EducationController extends AbstractController
      */
     public function indexAction(EducationRepository $educationRepository)
     {
-        $educations = $educationRepository->findBy(['user_id' => $this->getUser()]);
+        $educations = $educationRepository->findBy(['user' => $this->getUser()]);
 
         return $this->render('education/index.html.twig', array(
             'educations' => $educations,
@@ -39,7 +39,7 @@ class EducationController extends AbstractController
     public function newAction(Request $request)
     {
         $education = new Education();
-        $education->setUserId($this->getUser());
+        $education->setUser($this->getUser());
         $form = $this->createForm('App\Form\EducationType', $education);
         $form->handleRequest($request);
 
@@ -60,11 +60,11 @@ class EducationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
-     * @Security("user == education.getUserId()")
+     * @Security("user == education.getUser()")
      */
     public function editAction(Request $request, Education $education)
     {
-        $education->setUserId($this->getUser());
+        $education->setUser($this->getUser());
         $form = $this->createForm('App\Form\EducationType', $education);
         $form->handleRequest($request);
 
@@ -85,7 +85,7 @@ class EducationController extends AbstractController
      * Deletes a education entity.
      *
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @Security("user == education.getUserId()")
+     * @Security("user == education.getUser()")
      */
     public function deleteAction(Request $request, Education $education)
     {

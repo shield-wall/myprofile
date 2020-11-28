@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
 
 /**
  * Certification
@@ -15,35 +16,39 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Certification
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     * @var User
      */
-    protected $user_id;
+    protected $user;
 
     /**
      * @Assert\Length(max="100")
      * @ORM\Column(name="title", type="string", length=100)
+     *
+     * @var string
      */
     private $title;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="period_start", type="date")
+     *
+     * @var DateTimeInterface
      */
     private $periodStart;
 
     /**
-     * @var \DateTime
+     * @var DateTimeInterface|null
      *
      * @ORM\Column(name="period_end", type="date", nullable=true)
      */
@@ -52,197 +57,158 @@ class Certification
     /**
      * @Assert\Length(max="100")
      * @ORM\Column(name="institution", type="string", length=100)
+     *
+     * @var string
      */
     private $institution;
 
     /**
      * @Assert\Length(max="500")
      * @ORM\Column(name="link", type="string", length=500, nullable=true)
+     *
+     * @var string|null
      */
     private $link;
 
     /**
      * @Assert\Length(max="255")
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     *
+     * @var string|null
      */
     private $image;
 
-
     /**
-     * Get id
-     *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
      * @return Certification
      */
-    public function setTitle($title)
+    public function setUser(User $user): Certification
     {
-        $this->title = $title;
-
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Set periodStart
-     *
-     * @param \DateTime $periodStart
-     *
+     * @param string $title
      * @return Certification
      */
-    public function setPeriodStart($periodStart)
+    public function setTitle(string $title): Certification
     {
-        $this->periodStart = $periodStart;
-
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get periodStart
-     *
-     * @return \DateTime
+     * @return DateTimeInterface
      */
-    public function getPeriodStart()
+    public function getPeriodStart(): ?DateTimeInterface
     {
         return $this->periodStart;
     }
 
     /**
-     * Set periodEnd
-     *
-     * @param \DateTime $periodEnd
-     *
+     * @param DateTimeInterface $periodStart
      * @return Certification
      */
-    public function setPeriodEnd($periodEnd)
+    public function setPeriodStart(DateTimeInterface $periodStart): Certification
     {
-        $this->periodEnd = $periodEnd;
-
+        $this->periodStart = $periodStart;
         return $this;
     }
 
     /**
-     * Get periodEnd
-     *
-     * @return \DateTime
+     * @return DateTimeInterface|null
      */
-    public function getPeriodEnd()
+    public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
     /**
-     * Set institution
-     *
-     * @param string $institution
-     *
+     * @param DateTimeInterface|null $periodEnd
      * @return Certification
      */
-    public function setInstitution($institution)
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): Certification
     {
-        $this->institution = $institution;
-
+        $this->periodEnd = $periodEnd;
         return $this;
     }
 
     /**
-     * Get institution
-     *
      * @return string
      */
-    public function getInstitution()
+    public function getInstitution(): string
     {
         return $this->institution;
     }
 
     /**
-     * Set link
-     *
-     * @param string $link
-     *
+     * @param string $institution
      * @return Certification
      */
-    public function setLink($link)
+    public function setInstitution(string $institution): Certification
     {
-        $this->link = $link;
-
+        $this->institution = $institution;
         return $this;
     }
 
     /**
-     * Get link
-     *
-     * @return string
+     * @return string|null
      */
-    public function getLink()
+    public function getLink(): ?string
     {
         return $this->link;
     }
 
     /**
-     * Set image
-     *
-     * @param string $image
-     *
+     * @param string|null $link
      * @return Certification
      */
-    public function setImage($image)
+    public function setLink(?string $link): Certification
     {
-        $this->image = $image;
-
+        $this->link = $link;
         return $this;
     }
 
     /**
-     * Get image
-     *
-     * @return string
+     * @return string|null
      */
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
     /**
-     * Set userId
-     *
-     * @param \App\Entity\User $userId
-     *
+     * @param string|null $image
      * @return Certification
      */
-    public function setUserId(\App\Entity\User $userId = null)
+    public function setImage(?string $image): Certification
     {
-        $this->user_id = $userId;
-
+        $this->image = $image;
         return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return \App\Entity\User
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 }

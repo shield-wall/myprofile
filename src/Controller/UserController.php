@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * User controller.
  *
- * @Route("/admin/user", name="admin_user_")
+ * @Route("/admin/{_locale}/user", name="admin_user_")
  */
 class UserController extends AbstractController
 {
