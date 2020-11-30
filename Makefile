@@ -5,7 +5,14 @@ install:
 	docker-compose run -e APP_ENV=test php make init
 
 init:
+	make composer
+	make db
+	bin/console hautelook:fixtures:load --no-interaction
+
+composer:
 	composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
+
+db:
 	bin/console doctrine:database:create  --if-not-exists
 	bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
 

@@ -50,7 +50,7 @@
 
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="col-6">
-                            <a href="{{ path('app_profile', {'slug': app.user.slug}) }}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> My profile </a>
+                            <a href="{{ path('app_user_profile', {'slug': app.user.slug}) }}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> My profile </a>
                         </div>
                     {% endif %}
                 </div>

@@ -29,6 +29,9 @@
     "doctrine/common": {
         "version": "2.13.3"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.4.4"
+    },
     "doctrine/dbal": {
         "version": "2.10.2"
     },
@@ -90,6 +93,9 @@
     "egulias/email-validator": {
         "version": "2.1.22"
     },
+    "fakerphp/faker": {
+        "version": "v1.12.0"
+    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.41"
     },
@@ -98,6 +104,20 @@
     },
     "guzzlehttp/psr7": {
         "version": "1.6.1"
+    },
+    "hautelook/alice-bundle": {
+        "version": "2.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.1",
+            "ref": "71822522faf7ed2792d86b7f94ce73443358ccb9"
+        },
+        "files": [
+            "config/packages/dev/hautelook_alice.yaml",
+            "config/packages/test/hautelook_alice.yaml",
+            "fixtures/.gitignore"
+        ]
     },
     "http-interop/http-factory-guzzle": {
         "version": "1.0.0"
@@ -116,6 +136,22 @@
     },
     "monolog/monolog": {
         "version": "1.25.4"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.10.2"
+    },
+    "nelmio/alice": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.2",
+            "ref": "0b9900ece737bec7752e4155c0164639dd9b0cb0"
+        },
+        "files": [
+            "config/packages/dev/nelmio_alice.yaml",
+            "config/packages/test/nelmio_alice.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.6.0"
@@ -173,6 +209,18 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
+    },
+    "sebastian/comparator": {
+        "version": "4.0.6"
+    },
+    "sebastian/diff": {
+        "version": "4.0.4"
+    },
+    "sebastian/exporter": {
+        "version": "4.0.3"
+    },
+    "sebastian/recursion-context": {
+        "version": "4.0.4"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -244,7 +292,7 @@
         "version": "v5.1.8"
     },
     "symfony/browser-kit": {
-        "version": "v5.2.0-rc2"
+        "version": "v5.2.0"
     },
     "symfony/cache": {
         "version": "v5.1.8"
@@ -268,7 +316,7 @@
         ]
     },
     "symfony/css-selector": {
-        "version": "v5.2.0-rc2"
+        "version": "v5.2.0"
     },
     "symfony/dependency-injection": {
         "version": "v5.1.8"
@@ -280,7 +328,7 @@
         "version": "v5.1.8"
     },
     "symfony/dom-crawler": {
-        "version": "v5.2.0-rc2"
+        "version": "v5.2.0"
     },
     "symfony/dotenv": {
         "version": "v5.1.8"
@@ -619,6 +667,15 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.0.0"
+    },
+    "theofidry/alice-data-fixtures": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
+        }
     },
     "transloadit/php-sdk": {
         "version": "v2.1.0"

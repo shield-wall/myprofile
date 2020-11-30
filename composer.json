@@ -35,11 +35,12 @@
         "transloadit/php-sdk": "^2.1"
     },
     "require-dev": {
+        "hautelook/alice-bundle": "^2.8",
         "squizlabs/php_codesniffer": "^3.5",
-        "symfony/browser-kit": "^5.2@RC",
-        "symfony/css-selector": "^5.2@RC",
+        "symfony/browser-kit": "^5.2",
+        "symfony/css-selector": "^5.2",
         "symfony/maker-bundle": "^1.14",
-        "symfony/phpunit-bridge": "^5.2@RC",
+        "symfony/phpunit-bridge": "^5.2",
         "symfony/profiler-pack": "^1.0"
     },
     "minimum-stability": "beta",
