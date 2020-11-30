@@ -244,7 +244,7 @@
         "version": "v5.1.8"
     },
     "symfony/browser-kit": {
-        "version": "v5.1.8"
+        "version": "v5.2.0-rc2"
     },
     "symfony/cache": {
         "version": "v5.1.8"
@@ -268,7 +268,7 @@
         ]
     },
     "symfony/css-selector": {
-        "version": "v5.1.8"
+        "version": "v5.2.0-rc2"
     },
     "symfony/dependency-injection": {
         "version": "v5.1.8"
@@ -280,7 +280,7 @@
         "version": "v5.1.8"
     },
     "symfony/dom-crawler": {
-        "version": "v5.1.8"
+        "version": "v5.2.0-rc2"
     },
     "symfony/dotenv": {
         "version": "v5.1.8"

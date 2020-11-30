@@ -11,12 +11,15 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route(name="app_", requirements={"_locale": "en|pt_BR"})
  */
-class DefaultController extends AbstractController
+class SiteController extends AbstractController
 {
     /**
      * @Route("/{_locale}", defaults={"_locale": "pt_BR"}, name="homepage")
+     *
+     * @param UserRepository $userRepository
+     * @return Response
      */
-    public function indexAction(UserRepository $userRepository)
+    public function homepage(UserRepository $userRepository)
     {
         $users = $userRepository->findBy(['isVerified' => true], ['updatedAt' => 'desc'], 18);
 
@@ -26,9 +29,12 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/{_locale}", defaults={"_locale": "pt_BR"}, name="profile")
+     * @Route("/{slug}/{_locale}", defaults={"_locale": "pt_BR"}, name="user_profile")
+     *
+     * @param User $user
+     * @return Response
      */
-    public function profileAction(User $user)
+    public function userProfileAction(User $user)
     {
         return $this->render('default/profile.html.twig', [
             'user' => $user,
@@ -41,6 +47,9 @@ class DefaultController extends AbstractController
      *      but it can be resolved creating other controller.
      *
      * @Route("/{slug}/curriculum/{_locale}", name="curriculum")
+     *
+     * @param User $user
+     * @return Response
      */
     public function curriculumAction(User $user)
     {
