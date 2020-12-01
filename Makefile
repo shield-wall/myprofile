@@ -17,7 +17,7 @@ db:
 	bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
 
 test:
-	bin/phpunit
+	bin/phpunit --coverage-clover coverage.xml
 
 phpcs:
 	vendor/bin/phpcs
