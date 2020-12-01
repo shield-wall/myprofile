@@ -22,7 +22,7 @@
               <a class="navbar-item" href="{{ path('app_homepage', {'_locale': 'pt_BR'}) }}">Português</a>
               <a class="navbar-item" href="{{ path('app_homepage', {'_locale': 'en'}) }}">English</a>
               <span class="navbar-item">
-              <a class="button is-primary is-inverted is-outlined" href="{{ path('app_login') }}">
+              <a class="button is-primary is-inverted is-outlined" href="{{ path('app_login') }}" id="home-button-login">
                 <span>{{ 'security.login.submit'|trans }}</span>
               </a>
             </span>
@@ -40,7 +40,9 @@
               {{ 'site.title_message' | trans }}
             </h1>
             <h2 class="subtitle has-text-centered-mobile mt-6">
-              <a href="{{ path('app_register') }}" class="button is-medium is-primary is-inverted is-outlined">{{ 'site.registration' | trans({'%year%': "now" | date('Y')}) }}</a>
+              <a href="{{ path('app_register') }}" class="button is-medium is-primary is-inverted is-outlined" id="home-button-register">
+                {{ 'site.registration' | trans({'%year%': "now" | date('Y')}) }}
+              </a>
             </h2>
           </div>
         </div>
@@ -50,11 +52,11 @@
 
   <section class="container is-fullheight mt-6">
     <h3 class="is-size-3-desktop is-size-5-touch is-2 has-text-centered-mobile">{{ 'site.last_updates' | trans }}</h3>
-    <div class="columns is-multiline is-mobile is-centered my-2">
+    <div class="columns is-multiline is-mobile is-centered my-2" id="example-of-users">
       {% for user in users %}
         <a
                 class="column is-narrow {% if loop.index > 6 %}is-hidden-mobile{% endif %}"
-                href="{{ path('app_profile', {'slug': user.slug}) }}"
+                href="{{ path('app_user_profile', {'slug': user.slug}) }}"
                 title="{{ user.getFirstName() }} {{ user.getLastName() }}">
           {% include 'component/image.html.twig' with {
             'url': cdn_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage(),

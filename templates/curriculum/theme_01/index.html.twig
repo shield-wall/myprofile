@@ -16,14 +16,14 @@
                       <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'}}" alt="profile image" class="profile img-circle" style="width: 100px;">
                   </object>
 
-                <h1 class="name">{{ user.getFirstName() }} {{ user.getLastName() }}</h1>
+                <h1 class="name" id="name">{{ user.getFirstName() }} {{ user.getLastName() }}</h1>
                 <h3 class="tagline">{{ user.role }}</h3>
             </div><!--//profile-container-->
 
             <div class="contact-container container-block">
                 <ul class="list-unstyled contact-list">
                     <li class="email"><i class="fa fa-envelope"></i>{{ user.email }}</li>
-                    <li class="website"><i class="fa fa-globe"></i>{{app.request.schemeAndHttpHost ~ path('app_profile', { 'slug': user.slug}) }}</li>
+                    <li class="website"><i class="fa fa-globe"></i>{{app.request.schemeAndHttpHost ~ path('app_user_profile', { 'slug': user.slug}) }}</li>
                     {% if user.phone %}<li><i class="fa fa-phone-square"></i>{{ user.phone }}</li>{% endif %}
                     {% if user.cell %}<li><i class="fa fa-mobile"></i>{{ user.cell }}</li>{% endif %}
                     <li><i class="fa fa-address-card"></i> {{ user.city }}, {{ user.state }}, {{ user.country }}</li>

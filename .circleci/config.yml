@@ -1,9 +1,12 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.2
+
 executors:
   environment_configuration:
     docker:
-      - image: eerison/myprofile
+      - image: eerison/myprofile:dev
         environment:
           APP_ENV: test
       - image: postgres
@@ -68,7 +71,7 @@ jobs:
           at: /app
       - run: make phpcs
 
-  phpunit:
+  test_functional:
     executor: environment_configuration
     steps:
       - checkout
@@ -80,7 +83,11 @@ jobs:
       - attach_workspace:
           at: /app
       - run: ls -l
+      - run: make init
       - run: make test
+      - codecov/upload:
+          file: coverage.xml
+          conf: .circleci/codecov.yaml
       - save_cache:
           key: v5-build-{{ checksum "composer.lock" }}-{{ checksum "yarn.lock" }}
           paths:
@@ -97,7 +104,7 @@ workflows:
       - phpcs:
           requires:
             - composer
-      - phpunit:
+      - test_functional:
           requires:
             - webpack
             - phpcs

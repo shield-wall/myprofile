@@ -44,7 +44,7 @@ class SitemapSubscriber implements EventSubscriberInterface
                 $urls->addUrl(
                     new UrlConcrete(
                         $this->urlGenerator->generate(
-                            'app_profile',
+                            'app_user_profile',
                             ['slug' => $user->getSlug(), '_locale' => $locale],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         )

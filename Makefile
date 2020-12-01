@@ -2,14 +2,22 @@ install:
 	docker-compose up -d  --remove-orphans
 	docker-compose exec php make init
 	docker-compose run --rm client make yarn
+	docker-compose run -e APP_ENV=test php make init
 
 init:
+	make composer
+	make db
+	bin/console hautelook:fixtures:load --no-interaction
+
+composer:
 	composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
+
+db:
 	bin/console doctrine:database:create  --if-not-exists
 	bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
 
 test:
-	bin/phpunit
+	bin/phpunit --coverage-clover coverage.xml
 
 phpcs:
 	vendor/bin/phpcs
