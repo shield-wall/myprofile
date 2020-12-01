@@ -13,3 +13,4 @@ profile:
     resource: ../../src/Controller/Profile/
     type: annotation
     prefix: /profile/{_locale}
+    name_prefix: profile_

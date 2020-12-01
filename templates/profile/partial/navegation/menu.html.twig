@@ -18,12 +18,12 @@
 				</a>
 			</li>
 
-			{% if 'user_usersocialnetworking' in current_router %}
+			{% if 'profile_usersocialnetworking' in current_router %}
 			<li class="is-active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="{{ path('user_usersocialnetworking_index') }}#usersocialnetworking" id="usersocialnetworking">
+				<a href="{{ path('profile_usersocialnetworking_index') }}#usersocialnetworking" id="usersocialnetworking">
 					<span class="icon is-small">
 						<i class="fa fa-comment"></i>
 					</span>
@@ -31,12 +31,12 @@
 				</a>
 			</li>
 
-			{% if 'user_education' in current_router %}
+			{% if 'profile_education' in current_router %}
 			<li class="is-active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="{{ path('user_education_index') }}#education" id="education">
+				<a href="{{ path('profile_education_index') }}#education" id="education">
 					<span class="icon is-small">
 						<i class="fa fa-mortar-board"></i>
 					</span>
@@ -44,12 +44,12 @@
 				</a>
 			</li>
 
-			{% if 'user_experience' in current_router %}
+			{% if 'profile_education' in current_router %}
 			<li class="is-active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="{{ path('user_experience_index') }}#experience" id="experience">
+				<a href="{{ path('profile_education_index') }}#experience" id="experience">
 					<span class="icon is-small">
 						<i class="fa fa-book"></i>
 					</span>
@@ -57,12 +57,12 @@
 				</a>
 			</li>
 
-			{% if 'user_certification' in current_router %}
+			{% if 'profile_certification' in current_router %}
 			<li class="is-active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="{{ path('user_certification_index') }}#certification" id="certification">
+				<a href="{{ path('profile_certification_index') }}#certification" id="certification">
 					<span class="icon is-small">
 						<i class="fa fa-certificate"></i>
 					</span>
@@ -75,7 +75,7 @@
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="{{ path('user_language_index') }}#language" id="language">
+				<a href="{{ path('profile_user_language_index') }}#language" id="language">
 					<span class="icon is-small">
 						<i class="fa fa-language"></i>
 					</span>
@@ -83,12 +83,12 @@
 				</a>
 			</li>
 
-			{% if 'user_skill' in current_router %}
+			{% if 'skill' in current_router %}
 			<li class="is-active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="{{ path('user_skill_index') }}#skill" id="skill">
+				<a href="{{ path('profile_skill_index') }}#skill" id="skill">
 					<span class="icon is-small">
 						<i class="fa fa-rocket"></i>
 					</span>

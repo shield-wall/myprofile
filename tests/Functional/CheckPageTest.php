@@ -8,16 +8,24 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckPageTest extends WebTestCase
 {
+    protected $client;
+
+    protected function setUp(): void
+    {
+        $this->client = static::createClient();
+    }
+
     /**
      * @dataProvider providerCheckPage
      *
      * @param string $url
+     * @param string $selectorTag
+     * @param string $selectorValue
      */
     public function testCanCheckPage(string $url, string $selectorTag, string $selectorValue)
     {
-        $client = static::createClient();
-        $client->request(Request::METHOD_GET, $url);
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->client->request(Request::METHOD_GET, $url);
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains($selectorTag, $selectorValue);
     }
 

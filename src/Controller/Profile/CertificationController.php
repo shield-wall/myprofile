@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use App\Entity\Certification;
 use App\Repository\CertificationRepository;
@@ -10,23 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(
- *     "/{_locale}/user/certification",
- *     name="user_certification_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- *     )
+ * @Route("/certification", name="certification_")
  */
 class CertificationController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route(name="index", methods={"GET"})
      */
     public function indexAction(CertificationRepository $certificationRepository)
     {
         $certifications = $certificationRepository->findBy(['user' => $this->getUser()]);
 
-        return $this->render('certification/index.html.twig', array(
+        return $this->render('profile/certification/index.html.twig', array(
             'certifications' => $certifications,
         ));
     }
@@ -47,10 +42,10 @@ class CertificationController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_certification_index');
+            return $this->redirectToRoute('profile_certification_index');
         }
 
-        return $this->render('certification/save.html.twig', array(
+        return $this->render('profile/certification/save.html.twig', array(
             'certification' => $certification,
             'form' => $form->createView(),
         ));
@@ -69,10 +64,10 @@ class CertificationController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_certification_index');
+            return $this->redirectToRoute('profile_certification_index');
         }
 
-        return $this->render('certification/save.html.twig', array(
+        return $this->render('profile/certification/save.html.twig', array(
             'certification' => $certification,
             'form' => $form->createView(),
         ));
@@ -94,6 +89,6 @@ class CertificationController extends AbstractController
             $this->addFlash('success', 'messages.item_removed');
         }
 
-        return $this->redirectToRoute('user_certification_index');
+        return $this->redirectToRoute('profile_certification_index');
     }
 }

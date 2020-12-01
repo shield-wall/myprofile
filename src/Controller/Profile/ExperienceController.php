@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use App\Entity\Experience;
 use App\Repository\ExperienceRepository;
@@ -10,23 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(
- *     "/{_locale}/user/experience",
- *     name="user_experience_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- *     )
+ * @Route("/experience", name="experience_")
  */
 class ExperienceController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route(name="index", methods={"GET"})
      */
     public function indexAction(ExperienceRepository $experienceRepository)
     {
         $experiences = $experienceRepository->findBy(['user' => $this->getUser()]);
 
-        return $this->render('experience/index.html.twig', array(
+        return $this->render('profile/experience/index.html.twig', array(
             'experiences' => $experiences,
         ));
     }
@@ -49,10 +44,10 @@ class ExperienceController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_experience_index');
+            return $this->redirectToRoute('profile_experience_index');
         }
 
-        return $this->render('experience/save.html.twig', array(
+        return $this->render('profile/experience/save.html.twig', array(
             'experience' => $experience,
             'form' => $form->createView(),
         ));
@@ -71,10 +66,10 @@ class ExperienceController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_experience_index');
+            return $this->redirectToRoute('profile_experience_index');
         }
 
-        return $this->render('experience/save.html.twig', array(
+        return $this->render('profile/experience/save.html.twig', array(
             'experience' => $experience,
             'form' => $form->createView(),
         ));
@@ -94,6 +89,6 @@ class ExperienceController extends AbstractController
             $this->addFlash('success', 'messages.item_removed');
         }
 
-        return $this->redirectToRoute('user_experience_index');
+        return $this->redirectToRoute('profile_experience_index');
     }
 }

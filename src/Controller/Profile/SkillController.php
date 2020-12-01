@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use App\Entity\Skill;
 use App\Repository\SkillRepository;
@@ -10,23 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(
- *     "/{_locale}/user/skill",
- *     name="user_skill_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- * )
+ * @Route("/skill", name="skill_")
  */
 class SkillController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route(name="index", methods={"GET"})
      */
     public function indexAction(SkillRepository $skillRepository)
     {
         $skills = $skillRepository->findBy(['user' => $this->getUser()]);
 
-        return $this->render('skill/index.html.twig', array(
+        return $this->render('profile/skill/index.html.twig', array(
             'skills' => $skills,
         ));
     }
@@ -47,10 +42,10 @@ class SkillController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_skill_index');
+            return $this->redirectToRoute('profile_skill_index');
         }
 
-        return $this->render('skill/save.html.twig', array(
+        return $this->render('profile/skill/save.html.twig', array(
             'skill' => $skill,
             'form' => $form->createView(),
         ));
@@ -69,10 +64,10 @@ class SkillController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_skill_index');
+            return $this->redirectToRoute('profile_skill_index');
         }
 
-        return $this->render('skill/save.html.twig', array(
+        return $this->render('profile/skill/save.html.twig', array(
             'skill' => $skill,
             'form' => $form->createView(),
         ));
@@ -92,6 +87,6 @@ class SkillController extends AbstractController
             $this->addFlash('success', 'messages.item_removed');
         }
 
-        return $this->redirectToRoute('user_skill_index');
+        return $this->redirectToRoute('profile_skill_index');
     }
 }

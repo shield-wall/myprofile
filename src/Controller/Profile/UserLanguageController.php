@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use App\Entity\UserLanguage;
 use App\Form\UserLanguageType;
@@ -12,22 +12,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(
- *     "/{_locale}/user/language",
- *     name="user_language_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- *     )
+ * @Route("/user-language", name="user_language_")
  */
 class UserLanguageController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
-     * @Security("is_granted('ROLE_USER')")
+     * @Route(name="index", methods={"GET"})
      */
     public function index(UserLanguageRepository $userLanguageRepository): Response
     {
-        return $this->render('user_language/index.html.twig', [
+        return $this->render('profile/user_language/index.html.twig', [
             'user_languages' => $userLanguageRepository->findAll(),
         ]);
     }
@@ -49,11 +43,11 @@ class UserLanguageController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_language_index');
+            return $this->redirectToRoute('profile_user_language_index');
         }
 
-        return $this->render('user_language/save.html.twig', [
-            'user_language' => $userLanguage,
+        return $this->render('profile/user_language/save.html.twig', [
+            'profile_user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
     }
@@ -71,11 +65,11 @@ class UserLanguageController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_language_index');
+            return $this->redirectToRoute('profile_user_language_index');
         }
 
-        return $this->render('user_language/save.html.twig', [
-            'user_language' => $userLanguage,
+        return $this->render('profile/profile_user_language/save.html.twig', [
+            'profile_user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
     }
@@ -94,6 +88,6 @@ class UserLanguageController extends AbstractController
             $this->addFlash('success', 'messages.item_removed');
         }
 
-        return $this->redirectToRoute('user_language_index');
+        return $this->redirectToRoute('profile_user_language_index');
     }
 }

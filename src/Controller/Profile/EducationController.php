@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use App\Entity\Education;
+use App\Form\EducationType;
 use App\Repository\EducationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,25 +11,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(
- *     "/{_locale}/user/education",
- *     name="user_education_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- *     )
+ * @Route("/education", name="education_")
  */
 class EducationController extends AbstractController
 {
     /**
      * Lists all education entities.
      *
-     * @Route("/", name="index", methods={"GET"})
+     * @Route(name="index", methods={"GET"})
      */
     public function indexAction(EducationRepository $educationRepository)
     {
         $educations = $educationRepository->findBy(['user' => $this->getUser()]);
 
-        return $this->render('education/index.html.twig', array(
+        return $this->render('/profile/education/index.html.twig', array(
             'educations' => $educations,
         ));
     }
@@ -40,7 +36,7 @@ class EducationController extends AbstractController
     {
         $education = new Education();
         $education->setUser($this->getUser());
-        $form = $this->createForm('App\Form\EducationType', $education);
+        $form = $this->createForm(EducationType::class, $education);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,10 +45,10 @@ class EducationController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_education_index');
+            return $this->redirectToRoute('profile_education_index');
         }
 
-        return $this->render('education/save.html.twig', array(
+        return $this->render('profile/education/save.html.twig', array(
             'education' => $education,
             'form' => $form->createView(),
         ));
@@ -72,10 +68,10 @@ class EducationController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_education_index');
+            return $this->redirectToRoute('profile_education_index');
         }
 
-        return $this->render('education/save.html.twig', array(
+        return $this->render('profile/education/save.html.twig', array(
             'education' => $education,
             'form' => $form->createView(),
         ));
@@ -97,6 +93,6 @@ class EducationController extends AbstractController
             $this->addFlash('success', 'messages.item_removed');
         }
 
-        return $this->redirectToRoute('user_education_index');
+        return $this->redirectToRoute('profile_education_index');
     }
 }

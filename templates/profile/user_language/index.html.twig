@@ -8,7 +8,7 @@
         <div class="columns is-multiline">
             <div class="column is-2 is-offset-10">
                 {% include "profile/partial/form/button.html.twig" with {
-                    'path': path('user_language_new'),
+                    'path': path('profile_user_language_new'),
                     'name': 'form.submit.new'|trans,
                     'icon': 'fa fa-plus',
                 } %}
@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                     {% for language in user_languages %}
-                        {% set path = path('user_language_edit', { 'id': language.id }) %}
+                        {% set path = path('profile_user_language_edit', { 'id': language.id }) %}
                         <tr>
                             <td>{{ language.name }}</td>
                             <td>{{ language.level }}</td>
@@ -36,7 +36,7 @@
                                 } %}
 
                                 {% include "profile/partial/form/delete_button.html.twig" with {
-                                    'router': 'user_language_delete',
+                                    'router': 'profile_user_language_delete',
                                     'id': language.id,
                                 } %}
                             </td>
@@ -48,7 +48,7 @@
         </div>
     {% else %}
         {% include "profile/partial/form/empty_list.html.twig" with {
-            'path': path('user_language_new')
+            'path': path('profile_user_language_new')
         } %}
     {% endif %}
 {% endblock %}
