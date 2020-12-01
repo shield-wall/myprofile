@@ -1,34 +1,33 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
-use App\Service\{BackgroundImageService, CurriculumService, ProfileImageService};
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use App\Form\ProfileType;
+use App\Service\BackgroundImageService;
+use App\Service\CurriculumService;
+use App\Service\ProfileImageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(
- *     "/{_locale}/profile",
- *     name="profile_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- *     )
- */
-class ProfileController extends AbstractController
+class MainController extends AbstractController
 {
     /**
      * @Route("/edit", name="edit", methods={"GET", "POST"})
-     * @Security("is_granted('ROLE_USER')")
+     *
+     * @param Request $request
+     * @param ProfileImageService $profileImageService
+     * @param BackgroundImageService $backgroundImageService
+     * @return Response
      */
     public function editAction(
         Request $request,
         ProfileImageService $profileImageService,
         BackgroundImageService $backgroundImageService
-    ) {
+    ): Response {
         $user = $this->getUser();
-        $form = $this->createForm('App\Form\ProfileType', $user);
+        $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,16 +39,18 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile_edit');
         }
 
-        return $this->render('account/main.html.twig', array(
+        return $this->render('profile/main.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
     /**
      * @Route("/generate-curriculum", name="generate_curriculum", methods={"GET"})
-     * @Security("is_granted('ROLE_USER')")
+     *
+     * @param CurriculumService $curriculumService
+     * @return Response
      */
-    public function generateCurriculumAction(CurriculumService $curriculumService)
+    public function generateCurriculumAction(CurriculumService $curriculumService): Response
     {
         $user = $this->getUser();
         $curriculumService->makePdfOnTransloadit($user);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Profile;
 
 use App\Entity\UserSocialNetworking;
 use App\Repository\UserSocialNetworkingRepository;
@@ -11,19 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route(
- *     "/{_locale}/user/usersocialnetworking",
- *     name="user_usersocialnetworking_",
- *     defaults={"_locale": "pt_BR"},
- *     requirements={"_locale": "en|pt_BR"}
- *     )
+ * @Route("/usersocialnetworking", name="usersocialnetworking_")
  */
 class UserSocialNetworkingController extends AbstractController
 {
     /**
      * Lists all userSocialNetworking entities.
      *
-     * @Route("/", name="index", methods={"GET"})
+     * @Route(name="index", methods={"GET"})
      *
      * @param UserSocialNetworkingRepository $userSocialNetworkingRepository
      */
@@ -31,7 +26,7 @@ class UserSocialNetworkingController extends AbstractController
     {
         $userSocialNetworkings = $userSocialNetworkingRepository->findBy(['user' => $this->getUser()]);
 
-        return $this->render('usersocialnetworking/index.html.twig', array(
+        return $this->render('profile/usersocialnetworking/index.html.twig', array(
             'userSocialNetworkings' => $userSocialNetworkings,
         ));
     }
@@ -57,10 +52,10 @@ class UserSocialNetworkingController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('user_usersocialnetworking_index');
+            return $this->redirectToRoute('profile_usersocialnetworking_index');
         }
 
-        return $this->render('usersocialnetworking/save.html.twig', array(
+        return $this->render('profile/usersocialnetworking/save.html.twig', array(
             'userSocialNetworking' => $userSocialNetworking,
             'form' => $form->createView(),
         ));
@@ -82,14 +77,14 @@ class UserSocialNetworkingController extends AbstractController
 
             $this->addFlash('success', 'messages.item_saved');
             return $this->redirectToRoute(
-                'user_usersocialnetworking_index',
+                'profile_usersocialnetworking_index',
                 [
                     'id' => $userSocialNetworking->getId()
                 ]
             );
         }
 
-        return $this->render('usersocialnetworking/save.html.twig', array(
+        return $this->render('profile/usersocialnetworking/save.html.twig', array(
             'userSocialNetworking' => $userSocialNetworking,
             'form' => $form->createView(),
         ));
@@ -115,6 +110,6 @@ class UserSocialNetworkingController extends AbstractController
             $this->addFlash('success', 'messages.item_removed');
         }
 
-        return $this->redirectToRoute('user_usersocialnetworking_index');
+        return $this->redirectToRoute('profile_usersocialnetworking_index');
     }
 }

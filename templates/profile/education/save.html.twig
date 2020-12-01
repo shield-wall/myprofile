@@ -6,7 +6,7 @@
 	{{ form_start(form) }}
 	    {{ form_widget(form) }}
 		{% include "profile/partial/form/submit_button.html.twig" with {
-			'back_path': path('user_education_index'),
+			'back_path': path('profile_education_index'),
 		}%}
     {{ form_end(form) }}
 {% endblock %}

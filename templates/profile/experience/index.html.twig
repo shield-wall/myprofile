@@ -7,7 +7,7 @@
         <div class="columns is-multiline">
             <div class="column is-2 is-offset-10">
                 {% include "profile/partial/form/button.html.twig" with {
-                    'path': path('user_experience_new'),
+                    'path': path('profile_education_new'),
                     'name': 'form.submit.new'|trans,
                     'icon': 'fa fa-plus',
                 } %}
@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                     {% for experience in experiences %}
-                        {% set path = path('user_experience_edit', { 'id': experience.id }) %}
+                        {% set path = path('profile_experience_edit', { 'id': experience.id }) %}
                         <tr>
                             <td>{{ experience.title }}</td>
                             <td class="is-hidden-touch">{{ experience.company }}</td>
@@ -47,7 +47,7 @@
                                 } %}
 
                                 {% include "profile/partial/form/delete_button.html.twig" with {
-                                    'router': 'user_experience_delete',
+                                    'router': 'profile_experience_delete',
                                     'id': experience.id,
                                 } %}
                             </td>
@@ -59,7 +59,7 @@
         </div>
     {% else %}
         {% include "profile/partial/form/empty_list.html.twig" with {
-            'path': path('user_experience_new')
+            'path': path('profile_experience_new')
         } %}
     {% endif %}
 {% endblock %}
