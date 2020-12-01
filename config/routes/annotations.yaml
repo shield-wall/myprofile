@@ -8,3 +8,8 @@ controllers:
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
+
+profile:
+    resource: ../../src/Controller/Profile/
+    type: annotation
+    prefix: /profile/{_locale}
