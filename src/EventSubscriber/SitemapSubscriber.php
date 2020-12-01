@@ -37,7 +37,7 @@ class SitemapSubscriber implements EventSubscriberInterface
 
     public function registerUsersUrls(UrlContainerInterface $urls): void
     {
-        $users = $this->userRepository->findByEnabled(true);
+        $users = $this->userRepository->findBy(['isVerified' => true]);
 
         foreach ($users as $user) {
             foreach ($this->locales as $locale) {
