@@ -18,17 +18,21 @@ class UserLanguageController extends AbstractController
 {
     /**
      * @Route(name="index", methods={"GET"})
+     *
+     * @param UserLanguageRepository $userLanguageRepository
+     * @return Response
      */
     public function index(UserLanguageRepository $userLanguageRepository): Response
     {
+        $userLanguages = $userLanguageRepository->findBy(['user' => $this->getUser()]);
+
         return $this->render('profile/user_language/index.html.twig', [
-            'user_languages' => $userLanguageRepository->findAll(),
+            'user_languages' => $userLanguages,
         ]);
     }
 
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
-     * @Security("is_granted('ROLE_USER')")
      */
     public function new(Request $request): Response
     {
@@ -68,7 +72,7 @@ class UserLanguageController extends AbstractController
             return $this->redirectToRoute('profile_user_language_index');
         }
 
-        return $this->render('profile/profile_user_language/save.html.twig', [
+        return $this->render('profile/user_language/save.html.twig', [
             'profile_user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
