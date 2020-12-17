@@ -2,7 +2,7 @@ install:
 	docker-compose up -d  --remove-orphans
 	docker-compose exec php make init
 	docker-compose run --rm client make yarn
-	docker-compose run -e APP_ENV=test php make init
+	docker-compose run --rm -e APP_ENV=test php make init
 
 init:
 	make composer

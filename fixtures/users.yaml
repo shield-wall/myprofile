@@ -11,3 +11,10 @@ App\Entity\User:
     isVerified: true
     firstName: Test
     LastName: Mock
+  user_test_2:
+    slug: test-mock-2
+    email: test2@myprofile.pro
+    password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
+    isVerified: true
+    firstName: Test 2
+    LastName: Mock
