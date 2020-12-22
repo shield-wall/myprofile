@@ -7,7 +7,7 @@
 {% block security_content %}
     {{ form_start(resetForm) }}
     <div class="columns is-multiline">
-        {% include 'component/fields.html.twig' with {
+        {% include 'component/_fields.html.twig' with {
             'multiple': true,
             'fields': [
                 {
@@ -23,7 +23,7 @@
     </div>
 
     <div class="columns">
-        {% include 'component/buttons.html.twig' with {
+        {% include 'component/_buttons.html.twig' with {
             buttons : [
                 {
                     'type': 'submit',
