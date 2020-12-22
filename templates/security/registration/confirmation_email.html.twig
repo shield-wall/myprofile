@@ -1,4 +1,4 @@
-{% include 'component/email.html.twig' with {
+{% include 'component/_email.html.twig' with {
     'title': 'email.hello'|trans({ '%firstName%': user.firstName, '%lastName%': user.lastName }),
     'message_hidden': 'email.registration.message_hidden'|trans,
     'message': 'email.registration.message'|trans,

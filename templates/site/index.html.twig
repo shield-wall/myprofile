@@ -58,7 +58,7 @@
                 class="column is-narrow {% if loop.index > 6 %}is-hidden-mobile{% endif %}"
                 href="{{ path('app_user_profile', {'slug': user.slug}) }}"
                 title="{{ user.getFirstName() }} {{ user.getLastName() }}">
-          {% include 'component/image.html.twig' with {
+          {% include 'component/_image.html.twig' with {
             'url': cdn_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage(),
             'urlDefault': cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'
           } %}
