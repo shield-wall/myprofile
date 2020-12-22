@@ -7,13 +7,14 @@ namespace App\Tests\Functional\Controller\Profile;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Generator;
 
 class IndexUserLanguageControllerTest extends WebTestCase
 {
     /**
      * @param $userEmail
      * @param $quantityOfLanguages
-     * @dataProvider getProvidedData
+     * @dataProvider usersProvider
      */
     public function testCanSeeMyLanguages($userEmail, $quantityOfLanguages)
     {
@@ -31,11 +32,9 @@ class IndexUserLanguageControllerTest extends WebTestCase
 
     }
 
-    public function getProvidedData(): array
+    public function usersProvider(): Generator
     {
-        return [
-            ['test@myprofile.pro', 1],
-            ['test2@myprofile.pro', 3],
-        ];
+        yield ['test@myprofile.pro', 1];
+        yield ['test2@myprofile.pro', 3];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Tests\Functional\Controller\Profile;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Generator;
 
 class CheckPageTest extends WebTestCase
 {
@@ -20,8 +21,8 @@ class CheckPageTest extends WebTestCase
      * @dataProvider providerCheckPage
      *
      * @param string $url
-     * @param string $field
-     * @param string $value
+     * @param string|null $field
+     * @param string|null $value
      */
     public function testCanCheckPage(string $url, string $field = null, string $value = null)
     {
@@ -56,45 +57,43 @@ class CheckPageTest extends WebTestCase
             || $response->isRedirect(sprintf($absoluteUrlToLogin, 'en')));
     }
 
-    public function providerCheckPage()
+    public function providerCheckPage(): Generator
     {
-        return [
-            #main
-            ['/profile/pt_BR/edit', 'app_user_profile[first_name]', 'Test'],
-            ['/profile/en/edit', 'app_user_profile[last_name]', 'Mock'],
-            #user's network
-            ['/profile/pt_BR/usersocialnetworking'],
-            ['/profile/en/usersocialnetworking'],
-            ['/profile/pt_BR/usersocialnetworking/new', 'App_usersocialnetworking[link]'],
-            ['/profile/en/usersocialnetworking/new', 'App_usersocialnetworking[socialNetworking]'],
-            #education
-            ['/profile/pt_BR/education'],
-            ['/profile/en/education'],
-            ['/profile/pt_BR/education/new', 'App_education[title]'],
-            ['/profile/en/education/new', 'App_education[institution]'],
-            #experience
-            ['/profile/pt_BR/experience'],
-            ['/profile/en/experience'],
-            ['/profile/pt_BR/experience/new', 'App_experience[title]'],
-            ['/profile/en/experience/new', 'App_experience[company]'],
-            #certification
-            ['/profile/pt_BR/certification'],
-            ['/profile/en/certification'],
-            ['/profile/pt_BR/certification/new', 'App_certification[title]'],
-            ['/profile/en/certification/new', 'App_certification[institution]'],
-            #user`s language
-            ['/profile/pt_BR/user-language'],
-            ['/profile/en/user-language'],
-            ['/profile/pt_BR/user-language/new', 'user_language[name]'],
-            ['/profile/en/user-language/new', 'user_language[level]', 'BEGINNER'],
-            #skill
-            ['/profile/pt_BR/skill'],
-            ['/profile/en/skill'],
-            ['/profile/pt_BR/skill/new', 'App_skill[name]'],
-            ['/profile/en/skill/new', 'App_skill[priority]'],
-            #change password
-            ['/profile/pt_BR/change-password', 'change_password_account_form[plainPassword][first]'],
-            ['/profile/en/change-password', 'change_password_account_form[plainPassword][second]'],
-        ];
+        #main
+        yield ['/profile/pt_BR/edit', 'app_user_profile[first_name]', 'Test'];
+        yield ['/profile/en/edit', 'app_user_profile[last_name]', 'Mock'];
+        #user's network
+        yield ['/profile/pt_BR/usersocialnetworking'];
+        yield ['/profile/en/usersocialnetworking'];
+        yield ['/profile/pt_BR/usersocialnetworking/new', 'App_usersocialnetworking[link]'];
+        yield ['/profile/en/usersocialnetworking/new', 'App_usersocialnetworking[socialNetworking]'];
+        #education
+        yield ['/profile/pt_BR/education'];
+        yield ['/profile/en/education'];
+        yield ['/profile/pt_BR/education/new', 'App_education[title]'];
+        yield ['/profile/en/education/new', 'App_education[institution]'];
+        #experience
+        yield ['/profile/pt_BR/experience'];
+        yield ['/profile/en/experience'];
+        yield ['/profile/pt_BR/experience/new', 'App_experience[title]'];
+        yield ['/profile/en/experience/new', 'App_experience[company]'];
+        #certification
+        yield ['/profile/pt_BR/certification'];
+        yield ['/profile/en/certification'];
+        yield ['/profile/pt_BR/certification/new', 'App_certification[title]'];
+        yield ['/profile/en/certification/new', 'App_certification[institution]'];
+        #user`s language
+        yield ['/profile/pt_BR/user-language'];
+        yield ['/profile/en/user-language'];
+        yield ['/profile/pt_BR/user-language/new', 'user_language[name]'];
+        yield ['/profile/en/user-language/new', 'user_language[level]', 'BEGINNER'];
+        #skill
+        yield ['/profile/pt_BR/skill'];
+        yield ['/profile/en/skill'];
+        yield ['/profile/pt_BR/skill/new', 'App_skill[name]'];
+        yield ['/profile/en/skill/new', 'App_skill[priority]'];
+        #change password
+        yield ['/profile/pt_BR/change-password', 'change_password_account_form[plainPassword][first]'];
+        yield ['/profile/en/change-password', 'change_password_account_form[plainPassword][second]'];
     }
 }
