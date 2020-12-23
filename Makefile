@@ -19,8 +19,14 @@ db:
 test:
 	bin/phpunit --coverage-clover coverage.xml
 
-phpcs:
+lint_phpcs:
 	vendor/bin/phpcs
+
+lint_twig:
+	php bin/console lint:twig templates
+
+lint_container:
+	php bin/console lint:container
 
 restart:
 	docker-compose restart
