@@ -6,15 +6,11 @@ Encore
     // public path used by the web server to access the output path
     .setPublicPath('/build')
 
-    .addEntry('app', './assets/js/app.js')
     .addEntry('main', './assets/js/main.js')
     .addEntry('web_site_profile', './assets/js/profile.js')
     .addEntry('admin_profile', './assets/js/admin_profile.js')
-    .addEntry('login', './assets/js/login.js')
     .addEntry('curriculum_theme_01', './assets/js/curriculum_theme_01.js')
     .addEntry('exception', './assets/js/exception.js')
-    .addEntry('request-style', './assets/js/request-style.js')
-    .addEntry('reset-password', './assets/js/reset-password.js')
 
     .addStyleEntry('style', './assets/css/style.scss')
     .addStyleEntry('profile', './assets/css/profile.scss')
