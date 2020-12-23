@@ -18,7 +18,7 @@
 </script>
 
 <style>
-    .notification {
+    #notification {
         position: fixed;
         z-index: 1;
         right: 10%;
@@ -28,7 +28,7 @@
 
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-        <div class="notification is-{{ label }} is-light">
+        <div class="notification is-{{ label }} is-light" id="notification">
             <button class="delete"></button>
             {{ message|trans }}
         </div>
