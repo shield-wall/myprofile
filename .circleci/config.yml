@@ -59,7 +59,7 @@ jobs:
             - node_modules
             - public
 
-  phpcs:
+  lint:
     executor: environment_configuration
     steps:
       - checkout
@@ -69,7 +69,9 @@ jobs:
             - v5-build
       - attach_workspace:
           at: /app
-      - run: make phpcs
+      - run: make lint_phpcs
+      - run: make lint_twig
+      - run: make lint_container
 
   test_functional:
     executor: environment_configuration
@@ -101,10 +103,10 @@ workflows:
       - webpack:
           requires:
             - composer
-      - phpcs:
+      - lint:
           requires:
             - composer
       - test_functional:
           requires:
             - webpack
-            - phpcs
+            - lint
