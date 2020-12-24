@@ -51,10 +51,10 @@ class CheckPageTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, $url);
         $response = $this->client->getResponse();
 
-        $absoluteUrlToLogin = 'http://localhost/%s/login';
+        $absoluteUrlToLogin = 'http://localhost/login%s';
         $this->assertTrue(
-            $response->isRedirect(sprintf($absoluteUrlToLogin, 'pt_BR'))
-            || $response->isRedirect(sprintf($absoluteUrlToLogin, 'en')));
+            $response->isRedirect(sprintf($absoluteUrlToLogin, ''))
+            || $response->isRedirect(sprintf($absoluteUrlToLogin, '/en')));
     }
 
     public function providerCheckPage(): Generator
