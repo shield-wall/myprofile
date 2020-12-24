@@ -17,6 +17,12 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
+/**
+ * @Route(name="app_", defaults={"_locale": "pt_BR"}, priority="10")
+ *
+ * Class RegistrationController
+ * @package App\Controller
+ */
 class RegistrationController extends AbstractController
 {
     private $emailVerifier;
@@ -27,7 +33,16 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/register", name="app_register")
+     * @Route("/register/{_locale}", name="register")
+     *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param FormAuthenticator $authenticator
+     * @param TranslatorInterface $translator
+     * @param string $mailerFrom
+     * @param string $mailerFromName
+     * @return Response
      */
     public function register(
         Request $request,
@@ -84,7 +99,11 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/verify/email", name="app_verify_email")
+     * @Route("/verify/email", name="verify_email")
+     *
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return Response
      */
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {

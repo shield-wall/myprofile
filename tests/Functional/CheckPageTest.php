@@ -44,15 +44,15 @@ class CheckPageTest extends WebTestCase
             yield ['/test-mock/curriculum/en', '#name', 'Test Mock'];
 
             #login
-            yield ['/pt_BR/login', '#page-title', 'Bem-vindo novamente!'];
-            yield ['/en/login', '#page-title', 'Welcome back!'];
+            yield ['/login', '#page-title', 'Bem-vindo novamente!'];
+            yield ['/login/en', '#page-title', 'Welcome back!'];
 
             #register
-            yield ['/pt_BR/register', '#page-title', 'Registre-se'];
-            yield ['/en/register', '#page-title', 'Hello, Friend!'];
+            yield ['/register', '#page-title', 'Registre-se'];
+            yield ['/register/en', '#page-title', 'Hello, Friend!'];
 
             #reset-password
-            yield ['/pt_BR/reset-password', '#page-title', 'Redefinir minha senha'];
-            yield ['/en/reset-password', '#page-title', 'Reset your password'];
+            yield ['/reset-password', '#page-title', 'Redefinir minha senha'];
+            yield ['/reset-password/en', '#page-title', 'Reset your password'];
     }
 }
