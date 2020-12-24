@@ -31,6 +31,9 @@ class RegistrationFormType extends AbstractType
         $resolver->setDefaults([
             'validation_groups' => ['Default', 'registration'],
             'data_class' => User::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id'   => 'registration',
         ]);
     }
 }

@@ -7,7 +7,7 @@
 
 {% block security_content %}
     {{ form_start(registrationForm) }}
-
+    <input type="hidden" name="token" value="{{ csrf_token('registration') }}"/>
     <div class="columns">
         {% include 'component/_fields.html.twig' with {
             'fields': [
