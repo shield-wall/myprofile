@@ -19,6 +19,12 @@
 		<div class="section">
 			<div class="columns is-centered">
 				<div class="column is-10">
+					{% if not app.user.verified %}
+						<div class="notification is-info" id="verify-account">
+							<i class="fa fa-warning"></i>
+							{{ 'messages.verify_account'|trans([], 'messages') }}
+						</div>
+					{% endif %}
 					{% include 'profile/partial/flashmessages.html.twig' with { 'auto_hide': true } %}
 					{% block body %}{% endblock body %}
 				</div>
