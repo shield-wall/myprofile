@@ -5,7 +5,7 @@ namespace App\Controller\Profile;
 use App\Entity\UserLanguage;
 use App\Form\UserLanguageType;
 use App\Repository\UserLanguageRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,7 +58,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
-     * @Security("user == userLanguage.getUser()")
+     * @IsGranted("ROLE_USER", attributes="owner", subject="userLanguage")
      */
     public function edit(Request $request, UserLanguage $userLanguage): Response
     {
@@ -80,7 +80,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @Security("user == userLanguage.getUser()")
+     * @IsGranted("ROLE_USER", attributes="owner", subject="userLanguage")
      */
     public function delete(Request $request, UserLanguage $userLanguage): Response
     {
