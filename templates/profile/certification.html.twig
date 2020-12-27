@@ -3,7 +3,7 @@
 
 {% block title %}{{'form.certification.head.title'|trans}}{% endblock %}
 {% block body %}
-    {% if certifications %}
+    {% if data %}
         <div class="columns is-multiline">
             <div class="column is-2 is-offset-10">
                 {% include "profile/partial/form/button.html.twig" with {
@@ -25,7 +25,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for certification in certifications %}
+                    {% for certification in data %}
                         {% set path = path('profile_certification_edit', { 'id': certification.id }) %}
                         <tr>
                             <td>{{ certification.title }}</td>

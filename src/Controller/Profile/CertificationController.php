@@ -3,74 +3,55 @@
 namespace App\Controller\Profile;
 
 use App\Entity\Certification;
+use App\Form\CertificationType;
 use App\Repository\CertificationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/certification", name="certification_")
  */
-class CertificationController extends AbstractController
+class CertificationController extends AbstractCrudController
 {
+    protected const PREFIX = 'certification';
+
     /**
      * @Route(name="index", methods={"GET"})
+     *
+     * @param CertificationRepository $certificationRepository
+     * @return Response
      */
-    public function indexAction(CertificationRepository $certificationRepository)
+    public function indexAction(CertificationRepository $certificationRepository): Response
     {
-        $certifications = $certificationRepository->findBy(['user' => $this->getUser()]);
-
-        return $this->render('profile/certification/index.html.twig', array(
-            'certifications' => $certifications,
-        ));
+        return $this->index($certificationRepository);
     }
 
     /**
      * @Route("/new", name="new", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @return Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $certification = new Certification();
-        $certification->setUser($this->getUser());
-        $form = $this->createForm('App\Form\CertificationType', $certification);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($certification);
-            $em->flush();
-
-            $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('profile_certification_index');
-        }
-
-        return $this->render('profile/certification/save.html.twig', array(
-            'certification' => $certification,
-            'form' => $form->createView(),
-        ));
+        return $this->save($request, CertificationType::class, $certification);
     }
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @Security("user == certification.getUser()")
+     *
+     * @param Request $request
+     * @param Certification $certification
+     * @return Response
      */
-    public function editAction(Request $request, Certification $certification)
+    public function editAction(Request $request, Certification $certification): Response
     {
-        $form = $this->createForm('App\Form\CertificationType', $certification);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('profile_certification_index');
-        }
-
-        return $this->render('profile/certification/save.html.twig', array(
-            'certification' => $certification,
-            'form' => $form->createView(),
-        ));
+        return $this->save($request, CertificationType::class, $certification);
     }
 
     /**
@@ -78,17 +59,13 @@ class CertificationController extends AbstractController
      *
      * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == certification.getUser()")
+     *
+     * @param Request $request
+     * @param Certification $certification
+     * @return Response
      */
-    public function deleteAction(Request $request, Certification $certification)
+    public function deleteAction(Request $request, Certification $certification): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $certification->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($certification);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'messages.item_removed');
-        }
-
-        return $this->redirectToRoute('profile_certification_index');
+        return $this->delete($request, $certification);
     }
 }
