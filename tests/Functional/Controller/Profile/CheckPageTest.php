@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Generator;
+use Symfony\Component\HttpFoundation\Response;
 
 class CheckPageTest extends WebTestCase
 {
@@ -57,6 +58,31 @@ class CheckPageTest extends WebTestCase
             || $response->isRedirect(sprintf($absoluteUrlToLogin, '/en')));
     }
 
+    /**
+     * @dataProvider providerOwnerPage
+     * @param string $indexUrl
+     */
+    public function testCannotAccessDataFromOtherUser(string $indexUrl)
+    {
+        $userRepository = self::$container->get(UserRepository::class);
+        $user1 = $userRepository->findOneBy(['email' => 'test@myprofile.pro']);
+        $user2 = $userRepository->findOneBy(['email' => 'test2@myprofile.pro']);
+
+        $this->client->loginUser($user1);
+        $crawler = $this->client->request(Request::METHOD_GET, $indexUrl);
+        $this->assertResponseIsSuccessful();
+
+        $link = $crawler->filter('.edit')->link();
+
+        $this->client->click($link);
+        $this->assertResponseIsSuccessful();
+
+        $this->client->loginUser($user2);
+        $this->client->click($link);
+        $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
+
+    }
+
     public function providerCheckPage(): Generator
     {
         #main
@@ -95,5 +121,11 @@ class CheckPageTest extends WebTestCase
         #change password
         yield ['/profile/pt_BR/change-password', 'change_password_account_form[plainPassword][first]'];
         yield ['/profile/en/change-password', 'change_password_account_form[plainPassword][second]'];
+    }
+
+    public function providerOwnerPage(): Generator
+    {
+        yield ['/profile/pt_BR/certification'];
+        yield ['/profile/en/user-language'];
     }
 }
