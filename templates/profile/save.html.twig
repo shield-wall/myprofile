@@ -1,12 +1,12 @@
 {% extends 'profile/base.html.twig' %}
 {% trans_default_domain 'MyProfile' %}
 
-{% block title %}{{'form.certification.head.title'|trans}}{% endblock %}
+{% block title %}{{title|trans}}{% endblock %}
 {% block body %}
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {% include "profile/partial/form/submit_button.html.twig" with {
-        'back_path': path('profile_certification_index'),
+        'back_path': path(back_path),
     }%}
     {{ form_end(form) }}
 {% endblock %}

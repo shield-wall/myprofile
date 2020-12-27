@@ -13,8 +13,12 @@ use DateTimeInterface;
  * @ORM\Entity(repositoryClass="App\Repository\CertificationRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
-class Certification
+class Certification implements
+    EntityInterface,
+    HasUserInterface
 {
+    use HasUserTrait;
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,7 +32,7 @@ class Certification
      * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
@@ -84,24 +88,6 @@ class Certification
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     * @return Certification
-     */
-    public function setUser(User $user): Certification
-    {
-        $this->user = $user;
-        return $this;
     }
 
     /**
