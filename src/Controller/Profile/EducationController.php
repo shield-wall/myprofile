@@ -6,75 +6,53 @@ use App\Entity\Education;
 use App\Form\EducationType;
 use App\Repository\EducationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/education", name="education_")
  */
-class EducationController extends AbstractController
+class EducationController extends AbstractCrudController
 {
+    protected const PREFIX = 'education';
+
     /**
      * Lists all education entities.
      *
      * @Route(name="index", methods={"GET"})
+     *
+     * @param EducationRepository $educationRepository
+     * @return Response
      */
-    public function indexAction(EducationRepository $educationRepository)
+    public function indexAction(EducationRepository $educationRepository): Response
     {
-        $educations = $educationRepository->findBy(['user' => $this->getUser()]);
-
-        return $this->render('/profile/education/index.html.twig', array(
-            'educations' => $educations,
-        ));
+        return $this->index($educationRepository);
     }
 
     /**
      * @Route("/new", name="new", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @return Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $education = new Education();
-        $education->setUser($this->getUser());
-        $form = $this->createForm(EducationType::class, $education);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($education);
-            $em->flush();
-
-            $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('profile_education_index');
-        }
-
-        return $this->render('profile/education/save.html.twig', array(
-            'education' => $education,
-            'form' => $form->createView(),
-        ));
+        return $this->save($request, EducationType::class, $education);
     }
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @Security("user == education.getUser()")
+     *
+     * @param Request $request
+     * @param Education $education
+     * @return Response
      */
-    public function editAction(Request $request, Education $education)
+    public function editAction(Request $request, Education $education): Response
     {
-        $education->setUser($this->getUser());
-        $form = $this->createForm('App\Form\EducationType', $education);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('success', 'messages.item_saved');
-            return $this->redirectToRoute('profile_education_index');
-        }
-
-        return $this->render('profile/education/save.html.twig', array(
-            'education' => $education,
-            'form' => $form->createView(),
-        ));
+        return $this->save($request, EducationType::class, $education);
     }
 
     /**
@@ -82,17 +60,13 @@ class EducationController extends AbstractController
      *
      * @Route("/{id}", name="delete", methods={"DELETE"})
      * @Security("user == education.getUser()")
+     *
+     * @param Request $request
+     * @param Education $education
+     * @return Response
      */
-    public function deleteAction(Request $request, Education $education)
+    public function deleteAction(Request $request, Education $education): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $education->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($education);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'messages.item_removed');
-        }
-
-        return $this->redirectToRoute('profile_education_index');
+        return $this->delete($request, $education);
     }
 }

@@ -125,7 +125,8 @@ class CheckPageTest extends WebTestCase
 
     public function providerOwnerPage(): Generator
     {
-        yield ['/profile/pt_BR/certification'];
+        yield ['/profile/en/certification'];
+        yield ['/profile/en/education'];
         yield ['/profile/en/user-language'];
     }
 }

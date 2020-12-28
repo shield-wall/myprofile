@@ -11,8 +11,12 @@ use DateTimeInterface;
  * @ORM\Entity(repositoryClass="App\Repository\EducationRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
-class Education
+class Education implements
+    EntityInterface,
+    HasUserInterface
 {
+    use HasUserTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -26,7 +30,7 @@ class Education
      * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
@@ -86,24 +90,6 @@ class Education
     public function setId(int $id): Education
     {
         $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     * @return Education
-     */
-    public function setUser(User $user): Education
-    {
-        $this->user = $user;
         return $this;
     }
 
