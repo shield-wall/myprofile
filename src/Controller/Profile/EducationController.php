@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EducationController extends AbstractCrudController
 {
-    protected const PREFIX = 'education';
+    public const PREFIX = 'education';
 
     /**
      * Lists all education entities.
@@ -38,7 +38,7 @@ class EducationController extends AbstractCrudController
      */
     public function newAction(Request $request): Response
     {
-        $education = new Education();
+        $education = new Education($this->getUser());
         return $this->save($request, EducationType::class, $education);
     }
 

@@ -14,3 +14,9 @@ profile:
     type: annotation
     prefix: /profile/{_locale}
     name_prefix: profile_
+
+admin:
+    resource: ../../src/Controller/Admin/
+    type: annotation
+    prefix: /admin/{_locale}
+    name_prefix: admin_

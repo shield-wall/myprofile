@@ -22,11 +22,11 @@ class ProfileType extends AbstractType
 
         $builder
             ->add('first_name', TextType::class, [
-                'label' => 'form.main.first_name',
+                'label' => 'form.first_name',
 
             ])
             ->add('last_name', TextType::class, [
-                'label' => 'form.main.last_name',
+                'label' => 'form.last_name',
             ])
             ->add('profile_image', FileType::class, [
                 'label' => 'form.main.profile_image',

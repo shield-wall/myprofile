@@ -75,6 +75,11 @@ class Education implements
      */
     protected $periodEnd;
 
+    public function __construct(UserInterface $user = null)
+    {
+        $this->user = $user;
+    }
+
     /**
      * @return int
      */

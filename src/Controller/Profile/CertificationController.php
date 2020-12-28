@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CertificationController extends AbstractCrudController
 {
-    protected const PREFIX = 'certification';
+    public const PREFIX = 'certification';
 
     /**
      * @Route(name="index", methods={"GET"})
@@ -36,7 +36,7 @@ class CertificationController extends AbstractCrudController
      */
     public function newAction(Request $request): Response
     {
-        $certification = new Certification();
+        $certification = new Certification($this->getUser());
 
         return $this->save($request, CertificationType::class, $certification);
     }

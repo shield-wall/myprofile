@@ -82,6 +82,11 @@ class Certification implements
      */
     private $image;
 
+    public function __construct(UserInterface $user = null)
+    {
+        $this->user = $user;
+    }
+
     /**
      * @return int
      */

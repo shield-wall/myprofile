@@ -13,11 +13,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorMap({"user" = "User", "recruiter" = "Recruiter"})
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  * @UniqueEntity("slug")
  * @UniqueEntity("email")
  */
-class User implements UserInterface
+class User implements
+    UserInterface,
+    EntityInterface
 {
     /**
      * @ORM\Id
@@ -157,7 +161,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    protected $roles = [];
 
     /**
      * @var string

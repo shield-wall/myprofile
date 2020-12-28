@@ -53,6 +53,9 @@ site:
   title_message: Make your curriculum vitae in PDF or personal website in few minutes!
 
 form:
+  first_name: First name
+  last_name: Last name
+
   default:
     actions: Actions
 
@@ -77,8 +80,6 @@ form:
   main:
     head:
       title: Main
-    first_name: First name
-    last_name: Last name
     profile_image: Profile image
     background_image: Background image
     birthday: Birthday
