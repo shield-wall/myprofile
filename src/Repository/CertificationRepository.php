@@ -15,13 +15,10 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class CertificationRepository extends ServiceEntityRepository implements OwnerDataRepositoryInterface
 {
+    use OwnerDataTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Certification::class);
-    }
-
-    public function getOwnerData(UserInterface $user): array
-    {
-        return $this->findBy(['user' => $user->getId()]);
     }
 }
