@@ -32,8 +32,8 @@ class CheckPageTest extends WebTestCase
     public function providerCheckPage(): Generator
     {
             #homepage
-            yield ['/', '#home-button-register', 'Criar meu currículo 2020'];
-            yield ['/en', '#home-button-register', 'Make my curriculum vitae 2020'];
+            yield ['/', '#home-button-register', 'Criar meu currículo ' . date('Y')];
+            yield ['/en', '#home-button-register', 'Make my curriculum vitae ' . date('Y')];
 
             #user profile
             yield ['/test-mock', '#home-title', 'Test Mock'];

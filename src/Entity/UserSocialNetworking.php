@@ -17,7 +17,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- * @UniqueEntity("socialNetworking")
+ * @UniqueEntity(
+ *     fields={"user", "socialNetworking"},
+ *     errorPath="socialNetworking"
+ * )
  */
 class UserSocialNetworking
 {
