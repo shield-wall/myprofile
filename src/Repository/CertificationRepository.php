@@ -3,9 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Certification;
-use App\Entity\UserInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * CertificationRepository
