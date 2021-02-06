@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  heroku: circleci/heroku@1.2.3
+  heroku: circleci/heroku@1.2.5
   codecov: codecov/codecov@1.0.2
 
 executors:
@@ -100,6 +100,8 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       - heroku/install
 #      - attach_workspace:
 #            at: /app
@@ -114,9 +116,7 @@ jobs:
 #            exit 0
       - run:
           name: Auth heroku
-          command: |
-            ./.circleci/auth_heroku.sh $HEROKU_USERNAME $HEROKU_API_KEY
-            heroku login
+          command: ./.circleci/auth_heroku.sh $HEROKU_USERNAME $HEROKU_API_KEY
       - heroku/release-docker-image:
           app-name: staging-myprofile-pr-400
       - heroku/push-docker-image:
