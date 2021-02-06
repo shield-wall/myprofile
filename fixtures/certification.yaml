@@ -1,0 +1,11 @@
+App\Entity\Certification:
+  certification_test:
+    title: <firstName()>
+    institution: <lastName()>
+    periodStart: <dateTimeBetween("-200 days", "now")>
+    user: '@user_test'
+  certification{1..3}):
+    title: <firstName()>
+    institution: <lastName()>
+    periodStart: <dateTimeBetween("-200 days", "now")>
+    user: '@user_test_2'

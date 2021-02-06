@@ -33,13 +33,13 @@ class SocialNetworking
     protected $icon;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="social_networking")
+     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="socialNetworking")
      */
-    protected $user_social_networks;
+    protected $userSocialNetworks;
 
     public function __construct()
     {
-        $this->user_social_networks = new ArrayCollection();
+        $this->userSocialNetworks = new ArrayCollection();
     }
 
     public function getId()

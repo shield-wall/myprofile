@@ -9,8 +9,15 @@
 
     <div class="columns is-multiline is-marginless">
         <div class="column">
+            {% if app.debug %}
+            <div class="notification is-primary is-full">
+                <button class="delete"></button>
+                <div class="is-size-6 mb-3">You can use this user to test!</div>
+                <div><i class="fa fa-user"></i> email: test@myprofile.pro</div>
+                <div><i class="fa fa-lock"></i> password: 123456</div>
+            </div>
+            {% endif %}
             <form method="post" role="login">
-
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                 <div class="columns">
@@ -64,7 +71,7 @@
                 {% endif %}
 
                 <div class="columns">
-                    {% include 'component/buttons.html.twig' with {
+                    {% include 'component/_buttons.html.twig' with {
                         buttons : [
                             {
                                 'type': 'submit',

@@ -8,14 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * @Route("/{_locale}", name="app_")
+ * @Route(name="app_", defaults={"_locale": "pt_BR"}, priority="10")
  * Class SecurityController
  * @package App\Controller
  */
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/login/{_locale}", name="login")
      *
      * @param AuthenticationUtils $authenticationUtils
      * @return Response
@@ -35,7 +35,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout/{_locale}", name="logout")
      */
     public function logout()
     {

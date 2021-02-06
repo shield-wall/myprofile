@@ -19,6 +19,10 @@ yarn-error.log
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
 
 ###> symfony/phpunit-bridge ###
 .phpunit
@@ -26,7 +30,6 @@ yarn-error.log
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> squizlabs/php_codesniffer ###
-/.phpcs-cache
-/phpcs.xml
-###< squizlabs/php_codesniffer ###
+###> myprofile
+coverage.xml
+###< myprofile

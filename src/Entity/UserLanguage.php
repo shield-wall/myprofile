@@ -9,7 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserLanguageRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
-class UserLanguage
+class UserLanguage implements
+    EntityInterface,
+    HasUserInterface
 {
     public const LEVELS = [
         'BEGINNER' => 'Beginner',
@@ -42,12 +44,12 @@ class UserLanguage
     private $level;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userLanguages")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userLanguages")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -81,14 +83,14 @@ class UserLanguage
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): UserInterface
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(UserInterface $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

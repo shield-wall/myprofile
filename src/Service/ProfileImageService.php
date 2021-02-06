@@ -32,7 +32,7 @@ class ProfileImageService
             return;
         }
 
-        $url_prefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
+        $urlPrefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
 
         $file->move($this->params->get('transloadit.tmp'), $file->getClientOriginalName());
         $fileFullPath = sprintf('%s/%s', $this->params->get('transloadit.tmp'), $file->getClientOriginalName());
@@ -46,7 +46,7 @@ class ProfileImageService
                 "steps" => [
                     'export' => [
                         'credentials' => $this->params->get('transloadit.credentials'),
-                        'url_prefix' => $url_prefix,
+                        'url_prefix' => $urlPrefix,
                         'path' => $user->getProfileImage(),
                     ],
                 ],

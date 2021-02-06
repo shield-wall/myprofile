@@ -101,7 +101,7 @@ form:
   social_network:
     head:
       title: Rede social
-    social_network: Rede social
+    socialNetwork: Rede social
 
   education:
     head:

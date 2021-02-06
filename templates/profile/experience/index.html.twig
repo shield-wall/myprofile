@@ -1,0 +1,65 @@
+{% extends 'profile/base.html.twig' %}
+{% trans_default_domain 'MyProfile' %}
+
+{% block title %}{{'form.experience.head.title'|trans}}{% endblock %}
+{% block body %}
+    {% if experiences %}
+        <div class="columns is-multiline">
+            <div class="column is-2 is-offset-10">
+                {% include "profile/partial/form/button.html.twig" with {
+                    'path': path('profile_experience_new'),
+                    'name': 'form.submit.new'|trans,
+                    'icon': 'fa fa-plus',
+                } %}
+            </div>
+            <div class="column is-full">
+                <table class="table is-fullwidth">
+                    <thead>
+                    <tr>
+						<th>{{ 'form.experience.title'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.experience.company'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.experience.start_period'|trans }}</th>
+                        <th class="is-hidden-touch">{{ 'form.experience.end_period'|trans }}</th>
+                        <th>{{ 'form.default.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for experience in experiences %}
+                        {% set path = path('profile_experience_edit', { 'id': experience.id }) %}
+                        <tr>
+                            <td>{{ experience.title }}</td>
+                            <td class="is-hidden-touch">{{ experience.company }}</td>
+                            <td class="is-hidden-touch">
+                                {% if experience.periodstart %}
+                                    {{ experience.periodstart|date('d/m/Y') }}
+                                {% endif %}
+                            </td>
+                            <td class="is-hidden-touch">
+                                {% if experience.periodend %}
+                                    {{ experience.periodend|date('d/m/Y') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% include "profile/partial/form/button.html.twig" with {
+                                    'path': path,
+                                    'icon': 'fa fa-pencil',
+                                    'class': 'is-text',
+                                } %}
+
+                                {% include "profile/partial/form/delete_button.html.twig" with {
+                                    'router': 'profile_experience_delete',
+                                    'id': experience.id,
+                                } %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        {% include "profile/partial/form/empty_list.html.twig" with {
+            'path': path('profile_experience_new')
+        } %}
+    {% endif %}
+{% endblock %}

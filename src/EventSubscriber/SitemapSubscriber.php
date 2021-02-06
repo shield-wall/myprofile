@@ -37,14 +37,14 @@ class SitemapSubscriber implements EventSubscriberInterface
 
     public function registerUsersUrls(UrlContainerInterface $urls): void
     {
-        $users = $this->userRepository->findByEnabled(true);
+        $users = $this->userRepository->findBy(['isVerified' => true]);
 
         foreach ($users as $user) {
             foreach ($this->locales as $locale) {
                 $urls->addUrl(
                     new UrlConcrete(
                         $this->urlGenerator->generate(
-                            'app_profile',
+                            'app_user_profile',
                             ['slug' => $user->getSlug(), '_locale' => $locale],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         )
@@ -57,18 +57,18 @@ class SitemapSubscriber implements EventSubscriberInterface
 
     public function registerStaticUrls(UrlContainerInterface $urls): void
     {
-        $static_routers = [
+        $staticRouters = [
             'app_homepage',
             'app_register',
             'app_login',
         ];
 
-        foreach ($static_routers as $static_router) {
+        foreach ($staticRouters as $staticRouter) {
             foreach ($this->locales as $locale) {
                 $urls->addUrl(
                     new UrlConcrete(
                         $this->urlGenerator->generate(
-                            $static_router,
+                            $staticRouter,
                             ['_locale' => $locale],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         )

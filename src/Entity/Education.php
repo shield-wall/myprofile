@@ -4,210 +4,182 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
 
 /**
  * @ORM\Table(name="education")
  * @ORM\Entity(repositoryClass="App\Repository\EducationRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
-class Education
+class Education implements
+    EntityInterface,
+    HasUserInterface
 {
+    use HasUserTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     * @var UserInterface
      */
-    protected $user_id;
+    protected $user;
 
     /**
      * @Assert\Length(max="200")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=200, nullable=false)
+     * @ORM\Column(type="string", length=200)
+     *
+     * @var string
      */
     protected $title;
 
     /**
      * @Assert\Length(max="200")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=200, nullable=false)
+     * @ORM\Column(type="string", length=200)
+     *
+     * @var string
      */
     protected $institution;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text")
+     *
+     * @var string
      */
     protected $description;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="date")
+     *
+     * @var DateTimeInterface
      */
-    protected $period_start;
+    protected $periodStart;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     *
+     * @var DateTimeInterface|null
      */
-    protected $period_end;
-
+    protected $periodEnd;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
+     * @param int $id
      * @return Education
      */
-    public function setTitle($title)
+    public function setId(int $id): Education
     {
-        $this->title = $title;
-
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Set institution
-     *
-     * @param string $institution
-     *
+     * @param string $title
      * @return Education
      */
-    public function setInstitution($institution)
+    public function setTitle(string $title): Education
     {
-        $this->institution = $institution;
-
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get institution
-     *
      * @return string
      */
-    public function getInstitution()
+    public function getInstitution(): string
     {
         return $this->institution;
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     *
+     * @param string $institution
      * @return Education
      */
-    public function setDescription($description)
+    public function setInstitution(string $institution): Education
     {
-        $this->description = $description;
-
+        $this->institution = $institution;
         return $this;
     }
 
     /**
-     * Get description
-     *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * Set periodStart
-     *
-     * @param \DateTime $periodStart
-     *
+     * @param string $description
      * @return Education
      */
-    public function setPeriodStart($periodStart)
+    public function setDescription(string $description): Education
     {
-        $this->period_start = $periodStart;
-
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * Get periodStart
-     *
-     * @return \DateTime
+     * @return DateTimeInterface
      */
-    public function getPeriodStart()
+    public function getPeriodStart(): ?DateTimeInterface
     {
-        return $this->period_start;
+        return $this->periodStart;
     }
 
     /**
-     * Set periodEnd
-     *
-     * @param \DateTime $periodEnd
-     *
+     * @param DateTimeInterface $periodStart
      * @return Education
      */
-    public function setPeriodEnd($periodEnd)
+    public function setPeriodStart(DateTimeInterface $periodStart): Education
     {
-        $this->period_end = $periodEnd;
-
+        $this->periodStart = $periodStart;
         return $this;
     }
 
     /**
-     * Get periodEnd
-     *
-     * @return \DateTime
+     * @return DateTimeInterface|null
      */
-    public function getPeriodEnd()
+    public function getPeriodEnd(): ?DateTimeInterface
     {
-        return $this->period_end;
+        return $this->periodEnd;
     }
 
     /**
-     * Set userId
-     *
-     * @param \App\Entity\User $userId
-     *
+     * @param DateTimeInterface|null $periodEnd
      * @return Education
      */
-    public function setUserId(\App\Entity\User $userId = null)
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): Education
     {
-        $this->user_id = $userId;
-
+        $this->periodEnd = $periodEnd;
         return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return \App\Entity\User
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 }

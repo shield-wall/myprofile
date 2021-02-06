@@ -9,7 +9,7 @@
     {{ form_start(requestForm) }}
 
     <div class="columns">
-        {% include 'component/fields.html.twig' with {
+        {% include 'component/_fields.html.twig' with {
             'fields': [
                 {
                     'name': requestForm.email,
@@ -20,7 +20,7 @@
     </div>
 
     <div class="columns">
-        {% include 'component/buttons.html.twig' with {
+        {% include 'component/_buttons.html.twig' with {
             buttons : [
                 {
                     'type': 'submit',

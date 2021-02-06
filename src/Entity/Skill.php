@@ -25,7 +25,7 @@ class Skill
      * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $user_id;
+    protected $user;
 
     /**
      * @Assert\Length(max="50")
@@ -70,7 +70,7 @@ class Skill
      *
      * @return Skill
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
 
@@ -90,11 +90,11 @@ class Skill
     /**
      * Set levelExperience
      *
-     * @param integer $levelExperience
+     * @param int $levelExperience
      *
      * @return Skill
      */
-    public function setLevelExperience($levelExperience)
+    public function setLevelExperience(int $levelExperience)
     {
         $this->levelExperience = $levelExperience;
 
@@ -114,11 +114,11 @@ class Skill
     /**
      * Set priority
      *
-     * @param integer $priority
+     * @param int $priority
      *
      * @return Skill
      */
-    public function setPriority($priority)
+    public function setPriority(int $priority)
     {
         $this->priority = $priority;
 
@@ -138,11 +138,11 @@ class Skill
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param bool $status
      *
      * @return Skill
      */
-    public function setStatus($status)
+    public function setStatus(bool $status)
     {
         $this->status = $status;
 
@@ -160,26 +160,22 @@ class Skill
     }
 
     /**
-     * Set userId
-     *
-     * @param \App\Entity\User $userId
+     * @param User $user
      *
      * @return Skill
      */
-    public function setUserId(\App\Entity\User $userId = null)
+    public function setUser(User $user)
     {
-        $this->user_id = $userId;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get userId
-     *
-     * @return \App\Entity\User
+     * @return User
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 }

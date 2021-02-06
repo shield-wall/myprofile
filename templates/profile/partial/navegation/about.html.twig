@@ -3,7 +3,7 @@
 <div class="container">
     <div class="columns is-multiline is-mobile is-centered">
         <div>
-            {% include 'component/image.html.twig' with {
+            {% include 'component/_image.html.twig' with {
                 'url': bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage(),
                 'urlDefault': bucket_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'
             } %}

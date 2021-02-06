@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\UserSocialNetworking;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +16,7 @@ class UserSocialNetworkingType extends AbstractType
     {
         $builder
             ->add('link')
-            ->add('social_networking');
+            ->add('socialNetworking');
     }
 
     /**

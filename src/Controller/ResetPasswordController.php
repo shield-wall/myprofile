@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\ChangePasswordAccountFormType;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -22,7 +20,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 /**
- * @Route("/{_locale}/reset-password")
+ * @Route("/reset-password/{_locale}", name="app_", defaults={"_locale": "pt_BR"}, priority="10")
  */
 class ResetPasswordController extends AbstractController
 {
@@ -38,7 +36,14 @@ class ResetPasswordController extends AbstractController
     /**
      * Display & process form to request a password reset.
      *
-     * @Route("", name="app_forgot_password_request")
+     * @Route("", name="forgot_password_request")
+     *
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @param TranslatorInterface $translator
+     * @param string $mailerFrom
+     * @param string $mailerFromName
+     * @return Response
      */
     public function request(
         Request $request,
@@ -68,7 +73,9 @@ class ResetPasswordController extends AbstractController
     /**
      * Confirmation page after a user has requested a password reset.
      *
-     * @Route("/check-email", name="app_check_email")
+     * @Route("/check-email", name="check_email")
+     *
+     * @return Response
      */
     public function checkEmail(): Response
     {
@@ -85,7 +92,7 @@ class ResetPasswordController extends AbstractController
     /**
      * Validates and process the reset URL that the user clicked in their email.
      *
-     * @Route("/reset/{token}", name="app_reset_password")
+     * @Route("/reset/{token}", name="reset_password")
      *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -193,33 +200,5 @@ class ResetPasswordController extends AbstractController
         $mailer->send($email);
 
         return $this->redirectToRoute('app_check_email');
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/change-pasword", name="app_change_password")
-     */
-    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $user = $this->getUser();
-        $form = $this->createForm(ChangePasswordAccountFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Encode the plain password, and set it.
-            $encodedPassword = $passwordEncoder->encodePassword(
-                $this->getUser(),
-                $form->get('plainPassword')->getData()
-            );
-
-            $user->setPassword($encodedPassword);
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('success', 'messages.item_saved');
-        }
-
-        return $this->render('account/change-password.html.twig', [
-            'form' => $form->createView(),
-        ]);
     }
 }

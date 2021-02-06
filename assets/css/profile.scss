@@ -23,6 +23,7 @@ $custom-colors: ("orange": ($orange, $orange-invert));
     position: relative;
     overflow: hidden;
 }
+
 .hero-background {
     position: absolute;
     object-fit: cover;
@@ -30,8 +31,13 @@ $custom-colors: ("orange": ($orange, $orange-invert));
     width: 100%;
     height: 100%;
 }
+
 .hero-background.is-transparent {
     opacity: 0.3;
+}
+
+label.required:before {
+    content: "* ";
 }
 
 .skill-progress {

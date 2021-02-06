@@ -27,11 +27,11 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ user.photo }}</td>
+                <td><img src="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.profileImage}}" class="image is-48x48 is-rounded"/></td>
             </tr>
             <tr>
                 <th>Background</th>
-                <td>{{ user.background }}</td>
+                <td><img src="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.backgroundImage}}" class="image is-48x48 is-rounded"/></td>
             </tr>
             <tr>
                 <th>Summary</th>
