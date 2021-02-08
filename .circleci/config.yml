@@ -103,6 +103,9 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - heroku/install
+      - run:
+          name: Auth heroku
+          command: ./.circleci/auth_heroku.sh $HEROKU_USERNAME $HEROKU_API_KEY
 #      - attach_workspace:
 #            at: /app
 #      - restore_cache:
@@ -122,14 +125,11 @@ jobs:
             docker build --tag web --target build --file ./.docker/dockerfiles/Dockerfile .
             docker tag web registry.heroku.com/staging-myprofile-pr-400/web
             docker push registry.heroku.com/staging-myprofile-pr-400/web
-      - run:
-          name: Auth heroku
-          command: ./.circleci/auth_heroku.sh $HEROKU_USERNAME $HEROKU_API_KEY
-      - heroku/push-docker-image:
-          app-name: staging-myprofile-pr-400
+#      - heroku/push-docker-image:
+#          app-name: staging-myprofile-pr-400
+#          recursive: true
       - heroku/release-docker-image:
           app-name: staging-myprofile-pr-400
-          recursive: true
 
 workflows:
   version: 2.1
@@ -147,3 +147,5 @@ workflows:
 #            - webpack
 #            - lint
       - pr_deploy
+#          requires:
+#            - test_functional
