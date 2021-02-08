@@ -115,12 +115,21 @@ jobs:
 #            heroku create staging-myprofile-pr-400
 #            exit 0
       - run:
+          name: Step up heroku web
+          command: |
+            heroku container:login
+            docker login --username=_ --password=$(heroku auth:token) registry.heroku.com
+            docker build --tag web --target build --file ./.docker/dockerfiles/Dockerfile .
+            docker tag web registry.heroku.com/staging-myprofile-pr-400/web
+            docker push registry.heroku.com/staging-myprofile-pr-400/web
+      - run:
           name: Auth heroku
           command: ./.circleci/auth_heroku.sh $HEROKU_USERNAME $HEROKU_API_KEY
-      - heroku/release-docker-image:
-          app-name: staging-myprofile-pr-400
       - heroku/push-docker-image:
           app-name: staging-myprofile-pr-400
+      - heroku/release-docker-image:
+          app-name: staging-myprofile-pr-400
+          recursive: true
 
 workflows:
   version: 2.1

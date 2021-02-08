@@ -10,6 +10,11 @@ RUN apt-get install -y libpq-dev libzip-dev zlib1g-dev libicu-dev \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
+FROM base as build
+ADD . /app
+WORKDIR /app
+CMD "$(composer config bin-dir)/heroku-php-apache2 -i .docker/upload.ini public/"
+
 FROM base as dev
 RUN apt-get install -y git
 RUN pecl install xdebug && docker-php-ext-enable xdebug
