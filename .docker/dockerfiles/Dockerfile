@@ -13,6 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 FROM base as build
 ADD . /app
 WORKDIR /app
+CMD "$(composer config bin-dir)/heroku-php-apache2 -i .docker/upload.ini public"
 
 FROM base as dev
 RUN apt-get install -y git
