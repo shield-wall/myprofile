@@ -10,7 +10,10 @@ RUN apt-get install -y libpq-dev libzip-dev zlib1g-dev libicu-dev \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
-CMD "web: $(composer config bin-dir)/heroku-php-apache2 -i .docker/upload.ini public/"
+COPY ./ /app
+
+#CMD "web: $(composer config bin-dir)/heroku-php-apache2 -i .docker/upload.ini public/"
+CMD "php -S 0.0.0.0:443 -t public"
 
 #FROM base as dev
 #RUN apt-get install -y git
