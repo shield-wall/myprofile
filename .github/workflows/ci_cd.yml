@@ -4,10 +4,101 @@ on: [pull_request]
 jobs:
 
   build-composer:
-    name: Composer and Database
+    name: Composer build
     runs-on: ubuntu-latest
     container:
       image: eerison/myprofile
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache composer and webpack files
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor
+            node_modules
+            public
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Composer
+        run: make composer
+
+
+  build-webpack:
+    name: Webpack build
+    runs-on: ubuntu-latest
+    needs: build-composer
+    container:
+      image: node
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache composer and webpack files
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor
+            node_modules
+            public
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Webpack
+        run: make yarn
+
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: build-composer
+    container:
+      image: eerison/myprofile
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            vendor
+            node_modules
+            public
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: See files
+        run: ls -lha
+
+      - name: Code Sniffer
+        run: make lint_phpcs
+
+      - name: Twig
+        run: make lint_twig
+
+      - name: Symfony Containers
+        run: make lint_container
+
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: [lint, build-webpack]
+    env:
+      APP_ENV: test
+    container:
+      image: eerison/myprofile:dev
     services:
       db:
         image: postgres
@@ -24,55 +115,62 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Composer
-        run: make init
-
-      - name: Sharing composer files
-        uses: actions/upload-artifact@v2
+      - uses: actions/cache@v2
         with:
-          name: composer
-          path: vendor/
-
-  build-webpack:
-    runs-on: ubuntu-latest
-    needs: build-composer
-    container:
-      image: node
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Getting vendor files
-        uses: actions/download-artifact@v2
-        with:
-          name: composer
-
-      - name: Webpack
-        run: make yarn
-
-      - name: Sharing webpack files
-        uses: actions/upload-artifact@v2
-        with:
-          name: webpack
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
           path: |
+            vendor
             node_modules
             public
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: See files
+        run: |
+          pwd
+          ls -lha
+
+      - name: Setup Database
+        run: make db
+
+      - name: Load fixtures
+        run: php bin/console hautelook:fixtures:load --no-interaction
+
+      - name: Run Tests
+        run: make test
+
+      - name: Codecov
+        uses: codecov/codecov-action@v1
 
   pr-deploy:
     name: Pull request deploy
     runs-on: ubuntu-latest
-    needs: build-webpack
+    needs: test
+    container:
+      image: eerison/myprofile:dev
     steps:
         - uses: actions/checkout@v2
 
-        - name: Getting vendor files
-          uses: actions/download-artifact@v2
+        - uses: actions/cache@v2
           with:
-            name: composer
+            key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
+            path: |
+              vendor
+              node_modules
+              public
+            restore-keys: |
+              ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
+              ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
+              ${{ runner.os }}-build-
+              ${{ runner.os }}-
 
-        - name: Getting webpack files
-          uses: actions/download-artifact@v2
-          with:
-            name: webpack
+        - name: See files
+          run: |
+            pwd
+            ls -lha
 
         - uses: akhileshns/heroku-deploy@v3.10.9
           with:
