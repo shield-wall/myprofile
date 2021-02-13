@@ -13,13 +13,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 WORKDIR /app
 
 FROM base as build
-
 COPY ./ /app
-#CMD "vendor/heroku-php-apache2 -i .docker/upload.ini public/"
-CMD "php -S 0.0.0.0:443 -t public"
+ENTRYPOINT "php -S 0.0.0.0:$PORT -t public"
 
-# Remove the comments when you need to build a new resease to dev tag
-#It's a workaround to https://github.com/AkhileshNS/heroku-deploy/issues/66
 #FROM base as dev
 #
 #VOLUME docker.sock:docker.sock:ro

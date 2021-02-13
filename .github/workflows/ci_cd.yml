@@ -94,9 +94,10 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: [lint, build-webpack]
+    needs: [ lint, build-webpack ]
     env:
       APP_ENV: test
+      XDEBUG_MODE: coverage
     container:
       image: eerison/myprofile:dev
     services:
@@ -127,11 +128,6 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
-      - name: See files
-        run: |
-          pwd
-          ls -lha
 
       - name: Setup Database
         run: make db
@@ -172,7 +168,8 @@ jobs:
             pwd
             ls -lha
 
-        - uses: akhileshns/heroku-deploy@v3.10.9
+        - name: Web deploy
+          uses: akhileshns/heroku-deploy@v3.10.9
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
             heroku_app_name: "staging-myprofile-pr-400" #Must be unique in Heroku
