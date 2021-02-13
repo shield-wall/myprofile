@@ -14,7 +14,7 @@ WORKDIR /app
 
 FROM base as build
 COPY ./ /app
-ENTRYPOINT "php -S 0.0.0.0:$PORT -t public"
+CMD "vendor/heroku-php-apache2 -i .docker/upload.ini public/"
 
 #FROM base as dev
 #

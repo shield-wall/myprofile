@@ -119,6 +119,9 @@
             "fixtures/.gitignore"
         ]
     },
+    "heroku/heroku-buildpack-php": {
+        "version": "v189"
+    },
     "http-interop/http-factory-guzzle": {
         "version": "1.0.0"
     },

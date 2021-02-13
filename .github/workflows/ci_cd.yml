@@ -144,7 +144,7 @@ jobs:
   pr-deploy:
     name: Pull request deploy
     runs-on: ubuntu-latest
-    needs: test
+#    needs: test
     container:
       image: eerison/myprofile:dev
     steps:
