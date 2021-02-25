@@ -170,8 +170,10 @@ jobs:
 
         - name: Web deploy
           uses: akhileshns/heroku-deploy@v3.12.12
+          env:
+            PR_NUMBER: ${{ github.event.number }}
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "MyProfile-${{GITHUB_REF}}"
+            heroku_app_name: "my-profile-pr-$PR_NUMBER"
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
