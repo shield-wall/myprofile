@@ -144,6 +144,8 @@ jobs:
   pr-deploy:
     name: Pull request deploy
     runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ github.event.number }}
 #    needs: test
     container:
       image: eerison/myprofile:dev
@@ -170,10 +172,24 @@ jobs:
 
         - name: Web deploy
           uses: akhileshns/heroku-deploy@v3.12.12
-          env:
-            PR_NUMBER: ${{ github.event.number }}
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
             heroku_app_name: "my-profile-pr-$PR_NUMBER"
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
+
+        - name: Create Database
+          id: database-create
+          continue-on-error: true
+          run:  heroku addons:create heroku-postgresql --app my-profile-pr-$PR_NUMBER --name postgresql-my-profile-pr-$PR_NUMBER
+
+        - name: Migrations and Fixtures
+          run: heroku run --app my-profile-pr-$PR_NUMBER make migrate
+
+        - name: Commenting environment link in PR
+          uses: mshick/add-pr-comment@v1
+          with:
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
+            allow-repeats: true
+            message: |
+              You can see your code in this [environment](https://my-profile-pr-$PR_NUMBER.herokuapp.com) 🚀
