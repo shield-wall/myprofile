@@ -1,8 +1,15 @@
 name: CI/CD
-on: [pull_request]
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
-
   build-composer:
     name: Composer build
     runs-on: ubuntu-latest
@@ -147,7 +154,9 @@ jobs:
     environment: staging_pr
     env:
       PR_NUMBER: ${{ github.event.number }}
-#    needs: test
+      PREFIX: my-profile-pr-
+      APP_ENV: prod
+    needs: test
     container:
       image: eerison/myprofile:dev
     steps:
@@ -175,17 +184,16 @@ jobs:
           uses: akhileshns/heroku-deploy@v3.12.12
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "my-profile-pr-$PR_NUMBER"
+            heroku_app_name: "$PREFIX$PR_NUMBER"
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
 
         - name: Create Database
-          id: database-create
-          continue-on-error: true
-          run:  heroku addons:create heroku-postgresql --app my-profile-pr-$PR_NUMBER --name postgresql-my-profile-pr-$PR_NUMBER
+          if: github.event.pull_request.opened == true
+          run:  heroku addons:create heroku-postgresql --app $PREFIX$PR_NUMBER --name postgresql-$PREFIX$PR_NUMBER
 
         - name: Migrations and Fixtures
-          run: heroku run --app my-profile-pr-$PR_NUMBER make migrate
+          run: heroku run --app $PREFIX$PR_NUMBER make migrate
 
         - name: Commenting environment link in PR
           uses: mshick/add-pr-comment@v1
