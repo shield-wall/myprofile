@@ -56,3 +56,8 @@ COPY ./ /app
 #RUN pecl install xdebug && docker-php-ext-enable xdebug
 #RUN curl https://cli-assets.heroku.com/install.sh | sh
 #RUN apt-get -y install docker.io
+#
+##Nodejs and Yarn
+#RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash - \
+#    && apt-get install -y nodejs \
+#    && npm install --global yarn

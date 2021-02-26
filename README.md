@@ -34,7 +34,7 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
 
 Xdebug is listening on port [10000](.docker/common.env)
   
-[ci_badge]: https://github.com/eerison/myprofile/workflows/ci_cd/badge.svg?branch=master
+[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/ci_cd.yml/badge.svg?branch=master
 [ci_link]: https://github.com/eerison/myprofile/actions/workflows/ci_cd.yml?query=workflow%3Aci%2Fcd+branch%3Amaster+
 [test_badge]: https://codecov.io/gh/eerison/myprofile/branch/master/graph/badge.svg?token=ZIW9RTWH1B
 [test_link]: https://codecov.io/gh/eerison/myprofile

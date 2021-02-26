@@ -10,83 +10,61 @@ on:
       - synchronize
 
 jobs:
-  build-composer:
-    name: Composer build
+  build:
+    name: build
     runs-on: ubuntu-latest
     container:
-      image: eerison/myprofile
+      image: eerison/myprofile:dev
     steps:
       - uses: actions/checkout@v2
 
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
+          key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
+            bin/.phpunit
             vendor
             node_modules
             public
-          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
+            v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-
+            v4-${{ runner.os }}-build-
+            v4-${{ runner.os }}-
 
       - name: Composer
         run: make composer
 
+      - name: Webpack
+        run: make yarn
 
-  build-webpack:
-    name: Webpack build
+      - name: Phpunit version
+        run: bin/phpunit --version
+
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-    needs: build-composer
+    needs: build
     container:
-      image: node
+      image: eerison/myprofile:dev
     steps:
       - uses: actions/checkout@v2
 
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
+          key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
+            bin/.phpunit
             vendor
             node_modules
             public
-          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Webpack
-        run: make yarn
-
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    needs: build-composer
-    container:
-      image: eerison/myprofile
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/cache@v2
-        with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
-          path: |
-            vendor
-            node_modules
-            public
-          restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
       - name: See files
-        run: ls -lha
+        run: |
+          pwd
+          ls -lha
 
       - name: Code Sniffer
         run: make lint_phpcs
@@ -101,7 +79,7 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: [ lint, build-webpack ]
+    needs: lint
     env:
       APP_ENV: test
       XDEBUG_MODE: coverage
@@ -123,24 +101,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
+      - name: Cache composer and webpack files
+        uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
+          key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
+            bin/.phpunit
             vendor
             node_modules
             public
-          restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
       - name: Setup Database
         run: make db
 
       - name: Load fixtures
         run: php bin/console hautelook:fixtures:load --no-interaction
+
+      - name: See files
+        run: |
+          pwd
+          ls -lha
 
       - name: Run Tests
         run: make test
@@ -151,29 +131,27 @@ jobs:
   pr-deploy:
     name: Pull request deploy
     runs-on: ubuntu-latest
-    environment: staging_pr
+    environment:
+      name: staging_pr
+      url: https://my-profile-pr-${{ github.event.number }}.herokuapp.com
     env:
       PR_NUMBER: ${{ github.event.number }}
       PREFIX: my-profile-pr-
-      APP_ENV: prod
     needs: test
     container:
       image: eerison/myprofile:dev
     steps:
         - uses: actions/checkout@v2
 
-        - uses: actions/cache@v2
+        - name: Cache composer and webpack files
+          uses: actions/cache@v2
           with:
-            key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{ hashFiles('**/yarn.lock') }}
+            key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
             path: |
+              bin/.phpunit
               vendor
               node_modules
               public
-            restore-keys: |
-              ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-
-              ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
-              ${{ runner.os }}-build-
-              ${{ runner.os }}-
 
         - name: See files
           run: |
@@ -187,17 +165,12 @@ jobs:
             heroku_app_name: "$PREFIX$PR_NUMBER"
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
+          env:
+            APP_ENV: prod
 
         - name: Create Database
-          if: github.event.pull_request.opened == true
+          continue-on-error: true
           run:  heroku addons:create heroku-postgresql --app $PREFIX$PR_NUMBER --name postgresql-$PREFIX$PR_NUMBER
 
         - name: Migrations and Fixtures
           run: heroku run --app $PREFIX$PR_NUMBER make migrate
-
-        - name: Commenting environment link in PR
-          uses: mshick/add-pr-comment@v1
-          with:
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            message: |
-              You can see your code in this [environment](https://my-profile-pr-${{ github.event.number }}.herokuapp.com) 🚀
