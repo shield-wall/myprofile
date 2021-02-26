@@ -1,9 +1,9 @@
 # My Profile
 
-[![MyProfile](https://circleci.com/gh/eerison/myprofile.svg?style=shield)](https://circleci.com/gh/eerison/myprofile)
-[![codecov](https://codecov.io/gh/eerison/myprofile/branch/master/graph/badge.svg?token=ZIW9RTWH1B)](https://codecov.io/gh/eerison/myprofile)
-[![Join the chat at https://gitter.im/myprofile_pro/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/myprofile_pro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-[![Deploy](https://img.shields.io/badge/heroku-deploy-BA55D3.svg)](https://heroku.com/deploy)
+[![ci and cd][ci_badge]][ci_link]
+[![codecov][test_badge]][test_link]
+[![Join the chat at https://gitter.im/myprofile_pro/Lobby][gitter_badge]][gitter_link] 
+[![License: GPL v3][licence_badge]][licence_link]
 
 ## Getting Started
 
@@ -33,7 +33,13 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
 
 
 Xdebug is listening on port [10000](.docker/common.env)
+  
+[ci_badge]: https://github.com/eerison/myprofile/workflows/ci_cd/badge.svg?branch=master
+[ci_link]: https://github.com/eerison/myprofile/actions/workflows/ci_cd.yml?query=workflow%3Aci%2Fcd+branch%3Amaster+
+[test_badge]: https://codecov.io/gh/eerison/myprofile/branch/master/graph/badge.svg?token=ZIW9RTWH1B
+[test_link]: https://codecov.io/gh/eerison/myprofile
+[gitter_badge]: https://badges.gitter.im/Join%20Chat.svg
+[gitter_link]: https://gitter.im/myprofile_pro/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[licence_badge]: https://img.shields.io/badge/License-GPLv3-blue.svg
+[licence_link]: https://github.com/eerison/myprofile/blob/master/LICENSE
 
-## License
-
-  This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details

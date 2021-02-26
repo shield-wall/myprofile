@@ -21,7 +21,7 @@ services:
       - db
 
   client:
-    image: node:10
+    image: node
     working_dir: /app
     volumes:
       - .:/app

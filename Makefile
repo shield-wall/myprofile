@@ -7,14 +7,20 @@ install:
 init:
 	make composer
 	make db
-	php bin/console hautelook:fixtures:load --no-interaction
+	make fixtures
 
 composer:
 	composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader
 
 db:
 	php bin/console doctrine:database:create  --if-not-exists
+	make migrate
+
+migrate:
 	php bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction
+
+fixtures:
+	php bin/console hautelook:fixtures:load --no-interaction
 
 test:
 	bin/phpunit --coverage-clover coverage.xml
