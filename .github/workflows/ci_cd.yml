@@ -141,9 +141,9 @@ jobs:
       url: https://$APP_NAME.herokuapp.com
     env:
       APP_NAME: my-profile-pr-${{ github.event.number }}
-    needs:
-      - lint
-      - test
+#    needs:
+#      - lint
+#      - test
     container:
       image: eerison/myprofile:dev
     steps:
@@ -170,17 +170,37 @@ jobs:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
             heroku_app_name: $APP_NAME
             heroku_email: ${{secrets.HEROKU_EMAIL}}
-            usedocker: true
-            docker_build_args: |
-              APP_ENV
-              APP_DEBUG
-              GIT_REF
-          env:
-            GIT_REF: $GITHUB_REF
-            APP_DEBUG: false
+            justlogin: true
+#            usedocker: true
+#            docker_build_args: |
+#              APP_ENV
+#              APP_DEBUG
+#              GIT_REF
+#          env:
+#            GIT_REF: $GITHUB_REF
+#            APP_DEBUG: false
+
+        - name: Checking if database exist
+#          run: echo ::set-env name=HEROKU_ADDONS::$(heroku addons)
+          run: |
+            output=$(heroku addons);
+            app_name=postgresql-$APP_NAME;
+
+            echo output;
+            echo app_name;
+
+            has_db = false;
+            if [[ output == *app_name* ]]; then
+              has_db = true;
+            fi
+
+            echo has_db;
+
+            echo "HEROKU_HAS_DB=has_db" >> $GITHUB_ENV
+#          run:  $(heroku addons:info --app $APP_NAME postgresql-$APP_NAME)
 
         - name: Create Database
-          continue-on-error: true
+          if: env.HEROKU_ADDONS
           run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
 
         - name: Migrations
