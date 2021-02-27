@@ -9,7 +9,7 @@
 
     <div class="columns is-multiline is-marginless">
         <div class="column">
-            {% if app.debug %}
+            {% if app.environment == 'dev' %}
             <div class="notification is-primary is-full">
                 <button class="delete"></button>
                 <div class="is-size-6 mb-3">You can use this user to test!</div>

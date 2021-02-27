@@ -50,7 +50,6 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'pull_request'
     container:
       image: eerison/myprofile:dev
     steps:
@@ -85,7 +84,6 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'pull_request'
     env:
       APP_ENV: test
       XDEBUG_MODE: coverage
@@ -120,8 +118,8 @@ jobs:
       - name: Setup Database
         run: composer db
 
-      - name: Load fixtures
-        run: php bin/console hautelook:fixtures:load --no-interaction
+      - name: Fixtures
+        run: composer fixtures
 
       - name: See files
         run: |
@@ -134,15 +132,15 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v1
 
-  pr-deploy:
-    name: Pull request deploy
+  deploy_pr:
+    name: Deploy - Pull request
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     environment:
       name: staging_pr
-      url: https://my-profile-pr-${{ github.event.number }}.herokuapp.com
+      url: https://$APP_NAME.herokuapp.com
     env:
-      PR_NUMBER: ${{ github.event.number }}
-      PREFIX: my-profile-pr-
+      APP_NAME: my-profile-pr-${{ github.event.number }}
     needs:
       - lint
       - test
@@ -170,7 +168,7 @@ jobs:
           uses: akhileshns/heroku-deploy@v3.12.12
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "$PREFIX$PR_NUMBER"
+            heroku_app_name: $APP_NAME
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
             docker_build_args: |
@@ -183,11 +181,58 @@ jobs:
 
         - name: Create Database
           continue-on-error: true
-          run:  heroku addons:create heroku-postgresql --app $PREFIX$PR_NUMBER --name postgresql-$PREFIX$PR_NUMBER
+          run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
 
         - name: Migrations
-          run: heroku run --app $PREFIX$PR_NUMBER composer migrate
+          run: heroku run --app $APP_NAME composer migrate
 
         - name: Fixtures
-          if: ${{env.APP_ENV}} == 'dev'
-          run: heroku run --app $PREFIX$PR_NUMBER composer fixtures
+          run: heroku run --app $APP_NAME composer fixtures
+
+        - name: Commenting environment's link in PR.
+          uses: mshick/add-pr-comment@v1
+          with:
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
+            message: |
+              You can see your code in this [environment](https://${{ env.APP_NAME }}.herokuapp.com) 🚀
+
+  deploy_staging:
+    name: Deploy - Staging
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://$APP_NAME.herokuapp.com
+    env:
+      APP_NAME: new-staging-my-profile
+    needs: build
+    container:
+      image: eerison/myprofile:dev
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            bin/.phpunit
+            vendor
+            node_modules
+            public
+
+      - name: Web deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            APP_ENV
+            GIT_REF
+        env:
+          GIT_REF: $GITHUB_REF
+
+      - name: Migrations
+        run: heroku run --app $APP_NAME composer migrate
+
