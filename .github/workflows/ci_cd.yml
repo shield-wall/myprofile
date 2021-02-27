@@ -9,9 +9,12 @@ on:
       - opened
       - synchronize
 
+env:
+  APP_ENV: ${{secrets.APP_ENV}}
+
 jobs:
   build:
-    name: build
+    name: Build
     runs-on: ubuntu-latest
     container:
       image: eerison/myprofile:dev
@@ -21,23 +24,24 @@ jobs:
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
-          key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
             node_modules
             public
           restore-keys: |
-            v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-
-            v4-${{ runner.os }}-build-
-            v4-${{ runner.os }}-
+            ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-$APP_ENV-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
       - name: Composer
-        run: make composer
+        run: composer $APP_ENV
 
       - name: Webpack
-        run: make yarn
+        run: yarn $APP_ENV
 
       - name: Phpunit version
         run: bin/phpunit --version
@@ -46,6 +50,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     needs: build
+    if: github.event_name == 'pull_request'
     container:
       image: eerison/myprofile:dev
     steps:
@@ -54,7 +59,7 @@ jobs:
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
-          key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
@@ -67,19 +72,20 @@ jobs:
           ls -lha
 
       - name: Code Sniffer
-        run: make lint_phpcs
+        run: composer lint_phpcs
 
       - name: Twig
-        run: make lint_twig
+        run: composer lint_twig
 
       - name: Symfony Containers
-        run: make lint_container
+        run: composer lint_container
 
 
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: lint
+    needs: build
+    if: github.event_name == 'pull_request'
     env:
       APP_ENV: test
       XDEBUG_MODE: coverage
@@ -104,7 +110,7 @@ jobs:
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
-          key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
@@ -112,7 +118,7 @@ jobs:
             public
 
       - name: Setup Database
-        run: make db
+        run: composer db
 
       - name: Load fixtures
         run: php bin/console hautelook:fixtures:load --no-interaction
@@ -123,7 +129,7 @@ jobs:
           ls -lha
 
       - name: Run Tests
-        run: make test
+        run: composer test
 
       - name: Codecov
         uses: codecov/codecov-action@v1
@@ -137,7 +143,9 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.number }}
       PREFIX: my-profile-pr-
-    needs: test
+    needs:
+      - lint
+      - test
     container:
       image: eerison/myprofile:dev
     steps:
@@ -146,7 +154,7 @@ jobs:
         - name: Cache composer and webpack files
           uses: actions/cache@v2
           with:
-            key: v4-${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+            key: ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
             path: |
               bin/.phpunit
               vendor
@@ -165,12 +173,21 @@ jobs:
             heroku_app_name: "$PREFIX$PR_NUMBER"
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
+            docker_build_args: |
+              APP_ENV
+              APP_DEBUG
+              GIT_REF
           env:
-            APP_ENV: prod
+            GIT_REF: $GITHUB_REF
+            APP_DEBUG: false
 
         - name: Create Database
           continue-on-error: true
           run:  heroku addons:create heroku-postgresql --app $PREFIX$PR_NUMBER --name postgresql-$PREFIX$PR_NUMBER
 
-        - name: Migrations and Fixtures
-          run: heroku run --app $PREFIX$PR_NUMBER make migrate
+        - name: Migrations
+          run: heroku run --app $PREFIX$PR_NUMBER composer migrate
+
+        - name: Fixtures
+          if: ${{env.APP_ENV}} == 'dev'
+          run: heroku run --app $PREFIX$PR_NUMBER composer fixtures

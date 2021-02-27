@@ -14,6 +14,14 @@ WORKDIR /app
 
 FROM base as heroku_web
 
+ARG APP_ENV
+ARG APP_DEBUG
+ARG GIT_REF
+
+ENV APP_ENV=$APP_ENV
+ENV APP_DEBUG=$APP_DEBUG
+ENV GIT_REF=$GIT_REF
+
 RUN apt-get install -y curl gnupg2 ca-certificates lsb-release \
     && echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list \
     && curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add - \

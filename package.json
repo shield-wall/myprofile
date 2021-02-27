@@ -17,6 +17,9 @@
     "yarn": "^1.22.0"
   },
   "scripts": {
-    "heroku-postbuild": "yarn && yarn run encore production"
+    "dev": "yarn && yarn run encore dev",
+    "prod": "yarn && yarn run encore production",
+    "stage": "yarn prod",
+    "watch": "yarn encore dev --watch"
   }
 }

@@ -85,8 +85,43 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "compile": [
-            "bin/console doctrine:migrations:migrate"
+
+        "prod": [
+            "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader"
+        ],
+        "staging": [
+            "@prod"
+        ],
+        "dev": [
+            "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
+        ],
+
+        "initial": [
+            "@dev",
+            "@db",
+            "@fixtures"
+        ],
+        "db": [
+            "php bin/console doctrine:database:create  --if-not-exists",
+            "@migrate"
+        ],
+        "fixtures": [
+            "bin/console hautelook:fixtures:load --no-interaction"
+        ],
+        "migrate":[
+            "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction"
+        ],
+        "test": [
+            "bin/phpunit --coverage-clover coverage.xml"
+        ],
+        "lint_phpcs": [
+            "vendor/bin/phpcs"
+        ],
+        "lint_twig": [
+            "php bin/console lint:twig templates"
+        ],
+        "lint_container": [
+            "php bin/console lint:container"
         ]
     },
     "extra": {
