@@ -134,15 +134,14 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v1
 
-  pr-deploy:
+  deploy:
     name: Pull request deploy
     runs-on: ubuntu-latest
     environment:
       name: staging_pr
       url: https://my-profile-pr-${{ github.event.number }}.herokuapp.com
     env:
-      PR_NUMBER: ${{ github.event.number }}
-      PREFIX: my-profile-pr-
+      APP_NAME: my-profile-pr-${{ github.event.number }}
     needs:
       - lint
       - test
@@ -170,7 +169,7 @@ jobs:
           uses: akhileshns/heroku-deploy@v3.12.12
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "$PREFIX$PR_NUMBER"
+            heroku_app_name: $APP_NAME
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
             docker_build_args: |
@@ -183,11 +182,11 @@ jobs:
 
         - name: Create Database
           continue-on-error: true
-          run:  heroku addons:create heroku-postgresql --app $PREFIX$PR_NUMBER --name postgresql-$PREFIX$PR_NUMBER
+          run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
 
         - name: Migrations
-          run: heroku run --app $PREFIX$PR_NUMBER composer migrate
+          run: heroku run --app $APP_NAME composer migrate
 
         - name: Fixtures
           if: ${{env.APP_ENV}} == 'dev'
-          run: heroku run --app $PREFIX$PR_NUMBER composer fixtures
+          run: heroku run --app $APP_NAME composer fixtures
