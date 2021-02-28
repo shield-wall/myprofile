@@ -1,18 +1,14 @@
 name: Remove Container
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     types: closed
 
 jobs:
-  remove_container_close:
-    name: Removing Container - Close PR
+  remove_container:
+    name: Removing Container
     runs-on: ubuntu-latest
     environment: staging_pr
-    if: github.event_name == 'pull_request'
     steps:
       - run: echo "PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" >> $GITHUB_ENV
 
@@ -25,23 +21,4 @@ jobs:
 
       - name: App destroy
         continue-on-error: true
-        run: heroku apps:destroy my-profile-pr-${{ github.event.number }} --confirm my-profile-pr-$PR_NUMBER
-
-  remove_container_merge:
-    name: Removing Container - Merge
-    runs-on: ubuntu-latest
-    environment: staging
-    if: github.event_name == 'push'
-    steps:
-      - run: echo "PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" >> $GITHUB_ENV
-
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: $APP_NAME
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          justlogin: true
-
-      - name: App destroy
-        continue-on-error: true
-        run: heroku apps:destroy my-profile-pr-${{ github.event.number }} --confirm my-profile-pr-$PR_NUMBER
+        run: heroku apps:destroy my-profile-pr-${{env.PR_NUMBER}} --confirm my-profile-pr-${{env.PR_NUMBER}}
