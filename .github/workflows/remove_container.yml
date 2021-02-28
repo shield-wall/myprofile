@@ -1,0 +1,29 @@
+name: Remove Container
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: closed
+
+jobs:
+  remove container:
+    name: Removing Container
+    runs-on: ubuntu-latest
+    environment:
+      name: staging_pr
+      url: https://$APP_NAME.herokuapp.com
+    env:
+      PR_NUMBER: $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+    steps:
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          justlogin: true
+
+      - name: App destroy
+        continue-on-error: true
+        run: heroku apps:destroy my-profile-pr-${{ github.event.number }} --confirm my-profile-pr-$PR_NUMBER
