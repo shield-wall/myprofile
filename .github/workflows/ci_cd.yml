@@ -7,10 +7,12 @@ on:
   pull_request:
     types:
       - opened
+      - reopened
       - synchronize
 
 env:
   APP_ENV: ${{secrets.APP_ENV}}
+  GIT_REF: ${{ github.head_ref }}
 
 jobs:
   build:
@@ -176,7 +178,6 @@ jobs:
               APP_DEBUG
               GIT_REF
           env:
-            GIT_REF: $GITHUB_REF
             APP_DEBUG: false
 
         - name: Create Database
@@ -204,7 +205,7 @@ jobs:
       name: staging
       url: https://$APP_NAME.herokuapp.com
     env:
-      APP_NAME: new-staging-my-profile
+      APP_NAME: staging-master-my-profile
     needs: build
     container:
       image: eerison/myprofile:dev
@@ -230,8 +231,6 @@ jobs:
           docker_build_args: |
             APP_ENV
             GIT_REF
-        env:
-          GIT_REF: $GITHUB_REF
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer migrate
