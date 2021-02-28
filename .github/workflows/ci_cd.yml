@@ -140,7 +140,7 @@ jobs:
     if: github.event_name == 'pull_request'
     environment:
       name: staging_pr
-      url: https://$APP_NAME.herokuapp.com
+      url: https://${{env.APP_NAME}}.herokuapp.com
     env:
       APP_NAME: my-profile-pr-${{ github.event.number }}
     needs:
@@ -190,20 +190,13 @@ jobs:
         - name: Fixtures
           run: heroku run --app $APP_NAME composer fixtures
 
-        - name: Commenting environment's link in PR.
-          uses: mshick/add-pr-comment@v1
-          with:
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            message: |
-              You can see your code in this [environment](https://${{ env.APP_NAME }}.herokuapp.com) 🚀
-
   deploy_staging:
     name: Deploy - Staging
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     environment:
       name: staging
-      url: https://$APP_NAME.herokuapp.com
+      url: https://${{env.APP_NAME}}.herokuapp.com
     env:
       APP_NAME: staging-master-my-profile
     needs: build
