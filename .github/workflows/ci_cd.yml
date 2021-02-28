@@ -140,7 +140,7 @@ jobs:
     if: github.event_name == 'pull_request'
     environment:
       name: staging_pr
-      url: https://$APP_NAME.herokuapp.com
+      url: https://${{env.APP_NAME}}.herokuapp.com
     env:
       APP_NAME: my-profile-pr-${{ github.event.number }}
     needs:
@@ -203,7 +203,7 @@ jobs:
     if: github.event_name == 'push'
     environment:
       name: staging
-      url: https://$APP_NAME.herokuapp.com
+      url: https://${{env.APP_NAME}}.herokuapp.com
     env:
       APP_NAME: staging-master-my-profile
     needs: build
