@@ -12,6 +12,7 @@ on:
 
 env:
   APP_ENV: ${{ secrets.APP_ENV }}
+  GIT_REF: ${{ github.head_ref }}
   MAILER_DSN: ${{ secrets.MAILER_DSN }}
   MAILER_USER: ${{ secrets.MAILER_USER }}
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
@@ -191,7 +192,6 @@ jobs:
               TRANSLOADIT_DELIVERY
           env:
             APP_DEBUG: false
-            GIT_REF: ${{ github.head_ref }}
 
         - name: Create Database
           continue-on-error: true
@@ -243,8 +243,6 @@ jobs:
             TRANSLOADIT_KEY
             TRANSLOADIT_SECRET
             TRANSLOADIT_DELIVERY
-          env:
-            GIT_REF: master
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer migrate
