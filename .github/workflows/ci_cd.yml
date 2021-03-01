@@ -18,6 +18,7 @@ env:
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
   TRANSLOADIT_KEY: ${{ secrets.TRANSLOADIT_KEY }}
   TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
+  TRANSLOADIT_DELIVERY: 1
 
 jobs:
   build:
@@ -191,7 +192,6 @@ jobs:
               TRANSLOADIT_DELIVERY
           env:
             APP_DEBUG: false
-            TRANSLOADIT_DELIVERY: 1
 
         - name: Create Database
           continue-on-error: true
@@ -242,6 +242,7 @@ jobs:
             SENTRY_DSN
             TRANSLOADIT_KEY
             TRANSLOADIT_SECRET
+            TRANSLOADIT_DELIVERY
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer migrate
