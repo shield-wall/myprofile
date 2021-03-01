@@ -209,7 +209,7 @@ jobs:
     if: github.event_name == 'push'
     environment:
       name: staging
-      url: https://${{env.APP_NAME}}.herokuapp.com
+      url: https://staging-master-my-profile.herokuapp.com
     env:
       APP_NAME: staging-master-my-profile
     needs: build
