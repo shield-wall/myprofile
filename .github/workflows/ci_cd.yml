@@ -11,8 +11,13 @@ on:
       - synchronize
 
 env:
-  APP_ENV: ${{secrets.APP_ENV}}
+  APP_ENV: ${{ secrets.APP_ENV }}
   GIT_REF: ${{ github.head_ref }}
+  MAILER_DSN: ${{ secrets.MAILER_DSN }}
+  MAILER_USER: ${{ secrets.MAILER_USER }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  TRANSLOADIT_KEY: ${{ secrets.TRANSLOADIT_KEY }}
+  TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
 
 jobs:
   build:
@@ -88,6 +93,7 @@ jobs:
     needs: build
     env:
       APP_ENV: test
+      MAILER_DSN: null://null
       XDEBUG_MODE: coverage
     container:
       image: eerison/myprofile:dev
@@ -177,8 +183,15 @@ jobs:
               APP_ENV
               APP_DEBUG
               GIT_REF
+              MAILER_DSN
+              MAILER_USER
+              SENTRY_DSN
+              TRANSLOADIT_KEY
+              TRANSLOADIT_SECRET
+              TRANSLOADIT_DELIVERY
           env:
             APP_DEBUG: false
+            TRANSLOADIT_DELIVERY: 1
 
         - name: Create Database
           continue-on-error: true
@@ -224,6 +237,11 @@ jobs:
           docker_build_args: |
             APP_ENV
             GIT_REF
+            MAILER_DSN
+            MAILER_USER
+            SENTRY_DSN
+            TRANSLOADIT_KEY
+            TRANSLOADIT_SECRET
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer migrate

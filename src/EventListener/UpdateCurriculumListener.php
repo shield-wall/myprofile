@@ -23,6 +23,10 @@ class UpdateCurriculumListener
             return;
         }
 
+        if (null === $this->user) {
+            return;
+        }
+
         $this->curriculumService->makePdfOnTransloadit($this->user);
     }
 
