@@ -9,6 +9,9 @@ on:
       - opened
       - reopened
       - synchronize
+  release:
+    types:
+      - created
 
 env:
   APP_ENV: ${{ secrets.APP_ENV }}
@@ -250,7 +253,7 @@ jobs:
   deploy_prod:
     name: Deploy - Production
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'release'
     environment:
       name: production
       url: https://prod-test-myprofile.herokuapp.com
