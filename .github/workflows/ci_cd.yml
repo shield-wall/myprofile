@@ -211,7 +211,51 @@ jobs:
       name: staging
       url: https://staging-master-my-profile.herokuapp.com
     env:
-      APP_NAME: staging-master-my-profile
+      APP_NAME: staging-master-myprofile
+    needs: build
+    container:
+      image: eerison/myprofile:dev
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            bin/.phpunit
+            vendor
+            node_modules
+            public
+
+      - name: Web deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            APP_ENV
+            GIT_REF
+            MAILER_DSN
+            MAILER_USER
+            SENTRY_DSN
+            TRANSLOADIT_KEY
+            TRANSLOADIT_SECRET
+            TRANSLOADIT_DELIVERY
+
+      - name: Migrations
+        run: heroku run --app $APP_NAME composer migrate
+
+  deploy_prod:
+    name: Deploy - Production
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    environment:
+      name: production
+      url: https://prod-test-myprofile.herokuapp.com
+    env:
+      APP_NAME: prod-test-myprofile
     needs: build
     container:
       image: eerison/myprofile:dev
