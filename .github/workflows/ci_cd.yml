@@ -213,9 +213,9 @@ jobs:
     if: github.event_name == 'push'
     environment:
       name: staging
-      url: https://staging-master-myprofile.herokuapp.com
+      url: https://staging-myprofile.herokuapp.com
     env:
-      APP_NAME: staging-master-myprofile
+      APP_NAME: staging-myprofile
     needs: build
     container:
       image: eerison/myprofile:dev
@@ -262,9 +262,9 @@ jobs:
     if: github.event_name == 'release'
     environment:
       name: production
-      url: https://prod-test-myprofile.herokuapp.com
+      url: https://www.myprofile.pro
     env:
-      APP_NAME: prod-test-myprofile
+      APP_NAME: prod-myprofile
     needs: build
     container:
       image: eerison/myprofile:dev
