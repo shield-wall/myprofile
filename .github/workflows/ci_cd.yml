@@ -195,7 +195,7 @@ jobs:
               TRANSLOADIT_DELIVERY
           env:
             APP_DEBUG: false
-            GIT_REF: ${{ env.GITHUB_REF_SLUG_URL }}
+            GIT_REF: ${{ env.GITHUB_REF_SLUG }}
 
         - name: Create Database
           continue-on-error: true
@@ -251,7 +251,7 @@ jobs:
             TRANSLOADIT_DELIVERY
         env:
           APP_DEBUG: false
-          GIT_REF: ${{ env.GITHUB_REF_SLUG_URL }}
+          GIT_REF: ${{ env.GITHUB_REF_SLUG }}
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer migrate
@@ -300,7 +300,7 @@ jobs:
             TRANSLOADIT_DELIVERY
         env:
           APP_DEBUG: false
-          GIT_REF: ${{ env.GITHUB_REF_SLUG_URL }}
+          GIT_REF: ${{ env.GITHUB_REF_SLUG }}
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer migrate
