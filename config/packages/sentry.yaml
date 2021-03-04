@@ -4,6 +4,7 @@ sentry:
     options:
         environment: '%kernel.environment%'
         send_default_pii: true
+        release: '%env(GIT_REF)%'
     monolog:
         error_handler:
             enabled: true

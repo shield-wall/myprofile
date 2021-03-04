@@ -312,6 +312,7 @@ jobs:
     environment: production
     needs: deploy_prod
     steps:
+      - uses: actions/checkout@v2
       - name: Create release
         uses: getsentry/action-release@v1
         env:
