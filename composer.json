@@ -13,7 +13,7 @@
         "doctrine/orm": "^2.7",
         "presta/sitemap-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.6",
-        "sentry/sentry-symfony": "^3.5",
+        "sentry/sentry-symfony": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "^v5.2",
@@ -45,7 +45,7 @@
         "symfony/phpunit-bridge": "^5.2",
         "symfony/profiler-pack": "^1.0"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -68,7 +68,8 @@
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php70": "*",
-        "symfony/polyfill-php56": "*"
+        "symfony/polyfill-php56": "*",
+        "sentry/sdk": "*"
     },
     "conflict": {
         "symfony/symfony": "*"
