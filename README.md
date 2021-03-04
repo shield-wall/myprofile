@@ -26,7 +26,7 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
 ### Testing
 
 ```
-    composer test
+    make test
 ```
 
 ### Xdebug

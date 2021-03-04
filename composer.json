@@ -3,7 +3,6 @@
     "license": "proprietary",
     "type": "project",
     "require": {
-        "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
@@ -15,7 +14,7 @@
         "presta/sitemap-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.6",
         "sentry/sentry-symfony": "^3.5",
-        "stof/doctrine-extensions-bundle": "^1.4",
+        "stof/doctrine-extensions-bundle": "dev-master",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "^v5.2",
         "symfony/dotenv": "v5.2",
@@ -33,12 +32,12 @@
         "symfony/validator": "v5.2",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "^v5.2",
-        "symfonycasts/reset-password-bundle": "^1.1",
-        "symfonycasts/verify-email-bundle": "^1.0",
+        "symfonycasts/reset-password-bundle": "^1.2",
+        "symfonycasts/verify-email-bundle": "^1.2",
         "transloadit/php-sdk": "^2.1"
     },
     "require-dev": {
-        "hautelook/alice-bundle": "^2.8",
+        "hautelook/alice-bundle": "^2.9",
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/browser-kit": "^5.2",
         "symfony/css-selector": "^5.2",
@@ -46,7 +45,7 @@
         "symfony/phpunit-bridge": "^5.2",
         "symfony/profiler-pack": "^1.0"
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "config": {
         "preferred-install": {
             "*": "dist"
