@@ -1,0 +1,164 @@
+name: Continuous Deploy
+
+on:
+  push:
+    branches:
+      - master
+  release:
+    types:
+      - created
+
+env:
+  APP_ENV: ${{ secrets.APP_ENV }}
+  MAILER_DSN: ${{ secrets.MAILER_DSN }}
+  MAILER_USER: ${{ secrets.MAILER_USER }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  TRANSLOADIT_KEY: ${{ secrets.TRANSLOADIT_KEY }}
+  TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
+  TRANSLOADIT_DELIVERY: 1
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: eerison/myprofile:dev
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            vendor
+            node_modules
+            public
+          restore-keys: |
+            ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-optimize-
+            ${{ runner.os }}-
+
+      - name: Composer
+        run: composer prod
+
+      - name: Webpack
+        run: yarn prod
+
+  deploy_staging:
+    name: Deploy - Staging
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://staging-myprofile.herokuapp.com
+    env:
+      APP_NAME: staging-myprofile
+    needs: build
+    container:
+      image: eerison/myprofile:dev
+    steps:
+      - uses: actions/checkout@v2
+      - uses: rlespinasse/github-slug-action@v3.x
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            vendor
+            node_modules
+            public
+
+      - name: See files
+        run: |
+          pwd
+          ls -lha
+
+      - name: Web deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            APP_ENV
+            APP_DEBUG
+            GIT_REF
+            MAILER_DSN
+            MAILER_USER
+            SENTRY_DSN
+            TRANSLOADIT_KEY
+            TRANSLOADIT_SECRET
+            TRANSLOADIT_DELIVERY
+        env:
+          APP_DEBUG: false
+          GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+
+      - name: Migrations
+        run: heroku run --app $APP_NAME composer migrate
+
+  deploy_prod:
+    name: Deploy - Production
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    environment:
+      name: production
+      url: https://www.myprofile.pro
+    env:
+      APP_NAME: prod-myprofile
+    needs: build
+    container:
+      image: eerison/myprofile:dev
+    steps:
+      - uses: actions/checkout@v2
+      - uses: rlespinasse/github-slug-action@v3.x
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            vendor
+            node_modules
+            public
+
+      - name: Web deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            APP_ENV
+            APP_DEBUG
+            GIT_REF
+            MAILER_DSN
+            MAILER_USER
+            SENTRY_DSN
+            TRANSLOADIT_KEY
+            TRANSLOADIT_SECRET
+            TRANSLOADIT_DELIVERY
+        env:
+          APP_DEBUG: false
+          GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+
+      - name: Migrations
+        run: heroku run --app $APP_NAME composer migrate
+
+  sentry:
+    name: Sentry
+    runs-on: ubuntu-latest
+    environment: production
+    needs: deploy_prod
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: prod
+          version: ${{ github.ref }}

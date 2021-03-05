@@ -1,6 +1,7 @@
 # My Profile
 
-[![ci and cd][ci_badge]][ci_link]
+[![Continuous Integration][ci_badge]][ci_link]
+[![Continuous Deploy][ci_badge]][ci_link]
 [![codecov][test_badge]][test_link]
 [![Join the chat at https://gitter.im/myprofile_pro/Lobby][gitter_badge]][gitter_link] 
 [![License: GPL v3][licence_badge]][licence_link]
@@ -34,8 +35,10 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
 
 Xdebug is listening on port [10000](.docker/common.env)
   
-[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/ci_cd.yml/badge.svg?branch=master
-[ci_link]: https://github.com/eerison/myprofile/actions/workflows/ci_cd.yml?query=workflow%3Aci%2Fcd+branch%3Amaster+
+[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml/badge.svg
+[ci_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml?query=workflow%3AContinuous+Integration
+[cd_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml/badge.svg
+[cd_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml?query=workflow%3AContinuous+Integration
 [test_badge]: https://codecov.io/gh/eerison/myprofile/branch/master/graph/badge.svg?token=ZIW9RTWH1B
 [test_link]: https://codecov.io/gh/eerison/myprofile
 [gitter_badge]: https://badges.gitter.im/Join%20Chat.svg
