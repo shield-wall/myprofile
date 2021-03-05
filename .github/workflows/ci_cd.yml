@@ -34,7 +34,7 @@ jobs:
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
             bin/.phpunit
             vendor
@@ -62,14 +62,14 @@ jobs:
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
             bin/.phpunit
             vendor
             node_modules
             public
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+            ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
 
       - name: See files
         run: |
@@ -115,14 +115,14 @@ jobs:
       - name: Cache composer and webpack files
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
             bin/.phpunit
             vendor
             node_modules
             public
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+            ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
 
       - name: Setup Database
         run: composer db
@@ -162,7 +162,7 @@ jobs:
         - name: Cache composer and webpack files
           uses: actions/cache@v2
           with:
-            key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
+            key: ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
             path: |
               bin/.phpunit
               vendor
@@ -223,7 +223,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
             bin/.phpunit
             vendor
@@ -272,7 +272,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
             bin/.phpunit
             vendor
