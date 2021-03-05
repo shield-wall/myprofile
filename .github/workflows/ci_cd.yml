@@ -227,7 +227,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: rlespinasse/github-slug-action@v3.x
 
-      - uses: actions/cache@v2
+      - name: Cache composer and webpack files
+        uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
@@ -235,6 +236,8 @@ jobs:
             vendor
             node_modules
             public
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
 
       - name: See files
         run: |
@@ -281,7 +284,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: rlespinasse/github-slug-action@v3.x
 
-      - uses: actions/cache@v2
+      - name: Cache composer and webpack files
+        uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}-${{env.APP_ENV}}
           path: |
@@ -289,6 +293,8 @@ jobs:
             vendor
             node_modules
             public
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
