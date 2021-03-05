@@ -16,7 +16,6 @@
         "sensio/framework-extra-bundle": "^6.0",
         "sentry/sentry-symfony": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "symfony/apache-pack": "^1.0",
         "symfony/console": "^v5.2",
         "symfony/dotenv": "v5.2",
         "symfony/expression-language": "v5.2",
