@@ -40,12 +40,6 @@ jobs:
             vendor
             node_modules
             public
-          restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
       - name: Composer
         run: composer $APP_ENV
