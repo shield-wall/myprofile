@@ -35,7 +35,7 @@ Open this link in your browser: [localhost:8000](http://localhost:8000)
 
 Xdebug is listening on port [10000](.docker/common.env)
   
-[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml/badge.svg
+[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml/badge.svg?branch=master
 [ci_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml?query=workflow%3AContinuous+Integration
 [cd_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml/badge.svg
 [cd_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml?query=workflow%3AContinuous+Integration
