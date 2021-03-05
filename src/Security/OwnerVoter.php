@@ -9,14 +9,8 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class OwnerVoter extends Voter
 {
-    public const OWNER = 'owner';
-
     protected function supports(string $attribute, $subject): bool
     {
-        if (self::OWNER !== $attribute) {
-            return false;
-        }
-
         return $subject instanceof HasUserInterface;
     }
 

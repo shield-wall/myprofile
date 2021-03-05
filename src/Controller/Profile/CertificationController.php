@@ -43,7 +43,7 @@ class CertificationController extends AbstractCrudController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
-     * @IsGranted("ROLE_USER", attributes="owner", subject="certification")
+     * @IsGranted("ROLE_USER", subject="certification")
      *
      * @param Request $request
      * @param Certification $certification
@@ -58,7 +58,7 @@ class CertificationController extends AbstractCrudController
      * Deletes a certification entity.
      *
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @IsGranted("ROLE_USER", attributes="owner", subject="certification")
+     * @IsGranted("ROLE_USER", subject="certification")
      *
      * @param Request $request
      * @param Certification $certification
