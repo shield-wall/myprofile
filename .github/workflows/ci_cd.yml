@@ -236,6 +236,11 @@ jobs:
             node_modules
             public
 
+      - name: See files
+        run: |
+          pwd
+          ls -lha
+
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
@@ -284,11 +289,6 @@ jobs:
             vendor
             node_modules
             public
-
-      - name: See files
-        run: |
-          pwd
-          ls -lha
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
