@@ -119,6 +119,9 @@
             "fixtures/.gitignore"
         ]
     },
+    "http-interop/http-factory-guzzle": {
+        "version": "1.0.0"
+    },
     "jean85/pretty-package-versions": {
         "version": "1.5.0"
     },
@@ -152,18 +155,6 @@
     },
     "nikic/php-parser": {
         "version": "v4.6.0"
-    },
-    "nyholm/psr7": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "7c0a9352a57376f04f5444e74565102c3a23d0c7"
-        },
-        "files": [
-            "config/packages/nyholm_psr7.yaml"
-        ]
     },
     "ocramius/package-versions": {
         "version": "1.4.2"
@@ -213,9 +204,6 @@
     "psr/log": {
         "version": "1.1.3"
     },
-    "pugx/sentry-sdk": {
-        "version": "v2.0.0"
-    },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
@@ -242,6 +230,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "sentry/sdk": {
+        "version": "3.1.0"
     },
     "sentry/sentry": {
         "version": "3.2.0"
