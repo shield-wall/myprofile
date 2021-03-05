@@ -59,3 +59,9 @@ services:
     App\EventListener\UpdateCurriculumListener:
         tags:
             - { name: doctrine.orm.entity_listener, lazy: true }
+
+    Sentry\Monolog\Handler:
+        arguments:
+            $hub: '@Sentry\State\HubInterface'
+            $level: !php/const Monolog\Logger::ERROR
+            $bubble: false

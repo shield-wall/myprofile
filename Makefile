@@ -4,6 +4,9 @@ install:
 	docker-compose run --rm client yarn dev
 	docker-compose run --rm -e APP_ENV=test php composer initial
 
+test:
+	docker-compose run --rm -e APP_ENV=test php composer test
+
 restart:
 	docker-compose restart
 

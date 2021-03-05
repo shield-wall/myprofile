@@ -58,7 +58,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_USER", attributes="owner", subject="userLanguage")
+     * @IsGranted("ROLE_USER", subject="userLanguage")
      */
     public function edit(Request $request, UserLanguage $userLanguage): Response
     {
@@ -80,7 +80,7 @@ class UserLanguageController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
-     * @IsGranted("ROLE_USER", attributes="owner", subject="userLanguage")
+     * @IsGranted("ROLE_USER", subject="userLanguage")
      */
     public function delete(Request $request, UserLanguage $userLanguage): Response
     {
