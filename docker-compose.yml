@@ -1,10 +1,10 @@
 version: '3.8'
 services:
-  web:
+  api:
     image: nginx:1.17
     volumes:
-    - ./:/app
-    - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    - ./api:/app
+    - ./api/.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
     - 8000:80
     links:
@@ -14,9 +14,9 @@ services:
     image: eerison/myprofile:dev
     working_dir: /app
     env_file:
-      - .docker/common.env
+      - ./api/.docker/common.env
     volumes:
-      - ./:/app
+      - ./api:/app
     links:
       - db
 
@@ -24,7 +24,7 @@ services:
     image: node
     working_dir: /app
     volumes:
-      - .:/app
+      - ./api:/app
     depends_on:
       - php
 
@@ -36,6 +36,6 @@ services:
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: myprofile
     volumes:
-      - .docker/database/data:/var/lib/postgresql/data
+      - ./api/.docker/database/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
