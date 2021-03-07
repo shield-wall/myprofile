@@ -320,9 +320,6 @@
     "symfony/asset": {
         "version": "v5.1.8"
     },
-    "symfony/browser-kit": {
-        "version": "v5.2.0"
-    },
     "symfony/cache": {
         "version": "v5.1.8"
     },
@@ -344,9 +341,6 @@
             "bin/console"
         ]
     },
-    "symfony/css-selector": {
-        "version": "v5.2.0"
-    },
     "symfony/dependency-injection": {
         "version": "v5.1.8"
     },
@@ -355,9 +349,6 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v5.1.8"
-    },
-    "symfony/dom-crawler": {
-        "version": "v5.2.0"
     },
     "symfony/dotenv": {
         "version": "v5.1.8"
@@ -642,9 +633,6 @@
             "templates/base.html.twig"
         ]
     },
-    "symfony/twig-pack": {
-        "version": "v1.0.2"
-    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -681,25 +669,6 @@
             "config/routes/dev/web_profiler.yaml"
         ]
     },
-    "symfony/webpack-encore-bundle": {
-        "version": "1.6",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.6",
-            "ref": "69e1d805ad95964088bd510c05995e87dc391564"
-        },
-        "files": [
-            "assets/css/app.css",
-            "assets/js/app.js",
-            "config/packages/assets.yaml",
-            "config/packages/prod/webpack_encore.yaml",
-            "config/packages/test/webpack_encore.yaml",
-            "config/packages/webpack_encore.yaml",
-            "package.json",
-            "webpack.config.js"
-        ]
-    },
     "symfony/yaml": {
         "version": "v5.1.8"
     },
@@ -729,9 +698,6 @@
     },
     "transloadit/php-sdk": {
         "version": "v2.1.0"
-    },
-    "twig/extra-bundle": {
-        "version": "v3.0.4"
     },
     "twig/twig": {
         "version": "v3.1.1"

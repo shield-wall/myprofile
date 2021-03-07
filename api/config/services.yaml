@@ -1,0 +1,67 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: pt_BR
+    locales: ['en', 'pt_BR']
+    transloadit.key: '%env(TRANSLOADIT_KEY)%'
+    transloadit.secret: '%env(TRANSLOADIT_SECRET)%'
+    transloadit.template_id.curriculum: '%env(TRANSLOADIT_TEMPLATE_ID_CURRICULUM)%'
+    transloadit.template_id.image.profile: '%env(TRANSLOADIT_TEMPLATE_ID_IMAGE_PROFILE)%'
+    transloadit.template_id.image.background: '%env(TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND)%'
+    transloadit.credentials: '%env(TRANSLOADIT_CREDENTIALS)%'
+    transloadit.delivery: '%env(TRANSLOADIT_DELIVERY)%'
+    transloadit.tmp: '%kernel.project_dir%/var/tmp'
+
+    bucket.name: '%env(BUCKET_NAME)%'
+    bucket.dns: '%env(BUCKET_DNS)%'
+    cdn.dns: '%env(CDN_DNS)%'
+    mailer.from: '%env(MAILER_FROM)%'
+    mailer.from_name: '%env(MAILER_FROM_NAME)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            string $mailerFrom: '%mailer.from%'
+            string $mailerFromName: '%mailer.from_name%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    transloadit\Transloadit:
+        - key: '%transloadit.key%'
+        - secret: '%transloadit.secret%'
+
+    App\EventSubscriber\SitemapSubscriber:
+        arguments:
+            $locales: '%locales%'
+        tags:
+            - { name: kernel.event_subscriber, priority: 100 }
+
+    App\EventListener\UpdateCurriculumListener:
+        tags:
+            - { name: doctrine.orm.entity_listener, lazy: true }
+
+    Sentry\Monolog\Handler:
+        arguments:
+            $hub: '@Sentry\State\HubInterface'
+            $level: !php/const Monolog\Logger::ERROR
+            $bubble: false

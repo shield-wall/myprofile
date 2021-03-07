@@ -34,12 +34,8 @@
         "symfony/property-info": "5.2.*",
         "symfony/proxy-manager-bridge": "^v5.2",
         "symfony/security-bundle": "v5.2",
-        "symfony/serializer": "5.2.*",
         "symfony/translation": "v5.2",
-        "symfony/twig-bundle": "5.2.*",
-        "symfony/twig-pack": "^1.0",
         "symfony/validator": "v5.2",
-        "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "^v5.2",
         "symfonycasts/reset-password-bundle": "^1.2",
         "symfonycasts/verify-email-bundle": "^1.2",
@@ -48,8 +44,6 @@
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
         "squizlabs/php_codesniffer": "^3.5",
-        "symfony/browser-kit": "^5.2",
-        "symfony/css-selector": "^5.2",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/profiler-pack": "^1.0"
