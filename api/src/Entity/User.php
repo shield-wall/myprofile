@@ -1,15 +1,17 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
+use DateTimeInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -19,7 +21,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @UniqueEntity("email")
  */
 
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class User implements UserInterface
 {
     /**
@@ -27,9 +32,10 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @var int
+     * @Groups("read")
+     *
      */
-    protected $id;
+    protected int $id;
 
 
     /**
@@ -37,36 +43,45 @@ class User implements UserInterface
      * @Assert\Email
      * @ORM\Column(type="string", length=200, unique=true)
      *
-     * @var string
+     * @Groups({"read", "write"})
+     *
      */
-    protected $email;
+    protected string $email;
 
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $firstName;
+    protected string|null $firstName;
 
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $lastName;
+    protected string|null $lastName;
 
     /**
      * @Assert\Length(max="50")
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
+     *
+     * @Groups({"read", "write"})
      */
-    private $slug;
+    private string $slug;
 
     /**
      * @Assert\Length(max="250")
      * @ORM\Column(type="text", length=250, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $headline;
+    protected string|null $headline;
 
     /**
      * This field is used in user`s profile
@@ -74,130 +89,151 @@ class User implements UserInterface
      * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $role;
+    protected string|null $role;
 
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $phone;
+    protected string|null $phone;
 
     /**
      * @Assert\Length(max="20")
      * @ORM\Column(type="string",length=20, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $cell;
+    protected string|null $cell;
 
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $summary;
+    protected string|null $summary;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $country;
+    protected string|null $country;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $state;
+    protected string|null $state;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $city;
+    protected string|null $city;
 
     /**
      * @ORM\Column(type="string", length=6, nullable=true)
      * @Assert\Choice({"male", "female"})
+     *
+     * @Groups({"read", "write"})
      */
-    protected $gender;
+    protected string|null $gender;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $birthday;
+    protected DateTimeInterface|null $birthday;
 
     /**
      * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
      */
-    protected $userSocialNetworks;
+    protected Collection $userSocialNetworks;
 
     /**
      * @ORM\OneToMany(targetEntity="Education", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
-    protected $educations;
+    protected Collection $educations;
 
     /**
      * @ORM\OneToMany(targetEntity="Experience", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
-    protected $experiences;
+    protected Collection $experiences;
 
     /**
      * @ORM\OneToMany(targetEntity="Skill", mappedBy="user")
      * @ORM\OrderBy({"priority" = "ASC"})
      */
-    protected $skills;
+    protected Collection $skills;
 
     /**
      * @ORM\OneToMany(targetEntity="Certification", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
-    protected $certifications;
+    protected Collection $certifications;
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
+     *
+     * @Groups({"read", "write"})
      */
-    protected $keyWords;
+    protected string|null $keyWords;
 
     /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
      */
-    private $userLanguages;
+    private Collection $userLanguages;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array|null $roles = [];
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+    private string $password;
 
     /**
-     * @var string|null
      * @Assert\NotBlank(groups={"registration", "resetPassword"})
      * @Assert\Length(min=6)
      */
-    private $plainPassword;
+    private string|null $plainPassword;
 
 
     /**
-     * @var string|null
      * @ORM\Column(type="string", nullable=true)
      */
-    protected $salt;
+    protected string|null $salt;
 
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
+     *
+     * @Groups("read")
      */
-    private $createdAt;
+    private DateTimeInterface $createdAt;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups("read")
      */
-    private $updatedAt;
+    private DateTimeInterface|null $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("read")
      */
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     public function __construct()
     {
@@ -235,42 +271,39 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function setSlug($slug)
+    public function setSlug($slug): User
     {
         $this->slug = $slug;
 
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getUserSocialNetworks()
+    public function getUserSocialNetworks(): Collection
     {
         return $this->userSocialNetworks;
     }
 
-    public function setUserSocialNetworks(UserSocialNetworking $socialNetworking)
+    public function setUserSocialNetworks(UserSocialNetworking $socialNetworking): User
     {
         $socialNetworking->setUser($this);
         $this->getUserSocialNetworks()->add($socialNetworking);
-    }
 
-    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking)
-    {
-        $this->getUserSocialNetworks()->removeElement($socialNetworking);
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getEducations()
+    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking): User
+    {
+        $this->getUserSocialNetworks()->removeElement($socialNetworking);
+
+        return $this;
+    }
+
+    public function getEducations(): Collection
     {
         return $this->educations;
     }
@@ -279,7 +312,7 @@ class User implements UserInterface
      * @param Education $education
      * @return User
      */
-    public function addEducations(Education $education)
+    public function addEducations(Education $education): User
     {
         if (!$this->educations->contains($education)) {
             $this->educations->add($education);
@@ -288,10 +321,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getExperiences()
+    public function getExperiences(): Collection
     {
         return $this->experiences;
     }
@@ -300,7 +330,7 @@ class User implements UserInterface
      * @param Experience $experience
      * @return User
      */
-    public function addExperiences(Experience $experience)
+    public function addExperiences(Experience $experience): User
     {
         if (!$this->experiences->contains($experience)) {
             $this->experiences->add($experience);
@@ -309,10 +339,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getSkills()
+    public function getSkills(): Collection
     {
         return $this->skills;
     }
@@ -321,7 +348,7 @@ class User implements UserInterface
      * @param Skill $skill
      * @return User
      */
-    public function addSkills(Skill $skill)
+    public function addSkills(Skill $skill): User
     {
         if (!$this->skills->contains($skill)) {
             $this->skills->add($skill);
@@ -330,10 +357,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getCertifications()
+    public function getCertifications(): Collection
     {
         return $this->certifications;
     }
@@ -342,7 +366,7 @@ class User implements UserInterface
      * @param Certification $certification
      * @return User
      */
-    public function addCertifications(Certification $certification)
+    public function addCertifications(Certification $certification): User
     {
         if (!$this->certifications->contains($certification)) {
             $this->certifications->add($certification);
@@ -351,238 +375,151 @@ class User implements UserInterface
         return $this;
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getCountry()
+    public function getCountry(): string|null
     {
         return $this->country;
     }
 
-    /**
-     * @param mixed $country
-     * @return User
-     */
-    public function setCountry($country)
+    public function setCountry(null|string $country): User
     {
         $this->country = $country;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCity()
+
+    public function getCity(): string|null
     {
         return $this->city;
     }
 
-    /**
-     * @param mixed $city
-     * @return User
-     */
-    public function setCity($city)
+    public function setCity(string|null $city): User
     {
         $this->city = $city;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBirthday()
+    public function getBirthday(): DateTimeInterface|null
     {
         return $this->birthday;
     }
 
-    /**
-     * @param mixed $birthday
-     * @return User
-     */
-    public function setBirthday($birthday)
+    public function setBirthday(DateTimeInterface|null $birthday): User
     {
         $this->birthday = $birthday;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
+    public function getFirstName(): string|null
     {
         return $this->firstName;
     }
 
-    /**
-     * @param mixed $firstName
-     * @return User
-     */
-    public function setFirstName($firstName)
+    public function setFirstName(string|null $firstName): User
     {
         $this->firstName = $firstName;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastName()
+    public function getLastName(): string|null
     {
         return $this->lastName;
     }
 
-    /**
-     * @param mixed $lastName
-     * @return User
-     */
-    public function setLastName($lastName)
+    public function setLastName(string|null $lastName): User
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHeadline()
+    public function getHeadline(): string|null
     {
         return $this->headline;
     }
 
-    /**
-     * @param mixed $headline
-     * @return User
-     */
-    public function setHeadline($headline)
+    public function setHeadline(string|null $headline): User
     {
         $this->headline = $headline;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRole()
+    public function getRole(): string|null
     {
         return $this->role;
     }
 
-    /**
-     * @param mixed $role
-     * @return User
-     */
-    public function setRole($role)
+    public function setRole(string|null $role): User
     {
         $this->role = $role;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCell()
+    public function getCell(): string|null
     {
         return $this->cell;
     }
 
-    /**
-     * @param mixed $cell
-     * @return User
-     */
-    public function setCell($cell)
+    public function setCell(string|null $cell): User
     {
         $this->cell = $cell;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPhone()
+    public function getPhone(): string|null
     {
         return $this->phone;
     }
 
-    /**
-     * @param mixed $phone
-     * @return User
-     */
-    public function setPhone($phone)
+    public function setPhone(string|null $phone): User
     {
         $this->phone = $phone;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getGender()
+    public function getGender(): string|null
     {
         return $this->gender;
     }
 
-    /**
-     * @param mixed $gender
-     * @return User
-     */
-    public function setGender($gender)
+    public function setGender(string|null $gender)
     {
         $this->gender = $gender;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSummary()
+    public function getSummary(): string|null
     {
         return $this->summary;
     }
 
-    /**
-     * @param mixed $summary
-     * @return User
-     */
-    public function setSummary($summary)
+    public function setSummary(string|null $summary): User
     {
         $this->summary = $summary;
+
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getState()
+    public function getState(): string|null
     {
         return $this->state;
     }
 
-    /**
-     * @param mixed $state
-     * @return User
-     */
-    public function setState($state)
+    public function setState(string|null $state): User
     {
         $this->state = $state;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getKeyWords(): ?string
+    public function getKeyWords(): string|null
     {
         return $this->keyWords;
     }
 
-    /**
-     * @param string|null $keyWords
-     * @return User
-     */
-    public function setKeyWords(?string $keyWords)
+    public function setKeyWords(string|null $keyWords): User
     {
         $this->keyWords = $keyWords;
+
         return $this;
     }
 
@@ -632,12 +569,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -669,48 +606,35 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getPlainPassword(): ?string
+    public function getPlainPassword(): string|null
     {
         return $this->plainPassword;
     }
 
-    /**
-     * @param string|null $plainPassword
-     * @return User
-     */
-    public function setPlainPassword(?string $plainPassword): User
+    public function setPlainPassword(string|null $plainPassword): User
     {
         $this->plainPassword = $plainPassword;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getSalt(): ?string
+    public function getSalt(): string|null
     {
         return $this->salt;
     }
 
-    /**
-     * @param string|null $salt
-     * @return User
-     */
-    public function setSalt(?string $salt): User
+    public function setSalt(string|null $salt): User
     {
         $this->salt = $salt;
+
         return $this;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->getEmail();
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): string|null
     {
         $this->plainPassword = null;
     }
@@ -720,18 +644,14 @@ class User implements UserInterface
         return $this->isVerified;
     }
 
-    public function setIsVerified(bool $isVerified): self
+    public function setIsVerified(bool $isVerified): User
     {
         $this->isVerified = $isVerified;
 
         return $this;
     }
 
-
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->getUsername();
     }
