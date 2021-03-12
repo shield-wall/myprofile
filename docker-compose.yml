@@ -3,10 +3,10 @@ services:
   api:
     image: nginx:1.17
     volumes:
-    - ./api:/app
-    - ./api/.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./api:/app
+      - ./api/.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-    - 8000:80
+      - 8000:80
     links:
       - php
 
@@ -20,14 +20,6 @@ services:
     links:
       - db
 
-  client:
-    image: node
-    working_dir: /app
-    volumes:
-      - ./api:/app
-    depends_on:
-      - php
-
   db:
     image: postgres
     restart: always
@@ -39,3 +31,14 @@ services:
       - ./api/.docker/database/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+  client:
+    image: node
+    working_dir: /app
+    volumes:
+      - ./client:/app
+    entrypoint: yarn dev
+    ports:
+      - 3000:3000
+    environment:
+      HOST: 0.0.0.0
