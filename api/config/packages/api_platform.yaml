@@ -1,4 +1,5 @@
 api_platform:
+    title: 'My profile'
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:

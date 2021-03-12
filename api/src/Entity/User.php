@@ -22,8 +22,16 @@ use DateTimeInterface;
  */
 
 #[ApiResource(
-    normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']],
+    normalizationContext: ['groups' => ['anonymous']],
+    denormalizationContext: ['groups' => ['anonymous']],
+    itemOperations: [
+        'get' => [
+            'normalization_context' => ['groups' => ['anonymous', 'anonymous:item:read']],
+        ],
+        'put',
+        'delete',
+        'patch'
+    ],
 )]
 class User implements UserInterface
 {
@@ -32,8 +40,7 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups("read")
-     *
+     * @Groups({"anonymous", "user:read", "admin:read"})
      */
     protected int $id;
 
@@ -43,8 +50,7 @@ class User implements UserInterface
      * @Assert\Email
      * @ORM\Column(type="string", length=200, unique=true)
      *
-     * @Groups({"read", "write"})
-     *
+     * @Groups({"anonymous", "user", "admin"})
      */
     protected string $email;
 
@@ -53,7 +59,7 @@ class User implements UserInterface
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous", "user", "admin"})
      */
     protected string|null $firstName;
 
@@ -62,7 +68,7 @@ class User implements UserInterface
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous", "write", "user", "admin"})
      */
     protected string|null $lastName;
 
@@ -71,7 +77,7 @@ class User implements UserInterface
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous", "user", "admin"})
      */
     private string $slug;
 
@@ -79,7 +85,7 @@ class User implements UserInterface
      * @Assert\Length(max="250")
      * @ORM\Column(type="text", length=250, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $headline;
 
@@ -94,7 +100,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $phone;
 
@@ -102,35 +108,35 @@ class User implements UserInterface
      * @Assert\Length(max="20")
      * @ORM\Column(type="string",length=20, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $cell;
 
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $summary;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $country;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $state;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $city;
 
@@ -138,14 +144,14 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=6, nullable=true)
      * @Assert\Choice({"male", "female"})
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $gender;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"user:item", "admin:item"})
      */
     protected DateTimeInterface|null $birthday;
 
@@ -181,7 +187,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
     protected string|null $keyWords;
 
@@ -216,7 +222,7 @@ class User implements UserInterface
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      *
-     * @Groups("read")
+     * @Groups("anonymous:item:read")
      */
     private DateTimeInterface $createdAt;
 
@@ -224,7 +230,7 @@ class User implements UserInterface
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      *
-     * @Groups("read")
+     * @Groups("anonymous:item:read")
      */
     private DateTimeInterface|null $updatedAt;
 
