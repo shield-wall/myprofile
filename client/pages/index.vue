@@ -24,13 +24,33 @@
         </a>
       </div>
     </div>
+
+    <p v-if="$fetchState.pending">Fetching users...</p>
+    <p v-else-if="$fetchState.error">An error occurred :(</p>
+    <div v-else>
+      <h1>Users</h1>
+      <ul>
+        <li v-for="user of users.items()">{{ user.id }} - {{user.email}}</li>
+      </ul>
+      <button @click="$fetch">Refresh</button>
+    </div>
+
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+  export default {
+    data (){
+      return {
+        users: [],
+      }
+    },
 
-export default Vue.extend({})
+    async fetch() {
+      this.users = await this.$userRepository.all();
+      console.log(this.users.totalItems());
+    }
+  };
 </script>
 
 <style>
