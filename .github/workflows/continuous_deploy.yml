@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - 2.x
   release:
     types:
       - created
@@ -53,7 +54,7 @@ jobs:
       name: staging
       url: https://staging-myprofile.herokuapp.com
     env:
-      APP_NAME: staging-myprofile
+      APP_NAME: ${{ env.GITHUB_REF_SLUG }}-myprofile
     needs: build
     container:
       image: eerison/myprofile:dev
