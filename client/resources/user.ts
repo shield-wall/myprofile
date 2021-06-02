@@ -9,7 +9,7 @@ export class UserCollection extends HydraCollection implements ResourceCollectio
 
 export class User extends Hydra implements ResourceInterface
 {
-  id: number|null
-  firstName: string|null
-  lastName: string|null
+  id: number|null = null
+  firstName: string|null = null
+  lastName: string|null = null
 }

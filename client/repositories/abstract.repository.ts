@@ -3,6 +3,8 @@ import {ResourceCollectionInterface} from "~/resources/contracts/resource.collec
 
 export abstract class AbstractRepository
 {
+  private axios: NuxtAxiosInstance;
+
   constructor($axios: NuxtAxiosInstance)
   {
     this.axios = $axios;
@@ -12,9 +14,9 @@ export abstract class AbstractRepository
     return this
       .axios
       .get<ResourceCollectionInterface>(this.resource(), {
-        transformResponse: (response) => Object.assign(this.collectionInstance(), JSON.parse(response))
+        transformResponse: (response: any) => Object.assign(this.collectionInstance(), JSON.parse(response))
       })
-      .then(response => response.data)
+      .then((response: any) => response.data)
   }
 
   abstract resource(): string;
