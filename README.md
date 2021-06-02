@@ -8,32 +8,60 @@
 
 ## Getting Started
 
-  ["My Profile"](https://www.myprofile.pro/) is a project to goal of help people to create your professional web site and CV!
+  ["My Profile"](https://www.myprofile.pro/) is a project to goal of help people to create your professional website and CV!
   
-### Installing
+## Important
 
-  ```
-    make install
-  ```
+this branch (master) has used for release the new version [3.0](https://github.com/eerison/myprofile/milestone/2)
 
-Open this link in your browser: [localhost:8000](http://localhost:8000)
-  
-  other commands:
-   - `make restart`
-   - `make build`
-   - `make watch`
-  
-  
-### Testing
+the main idea is use
 
-```
-    make test
+- api platform as API rest
+- nuxtJS as client
+
+## Run the API
+
+to start the api you just need to run the command bellow
+
+```shell
+make up
 ```
 
-### Xdebug
+after that you can open the api on `localhost:8000/api`
+
+## Run the client
+
+1 - to start the client you need to comment the entrypoint in `docker-composer.yml`
+
+```yaml
+client:
+  ....
+  #entrypoint: yarn dev
+```
+
+2 - install the dependencies
+
+```shell
+docker-compose run --rm client npm install
+```
+
+3 - remove the comment that you added in `docker-composer.yml`
+
+```yaml
+client:
+  ....
+  entrypoint: yarn dev
+```
+
+4 - run the command bellow
+
+```shell
+docker-compose up -d
+```
+
+Note: there is an [issue](https://github.com/eerison/myprofile/issues/410) to fix this setup for the client, if you wish to contribute to fix it fell free :) 
 
 
-Xdebug is listening on port [10000](.docker/common.env)
   
 [ci_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml/badge.svg?branch=master
 [ci_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml?query=workflow%3AContinuous+Integration
