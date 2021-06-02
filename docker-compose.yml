@@ -1,12 +1,12 @@
 version: '3.8'
 services:
-  web:
+  api:
     image: nginx:1.17
     volumes:
-    - ./:/app
-    - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./api:/app
+      - ./api/.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-    - 8000:80
+      - 8000:80
     links:
       - php
 
@@ -14,19 +14,11 @@ services:
     image: eerison/myprofile:dev
     working_dir: /app
     env_file:
-      - .docker/common.env
+      - ./api/.docker/common.env
     volumes:
-      - ./:/app
+      - ./api:/app
     links:
       - db
-
-  client:
-    image: node
-    working_dir: /app
-    volumes:
-      - .:/app
-    depends_on:
-      - php
 
   db:
     image: postgres
@@ -36,6 +28,17 @@ services:
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: myprofile
     volumes:
-      - .docker/database/data:/var/lib/postgresql/data
+      - ./api/.docker/database/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+  client:
+    image: node
+    working_dir: /app
+    volumes:
+      - ./client:/app
+    entrypoint: yarn dev
+    ports:
+      - 3000:3000
+    environment:
+      HOST: 0.0.0.0
