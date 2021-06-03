@@ -37,7 +37,7 @@ services:
     working_dir: /app
     volumes:
       - ./client:/app
-    entrypoint: yarn dev
+    command: yarn dev
     ports:
       - 3000:3000
     environment:

@@ -19,48 +19,18 @@ the main idea is use
 - api platform as API rest
 - nuxtJS as client
 
-## Run the API
+## Setup
 
-to start the api you just need to run the command bellow
-
+install the applications and dependencies
 ```shell
-make up
+make install
 ```
+after run the command above you can access:
 
-after that you can open the api on `localhost:8000/api`
+- api: http://localhost:8000
+- client: http://localhost:3000
 
-## Run the client
-
-1 - to start the client you need to comment the entrypoint in `docker-composer.yml`
-
-```yaml
-client:
-  ....
-  #entrypoint: yarn dev
-```
-
-2 - install the dependencies
-
-```shell
-docker-compose run --rm client npm install
-```
-
-3 - remove the comment that you added in `docker-composer.yml`
-
-```yaml
-client:
-  ....
-  entrypoint: yarn dev
-```
-
-4 - run the command bellow
-
-```shell
-docker-compose up -d
-```
-
-Note: there is an [issue](https://github.com/eerison/myprofile/issues/410) to fix this setup for the client, if you wish to contribute to fix it fell free :) 
-
+> if you want restart the project run `docker-composer up -d`
 
   
 [ci_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml/badge.svg?branch=master
