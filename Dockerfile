@@ -1,4 +1,4 @@
-FROM php:8.0-fpm as base
+FROM php:8.0.7-fpm as base
 
 RUN apt-get update
 
@@ -42,9 +42,9 @@ RUN apt-get install -y curl gnupg2 ca-certificates lsb-release \
     && apt-get update \
     && apt-get install -y nginx supervisor procps
 
-COPY ./.docker/supervisor.conf /etc/supervisor/conf.d
+COPY ./api/.docker/supervisor.conf /etc/supervisor/conf.d
 
-COPY ./.docker/nginx/nginx_heroku.conf /etc/nginx/nginx.conf
+COPY ./api/.docker/nginx/nginx_heroku.conf /etc/nginx/nginx.conf
 
 RUN sed -i -E "s/127\.0\.0\.1:9000/\/var\/run\/php-fpm\/php-fpm.sock/" /usr/local/etc/php-fpm.d/www.conf \
     && sed -i -E "s/127\.0\.0\.1:9000/\/var\/run\/php-fpm\/php-fpm.sock/" /usr/local/etc/php-fpm.d/www.conf.default \
@@ -68,11 +68,11 @@ CMD sed -i 's/PORT_NUMBER/'"$PORT"'/g' /etc/nginx/nginx.conf;supervisord --nodae
 
 USER www-data
 
-COPY ./ /app
+COPY ./api/ /app
 
 #FROM base as dev
 #
-#VOLUME docker.sock:docker.sock:ro
+#VOLUME /var/run/docker.sock:/var/run/docker.sock:ro
 #
 #RUN apt-get install -y git wget
 #RUN pecl install xdebug && docker-php-ext-enable xdebug

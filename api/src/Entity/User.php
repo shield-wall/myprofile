@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Entity;
@@ -13,14 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use DateTimeInterface;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="fos_user")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- * @UniqueEntity("slug")
- * @UniqueEntity("email")
- */
-
 #[ApiResource(
     normalizationContext: ['groups' => ['anonymous']],
     denormalizationContext: ['groups' => ['anonymous']],
@@ -33,6 +26,14 @@ use DateTimeInterface;
         'patch'
     ],
 )]
+/**
+ *
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="fos_user")
+ * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
+ * @UniqueEntity("slug")
+ * @UniqueEntity("email")
+ */
 class User implements UserInterface
 {
     /**
@@ -61,7 +62,7 @@ class User implements UserInterface
      *
      * @Groups({"anonymous", "user", "admin"})
      */
-    protected string|null $firstName;
+    protected string | null $firstName;
 
     /**
      * @Assert\NotBlank(groups={"registration"})
@@ -70,7 +71,7 @@ class User implements UserInterface
      *
      * @Groups({"anonymous", "write", "user", "admin"})
      */
-    protected string|null $lastName;
+    protected string | null $lastName;
 
     /**
      * @Assert\Length(max="50")
@@ -87,7 +88,7 @@ class User implements UserInterface
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $headline;
+    protected string | null $headline;
 
     /**
      * This field is used in user`s profile
@@ -95,14 +96,14 @@ class User implements UserInterface
      * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected string|null $role;
+    protected string | null $role;
 
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $phone;
+    protected string | null $phone;
 
     /**
      * @Assert\Length(max="20")
@@ -110,35 +111,35 @@ class User implements UserInterface
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $cell;
+    protected string | null $cell;
 
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $summary;
+    protected string | null $summary;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $country;
+    protected string | null $country;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $state;
+    protected string | null $state;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $city;
+    protected string | null $city;
 
     /**
      * @ORM\Column(type="string", length=6, nullable=true)
@@ -146,14 +147,14 @@ class User implements UserInterface
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $gender;
+    protected string | null $gender;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      *
      * @Groups({"user:item", "admin:item"})
      */
-    protected DateTimeInterface|null $birthday;
+    protected DateTimeInterface | null $birthday;
 
     /**
      * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
@@ -189,7 +190,7 @@ class User implements UserInterface
      *
      * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
-    protected string|null $keyWords;
+    protected string | null $keyWords;
 
     /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
@@ -199,7 +200,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private array|null $roles = [];
+    private array | null $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -210,13 +211,13 @@ class User implements UserInterface
      * @Assert\NotBlank(groups={"registration", "resetPassword"})
      * @Assert\Length(min=6)
      */
-    private string|null $plainPassword;
+    private string | null $plainPassword;
 
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    protected string|null $salt;
+    protected string | null $salt;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -232,7 +233,7 @@ class User implements UserInterface
      *
      * @Groups("anonymous:item:read")
      */
-    private DateTimeInterface|null $updatedAt;
+    private DateTimeInterface | null $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
@@ -381,148 +382,148 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCountry(): string|null
+    public function getCountry(): string | null
     {
         return $this->country;
     }
 
-    public function setCountry(null|string $country): User
+    public function setCountry(null | string $country): User
     {
         $this->country = $country;
         return $this;
     }
 
 
-    public function getCity(): string|null
+    public function getCity(): string | null
     {
         return $this->city;
     }
 
-    public function setCity(string|null $city): User
+    public function setCity(string | null $city): User
     {
         $this->city = $city;
 
         return $this;
     }
 
-    public function getBirthday(): DateTimeInterface|null
+    public function getBirthday(): DateTimeInterface | null
     {
         return $this->birthday;
     }
 
-    public function setBirthday(DateTimeInterface|null $birthday): User
+    public function setBirthday(DateTimeInterface | null $birthday): User
     {
         $this->birthday = $birthday;
         return $this;
     }
 
-    public function getFirstName(): string|null
+    public function getFirstName(): string | null
     {
         return $this->firstName;
     }
 
-    public function setFirstName(string|null $firstName): User
+    public function setFirstName(string | null $firstName): User
     {
         $this->firstName = $firstName;
         return $this;
     }
 
-    public function getLastName(): string|null
+    public function getLastName(): string | null
     {
         return $this->lastName;
     }
 
-    public function setLastName(string|null $lastName): User
+    public function setLastName(string | null $lastName): User
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getHeadline(): string|null
+    public function getHeadline(): string | null
     {
         return $this->headline;
     }
 
-    public function setHeadline(string|null $headline): User
+    public function setHeadline(string | null $headline): User
     {
         $this->headline = $headline;
         return $this;
     }
 
-    public function getRole(): string|null
+    public function getRole(): string | null
     {
         return $this->role;
     }
 
-    public function setRole(string|null $role): User
+    public function setRole(string | null $role): User
     {
         $this->role = $role;
         return $this;
     }
 
-    public function getCell(): string|null
+    public function getCell(): string | null
     {
         return $this->cell;
     }
 
-    public function setCell(string|null $cell): User
+    public function setCell(string | null $cell): User
     {
         $this->cell = $cell;
         return $this;
     }
 
-    public function getPhone(): string|null
+    public function getPhone(): string | null
     {
         return $this->phone;
     }
 
-    public function setPhone(string|null $phone): User
+    public function setPhone(string | null $phone): User
     {
         $this->phone = $phone;
         return $this;
     }
 
-    public function getGender(): string|null
+    public function getGender(): string | null
     {
         return $this->gender;
     }
 
-    public function setGender(string|null $gender)
+    public function setGender(string | null $gender)
     {
         $this->gender = $gender;
         return $this;
     }
 
-    public function getSummary(): string|null
+    public function getSummary(): string | null
     {
         return $this->summary;
     }
 
-    public function setSummary(string|null $summary): User
+    public function setSummary(string | null $summary): User
     {
         $this->summary = $summary;
 
         return $this;
     }
 
-    public function getState(): string|null
+    public function getState(): string | null
     {
         return $this->state;
     }
 
-    public function setState(string|null $state): User
+    public function setState(string | null $state): User
     {
         $this->state = $state;
         return $this;
     }
 
-    public function getKeyWords(): string|null
+    public function getKeyWords(): string | null
     {
         return $this->keyWords;
     }
 
-    public function setKeyWords(string|null $keyWords): User
+    public function setKeyWords(string | null $keyWords): User
     {
         $this->keyWords = $keyWords;
 
@@ -612,23 +613,23 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPlainPassword(): string|null
+    public function getPlainPassword(): string | null
     {
         return $this->plainPassword;
     }
 
-    public function setPlainPassword(string|null $plainPassword): User
+    public function setPlainPassword(string | null $plainPassword): User
     {
         $this->plainPassword = $plainPassword;
         return $this;
     }
 
-    public function getSalt(): string|null
+    public function getSalt(): string | null
     {
         return $this->salt;
     }
 
-    public function setSalt(string|null $salt): User
+    public function setSalt(string | null $salt): User
     {
         $this->salt = $salt;
 
@@ -640,7 +641,7 @@ class User implements UserInterface
         return $this->getEmail();
     }
 
-    public function eraseCredentials(): string|null
+    public function eraseCredentials(): string | null
     {
         $this->plainPassword = null;
     }
