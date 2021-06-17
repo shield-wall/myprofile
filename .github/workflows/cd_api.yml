@@ -28,6 +28,20 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: eerison/myprofile:dev
+    # todo the services was added here, because api_platform dev require db connection when install composer dev
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: myprofile
+          POSTGRES_PASSWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2
 
@@ -45,6 +59,7 @@ jobs:
       - name: Composer
         run: composer dev
 
+      # todo "composer dev" was before "composer assets" because it does not work just with "composer prod"
       - name: Assets
         run: composer assets
 
