@@ -117,6 +117,9 @@
         "test": [
             "bin/phpunit --coverage-clover coverage.xml"
         ],
+        "assets": [
+            "bin/console assets:install"
+        ],
         "lint_phpcs": [
             "vendor/bin/phpcs"
         ],
