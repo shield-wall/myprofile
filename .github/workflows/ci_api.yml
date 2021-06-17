@@ -87,14 +87,10 @@ jobs:
           ls -lha
 
       - name: Code Sniffer
-        run: vendor/bin/phpcs
-
-      - name: Twig
-        run: php bin/console lint:twig templates
+        run: composer lint_phpcs
 
       - name: Symfony Containers
-        run: php bin/console lint:container
-
+        run: composer lint_container
 
   test:
     name: Tests
