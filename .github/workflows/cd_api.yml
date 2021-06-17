@@ -45,6 +45,9 @@ jobs:
       - name: Composer
         run: composer prod
 
+      - name: Assets
+        run: composer assets
+
   deploy_staging:
     name: Deploy - Staging
     runs-on: ubuntu-latest
