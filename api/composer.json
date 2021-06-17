@@ -119,9 +119,6 @@
         "lint_phpcs": [
             "vendor/bin/phpcs"
         ],
-        "lint_twig": [
-            "php bin/console lint:twig templates"
-        ],
         "lint_container": [
             "php bin/console lint:container"
         ]

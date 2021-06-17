@@ -1,9 +1,12 @@
 # My Profile
 
-[![Continuous Integration][ci_badge]][ci_link]
-[![Continuous Deploy][cd_badge]][cd_link]
-[![codecov][test_badge]][test_link]
-[![Join the chat at https://gitter.im/myprofile_pro/Lobby][gitter_badge]][gitter_link] 
+| Application | CI | CD | Coverage |
+|-------------|----|----|----------|
+| Api         | [![CI/api][ci_badge]][ci_link]  | [![CD/api][cd_badge]][cd_link] | [![codecov][test_badge]][test_link]|
+| Client      | | |
+| Admin       | | |
+
+[![Join the chat at https://gitter.im/myprofile_pro/Lobby][gitter_badge]][gitter_link]
 [![License: GPL v3][licence_badge]][licence_link]
 
 ## Getting Started
@@ -33,8 +36,8 @@ after run the command above you can access:
 > if you want restart the project run `docker-composer up -d`
 
   
-[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml/badge.svg?branch=master
-[ci_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml?query=workflow%3AContinuous+Integration
+[ci_badge]: https://github.com/eerison/myprofile/actions/workflows/ci_api.yml/badge.svg?branch=master
+[ci_link]: https://github.com/eerison/myprofile/actions/workflows/ci_api.yml
 [cd_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml/badge.svg
 [cd_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml?query=workflow%3AContinuous+Deploy
 [test_badge]: https://codecov.io/gh/eerison/myprofile/branch/master/graph/badge.svg?token=ZIW9RTWH1B

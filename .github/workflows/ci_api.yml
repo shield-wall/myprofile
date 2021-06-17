@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI/api
 
 on:
   push:
@@ -19,34 +19,47 @@ env:
   TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
   TRANSLOADIT_DELIVERY: 1
 
+defaults:
+  run:
+    shell: bash
+    working-directory: api
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     container:
       image: eerison/myprofile:dev
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: myprofile
+          POSTGRES_PASSWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            bin/.phpunit
-            vendor
-            node_modules
-            public
+            ./api/bin/.phpunit
+            ./api/vendor
+            ./api/public
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
       - name: Composer
         run: composer dev
-
-      - name: Webpack
-        run: yarn dev
 
       - name: Phpunit version
         run: bin/phpunit --version
@@ -62,12 +75,11 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            bin/.phpunit
-            vendor
-            node_modules
-            public
+            ./api/bin/.phpunit
+            ./api/vendor
+            ./api/public
 
       - name: See files
         run: |
@@ -77,12 +89,8 @@ jobs:
       - name: Code Sniffer
         run: composer lint_phpcs
 
-      - name: Twig
-        run: composer lint_twig
-
       - name: Symfony Containers
         run: composer lint_container
-
 
   test:
     name: Tests
@@ -112,12 +120,11 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            bin/.phpunit
-            vendor
-            node_modules
-            public
+            ./api/bin/.phpunit
+            ./api/vendor
+            ./api/public
 
       - name: Setup Database
         run: composer db
@@ -156,12 +163,11 @@ jobs:
 
         - uses: actions/cache@v2
           with:
-            key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+            key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
             path: |
-              bin/.phpunit
-              vendor
-              node_modules
-              public
+              ./api/bin/.phpunit
+              ./api/vendor
+              ./api/public
 
         - name: See files
           run: |
