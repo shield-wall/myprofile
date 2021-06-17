@@ -93,6 +93,7 @@ jobs:
         run: |
           pwd
           ls -lha
+          ls -ilha public
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
