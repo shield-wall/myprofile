@@ -33,13 +33,13 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-optimize-1-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             ./api/vendor
             ./api/public
           restore-keys: |
-            ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-optimize-
+            ${{ runner.os }}-build-optimize-1-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-build-optimize-1-
             ${{ runner.os }}-
 
       - name: Composer
@@ -66,7 +66,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-optimize-1-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             ./api/vendor
             ./api/public
@@ -118,7 +118,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-optimize-1-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             ./api/vendor
             ./api/public
