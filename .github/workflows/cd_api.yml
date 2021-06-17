@@ -1,4 +1,4 @@
-name: Continuous Deploy
+name: CD/api
 
 on:
   push:
@@ -17,6 +17,11 @@ env:
   TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
   TRANSLOADIT_DELIVERY: 1
 
+defaults:
+  run:
+    shell: bash
+    working-directory: api
+
 jobs:
   build:
     name: Build
@@ -28,22 +33,17 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            vendor
-            node_modules
-            public
+            ./api/vendor
+            ./api/public
           restore-keys: |
-            ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-optimize-
             ${{ runner.os }}-
 
       - name: Composer
         run: composer prod
-
-      - name: Webpack
-        run: yarn prod
 
   deploy_staging:
     name: Deploy - Staging
@@ -63,11 +63,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            vendor
-            node_modules
-            public
+            ./api/vendor
+            ./api/public
 
       - name: See files
         run: |
@@ -116,11 +115,10 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-build-optimize-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            vendor
-            node_modules
-            public
+            ./api/vendor
+            ./api/public
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
