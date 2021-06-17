@@ -1,8 +1,0 @@
-twig:
-    globals:
-        bucket_name: '%bucket.name%'
-        bucket_dns: '%bucket.dns%'
-        cdn_dns: '%cdn.dns%'
-        git_ref: '%env(GIT_REF)%'
-    default_path: '%kernel.project_dir%/templates'
-    form_themes: ['bulma_0_layout.html.twig']
