@@ -1,0 +1,75 @@
+name: CI/client
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+defaults:
+  run:
+    shell: bash
+    working-directory: client
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-client-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          path: |
+            ./client/.nuxt
+            ./client/node_modules
+            ./client/dist
+          restore-keys: |
+            ${{ runner.os }}-build-client-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-client
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Generate
+        run: yarn run generate
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-client-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          path: |
+            ./client/.nuxt
+            ./client/node_modules
+            ./client/dist
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: './client/dist'
+          production-branch: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: pr-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          API_BASE_URL: https://staging-myprofile.herokuapp.com/api
+        timeout-minutes: 1
