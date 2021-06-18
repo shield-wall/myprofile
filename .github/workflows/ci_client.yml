@@ -29,47 +29,53 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-client-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          key: ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
           path: |
-            ./client/.nuxt
             ./client/node_modules
-            ./client/dist
           restore-keys: |
-            ${{ runner.os }}-build-client-${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-build-client
+            ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-client-v2
 
       - name: Install dependencies
         run: yarn
 
-      - name: Generate
-        run: yarn run generate
-
   deploy:
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v2
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-client-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          key: ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
           path: |
-            ./client/.nuxt
             ./client/node_modules
-            ./client/dist
+
+      - name: Generate
+        run: yarn build && yarn generate --fail-on-error
+
+#      - run: |
+#          pwd
+#          ls
+#          sed -i -E "s|##API_BASE_URL##|${API_BASE_URL}|" netlify.toml
+#          cat netlify.toml
+#        env:
+#          API_BASE_URL: https://my-profile-pr-${{ github.event.number }}.herokuapp.com/api
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './client/dist'
-          production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
           enable-commit-comment: true
           overwrites-pull-request-comment: true
           alias: pr-${{ github.event.number }}
+          netlify-config-path: ./client/netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          API_BASE_URL: https://staging-myprofile.herokuapp.com/api
+          API_BASE_URL: https://my-profile-pr-${{ github.event.number }}.herokuapp.com/api
+          NUXT_ENV_API_BASE_URL: https://my-profile-pr-${{ github.event.number }}.herokuapp.com/api
         timeout-minutes: 1
