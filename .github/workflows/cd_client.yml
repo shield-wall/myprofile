@@ -27,7 +27,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          key: ${{ runner.os }}-build-client-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
           path: |
             ./client/node_modules
           restore-keys: |
@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-build-client-optimize
 
       - name: Install dependencies
-        run: yarn --prod
+        run: yarn
 
   deploy_staging:
     name: Deploy - Staging
