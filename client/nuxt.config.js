@@ -31,7 +31,7 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://localhost:8000/api'
+    baseURL: process.env.API_BASE_URL || '##API_BASE_URL##'
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,7 +45,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    ['@nuxtjs/dotenv', { systemvars: true }],
     '@nuxtjs/axios'
   ],
 
