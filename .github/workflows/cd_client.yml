@@ -1,0 +1,79 @@
+name: CI/client
+
+on:
+  push:
+    branches:
+      - master
+  release:
+    types:
+      - created
+
+defaults:
+  run:
+    shell: bash
+    working-directory: client
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          path: |
+            ./client/node_modules
+          restore-keys: |
+            ${{ runner.os }}-build-client-optimize-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-client-optimize
+
+      - name: Install dependencies
+        run: yarn --prod
+
+  deploy_staging:
+    name: Deploy - Staging
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://staging--myprofilepro.netlify.app
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-client-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          path: |
+            ./client/node_modules
+
+      - name: Set variables in nuxt.config.json
+        run: |
+          pwd
+          ls
+          sed -i -E "s|##API_BASE_URL##|${API_BASE_URL}|" nuxt.config.js
+        env:
+          API_BASE_URL: https://staging-myprofile.herokuapp.com/api
+
+      - name: Generate
+        run: yarn generate --fail-on-error
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: './client/dist'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          alias: staging
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1

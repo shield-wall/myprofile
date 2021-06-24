@@ -53,8 +53,7 @@ jobs:
             ./api/public
           restore-keys: |
             ${{ runner.os }}-build-optimize-v2-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-optimize-
-            ${{ runner.os }}-
+            ${{ runner.os }}-build-optimize-v2-
 
       - name: Composer
         run: composer dev

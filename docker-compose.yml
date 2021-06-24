@@ -13,8 +13,9 @@ services:
   php:
     image: eerison/myprofile:dev
     working_dir: /app
-    env_file:
-      - ./api/.docker/common.env
+    environment:
+      CORS_ALLOW_ORIGIN: http://localhost:3000
+      XDEBUG_CONFIG: remote_enable=1 remote_port=10000 remote_autostart=1 remote_connect_back=1
     volumes:
       - ./api:/app
     links:
@@ -42,3 +43,4 @@ services:
       - 3000:3000
     environment:
       HOST: 0.0.0.0
+      API_BASE_URL: http://localhost:8000/api

@@ -31,7 +31,7 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://localhost:8000/api'
+    baseURL: process.env.API_BASE_URL || '##API_BASE_URL##'
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -40,11 +40,13 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+    '@nuxt/typescript-build'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios'],
+  modules: [
+    '@nuxtjs/axios'
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

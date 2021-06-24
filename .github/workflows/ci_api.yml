@@ -56,7 +56,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
       - name: Composer
         run: composer dev
