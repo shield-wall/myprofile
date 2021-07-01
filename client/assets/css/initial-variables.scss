@@ -1,0 +1,13 @@
+$body-background-color: $white-ter;
+$primary: $grey-dark;
+$link: $red;
+
+$input-arrow: $grey-dark;
+$input-focus-border-color: $grey-dark;
+$input-focus-box-shadow-color: rgba($grey-dark, 0.25);
+
+$table-background-color: $white-ter;
+
+.object-image {
+  @extend img
+}

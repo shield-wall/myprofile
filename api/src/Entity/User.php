@@ -95,6 +95,8 @@ class User implements UserInterface
      *
      * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
+     *
+     * @Groups({"anonymous", "user", "admin"})
      */
     protected string | null $role;
 

@@ -1,0 +1,8 @@
+@import "./profile.scss";
+@import "../fonts/icomoon/style.css";
+
+#homepageHero {
+  background: url("../images/bg-pattern.png"), #7b4397;
+  background: url("../images/bg-pattern.png"), -webkit-linear-gradient(to left, $primary, #1d2124);
+  background: url("../images/bg-pattern.png"), linear-gradient(to left, $primary, #1d2124);
+}
