@@ -1,48 +1,31 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        my-profile
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div class="m-2">
+    <div v-if="$fetchState.pending">
+        <Loader />
     </div>
 
-    <p v-if="$fetchState.pending">Fetching users...</p>
     <p v-else-if="$fetchState.error">An error occurred :(</p>
+
     <div v-else>
-      <h1>Users</h1>
-      <ul>
-        <li v-for="user of users.items()">{{ user.id }} - {{user.email}}</li>
-      </ul>
-      <button @click="$fetch">Refresh</button>
+        <h3 class="is-size-3-desktop is-size-5-touch is-2 has-text-centered m-4">
+          Look some curriculum vitae example
+        </h3>
+        <div class="columns is-multiline is-mobile is-centered">
+          <UserCard v-for="(user, index) in users.items().slice(0,12)" :key="`user-${index}`" :firstName="user.firstName" :last-name="user.lastName" :role="user.role"/>
+        </div>
     </div>
 
   </div>
 </template>
 
 <script>
+  import UserCard from "../components/UserCard";
+  import Loader from "../components/Loader";
   export default {
+    components: {Loader, UserCard},
     data () {
       return {
-        users: [],
+        users: []
       }
     },
 
@@ -52,44 +35,3 @@
     }
   };
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

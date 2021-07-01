@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'my-profile',
+    title: 'My profile',
     htmlAttrs: {
       lang: 'en'
     },
@@ -23,6 +23,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    'bulma',
+    '@assets/css/site.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -40,7 +42,15 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    ['@nuxtjs/fontawesome', {
+      component: 'Fa',
+      suffix: true,
+      icons: {
+        solid: ['faCircleNotch'],
+        brands: ['faGithub', 'faInstagram']
+      }
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
