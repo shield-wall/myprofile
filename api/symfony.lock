@@ -52,6 +52,9 @@
     "doctrine/dbal": {
         "version": "2.10.2"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
         "recipe": {
@@ -147,12 +150,6 @@
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
-    },
-    "laminas/laminas-eventmanager": {
-        "version": "3.2.1"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.0.4"
     },
     "monolog/monolog": {
         "version": "1.25.4"
@@ -418,9 +415,6 @@
     "symfony/http-kernel": {
         "version": "v5.1.8"
     },
-    "symfony/intl": {
-        "version": "v5.1.8"
-    },
     "symfony/mailer": {
         "version": "4.3",
         "recipe": {
@@ -478,6 +472,9 @@
     "symfony/orm-pack": {
         "version": "v1.0.8"
     },
+    "symfony/password-hasher": {
+        "version": "v5.3.3"
+    },
     "symfony/phpunit-bridge": {
         "version": "5.1",
         "recipe": {
@@ -531,9 +528,6 @@
     },
     "symfony/property-info": {
         "version": "v5.1.8"
-    },
-    "symfony/proxy-manager-bridge": {
-        "version": "5.2.x-dev"
     },
     "symfony/psr-http-message-bridge": {
         "version": "2.1",
