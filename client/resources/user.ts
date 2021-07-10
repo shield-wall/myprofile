@@ -13,4 +13,7 @@ export class User extends Hydra implements ResourceInterface
   firstName: string|null = null
   lastName: string|null = null
   role: string|null = null
+  slug: string|null = null
+  profileImage: string|null = null
+  backgroundImage: string|null = null
 }

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use DateTimeInterface;
@@ -51,7 +52,7 @@ class User implements UserInterface
      * @Assert\Email
      * @ORM\Column(type="string", length=200, unique=true)
      *
-     * @Groups({"anonymous", "user", "admin"})
+     * @Groups({"anonymous:item:read", "user", "admin"})
      */
     protected string $email;
 
@@ -537,14 +538,24 @@ class User implements UserInterface
         return sprintf('users/%s/curriculum/', md5($this->getEmail()));
     }
 
+    /**
+     * @Groups({"anonymous", "user:read", "admin:read"})
+     *
+     * @return string
+     */
     public function getProfileImage(): string
     {
-        return sprintf('users/%s/profile.webp', md5($this->getEmail()));
+        return sprintf('/users/%s/profile.webp', md5($this->getEmail()));
     }
 
+    /**
+     * @Groups({"anonymous", "user:read", "admin:read"})
+     *
+     * @return string
+     */
     public function getBackgroundImage(): string
     {
-        return sprintf('users/%s/background.webp', md5($this->getEmail()));
+        return sprintf('/users/%s/background.webp', md5($this->getEmail()));
     }
 
     /**
