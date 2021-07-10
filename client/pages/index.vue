@@ -18,6 +18,7 @@
             :responsiveHidden=true
             :firstName="user.firstName"
             :last-name="user.lastName"
+            :profile-image="user.profileImage"
             :role="user.role"
           />
         </div>
