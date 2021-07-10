@@ -11,7 +11,15 @@
           Look some curriculum vitae example
         </h3>
         <div class="columns is-multiline is-mobile is-centered">
-          <UserCard v-for="(user, index) in users.items().slice(0,12)" :key="`user-${index}`" :firstName="user.firstName" :last-name="user.lastName" :role="user.role"/>
+          <UserCard
+            v-for="(user, index) in users.items().slice(0,12)"
+            :key="`user-${index}`"
+            :index="index"
+            :responsiveHidden=true
+            :firstName="user.firstName"
+            :last-name="user.lastName"
+            :role="user.role"
+          />
         </div>
     </div>
 
