@@ -9,8 +9,8 @@
     <img
       :class="type === 'profile' ? 'is-rounded': ''"
       :src="providerUrl + path"
+      :alt="alt"
       @error="setFallbackImageUrl(type)"
-      alt="{{alt}}"
     />
   </figure>
 </template>
