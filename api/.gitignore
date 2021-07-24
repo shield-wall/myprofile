@@ -33,3 +33,9 @@ yarn-error.log
 ###> myprofile
 coverage.xml
 ###< myprofile
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+.phpunit.cache
+###< phpunit/phpunit ###
