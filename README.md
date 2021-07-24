@@ -1,6 +1,6 @@
 # My Profile
 
-| Api         | [![CI/api][ci_api_badge]][ci_api_link]  | [![CD/api][cd_api_badge]][cd_api_link] | [![codecov][test_badge]][test_link]|
+| [Api](api/README.md)         | [![CI/api][ci_api_badge]][ci_api_link]  | [![CD/api][cd_api_badge]][cd_api_link] | [![codecov][test_badge]][test_link]|
 |-------------|----|----|----------|
 | Client      | [![CI/client][ci_client_badge]][ci_client_link]  | [![CD/client][cd_client_badge]][cd_client_link]|
 | Admin       | | |

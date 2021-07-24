@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use DateTimeInterface;
@@ -27,6 +26,7 @@ use DateTimeInterface;
         'patch'
     ],
 )]
+
 /**
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -673,6 +673,11 @@ class User implements UserInterface
 
     public function __toString(): string
     {
-        return (string) $this->getUsername();
+        return $this->getUsername();
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getUsername();
     }
 }
