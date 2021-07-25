@@ -11,7 +11,6 @@ use DateTimeInterface;
 /**
  * @ORM\Table(name="experience")
  * @ORM\Entity(repositoryClass="App\Repository\ExperienceRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class Experience
 {
@@ -20,35 +19,31 @@ class Experience
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @var int
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="experiences")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @var User
      */
-    protected $user;
+    protected User $user;
 
     /**
      * @Assert\Length(max="150")
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=150)
      *
-     * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * @Assert\Length(max="50")
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=50)
      *
-     * @var string
      */
-    protected $company;
+    protected string $company;
 
     /**
      * @Assert\NotBlank()
@@ -56,25 +51,22 @@ class Experience
      *
      * @var $description
      */
-    protected $description;
+    protected string $description;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="date")
      *
-     * @var DateTimeInterface
      */
-    protected $periodStart;
+    protected DateTimeInterface $periodStart;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      *
-     * @var DateTimeInterface|null
      */
-    protected $periodEnd;
+    protected ?DateTimeInterface $periodEnd = null;
 
     /**
-     * @return int
      */
     public function getId(): int
     {
@@ -82,7 +74,6 @@ class Experience
     }
 
     /**
-     * @return User
      */
     public function getUser(): User
     {
@@ -90,8 +81,6 @@ class Experience
     }
 
     /**
-     * @param User $user
-     * @return Experience
      */
     public function setUser(User $user): Experience
     {
@@ -100,7 +89,6 @@ class Experience
     }
 
     /**
-     * @return string
      */
     public function getTitle(): string
     {
@@ -108,8 +96,6 @@ class Experience
     }
 
     /**
-     * @param string $title
-     * @return Experience
      */
     public function setTitle(string $title): Experience
     {
@@ -118,7 +104,6 @@ class Experience
     }
 
     /**
-     * @return string
      */
     public function getCompany(): string
     {
@@ -126,8 +111,6 @@ class Experience
     }
 
     /**
-     * @param string $company
-     * @return Experience
      */
     public function setCompany(string $company): Experience
     {
@@ -136,25 +119,21 @@ class Experience
     }
 
     /**
-     * @return mixed
      */
-    public function getDescription()
+    public function getDescription(): mixed
     {
         return $this->description;
     }
 
     /**
-     * @param mixed $description
-     * @return Experience
      */
-    public function setDescription($description)
+    public function setDescription(mixed $description): Experience
     {
         $this->description = $description;
         return $this;
     }
 
     /**
-     * @return DateTimeInterface
      */
     public function getPeriodStart(): ?DateTimeInterface
     {
@@ -162,8 +141,6 @@ class Experience
     }
 
     /**
-     * @param DateTimeInterface $periodStart
-     * @return Experience
      */
     public function setPeriodStart(DateTimeInterface $periodStart): Experience
     {
@@ -172,7 +149,6 @@ class Experience
     }
 
     /**
-     * @return DateTimeInterface|null
      */
     public function getPeriodEnd(): ?DateTimeInterface
     {
@@ -180,8 +156,6 @@ class Experience
     }
 
     /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Experience
      */
     public function setPeriodEnd(?DateTimeInterface $periodEnd): Experience
     {

@@ -10,57 +10,52 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="skill")
  * @ORM\Entity(repositoryClass="App\Repository\SkillRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class Skill
 {
     /**
-     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $user;
+    protected UserInterface $user;
 
     /**
      * @Assert\Length(max="50")
      * @ORM\Column(name="name", type="string", length=50)
      */
-    protected $name;
+    protected string $name;
 
     /**
-     * @var int
      * @Assert\Range(min = 0, max = 100)
      * @ORM\Column(name="level_experience", type="smallint")
      */
-    protected $levelExperience;
+    protected int $levelExperience;
 
     /**
      * @ORM\Column(name="priority", type="smallint", nullable=true)
      */
-    protected $priority;
+    protected int $priority;
 
     /**
-     * @var bool
      *
      * @ORM\Column(name="status", type="boolean")
      */
-    protected $status = true;
+    protected bool $status = true;
 
 
     /**
      * Get id
      *
-     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -68,11 +63,9 @@ class Skill
     /**
      * Set name
      *
-     * @param string $name
      *
-     * @return Skill
      */
-    public function setName(string $name)
+    public function setName(string $name): Skill
     {
         $this->name = $name;
 
@@ -82,9 +75,8 @@ class Skill
     /**
      * Get name
      *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -92,11 +84,9 @@ class Skill
     /**
      * Set levelExperience
      *
-     * @param int $levelExperience
      *
-     * @return Skill
      */
-    public function setLevelExperience(int $levelExperience)
+    public function setLevelExperience(int $levelExperience): Skill
     {
         $this->levelExperience = $levelExperience;
 
@@ -106,9 +96,8 @@ class Skill
     /**
      * Get levelExperience
      *
-     * @return int
      */
-    public function getLevelExperience()
+    public function getLevelExperience(): int
     {
         return $this->levelExperience;
     }
@@ -116,11 +105,9 @@ class Skill
     /**
      * Set priority
      *
-     * @param int $priority
      *
-     * @return Skill
      */
-    public function setPriority(int $priority)
+    public function setPriority(int $priority): Skill
     {
         $this->priority = $priority;
 
@@ -130,9 +117,8 @@ class Skill
     /**
      * Get priority
      *
-     * @return int
      */
-    public function getPriority()
+    public function getPriority(): int
     {
         return $this->priority;
     }
@@ -140,11 +126,9 @@ class Skill
     /**
      * Set status
      *
-     * @param bool $status
      *
-     * @return Skill
      */
-    public function setStatus(bool $status)
+    public function setStatus(bool $status): Skill
     {
         $this->status = $status;
 
@@ -154,19 +138,16 @@ class Skill
     /**
      * Get status
      *
-     * @return bool
      */
-    public function getStatus()
+    public function getStatus(): bool
     {
         return $this->status;
     }
 
     /**
-     * @param User $user
      *
-     * @return Skill
      */
-    public function setUser(User $user)
+    public function setUser(User $user): Skill
     {
         $this->user = $user;
 
@@ -174,9 +155,8 @@ class Skill
     }
 
     /**
-     * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }

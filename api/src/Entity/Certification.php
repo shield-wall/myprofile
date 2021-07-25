@@ -13,7 +13,6 @@ use DateTimeInterface;
  *
  * @ORM\Table(name="certification")
  * @ORM\Entity(repositoryClass="App\Repository\CertificationRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class Certification implements
     EntityInterface,
@@ -26,66 +25,57 @@ class Certification implements
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @var int
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @var UserInterface
      */
-    protected $user;
+    protected UserInterface $user;
 
     /**
      * @Assert\Length(max="100")
      * @ORM\Column(name="title", type="string", length=100)
      *
-     * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * @ORM\Column(name="period_start", type="date")
      *
-     * @var DateTimeInterface
      */
-    protected $periodStart;
+    protected DateTimeInterface $periodStart;
 
     /**
-     * @var DateTimeInterface|null
      *
      * @ORM\Column(name="period_end", type="date", nullable=true)
      */
-    protected $periodEnd;
+    protected ?DateTimeInterface $periodEnd = null;
 
     /**
      * @Assert\Length(max="100")
      * @ORM\Column(name="institution", type="string", length=100)
      *
-     * @var string
      */
-    protected $institution;
+    protected string $institution;
 
     /**
      * @Assert\Length(max="500")
      * @ORM\Column(name="link", type="string", length=500, nullable=true)
      *
-     * @var string|null
      */
-    protected $link;
+    protected ?string $link = null;
 
     /**
      * @Assert\Length(max="255")
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      *
-     * @var string|null
      */
-    protected $image;
+    protected ?string $image = null;
 
     /**
-     * @return int
      */
     public function getId(): int
     {
@@ -93,7 +83,6 @@ class Certification implements
     }
 
     /**
-     * @return string
      */
     public function getTitle(): string
     {
@@ -101,8 +90,6 @@ class Certification implements
     }
 
     /**
-     * @param string $title
-     * @return Certification
      */
     public function setTitle(string $title): Certification
     {
@@ -111,7 +98,6 @@ class Certification implements
     }
 
     /**
-     * @return DateTimeInterface
      */
     public function getPeriodStart(): ?DateTimeInterface
     {
@@ -119,8 +105,6 @@ class Certification implements
     }
 
     /**
-     * @param DateTimeInterface $periodStart
-     * @return Certification
      */
     public function setPeriodStart(DateTimeInterface $periodStart): Certification
     {
@@ -129,7 +113,6 @@ class Certification implements
     }
 
     /**
-     * @return DateTimeInterface|null
      */
     public function getPeriodEnd(): ?DateTimeInterface
     {
@@ -137,8 +120,6 @@ class Certification implements
     }
 
     /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Certification
      */
     public function setPeriodEnd(?DateTimeInterface $periodEnd): Certification
     {
@@ -147,7 +128,6 @@ class Certification implements
     }
 
     /**
-     * @return string
      */
     public function getInstitution(): string
     {
@@ -155,8 +135,6 @@ class Certification implements
     }
 
     /**
-     * @param string $institution
-     * @return Certification
      */
     public function setInstitution(string $institution): Certification
     {
@@ -165,7 +143,6 @@ class Certification implements
     }
 
     /**
-     * @return string|null
      */
     public function getLink(): ?string
     {
@@ -173,8 +150,6 @@ class Certification implements
     }
 
     /**
-     * @param string|null $link
-     * @return Certification
      */
     public function setLink(?string $link): Certification
     {
@@ -183,7 +158,6 @@ class Certification implements
     }
 
     /**
-     * @return string|null
      */
     public function getImage(): ?string
     {
@@ -191,8 +165,6 @@ class Certification implements
     }
 
     /**
-     * @param string|null $image
-     * @return Certification
      */
     public function setImage(?string $image): Certification
     {

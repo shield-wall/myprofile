@@ -18,7 +18,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  * @UniqueEntity(
  *     fields={"user", "socialNetworking"},
  *     errorPath="socialNetworking"
@@ -31,36 +30,31 @@ class UserSocialNetworking
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @var int
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="userSocialNetworks")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @var User
      */
-    protected $user;
+    protected User $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="SocialNetworking", inversedBy="userSocialNetworks", fetch="EAGER")
      * @ORM\JoinColumn(name="social_networking_id", referencedColumnName="id", nullable=false)
      *
-     * @var SocialNetworking|null
      */
-    protected $socialNetworking;
+    protected ?SocialNetworking $socialNetworking = null;
 
     /**
      * @Assert\Length(max="200")
      * @ORM\Column(type="string", length=200)
      *
-     * @var string
      */
-    protected $link;
+    protected string $link;
 
     /**
-     * @return int
      */
     public function getId(): int
     {
@@ -68,7 +62,6 @@ class UserSocialNetworking
     }
 
     /**
-     * @return User
      */
     public function getUser(): User
     {
@@ -76,8 +69,6 @@ class UserSocialNetworking
     }
 
     /**
-     * @param User $user
-     * @return UserSocialNetworking
      */
     public function setUser(User $user): UserSocialNetworking
     {
@@ -86,7 +77,6 @@ class UserSocialNetworking
     }
 
     /**
-     * @return SocialNetworking|null
      */
     public function getSocialNetworking(): ?SocialNetworking
     {
@@ -94,8 +84,6 @@ class UserSocialNetworking
     }
 
     /**
-     * @param SocialNetworking|null $socialNetworking
-     * @return UserSocialNetworking
      */
     public function setSocialNetworking(?SocialNetworking $socialNetworking): UserSocialNetworking
     {
@@ -104,7 +92,6 @@ class UserSocialNetworking
     }
 
     /**
-     * @return string
      */
     public function getLink(): string
     {
@@ -112,8 +99,6 @@ class UserSocialNetworking
     }
 
     /**
-     * @param string $link
-     * @return UserSocialNetworking
      */
     public function setLink(string $link): UserSocialNetworking
     {
