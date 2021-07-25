@@ -50,7 +50,6 @@ class Skill
      */
     protected bool $status = true;
 
-
     /**
      * Get id
      *

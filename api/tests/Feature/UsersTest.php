@@ -17,6 +17,7 @@ use App\Entity\User;
  */
 class UsersTest extends ApiTestCase
 {
+
     /**
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
