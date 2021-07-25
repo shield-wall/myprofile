@@ -12,7 +12,24 @@
     <rule ref="PSR12"/>
     <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
 
+    <!--    SlevomatCodingStandard-->
+    <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility" />
+    <rule ref="SlevomatCodingStandard.Classes.ClassMemberSpacing" />
     <rule ref="SlevomatCodingStandard.Classes.ClassStructure" />
+    <rule ref="SlevomatCodingStandard.Classes.ConstantSpacing" />
+    <rule ref="SlevomatCodingStandard.Classes.ForbiddenPublicProperty" />
+    <rule ref="SlevomatCodingStandard.Classes.MethodSpacing" />
+    <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference" />
+    <rule ref="SlevomatCodingStandard.Classes.ParentCallSpacing" />
+    <rule ref="SlevomatCodingStandard.Classes.PropertySpacing" />
+    <rule ref="SlevomatCodingStandard.Classes.RequireConstructorPropertyPromotion" />
+    <rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature" />
+    <rule ref="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature" />
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming" />
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousErrorNaming" />
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming" />
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration" />
+
     <rule ref="SlevomatCodingStandard.Arrays"/>
     <rule ref="SlevomatCodingStandard.TypeHints">
         <properties>

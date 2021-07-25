@@ -45,7 +45,6 @@ class User implements UserInterface
      */
     protected int $id;
 
-
     /**
      * @Assert\Length(max="200")
      * @Assert\Email
@@ -215,7 +214,6 @@ class User implements UserInterface
      */
     protected string | null $plainPassword;
 
-
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -382,7 +380,6 @@ class User implements UserInterface
         $this->country = $country;
         return $this;
     }
-
 
     public function getCity(): string | null
     {
