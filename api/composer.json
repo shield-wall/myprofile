@@ -127,6 +127,9 @@
         "lint_phpcs": [
             "vendor/bin/phpcs"
         ],
+        "lint_phpcs_fix": [
+            "vendor/bin/phpcbf"
+        ],
         "lint_container": [
             "php bin/console lint:container"
         ]

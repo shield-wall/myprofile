@@ -11,8 +11,10 @@
 
     <rule ref="PSR12"/>
     <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+
     <rule ref="SlevomatCodingStandard.Classes.ClassStructure" />
-    <rule ref="SlevomatCodingStandard/Sniffs/TypeHints/DeclareStrictTypesSniff.php">
+    <rule ref="SlevomatCodingStandard.Arrays"/>
+    <rule ref="SlevomatCodingStandard.TypeHints">
         <properties>
             <property name="spacesCountAroundEqualsSign" value="0"/>
         </properties>

@@ -6,14 +6,14 @@ namespace App\Entity;
 
 trait HasUserTrait
 {
-    protected $user;
+    protected UserInterface $user;
 
     public function getUser(): UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(UserInterface $user)
+    public function setUser(UserInterface $user): self
     {
         $this->user = $user;
 

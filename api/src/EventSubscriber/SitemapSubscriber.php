@@ -13,10 +13,16 @@ use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 
 class SitemapSubscriber implements EventSubscriberInterface
 {
-    private $urlGenerator;
-    private $userRepository;
-    private $locales;
+    /**
+     * @var array<string>
+     */
+    private array $locales;
+    private UrlGeneratorInterface $urlGenerator;
+    private UserRepository $userRepository;
 
+    /**
+     * @param array<string> $locales
+     */
     public function __construct(UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, array $locales)
     {
         $this->urlGenerator = $urlGenerator;
@@ -74,6 +80,9 @@ class SitemapSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @return array<string>
+     */
     public static function getSubscribedEvents(): array
     {
         return [

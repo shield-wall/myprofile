@@ -4,27 +4,23 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use transloadit\Transloadit;
 
 class ProfileImageService
 {
-    private $router;
-    private $transloadit;
-    private $params;
+    private Transloadit $transloadit;
+    private ParameterBagInterface $params;
 
-    public function __construct(
-        Transloadit $transloadit,
-        UrlGeneratorInterface $router,
-        ParameterBagInterface $params
-    ) {
-        $this->router = $router;
+    public function __construct(Transloadit $transloadit, ParameterBagInterface $params)
+    {
         $this->transloadit = $transloadit;
         $this->params = $params;
     }
 
-    public function upload($user, $file)
+    public function upload(User $user, File $file): void
     {
         if (!$this->params->get('transloadit.delivery')) {
             return;

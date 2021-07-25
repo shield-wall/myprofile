@@ -40,12 +40,6 @@ services:
             - '../src/Kernel.php'
             - '../src/Tests/'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
-        tags: ['controller.service_arguments']
-
     transloadit\Transloadit:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'
@@ -55,10 +49,6 @@ services:
             $locales: '%locales%'
         tags:
             - { name: kernel.event_subscriber, priority: 100 }
-
-    App\EventListener\UpdateCurriculumListener:
-        tags:
-            - { name: doctrine.orm.entity_listener, lazy: true }
 
     Sentry\Monolog\Handler:
         arguments:

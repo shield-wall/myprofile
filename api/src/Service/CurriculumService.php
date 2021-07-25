@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\User\User;
 use transloadit\Transloadit;
 
 class CurriculumService
 {
-    private $router;
-    private $transloadit;
-    private $params;
+    private Transloadit $transloadit;
+    private UrlGeneratorInterface $router;
+    private ParameterBagInterface $params;
 
     public function __construct(
         Transloadit $transloadit,
@@ -25,7 +25,7 @@ class CurriculumService
         $this->params = $params;
     }
 
-    public function makePdfOnTransloadit($user)
+    public function makePdfOnTransloadit(User $user): void
     {
         if (!$this->params->get('transloadit.delivery')) {
             return;
@@ -53,7 +53,7 @@ class CurriculumService
         ]);
     }
 
-    private function getAbsoluteUrl($user, $locale)
+    private function getAbsoluteUrl(User $user, string $locale): string
     {
         return $this->router->generate(
             'app_curriculum',

@@ -8,5 +8,5 @@ interface HasUserInterface
 {
     public function getUser(): UserInterface;
 
-    public function setUser(UserInterface $user);
+    public function setUser(UserInterface $user): self;
 }

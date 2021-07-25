@@ -23,7 +23,7 @@ use DateTimeInterface;
         ],
         'put',
         'delete',
-        'patch'
+        'patch',
     ],
 )]
 
@@ -31,7 +31,6 @@ use DateTimeInterface;
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  * @UniqueEntity("slug")
  * @UniqueEntity("email")
  */
@@ -256,7 +255,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return int
      */
     public function getId(): int
     {
@@ -264,7 +262,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
      */
     public function getEmail(): string
     {
@@ -272,8 +269,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $email
-     * @return User
      */
     public function setEmail(string $email): User
     {
@@ -286,7 +281,7 @@ class User implements UserInterface
         return $this->slug;
     }
 
-    public function setSlug($slug): User
+    public function setSlug(string $slug): User
     {
         $this->slug = $slug;
 
@@ -319,8 +314,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param Education $education
-     * @return User
      */
     public function addEducations(Education $education): User
     {
@@ -337,8 +330,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param Experience $experience
-     * @return User
      */
     public function addExperiences(Experience $experience): User
     {
@@ -355,8 +346,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param Skill $skill
-     * @return User
      */
     public function addSkills(Skill $skill): User
     {
@@ -373,8 +362,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param Certification $certification
-     * @return User
      */
     public function addCertifications(Certification $certification): User
     {
@@ -492,7 +479,7 @@ class User implements UserInterface
         return $this->gender;
     }
 
-    public function setGender(string | null $gender)
+    public function setGender(string | null $gender): User
     {
         $this->gender = $gender;
         return $this;
@@ -541,7 +528,6 @@ class User implements UserInterface
     /**
      * @Groups({"anonymous", "user:read", "admin:read"})
      *
-     * @return string
      */
     public function getProfileImage(): string
     {
@@ -551,7 +537,6 @@ class User implements UserInterface
     /**
      * @Groups({"anonymous", "user:read", "admin:read"})
      *
-     * @return string
      */
     public function getBackgroundImage(): string
     {
@@ -559,7 +544,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|UserLanguage[]
+     * @return Collection|array<UserLanguage>
      */
     public function getUserLanguages(): Collection
     {
@@ -599,6 +584,9 @@ class User implements UserInterface
         return $this->updatedAt;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -609,7 +597,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
      */
     public function getPassword(): string
     {
@@ -617,8 +604,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $password
-     * @return User
      */
     public function setPassword(string $password): User
     {

@@ -15,8 +15,8 @@ use DateTimeInterface;
 /**
  * @method ResetPasswordRequest|null find($id, $lockMode = null, $lockVersion = null)
  * @method ResetPasswordRequest|null findOneBy(array $criteria, array $orderBy = null)
- * @method ResetPasswordRequest[]    findAll()
- * @method ResetPasswordRequest[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method array<ResetPasswordRequest> findAll()
+ * @method array<ResetPasswordRequest> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface
 {

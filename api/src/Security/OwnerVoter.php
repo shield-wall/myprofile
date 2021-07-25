@@ -9,6 +9,10 @@ use App\Entity\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
+/**
+ * @phpcs:disable SlevomatCodingStandard.TypeHints
+ * Reason: I'm overwriting the class and it has not typehint and I need to declare the same way.
+ */
 class OwnerVoter extends Voter
 {
     protected function supports(string $attribute, $subject): bool
@@ -16,12 +20,6 @@ class OwnerVoter extends Voter
         return $subject instanceof HasUserInterface;
     }
 
-    /**
-     * @param string $attribute
-     * @param HasUserInterface $subject
-     * @param TokenInterface $token
-     * @return bool
-     */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="social_networking")
  * @ORM\Entity(repositoryClass="App\Repository\SocialNetworkingRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class SocialNetworking
 {
@@ -20,72 +20,66 @@ class SocialNetworking
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
-    protected $name;
+    protected string $name;
 
     /**
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
-    protected $icon;
+    protected string $icon;
 
     /**
      * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="socialNetworking")
      */
-    protected $userSocialNetworks;
+    protected Collection $userSocialNetworks;
 
     public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
-     * @return SocialNetworking
      */
-    public function setName($name)
+    public function setName(string $name): SocialNetworking
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return mixed
      */
-    public function getIcon()
+    public function getIcon(): string
     {
         return $this->icon;
     }
 
     /**
-     * @param mixed $icon
-     * @return SocialNetworking
      */
-    public function setIcon($icon)
+    public function setIcon(string $icon): SocialNetworking
     {
         $this->icon = $icon;
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }

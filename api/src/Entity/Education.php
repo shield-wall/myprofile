@@ -11,7 +11,6 @@ use DateTimeInterface;
 /**
  * @ORM\Table(name="education")
  * @ORM\Entity(repositoryClass="App\Repository\EducationRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
 class Education implements
     EntityInterface,
@@ -24,61 +23,53 @@ class Education implements
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @var int
      */
-    protected $id;
+    protected int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @var UserInterface
      */
-    protected $user;
+    protected UserInterface $user;
 
     /**
      * @Assert\Length(max="200")
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=200)
      *
-     * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * @Assert\Length(max="200")
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=200)
      *
-     * @var string
      */
-    protected $institution;
+    protected string $institution;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="text")
      *
-     * @var string
      */
-    protected $description;
+    protected string $description;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="date")
      *
-     * @var DateTimeInterface
      */
-    protected $periodStart;
+    protected DateTimeInterface $periodStart;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      *
-     * @var DateTimeInterface|null
      */
-    protected $periodEnd;
+    protected ?DateTimeInterface $periodEnd = null;
 
     /**
-     * @return int
      */
     public function getId(): int
     {
@@ -86,8 +77,6 @@ class Education implements
     }
 
     /**
-     * @param int $id
-     * @return Education
      */
     public function setId(int $id): Education
     {
@@ -96,7 +85,6 @@ class Education implements
     }
 
     /**
-     * @return string
      */
     public function getTitle(): string
     {
@@ -104,8 +92,6 @@ class Education implements
     }
 
     /**
-     * @param string $title
-     * @return Education
      */
     public function setTitle(string $title): Education
     {
@@ -114,7 +100,6 @@ class Education implements
     }
 
     /**
-     * @return string
      */
     public function getInstitution(): string
     {
@@ -122,8 +107,6 @@ class Education implements
     }
 
     /**
-     * @param string $institution
-     * @return Education
      */
     public function setInstitution(string $institution): Education
     {
@@ -132,7 +115,6 @@ class Education implements
     }
 
     /**
-     * @return string
      */
     public function getDescription(): string
     {
@@ -140,8 +122,6 @@ class Education implements
     }
 
     /**
-     * @param string $description
-     * @return Education
      */
     public function setDescription(string $description): Education
     {
@@ -150,7 +130,6 @@ class Education implements
     }
 
     /**
-     * @return DateTimeInterface
      */
     public function getPeriodStart(): ?DateTimeInterface
     {
@@ -158,8 +137,6 @@ class Education implements
     }
 
     /**
-     * @param DateTimeInterface $periodStart
-     * @return Education
      */
     public function setPeriodStart(DateTimeInterface $periodStart): Education
     {
@@ -168,7 +145,6 @@ class Education implements
     }
 
     /**
-     * @return DateTimeInterface|null
      */
     public function getPeriodEnd(): ?DateTimeInterface
     {
@@ -176,8 +152,6 @@ class Education implements
     }
 
     /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Education
      */
     public function setPeriodEnd(?DateTimeInterface $periodEnd): Education
     {
