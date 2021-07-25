@@ -118,7 +118,7 @@
             "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction"
         ],
         "test": [
-            "bin/phpunit --coverage-clover coverage.xml"
+            "bin/phpunit --coverage-clover coverage.xml --testdox"
         ],
         "assets": [
             "bin/console assets:install"
