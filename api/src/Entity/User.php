@@ -81,7 +81,7 @@ class User implements UserInterface
      *
      * @Groups({"anonymous", "user", "admin"})
      */
-    private string $slug;
+    protected string $slug;
 
     /**
      * @Assert\Length(max="250")
@@ -198,23 +198,23 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
      */
-    private Collection $userLanguages;
+    protected Collection $userLanguages;
 
     /**
      * @ORM\Column(type="json")
      */
-    private array | null $roles = [];
+    protected array | null $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $password;
+    protected string $password;
 
     /**
      * @Assert\NotBlank(groups={"registration", "resetPassword"})
      * @Assert\Length(min=6)
      */
-    private string | null $plainPassword;
+    protected string | null $plainPassword;
 
 
     /**
@@ -228,7 +228,7 @@ class User implements UserInterface
      *
      * @Groups("anonymous:item:read")
      */
-    private DateTimeInterface $createdAt;
+    protected DateTimeInterface $createdAt;
 
     /**
      * @Gedmo\Timestampable(on="update")
@@ -236,14 +236,14 @@ class User implements UserInterface
      *
      * @Groups("anonymous:item:read")
      */
-    private DateTimeInterface | null $updatedAt;
+    protected DateTimeInterface | null $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
      *
      * @Groups("read")
      */
-    private bool $isVerified = false;
+    protected bool $isVerified = false;
 
     public function __construct()
     {
@@ -671,12 +671,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function __toString(): string
+    public function getUserIdentifier(): string
     {
         return $this->getUsername();
     }
 
-    public function getUserIdentifier(): string
+    public function __toString(): string
     {
         return $this->getUsername();
     }

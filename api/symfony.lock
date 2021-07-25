@@ -25,6 +25,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.8.1"
     },
+    "dealerdirect/phpcodesniffer-composer-installer": {
+        "version": "v0.7.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -230,6 +233,9 @@
     "phpspec/prophecy": {
         "version": "1.13.0"
     },
+    "phpstan/phpdoc-parser": {
+        "version": "0.5.5"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.6"
     },
@@ -366,6 +372,9 @@
         "files": [
             "config/packages/sentry.yaml"
         ]
+    },
+    "slevomat/coding-standard": {
+        "version": "7.0.12"
     },
     "squizlabs/php_codesniffer": {
         "version": "3.0",

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -26,7 +28,7 @@ class Certification implements
      *
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
@@ -42,21 +44,21 @@ class Certification implements
      *
      * @var string
      */
-    private $title;
+    protected $title;
 
     /**
      * @ORM\Column(name="period_start", type="date")
      *
      * @var DateTimeInterface
      */
-    private $periodStart;
+    protected $periodStart;
 
     /**
      * @var DateTimeInterface|null
      *
      * @ORM\Column(name="period_end", type="date", nullable=true)
      */
-    private $periodEnd;
+    protected $periodEnd;
 
     /**
      * @Assert\Length(max="100")
@@ -64,7 +66,7 @@ class Certification implements
      *
      * @var string
      */
-    private $institution;
+    protected $institution;
 
     /**
      * @Assert\Length(max="500")
@@ -72,7 +74,7 @@ class Certification implements
      *
      * @var string|null
      */
-    private $link;
+    protected $link;
 
     /**
      * @Assert\Length(max="255")
@@ -80,7 +82,7 @@ class Certification implements
      *
      * @var string|null
      */
-    private $image;
+    protected $image;
 
     /**
      * @return int
