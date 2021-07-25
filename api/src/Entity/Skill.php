@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -19,7 +21,7 @@ class Skill
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
@@ -31,26 +33,26 @@ class Skill
      * @Assert\Length(max="50")
      * @ORM\Column(name="name", type="string", length=50)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var int
      * @Assert\Range(min = 0, max = 100)
      * @ORM\Column(name="level_experience", type="smallint")
      */
-    private $levelExperience;
+    protected $levelExperience;
 
     /**
      * @ORM\Column(name="priority", type="smallint", nullable=true)
      */
-    private $priority;
+    protected $priority;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="status", type="boolean")
      */
-    private $status = true;
+    protected $status = true;
 
 
     /**

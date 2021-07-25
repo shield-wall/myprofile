@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\EventSubscriber;
 
 use App\Repository\UserRepository;
@@ -20,13 +22,6 @@ class SitemapSubscriber implements EventSubscriberInterface
         $this->urlGenerator = $urlGenerator;
         $this->userRepository = $userRepository;
         $this->locales = $locales;
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            SitemapPopulateEvent::ON_SITEMAP_POPULATE => 'populate',
-        ];
     }
 
     public function populate(SitemapPopulateEvent $event): void
@@ -77,5 +72,12 @@ class SitemapSubscriber implements EventSubscriberInterface
                 );
             }
         }
+    }
+
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            SitemapPopulateEvent::ON_SITEMAP_POPULATE => 'populate',
+        ];
     }
 }
