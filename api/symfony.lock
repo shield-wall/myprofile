@@ -110,14 +110,23 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "eerison/pest-plugin-api-platform": {
+        "version": "1.x-dev"
+    },
     "egulias/email-validator": {
         "version": "2.1.22"
+    },
+    "facade/ignition-contracts": {
+        "version": "1.0.2"
     },
     "fakerphp/faker": {
         "version": "v1.12.0"
     },
     "fig/link-util": {
         "version": "1.1.2"
+    },
+    "filp/whoops": {
+        "version": "2.14.0"
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.1"
@@ -191,8 +200,17 @@
     "nikic/php-parser": {
         "version": "v4.6.0"
     },
+    "nunomaduro/collision": {
+        "version": "v5.6.0"
+    },
     "ocramius/package-versions": {
         "version": "1.4.2"
+    },
+    "pestphp/pest": {
+        "version": "v1.12.0"
+    },
+    "pestphp/pest-plugin": {
+        "version": "v1.0.0"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
@@ -375,6 +393,12 @@
     },
     "slevomat/coding-standard": {
         "version": "7.0.12"
+    },
+    "spatie/pest-plugin-snapshots": {
+        "version": "1.1.0"
+    },
+    "spatie/phpunit-snapshot-assertions": {
+        "version": "4.2.7"
     },
     "squizlabs/php_codesniffer": {
         "version": "3.0",
