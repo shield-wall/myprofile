@@ -242,7 +242,7 @@ class User implements UserInterface
      */
     protected bool $isVerified = false;
 
-    public function __construct()
+    public function __construct(int $id, ?DateTimeInterface $createdAt, ?DateTimeInterface $updatedAt)
     {
         $this->userSocialNetworks = new ArrayCollection();
         $this->educations = new ArrayCollection();
@@ -250,6 +250,9 @@ class User implements UserInterface
         $this->skills = new ArrayCollection();
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
+        $this->id = $id;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
     }
 
     /**

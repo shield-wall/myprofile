@@ -28,14 +28,5 @@ it('can get an user item resource without any user log in.', function (): void {
 
     expect($content)
         ->json()
-        ->toHaveKey('id')
-        ->toHaveKey('email', 'test@myprofile.pro')
-        ->toHaveKey('firstName', 'Test')
-        ->toHaveKey('lastName', 'Mock')
-        ->toHaveKey('slug', 'test-mock')
-        ->toHaveKey('createdAt')
-        ->toHaveKey('updatedAt')
-        ->toHaveKey('profileImage')
-        ->toHaveKey('backgroundImage')
-    ;
+        ->toMatchJsonSnapshot();
 });
