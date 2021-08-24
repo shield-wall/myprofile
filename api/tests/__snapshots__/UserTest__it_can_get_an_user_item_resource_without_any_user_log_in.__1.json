@@ -1,0 +1,14 @@
+{
+    "@context": "\/api\/contexts\/User",
+    "@id": "\/api\/users\/1",
+    "@type": "User",
+    "id": 1,
+    "email": "test@myprofile.pro",
+    "firstName": "Test",
+    "lastName": "Mock",
+    "slug": "test-mock",
+    "createdAt": "2020-01-01T11:11:11+00:00",
+    "updatedAt": "2020-01-02T11:11:11+00:00",
+    "profileImage": "\/users\/4041ebd8ad3c83ddd218b90ee8fdfda1\/profile.webp",
+    "backgroundImage": "\/users\/4041ebd8ad3c83ddd218b90ee8fdfda1\/background.webp"
+}
