@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Entity\User;
 
 it('can get user collection resource without any user log in.')
-    ->get('/api/users')
+    ->get('/users')
     ->assertResponseIsSuccessful()
     ->expectResponseContent()
     ->json()
@@ -14,7 +14,7 @@ it('can get user collection resource without any user log in.')
 ;
 
 it('can get an user item resource without any user log in.')
-    ->get('/api/users/1000')
+    ->get('/users/1000')
     ->assertResponseIsSuccessful()
     ->expectResponseContent()
     ->toMatchesResourceItemJsonSchema(User::class)
