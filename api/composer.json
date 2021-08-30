@@ -14,6 +14,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "lexik/jwt-authentication-bundle": "^2.12",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "presta/sitemap-bundle": "^2.1",
@@ -89,53 +90,29 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ],
-
-        "prod": [
-            "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader"
-        ],
-        "staging": [
-            "@prod"
-        ],
-        "dev": [
-            "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
-        ],
-
+        "post-install-cmd": "@auto-scripts",
+        "post-update-cmd": "@auto-scripts",
+        "prod": "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
+        "staging": "@prod",
+        "dev": "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader",
         "initial": [
             "@dev",
             "@db",
-            "@fixtures"
+            "@fixtures",
+            "@jwt"
         ],
         "db": [
             "php bin/console doctrine:database:create  --if-not-exists",
             "@migrate"
         ],
-        "fixtures": [
-            "bin/console hautelook:fixtures:load --no-interaction"
-        ],
-        "migrate":[
-            "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction"
-        ],
-        "test": [
-            "vendor/bin/pest --coverage-clover coverage.xml"
-        ],
-        "assets": [
-            "bin/console assets:install"
-        ],
-        "lint_phpcs": [
-            "vendor/bin/phpcs"
-        ],
-        "lint_phpcs_fix": [
-            "vendor/bin/phpcbf"
-        ],
-        "lint_container": [
-            "php bin/console lint:container"
-        ]
+        "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
+        "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "test": "vendor/bin/pest --coverage-clover coverage.xml",
+        "assets": "bin/console assets:install",
+        "lint_phpcs": "vendor/bin/phpcs",
+        "lint_phpcs_fix": "vendor/bin/phpcbf",
+        "lint_container": "php bin/console lint:container",
+        "jwt": "./.docker/jwt.sh"
     },
     "extra": {
         "symfony": {

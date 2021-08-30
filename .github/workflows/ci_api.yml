@@ -53,12 +53,16 @@ jobs:
             ./api/bin/.phpunit
             ./api/vendor
             ./api/public
+            ./api/config/jwt
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-
 
       - name: Composer
         run: composer dev
+
+      - name: Generate JWT pems
+        run: composer jwt
 
       - name: Phpunit version
         run: bin/phpunit --version
@@ -79,6 +83,7 @@ jobs:
             ./api/bin/.phpunit
             ./api/vendor
             ./api/public
+            ./api/config/jwt
 
       - name: See files
         run: |
@@ -124,6 +129,7 @@ jobs:
             ./api/bin/.phpunit
             ./api/vendor
             ./api/public
+            ./api/config/jwt
 
       - name: Setup Database
         run: composer db
@@ -167,6 +173,7 @@ jobs:
               ./api/bin/.phpunit
               ./api/vendor
               ./api/public
+              ./api/config/jwt
 
         - name: See files
           run: |

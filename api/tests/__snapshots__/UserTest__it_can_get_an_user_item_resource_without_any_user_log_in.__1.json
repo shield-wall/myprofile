@@ -1,6 +1,6 @@
 {
-    "@context": "\/api\/contexts\/User",
-    "@id": "\/api\/users\/1000",
+    "@context": "\/contexts\/User",
+    "@id": "\/users\/1000",
     "@type": "User",
     "id": 1000,
     "email": "test@myprofile.pro",

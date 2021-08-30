@@ -44,3 +44,11 @@ App\Entity\User:
       isVerified: false
       firstName: Test Not Verified
       LastName: Mock
+  admin:
+    __construct: false
+    email: admin@myprofile.pro
+    password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
+    slug: <slug()>
+    firstName: admin
+    LastName: <lastName()>
+    roles: [ROLE_ADMIN]

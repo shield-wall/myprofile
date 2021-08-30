@@ -15,8 +15,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use DateTimeInterface;
 
 #[ApiResource(
-    normalizationContext: ['groups' => ['anonymous']],
-    denormalizationContext: ['groups' => ['anonymous']],
     itemOperations: [
         'get' => [
             'normalization_context' => ['groups' => ['anonymous', 'anonymous:item:read']],
@@ -25,6 +23,8 @@ use DateTimeInterface;
         'delete',
         'patch',
     ],
+    denormalizationContext: ['groups' => ['anonymous']],
+    normalizationContext: ['groups' => ['anonymous']],
 )]
 
 /**
@@ -585,6 +585,16 @@ class User implements UserInterface
     }
 
     /**
+     * @param array<string> $roles
+     */
+    public function setRoles(array $roles): User
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
      * @return array<string>
      */
     public function getRoles(): array
@@ -642,6 +652,8 @@ class User implements UserInterface
     public function eraseCredentials(): string | null
     {
         $this->plainPassword = null;
+
+        return $this->plainPassword;
     }
 
     public function isVerified(): bool

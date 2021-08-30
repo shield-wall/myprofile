@@ -55,3 +55,7 @@ services:
             $hub: '@Sentry\State\HubInterface'
             $level: !php/const Monolog\Logger::ERROR
             $bubble: false
+
+    App\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        autoconfigure: false

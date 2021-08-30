@@ -51,6 +51,7 @@ jobs:
           path: |
             ./api/vendor
             ./api/public
+            ./api/config/jwt
           restore-keys: |
             ${{ runner.os }}-build-optimize-v2-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-optimize-v2-
@@ -87,6 +88,7 @@ jobs:
           path: |
             ./api/vendor
             ./api/public
+            ./api/config/jwt
 
       - name: See files
         run: |
@@ -140,6 +142,7 @@ jobs:
           path: |
             ./api/vendor
             ./api/public
+            ./api/config/jwt
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
