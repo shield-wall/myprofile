@@ -107,7 +107,7 @@
         ],
         "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
-        "test": "vendor/bin/pest --coverage-clover coverage.xml",
+        "test": "vendor/bin/pest --coverage --min=20",
         "assets": "bin/console assets:install",
         "lint_phpcs": "vendor/bin/phpcs",
         "lint_phpcs_fix": "vendor/bin/phpcbf",
