@@ -1,6 +1,9 @@
 <?php
+
 // api/src/OpenApi/JwtDecorator.php
-// this code was copied from https://api-platform.com/docs/core/jwt/#adding-endpoint-to-swaggerui-to-retrieve-a-jwt-token
+// this code was copied from
+//      https://api-platform.com/docs/core/jwt/#adding-endpoint-to-swaggerui-to-retrieve-a-jwt-token
+
 
 declare(strict_types=1);
 
@@ -12,10 +15,13 @@ use ApiPlatform\Core\OpenApi\Model;
 
 final class JwtDecorator implements OpenApiFactoryInterface
 {
-    public function __construct(
-        private OpenApiFactoryInterface $decorated
-    ) {}
+    public function __construct(private OpenApiFactoryInterface $decorated)
+    {
+    }
 
+    /**
+     * @param array<OpenApiFactoryInterface> $context
+     */
     public function __invoke(array $context = []): OpenApi
     {
         $openApi = ($this->decorated)($context);

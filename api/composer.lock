@@ -9931,12 +9931,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eerison/pest-plugin-api-platform.git",
-                "reference": "240b2ba5cf4c5e739926cc2dfa0c2ab95c72eff4"
+                "reference": "4f1c450f8b246119f04e7d85219d42282b77bb66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eerison/pest-plugin-api-platform/zipball/240b2ba5cf4c5e739926cc2dfa0c2ab95c72eff4",
-                "reference": "240b2ba5cf4c5e739926cc2dfa0c2ab95c72eff4",
+                "url": "https://api.github.com/repos/eerison/pest-plugin-api-platform/zipball/4f1c450f8b246119f04e7d85219d42282b77bb66",
+                "reference": "4f1c450f8b246119f04e7d85219d42282b77bb66",
                 "shasum": ""
             },
             "require": {
@@ -9988,7 +9988,7 @@
                 "issues": "https://github.com/eerison/pest-plugin-api-platform/issues",
                 "source": "https://github.com/eerison/pest-plugin-api-platform/tree/master"
             },
-            "time": "2021-08-22T18:33:33+00:00"
+            "time": "2021-08-26T18:46:49+00:00"
         },
         {
             "name": "facade/ignition-contracts",

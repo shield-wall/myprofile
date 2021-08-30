@@ -9,7 +9,7 @@ it('can get user collection resource without any user log in.')
     ->assertResponseIsSuccessful()
     ->expectResponseContent()
     ->json()
-    ->toHaveKey('hydra:totalItems', 13)
+    ->toHaveKey('hydra:totalItems', 14)
     ->toMatchesResourceCollectionJsonSchema(User::class)
 ;
 
