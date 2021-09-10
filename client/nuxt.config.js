@@ -59,6 +59,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
     ['@nuxtjs/fontawesome', {
       component: 'Fa',
       suffix: true,
