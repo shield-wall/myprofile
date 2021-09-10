@@ -21,7 +21,6 @@
     "@nuxt/types": "^2.14.12",
     "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "fibers": "^5.0.0",
     "sass": "^1.35.1",
     "sass-loader": "^10.1.1"
   }
