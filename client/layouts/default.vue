@@ -1,14 +1,17 @@
 <template>
   <div>
-    <section class="hero is-transparent is-fullheight" id="homepageHero">
-      <HeroSite />
+    <section class="hero min-h-screen" id="homepageHero">
+        <HeroSite class="md:container md:mx-auto" />
     </section>
 
-    <section class="container" id="content">
+    <section class="md:container md:mx-auto" id="content">
       <Nuxt />
     </section>
 
-    <Footer class="mt-6"/>
+    <div class="md:container md:mx-auto">
+      <Footer />
+    </div>
+
   </div>
 </template>
 

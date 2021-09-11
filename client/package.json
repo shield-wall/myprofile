@@ -11,7 +11,6 @@
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@nuxtjs/axios": "^5.13.1",
-    "bulma": "^0.9.3",
     "core-js": "^3.8.3",
     "daisyui": "^1.14.0",
     "nuxt": "^2.13.3",
