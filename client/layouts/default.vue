@@ -8,8 +8,8 @@
       <Nuxt />
     </section>
 
-    <div class="md:container md:mx-auto">
-      <Footer />
+    <div class="bg-primary text-neutral-content">
+      <Footer  class="md:container md:mx-auto"/>
     </div>
 
   </div>
