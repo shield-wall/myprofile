@@ -15,6 +15,14 @@
   </div>
 </template>
 
+<style>
+#homepageHero {
+  background: url("../assets/images/bg-pattern.png"), #1f2937;
+  background: url("../assets/images/bg-pattern.png"), -webkit-linear-gradient(to left, #4b5364, #1f2937);
+  background: url("../assets/images/bg-pattern.png"), linear-gradient(to left, #4b5364, #1f2937);
+}
+</style>
+
 <script>
 import HeroSite from "../components/Site/Hero";
 import Footer from "../components/Footer";
