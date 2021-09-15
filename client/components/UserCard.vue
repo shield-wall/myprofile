@@ -1,36 +1,26 @@
 <template>
-  <div
-    class="column is-full-mobile is-half-tablet is-two-quarters-desktop is-one-quarter-widescreen"
-    :class="{
-      'is-hidden-mobile': index > 3 && responsiveHidden,
-      'is-hidden-tablet-only is-hidden-desktop-only': index > 5 && responsiveHidden
-    }"
-  >
+  <div class="m-2">
     <NuxtLink to="/">
-        <div class="card">
-          <div class="card-image">
-            <Picture
-              :path="backgroundImage"
-              size="small_background"
-              alt="background image"
-            />
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                  <Picture
-                    :path="profileImage"
-                    type="profile"
-                    alt="Profile image"
-                  />
-              </div>
-              <div class="media-content">
-                <p class="title is-5">{{ firstName }} {{ lastName }}</p>
-                <p class="subtitle is-6">{{ role }}</p>
-              </div>
-            </div>
-          </div>
+      <div class="rounded-3xl overflow-hidden shadow-xl max-w-xs my-3 bg-gray-700">
+        <Picture
+          :path="backgroundImage"
+          size="small_background"
+          alt="background image"
+        />
+
+        <div class="flex justify-center -mt-8">
+          <Picture
+            :path="profileImage"
+            type="profile"
+            alt="Profile image"
+          />
         </div>
+
+        <div class="text-white text-center font-sans px-3 pb-6 pt-2">
+          <h3 class="text-2xl leading-8">{{ firstName }} {{ lastName }}</h3>
+          <p class="mt-2">{{ role }}</p>
+        </div>
+      </div>
     </NuxtLink>
   </div>
 </template>
@@ -40,6 +30,6 @@
   export default {
     name: 'UserCard',
     components: {Picture},
-    props: ['index', 'responsiveHidden', 'slug', 'firstName', 'lastName', 'role', 'profileImage', 'backgroundImage']
+    props: ['slug', 'firstName', 'lastName', 'role', 'profileImage', 'backgroundImage']
   }
 </script>

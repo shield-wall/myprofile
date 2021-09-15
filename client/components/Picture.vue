@@ -1,13 +1,7 @@
 <template>
-  <figure
-    class="image"
-    :class="{
-      'is-64x64': size === 'small' || !size,
-      'is-3by1': size === 'small_background'
-    }"
-  >
+  <figure>
     <img
-      :class="type === 'profile' ? 'is-rounded': ''"
+      :class="type === 'profile' ? '-mt-3 w-24 mask mask mask-hexagon': ''"
       :src="providerUrl + path"
       :alt="alt"
       @error="setFallbackImageUrl(type)"

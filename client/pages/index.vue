@@ -7,18 +7,13 @@
     <p v-else-if="$fetchState.error">An error occurred :(</p>
 
     <div v-else>
-        <h3 class="is-size-3-desktop is-size-5-touch is-2 has-text-centered m-4">
-          Look some curriculum vitae example
-        </h3>
-        <div class="columns is-multiline is-mobile is-centered">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
           <UserCard
             v-for="(user, index) in users.items().slice(0,12)"
             :key="`user-${index}`"
-            :index="index"
-            :responsiveHidden=true
             :firstName="user.firstName"
-            :last-name="user.lastName"
-            :profile-image="user.profileImage"
+            :lastName="user.lastName"
+            :profileImage="user.profileImage"
             :role="user.role"
           />
         </div>
