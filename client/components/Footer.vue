@@ -2,9 +2,12 @@
   <div>
     <footer class="p-10 footer">
       <div>
-        <fa-icon :icon="faGithubAlt" class="fa-4x"  />
+        <a href="https://github.com/eerison/myprofile" class="link link-hover" target="_blank">
+          <fa-icon :icon="faGithubAlt" class="fa-4x"  />
+        </a>
         <p>My profile <fa-icon :icon="faCodeBranch" /> 3.0.0
-          <br />made with <fa-icon :icon="faHeart" /> by Erison Silva
+          <br />made with <fa-icon :icon="faHeart" /> by
+          <a href="https://github.com/eerison" class="link link-hover" target="_blank">Erison Silva</a>
         </p>
       </div>
       <div>
