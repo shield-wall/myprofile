@@ -2,30 +2,26 @@
   <div>
     <footer class="p-10 footer">
       <div>
-        <fa-icon :icon="faGithubAlt" class="fa-4x"  />
+        <a href="https://github.com/eerison/myprofile" class="link link-hover" target="_blank">
+          <fa-icon :icon="faGithubAlt" class="fa-4x"  />
+        </a>
         <p>My profile <fa-icon :icon="faCodeBranch" /> 3.0.0
-          <br />Made with <fa-icon :icon="faHeart" /> by Erison Silva
+          <br />made with <fa-icon :icon="faHeart" /> by
+          <a href="https://github.com/eerison" class="link link-hover" target="_blank">Erison Silva</a>
         </p>
       </div>
-      <div>
-        <span class="text-white	font-bold text-base">Services</span>
-        <a class="link link-hover text-gray-300">Branding</a>
-        <a class="link link-hover text-gray-300">Design</a>
-        <a class="link link-hover text-gray-300">Marketing</a>
-        <a class="link link-hover text-gray-300">Advertisement</a>
+
+      <div class="text-gray-300">
+        <span class="text-white	font-bold text-base"><fa-icon :icon="faCoffee"  /> Project</span>
+        <a class="link link-hover">Contact</a>
+        <a class="link link-hover">Instagram</a>
       </div>
-      <div>
-        <span class="text-white	font-bold text-base">Company</span>
-        <a class="link link-hover text-gray-300	">About us</a>
-        <a class="link link-hover text-gray-300	">Contact</a>
-        <a class="link link-hover text-gray-300">Jobs</a>
-        <a class="link link-hover text-gray-300">Press kit</a>
-      </div>
-      <div>
-        <span class="text-white	font-bold text-base">Legal</span>
-        <a class="link link-hover text-gray-300">Terms of use</a>
-        <a class="link link-hover text-gray-300">Privacy policy</a>
-        <a class="link link-hover text-gray-300">Cookie policy</a>
+
+      <div class="text-gray-300">
+        <span class="text-white	font-bold text-base"><fa-icon :icon="faHandsHelping"  /> Sponsorship</span>
+        <a href="https://transloadit.com" class="link link-hover" target="_blank">Transloadit</a>
+        <a href="https://sentry.io" class="link link-hover" target="_blank">Sentry</a>
+        <a href="https://www.jetbrains.com" class="link link-hover" target="_blank">Jetbrains</a>
       </div>
     </footer>
   </div>
@@ -33,7 +29,7 @@
 
 <script>
 import { faGithubAlt} from '@fortawesome/free-brands-svg-icons'
-import { faHeart, faCodeBranch } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCodeBranch, faHandsHelping, faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 export default {
   name: 'Loader',
@@ -46,6 +42,12 @@ export default {
     },
     faCodeBranch () {
       return faCodeBranch
+    },
+    faHandsHelping () {
+      return faHandsHelping
+    },
+    faCoffee () {
+      return faCoffee
     }
   },
 }
