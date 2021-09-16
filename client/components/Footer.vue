@@ -10,13 +10,15 @@
           <a href="https://github.com/eerison" class="link link-hover" target="_blank">Erison Silva</a>
         </p>
       </div>
-      <div>
-        <span class="footer-title"><fa-icon :icon="faCoffee"  /> Project</span>
+
+      <div class="text-gray-300">
+        <span class="text-white	font-bold text-base"><fa-icon :icon="faCoffee"  /> Project</span>
         <a class="link link-hover">Contact</a>
         <a class="link link-hover">Instagram</a>
       </div>
-      <div>
-        <span class="footer-title"><fa-icon :icon="faHandsHelping"  /> Sponsorship</span>
+
+      <div class="text-gray-300">
+        <span class="text-white	font-bold text-base"><fa-icon :icon="faHandsHelping"  /> Sponsorship</span>
         <a href="https://transloadit.com" class="link link-hover" target="_blank">Transloadit</a>
         <a href="https://sentry.io" class="link link-hover" target="_blank">Sentry</a>
         <a href="https://www.jetbrains.com" class="link link-hover" target="_blank">Jetbrains</a>
