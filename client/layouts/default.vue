@@ -1,10 +1,10 @@
 <template>
   <div>
-    <section class="hero min-h-screen" id="homepageHero">
+    <section class="hero min-h-screen items-start" id="homepageHero">
         <HeroSite class="md:container md:mx-auto" />
     </section>
 
-    <section class="md:container md:mx-auto" id="content">
+    <section class="md:container md:mx-auto mb-8" id="content">
       <Nuxt />
     </section>
 

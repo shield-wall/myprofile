@@ -1,7 +1,7 @@
 <template>
-  <div class="m-2">
+  <div class="m-2 ">
     <NuxtLink to="/">
-      <div class="rounded-3xl overflow-hidden shadow-xl max-w-xs my-3 bg-gray-700">
+      <div class="rounded-3xl overflow-hidden shadow-xl max-w-xs my-3 bg-gray-700 h-64 min-h-full transform motion-safe:hover:scale-105">
         <Picture
           :path="backgroundImage"
           size="small_background"
@@ -17,8 +17,8 @@
         </div>
 
         <div class="text-white text-center font-sans px-3 pb-6 pt-2">
-          <h3 class="text-2xl leading-8">{{ firstName }} {{ lastName }}</h3>
-          <p class="mt-2">{{ role }}</p>
+          <h3 class="text-xl leading-8">{{ firstName }} {{ lastName }}</h3>
+          <p class="text-base text-gray-200 mt-2">{{ role }}</p>
         </div>
       </div>
     </NuxtLink>
