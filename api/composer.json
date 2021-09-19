@@ -56,7 +56,8 @@
         "symfony/css-selector": "^5.3",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.2",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/stopwatch": "5.3.*",
+        "symfony/web-profiler-bundle": "5.3.*"
     },
     "minimum-stability": "beta",
     "config": {
@@ -84,7 +85,8 @@
         "symfony/polyfill-php56": "*"
     },
     "conflict": {
-        "symfony/symfony": "*"
+        "symfony/symfony": "*",
+        "symfony/dependency-injection": "5.3.7"
     },
     "scripts": {
         "auto-scripts": {
@@ -120,11 +122,5 @@
             "allow-contrib": false,
             "require": "5.3.*"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/theofidry/AliceBundle"
-        }
-    ]
+    }
 }
