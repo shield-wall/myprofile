@@ -56,10 +56,10 @@
         "symfony/css-selector": "^5.3",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.2",
-        "symfony/stopwatch": "5.3.*",
-        "symfony/web-profiler-bundle": "5.3.*"
+        "symfony/stopwatch": "^5.3",
+        "symfony/web-profiler-bundle": "^5.3"
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -120,7 +120,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.3.*"
+            "require": "5.4.*"
         }
     }
 }
