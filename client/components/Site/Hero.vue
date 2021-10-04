@@ -1,12 +1,12 @@
 <template>
     <div>
-      <NavBar />
+        <FormHero />
     </div>
 </template>
 
 <script>
-import NavBar from "../NavBar";
+import FormHero from "../FormHero.vue";
 export default {
-  components: {NavBar}
-}
+  components: {FormHero}
+};
 </script>
