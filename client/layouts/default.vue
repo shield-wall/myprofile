@@ -5,7 +5,7 @@
         <NavBar />
       </div>
       <div class="hero min-h-screen max-h-md items-start">
-        <HeroSite class="md:container md:mx-auto" />
+        <HeroSite class="md:container md:mx-auto lg:space-x-2" />
       </div>
     </section>
 
