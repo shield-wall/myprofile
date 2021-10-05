@@ -17,9 +17,8 @@
         "lexik/jwt-authentication-bundle": "^2.12",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
-        "presta/sitemap-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^6.0",
-        "sentry/sentry-symfony": "dev-maintanance/add-type-hint-in-sentry-extension as 4.2.3",
+        "sentry/sentry-symfony": "^4.2",
         "stof/doctrine-extensions-bundle": "dev-master",
         "symfony/asset": "^5.2",
         "symfony/console": "^v5.2",
@@ -117,12 +116,6 @@
         "lint_container": "php bin/console lint:container",
         "jwt": "./.docker/jwt.sh"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:eerison/sentry-symfony.git"
-        }
-    ],
     "extra": {
         "symfony": {
             "allow-contrib": false,
