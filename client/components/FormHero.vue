@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-2 lg:space-x-20 lg:p-24 sm:grid-cols-1">
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:space-x-64 lg:p-32 sm:grid-cols-1">
 
 
       <div class="flex-col justify-center hero-content lg:flex-row">
