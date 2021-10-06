@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-  pull_request:
+  workflow_run:
+    workflows: [ "Receive PR" ]
     types:
-      - opened
-      - reopened
-      - synchronize
+      - requested
+      - completed
 
 defaults:
   run:
@@ -41,7 +41,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name != 'push'
     environment:
       name: staging_pr
       url: https://pr-${{ github.event.number }}--myprofilepro.netlify.app
