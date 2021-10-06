@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-  pull_request:
+  workflow_run:
+    workflows: [ "Receive PR" ]
     types:
-      - opened
-      - reopened
-      - synchronize
+      - requested
+      - completed
 
 env:
   APP_ENV: ${{ secrets.APP_ENV }}
@@ -151,7 +151,7 @@ jobs:
   deploy_pr:
     name: Deploy - Pull request
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name != 'push'
     environment:
       name: staging_pr
       url: https://${{env.APP_NAME}}.herokuapp.com
