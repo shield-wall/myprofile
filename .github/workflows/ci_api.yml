@@ -5,11 +5,10 @@ on:
     branches:
       - master
 
-  workflow_run:
-    workflows: [ "Receive PR" ]
+  pull_request_target:
     types:
-      - requested
-      - completed
+      - opened
+      - synchronize
 
 env:
   APP_ENV: ${{ secrets.APP_ENV }}
