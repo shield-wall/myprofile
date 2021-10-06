@@ -1,20 +1,20 @@
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-2 lg:space-x-64 lg:p-32 sm:grid-cols-1">
+    <div class="md:flex lg:flex">
 
 
-      <div class="flex-col hero-content lg:flex-row">
-          <div class="flex-grow align-items-center">
-              <h1 class="text-white text-center  text-5xl sm:text-5x1 mb-2 p-12">
+      <div class="hero-content">
+          <div>
+              <h1 class="text-white text-5xl mb-2">
                 Crie seu currículo em PDF e site pessoal em poucos minutos!
               </h1>
-                <button class="btn btn-primary mt-6 ml-44 2xl:ml-52 lg:invisible md:visible sm:visible">
+                <button class="btn btn-primary btn-block lg:invisible md:invisible visible">
                     Cadastrar
                 </button>
-          </div>
+          </div>    
       </div>
 
          
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 lg:visible md:invisible sm:invisible">
+        <div class="card flex-none flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 lg:visible md:visible invisible">
             <div class="card-body">
               <div class="form-control">
                 <label class="label">
