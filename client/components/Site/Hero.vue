@@ -2,15 +2,15 @@
   <div>
     <NavBar />
     <div class="hero min-h-screen max-h-md">
-      <FormHero />
+      <Form />
     </div>
   </div>
 </template>
 
 <script>
-import FormHero from "../FormHero.vue";
+import Form from "./Form.vue";
 import NavBar from "../NavBar";
 export default {
-  components: {NavBar, FormHero}
+  components: {NavBar, Form}
 };
 </script>
