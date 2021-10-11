@@ -1,7 +1,7 @@
 <template>
   <div class="md:flex lg:flex">
     <div class="self-center">
-      <h1 class="text-white px-4 mx-4 mt-10 text-5xl mb-2">
+      <h1 class="text-white  mt-28 text-5xl text-center">
         Crie seu currículo em PDF e site pessoal em poucos minutos!
       </h1>
       <div class="flex justify-center mt-10">
