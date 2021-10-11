@@ -35,16 +35,16 @@
           <label class="label">
             <span class="label-text">Senha</span>
           </label>
-          <input placeholder="sua_$enha" class="input input-bordered" type="password">
+          <input placeholder="Sua_$enha" class="input input-bordered" type="password">
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Confirme a senha</span>
           </label>
-          <input placeholder="sua_$enha" class="input input-bordered" type="password">
+          <input placeholder="Sua_$enha" class="input input-bordered" type="password">
         </div>
         <div class="form-control mt-6">
-          <input type="button" value="Login" class="btn btn-primary">
+          <input type="button" value="Cadastrar" class="btn btn-primary">
         </div>
       </div>
     </div>
