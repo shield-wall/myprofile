@@ -2,7 +2,7 @@ name: Remove Container
 
 on:
   pull_request:
-    types: closed
+    types: [closed]
 
 jobs:
   remove_container:

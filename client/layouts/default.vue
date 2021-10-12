@@ -1,7 +1,7 @@
 <template>
   <div>
-    <section class="hero min-h-screen items-start" id="homepageHero">
-        <HeroSite class="md:container md:mx-auto" />
+    <section id="homepageHero">
+      <HeroSite class="md:container md:mx-auto lg:space-x-2" />
     </section>
 
     <section class="md:container md:mx-auto mb-8" id="content">
@@ -9,9 +9,8 @@
     </section>
 
     <div class="bg-primary text-neutral-content">
-      <Footer  class="md:container md:mx-auto"/>
+      <Footer class="md:container md:mx-auto" />
     </div>
-
   </div>
 </template>
 
@@ -27,6 +26,6 @@
 import HeroSite from "../components/Site/Hero";
 import Footer from "../components/Footer";
 export default {
-  components: {Footer, HeroSite}
-}
+  components: { Footer, HeroSite}
+};
 </script>

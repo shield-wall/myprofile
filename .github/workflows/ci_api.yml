@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
+
   pull_request:
     types:
       - opened
-      - reopened
       - synchronize
 
 env:
@@ -151,7 +151,7 @@ jobs:
   deploy_pr:
     name: Deploy - Pull request
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name != 'push'
     environment:
       name: staging_pr
       url: https://${{env.APP_NAME}}.herokuapp.com
