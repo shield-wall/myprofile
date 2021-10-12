@@ -1,11 +1,11 @@
 <template>
   <div class="md:flex lg:flex">
     <div class="self-center">
-      <h1 class="text-white mt-32 text-center text-5xl  lg:text-left lg:mr-12">
+      <h1 class="text-white mt-40 m-10 text-center text-5xl  lg:text-left lg:mr-20">
         Crie seu currículo em PDF e site pessoal em poucos minutos!
       </h1>
       <div class="flex justify-center mt-10">
-        <button class="btn btn-accent text-black px-40 mt-52 lg:invisible md:invisible visible">
+        <button class="btn btn-accent text-black px-36 mt-52 lg:invisible md:invisible visible">
           Cadastrar
         </button>
       </div>
