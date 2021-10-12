@@ -7,7 +7,7 @@
     <p v-else-if="$fetchState.error">An error occurred :(</p>
 
     <div v-else>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+        <div class="flex flex-wrap justify-center ">
           <UserCard
             v-for="(user, index) in users.items().slice(0,12)"
             :key="`user-${index}`"
