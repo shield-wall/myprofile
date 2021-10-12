@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ApiResource]
 /**
  * @ORM\Table(name="skill")
  * @ORM\Entity(repositoryClass="App\Repository\SkillRepository")
@@ -25,6 +28,7 @@ class Skill
      * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
+    #[ApiSubresource]
     protected UserInterface $user;
 
     /**

@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
 
+#[ApiResource]
 /**
  * @ORM\Table(name="education")
  * @ORM\Entity(repositoryClass="App\Repository\EducationRepository")
@@ -29,8 +32,8 @@ class Education implements
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
      */
+    #[ApiSubresource]
     protected UserInterface $user;
 
     /**
