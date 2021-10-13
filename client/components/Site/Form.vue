@@ -4,8 +4,8 @@
       <h1 class="text-white mt-28 text-5xl text-center lg:text-left space-x10">
         Crie seu currículo em PDF e site pessoal em poucos minutos!
       </h1>
-      <div class="flex justify-center mt-52">
-        <button class="btn btn-accent text-black px-40 lg:invisible md:invisible visible">
+      <div class="flex justify-center mt-36">
+        <button class="btn btn-accent text-black px-32 lg:invisible md:invisible visible">
           Cadastrar
         </button>
       </div>
