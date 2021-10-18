@@ -2,7 +2,11 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+          'hero-pattern': "url('/img/hero-pattern.png')"
+      },
+    },
   },
   variants: {
     extend: {},
