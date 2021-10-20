@@ -21,6 +21,11 @@
       </button>
     </div>
     <div class="flex-none">
+      <NuxtLink  to="/login">
+        <button class="btn btn-primary">Entrar</button>
+      </NuxtLink>
+    </div>
+    <div class="flex-none">
       <div class="avatar">
         <div class="rounded-full w-10 h-10 m-1">
           <img src="https://i.pravatar.cc/500?img=32">

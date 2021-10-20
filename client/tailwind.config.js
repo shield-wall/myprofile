@@ -2,7 +2,11 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+          'hero-pattern': "url('/img/hero-pattern.png')"
+      },
+    },
   },
   variants: {
     extend: {},
@@ -21,9 +25,9 @@ module.exports = {
           'secondary': '#797979',
           'secondary-focus': '#5e5e5e',
           'secondary-content': '#ffffff',
-          'accent': '#d6d6d6',
+          'accent': '#ffffff',
           'accent-focus': '#a9a9a9',
-          'accent-content': '#ffffff',
+          'accent-content': '#000000',
           'neutral': '#4b5364',
           'neutral-focus': '#2a2e37',
           'neutral-content': '#ffffff',
