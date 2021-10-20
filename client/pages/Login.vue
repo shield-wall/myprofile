@@ -20,12 +20,14 @@
                 <span class="label-text">Senha</span>
                 </label>
                 <input type="text" placeholder="Sua_$enha" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-        </div>
+            </div>
                 <div class="text-center mt-6">
                     <button class="py-3 w-64 text-xl text-white bg-primary hover:bg-secondary-focus  rounded-2xl m-2">Entrar</button>
                 </div>
-                    <NuxtLink   to="/register" class="flex-row justify-center items-center text-center underline m-4 p-2">Registrar</NuxtLink> 
-                    <NuxtLink   to="/resetpassword" class="flex-row underline justify-center text-center ">Redefinir Senha</NuxtLink>
+            <div class="bg-white border border-gray-300 text-center w-80 py-4">
+              <NuxtLink to="/register" class="text-primary text-sm font-semibold underline m-4">Registrar</NuxtLink>
+              <NuxtLink to="/resetpassword" class="text-primary text-sm underline font-semibold">Redefinir Senha</NuxtLink>
+          </div>
             </div>
         </div> 
    </div>
