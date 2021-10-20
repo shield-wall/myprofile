@@ -1,12 +1,12 @@
 <template>
     
    <div class="flex flex-col min-h-screen bg-primary justify-center items-center mb-18">
-       <nuxt-link to="/Home" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
+       <NuxtLink  to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
             My Profile
-       </nuxt-link>
+       </NuxtLink>
         
       <div class="flex">
-        <div class="flex-shrink-0 py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
+        <div class="flex-shrink-0 py-12 px-12 bg-white rounded-2xl shadow-xl z-20 sm:mr-10 sm:ml-10">
             <div>
                 <h1 class="text-3xl font-bold text-center mb-4">Login</h1>
         
@@ -24,8 +24,8 @@
                 <div class="text-center mt-6">
                     <button class="py-3 w-64 text-xl text-white bg-primary hover:bg-secondary-focus  rounded-2xl m-2">Entrar</button>
                 </div>
-                    <nuxt-link  to="/Form" class="flex-row justify-center items-center text-center underline m-4 p-2">Registrar</nuxt-link> 
-                    <nuxt-link  to="/NavBar" class="flex-row underline justify-center text-center ">Redefinir Senha</nuxt-link>
+                    <NuxtLink   to="/register" class="flex-row justify-center items-center text-center underline m-4 p-2">Registrar</NuxtLink> 
+                    <NuxtLink   to="/resetpassword" class="flex-row underline justify-center text-center ">Redefinir Senha</NuxtLink>
             </div>
         </div> 
    </div>

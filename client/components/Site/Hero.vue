@@ -13,6 +13,8 @@
         </button>
       </div>
       <Form />
+      <Register/>
+      <Reset/>
     </div>
   </div>
 
