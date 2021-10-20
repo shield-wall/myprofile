@@ -21,7 +21,7 @@
       </button>
     </div>
     <div class="flex-none">
-      <NuxtLink  to="/Login">
+      <NuxtLink  to="/login">
         <button class="btn btn-primary">Entrar</button>
       </NuxtLink>
     </div>

@@ -5,8 +5,8 @@
             My Profile
        </NuxtLink>
         
-      <div class="flex">
-        <div class="flex-shrink-0 py-12 px-12 bg-white rounded-2xl shadow-xl z-20 sm:mr-10 sm:ml-10">
+      <div class="flex sm:mx-8">
+        <div class=" py-12 px-12 bg-white rounded-2xl shadow-xl z-20 sm:mx-8">
             <div>
                 <h1 class="text-3xl font-bold text-center mb-4">Login</h1>
         
