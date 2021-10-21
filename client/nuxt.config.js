@@ -1,17 +1,17 @@
 export default {
-  //TODO put host and prefix dynamically
+  // TODO put host and prefix dynamically
   env: {
     FILE_PROVIDER: {
-      'transloadit': {
-        'host' : 'https://cdn.myprofile.pro',
-        'prefix': 'myprofile-prod',
-      },
+      transloadit: {
+        host: 'https://cdn.myprofile.pro',
+        prefix: 'myprofile-prod'
+      }
     },
     IMAGE: {
-      'default': {
-        'profile': '/users/user-image-default.webp',
-        //TODO upload the default image to background
-        'background': '/users/e5d3a8a762db6fa77519789443a99c98/background.webp',
+      default: {
+        profile: '/users/user-image-default.webp',
+        // TODO upload the default image to background
+        background: '/users/e5d3a8a762db6fa77519789443a99c98/background.webp'
       }
     }
   },

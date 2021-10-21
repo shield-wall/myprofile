@@ -7,5 +7,5 @@ module.exports = {
     // 'eslint:recommended',
     // 'plugin:@typescript-eslint/recommended',
     '@nuxtjs/eslint-config-typescript'
-  ],
+  ]
 }
