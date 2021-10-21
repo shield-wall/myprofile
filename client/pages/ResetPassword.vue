@@ -1,29 +1,36 @@
 <template>
+
+
+  <div class="flex flex-col justify-center items-center min-h-screen bg-primary">
+        <NuxtLink  to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
+            My Profile
+       </NuxtLink>
+      <div class="card  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 justify-center">
+        <div class="card-body">
+           <div>
+                <h1 class="text-3xl font-bold text-center mb-4">Esqueceu sua Senha?</h1>
+                <p class="text-center"> Escreva seu email abaixo e enviaremos um link para resetar sua senha!</p>
+            </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Email</span>
+            </label>
+            <input placeholder="erison@gmail.com" class="input input-bordered" type="text">
+          </div>
+         
+         
+          <div class="form-control mt-6">
+            <input type="button" value="Clique aqui para enviarmos" class="btn btn-primary">
+          </div>
+           <div class=" text-center w-80 py-4">
+              <span class="text-sm">Já tem conta?</span>
+              <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">Clique aqui!</NuxtLink>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   
-<div class="flex justify-center min-h-screen bg-primary antialiased">  
-  <div class="container rounded-2xl sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
-     
-    <div class="text-center m-6">
-      <h1 class="text-3xl font-semibold text-gray-700">Esqueceu sua senha?</h1>
-      <p class="text-gray-500">Escreva seu email abaixo e enviaremos um link para resetar sua senha!</p>
-    </div>
-    
-    <div class="m-6">
-      <form class="mb-4">
-        <div class="mb-6">
-          <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
-          <input type="email" name="email" id="email" placeholder="erison@gmail.com" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-        </div>
-        <div class="mb-6">
-          <button type="button" class="w-full px-3 py-4 text-white bg-primary rounded-md hover:bg-secondary-focus focus:outline-none duration-100 ease-in-out">Clique aqui para enviarmos</button>
-        </div>
-        <p class="text-sm text-center text-gray-400">
-          Não tem conta ainda? 
-          <NuxtLink to="/register" class="font-semibold text-primary focus:text-indigo-600 focus:outline-none focus:underline">Clique aqui!</NuxtLink>.
-        </p>
-      </form>
-    </div>
-  </div>
-</div>
       
 </template>

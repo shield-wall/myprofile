@@ -24,7 +24,7 @@
                 <div class="text-center mt-6">
                     <button class="py-3 w-64 text-xl text-white bg-primary hover:bg-secondary-focus  rounded-2xl m-2">Entrar</button>
                 </div>
-            <div class="bg-white border border-gray-300 text-center w-80 py-4">
+            <div class="text-center w-80 py-4">
               <NuxtLink to="/register" class="text-primary text-sm font-semibold underline m-4">Registrar</NuxtLink>
               <NuxtLink to="/resetpassword" class="text-primary text-sm underline font-semibold">Redefinir Senha</NuxtLink>
           </div>

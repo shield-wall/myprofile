@@ -3,11 +3,10 @@
         <NuxtLink  to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
             My Profile
        </NuxtLink>
-      <div class="card  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 justify-center">
+      <div class="card  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 justify-center mb-8">
         <div class="card-body">
            <div>
                 <h1 class="text-3xl font-bold text-center mb-4">Registrar</h1>
-        
             </div>
           <div class="form-control">
             <label class="label">
@@ -42,7 +41,7 @@
           <div class="form-control mt-6">
             <input type="button" value="Registrar" class="btn btn-primary">
           </div>
-           <div class="bg-white border border-gray-300 text-center w-80 py-4">
+           <div class="text-center w-80 py-4">
               <span class="text-sm">Já tem conta?</span>
               <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">Clique aqui!</NuxtLink>
           </div>
