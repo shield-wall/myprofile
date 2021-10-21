@@ -13,17 +13,16 @@
         </button>
       </div>
       <Form />
-      <Register/>
-      <Reset/>
+      <Register />
+      <Reset />
     </div>
   </div>
-
 </template>
 
 <script>
-import Form from "./Form.vue";
-import NavBar from "../NavBar";
+import NavBar from '../NavBar'
+import Form from './Form.vue'
 export default {
-  components: {NavBar, Form}
-};
+  components: { NavBar, Form }
+}
 </script>

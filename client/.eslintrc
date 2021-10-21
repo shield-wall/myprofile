@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "eqeqeq": "off",
+    "curly": "error",
+//    "quotes": ["error", "double"],
+    "no-use-before-define": "off",
+    "quotes": "off",
+    "object-curly-spacing": "off",
+    "brace-style": "off",
+    "semi": "off"
+  }
+}

@@ -17,8 +17,12 @@
         </div>
 
         <div class="flex flex-col text-white text-center font-sans px-3 pb-6 pt-2">
-          <h3 class="text-xl leading-8">{{ firstName }} {{ lastName }}</h3>
-          <p class="text-base text-gray-200 mt-2">{{ role }}</p>
+          <h3 class="text-xl leading-8">
+            {{ firstName }} {{ lastName }}
+          </h3>
+          <p class="text-base text-gray-200 mt-2">
+            {{ role }}
+          </p>
         </div>
       </div>
     </NuxtLink>
@@ -26,10 +30,10 @@
 </template>
 
 <script>
-  import Picture from "./Picture";
-  export default {
-    name: 'UserCard',
-    components: {Picture},
-    props: ['slug', 'firstName', 'lastName', 'role', 'profileImage', 'backgroundImage']
-  }
+import Picture from './Picture'
+export default {
+  name: 'UserCard',
+  components: { Picture },
+  props: ['slug', 'firstName', 'lastName', 'role', 'profileImage', 'backgroundImage']
+}
 </script>
