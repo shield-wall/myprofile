@@ -2,7 +2,7 @@
   <div class="columns">
     <div class="column is-half is-offset-one-quarter has-text-centered">
       <div class="fa-3x">
-        <fa-icon :icon="faCircleNotch" class="fa-spin"  />
+        <fa-icon :icon="faCircleNotch" class="fa-spin" />
       </div>
     </div>
   </div>
@@ -17,6 +17,6 @@ export default {
     faCircleNotch () {
       return faCircleNotch
     }
-  },
+  }
 }
 </script>

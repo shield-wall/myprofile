@@ -37,7 +37,25 @@ jobs:
             ${{ runner.os }}-build-client-v2
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install
+
+  lint:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/package-lock.lock') }}
+          path: |
+            ./client/node_modules
+          restore-keys: |
+            ${{ runner.os }}-build-client-v2-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-build-client-v2
+
+      - name: Run lint
+        run: yarn lint
 
   deploy:
     runs-on: ubuntu-latest
