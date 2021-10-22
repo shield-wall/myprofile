@@ -13,27 +13,18 @@
         </label>
         <input placeholder="Silva" class="input input-bordered" type="text">
       </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Email</span>
-        </label>
-        <input placeholder="erison@gmail.com" class="input input-bordered" type="text">
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Senha</span>
-        </label>
-        <input placeholder="Sua_$enha" class="input input-bordered" type="password">
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Confirme a senha</span>
-        </label>
-        <input placeholder="Sua_$enha" class="input input-bordered" type="password">
-      </div>
-      <div class="form-control mt-6">
-        <input type="button" value="Cadastrar" class="btn btn-primary">
-      </div>
+      <InputEmail />
+      <InputPassword />
+      <InputPassword label="Confirme a senha" />
+      <Button label="Cadastrar" class="my-6" />
     </div>
   </div>
 </template>
+<script>
+import InputEmail from '../Form/InputEmail'
+import InputPassword from '../Form/InputPassword'
+import Button from '../Form/Button'
+export default {
+  components: { Button, InputPassword, InputEmail }
+}
+</script>

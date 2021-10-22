@@ -1,25 +1,19 @@
 <template>
-  <div class="flex flex-col justify-center items-center min-h-screen bg-primary text-center">
+  <div class="container-middle">
     <NuxtLink to="/" class="m-10">
       <Logo />
     </NuxtLink>
+
     <div class="card">
       <div class="card-body">
         <h1 class="text-3xl font-bold">
           Login
         </h1>
+
         <form class="form-control">
-          <label class="label">
-            <span class="label-text">E-mail</span>
-          </label>
-          <input type="text" placeholder="Digite seu e-mail" class="input input-bordered">
-
-          <label class="label">
-            <span class="label-text">Senha</span>
-          </label>
-          <input type="password" placeholder="Digite sua senha" class="input input-bordered">
-
-          <input type="button" value="Entrar" class="btn btn-primary my-6">
+          <InputEmail />
+          <InputPassword />
+          <Button label="Entrar" class="my-6" />
 
           <div class="text-center">
             <NuxtLink to="/register" class="text-sm font-semibold">
@@ -39,11 +33,18 @@
 .card {
   @apply card bg-accent rounded-3xl shadow-2xl w-11/12 md:w-3/6 lg:w-80;
 }
+
+.container-middle {
+  @apply flex flex-col justify-center items-center min-h-screen bg-primary text-center
+}
 </style>
 
 <script>
 import Logo from '../components/Logo'
+import InputEmail from '../components/Form/InputEmail'
+import InputPassword from '../components/Form/InputPassword'
+import Button from '../components/Form/Button'
 export default {
-  components: { Logo }
+  components: { Button, InputPassword, InputEmail, Logo }
 }
 </script>
