@@ -1,8 +1,7 @@
 <template>
-
   <div class="flex flex-col justify-center items-center min-h-screen bg-primary ">
-    <NuxtLink to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
-      My Profile
+    <NuxtLink to="/" class="p-10 cursor-pointer">
+      <Logo />
     </NuxtLink>
     <div class="flex items-center min-w-min  rounded-3xl shadow bg-base-100 justify-center mx-8">
       <div class="mx-4 py-4">
@@ -33,3 +32,10 @@
     </div>
   </div>
 </template>
+
+<script>
+import Logo from '../components/Logo'
+export default {
+  components: { Logo }
+}
+</script>

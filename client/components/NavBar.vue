@@ -1,9 +1,7 @@
 <template>
   <nav class="navbar text-neutral-content">
     <div class="flex-1 px-2 mx-2">
-      <span class="text-3xl font-bold">
-        My profile
-      </span>
+      <Logo />
     </div>
 
     <div class="flex-none">
@@ -36,3 +34,9 @@
     </div>
   </nav>
 </template>
+<script>
+import Logo from './Logo'
+export default {
+  components: { Logo }
+}
+</script>
