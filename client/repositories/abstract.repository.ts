@@ -1,16 +1,14 @@
-import {NuxtAxiosInstance} from "@nuxtjs/axios";
-import {ResourceCollectionInterface} from "~/resources/contracts/resource.collection.interface";
+import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { ResourceCollectionInterface } from '~/resources/contracts/resource.collection.interface'
 
-export abstract class AbstractRepository
-{
+export abstract class AbstractRepository {
   private axios: NuxtAxiosInstance;
 
-  constructor($axios: NuxtAxiosInstance)
-  {
-    this.axios = $axios;
+  constructor ($axios: NuxtAxiosInstance) {
+    this.axios = $axios
   }
 
-  all() {
+  all () {
     return this
       .axios
       .get<ResourceCollectionInterface>(this.resource(), {
