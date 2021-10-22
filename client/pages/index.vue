@@ -43,21 +43,21 @@
 </style>
 
 <script>
-import Herosite from "../components/Site/Hero";
-import Footer from "../components/Footer";
-import UserCard from "../components/UserCard";
-import Loader from "../components/Loader";
+import Herosite from '../components/Site/Hero'
+import Footer from '../components/Footer'
+import UserCard from '../components/UserCard'
+import Loader from '../components/Loader'
 export default {
-  components: {Loader, UserCard, Herosite, Footer},
+  components: { Loader, UserCard, Herosite, Footer },
   data () {
     return {
       users: []
     }
   },
 
-  async fetch() {
-    this.users = await this.$userRepository.all();
-    console.log(this.users.totalItems());
+  async fetch () {
+    this.users = await this.$userRepository.all()
+    console.log(this.users.totalItems())
   }
-};
+}
 </script>

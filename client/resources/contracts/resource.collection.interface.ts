@@ -1,4 +1,4 @@
 export interface ResourceCollectionInterface
 {
-  "@context": string
+  '@context': string
 }

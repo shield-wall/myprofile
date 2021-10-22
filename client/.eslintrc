@@ -1,25 +1,10 @@
 {
   "rules": {
-    "eqeqeq": "off",
     "curly": "error",
-//    "quotes": ["error", "double"],
-    "no-use-before-define": "off",
-    "quotes": "off",
-    "object-curly-spacing": "off",
-    "brace-style": "off",
-    "semi": "off",
-    "space-before-function-paren": "off",
-    "padded-blocks": "off",
-    "no-return-assign": "off",
-    "no-void": "off",
-    "no-var": "off",
-    "no-mixed-operators": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "no-sequences": "off",
-    "no-unused-expressions": "off",
-    "no-undef": "off",
 
-    //those rules need to fix manually
+    //those rules need to fix manually,
+    "no-use-before-define": "off",
+    "no-return-assign": "off",
     "no-unsafe-finally": "off",
     "no-useless-escape": "off",
     "no-fallthrough": "off",
