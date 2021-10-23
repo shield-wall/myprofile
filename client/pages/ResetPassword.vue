@@ -1,27 +1,27 @@
 <template>
-  <div class="flex flex-col justify-center items-center min-h-screen bg-primary ">
+  <div class="flex flex-col justify-center items-center min-h-screen bg-primary text-center">
     <NuxtLink to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
       <Logo />
     </NuxtLink>
     <div class="card p-4">
       <div class="car-body">
-        <h1 class="text-2xl font-bold text-center">
+        <h1 class="text-2xl font-bold">
           Esqueceu sua Senha?
         </h1>
-        <p class="text-center">
+        <p>
           Escreva seu email abaixo e enviaremos um link para resetar sua senha!
         </p>
         <form class="form-control">
           <InputEmail />
-          <Button label="Entrar" class="my-4" />
+          <Button label="Clique para enviarmos" class="my-4" />
 
-        <div class=" text-center">
-          <span class="text-sm">Já tem conta?</span>
-          <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
-            Clique aqui!
-          </NuxtLink>
-        </div>
-       </form>
+          <div>
+            <span class="text-sm">Já tem conta?</span>
+            <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
+              Clique aqui!
+            </NuxtLink>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -38,6 +38,6 @@ import Logo from '../components/Logo'
 import InputEmail from '../components/Form/InputEmail'
 import Button from '../components/Form/Button'
 export default {
-  components: { Logo,InputEmail,Button }
+  components: { Logo, InputEmail, Button }
 }
 </script>

@@ -5,9 +5,9 @@
     </NuxtLink>
     <div class="card mb-2">
       <div class="card-body">
-          <h1 class="text43xl font-bold text-center mb-4 mt-4">
-            Registrar
-          </h1>
+        <h1 class="text-3xl font-bold text-center mb-4 mt-4">
+          Registrar
+        </h1>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Nome</span>
@@ -20,19 +20,19 @@
           </label>
           <input placeholder="Silva" class="input input-bordered" type="text">
         </div>
-      <form class="form-control">
-        <InputEmail />
-        <InputPassword />
-        <InputPassword label="Confirme sua senha"/>
-        <Button label="Entrar" class="mt-4"/>
-        
-        <div class="text-center mt-2">
-          <span class="text-sm">Já tem conta?</span>
-          <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
-            Clique aqui!
-          </NuxtLink>
-        </div>
-       </form>
+        <form class="form-control">
+          <InputEmail />
+          <InputPassword />
+          <InputPassword label="Confirme sua senha" />
+          <Button label="Registrar" class="mt-4" />
+
+          <div class="text-center mt-2">
+            <span class="text-sm">Já tem conta?</span>
+            <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
+              Clique aqui!
+            </NuxtLink>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -51,6 +51,6 @@ import InputPassword from '../components/Form/InputPassword'
 import Button from '../components/Form/Button'
 
 export default {
-  components: { Logo,InputEmail, InputPassword,Button }
+  components: { Logo, InputEmail, InputPassword, Button }
 }
 </script>
