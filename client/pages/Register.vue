@@ -3,13 +3,11 @@
     <NuxtLink to="/" class="text-center p-10 cursor-pointer">
       <Logo />
     </NuxtLink>
-    <div class="flex items-center  min-w-min rounded-3xl shadow-2xl bg-base-100 justify-center mb-8">
-      <div class="mx-2">
-        <div>
+    <div class="card mb-4">
+      <div class="card-body">
           <h1 class="text-3xl font-bold text-center mb-4 mt-4">
             Registrar
           </h1>
-        </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Nome</span>
@@ -43,7 +41,7 @@
         <div class="form-control mt-6">
           <input type="button" value="Registrar" class="btn btn-primary">
         </div>
-        <div class="text-center w-80 py-4">
+        <div class="text-center">
           <span class="text-sm">Já tem conta?</span>
           <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
             Clique aqui!
@@ -53,6 +51,12 @@
     </div>
   </div>
 </template>
+
+<style>
+.card {
+  @apply card bg-accent rounded-3xl shadow-2xl w-11/12 md:w-3/6 lg:w-80;
+}
+</style>
 
 <script>
 import Logo from '../components/Logo'
