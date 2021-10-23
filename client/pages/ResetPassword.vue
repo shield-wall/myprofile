@@ -1,35 +1,43 @@
 <template>
-  <div class="flex flex-col justify-center items-center min-h-screen bg-primary">
+  <div class="flex flex-col justify-center items-center min-h-screen bg-primary text-center">
     <NuxtLink to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
-      My Profile
+      <Logo />
     </NuxtLink>
-    <div class="card  flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 justify-center">
-      <div class="card-body">
-        <div>
-          <h1 class="text-3xl font-bold text-center mb-4">
-            Esqueceu sua Senha?
-          </h1>
-          <p class="text-center">
-            Escreva seu email abaixo e enviaremos um link para resetar sua senha!
-          </p>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Email</span>
-          </label>
-          <input placeholder="erison@gmail.com" class="input input-bordered" type="text">
-        </div>
+    <div class="card p-4">
+      <div class="car-body">
+        <h1 class="text-2xl font-bold">
+          Esqueceu sua Senha?
+        </h1>
+        <p>
+          Escreva seu email abaixo e enviaremos um link para resetar sua senha!
+        </p>
+        <form class="form-control">
+          <InputEmail />
+          <Button label="Clique para enviarmos" class="my-4" />
 
-        <div class="form-control mt-6">
-          <input type="button" value="Clique aqui para enviarmos" class="btn btn-primary">
-        </div>
-        <div class=" text-center w-80 py-4">
-          <span class="text-sm">Já tem conta?</span>
-          <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
-            Clique aqui!
-          </NuxtLink>
-        </div>
+          <div>
+            <span class="text-sm">Já tem conta?</span>
+            <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
+              Clique aqui!
+            </NuxtLink>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+.card {
+  @apply card bg-accent rounded-3xl shadow-2xl w-11/12 md:w-3/6 lg:w-80;
+}
+</style>
+
+<script>
+import Logo from '../components/Logo'
+import InputEmail from '../components/Form/InputEmail'
+import Button from '../components/Form/Button'
+export default {
+  components: { Logo, InputEmail, Button }
+}
+</script>
