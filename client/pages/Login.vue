@@ -13,7 +13,7 @@
         <form class="form-control">
           <InputEmail />
           <InputPassword />
-          <Button label="Entrar" class="my-6" />
+          <Button label="Entrar" class="my-4" />
 
           <div class="text-center">
             <NuxtLink to="/register" class="text-sm font-semibold">
