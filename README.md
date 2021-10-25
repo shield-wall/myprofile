@@ -10,7 +10,7 @@
 
 ## Getting Started
 
-  ["My Profile"](https://www.myprofile.pro/) is a project to goal of help people to create your professional website and CV!
+  ["My Profile"](https://www.myprofile.pro/) has a goal to help people to create your professional website and CV!
   
 ## Important
 
