@@ -45,6 +45,8 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -74,6 +76,8 @@ jobs:
       image: eerison/myprofile:dev
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -118,6 +122,8 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -159,6 +165,9 @@ jobs:
       image: eerison/myprofile:dev
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - uses: rlespinasse/github-slug-action@v3.x
 
       - uses: actions/cache@v2
