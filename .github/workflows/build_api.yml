@@ -1,0 +1,57 @@
+name: Build Api
+
+on:
+  pull_request_target:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+defaults:
+  run:
+    shell: bash
+    working-directory: api
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: eerison/myprofile:dev
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: myprofile
+          POSTGRES_PASSWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          key: build-${{ hashFiles('**/symfony.lock') }}-${{ env.GITHUB_REF_SLUG }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            ./api/bin/.phpunit
+            ./api/vendor
+            ./api/public
+            ./api/config/jwt
+          restore-keys: |
+            build-be-${{ hashFiles('**/symfony.lock') }}-${{ env.GITHUB_REF_SLUG }}
+            build-be-${{ hashFiles('**/symfony.lock') }}-
+            build-be-
+
+      - name: Composer
+        run: composer dev
+
+      - name: Generate JWT pems
+        run: composer jwt
+
+      - name: Phpunit version
+        run: bin/phpunit --version
