@@ -1,0 +1,89 @@
+name: Deploy Api
+
+on:
+  workflow_run:
+    workflows: ["Quality Api]
+    types:
+      - completed
+      - requested
+
+env:
+  APP_ENV: ${{ secrets.APP_ENV }}
+  MAILER_DSN: ${{ secrets.MAILER_DSN }}
+  MAILER_USER: ${{ secrets.MAILER_USER }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  TRANSLOADIT_KEY: ${{ secrets.TRANSLOADIT_KEY }}
+  TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
+  TRANSLOADIT_DELIVERY: 1
+
+defaults:
+  run:
+    shell: bash
+    working-directory: api
+
+jobs:
+  deploy_pr:
+    name: Deploy - Pull request
+    runs-on: ubuntu-latest
+    if: github.event_name != 'push'
+    environment:
+      name: staging_pr
+      url: https://${{env.APP_NAME}}.herokuapp.com
+    env:
+      APP_NAME: my-profile-pr-${{ github.event.number }}
+    needs:
+      - lint
+      - test
+    container:
+      image: eerison/myprofile:dev
+    steps:
+        - uses: actions/checkout@v2
+          with:
+            ref: ${{ github.event.workflow_run.head_branch }}
+
+        - uses: rlespinasse/github-slug-action@v3.x
+
+        - uses: actions/cache@v2
+          with:
+            key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+            path: |
+              ./api/bin/.phpunit
+              ./api/vendor
+              ./api/public
+              ./api/config/jwt
+
+        - name: See files
+          run: |
+            pwd
+            ls -lha
+
+        - name: Web deploy
+          uses: akhileshns/heroku-deploy@v3.12.12
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: $APP_NAME
+            heroku_email: ${{secrets.HEROKU_EMAIL}}
+            usedocker: true
+            docker_build_args: |
+              APP_ENV
+              APP_DEBUG
+              GIT_REF
+              MAILER_DSN
+              MAILER_USER
+              SENTRY_DSN
+              TRANSLOADIT_KEY
+              TRANSLOADIT_SECRET
+              TRANSLOADIT_DELIVERY
+          env:
+            APP_DEBUG: false
+            GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+
+        - name: Create Database
+          continue-on-error: true
+          run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
+
+        - name: Migrations
+          run: heroku run --app $APP_NAME composer migrate
+
+        - name: Fixtures
+          run: heroku run --app $APP_NAME composer fixtures
