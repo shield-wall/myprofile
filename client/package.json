@@ -7,7 +7,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .ts,.js,.vue . -c .eslintrc"
+    "lint": "eslint --ext .ts,.js,.vue . -c .eslintrc",
+    "test": "jest"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
@@ -19,12 +20,14 @@
   },
   "devDependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.14.12",
     "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/eslint-config-typescript": "^5.0",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "eslint": "^7.32",
+    "jest": "^27.3.1",
     "sass": "^1.35.1",
     "sass-loader": "^10.1.1"
   }
