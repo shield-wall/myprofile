@@ -5,7 +5,7 @@ on:
     branches:
       - master
 
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronize
@@ -45,6 +45,8 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -57,7 +59,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-
             ${{ runner.os }}-build-
-
       - name: Composer
         run: composer dev
 
@@ -75,6 +76,8 @@ jobs:
       image: eerison/myprofile:dev
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -84,12 +87,10 @@ jobs:
             ./api/vendor
             ./api/public
             ./api/config/jwt
-
       - name: See files
         run: |
           pwd
           ls -lha
-
       - name: Code Sniffer
         run: composer lint_phpcs
 
@@ -121,6 +122,8 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -130,7 +133,6 @@ jobs:
             ./api/vendor
             ./api/public
             ./api/config/jwt
-
       - name: Setup Database
         run: composer db
 
@@ -141,7 +143,6 @@ jobs:
         run: |
           pwd
           ls -lha
-
       - name: Run Tests
         run: composer test
 
@@ -163,50 +164,51 @@ jobs:
     container:
       image: eerison/myprofile:dev
     steps:
-        - uses: actions/checkout@v2
-        - uses: rlespinasse/github-slug-action@v3.x
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
-        - uses: actions/cache@v2
-          with:
-            key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
-            path: |
-              ./api/bin/.phpunit
-              ./api/vendor
-              ./api/public
-              ./api/config/jwt
+      - uses: rlespinasse/github-slug-action@v3.x
 
-        - name: See files
-          run: |
-            pwd
-            ls -lha
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-build-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            ./api/bin/.phpunit
+            ./api/vendor
+            ./api/public
+            ./api/config/jwt
+      - name: See files
+        run: |
+          pwd
+          ls -lha
+      - name: Web deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: $APP_NAME
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            APP_ENV
+            APP_DEBUG
+            GIT_REF
+            MAILER_DSN
+            MAILER_USER
+            SENTRY_DSN
+            TRANSLOADIT_KEY
+            TRANSLOADIT_SECRET
+            TRANSLOADIT_DELIVERY
+        env:
+          APP_DEBUG: false
+          GIT_REF: ${{ env.GITHUB_REF_SLUG }}
 
-        - name: Web deploy
-          uses: akhileshns/heroku-deploy@v3.12.12
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: $APP_NAME
-            heroku_email: ${{secrets.HEROKU_EMAIL}}
-            usedocker: true
-            docker_build_args: |
-              APP_ENV
-              APP_DEBUG
-              GIT_REF
-              MAILER_DSN
-              MAILER_USER
-              SENTRY_DSN
-              TRANSLOADIT_KEY
-              TRANSLOADIT_SECRET
-              TRANSLOADIT_DELIVERY
-          env:
-            APP_DEBUG: false
-            GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+      - name: Create Database
+        continue-on-error: true
+        run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
 
-        - name: Create Database
-          continue-on-error: true
-          run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
+      - name: Migrations
+        run: heroku run --app $APP_NAME composer migrate
 
-        - name: Migrations
-          run: heroku run --app $APP_NAME composer migrate
-
-        - name: Fixtures
-          run: heroku run --app $APP_NAME composer fixtures
+      - name: Fixtures
+        run: heroku run --app $APP_NAME composer fixtures

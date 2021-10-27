@@ -5,10 +5,7 @@ on:
     branches:
       - master
 
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  pull_request_target:
 
 defaults:
   run:
@@ -21,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
@@ -44,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
@@ -67,6 +68,8 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/cache@v2
         with:
