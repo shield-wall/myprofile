@@ -1,9 +1,10 @@
 security:
+    enable_authenticator_manager: true
     access_decision_manager:
         strategy: unanimous
         allow_if_all_abstain: false
 
-    encoders:
+    password_hashers:
         App\Entity\User:
             algorithm: auto
 
@@ -23,7 +24,7 @@ security:
             security: false
         main:
             stateless: true
-            anonymous: true
+            lazy: true
             provider: app_user_provider
             json_login:
                 check_path: /authentication_token
@@ -34,7 +35,7 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
-
+            entry_point: lexik_jwt_authentication.jwt_token_authenticator
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
@@ -44,6 +45,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
-        - { path: ^/authentication_token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
+        - { path: ^/authentication_token, roles: PUBLIC_ACCESS }
+#        - { path: ^/, roles: PUBLIC_ACCESS }
