@@ -1,5 +1,7 @@
 <template>
-  <input type="button" :value="label" class="btn btn-primary">
+  <button type="submit" class="btn btn-primary">
+    {{ label }}
+  </button>
 </template>
 
 <script>

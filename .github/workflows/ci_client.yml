@@ -38,9 +38,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-  lint:
-    name: Build
+  quality-code:
+    name: Quality Code
     runs-on: ubuntu-latest
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v2
         with:
@@ -58,6 +60,9 @@ jobs:
       - name: Run lint
         run: yarn lint
 
+      - name: Run Tests
+        run: yarn test
+
   deploy:
     runs-on: ubuntu-latest
     if: github.event_name != 'push'
@@ -65,7 +70,7 @@ jobs:
       name: staging_pr
       url: https://pr-${{ github.event.number }}--myprofilepro.netlify.app
     needs:
-      - build
+      - quality-code
     steps:
       - uses: actions/checkout@v2
         with:

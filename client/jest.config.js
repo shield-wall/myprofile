@@ -2,7 +2,6 @@
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
-
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -23,7 +22,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -31,7 +30,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -93,6 +92,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
+  // preset: '@nuxt/test-utils',
   preset: '@nuxt/test-utils',
 
   // Run tests from one or more projects
@@ -114,7 +114,7 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: undefined,
+  rootDir: '/app',
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -138,6 +138,7 @@ module.exports = {
 
   // The test environment that will be used for testing
   // testEnvironment: "jest-environment-node",
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -191,4 +192,24 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-};
+
+  // I follow this article: https://medium.com/@gogl.alex/nuxt-jest-setup-from-scratch-8905d3880daa
+  moduleFileExtensions: ['js', 'json', 'vue'],
+  watchman: false,
+  moduleNameMapper: {
+    '^~/(.*)$': '<rootDir>/$1',
+    '^~~/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/$1'
+  },
+  transform: {
+    // process js with `babel-jest`
+    '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
+    // process `*.vue` files with `vue-jest`
+    '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest'
+  },
+  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
+  collectCoverageFrom: [
+    '<rootDir>/components/**/*.vue',
+    '<rootDir>/pages/*.vue'
+  ]
+}
