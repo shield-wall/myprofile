@@ -61,7 +61,12 @@ jobs:
         run: yarn lint
 
       - name: Run Tests
-        run: yarn test
+        run: yarn test --coverage
+
+      - name: Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          flags: client
 
   deploy:
     runs-on: ubuntu-latest
