@@ -1,0 +1,18 @@
+{
+    "@context": "\/contexts\/ConstraintViolationList",
+    "@type": "ConstraintViolationList",
+    "hydra:title": "An error occurred",
+    "hydra:description": "firstName: Este valor n\u00e3o deve ser vazio.\nlastName: Este valor n\u00e3o deve ser vazio.",
+    "violations": [
+        {
+            "propertyPath": "firstName",
+            "message": "Este valor n\u00e3o deve ser vazio.",
+            "code": "c1051bb4-d103-4f74-8988-acbcafc7fdc3"
+        },
+        {
+            "propertyPath": "lastName",
+            "message": "Este valor n\u00e3o deve ser vazio.",
+            "code": "c1051bb4-d103-4f74-8988-acbcafc7fdc3"
+        }
+    ]
+}

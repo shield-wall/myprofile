@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d6eb4e1c0abae1688b4effdc7e9f958",
+    "content-hash": "f2b5e6162650b0fbe4aa8ae02011a3b4",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "dev-main",
+            "version": "v2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "6da54674ac5b5963089e2a48e5e3ebffe68e74a9"
+                "reference": "25c71b216473844cdbe5bf284ccbeeb26acd76e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/6da54674ac5b5963089e2a48e5e3ebffe68e74a9",
-                "reference": "6da54674ac5b5963089e2a48e5e3ebffe68e74a9",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/25c71b216473844cdbe5bf284ccbeeb26acd76e7",
+                "reference": "25c71b216473844cdbe5bf284ccbeeb26acd76e7",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
                 "doctrine/mongodb-odm": "^2.2",
                 "doctrine/mongodb-odm-bundle": "^4.0",
                 "doctrine/orm": "^2.6.4 || ^3.0",
-                "elasticsearch/elasticsearch": "^7.14",
+                "elasticsearch/elasticsearch": "^6.0 || ^7.0",
                 "friends-of-behat/mink-browserkit-driver": "^1.3.1",
                 "friends-of-behat/mink-extension": "^2.2",
                 "friends-of-behat/symfony-extension": "^2.1",
@@ -86,7 +86,6 @@
                 "symfony/form": "^3.4 || ^4.4 || ^5.1",
                 "symfony/framework-bundle": "^4.4 || ^5.1",
                 "symfony/http-client": "^4.4 || ^5.1",
-                "symfony/maker-bundle": "^1.24",
                 "symfony/mercure-bundle": "*",
                 "symfony/messenger": "^4.4 || ^5.1",
                 "symfony/phpunit-bridge": "^5.1.7",
@@ -108,7 +107,6 @@
                 "phpdocumentor/reflection-docblock": "To support extracting metadata from PHPDoc.",
                 "psr/cache-implementation": "To use metadata caching.",
                 "ramsey/uuid": "To support Ramsey's UUID identifiers.",
-                "rector/rector-src": "To support converting PHP annotations to attributes.",
                 "symfony/cache": "To have metadata caching when using Symfony integration.",
                 "symfony/config": "To load XML configuration files.",
                 "symfony/expression-language": "To use authorization features.",
@@ -118,7 +116,6 @@
                 "symfony/web-profiler-bundle": "To use the data collector.",
                 "webonyx/graphql-php": "To support GraphQL."
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -130,11 +127,8 @@
             },
             "autoload": {
                 "psr-4": {
-                    "ApiPlatform\\": "src/"
-                },
-                "files": [
-                    "src/deprecation.php"
-                ]
+                    "ApiPlatform\\Core\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -162,7 +156,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/main"
+                "source": "https://github.com/api-platform/core/tree/v2.6.6"
             },
             "funding": [
                 {
@@ -170,7 +164,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-28T07:56:53+00:00"
+            "time": "2021-09-29T19:11:04+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -10153,12 +10147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eerison/pest-plugin-api-platform.git",
-                "reference": "4f1c450f8b246119f04e7d85219d42282b77bb66"
+                "reference": "68e0b0ac3cd102df2a1640d818199045a46c5226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eerison/pest-plugin-api-platform/zipball/4f1c450f8b246119f04e7d85219d42282b77bb66",
-                "reference": "4f1c450f8b246119f04e7d85219d42282b77bb66",
+                "url": "https://api.github.com/repos/eerison/pest-plugin-api-platform/zipball/68e0b0ac3cd102df2a1640d818199045a46c5226",
+                "reference": "68e0b0ac3cd102df2a1640d818199045a46c5226",
                 "shasum": ""
             },
             "require": {
@@ -10210,7 +10204,7 @@
                 "issues": "https://github.com/eerison/pest-plugin-api-platform/issues",
                 "source": "https://github.com/eerison/pest-plugin-api-platform/tree/master"
             },
-            "time": "2021-08-26T18:46:49+00:00"
+            "time": "2021-11-04T18:45:58+00:00"
         },
         {
             "name": "facade/ignition-contracts",

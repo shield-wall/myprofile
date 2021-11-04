@@ -18,13 +18,13 @@ use DateTimeInterface;
 #[ApiResource(
     itemOperations: [
         'get' => [
-            'normalization_context' => ['groups' => ['anonymous', 'anonymous:item:read']],
+            'normalization_context' => ['groups' => ['anonymous', 'anonymous:item', 'anonymous:item:read']],
         ],
         'put',
         'delete',
         'patch',
     ],
-    denormalizationContext: ['groups' => ['anonymous']],
+    denormalizationContext: ['groups' => ['anonymous', 'anonymous:item']],
     normalizationContext: ['groups' => ['anonymous']],
 )]
 
@@ -49,15 +49,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @Assert\Length(max="200")
      * @Assert\Email
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=200, unique=true)
      *
-     * @Groups({"anonymous:item:read", "user", "admin"})
+     * @Groups({"anonymous:item", "user", "admin"})
      */
     protected string $email;
 
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=50, nullable=true)
      *
      * @Groups({"anonymous", "user", "admin"})
@@ -67,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=50, nullable=true)
      *
      * @Groups({"anonymous", "write", "user", "admin"})
@@ -243,7 +246,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     protected bool $isVerified = false;
 
-    public function __construct(int $id, ?DateTimeInterface $createdAt, ?DateTimeInterface $updatedAt)
+    public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
         $this->educations = new ArrayCollection();
@@ -251,27 +254,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->skills = new ArrayCollection();
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
-        $this->id = $id;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
+//        $this->id = $id;
+//        $this->createdAt = $createdAt;
+//        $this->updatedAt = $updatedAt;
     }
 
-    /**
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     */
     public function setEmail(string $email): User
     {
         $this->email = $email;
