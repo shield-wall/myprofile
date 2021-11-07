@@ -44,12 +44,6 @@ services:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'
 
-    App\EventSubscriber\SitemapSubscriber:
-        arguments:
-            $locales: '%locales%'
-        tags:
-            - { name: kernel.event_subscriber, priority: 100 }
-
     Sentry\Monolog\Handler:
         arguments:
             $hub: '@Sentry\State\HubInterface'

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d6eb4e1c0abae1688b4effdc7e9f958",
+    "content-hash": "ae1115c62688cba9119656225ecf8eb8",
     "packages": [
         {
             "name": "api-platform/core",
@@ -3452,73 +3452,6 @@
                 "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.x"
             },
             "time": "2021-09-26T07:37:33+00:00"
-        },
-        {
-            "name": "presta/sitemap-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/prestaconcept/PrestaSitemapBundle.git",
-                "reference": "fb83304ce365699b879cf7e998f1d5bbec8ddb27"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/prestaconcept/PrestaSitemapBundle/zipball/fb83304ce365699b879cf7e998f1d5bbec8ddb27",
-                "reference": "fb83304ce365699b879cf7e998f1d5bbec8ddb27",
-                "shasum": ""
-            },
-            "require": {
-                "ext-simplexml": "*",
-                "php": ">=7.1.0",
-                "symfony/console": "^3.4|~4.0|~5.0",
-                "symfony/framework-bundle": "^3.4|~4.0|~5.0"
-            },
-            "require-dev": {
-                "doctrine/annotations": "^1.0",
-                "phpunit/phpunit": "^7.5",
-                "symfony/browser-kit": "^4.4",
-                "symfony/phpunit-bridge": "^4.4",
-                "symfony/yaml": "^4.4"
-            },
-            "default-branch": true,
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev",
-                    "1.x": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Presta\\SitemapBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Prestaconcept",
-                    "homepage": "http://www.prestaconcept.net/"
-                }
-            ],
-            "description": "A Symfony bundle that provides tools to build your application sitemap.",
-            "keywords": [
-                "Sitemap",
-                "bundle",
-                "prestaconcept",
-                "symfony",
-                "xml"
-            ],
-            "support": {
-                "issues": "https://github.com/prestaconcept/PrestaSitemapBundle/issues",
-                "source": "https://github.com/prestaconcept/PrestaSitemapBundle/tree/v2.5.0"
-            },
-            "time": "2021-02-25T13:54:55+00:00"
         },
         {
             "name": "psr/cache",

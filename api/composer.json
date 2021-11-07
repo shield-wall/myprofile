@@ -17,7 +17,6 @@
         "lexik/jwt-authentication-bundle": "^2.12",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
-        "presta/sitemap-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^6.0",
         "sentry/sentry-symfony": "^4.0",
         "stof/doctrine-extensions-bundle": "dev-master",
