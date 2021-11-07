@@ -13,11 +13,11 @@
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15",
     "@fortawesome/free-solid-svg-icons": "^5.15",
-    "@nuxtjs/fontawesome": "^1.0",
     "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/fontawesome": "^1.0",
     "core-js": "^3.8.3",
     "daisyui": "^1.14.0",
-    "nuxt": "^2.13.3"
+    "nuxt": "^2.15"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
