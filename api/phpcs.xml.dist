@@ -8,6 +8,7 @@
     <arg name="cache" value=".phpcs-cache"/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
+    <exclude-pattern>src/Kernel\.php</exclude-pattern>
 
     <rule ref="PSR12"/>
     <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
