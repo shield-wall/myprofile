@@ -35,7 +35,6 @@
         "symfony/runtime": "5.4.*",
         "symfony/security-bundle": "^v5.2",
         "symfony/translation": "^v5.2",
-        "symfony/twig-bundle": "^5.2",
         "symfony/validator": "^v5.2",
         "symfony/yaml": "^v5.2",
         "symfonycasts/reset-password-bundle": "^1.2",
