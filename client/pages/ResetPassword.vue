@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center min-h-screen bg-primary text-center">
+  <div class="flex flex-col justify-center items-center min-h-screen bg-primary text-center bg-hero-pattern">
     <NuxtLink to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
       <Logo />
     </NuxtLink>

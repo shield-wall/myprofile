@@ -14,9 +14,7 @@
       </div>
 
       <div class="flex-1 md:block lg:block hidden">
-        <div class="flex justify-center">
-          <FormRegister />
-        </div>
+        <FormRegister id="form-register" />
       </div>
     </div>
   </div>
