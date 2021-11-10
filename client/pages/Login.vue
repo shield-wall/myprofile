@@ -1,5 +1,5 @@
 <template>
-  <div class="container-middle">
+  <div class="container-middle bg-hero-pattern">
     <NuxtLink to="/" class="m-10">
       <Logo />
     </NuxtLink>

@@ -1,12 +1,21 @@
 <template>
-  <div class="card flex-1 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-    <div class="card-body">
-      <Input id="first-name" label="Nome" placeholder="Seu primeiro nome." />
-      <Input id="last-name" label="Sobrenome" placeholder="Seu segundo nome." />
-      <InputEmail id="email" />
-      <InputPassword />
-      <InputPassword id="repeat-password" label="Confirme a senha" />
-      <Button id="register-button" label="Cadastrar" class="my-6" />
+  <div class="flex justify-center">
+    <div class="card flex-1 flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body">
+        <Input id="first-name" label="Nome" placeholder="Seu primeiro nome." />
+        <Input id="last-name" label="Sobrenome" placeholder="Seu segundo nome." />
+        <InputEmail id="email" />
+        <InputPassword />
+        <InputPassword id="repeat-password" label="Confirme a senha" />
+        <Button id="register-button" label="Cadastrar" class="my-6" />
+
+        <div id="ask-for-login" class="text-center text-sm mt-2">
+          <span>Já tem conta?</span>
+          <NuxtLink to="/login" class="text-primary underline font-semibold">
+            Clique aqui!
+          </NuxtLink>
+        </div>
+      </div>
     </div>
   </div>
 </template>
