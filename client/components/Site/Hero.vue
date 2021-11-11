@@ -2,27 +2,34 @@
   <div class="min-h-screen max-h-md">
     <NavBar />
 
-    <div class="flex">
-      <div class="md:flex-1 lg:flex-1 space-y-9 text-center md:text-left lg:text-left">
-        <h1 class="text-white text-3xl md:text-5xl lg:text-5xl">
-          Crie seu currículo em PDF e site pessoal em poucos minutos!
-        </h1>
+    <div class="h-full-90 flex items-center justify-center">
+      <div class="flex-1 text-center text-accent text-3xl md:text-5xl lg:text-5xl">
+        Crie seu currículo em PDF e site pessoal em poucos minutos!
 
-        <button class="btn btn-accent btn-wide lg:invisible md:invisible visible">
-          Cadastrar
-        </button>
+        <div class="block lg:hidden md:hidden mt-5">
+          <button class="btn btn-accent btn-wide">
+            Cadastrar
+          </button>
+        </div>
       </div>
-      <Form />
-      <Register />
-      <Reset />
+
+      <div class="flex-1 md:block lg:block hidden">
+        <FormRegister id="form-register" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import NavBar from '../NavBar'
-import Form from './Form.vue'
+import FormRegister from './FormRegister'
 export default {
-  components: { NavBar, Form }
+  components: { FormRegister, NavBar }
 }
 </script>
+
+<style>
+.h-full-90 {
+  height: 90vh;
+}
+</style>

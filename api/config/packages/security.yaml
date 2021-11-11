@@ -4,6 +4,8 @@ security:
         strategy: unanimous
         allow_if_all_abstain: false
 
+#    password_hashers:
+#        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     password_hashers:
         App\Entity\User:
             algorithm: auto

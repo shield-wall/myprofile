@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="homepageHero">
+    <section id="homepageHero2" class="bg-primary bg-hero-pattern">
       <Herosite class="md:container md:mx-auto lg:space-x-2" />
     </section>
 
@@ -33,14 +33,6 @@
     </div>
   </div>
 </template>
-
-<style>
-#homepageHero {
-  background: url("../assets/images/bg-pattern.png"), #1f2937;
-  background: url("../assets/images/bg-pattern.png"), -webkit-linear-gradient(to left, #4b5364, #1f2937);
-  background: url("../assets/images/bg-pattern.png"), linear-gradient(to left, #4b5364, #1f2937);
-}
-</style>
 
 <script>
 import Herosite from '../components/Site/Hero'
