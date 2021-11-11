@@ -4,8 +4,8 @@ import Button from '../Button'
 describe('Button', () => {
   it('can get the label value', () => {
     const wrapper = shallowMount(Button, {
-      propsData: {
-        label: 'foo'
+      slots: {
+        default: 'foo'
       }
     })
 

@@ -13,6 +13,7 @@ describe('Form register component', () => {
   it('has all fields necessary to register new user.', () => {
     const wrapper = factory()
 
+    expect(wrapper.find('#card-box').exists()).toBeTruthy()
     expect(wrapper.find('#first-name').exists()).toBeTruthy()
     expect(wrapper.find('#last-name').exists()).toBeTruthy()
     expect(wrapper.find('#email').exists()).toBeTruthy()
