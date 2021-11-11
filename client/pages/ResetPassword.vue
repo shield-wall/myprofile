@@ -3,27 +3,22 @@
     <NuxtLink to="/" class="text-center text-white text-4xl font-bold p-10 cursor-pointer">
       <Logo />
     </NuxtLink>
-    <div class="card p-4">
-      <div class="car-body">
-        <h1 class="text-2xl font-bold">
-          Esqueceu sua Senha?
-        </h1>
-        <p>
-          Escreva seu email abaixo e enviaremos um link para resetar sua senha!
-        </p>
-        <form class="form-control">
-          <InputEmail />
-          <Button label="Clique para enviarmos" class="my-4" />
 
-          <div>
-            <span class="text-sm">Já tem conta?</span>
-            <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
-              Clique aqui!
-            </NuxtLink>
-          </div>
-        </form>
-      </div>
-    </div>
+    <CardBox>
+      <form class="form-control">
+        <InputEmail />
+        <Button class="my-4">
+          Recuperar Senha
+        </Button>
+
+        <div>
+          <span class="text-sm">Já tem conta?</span>
+          <NuxtLink to="/login" class="text-primary text-sm underline font-semibold">
+            Clique aqui!
+          </NuxtLink>
+        </div>
+      </form>
+    </CardBox>
   </div>
 </template>
 
@@ -37,7 +32,8 @@
 import Logo from '../components/Logo'
 import InputEmail from '../components/Form/InputEmail'
 import Button from '../components/Form/Button'
+import CardBox from '../components/Site/CardBox'
 export default {
-  components: { Logo, InputEmail, Button }
+  components: { CardBox, Logo, InputEmail, Button }
 }
 </script>
