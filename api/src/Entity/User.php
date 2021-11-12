@@ -11,11 +11,16 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use DateTimeInterface;
 
 #[ApiResource(
+    collectionOperations: [
+        'get',
+        'post' => ['validation_groups' => ['Default', 'postValidation']],
+    ],
     itemOperations: [
         'get' => [
             'normalization_context' => ['groups' => ['anonymous', 'anonymous:item', 'anonymous:item:read']],
@@ -32,133 +37,116 @@ use DateTimeInterface;
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
- * @UniqueEntity("slug")
- * @UniqueEntity("email")
  */
+#[UniqueEntity("slug")]
+#[UniqueEntity("email")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @Groups({"anonymous", "user:read", "admin:read"})
      */
+    #[Groups(['anonymous', 'user:read', 'admin:read'])]
     protected int $id;
 
     /**
-     * @Assert\Length(max="200")
-     * @Assert\Email
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=200, unique=true)
-     *
-     * @Groups({"anonymous:item", "user", "admin"})
      */
+    #[Assert\Length(max:200)]
+    #[Assert\Email]
+    #[Assert\NotBlank]
+    #[Groups(['anonymous:item', 'user', 'admin'])]
     protected string $email;
 
     /**
-     * @Assert\NotBlank(groups={"registration"})
-     * @Assert\Length(max="50")
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=50, nullable=true)
-     *
-     * @Groups({"anonymous", "user", "admin"})
      */
+    #[Assert\Length(max:50)]
+    #[Assert\NotBlank]
+    #[Groups(['anonymous', 'user', 'admin'])]
     protected string | null $firstName;
 
     /**
-     * @Assert\NotBlank(groups={"registration"})
-     * @Assert\Length(max="50")
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=50, nullable=true)
-     *
-     * @Groups({"anonymous", "write", "user", "admin"})
      */
+    #[Assert\Length(max:50)]
+    #[Assert\NotBlank]
+    #[Groups(['anonymous', 'user', 'admin'])]
     protected string | null $lastName;
 
     /**
-     * @Assert\Length(max="50")
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
-     *
-     * @Groups({"anonymous", "user", "admin"})
      */
+    #[Assert\Length(max:50)]
+    #[Groups(['anonymous', 'user', 'admin'])]
     protected string $slug;
 
     /**
-     * @Assert\Length(max="250")
      * @ORM\Column(type="text", length=250, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Assert\Length(max:250)]
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $headline;
 
     /**
      * This field is used in user`s profile
      *
-     * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
-     *
-     * @Groups({"anonymous", "user", "admin"})
      */
+    #[Assert\Length(max:100)]
+    #[Groups(['anonymous', 'user', 'admin'])]
     protected string | null $role;
 
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $phone;
 
     /**
-     * @Assert\Length(max="20")
      * @ORM\Column(type="string",length=20, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Assert\Length(max:20)]
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $cell;
 
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $summary;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $country;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $state;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $city;
 
     /**
      * @ORM\Column(type="string", length=6, nullable=true)
-     * @Assert\Choice({"male", "female"})
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Assert\Choice(['male', 'female'])]
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $gender;
 
     /**
      * @ORM\Column(type="date", nullable=true)
-     *
-     * @Groups({"user:item", "admin:item"})
      */
+    #[Groups(['user:item', 'admin:item'])]
     protected DateTimeInterface | null $birthday;
 
     /**
@@ -192,9 +180,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
-     *
-     * @Groups({"anonymous:item:read", "user:item", "admin:item"})
      */
+    #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $keyWords;
 
     /**
@@ -212,10 +199,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     protected string $password;
 
-    /**
-     * @Assert\NotBlank(groups={"registration", "resetPassword"})
-     * @Assert\Length(min=6)
-     */
+    #[Assert\NotBlank(groups: ['postValidation'])]
+    #[Assert\Length(min:6)]
+    #[SerializedName('password')]
+    #[Groups(['anonymous:item', 'user', 'admin'])]
     protected string | null $plainPassword;
 
     /**
@@ -226,24 +213,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
-     *
-     * @Groups("anonymous:item:read")
      */
+    #[Groups(['anonymous:item:read'])]
     protected DateTimeInterface $createdAt;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
-     *
-     * @Groups("anonymous:item:read")
      */
+    #[Groups(['anonymous:item:read'])]
     protected DateTimeInterface | null $updatedAt;
 
     /**
      * @ORM\Column(type="boolean")
-     *
-     * @Groups("read")
      */
+    #[Groups(['read', 'user:item', 'admin:item'])]
     protected bool $isVerified = false;
 
     public function __construct()
