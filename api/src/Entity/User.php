@@ -208,7 +208,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    protected string | null $salt;
+    protected string | null $salt = null;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -238,9 +238,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->skills = new ArrayCollection();
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
-//        $this->id = $id;
-//        $this->createdAt = $createdAt;
-//        $this->updatedAt = $updatedAt;
     }
 
     public function getId(): int
@@ -653,6 +650,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->getUsername();
+    }
+
+    /**
+     * @internal this method was created to use with fixtures
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @internal this method was created to use with fixtures
+     */
+    public function setCreatedAt(DateTimeInterface $dateTime): self
+    {
+        $this->createdAt = $dateTime;
+
+        return $this;
+    }
+
+    /**
+     * @internal this method was created to use with fixtures
+     */
+    public function setUpdatedAt(DateTimeInterface $dateTime): self
+    {
+        $this->updatedAt = $dateTime;
+
+        return $this;
     }
 
     public function __toString(): string

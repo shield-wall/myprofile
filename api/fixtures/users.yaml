@@ -12,7 +12,6 @@ parameters:
 
 App\Entity\User:
   user{1..10}):
-    __construct: false
     email: '<email()>'
     password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
     isVerified: '<boolean()>'
@@ -21,15 +20,16 @@ App\Entity\User:
     LastName: <lastName()>
     role: "<randomElement(<{role_level}>)> <randomElement(<{role_language}>)> Developer"
   user_test:
-    __construct: [1000, <(new DateTime("2020-01-01 11:11:11"))>, <(new DateTime("2020-01-02 11:11:11"))>]
     slug: test-mock
     email: test@myprofile.pro
     password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
     isVerified: true
     firstName: Test
     LastName: Mock
+    id: 1000
+    createdAt: <(new DateTime("2020-01-01 11:11:11"))>
+    updatedAt: <(new DateTime("2020-01-02 11:11:11"))>
   user_test_2:
-    __construct: false
     slug: test-mock-2
     email: test2@myprofile.pro
     password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
@@ -37,7 +37,6 @@ App\Entity\User:
     firstName: Test 2
     LastName: Mock
   user_not_verified:
-      __construct: false
       slug: test-not-verified
       email: not-verified@myprofile.pro
       password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
@@ -45,7 +44,6 @@ App\Entity\User:
       firstName: Test Not Verified
       LastName: Mock
   admin:
-    __construct: false
     email: admin@myprofile.pro
     password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
     slug: <slug()>
