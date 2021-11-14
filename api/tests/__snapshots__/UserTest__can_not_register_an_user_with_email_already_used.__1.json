@@ -1,0 +1,13 @@
+{
+    "@context": "\/contexts\/ConstraintViolationList",
+    "@type": "ConstraintViolationList",
+    "hydra:title": "An error occurred",
+    "hydra:description": "email: Este valor j\u00e1 est\u00e1 sendo usado.",
+    "violations": [
+        {
+            "propertyPath": "email",
+            "message": "Este valor j\u00e1 est\u00e1 sendo usado.",
+            "code": "23bd9dbf-6b9b-41cd-a99e-4844bcf3077f"
+        }
+    ]
+}
