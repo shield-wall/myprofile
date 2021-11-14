@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Entity\User;
 use Hautelook\AliceBundle\PhpUnit\RefreshDatabaseTrait;
 
-uses(RefreshDatabaseTrait::class)->beforeEach(fn() => static::bootKernel());
+uses(RefreshDatabaseTrait::class);
 
 it('can access the user collection as public resource.')
     ->get('/users')
