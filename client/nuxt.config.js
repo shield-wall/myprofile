@@ -1,4 +1,6 @@
-export default {
+import { defineNuxtConfig } from '@nuxt/bridge'
+
+export default defineNuxtConfig({
   // TODO put host and prefix dynamically
   env: {
     FILE_PROVIDER: {
@@ -56,7 +58,6 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     ['@nuxtjs/fontawesome', {
       component: 'Fa',
@@ -75,5 +76,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  tailwindcss: {
+    viewer: false
+  },
+  // TODO remove this after fix nuxtjs nitro.
+  bridge: {
+    nitro: false
   }
-}
+})
