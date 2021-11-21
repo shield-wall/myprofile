@@ -29,7 +29,8 @@ export default {
   methods: {
     setFallbackImageUrl (type) {
       if (type === 'profile') {
-        return event.target.src = this.providerUrl + this.defaultProfileImage
+        event.target.src = this.providerUrl + this.defaultProfileImage
+        return
       }
 
       event.target.src = this.providerUrl + this.defaultBackgroundImage

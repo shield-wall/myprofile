@@ -13,13 +13,13 @@
       </div>
 
       <div class="text-gray-300">
-        <span class="text-white	font-bold text-base"><fa-icon :icon="faCoffee" /> Project</span>
+        <span class="text-white font-bold text-base"><fa-icon :icon="faCoffee" /> Project</span>
         <a class="link link-hover">Contact</a>
         <a class="link link-hover">Instagram</a>
       </div>
 
       <div class="text-gray-300">
-        <span class="text-white	font-bold text-base"><fa-icon :icon="faHandsHelping" /> Sponsorship</span>
+        <span class="text-white font-bold text-base"><fa-icon :icon="faHandsHelping" /> Sponsorship</span>
         <a href="https://transloadit.com" class="link link-hover" target="_blank">Transloadit</a>
         <a href="https://sentry.io" class="link link-hover" target="_blank">Sentry</a>
         <a href="https://www.jetbrains.com" class="link link-hover" target="_blank">Jetbrains</a>
