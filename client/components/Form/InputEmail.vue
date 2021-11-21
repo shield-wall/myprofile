@@ -1,5 +1,5 @@
 <template>
-  <Input label="E-mail" placeholder="Digite seu e-mail" v-model="inputData" @keyup="$emit('update:inputData', inputData);" />
+  <Input v-model="inputData" label="E-mail" placeholder="Digite seu e-mail" @keyup="$emit('update:inputData', inputData);" />
 </template>
 <script>
 import Input from './Input'
