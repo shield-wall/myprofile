@@ -12,9 +12,9 @@ export abstract class AbstractRepository {
     return this
       .axios
       .get<ResourceCollectionInterface>(this.resource(), {
-        transformResponse: (response: any) => Object.assign(this.collectionInstance(), JSON.parse(response))
+        transformResponse: (response: string) => Object.assign(this.collectionInstance(), JSON.parse(response))
       })
-      .then((response: any) => response.data)
+      .then((response: object) => response.data)
   }
 
   abstract resource(): string;
