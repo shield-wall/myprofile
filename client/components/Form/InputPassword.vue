@@ -1,5 +1,11 @@
 <template>
-  <Input :id="id" :label="label" placeholder="Digite sua senha" type="password" />
+  <Input
+    :id="id"
+    :label="label"
+    placeholder="Digite sua senha"
+    type="password"
+    v-on:input="$emit('input', $event)"
+  />
 </template>
 
 <script>

@@ -3,7 +3,12 @@
     <label class="label">
       <span class="label-text">{{ label }}</span>
     </label>
-    <input :placeholder="placeholder" class="input input-bordered w-full" :type="type">
+    <input
+        :placeholder="placeholder"
+        class="input input-bordered w-full"
+        :type="type"
+        @input="$emit('input', $event.target.value)"
+    />
   </div>
 </template>
 

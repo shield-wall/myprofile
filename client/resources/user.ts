@@ -6,10 +6,13 @@ export class User extends Hydra implements ResourceInterface {
   id: number|null = null
   firstName: string|null = null
   lastName: string|null = null
+  email: string|null = null
   role: string|null = null
   slug: string|null = null
   profileImage: string|null = null
   backgroundImage: string|null = null
+  password: string|null = null
+  confirmPassword: string|null = null
 }
 
 export class UserCollection extends HydraCollection implements ResourceCollectionInterface {

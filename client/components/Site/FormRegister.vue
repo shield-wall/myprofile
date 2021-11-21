@@ -1,15 +1,12 @@
 <template>
   <form @submit.prevent="onSubmit">
     <CardBox id="card-box">
-      <Input id="first-name" label="Nome" placeholder="Seu primeiro nome." />
-      <Input id="last-name" label="Sobrenome" placeholder="Seu segundo nome." />
-      <InputEmail id="email" :input-data.sync="parentData" />
-      <InputPassword />
-      <InputPassword id="repeat-password" label="Confirme a senha" />
-      <input v-model="email" type="text" label="E-mail 2" class="input input-bordered w-full">
-      <Button id="register-button" class="my-6">
-        Cadastrar
-      </Button>
+      <Input id="first-name" label="Nome" placeholder="Seu primeiro nome."  v-model="user.firstName"/>
+      <Input id="last-name" label="Sobrenome" placeholder="Seu segundo nome." v-model="user.lastName" />
+      <InputEmail id="email" v-model="user.email" />
+      <InputPassword v-model="user.password" />
+      <InputPassword id="repeat-password" label="Confirme a senha" v-model="user.confirmPassword" />
+      <Button id="register-button" class="my-6">Cadastrar</Button>
 
       <div id="ask-for-login" class="text-center text-sm mt-2">
         <span>Já tem conta?</span>
@@ -30,15 +27,12 @@ import CardBox from '~/components/Site/CardBox'
 import { User } from '~/resources/user'
 export default {
   components: { CardBox, Input, Button, InputPassword, InputEmail },
-  data () {
-    return {
-      parentData: 'Jithil',
-      email: null
-    }
+  data (): object {
+    return {user: new User()};
   },
   methods: {
     onSubmit () {
-      console.log(this.parentData, this.email)
+      console.log(this.user)
     }
   }
 }

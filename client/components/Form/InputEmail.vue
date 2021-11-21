@@ -1,12 +1,9 @@
 <template>
-  <Input v-model="inputData" label="E-mail" placeholder="Digite seu e-mail" @keyup="$emit('update:inputData', inputData);" />
+  <Input label="E-mail" placeholder="Digite seu e-mail" v-on:input="$emit('input', $event)" />
 </template>
 <script>
 import Input from './Input'
 export default {
-  components: { Input },
-  props: {
-    inputData: String
-  }
+  components: { Input }
 }
 </script>

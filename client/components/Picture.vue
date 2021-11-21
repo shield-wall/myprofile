@@ -13,11 +13,9 @@
 export default {
   name: 'Picture',
   props: {
-    path: { type: String, required: true },
-    alt: { type: String, required: true },
-    size: { type: String, required: true },
-    type: { type: String, required: true },
-    email: { type: String, required: true }
+    path: { type: String, required: false },
+    alt: { type: String, required: false },
+    type: { type: String, required: false },
   },
   data () {
     return {
