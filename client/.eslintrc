@@ -1,6 +1,7 @@
 {
   "rules": {
     "curly": "error",
+    "vue/component-tags-order": "error",
 
     //those rules need to fix manually,
     "no-use-before-define": "off",
