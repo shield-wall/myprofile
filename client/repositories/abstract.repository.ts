@@ -1,4 +1,4 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { NuxtAxiosInstance } from '#app'
 import { ResourceCollectionInterface } from '~/resources/contracts/resource.collection.interface'
 import {UserRepository} from "~/repositories/user.repository";
 // import { ResourceInterface } from '~/resources/contracts/resource.interface'

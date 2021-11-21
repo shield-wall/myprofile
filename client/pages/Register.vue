@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-primary bg-hero-pattern">
+  <div class="container-middle bg-hero-pattern">
     <div class="flex-1">
       <NuxtLink to="/" class="text-center p-10 cursor-pointer">
         <Logo id="logo" />
@@ -18,3 +18,9 @@ export default {
   components: { FormRegister, Logo }
 }
 </script>
+
+<style>
+.container-middle {
+  @apply flex justify-center items-center min-h-screen bg-primary text-center
+}
+</style>

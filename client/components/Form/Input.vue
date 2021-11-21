@@ -11,16 +11,9 @@
 export default {
   name: 'Input',
   props: {
-    type: {
-      type: String,
-      default: 'text'
-    },
-    placeholder: {
-      type: String
-    },
-    label: {
-      type: String
-    }
+    type: { type: String, default: 'text' },
+    placeholder: { type: String, required: true },
+    label: { type: String, required: true }
   }
 }
 </script>

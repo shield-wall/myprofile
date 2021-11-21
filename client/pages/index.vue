@@ -49,7 +49,6 @@ export default {
 
   async fetch () {
     this.users = await this.$userRepository.all()
-    console.log(this.users.totalItems())
   }
 }
 </script>

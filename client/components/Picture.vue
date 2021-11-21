@@ -12,7 +12,13 @@
 <script>
 export default {
   name: 'Picture',
-  props: ['path', 'alt', 'size', 'type', 'email'],
+  props: {
+    path: { type: String, required: true },
+    alt: { type: String, required: true },
+    size: { type: String, required: true },
+    type: { type: String, required: true },
+    email: { type: String, required: true }
+  },
   data () {
     return {
       providerUrl: process.env.FILE_PROVIDER.transloadit.host + '/' + process.env.FILE_PROVIDER.transloadit.prefix,
@@ -23,7 +29,8 @@ export default {
   methods: {
     setFallbackImageUrl (type) {
       if (type === 'profile') {
-        return event.target.src = this.providerUrl + this.defaultProfileImage
+        event.target.src = this.providerUrl + this.defaultProfileImage
+        return
       }
 
       event.target.src = this.providerUrl + this.defaultBackgroundImage

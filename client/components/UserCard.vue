@@ -34,6 +34,13 @@ import Picture from './Picture'
 export default {
   name: 'UserCard',
   components: { Picture },
-  props: ['slug', 'firstName', 'lastName', 'role', 'profileImage', 'backgroundImage']
+  props: {
+    slug: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    role: { type: String, required: true },
+    profileImage: { type: String, required: true },
+    backgroundImage: { type: String, required: true }
+  }
 }
 </script>
