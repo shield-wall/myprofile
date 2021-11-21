@@ -27,5 +27,6 @@
     "no-throw-literal": "off",
     "no-tabs": "off"
   },
-  "ignorePatterns": [".nuxt/", "dist"]
+//  @TODO remove dist after fix nuxtjs nitro
+  "ignorePatterns": [".nuxt/", ".output/", "dist"]
 }

@@ -3,7 +3,7 @@ import { ResourceInterface } from '~/resources/contracts/resource.interface'
 export abstract class Hydra {
   '@id': string;
   '@type': string;
-};
+}
 
 export abstract class HydraCollection extends Hydra {
   '@context': string;
@@ -18,4 +18,4 @@ export abstract class HydraCollection extends Hydra {
   totalItems (): number {
     return this['hydra:totalItems']
   }
-};
+}

@@ -1,4 +1,4 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { NuxtAxiosInstance } from '#app'
 import { ResourceCollectionInterface } from '~/resources/contracts/resource.collection.interface'
 
 export abstract class AbstractRepository {

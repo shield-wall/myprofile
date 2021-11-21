@@ -1,4 +1,5 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "target": "ES2018",
     "module": "ESNext",
@@ -29,9 +30,13 @@
       "@nuxtjs/axios"
     ]
   },
+   "vueCompilerOptions": {
+     "experimentalCompatMode": 2,
+  },
   "exclude": [
     "node_modules",
     ".nuxt",
+    ".output",
     "dist"
   ]
 }

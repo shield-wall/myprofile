@@ -34,7 +34,7 @@ services:
       - 5432:5432
 
   client:
-    image: node
+    image: node:16.11
     working_dir: /app
     volumes:
       - ./client:/app

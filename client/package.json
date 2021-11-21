@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "nuxi dev",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "generate": "nuxi generate",
+    "prepare": "nuxi prepare",
     "lint": "eslint --ext .ts,.js,.vue . -c .eslintrc",
     "test": "jest"
   },
@@ -17,16 +17,16 @@
     "@nuxtjs/fontawesome": "^1.0",
     "core-js": "^3.8.3",
     "daisyui": "^1.14.0",
-    "nuxt": "^2.15"
+    "nuxt-edge": "2.16.0-27290895.ab1c6cb4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxt/types": "^2.14.12",
-    "@nuxt/typescript-build": "^2.0.4",
-    "@nuxtjs/eslint-config-typescript": "^5.0",
+    "@nuxtjs/eslint-config-typescript": "^7.0",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "@vue/test-utils": "^1.2.2",
     "babel-core": "^7.0.0-bridge.0",
@@ -38,6 +38,7 @@
     "jsdom-global": "^3.0",
     "sass": "^1.0",
     "sass-loader": "^12.0",
+    "typescript": "^4.5.2",
     "vue-jest": "^4.0"
   },
   "babel": {
