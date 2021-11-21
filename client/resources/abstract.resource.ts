@@ -11,7 +11,6 @@ export abstract class HydraCollection extends Hydra {
   'hydra:totalItems': number
 
   items (): ResourceInterface[] {
-    console.log('items')
     return this['hydra:member']
   }
 
