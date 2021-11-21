@@ -8,10 +8,10 @@ export abstract class AbstractRepository {
     this.axios = $axios
   }
 
-  all () {
+  all (): Promise<ResourceCollectionInterface> {
     return this
       .axios
-      .get<ResourceCollectionInterface>(this.resource(), {
+      .get(this.resource(), {
         transformResponse: (response: string) => Object.assign(this.collectionInstance(), JSON.parse(response))
       })
       .then((response: object) => response.data)
