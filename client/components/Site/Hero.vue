@@ -4,11 +4,11 @@
 
     <div class="h-full-90 flex items-center justify-center">
       <div class="flex-1 text-center text-accent text-3xl md:text-5xl lg:text-5xl">
-        Crie seu currículo em PDF e site pessoal em poucos minutos!
+        {{ $t('tagline') }}
 
         <div class="block lg:hidden md:hidden mt-5">
           <button class="btn btn-accent btn-wide">
-            Cadastrar
+            {{ $t('register') }}
           </button>
         </div>
       </div>

@@ -6,7 +6,7 @@
     <InputPassword />
     <InputPassword id="repeat-password" label="Confirme a senha" />
     <Button id="register-button" class="my-6">
-      Cadastrar
+      {{ $t('register') }}
     </Button>
 
     <div id="ask-for-login" class="text-center text-sm mt-2">
