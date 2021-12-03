@@ -5,6 +5,9 @@ function factory () {
   return shallowMount(FormRegister, {
     stubs: {
       NuxtLink: RouterLinkStub
+    },
+    mocks: {
+      $t: key => key
     }
   })
 }
