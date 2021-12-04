@@ -153,9 +153,9 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: [
+    '__mocks__'
+  ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -194,7 +194,7 @@ module.exports = {
   // watchman: true,
 
   // I follow this article: https://medium.com/@gogl.alex/nuxt-jest-setup-from-scratch-8905d3880daa
-  moduleFileExtensions: ['js', 'json', 'vue'],
+  moduleFileExtensions: ['ts', 'js', 'json', 'vue'],
   watchman: false,
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/$1',
@@ -205,7 +205,8 @@ module.exports = {
     // process js with `babel-jest`
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
     // process `*.vue` files with `vue-jest`
-    '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest'
+    '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest',
+    '^.+\\.ts?$': 'ts-jest'
   },
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
   collectCoverageFrom: [

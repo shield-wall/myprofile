@@ -1,12 +1,43 @@
 <template>
   <form @submit.prevent="onSubmit">
     <CardBox id="card-box">
-      <Input id="first-name" label="Nome" placeholder="Seu primeiro nome."  v-model="user.firstName"/>
-      <Input id="last-name" label="Sobrenome" placeholder="Seu segundo nome." v-model="user.lastName" />
-      <InputEmail id="email" v-model="user.email" />
-      <InputPassword v-model="user.password" />
-      <InputPassword id="repeat-password" label="Confirme a senha" v-model="user.confirmPassword" />
-      <Button id="register-button" class="my-6">Cadastrar</Button>
+      <Input
+        id="first-name"
+        v-model="user.firstName"
+        label="Nome"
+        placeholder="Seu primeiro nome."
+        :violations="constraint.getViolationsBy('firstName')"
+      />
+
+      <Input
+        id="last-name"
+        v-model="user.lastName"
+        label="Sobrenome"
+        placeholder="Seu segundo nome."
+        :violations="constraint.getViolationsBy('lastName')"
+      />
+
+      <InputEmail
+        id="email"
+        v-model="user.email"
+        :violations="constraint.getViolationsBy('email')"
+      />
+
+      <InputPassword
+        v-model="user.password"
+        :violations="constraint.getViolationsBy('password')"
+      />
+
+      <InputPassword
+        id="repeat-password"
+        v-model="user.confirmPassword"
+        label="Confirme a senha"
+        :violations="constraint.getViolationsBy('confirmPassword')"
+      />
+
+      <Button id="register-button" class="my-6" :loading="loading">
+        Cadastrar
+      </Button>
 
       <div id="ask-for-login" class="text-center text-sm mt-2">
         <span>Já tem conta?</span>
@@ -24,15 +55,27 @@ import InputPassword from '../Form/InputPassword'
 import Button from '../Form/Button'
 import Input from '../Form/Input'
 import CardBox from '~/components/Site/CardBox'
-import { User } from '~/resources/user'
+import { ConstraintViolationListException } from '~/exception/constraint-violation-list.exception'
+import {UserRegister} from "~/resources/user.register";
 export default {
   components: { CardBox, Input, Button, InputPassword, InputEmail },
   data (): object {
-    return {user: new User()};
+    return {
+      user: new UserRegister(),
+      constraint: new ConstraintViolationListException(),
+      loading: false
+    }
   },
   methods: {
-    onSubmit () {
-      console.log(this.user)
+    async onSubmit () {
+      try {
+        this.loading = true
+        await this.$userRepository.save(this.user)
+        this.loading = false
+      } catch (constraint: ConstraintViolationListException) {
+        this.constraint = constraint
+        this.loading = false
+      }
     }
   }
 }

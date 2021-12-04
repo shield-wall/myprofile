@@ -15,7 +15,7 @@ export default {
   props: {
     path: { type: String, required: false },
     alt: { type: String, required: false },
-    type: { type: String, required: false },
+    type: { type: String, required: false }
   },
   data () {
     return {

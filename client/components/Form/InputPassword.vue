@@ -4,12 +4,15 @@
     :label="label"
     placeholder="Digite sua senha"
     type="password"
-    v-on:input="$emit('input', $event)"
+    :violations="violations"
+    @input="$emit('input', $event)"
   />
 </template>
 
-<script>
+<script lang="ts">
 import Input from './Input'
+import { ViolationInterface } from '~/exception/contracts/violation.interface'
+
 export default {
   name: 'InputPassword',
   components: { Input },
@@ -21,6 +24,10 @@ export default {
     id: {
       type: String,
       default: 'password'
+    },
+    violations: {
+      type: Array as () => ViolationInterface[],
+      require: true
     }
   }
 }

@@ -9,7 +9,10 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {},
+    variants: {
+      opacity: ({ after }) => after(['disabled'])
+    }
   },
   plugins: [
     require('daisyui')
