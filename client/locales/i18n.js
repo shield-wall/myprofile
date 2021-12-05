@@ -1,8 +1,8 @@
 import en from './en.json'
-import pt from './pt.json'
+import ptBr from './pt-BR.json'
 
 export default {
-  locale: 'en',
-  fallbackLocale: 'pt',
-  messages: { en, pt }
+  locale: 'pt-BR',
+  fallbackLocale: 'en',
+  messages: { en, 'pt-BR': ptBr }
 }
