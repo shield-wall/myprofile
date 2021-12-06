@@ -59,7 +59,7 @@ import { ConstraintViolationListException } from '~/exception/constraint-violati
 import { UserRegister } from '~/resources/user.register'
 export default {
   components: { CardBox, Input, Button, InputPassword, InputEmail },
-  data (): object {
+  data () {
     return {
       user: new UserRegister(),
       constraint: new ConstraintViolationListException(),
@@ -72,7 +72,7 @@ export default {
         this.loading = true
         await this.$userRepository.save(this.user)
         this.loading = false
-      } catch (constraint: ConstraintViolationListException) {
+      } catch (constraint) {
         this.constraint = constraint
         this.loading = false
       }

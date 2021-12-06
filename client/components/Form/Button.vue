@@ -13,7 +13,7 @@ export default {
     }
   },
   computed: {
-    computedClass (): string {
+    computedClass () {
       return this.loading ? 'loading' : ''
     }
   }
