@@ -1,4 +1,4 @@
-FROM php:8.0.11-fpm as base
+FROM php:8.1.0-fpm as base
 
 RUN apt-get update
 

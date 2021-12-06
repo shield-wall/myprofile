@@ -4,7 +4,7 @@
     "type": "project",
     "description": "My profile",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
@@ -58,7 +58,7 @@
         "symfony/stopwatch": "^5.3",
         "symfony/web-profiler-bundle": "^5.3"
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "config": {
         "preferred-install": {
             "*": "dist"
