@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2f697996a5d61886b3da4b36e44c8af",
+    "content-hash": "60b4cd05850a4fb5cfe79bfa6cebbb13",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v2.6.6",
+            "version": "2.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "25c71b216473844cdbe5bf284ccbeeb26acd76e7"
+                "reference": "b733ebcec43a58e51834053b04e68039f996e633"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/25c71b216473844cdbe5bf284ccbeeb26acd76e7",
-                "reference": "25c71b216473844cdbe5bf284ccbeeb26acd76e7",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/b733ebcec43a58e51834053b04e68039f996e633",
+                "reference": "b733ebcec43a58e51834053b04e68039f996e633",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "fig/link-util": "^1.0",
                 "php": ">=7.1",
                 "psr/cache": "^1.0 || ^2.0 || ^3.0",
-                "psr/container": "^1.0",
+                "psr/container": "^1.0 || ^2.0",
                 "symfony/http-foundation": "^4.4 || ^5.1",
                 "symfony/http-kernel": "^4.4 || ^5.1",
                 "symfony/property-access": "^3.4.19 || ^4.4 || ^5.1",
@@ -44,9 +44,10 @@
                 "behat/behat": "^3.1",
                 "behat/mink": "^1.7",
                 "doctrine/annotations": "^1.7",
-                "doctrine/cache": "^1.11",
+                "doctrine/cache": "^1.11 || ^2.1",
                 "doctrine/common": "^2.11 || ^3.0",
                 "doctrine/data-fixtures": "^1.2.2",
+                "doctrine/dbal": "^2.6",
                 "doctrine/doctrine-bundle": "^1.12 || ^2.0",
                 "doctrine/mongodb-odm": "^2.2",
                 "doctrine/mongodb-odm-bundle": "^4.0",
@@ -56,16 +57,16 @@
                 "friends-of-behat/mink-extension": "^2.2",
                 "friends-of-behat/symfony-extension": "^2.1",
                 "guzzlehttp/guzzle": "^6.0 || ^7.0",
-                "jangregor/phpstan-prophecy": "^0.8",
+                "jangregor/phpstan-prophecy": "^1.0",
                 "justinrainbow/json-schema": "^5.2.1",
                 "phpdocumentor/reflection-docblock": "^3.0 || ^4.0 || ^5.1",
                 "phpdocumentor/type-resolver": "^0.3 || ^0.4 || ^1.4",
-                "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.12.65",
-                "phpstan/phpstan-doctrine": "^0.12.7",
-                "phpstan/phpstan-phpunit": "^0.12.4",
-                "phpstan/phpstan-symfony": "^0.12.4",
-                "psr/log": "^1.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.1",
+                "phpstan/phpstan-doctrine": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan-symfony": "^1.0",
+                "psr/log": "^1.0 || ^2.0 || ^3.0",
                 "ramsey/uuid": "^3.7 || ^4.0",
                 "ramsey/uuid-doctrine": "^1.4",
                 "soyuka/contexts": "^3.3.1",
@@ -86,9 +87,10 @@
                 "symfony/form": "^3.4 || ^4.4 || ^5.1",
                 "symfony/framework-bundle": "^4.4 || ^5.1",
                 "symfony/http-client": "^4.4 || ^5.1",
+                "symfony/intl": "^4.4 || ^5.3",
                 "symfony/mercure-bundle": "*",
                 "symfony/messenger": "^4.4 || ^5.1",
-                "symfony/phpunit-bridge": "^5.1.7",
+                "symfony/phpunit-bridge": "^5.4@dev",
                 "symfony/routing": "^3.4 || ^4.4 || ^5.1",
                 "symfony/security-bundle": "^3.4 || ^4.4 || ^5.1",
                 "symfony/security-core": "^4.4 || ^5.1",
@@ -156,7 +158,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v2.6.6"
+                "source": "https://github.com/api-platform/core/tree/2.6"
             },
             "funding": [
                 {
@@ -164,7 +166,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-29T19:11:04+00:00"
+            "time": "2021-12-06T15:34:03+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -692,12 +694,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "4d66064c8bf5a2a1567c74f8565f7c3b9ccc5a64"
+                "reference": "cb080ac3db166b89d35267eb6642b56fd10953f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/4d66064c8bf5a2a1567c74f8565f7c3b9ccc5a64",
-                "reference": "4d66064c8bf5a2a1567c74f8565f7c3b9ccc5a64",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/cb080ac3db166b89d35267eb6642b56fd10953f4",
+                "reference": "cb080ac3db166b89d35267eb6642b56fd10953f4",
                 "shasum": ""
             },
             "require": {
@@ -719,7 +721,7 @@
                 "squizlabs/php_codesniffer": "3.6.1",
                 "symfony/cache": "^5.2|^6.0",
                 "symfony/console": "^2.7|^3.0|^4.0|^5.0|^6.0",
-                "vimeo/psalm": "4.13.0"
+                "vimeo/psalm": "4.14.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -795,7 +797,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-04T22:42:53+00:00"
+            "time": "2021-12-06T19:19:17+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -2555,19 +2557,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eerison/LexikJWTAuthenticationBundle.git",
-                "reference": "d3e530784347e1d6c59ac991a6695f05f4a91582"
+                "reference": "ac542a92e340fc2e8ce5314038d58f11eb8a3333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eerison/LexikJWTAuthenticationBundle/zipball/d3e530784347e1d6c59ac991a6695f05f4a91582",
-                "reference": "d3e530784347e1d6c59ac991a6695f05f4a91582",
+                "url": "https://api.github.com/repos/eerison/LexikJWTAuthenticationBundle/zipball/ac542a92e340fc2e8ce5314038d58f11eb8a3333",
+                "reference": "ac542a92e340fc2e8ce5314038d58f11eb8a3333",
                 "shasum": ""
             },
             "require": {
                 "ext-openssl": "*",
                 "lcobucci/jwt": "^3.4|^4.0",
                 "namshi/jose": "^7.2",
-                "php": ">=7.1",
+                "php": "^7.1 || ^8.0",
                 "symfony/config": "^4.4|^5.3|^6.0",
                 "symfony/dependency-injection": "^4.4|^5.3|^6.0",
                 "symfony/deprecation-contracts": "^2.4|^3.0",
@@ -2673,7 +2675,7 @@
                     "url": "https://tidelift.com/funding/github/packagist/lexik/jwt-authentication-bundle"
                 }
             ],
-            "time": "2021-12-06T21:19:30+00:00"
+            "time": "2021-12-06T21:43:32+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5734,12 +5736,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "883d353dca491e62880e0530ba074f3257d3c2f8"
+                "reference": "3c5ebdb62ddd278838ff22868196142c3f3a441a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/883d353dca491e62880e0530ba074f3257d3c2f8",
-                "reference": "883d353dca491e62880e0530ba074f3257d3c2f8",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/3c5ebdb62ddd278838ff22868196142c3f3a441a",
+                "reference": "3c5ebdb62ddd278838ff22868196142c3f3a441a",
                 "shasum": ""
             },
             "require": {
@@ -5880,7 +5882,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-05T20:33:52+00:00"
+            "time": "2021-12-06T20:24:20+00:00"
         },
         {
             "name": "symfony/http-client",
@@ -12533,12 +12535,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "3c38ab6b2a3ed9f78edfadda11f2fc981d5664fb"
+                "reference": "9eceaa84739382d903c3bc9960f9edbc6a9cbb40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/3c38ab6b2a3ed9f78edfadda11f2fc981d5664fb",
-                "reference": "3c38ab6b2a3ed9f78edfadda11f2fc981d5664fb",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/9eceaa84739382d903c3bc9960f9edbc6a9cbb40",
+                "reference": "9eceaa84739382d903c3bc9960f9edbc6a9cbb40",
                 "shasum": ""
             },
             "require": {
@@ -12587,7 +12589,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-20T10:42:26+00:00"
+            "time": "2021-12-06T22:12:49+00:00"
         },
         {
             "name": "spatie/pest-plugin-snapshots",
@@ -12732,12 +12734,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "8884d1641c00caf6824d2b16dad2a872e83fe659"
+                "reference": "586a51f839039dd295aeab1921d2aa49c85b7b2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/8884d1641c00caf6824d2b16dad2a872e83fe659",
-                "reference": "8884d1641c00caf6824d2b16dad2a872e83fe659",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/586a51f839039dd295aeab1921d2aa49c85b7b2b",
+                "reference": "586a51f839039dd295aeab1921d2aa49c85b7b2b",
                 "shasum": ""
             },
             "require": {
@@ -12781,7 +12783,7 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2021-12-03T03:46:47+00:00"
+            "time": "2021-12-06T21:39:54+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -13757,6 +13759,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "api-platform/core": 20,
         "lexik/jwt-authentication-bundle": 20,
         "stof/doctrine-extensions-bundle": 20
     },
