@@ -139,6 +139,9 @@ jobs:
       - name: Fixtures
         run: composer fixtures
 
+      - name: Validate Data base
+        run: bin/console doctrine:schema:validate
+
       - name: See files
         run: |
           pwd
