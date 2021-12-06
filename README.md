@@ -10,29 +10,29 @@
 
 ## Getting Started
 
-  ["My Profile"](https://www.myprofile.pro/) is a project to goal of help people to create your professional website and CV!
+  ["My Profile"](https://www.myprofile.pro/) has the goal to help people to create your own web profile and CV!
   
 ## Important
 
-this branch (master) has used for release the new version [3.0](https://github.com/eerison/myprofile/milestone/2)
-
-the main idea is use
-
-- api platform as API rest
-- nuxtJS as client
+this branch (master) has used to release the new version [3.0](https://github.com/eerison/myprofile/milestone/2)
 
 ## Setup
+we are assuming that you installed [docker](https://docs.docker.com/engine/install/ubuntu/) and [docker-compose](https://docs.docker.com/compose/install/) in your computer.
 
-install the applications and dependencies
+**Install the applications and dependencies**
+
 ```shell
 make install
 ```
-after run the command above you can access:
+Note: in case you are using windows please consider to use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) or run the commands from [Makefile](Makefile) manually one by one.
 
-- api: http://localhost:8000
-- client: http://localhost:3000
+**After run the command above you can access:**
 
-> if you want restart the project run `docker-composer up -d`
+> api: http://localhost:8000
+> 
+> client: http://localhost:3000
+
+after you install the application you can use `docker-compose` commands.
 
 [ci_api_badge]: https://github.com/eerison/myprofile/actions/workflows/ci_api.yml/badge.svg?branch=master
 [ci_api_link]: https://github.com/eerison/myprofile/actions/workflows/ci_api.yml?query=branch%3Amaster++
