@@ -1,5 +1,7 @@
 import { NuxtAxiosInstance } from '#app'
+// import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { ResourceCollectionInterface } from '~/resources/contracts/resource.collection.interface'
+import { ResourceInterface } from '~/resources/contracts/resource.interface'
 
 export abstract class AbstractRepository {
   private axios: NuxtAxiosInstance;
@@ -8,16 +10,15 @@ export abstract class AbstractRepository {
     this.axios = $axios
   }
 
-  all (): Promise<ResourceCollectionInterface> {
-    return this
-      .axios
-      .get(this.resource(), {
-        transformResponse: (response: string) => Object.assign(this.collectionInstance(), JSON.parse(response))
-      })
-      .then((response: object) => response.data)
+  public all (): Promise<ResourceCollectionInterface> {
+    return this.axios.get(this.resource())
   }
 
-  abstract resource(): string;
+  public save (resource: ResourceInterface) {
+    return this.axios.post(this.resource(), resource)
+  }
 
-  abstract collectionInstance(): ResourceCollectionInterface
+  protected abstract resource(): string;
+
+  protected abstract collectionInstance(): ResourceCollectionInterface
 }

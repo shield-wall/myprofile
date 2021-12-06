@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 services:
   api:
     image: nginx:1.17
@@ -6,7 +6,7 @@ services:
       - ./api:/app
       - ./api/.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - 8000:80
+      - "8000:80"
     links:
       - php
 
@@ -31,7 +31,7 @@ services:
     volumes:
       - ./api/.docker/database/data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   client:
     image: node:16.11
@@ -40,7 +40,7 @@ services:
       - ./client:/app
     command: yarn dev
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
       HOST: 0.0.0.0
       API_BASE_URL: http://localhost:8000

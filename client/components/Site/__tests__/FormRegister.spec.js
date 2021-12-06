@@ -7,7 +7,7 @@ function factory () {
       NuxtLink: RouterLinkStub
     },
     mocks: {
-      $t: key => key
+      $t: msg => msg
     }
   })
 }

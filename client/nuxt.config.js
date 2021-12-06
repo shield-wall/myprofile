@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   env: {
     FILE_PROVIDER: {
       transloadit: {
-        host: 'https://cdn.myprofile.pro',
+        // host: 'https://cdn.myprofile.pro',
+        host: 'http://localhost:3000',
         prefix: 'myprofile-prod'
       }
     },
@@ -46,7 +47,8 @@ export default defineNuxtConfig({
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/repositories.js'
+    '~/plugins/repositories.js',
+    '~/plugins/axios.interceptors.ts'
   ],
 
   axios: {

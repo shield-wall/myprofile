@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input component default props. 1`] = `<div><label class="label"><span class="label-text">baz</span></label> <input placeholder="foo" type="text" class="input input-bordered w-full"></div>`;
+exports[`Input component default props. 1`] = `
+<div><label class="label"><span class="label-text">baz</span></label> <input placeholder="foo" type="text" class="input input-bordered w-full">
+  <!---->
+</div>
+`;
 
-exports[`Input component props are working properly. 1`] = `<div><label class="label"><span class="label-text">baz</span></label> <input placeholder="foo" type="bar" class="input input-bordered w-full"></div>`;
+exports[`Input component props are working properly. 1`] = `
+<div><label class="label"><span class="label-text">baz</span></label> <input placeholder="foo" type="bar" class="input input-bordered w-full">
+  <!---->
+</div>
+`;

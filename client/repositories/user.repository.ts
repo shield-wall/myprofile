@@ -3,11 +3,11 @@ import { UserCollection } from '~/resources/user'
 import { ResourceCollectionInterface } from '~/resources/contracts/resource.collection.interface'
 
 export class UserRepository extends AbstractRepository {
-  resource (): string {
+  protected resource (): string {
     return '/users'
   }
 
-  collectionInstance (): ResourceCollectionInterface {
+  protected collectionInstance (): ResourceCollectionInterface {
     return new UserCollection()
   }
 }

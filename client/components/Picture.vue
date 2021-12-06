@@ -15,9 +15,7 @@ export default {
   props: {
     path: { type: String, required: true },
     alt: { type: String, required: true },
-    size: { type: String, required: true },
-    type: { type: String, required: true },
-    email: { type: String, required: true }
+    type: { type: String, required: false, default: 'profile' }
   },
   data () {
     return {
