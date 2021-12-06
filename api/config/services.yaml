@@ -44,11 +44,12 @@ services:
         - key: '%transloadit.key%'
         - secret: '%transloadit.secret%'
 
-    Sentry\Monolog\Handler:
-        arguments:
-            $hub: '@Sentry\State\HubInterface'
-            $level: !php/const Monolog\Logger::ERROR
-            $bubble: false
+# TODO enable sentry when guzzle fix compatibility with php 8.1 (guzzlehttp/psr7)
+#    Sentry\Monolog\Handler:
+#        arguments:
+#            $hub: '@Sentry\State\HubInterface'
+#            $level: !php/const Monolog\Logger::ERROR
+#            $bubble: false
 
     App\OpenApi\JwtDecorator:
         decorates: 'api_platform.openapi.factory'

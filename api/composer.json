@@ -4,17 +4,17 @@
     "type": "project",
     "description": "My profile",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
-        "api-platform/core": "2.6.6",
+        "api-platform/core": "2.6.x-dev",
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.11",
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
-        "lexik/jwt-authentication-bundle": "^2.12",
+        "lexik/jwt-authentication-bundle": "dev-fix-getInterator-for-php-8.1 as v2.14.2",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.0",
@@ -58,7 +58,7 @@
         "symfony/stopwatch": "^5.3",
         "symfony/web-profiler-bundle": "^5.3"
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -121,5 +121,11 @@
             "allow-contrib": false,
             "require": "5.4.*"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/eerison/LexikJWTAuthenticationBundle"
+        }
+    ]
 }
