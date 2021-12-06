@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd960a70e9ec61f80103825c3e413a73",
+    "content-hash": "e2f697996a5d61886b3da4b36e44c8af",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2551,16 +2551,16 @@
         },
         {
             "name": "lexik/jwt-authentication-bundle",
-            "version": "2.x-dev",
+            "version": "dev-fix-getInterator-for-php-8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lexik/LexikJWTAuthenticationBundle.git",
-                "reference": "41cd2596c77c8c20dac40ff9cdeba2645446cfb7"
+                "url": "https://github.com/eerison/LexikJWTAuthenticationBundle.git",
+                "reference": "d3e530784347e1d6c59ac991a6695f05f4a91582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexik/LexikJWTAuthenticationBundle/zipball/41cd2596c77c8c20dac40ff9cdeba2645446cfb7",
-                "reference": "41cd2596c77c8c20dac40ff9cdeba2645446cfb7",
+                "url": "https://api.github.com/repos/eerison/LexikJWTAuthenticationBundle/zipball/d3e530784347e1d6c59ac991a6695f05f4a91582",
+                "reference": "d3e530784347e1d6c59ac991a6695f05f4a91582",
                 "shasum": ""
             },
             "require": {
@@ -2597,7 +2597,6 @@
                 "gesdinet/jwt-refresh-token-bundle": "Implements a refresh token system over Json Web Tokens in Symfony",
                 "spomky-labs/lexik-jose-bridge": "Provides a JWT Token encoder with encryption support"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
@@ -2607,7 +2606,15 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "test": [
+                    "vendor/bin/simple-phpunit",
+                    "ENCODER=lcobucci vendor/bin/simple-phpunit",
+                    "ENCODER=lcobucci ALGORITHM=HS256 vendor/bin/simple-phpunit",
+                    "ENCODER=user_id_claim vendor/bin/simple-phpunit",
+                    "PROVIDER=lexik_jwt vendor/bin/simple-phpunit"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -2645,29 +2652,28 @@
             "description": "This bundle provides JWT authentication for your Symfony REST API",
             "homepage": "https://github.com/lexik/LexikJWTAuthenticationBundle",
             "keywords": [
-                "Authentication",
-                "JWS",
+                "Symfony",
                 "api",
+                "authentication",
                 "bundle",
+                "jws",
                 "jwt",
-                "rest",
-                "symfony"
+                "rest"
             ],
             "support": {
-                "issues": "https://github.com/lexik/LexikJWTAuthenticationBundle/issues",
-                "source": "https://github.com/lexik/LexikJWTAuthenticationBundle/tree/v2.14.2"
+                "source": "https://github.com/eerison/LexikJWTAuthenticationBundle/tree/fix-getInterator-for-php-8.1"
             },
             "funding": [
                 {
-                    "url": "https://github.com/chalasr",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/chalasr"
                 },
                 {
-                    "url": "https://tidelift.com/funding/github/packagist/lexik/jwt-authentication-bundle",
-                    "type": "tidelift"
+                    "type": "tidelift",
+                    "url": "https://tidelift.com/funding/github/packagist/lexik/jwt-authentication-bundle"
                 }
             ],
-            "time": "2021-12-05T17:35:05+00:00"
+            "time": "2021-12-06T21:19:30+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -13741,9 +13747,17 @@
             "time": "2021-11-29T08:51:28+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "lexik/jwt-authentication-bundle",
+            "version": "dev-fix-getInterator-for-php-8.1",
+            "alias": "v2.14.2",
+            "alias_normalized": "2.14.2.0"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "lexik/jwt-authentication-bundle": 20,
         "stof/doctrine-extensions-bundle": 20
     },
     "prefer-stable": false,
