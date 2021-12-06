@@ -3,6 +3,10 @@ import {UserCollection} from "~/resources/user";
 
 export default function ({ $axios }) {
   $axios.onRequest(request => {
+    if (request.data == undefined) {
+      return
+    }
+
     const json = {}
 
     Object.entries(request.data).map((row) => {
@@ -20,6 +24,10 @@ export default function ({ $axios }) {
   })
 
   $axios.onError(error => {
+    if (error.response == undefined) {
+      return
+    }
+
     const constraint = new ConstraintViolationListException(error.response.data)
 
     return Promise.reject(constraint)
