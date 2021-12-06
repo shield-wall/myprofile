@@ -42,7 +42,7 @@
       <div id="ask-for-login" class="text-center text-sm mt-2">
         <span>Já tem conta?</span>
         <NuxtLink to="/login" class="text-primary underline font-semibold">
-          Clique aqui!
+          {{ $t('register') }}
         </NuxtLink>
       </div>
     </CardBox>

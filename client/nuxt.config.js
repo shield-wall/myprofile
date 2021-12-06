@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
+import i18n from './locales/i18n'
 
 export default defineNuxtConfig({
   // TODO put host and prefix dynamically
@@ -73,8 +74,14 @@ export default defineNuxtConfig({
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    locales: ['en', 'pt-BR'],
+    defaultLocale: 'pt-BR',
+    vueI18n: i18n
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
