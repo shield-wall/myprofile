@@ -27,7 +27,8 @@ export default {
     },
     violations: {
       type: Array as () => ViolationInterface[],
-      require: true
+      require: true,
+      default: () => []
     }
   }
 }

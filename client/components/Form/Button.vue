@@ -14,7 +14,6 @@ export default {
   },
   computed: {
     computedClass (): string {
-      console.log('loading', this.loading)
       return this.loading ? 'loading' : ''
     }
   }

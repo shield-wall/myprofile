@@ -1,5 +1,5 @@
-// import { NuxtAxiosInstance } from '#app'
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { NuxtAxiosInstance } from '#app'
+// import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { ResourceCollectionInterface } from '~/resources/contracts/resource.collection.interface'
 import { ResourceInterface } from '~/resources/contracts/resource.interface'
 

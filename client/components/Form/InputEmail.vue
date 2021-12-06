@@ -6,11 +6,26 @@
     @input="$emit('input', $event)"
   />
 </template>
-<script>
+<script lang="ts">
 import Input from './Input'
+import { ViolationInterface } from '~/exception/contracts/violation.interface'
 
 export default {
   components: { Input },
-  props: ['violations']
+  props: {
+    label: {
+      type: String,
+      default: 'Senha'
+    },
+    id: {
+      type: String,
+      default: 'password'
+    },
+    violations: {
+      type: Array as () => ViolationInterface[],
+      require: true,
+      default: () => []
+    }
+  }
 }
 </script>

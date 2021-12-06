@@ -8,6 +8,6 @@ export class ConstraintViolationListException implements ViolationsInterface {
   }
 
   public getViolationsBy (property: string): ViolationInterface[] {
-    return this.violations.filter((violation: ViolationInterface) => violation.propertyPath == property)
+    return this.violations.filter((violation: ViolationInterface) => violation.propertyPath === property)
   }
 }

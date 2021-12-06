@@ -11,7 +11,7 @@
       @input="$emit('input', $event.target.value)"
     >
     <div class="tracking-wide text-red-500 text-xs mt-1 ml-1">
-      <div v-for="violation in violations">
+      <div v-for="violation in violations" :key="violation.message">
         {{ violation.message }}
       </div>
     </div>

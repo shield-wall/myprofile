@@ -35,12 +35,12 @@ export default {
   name: 'UserCard',
   components: { Picture },
   props: {
-    slug: { type: String, required: false },
-    firstName: { type: String, required: false },
-    lastName: { type: String, required: false },
-    role: { type: String, required: false },
-    profileImage: { type: String, required: false },
-    backgroundImage: { type: String, required: false }
+    slug: { type: String, required: false, default: '' },
+    firstName: { type: String, required: false, default: '' },
+    lastName: { type: String, required: false, default: '' },
+    role: { type: String, required: false, default: '' },
+    profileImage: { type: String, required: false, default: '' },
+    backgroundImage: { type: String, required: false, default: '' }
   }
 }
 </script>

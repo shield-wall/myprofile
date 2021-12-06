@@ -56,7 +56,7 @@ import Button from '../Form/Button'
 import Input from '../Form/Input'
 import CardBox from '~/components/Site/CardBox'
 import { ConstraintViolationListException } from '~/exception/constraint-violation-list.exception'
-import {UserRegister} from "~/resources/user.register";
+import { UserRegister } from '~/resources/user.register'
 export default {
   components: { CardBox, Input, Button, InputPassword, InputEmail },
   data (): object {
