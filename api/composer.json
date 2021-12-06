@@ -58,7 +58,7 @@
         "symfony/stopwatch": "^5.3",
         "symfony/web-profiler-bundle": "^5.3"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "config": {
         "preferred-install": {
             "*": "dist"
