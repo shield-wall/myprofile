@@ -17,7 +17,7 @@
             <NuxtLink to="/register">
               Registrar
             </NuxtLink>
-            <NuxtLink to="/resetpassword" class="ml-6">
+            <NuxtLink to="/reset-password" class="ml-6">
               Redefinir Senha
             </NuxtLink>
           </div>
