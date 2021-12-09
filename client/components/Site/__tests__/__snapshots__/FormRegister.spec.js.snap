@@ -2,6 +2,6 @@
 
 exports[`Form register component has a link to go to login page. 1`] = `
 <div id="ask-for-login" class="text-center text-sm mt-2"><span>Já tem conta?</span> <a class="text-primary underline font-semibold">
-    register
+    Entrar
   </a></div>
 `;

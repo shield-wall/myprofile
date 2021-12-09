@@ -36,13 +36,13 @@
       />
 
       <Button id="register-button" class="my-6" :loading="loading">
-        Cadastrar
+        {{ $t('register') }}
       </Button>
 
       <div id="ask-for-login" class="text-center text-sm mt-2">
         <span>Já tem conta?</span>
         <NuxtLink to="/login" class="text-primary underline font-semibold">
-          {{ $t('register') }}
+          Entrar
         </NuxtLink>
       </div>
     </CardBox>
