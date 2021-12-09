@@ -18,7 +18,7 @@
     "@nuxtjs/i18n": "^7.2.0",
     "core-js": "^3.8.3",
     "daisyui": "^1.14.0",
-    "nuxt-edge": "2.16.0-27290895.ab1c6cb4"
+    "nuxt-edge": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
