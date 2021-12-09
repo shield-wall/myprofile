@@ -41,7 +41,7 @@
 
       <div id="ask-for-login" class="text-center text-sm mt-2">
         <span>Já tem conta?</span>
-        <NuxtLink to="/login" class="text-primary underline font-semibold">
+        <NuxtLink :to="localePath('/login')" class="text-primary underline font-semibold">
           Entrar
         </NuxtLink>
       </div>

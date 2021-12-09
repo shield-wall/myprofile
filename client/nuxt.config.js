@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
-import i18n from './locales/i18n'
+import i18n from './i18n'
 
 export default defineNuxtConfig({
   // TODO put host and prefix dynamically
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   head: {
     title: 'My profile',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'pt_BR'
     },
     meta: [
       { charset: 'utf-8' },
@@ -78,8 +78,19 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n'
   ],
   i18n: {
-    locales: ['en', 'pt-BR'],
-    defaultLocale: 'pt-BR',
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        image: '~assets/images/flag/en.webp'
+      },
+      {
+        code: 'pt_BR',
+        name: 'Portuguese',
+        image: '~assets/images/flag/pt_BR.webp'
+      }
+    ],
+    defaultLocale: 'pt_BR',
     vueI18n: i18n
   },
 
