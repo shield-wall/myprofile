@@ -7,7 +7,8 @@ function factory () {
       NuxtLink: RouterLinkStub
     },
     mocks: {
-      $t: msg => msg
+      $t: msg => msg,
+      localePath: i => i
     }
   })
 }
