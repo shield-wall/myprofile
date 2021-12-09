@@ -1,5 +1,5 @@
 import { shallowMount, RouterLinkStub } from '@vue/test-utils'
-import Register from '../Register'
+import Register from '../register'
 
 function factory () {
   return shallowMount(Register, {
