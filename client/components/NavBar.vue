@@ -1,24 +1,31 @@
 <template>
-  <nav class="navbar flex text-neutral-content">
+  <nav class="flex navbar">
     <div class="flex-1">
       <Logo />
     </div>
 
-    <Language />
-    <div class="flex-none">
-      <NuxtLink to="/login">
-        <button class="btn btn-primary">
-          Entrar
-        </button>
-      </NuxtLink>
-    </div>
-    <div class="flex-none hidden md:block">
-      <div class="avatar">
-        <div class="rounded-full w-10 h-10 m-1">
-          <img src="https://i.pravatar.cc/500?img=32">
+    <div class="space-x-2">
+      <Language />
+
+      <div>
+        <NuxtLink to="/login">
+          <button class="btn btn-primary">
+            Entrar
+          </button>
+        </NuxtLink>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="avatar">
+          <div class="mask mask-hexagon bg-primary inline-block p-0.5">
+            <div class="w-12 mask mask-hexagon">
+              <img src="https://i.pravatar.cc/500?img=32">
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </nav>
 </template>
 <script>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    slug 2
     <h1>{{ this.slug }}</h1>
   </div>
 </template>

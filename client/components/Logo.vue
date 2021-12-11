@@ -1,5 +1,5 @@
 <template>
-  <div class="text-accent text-3xl font-bold">
+  <NuxtLink :to="localePath('/')" class="text-3xl font-bold">
     My Profile
-  </div>
+  </NuxtLink>
 </template>
