@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen max-h-md">
-    <NavBar />
+    <NavBar class="text-accent" />
 
     <div class="h-full-90 flex items-center justify-center">
       <div class="flex-1 text-center text-accent text-3xl md:text-5xl lg:text-5xl">
