@@ -1,12 +1,13 @@
 <template>
-  <figure>
-    <img
-      :class="type === 'profile' ? '-mt-3 w-24 mask mask mask-hexagon': ''"
-      :src="providerUrl + path"
-      :alt="alt"
-      @error="setFallbackImageUrl(type)"
-    >
-  </figure>
+  <div class="mask mask-hexagon bg-current inline-block p-1">
+    <figure class="mask mask-hexagon">
+      <img
+        :src="providerUrl + path"
+        :alt="alt"
+        @error="setFallbackImageUrl(type)"
+      >
+    </figure>
+  </div>
 </template>
 
 <script>

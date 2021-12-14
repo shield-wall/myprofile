@@ -7,8 +7,9 @@ export default defineNuxtConfig({
     FILE_PROVIDER: {
       transloadit: {
         // host: 'https://cdn.myprofile.pro',
-        host: 'http://localhost:3000',
-        prefix: 'myprofile-prod'
+        // prefix: 'myprofile-prod',
+        host: '/_nuxt/assets/images',
+        prefix: 'mock'
       }
     },
     IMAGE: {
