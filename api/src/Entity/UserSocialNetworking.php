@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(
  *     name="user_social_networking",
  *     uniqueConstraints={
- *          @ORM\UniqueConstraint(
+ * @ORM\UniqueConstraint(
  *              name="relations_idx",
  *              columns={"user_id", "social_networking_id"})
  *      }
