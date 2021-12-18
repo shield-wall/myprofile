@@ -26,8 +26,3 @@ it('can authenticate with email and password.', function (): void {
     get('social_networkings', ['auth_bearer' => $json['token']]);
     assertResponseIsSuccessful();
 });
-
-
-;
-
-//

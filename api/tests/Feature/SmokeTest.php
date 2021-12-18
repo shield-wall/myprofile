@@ -14,6 +14,6 @@ it('is returning a successful response', function (string $url): void {
     get($url);
     assertResponseIsSuccessful();
 })->with([
-        '/users',
-        fn() => findIriBy(User::class, ['email' => 'test@myprofile.pro']),
+    '/users',
+    fn() => findIriBy(User::class, ['email' => 'test@myprofile.pro']),
 ]);
