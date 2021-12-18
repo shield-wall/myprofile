@@ -60,26 +60,21 @@
     <rule ref="SlevomatCodingStandard.ControlStructures.UselessTernaryOperator"/>
 
     <rule ref="SlevomatCodingStandard.Functions.StrictCall"/>
-    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
     <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
-    <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowEmptyFunction"/>
     <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction"/>
     <rule ref="SlevomatCodingStandard.Functions.RequireMultiLineCall"/>
     <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
     <rule ref="SlevomatCodingStandard.Functions.DisallowTrailingCommaInDeclaration"/>
 
-    <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
     <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceSpacing"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UseSpacing"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
+
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
 
     <rule ref="SlevomatCodingStandard.Numbers"/>

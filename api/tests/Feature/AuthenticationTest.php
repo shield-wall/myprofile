@@ -2,7 +2,14 @@
 
 declare(strict_types=1);
 
-it('can authenticate with email and password.', static function (): void {
+use function Eerison\PestPluginApiPlatform\{
+    get,
+    post,
+    assertResponseIsSuccessful,
+    assertResourceIsUnauthorized
+};
+
+it('can authenticate with email and password.', function (): void {
     $response = post('/authentication_token', ['email' => 'admin@myprofile.pro', 'password' => '123456']);
     assertResponseIsSuccessful();
 

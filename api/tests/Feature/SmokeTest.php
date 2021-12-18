@@ -2,10 +2,18 @@
 
 declare(strict_types=1);
 
-it('is returning a successful response', static function (string $url): void {
+use App\Entity\User;
+
+use function Eerison\PestPluginApiPlatform\{
+    get,
+    findIriBy,
+    assertResponseIsSuccessful
+};
+
+it('is returning a successful response', function (string $url): void {
     get($url);
     assertResponseIsSuccessful();
 })->with([
-        '/users',
-        static fn () => findIriBy(User::class, ['email' => 'test@myprofile.pro']),
+    '/users',
+    fn() => findIriBy(User::class, ['email' => 'test@myprofile.pro']),
 ]);
