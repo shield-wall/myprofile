@@ -12,7 +12,7 @@ parameters:
 
 App\Entity\User:
   user{1..10}):
-    email: '<email()>'
+    email (unique): "test_<current()>\\@myprofile.pro"
     password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
     isVerified: '<boolean()>'
     slug: <slug()>

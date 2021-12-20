@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Logo renders properly 1`] = `
-<nuxtlink to="/" class="text-3xl font-bold">
+<a class="text-3xl font-bold">
   My Profile
-</nuxtlink>
+</a>
 `;

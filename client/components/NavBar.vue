@@ -17,11 +17,7 @@
 
       <div class="hidden md:block">
         <div class="avatar">
-          <div class="mask mask-hexagon bg-current inline-block p-0.5">
-            <div class="w-12 mask mask-hexagon">
-              <img src="https://i.pravatar.cc/500?img=32">
-            </div>
-          </div>
+          <ProfilePicture alt="User profile picture." path="/user.jpeg" class="w-12 p-0.5" />
         </div>
       </div>
     </div>
@@ -30,7 +26,8 @@
 <script>
 import Logo from './Logo'
 import Language from '~/components/Language'
+import ProfilePicture from '~/components/Image/ProfilePicture'
 export default {
-  components: { Language, Logo }
+  components: { ProfilePicture, Language, Logo }
 }
 </script>

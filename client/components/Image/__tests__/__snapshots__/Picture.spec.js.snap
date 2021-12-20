@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Picture component. is getting the correct image HTML. 1`] = `<img src="null/foo.webp" alt="foo alt text.">`;
