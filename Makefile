@@ -10,6 +10,7 @@ api-install:
 
 client-install:
 	docker-compose run --rm client yarn install
+	docker-compose run --rm client yarn avatar
 
 test:
 	docker-compose run --rm -e APP_ENV=test php composer test

@@ -1,8 +1,11 @@
-import { shallowMount } from '@vue/test-utils'
+import { RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Logo from '../Logo'
 
 function factory () {
   return shallowMount(Logo, {
+    stubs: {
+      NuxtLink: RouterLinkStub
+    },
     mocks: {
       localePath: i => i
     }

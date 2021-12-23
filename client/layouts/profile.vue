@@ -2,21 +2,15 @@
   <div>
     <NavBar class="p-5 shadow bg-accent text-primary" />
 
-    <div class="container space-y-4 mx-auto mt-10 md:p-0 md:flex md:space-x-10 md:space-y-0">
+    <div class="container space-y-4 mx-auto mt-10 md:p-0 md:flex md:space-x-10 md:space-y-0 px-2">
       <!--      col 1-->
       <div class="flex-1 md:w-1/4 space-y-4 md:space-y-10">
-        <div class="card shadow bg-white">
-          <div class="card-body">
-            <div class="flex flex-col items-center space-y-2">
-              <Picture alt="" path="/user.jpeg" type="profile" class="w-1/3" />
-
-              <Button class="btn-block btn-outline flex space-x-2">
-                <fa-icon :icon="faEye" />
-                <span>View public profile</span>
-              </Button>
-            </div>
-          </div>
-        </div>
+        <CardPicture cover="/background.jpg" profile="/user.jpeg">
+          <Button class="btn-block btn-outline">
+            <fa-icon :icon="faEye" />
+            <span>View public profile</span>
+          </Button>
+        </CardPicture>
 
         <div class="card shadow bg-white text-lg">
           <div class="card-body">
@@ -56,9 +50,9 @@
 import { faHome, faBrain, faEye } from '@fortawesome/free-solid-svg-icons'
 import NavBar from '../components/NavBar'
 import Button from '../components/Form/Button'
-import Picture from '../components/Picture'
+import CardPicture from '../components/Image/CardPicture'
 export default {
-  components: { Picture, Button, NavBar },
+  components: { CardPicture, Button, NavBar },
   computed: {
     faHome () {
       return faHome

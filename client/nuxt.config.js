@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       transloadit: {
         // host: 'https://cdn.myprofile.pro',
         // prefix: 'myprofile-prod',
-        host: '/_nuxt/assets/images',
+        host: 'assets/images',
         prefix: 'mock'
       }
     },

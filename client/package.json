@@ -8,7 +8,8 @@
     "generate": "nuxi generate",
     "prepare": "nuxi prepare",
     "lint": "eslint --ext .ts,.js,.vue . -c .eslintrc",
-    "test": "jest"
+    "test": "jest --detectOpenHandles",
+    "avatar": "node assets/images/mock/generate-avatars.ts"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15",
@@ -33,6 +34,7 @@
     "@vue/test-utils": "^1.2.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.0",
+    "dicebear": "^4.10.1",
     "eslint": "^7.0",
     "jest": "^26.0",
     "jest-serializer-vue": "^2.0",
@@ -48,5 +50,9 @@
     "plugins": [
       "@babel/plugin-transform-runtime"
     ]
+  },
+  "browser":{
+    "child_process": false,
+    "fs": false
   }
 }

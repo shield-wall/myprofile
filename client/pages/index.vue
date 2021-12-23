@@ -15,10 +15,11 @@
         </p>
 
         <div v-else>
-          <div class="flex flex-wrap justify-center ">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             <UserCard
-              v-for="(user, index) in users.items().slice(0,12)"
+              v-for="(user, index) in users.items().sort(() => Math.random() - 0.5).slice(0,12)"
               :key="`user-${index}`"
+              :index="index"
               :first-name="user.firstName"
               :last-name="user.lastName"
               :profile-image="user.profileImage"
@@ -37,7 +38,7 @@
 <script>
 import Herosite from '../components/Site/Hero'
 import Footer from '../components/Footer'
-import UserCard from '../components/UserCard'
+import UserCard from '../components/Image/UserCardPicture'
 import Loader from '../components/Loader'
 export default {
   components: { Loader, UserCard, Herosite, Footer },
