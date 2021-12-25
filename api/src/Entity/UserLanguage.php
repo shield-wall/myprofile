@@ -7,12 +7,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity
- */
-class UserLanguage implements
-    EntityInterface,
-    HasUserInterface
+#[ORM\Entity]
+class UserLanguage implements EntityInterface, HasUserInterface
 {
     public const LEVELS = [
         'BEGINNER' => 'Beginner',
@@ -25,29 +21,25 @@ class UserLanguage implements
         'NATIVE' => 'Native',
     ];
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private int $id;
 
     /**
      * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
      */
+    #[ORM\Column(type: 'string', length: 50)]
     private string $name;
 
     /**
      * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
      */
+    #[ORM\Column(type: 'string', length: 50)]
     private string $level;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="userLanguages")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]
+    #[ORM\JoinColumn(nullable: false)]
     private UserInterface $user;
 
     public function getId(): int

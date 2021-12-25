@@ -8,65 +8,52 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
 
-/**
- * @ORM\Table(name="education")
- * @ORM\Entity
- */
-class Education implements
-    EntityInterface,
-    HasUserInterface
+#[ORM\Table(name: 'education')]
+#[ORM\Entity]
+class Education implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected int $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
-     */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     protected UserInterface $user;
 
     /**
      * @Assert\Length(max="200")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=200)
      *
      */
+    #[ORM\Column(type: 'string', length: 200)]
     protected string $title;
 
     /**
      * @Assert\Length(max="200")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=200)
      *
      */
+    #[ORM\Column(type: 'string', length: 200)]
     protected string $institution;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="text")
      *
      */
+    #[ORM\Column(type: 'text')]
     protected string $description;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
      *
      */
+    #[ORM\Column(type: 'date')]
     protected DateTimeInterface $periodStart;
 
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     *
-     */
+    #[ORM\Column(type: 'date', nullable: true)]
     protected ?DateTimeInterface $periodEnd = null;
 
     /**

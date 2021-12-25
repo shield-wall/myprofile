@@ -282,6 +282,9 @@
     "phpstan/phpdoc-parser": {
         "version": "0.5.5"
     },
+    "phpstan/phpstan": {
+        "version": "1.2.0"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.6"
     },
@@ -337,6 +340,9 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
+    },
+    "rector/rector": {
+        "version": "0.12.9"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"

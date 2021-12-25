@@ -13,34 +13,28 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     attributes: ["security" => "is_granted('ROLE_ADMIN')"],
 )]
-/**
- * @ORM\Table(name="social_networking")
- * @ORM\Entity
- */
+#[ORM\Table(name: 'social_networking')]
+#[ORM\Entity]
 class SocialNetworking
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected int $id;
 
     /**
      * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
      */
+    #[ORM\Column(type: 'string', length: 50)]
     protected string $name;
 
     /**
      * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
      */
+    #[ORM\Column(type: 'string', length: 50)]
     protected string $icon;
 
-    /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="socialNetworking")
-     */
+    #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
     public function __construct()

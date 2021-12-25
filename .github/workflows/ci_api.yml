@@ -97,6 +97,9 @@ jobs:
       - name: Symfony Containers
         run: composer lint_container
 
+      - name: Rector php
+        run: vendor/bin/rector process src --dry-run
+
   test:
     name: Tests
     runs-on: ubuntu-latest

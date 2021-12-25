@@ -8,71 +8,49 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
 
-/**
- * Certification
- *
- * @ORM\Table(name="certification")
- * @ORM\Entity
- */
+#[ORM\Table(name: 'certification')]
+#[ORM\Entity]
 class Certification implements
     EntityInterface,
     HasUserInterface
 {
     use HasUserTrait;
 
-    /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     */
+    #[ORM\Id]
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
     protected int $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'certifications')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected UserInterface $user;
 
-    /**
-     * @Assert\Length(max="100")
-     * @ORM\Column(name="title", type="string", length=100)
-     *
-     */
+    #[Assert\Length(max: 100)]
+    #[ORM\Column(name: 'title', type: 'string', length: 100)]
     protected string $title;
 
-    /**
-     * @ORM\Column(name="period_start", type="date")
-     *
-     */
+    #[ORM\Column(name: 'period_start', type: 'date')]
     protected DateTimeInterface $periodStart;
 
-    /**
-     *
-     * @ORM\Column(name="period_end", type="date", nullable=true)
-     */
+    #[ORM\Column(name: 'period_end', type: 'date', nullable: true)]
     protected ?DateTimeInterface $periodEnd = null;
 
-    /**
-     * @Assert\Length(max="100")
-     * @ORM\Column(name="institution", type="string", length=100)
-     *
-     */
+    #[Assert\Length(max: 100)]
+    #[ORM\Column(name: 'institution', type: 'string', length: 100)]
     protected string $institution;
 
     /**
      * @Assert\Length(max="500")
-     * @ORM\Column(name="link", type="string", length=500, nullable=true)
      *
      */
+    #[ORM\Column(name: 'link', type: 'string', length: 500, nullable: true)]
     protected ?string $link = null;
 
     /**
      * @Assert\Length(max="255")
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      *
      */
+    #[ORM\Column(name: 'image', type: 'string', length: 255, nullable: true)]
     protected ?string $image = null;
 
     /**

@@ -8,62 +8,51 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
 
-/**
- * @ORM\Table(name="experience")
- * @ORM\Entity
- */
+#[ORM\Table(name: 'experience')]
+#[ORM\Entity]
 class Experience
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected int $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="experiences")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
-     */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     protected User $user;
 
     /**
      * @Assert\Length(max="150")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=150)
      *
      */
+    #[ORM\Column(type: 'string', length: 150)]
     protected string $title;
 
     /**
      * @Assert\Length(max="50")
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=50)
      *
      */
+    #[ORM\Column(type: 'string', length: 50)]
     protected string $company;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="text")
      *
      * @var $description
      */
+    #[ORM\Column(type: 'text')]
     protected string $description;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="date")
      *
      */
+    #[ORM\Column(type: 'date')]
     protected DateTimeInterface $periodStart;
 
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     *
-     */
+    #[ORM\Column(type: 'date', nullable: true)]
     protected ?DateTimeInterface $periodEnd = null;
 
     /**
