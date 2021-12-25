@@ -9,7 +9,6 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "api-platform/core": "2.6.x-dev",
-        "composer/package-versions-deprecated": "^1.11",
         "doctrine/annotations": "^1.11",
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
