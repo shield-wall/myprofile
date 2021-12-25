@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              columns={"user_id", "social_networking_id"})
  *      }
  * )
- * @ORM\Entity(repositoryClass="App\Repository\UserSocialNetworkingRepository")
+ * @ORM\Entity
  * @UniqueEntity(
  *     fields={"user", "socialNetworking"},
  *     errorPath="socialNetworking"

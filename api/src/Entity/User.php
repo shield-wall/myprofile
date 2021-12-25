@@ -35,7 +35,7 @@ use DateTimeInterface;
 
 /**
  *
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
 #[UniqueEntity("slug")]
