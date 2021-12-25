@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use DateTimeInterface;
+use Stringable;
 
 #[ApiResource(
     collectionOperations: [
@@ -33,43 +34,32 @@ use DateTimeInterface;
     normalizationContext: ['groups' => ['anonymous']],
 )]
 
-/**
- *
- * @ORM\Entity
- * @ORM\Table(name="fos_user")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'fos_user')]
 #[UniqueEntity("slug")]
 #[UniqueEntity("email")]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    #[ORM\Id]
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
     #[Groups(['anonymous', 'user:read', 'admin:read'])]
     protected int $id;
 
-    /**
-     * @ORM\Column(type="string", length=200, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 200, unique: true)]
     #[Assert\Length(max:200)]
     #[Assert\Email]
     #[Assert\NotBlank]
     #[Groups(['anonymous:item', 'user', 'admin'])]
     protected string $email;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     #[Assert\Length(max:50)]
     #[Assert\NotBlank]
     #[Groups(['anonymous', 'user', 'admin'])]
     protected string | null $firstName;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     #[Assert\Length(max:50)]
     #[Assert\NotBlank]
     #[Groups(['anonymous', 'user', 'admin'])]
@@ -77,126 +67,86 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
-     * @ORM\Column(type="string", length=50, unique=true)
      */
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
     #[Assert\Length(max:50)]
     #[Groups(['anonymous', 'user', 'admin'])]
     protected string $slug;
 
-    /**
-     * @ORM\Column(type="text", length=250, nullable=true)
-     */
+    #[ORM\Column(type: 'text', length: 250, nullable: true)]
     #[Assert\Length(max:250)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $headline;
 
-    /**
-     * This field is used in user`s profile
-     *
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
     #[Assert\Length(max:100)]
     #[Groups(['anonymous', 'user', 'admin'])]
     protected string | null $role;
 
-    /**
-     * @ORM\Column(type="string",length=20, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $phone;
 
-    /**
-     * @ORM\Column(type="string",length=20, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
     #[Assert\Length(max:20)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $cell;
 
-    /**
-     * @ORM\Column(type="text", length=350, nullable=true)
-     */
+    #[ORM\Column(type: 'text', length: 350, nullable: true)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $summary;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $country;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $state;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $city;
 
-    /**
-     * @ORM\Column(type="string", length=6, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 6, nullable: true)]
     #[Assert\Choice(['male', 'female'])]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $gender;
 
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
+    #[ORM\Column(type: 'date', nullable: true)]
     #[Groups(['user:item', 'admin:item'])]
     protected DateTimeInterface | null $birthday;
 
-    /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'UserSocialNetworking')]
     protected Collection $userSocialNetworks;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Education", mappedBy="user")
-     * @ORM\OrderBy({"periodStart" = "DESC"})
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Education')]
+    #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $educations;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Experience", mappedBy="user")
-     * @ORM\OrderBy({"periodStart" = "DESC"})
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Experience')]
+    #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $experiences;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Skill", mappedBy="user")
-     * @ORM\OrderBy({"priority" = "ASC"})
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Skill')]
+    #[ORM\OrderBy(['priority' => 'ASC'])]
     protected Collection $skills;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Certification", mappedBy="user")
-     * @ORM\OrderBy({"periodStart" = "DESC"})
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Certification')]
+    #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $certifications;
 
-    /**
-     * @ORM\Column(type="string", length=200, nullable=true)
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'UserLanguage')]
+    protected Collection $userLanguages;
+
+    #[ORM\Column(type: 'string', length: 200, nullable: true)]
     #[Groups(['anonymous:item:read', 'user:item', 'admin:item'])]
     protected string | null $keyWords;
 
-    /**
-     * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
-     */
-    protected Collection $userLanguages;
-
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: 'json')]
     protected array | null $roles = [];
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     protected string $password;
 
     #[Assert\NotBlank(groups: ['postValidation'])]
@@ -205,28 +155,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['anonymous:item', 'user', 'admin'])]
     protected string | null $plainPassword;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    #[ORM\Column(type: 'string', nullable: true)]
     protected string | null $salt = null;
 
-    /**
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on: 'create')]
     #[Groups(['anonymous:item:read'])]
     protected DateTimeInterface $createdAt;
 
-    /**
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Gedmo\Timestampable(on: 'update')]
     #[Groups(['anonymous:item:read'])]
     protected DateTimeInterface | null $updatedAt;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: 'boolean')]
     #[Groups(['read', 'user:item', 'admin:item'])]
     protected bool $isVerified = false;
 
@@ -293,8 +235,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->educations;
     }
 
-    /**
-     */
     public function addEducations(Education $education): User
     {
         if (!$this->educations->contains($education)) {
@@ -309,8 +249,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->experiences;
     }
 
-    /**
-     */
     public function addExperiences(Experience $experience): User
     {
         if (!$this->experiences->contains($experience)) {
@@ -325,8 +263,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->skills;
     }
 
-    /**
-     */
     public function addSkills(Skill $skill): User
     {
         if (!$this->skills->contains($skill)) {
@@ -341,8 +277,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->certifications;
     }
 
-    /**
-     */
     public function addCertifications(Certification $certification): User
     {
         if (!$this->certifications->contains($certification)) {
@@ -504,27 +438,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return sprintf('users/%s/curriculum/', md5($this->getEmail()));
     }
 
-    /**
-     * @Groups({"anonymous", "user:read", "admin:read"})
-     *
-     */
+    #[Groups(['anonymous', 'user:read', 'admin:read'])]
     public function getProfileImage(): string
     {
         return sprintf('/users/%s/profile.webp', md5($this->getEmail()));
     }
 
-    /**
-     * @Groups({"anonymous", "user:read", "admin:read"})
-     *
-     */
+    #[Groups(['anonymous', 'user:read', 'admin:read'])]
     public function getBackgroundImage(): string
     {
         return sprintf('/users/%s/background.webp', md5($this->getEmail()));
     }
 
-    /**
-     * @return Collection|array<UserLanguage>
-     */
     public function getUserLanguages(): Collection
     {
         return $this->userLanguages;
