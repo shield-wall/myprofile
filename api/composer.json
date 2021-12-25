@@ -19,7 +19,7 @@
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.0",
         "sentry/sentry-symfony": "^4.0",
-        "stof/doctrine-extensions-bundle": "dev-master",
+        "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/asset": "^5.2",
         "symfony/console": "^v5.2",
         "symfony/dotenv": "^v5.2",
@@ -38,8 +38,7 @@
         "symfony/validator": "^v5.2",
         "symfony/yaml": "^v5.2",
         "symfonycasts/reset-password-bundle": "^1.2",
-        "symfonycasts/verify-email-bundle": "^1.2",
-        "transloadit/php-sdk": "^2.1"
+        "symfonycasts/verify-email-bundle": "^1.2"
     },
     "require-dev": {
         "eerison/pest-plugin-api-platform": "^1.0",
@@ -58,7 +57,7 @@
         "symfony/stopwatch": "^5.3",
         "symfony/web-profiler-bundle": "^5.3"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -84,8 +83,7 @@
         "symfony/polyfill-php56": "*"
     },
     "conflict": {
-        "symfony/symfony": "*",
-        "symfony/dependency-injection": "5.3.7"
+        "symfony/symfony": "*"
     },
     "scripts": {
         "auto-scripts": {

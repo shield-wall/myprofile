@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\ResetPasswordRequestRepository;
 use Doctrine\ORM\Mapping as ORM;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
 use DateTimeInterface;
 
 /**
- * @ORM\Entity(repositoryClass=ResetPasswordRequestRepository::class)
+ * @ORM\Entity
  */
 class ResetPasswordRequest implements ResetPasswordRequestInterface
 {

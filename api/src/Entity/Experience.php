@@ -10,7 +10,7 @@ use DateTimeInterface;
 
 /**
  * @ORM\Table(name="experience")
- * @ORM\Entity(repositoryClass="App\Repository\ExperienceRepository")
+ * @ORM\Entity
  */
 class Experience
 {

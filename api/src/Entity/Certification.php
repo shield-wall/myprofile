@@ -12,7 +12,7 @@ use DateTimeInterface;
  * Certification
  *
  * @ORM\Table(name="certification")
- * @ORM\Entity(repositoryClass="App\Repository\CertificationRepository")
+ * @ORM\Entity
  */
 class Certification implements
     EntityInterface,

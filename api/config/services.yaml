@@ -6,18 +6,6 @@
 parameters:
     locale: pt_BR
     locales: ['en', 'pt_BR']
-    transloadit.key: '%env(TRANSLOADIT_KEY)%'
-    transloadit.secret: '%env(TRANSLOADIT_SECRET)%'
-    transloadit.template_id.curriculum: '%env(TRANSLOADIT_TEMPLATE_ID_CURRICULUM)%'
-    transloadit.template_id.image.profile: '%env(TRANSLOADIT_TEMPLATE_ID_IMAGE_PROFILE)%'
-    transloadit.template_id.image.background: '%env(TRANSLOADIT_TEMPLATE_ID_IMAGE_BACKGROUND)%'
-    transloadit.credentials: '%env(TRANSLOADIT_CREDENTIALS)%'
-    transloadit.delivery: '%env(TRANSLOADIT_DELIVERY)%'
-    transloadit.tmp: '%kernel.project_dir%/var/tmp'
-
-    bucket.name: '%env(BUCKET_NAME)%'
-    bucket.dns: '%env(BUCKET_DNS)%'
-    cdn.dns: '%env(CDN_DNS)%'
     mailer.from: '%env(MAILER_FROM)%'
     mailer.from_name: '%env(MAILER_FROM_NAME)%'
 
@@ -39,10 +27,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
-
-    transloadit\Transloadit:
-        - key: '%transloadit.key%'
-        - secret: '%transloadit.secret%'
 
     Sentry\Monolog\Handler:
         arguments:
