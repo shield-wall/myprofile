@@ -37,7 +37,7 @@ class SocialNetworking implements Stringable
     protected string $icon;
 
     /**
-     * @var UserSocialNetworking[]|Collection<int, UserSocialNetworking>
+     * @var array<UserSocialNetworking>|Collection<int, UserSocialNetworking>
      */
     #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
