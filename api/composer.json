@@ -111,6 +111,12 @@
         "lint:container": "php bin/console lint:container",
         "lint:rector": "vendor/bin/rector process --dry-run --no-progress-bar --ansi",
         "lint:db:validate": "php bin/console doctrine:schema:validate",
+        "lint": [
+            "@lint:phpcs",
+            "@lint:container",
+            "@lint:rector",
+            "lint:db:validate"
+        ],
         "jwt": "./.docker/jwt.sh"
     },
     "extra": {

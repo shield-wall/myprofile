@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 class UserLanguage implements EntityInterface, HasUserInterface
 {
-    public final const LEVELS = [
+    final public const LEVELS = [
         'BEGINNER' => 'Beginner',
         'ELEMENTARY' => 'Elementary',
         'PRE-INTERMEDIATE' => 'Pre-intermediate',
