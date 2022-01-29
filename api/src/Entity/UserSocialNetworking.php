@@ -28,11 +28,8 @@ class UserSocialNetworking
     #[ORM\JoinColumn(name: 'social_networking_id', nullable: false)]
     protected ?SocialNetworking $socialNetworking = null;
 
-    /**
-     * @Assert\Length(max="200")
-     *
-     */
     #[ORM\Column(type: Types::STRING, length: 200)]
+    #[Assert\Length(max: 200)]
     protected string $link;
 
     public function getId(): int

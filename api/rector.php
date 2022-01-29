@@ -5,9 +5,12 @@ declare(strict_types=1);
 use Rector\Core\Configuration\Option;
 use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Php80\Rector\Class_\DoctrineAnnotationClassToAttributeRector;
+use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Php74\Rector\Property\TypedPropertyRector;
+use Rector\Symfony\Set\SymfonyLevelSetList;
+use Rector\Symfony\Set\SymfonySetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -19,6 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
     $parameters->set(Option::SKIP, [
         __DIR__ . '/src/OpenApi',
+        RenameMethodRector::class,
     ]);
 
         // Define what rule sets will be applied
@@ -28,8 +32,19 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::CODE_QUALITY);
     $containerConfigurator->import(SetList::DEAD_CODE);
     $containerConfigurator->import(SetList::EARLY_RETURN);
-    $containerConfigurator->import(DoctrineSetList::DOCTRINE_CODE_QUALITY);
     $containerConfigurator->import(DoctrineSetList::DOCTRINE_ORM_29);
+    $containerConfigurator->import(DoctrineSetList::DOCTRINE_CODE_QUALITY);
+    $containerConfigurator->import(SymfonyLevelSetList::UP_TO_SYMFONY_54);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_50);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_52);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_53);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_54);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_CODE_QUALITY);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION);
+    $containerConfigurator->import(SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_52_VALIDATOR_ATTRIBUTES);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_50_TYPES);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_STRICT);
 
      $services = $containerConfigurator->services();
      $services->set(TypedPropertyRector::class);

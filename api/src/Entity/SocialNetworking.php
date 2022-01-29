@@ -24,16 +24,12 @@ class SocialNetworking implements Stringable
     #[ORM\GeneratedValue]
     protected int $id;
 
-    /**
-     * @Assert\Length(max="50")
-     */
     #[ORM\Column(type: Types::STRING, length: 50)]
+    #[Assert\Length(max: 50)]
     protected string $name;
 
-    /**
-     * @Assert\Length(max="50")
-     */
     #[ORM\Column(type: Types::STRING, length: 50)]
+    #[Assert\Length(max: 50)]
     protected string $icon;
 
     /**

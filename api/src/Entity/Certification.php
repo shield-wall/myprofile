@@ -40,18 +40,12 @@ class Certification implements
     #[ORM\Column(name: 'institution', type: Types::STRING, length: 100)]
     protected string $institution;
 
-    /**
-     * @Assert\Length(max="500")
-     *
-     */
     #[ORM\Column(name: 'link', type: Types::STRING, length: 500, nullable: true)]
+    #[Assert\Length(max: 500)]
     protected ?string $link = null;
 
-    /**
-     * @Assert\Length(max="255")
-     *
-     */
     #[ORM\Column(name: 'image', type: Types::STRING, length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
     protected ?string $image = null;
 
     /**
