@@ -1,4 +1,6 @@
 install:
+	docker-compose pull
+
 	make client-install
 	make api-install
 

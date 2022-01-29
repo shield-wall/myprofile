@@ -23,11 +23,11 @@ const usersEmail = [
 ]
 const userQuantity = usersEmail.length
 
-function md5 (value) {
+function md5 (value: string) {
   return crypto.createHash('md5').update(value).digest('hex')
 }
 
-function yarn (options) {
+function yarn (options: string) {
   childProcess.execSync(`yarn ${options}`, { stdio: 'inherit' })
 }
 
