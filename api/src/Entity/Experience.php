@@ -22,35 +22,25 @@ class Experience
     #[ORM\JoinColumn(name: 'user_id')]
     protected User $user;
 
-    /**
-     * @Assert\Length(max="150")
-     * @Assert\NotBlank()
-     *
-     */
     #[ORM\Column(type: Types::STRING, length: 150)]
+    #[Assert\Length(max: 150)]
+    #[Assert\NotBlank]
     protected string $title;
 
-    /**
-     * @Assert\Length(max="50")
-     * @Assert\NotBlank()
-     *
-     */
     #[ORM\Column(type: Types::STRING, length: 50)]
+    #[Assert\Length(max: 50)]
+    #[Assert\NotBlank]
     protected string $company;
 
     /**
-     * @Assert\NotBlank()
-     *
      * @var $description
      */
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
     protected string $description;
 
-    /**
-     * @Assert\NotBlank()
-     *
-     */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
     protected DateTimeInterface $periodStart;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

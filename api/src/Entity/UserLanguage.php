@@ -27,16 +27,12 @@ class UserLanguage implements EntityInterface, HasUserInterface
     #[ORM\Column(type: Types::INTEGER)]
     private int $id;
 
-    /**
-     * @Assert\Length(max="50")
-     */
     #[ORM\Column(type: Types::STRING, length: 50)]
+    #[Assert\Length(max: 50)]
     private string $name;
 
-    /**
-     * @Assert\Length(max="50")
-     */
     #[ORM\Column(type: Types::STRING, length: 50)]
+    #[Assert\Length(max: 50)]
     private string $level;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]

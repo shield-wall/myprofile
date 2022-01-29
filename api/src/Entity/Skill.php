@@ -21,16 +21,12 @@ class Skill
     #[ORM\JoinColumn(name: 'user_id')]
     protected UserInterface $user;
 
-    /**
-     * @Assert\Length(max="50")
-     */
     #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
+    #[Assert\Length(max: 50)]
     protected string $name;
 
-    /**
-     * @Assert\Range(min = 0, max = 100)
-     */
     #[ORM\Column(name: 'level_experience', type: Types::SMALLINT)]
+    #[Assert\Range(min: 0, max: 100)]
     protected int $levelExperience;
 
     #[ORM\Column(name: 'priority', type: Types::SMALLINT, nullable: true)]
