@@ -9,7 +9,7 @@
     "prepare": "nuxi prepare",
     "lint": "eslint --ext .ts,.js,.vue . -c .eslintrc",
     "test": "jest --detectOpenHandles",
-    "avatar": "node assets/images/mock/generate-avatars.ts"
+    "avatar": "yarn global add ts-node && ts-node assets/images/mock/generate-avatars.ts"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15",
@@ -19,7 +19,7 @@
     "@nuxtjs/i18n": "^7.2.0",
     "core-js": "^3.8.3",
     "daisyui": "^1.14.0",
-    "nuxt-edge": "latest"
+    "nuxt-edge": "^2.16.0-27358576.777a4b7f"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -51,7 +51,7 @@
       "@babel/plugin-transform-runtime"
     ]
   },
-  "browser":{
+  "browser": {
     "child_process": false,
     "fs": false
   }
