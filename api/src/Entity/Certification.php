@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
@@ -26,31 +27,31 @@ class Certification implements
     protected UserInterface $user;
 
     #[Assert\Length(max: 100)]
-    #[ORM\Column(name: 'title', type: 'string', length: 100)]
+    #[ORM\Column(name: 'title', type: Types::STRING, length: 100)]
     protected string $title;
 
-    #[ORM\Column(name: 'period_start', type: 'date')]
+    #[ORM\Column(name: 'period_start', type: Types::DATE_MUTABLE)]
     protected DateTimeInterface $periodStart;
 
-    #[ORM\Column(name: 'period_end', type: 'date', nullable: true)]
+    #[ORM\Column(name: 'period_end', type: Types::DATE_MUTABLE, nullable: true)]
     protected ?DateTimeInterface $periodEnd = null;
 
     #[Assert\Length(max: 100)]
-    #[ORM\Column(name: 'institution', type: 'string', length: 100)]
+    #[ORM\Column(name: 'institution', type: Types::STRING, length: 100)]
     protected string $institution;
 
     /**
      * @Assert\Length(max="500")
      *
      */
-    #[ORM\Column(name: 'link', type: 'string', length: 500, nullable: true)]
+    #[ORM\Column(name: 'link', type: Types::STRING, length: 500, nullable: true)]
     protected ?string $link = null;
 
     /**
      * @Assert\Length(max="255")
      *
      */
-    #[ORM\Column(name: 'image', type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(name: 'image', type: Types::STRING, length: 255, nullable: true)]
     protected ?string $image = null;
 
     /**

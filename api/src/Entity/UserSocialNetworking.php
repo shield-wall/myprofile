@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,12 +16,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class UserSocialNetworking
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     protected int $id;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userSocialNetworks')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected User $user;
 
     #[ORM\ManyToOne(targetEntity: SocialNetworking::class, fetch: 'EAGER', inversedBy: 'userSocialNetworks')]
@@ -31,7 +32,7 @@ class UserSocialNetworking
      * @Assert\Length(max="200")
      *
      */
-    #[ORM\Column(type: 'string', length: 200)]
+    #[ORM\Column(type: Types::STRING, length: 200)]
     protected string $link;
 
     public function getId(): int

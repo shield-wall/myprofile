@@ -106,9 +106,11 @@
         "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
         "test": "vendor/bin/pest --parallel --coverage --min=11",
         "assets": "bin/console assets:install",
-        "lint_phpcs": "vendor/bin/phpcs",
-        "lint_phpcs_fix": "vendor/bin/phpcbf",
-        "lint_container": "php bin/console lint:container",
+        "lint:phpcs": "vendor/bin/phpcs",
+        "lint:phpcs:fix": "vendor/bin/phpcbf",
+        "lint:container": "php bin/console lint:container",
+        "lint:rector": "vendor/bin/rector process --dry-run --no-progress-bar --ansi",
+        "lint:db:validate": "php bin/console doctrine:schema:validate",
         "jwt": "./.docker/jwt.sh"
     },
     "extra": {

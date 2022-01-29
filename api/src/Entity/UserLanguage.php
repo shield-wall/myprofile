@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class UserLanguage implements EntityInterface, HasUserInterface
 {
-    public const LEVELS = [
+    public final const LEVELS = [
         'BEGINNER' => 'Beginner',
         'ELEMENTARY' => 'Elementary',
         'PRE-INTERMEDIATE' => 'Pre-intermediate',
@@ -23,19 +24,19 @@ class UserLanguage implements EntityInterface, HasUserInterface
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: Types::INTEGER)]
     private int $id;
 
     /**
      * @Assert\Length(max="50")
      */
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     private string $name;
 
     /**
      * @Assert\Length(max="50")
      */
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     private string $level;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]

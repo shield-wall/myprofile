@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
@@ -15,12 +16,12 @@ class Education implements EntityInterface, HasUserInterface
     use HasUserTrait;
 
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     protected int $id;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected UserInterface $user;
 
     /**
@@ -28,7 +29,7 @@ class Education implements EntityInterface, HasUserInterface
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'string', length: 200)]
+    #[ORM\Column(type: Types::STRING, length: 200)]
     protected string $title;
 
     /**
@@ -36,24 +37,24 @@ class Education implements EntityInterface, HasUserInterface
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'string', length: 200)]
+    #[ORM\Column(type: Types::STRING, length: 200)]
     protected string $institution;
 
     /**
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: Types::TEXT)]
     protected string $description;
 
     /**
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected DateTimeInterface $periodStart;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     protected ?DateTimeInterface $periodEnd = null;
 
     /**

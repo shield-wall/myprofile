@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,31 +12,31 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 class Skill
 {
-    #[ORM\Column(name: 'id', type: 'integer')]
+    #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\GeneratedValue]
     protected int $id;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected UserInterface $user;
 
     /**
      * @Assert\Length(max="50")
      */
-    #[ORM\Column(name: 'name', type: 'string', length: 50)]
+    #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
     protected string $name;
 
     /**
      * @Assert\Range(min = 0, max = 100)
      */
-    #[ORM\Column(name: 'level_experience', type: 'smallint')]
+    #[ORM\Column(name: 'level_experience', type: Types::SMALLINT)]
     protected int $levelExperience;
 
-    #[ORM\Column(name: 'priority', type: 'smallint', nullable: true)]
+    #[ORM\Column(name: 'priority', type: Types::SMALLINT, nullable: true)]
     protected int $priority;
 
-    #[ORM\Column(name: 'status', type: 'boolean')]
+    #[ORM\Column(name: 'status', type: Types::BOOLEAN)]
     protected bool $status = true;
 
     /**

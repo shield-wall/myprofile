@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeInterface;
@@ -13,12 +14,12 @@ use DateTimeInterface;
 class Experience
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     protected int $id;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected User $user;
 
     /**
@@ -26,7 +27,7 @@ class Experience
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'string', length: 150)]
+    #[ORM\Column(type: Types::STRING, length: 150)]
     protected string $title;
 
     /**
@@ -34,7 +35,7 @@ class Experience
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     protected string $company;
 
     /**
@@ -42,17 +43,17 @@ class Experience
      *
      * @var $description
      */
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: Types::TEXT)]
     protected string $description;
 
     /**
      * @Assert\NotBlank()
      *
      */
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected DateTimeInterface $periodStart;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     protected ?DateTimeInterface $periodEnd = null;
 
     /**

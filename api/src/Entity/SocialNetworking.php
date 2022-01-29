@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Stringable;
+use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,25 +17,28 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 #[ORM\Table(name: 'social_networking')]
 #[ORM\Entity]
-class SocialNetworking
+class SocialNetworking implements Stringable
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     protected int $id;
 
     /**
      * @Assert\Length(max="50")
      */
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     protected string $name;
 
     /**
      * @Assert\Length(max="50")
      */
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
     protected string $icon;
 
+    /**
+     * @var UserSocialNetworking[]|Collection<int, UserSocialNetworking>
+     */
     #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
