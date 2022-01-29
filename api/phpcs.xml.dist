@@ -13,6 +13,11 @@
 
     <rule ref="PSR12"/>
     <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+    <rule ref="Generic.Metrics.CyclomaticComplexity">
+        <properties>
+            <property name="complexity" value="3"/>
+        </properties>
+    </rule>
 
     <!-- SlevomatCodingStandard -->
     <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility" />
