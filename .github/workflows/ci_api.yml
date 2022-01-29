@@ -71,6 +71,9 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: [ 'phpcs', 'container', 'rector' ]
     needs: build
     container:
       image: eerison/myprofile:dev
@@ -91,14 +94,8 @@ jobs:
         run: |
           pwd
           ls -lha
-      - name: Code Sniffer
-        run: composer lint_phpcs
-
-      - name: Symfony Containers
-        run: composer lint_container
-
-      - name: Rector php
-        run: vendor/bin/rector process src --dry-run
+      - name: Checking ${{ matrix.command }}
+        run: composer lint:${{ matrix.command }}
 
   test:
     name: Tests
