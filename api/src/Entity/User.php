@@ -119,41 +119,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     protected DateTimeInterface | null $birthday;
 
     /**
-     * @var array<UserSocialNetworking>|Collection<int, UserSocialNetworking>
+     * @var UserSocialNetworking[]|Collection<int, UserSocialNetworking>
      */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'UserSocialNetworking')]
     protected Collection $userSocialNetworks;
 
     /**
-     * @var array<Education>|Collection<int, Education>
+     * @var Education[]|Collection<int, Education>
      */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Education')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $educations;
 
     /**
-     * @var array<Experience>|Collection<int, Experience>
+     * @var Experience[]|Collection<int, Experience>
      */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Experience')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $experiences;
 
     /**
-     * @var array<Skill>|Collection<int, Skill>
+     * @var Skill[]|Collection<int, Skill>
      */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Skill')]
     #[ORM\OrderBy(['priority' => 'ASC'])]
     protected Collection $skills;
 
     /**
-     * @var array<Certification>|Collection<int, Certification>
+     * @var Certification[]|Collection<int, Certification>
      */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'Certification')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $certifications;
 
     /**
-     * @var array<UserLanguage>|Collection<int, UserLanguage>
+     * @var UserLanguage[]|Collection<int, UserLanguage>
      */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 'UserLanguage')]
     protected Collection $userLanguages;

@@ -33,11 +33,12 @@
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration" />
 
     <rule ref="SlevomatCodingStandard.Arrays"/>
-    <rule ref="SlevomatCodingStandard.TypeHints">
-        <properties>
-            <property name="spacesCountAroundEqualsSign" value="0"/>
-        </properties>
-    </rule>
+    <!-- conflict with rector php -->
+<!--    <rule ref="SlevomatCodingStandard.TypeHints">-->
+<!--        <properties>-->
+<!--            <property name="spacesCountAroundEqualsSign" value="0"/>-->
+<!--        </properties>-->
+<!--    </rule>-->
     <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEmpty"/>
