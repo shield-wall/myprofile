@@ -4,27 +4,26 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\ResetPasswordRequest;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Persistence\Repository\ResetPasswordRequestRepositoryTrait;
 use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface;
 use DateTimeInterface;
 
-/**
- * @method ResetPasswordRequest|null find($id, $lockMode = null, $lockVersion = null)
- * @method ResetPasswordRequest|null findOneBy(array $criteria, array $orderBy = null)
- * @method array<ResetPasswordRequest> findAll()
- * @method array<ResetPasswordRequest> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface
+class ResetPasswordRequestRepository implements ResetPasswordRequestRepositoryInterface
 {
     use ResetPasswordRequestRepositoryTrait;
 
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var EntityRepository<ResetPasswordRequest>
+     */
+    private readonly EntityRepository $repository;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, ResetPasswordRequest::class);
+        $this->repository = $entityManager->getRepository(ResetPasswordRequest::class);
     }
 
     public function createResetPasswordRequest(
