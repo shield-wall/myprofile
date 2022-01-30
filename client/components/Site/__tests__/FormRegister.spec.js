@@ -22,7 +22,6 @@ describe('Form register component', () => {
     expect(wrapper.find('#last-name').exists()).toBeTruthy()
     expect(wrapper.find('#email').exists()).toBeTruthy()
     expect(wrapper.find('#password').exists()).toBeTruthy()
-    expect(wrapper.find('#repeat-password').exists()).toBeTruthy()
     expect(wrapper.find('#register-button').exists()).toBeTruthy()
   })
 

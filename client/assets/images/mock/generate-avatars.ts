@@ -6,6 +6,7 @@ const workdir = '/app/'
 const mockDir = workdir + 'assets/images/mock/'
 const usersDir = 'users/'
 const usersEmail = [
+  'erison@myprofile.pro',
   'test@myprofile.pro',
   'test2@myprofile.pro',
   'not-verified@myprofile.pro',

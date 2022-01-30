@@ -28,13 +28,6 @@
         :violations="constraint.getViolationsBy('password')"
       />
 
-      <InputPassword
-        id="repeat-password"
-        v-model="user.confirmPassword"
-        label="Confirme a senha"
-        :violations="constraint.getViolationsBy('confirmPassword')"
-      />
-
       <Button id="register-button" class="my-6" :loading="loading">
         {{ $t('register') }}
       </Button>
