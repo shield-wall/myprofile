@@ -16,8 +16,8 @@
 
         <div v-else>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            <UserCard
-              v-for="(user, index) in users.items().sort(() => Math.random() - 0.5).slice(0,12)"
+            <UserCardPicture
+              v-for="(user, index) in users.items().slice(0,12)"
               :key="`user-${index}`"
               :index="index"
               :first-name="user.firstName"
@@ -38,10 +38,10 @@
 <script>
 import Herosite from '../components/Site/Hero'
 import Footer from '../components/Footer'
-import UserCard from '../components/Image/UserCardPicture'
+import UserCardPicture from '../components/Image/UserCardPicture'
 import Loader from '../components/Loader'
 export default {
-  components: { Loader, UserCard, Herosite, Footer },
+  components: { Loader, UserCardPicture, Herosite, Footer },
   data () {
     return {
       users: []

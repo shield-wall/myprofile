@@ -6,10 +6,8 @@ export default defineNuxtConfig({
   env: {
     FILE_PROVIDER: {
       transloadit: {
-        // host: 'https://cdn.myprofile.pro',
-        // prefix: 'myprofile-prod',
-        host: 'assets/images',
-        prefix: 'mock'
+        host: process.env.TRANSLOADIT_HOST || 'https://cdn.myprofile.pro',
+        prefix: process.env.TRANSLOADIT_PREFIX || 'myprofile-prod'
       }
     },
     IMAGE: {

@@ -41,6 +41,8 @@ export default {
   },
   methods: {
     setFallbackImageUrl (type) {
+      // TODO think in some way to fix it
+      //      because the profile image is not passed, maybe the default image should be passed by parameter.
       if (type === 'profile') {
         event.target.src = this.providerUrl + this.defaultProfileImage
         return
