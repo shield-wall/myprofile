@@ -7,15 +7,16 @@ it's a simple readme about api :)
 
 ## Command line
 
+execute: `make php` to access the php container, after that you are able to run the commands bellow!
 Run tests
 
 ```shell
-docker-compose run --rm -e APP_ENV=test php composer test
+composer test
 ```
 
 Run phpcs
 ```shell
-docker-compose run --rm -e APP_ENV=test php composer lint_phpcs
+composer lint:phpcs
 ```
 
 ## PHPStorm

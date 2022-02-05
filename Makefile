@@ -14,5 +14,8 @@ client-install:
 	docker-compose run --rm client yarn install
 	docker-compose run --rm client yarn avatar
 
-test:
-	docker-compose run --rm -e APP_ENV=test php composer test
+php:
+	docker-compose run --rm php bash
+
+client:
+	docker-compose run --rm client bash
