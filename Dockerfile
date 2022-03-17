@@ -1,4 +1,4 @@
-FROM 3lever/php:8.0.16-fpm-postgresql
+FROM 3lever/php:8.1.3-fpm-postgresql
 
 ARG APP_ENV
 ARG APP_DEBUG
