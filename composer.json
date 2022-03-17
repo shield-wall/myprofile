@@ -12,7 +12,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
-        "presta/sitemap-bundle": "^2.1",
+        "presta/sitemap-bundle": "^3.0",
         "sensio/framework-extra-bundle": "^6.0",
         "sentry/sentry-symfony": "^4.0",
         "stof/doctrine-extensions-bundle": "^1.7",
@@ -26,6 +26,7 @@
         "symfony/mailgun-mailer": "^v5.2",
         "symfony/monolog-bundle": "^3.5",
         "symfony/proxy-manager-bridge": "^v5.2",
+        "symfony/runtime": "5.4.*",
         "symfony/security-bundle": "^v5.2",
         "symfony/translation": "^v5.2",
         "symfony/twig-bundle": "^5.2",
@@ -54,7 +55,8 @@
         },
         "sort-packages": true,
         "allow-plugins": {
-            "symfony/flex": true
+            "symfony/flex": true,
+            "symfony/runtime": true
         }
     },
     "autoload": {
@@ -97,7 +99,7 @@
         ],
         "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
-        "test":"bin/phpunit --coverage-clover coverage.xml",
+        "test":"php -d memory_limit=1024M bin/phpunit --coverage-clover coverage.xml",
         "lint_phpcs": "vendor/bin/phpcs",
         "lint_twig": "php bin/console lint:twig templates",
         "lint_container": "php bin/console lint:container",
