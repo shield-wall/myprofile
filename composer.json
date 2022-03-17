@@ -50,7 +50,10 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -78,22 +81,8 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ],
-
-        "prod": [
-            "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader"
-        ],
-        "staging": [
-            "@prod"
-        ],
-        "dev": [
-            "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
-        ],
+        "post-install-cmd": "@auto-scripts",
+        "post-update-cmd": "@auto-scripts",
 
         "initial": [
             "@dev",
@@ -104,24 +93,15 @@
             "php bin/console doctrine:database:create  --if-not-exists",
             "@migrate"
         ],
-        "fixtures": [
-            "bin/console hautelook:fixtures:load --no-interaction"
-        ],
-        "migrate":[
-            "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction"
-        ],
-        "test": [
-            "bin/phpunit --coverage-clover coverage.xml"
-        ],
-        "lint_phpcs": [
-            "vendor/bin/phpcs"
-        ],
-        "lint_twig": [
-            "php bin/console lint:twig templates"
-        ],
-        "lint_container": [
-            "php bin/console lint:container"
-        ]
+        "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
+        "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "test":"bin/phpunit --coverage-clover coverage.xml",
+        "lint_phpcs": "vendor/bin/phpcs",
+        "lint_twig": "php bin/console lint:twig templates",
+        "lint_container": "php bin/console lint:container",
+        "prod": "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
+        "staging": "@prod",
+        "dev": "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
     },
     "extra": {
         "symfony": {
