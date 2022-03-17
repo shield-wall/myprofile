@@ -6,3 +6,7 @@ twig:
         git_ref: '%env(GIT_REF)%'
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['bulma_0_layout.html.twig']
+
+when@test:
+    twig:
+        strict_variables: true
