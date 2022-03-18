@@ -23,11 +23,11 @@ Encore
     .enableVersioning(Encore.isProduction())
     .enableSassLoader()
     .copyFiles([
-        { from: './assets/images', to: 'images/[path][name].[ext]',},
+        {
+            from: './assets/images',
+            to: 'images/[path][name].[hash:8].[ext]',
+        },
     ])
-    .configureFilenames({
-        images: '[path][name].[hash:8].[ext]',
-    })
 
 // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()

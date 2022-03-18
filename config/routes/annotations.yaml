@@ -1,5 +1,5 @@
 presta_sitemap:
-    resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
+    resource: "@PrestaSitemapBundle/config/routing.yml"
 
 controllers:
     resource: ../../src/Controller/

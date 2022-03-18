@@ -1,18 +1,4 @@
-FROM php:8.0-fpm as base
-
-RUN apt-get update
-
-RUN apt-get install -y libpq-dev libzip-dev zlib1g-dev libicu-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install pdo pdo_pgsql pgsql zip intl
-
-RUN curl -sS https://getcomposer.org/installer | php -- \
---install-dir=/usr/bin --filename=composer
-
-WORKDIR /app
-
-FROM base as heroku_web
+FROM 3lever/php:8.1.3-fpm-postgresql
 
 ARG APP_ENV
 ARG APP_DEBUG
@@ -35,6 +21,8 @@ ENV SENTRY_DSN=$SENTRY_DSN
 ENV TRANSLOADIT_KEY=$TRANSLOADIT_KEY
 ENV TRANSLOADIT_SECRET=$TRANSLOADIT_SECRET
 ENV TRANSLOADIT_DELIVERY=$TRANSLOADIT_DELIVERY
+
+WORKDIR /app
 
 RUN apt-get install -y curl gnupg2 ca-certificates lsb-release \
     && echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list \
@@ -69,17 +57,3 @@ CMD sed -i 's/PORT_NUMBER/'"$PORT"'/g' /etc/nginx/nginx.conf;supervisord --nodae
 USER www-data
 
 COPY ./ /app
-
-#FROM base as dev
-#
-#VOLUME docker.sock:docker.sock:ro
-#
-#RUN apt-get install -y git wget
-#RUN pecl install xdebug && docker-php-ext-enable xdebug
-#RUN curl https://cli-assets.heroku.com/install.sh | sh
-#RUN apt-get -y install docker.io
-#
-##Nodejs and Yarn
-#RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash - \
-#    && apt-get install -y nodejs \
-#    && npm install --global yarn

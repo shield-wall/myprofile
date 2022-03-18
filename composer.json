@@ -3,7 +3,7 @@
     "license": "proprietary",
     "type": "project",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
@@ -12,29 +12,32 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
-        "presta/sitemap-bundle": "^2.1",
+        "presta/sitemap-bundle": "^3.0",
         "sensio/framework-extra-bundle": "^6.0",
         "sentry/sentry-symfony": "^4.0",
-        "stof/doctrine-extensions-bundle": "dev-master",
+        "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/console": "^v5.2",
-        "symfony/dotenv": "v5.2",
-        "symfony/expression-language": "v5.2",
+        "symfony/dotenv": "^v5.2",
+        "symfony/expression-language": "^v5.2",
         "symfony/flex": "^1.3",
-        "symfony/form": "v5.2",
-        "symfony/framework-bundle": "v5.2",
-        "symfony/http-client": "v5.2",
-        "symfony/mailgun-mailer": "v5.2",
+        "symfony/form": "^v5.2",
+        "symfony/framework-bundle": "^v5.2",
+        "symfony/http-client": "^v5.2",
+        "symfony/mailgun-mailer": "^v5.2",
         "symfony/monolog-bundle": "^3.5",
         "symfony/proxy-manager-bridge": "^v5.2",
-        "symfony/security-bundle": "v5.2",
-        "symfony/translation": "v5.2",
-        "symfony/twig-pack": "^1.0",
-        "symfony/validator": "v5.2",
+        "symfony/runtime": "5.4.*",
+        "symfony/security-bundle": "^v5.2",
+        "symfony/translation": "^v5.2",
+        "symfony/twig-bundle": "^5.2",
+        "symfony/validator": "^v5.2",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "^v5.2",
         "symfonycasts/reset-password-bundle": "^1.2",
         "symfonycasts/verify-email-bundle": "^1.2",
-        "transloadit/php-sdk": "^2.1"
+        "transloadit/php-sdk": "^2.1",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
@@ -43,14 +46,18 @@
         "symfony/css-selector": "^5.2",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.2",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/stopwatch": "^6.0",
+        "symfony/web-profiler-bundle": "^5.2"
     },
-    "minimum-stability": "beta",
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -78,22 +85,8 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ],
-
-        "prod": [
-            "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader"
-        ],
-        "staging": [
-            "@prod"
-        ],
-        "dev": [
-            "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
-        ],
+        "post-install-cmd": "@auto-scripts",
+        "post-update-cmd": "@auto-scripts",
 
         "initial": [
             "@dev",
@@ -104,29 +97,20 @@
             "php bin/console doctrine:database:create  --if-not-exists",
             "@migrate"
         ],
-        "fixtures": [
-            "bin/console hautelook:fixtures:load --no-interaction"
-        ],
-        "migrate":[
-            "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction"
-        ],
-        "test": [
-            "bin/phpunit --coverage-clover coverage.xml"
-        ],
-        "lint_phpcs": [
-            "vendor/bin/phpcs"
-        ],
-        "lint_twig": [
-            "php bin/console lint:twig templates"
-        ],
-        "lint_container": [
-            "php bin/console lint:container"
-        ]
+        "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
+        "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "test":"php -d memory_limit=1024M bin/phpunit --coverage-clover coverage.xml",
+        "lint_phpcs": "vendor/bin/phpcs",
+        "lint_twig": "php bin/console lint:twig templates",
+        "lint_container": "php bin/console lint:container",
+        "prod": "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
+        "staging": "@prod",
+        "dev": "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
     },
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.2.*"
+            "require": "5.4.*"
         }
     }
 }

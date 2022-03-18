@@ -11,7 +11,7 @@ services:
       - php
 
   php:
-    image: eerison/myprofile:dev
+    image: 3lever/php:8.1.3-fpm-postgresql-dev
     working_dir: /app
     env_file:
       - .docker/common.env
@@ -19,14 +19,6 @@ services:
       - ./:/app
     links:
       - db
-
-  client:
-    image: node
-    working_dir: /app
-    volumes:
-      - .:/app
-    depends_on:
-      - php
 
   db:
     image: postgres
