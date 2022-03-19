@@ -3,7 +3,6 @@
 [![Continuous Integration][ci_badge]][ci_link]
 [![Continuous Deploy][cd_badge]][cd_link]
 [![codecov][test_badge]][test_link]
-[![codecov](https://codecov.io/gh/eerison/myprofile/branch/master/graph/badge.svg?token=ZIW9RTWH1B)](https://codecov.io/gh/eerison/myprofile)
 [![Join the chat at https://gitter.im/myprofile_pro/Lobby][gitter_badge]][gitter_link] 
 [![License: GPL v3][licence_badge]][licence_link]
 
