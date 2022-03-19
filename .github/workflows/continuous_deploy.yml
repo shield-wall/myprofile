@@ -29,16 +29,16 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-2${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             vendor
             node_modules
             public
           restore-keys: |
-            ${{ runner.os }}-build-optimize-2${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-optimize-2${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-build-optimize-2
-            ${{ runner.os }}-
+            ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-2-build-optimize-
+            ${{ runner.os }}-2-
 
       - name: Composer
         run: composer prod
@@ -62,7 +62,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-2${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             vendor
             node_modules
@@ -115,7 +115,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-build-optimize-2${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             vendor
             node_modules
