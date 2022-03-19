@@ -99,6 +99,7 @@
         ],
         "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "db:migration:diff": "bin/console make:migration",
         "test":"php -d memory_limit=1024M bin/phpunit --coverage-clover coverage.xml",
         "lint_phpcs": "vendor/bin/phpcs",
         "lint_twig": "php bin/console lint:twig templates",
