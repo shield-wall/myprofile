@@ -26,7 +26,7 @@
         "symfony/mailgun-mailer": "^v5.2",
         "symfony/monolog-bundle": "^3.5",
         "symfony/proxy-manager-bridge": "^v5.2",
-        "symfony/runtime": "5.4.*",
+        "symfony/runtime": "^5.4",
         "symfony/security-bundle": "^v5.2",
         "symfony/translation": "^v5.2",
         "symfony/twig-bundle": "^5.2",
