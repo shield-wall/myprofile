@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Rector\Core\Configuration\Option;
+use Rector\DeadCode\Rector\Property\RemoveUnusedPrivatePropertyRector;
+use Rector\Doctrine\Rector\ClassMethod\ServiceEntityRepositoryParentCallToDIRector;
 use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Php74\Rector\Property\TypedPropertyRector;
 use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
@@ -22,6 +24,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::SKIP, [
         UnionTypesRector::class,
+//        RemoveUnusedPrivatePropertyRector::class, // it was failing the pipelines.
+//        ServiceEntityRepositoryParentCallToDIRector::class, // it was failing the pipelines.
     ]);
 
     // Define what rule sets will be applied
@@ -32,7 +36,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(DoctrineSetList::DOCTRINE_ORM_29);
     $containerConfigurator->import(DoctrineSetList::DOCTRINE_DBAL_30);
 //    $containerConfigurator->import(DoctrineSetList::DOCTRINE_REPOSITORY_AS_SERVICE);
-//    $containerConfigurator->import(DoctrineSetList::DOCTRINE_CODE_QUALITY);
+    $containerConfigurator->import(DoctrineSetList::DOCTRINE_CODE_QUALITY);
     $containerConfigurator->import(SymfonyLevelSetList::UP_TO_SYMFONY_54);
     $containerConfigurator->import(SymfonySetList::SYMFONY_54);
     $containerConfigurator->import(SymfonySetList::SYMFONY_CODE_QUALITY);
