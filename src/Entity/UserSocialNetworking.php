@@ -36,7 +36,7 @@ class UserSocialNetworking
      */
     #[ORM\ManyToOne(targetEntity: SocialNetworking::class, fetch: 'EAGER', inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'social_networking_id', nullable: false)]
-    protected $socialNetworking;
+    protected ?SocialNetworking $socialNetworking = null;
 
     /**
      * @var string
