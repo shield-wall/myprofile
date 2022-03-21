@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserSocialNetworkingRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity(fields: ['user', 'socialNetworking'], errorPath: 'socialNetworking')]
 #[ORM\Table(name: 'user_social_networking')]
-#[ORM\UniqueConstraint(name: "relations_idx", columns: ['user_id', 'social_networking_id'])]
+#[ORM\UniqueConstraint(name: 'relations_idx', columns: ['user_id', 'social_networking_id'])]
 #[ORM\Entity(repositoryClass: UserSocialNetworkingRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class UserSocialNetworking

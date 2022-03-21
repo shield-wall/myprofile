@@ -98,6 +98,12 @@
             "php bin/console doctrine:database:create  --if-not-exists",
             "@migrate"
         ],
+        "lint": [
+            "@lint:ecs",
+            "@lint:rector",
+            "@lint:twig",
+            "@lint:container"
+        ],
         "db:fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "db:migration:diff": "bin/console make:migration",
         "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
