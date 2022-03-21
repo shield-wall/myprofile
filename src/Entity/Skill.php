@@ -27,15 +27,15 @@ class Skill
     protected $user;
 
     /**
-     * @Assert\Length(max="50")
      * @ORM\Column(name="name", type="string", length=50)
      */
+    #[Assert\Length(max: 50)]
     private $name;
 
     /**
-     * @Assert\Range(min = 0, max = 100)
      * @ORM\Column(name="level_experience", type="smallint")
      */
+    #[Assert\Range(min: 0, max: 100)]
     private int $levelExperience;
 
     /**
@@ -62,7 +62,6 @@ class Skill
     /**
      * Set name
      *
-     * @param string $name
      *
      * @return Skill
      */
@@ -86,7 +85,6 @@ class Skill
     /**
      * Set levelExperience
      *
-     * @param int $levelExperience
      *
      * @return Skill
      */
@@ -110,7 +108,6 @@ class Skill
     /**
      * Set priority
      *
-     * @param int $priority
      *
      * @return Skill
      */
@@ -134,7 +131,6 @@ class Skill
     /**
      * Set status
      *
-     * @param bool $status
      *
      * @return Skill
      */
@@ -156,8 +152,6 @@ class Skill
     }
 
     /**
-     * @param User $user
-     *
      * @return Skill
      */
     public function setUser(User $user)

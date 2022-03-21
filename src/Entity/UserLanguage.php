@@ -32,15 +32,15 @@ class UserLanguage implements
     private $id;
 
     /**
-     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
+    #[Assert\Length(max: 50)]
     private $name;
 
     /**
-     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
+    #[Assert\Length(max: 50)]
     private $level;
 
     /**

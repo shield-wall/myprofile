@@ -35,9 +35,9 @@ class Certification implements
     protected $user;
 
     /**
-     * @Assert\Length(max="100")
      * @ORM\Column(name="title", type="string", length=100)
      */
+    #[Assert\Length(max: 100)]
     private string $title;
 
     /**
@@ -51,43 +51,33 @@ class Certification implements
     private ?\DateTimeInterface $periodEnd = null;
 
     /**
-     * @Assert\Length(max="100")
      * @ORM\Column(name="institution", type="string", length=100)
      */
+    #[Assert\Length(max: 100)]
     private string $institution;
 
     /**
-     * @Assert\Length(max="500")
      * @ORM\Column(name="link", type="string", length=500, nullable=true)
      */
+    #[Assert\Length(max: 500)]
     private ?string $link = null;
 
     /**
-     * @Assert\Length(max="255")
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
+    #[Assert\Length(max: 255)]
     private ?string $image = null;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Certification
-     */
     public function setTitle(string $title): Certification
     {
         $this->title = $title;
@@ -102,82 +92,50 @@ class Certification implements
         return $this->periodStart;
     }
 
-    /**
-     * @param DateTimeInterface $periodStart
-     * @return Certification
-     */
     public function setPeriodStart(DateTimeInterface $periodStart): Certification
     {
         $this->periodStart = $periodStart;
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Certification
-     */
     public function setPeriodEnd(?DateTimeInterface $periodEnd): Certification
     {
         $this->periodEnd = $periodEnd;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getInstitution(): string
     {
         return $this->institution;
     }
 
-    /**
-     * @param string $institution
-     * @return Certification
-     */
     public function setInstitution(string $institution): Certification
     {
         $this->institution = $institution;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * @param string|null $link
-     * @return Certification
-     */
     public function setLink(?string $link): Certification
     {
         $this->link = $link;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getImage(): ?string
     {
         return $this->image;
     }
 
-    /**
-     * @param string|null $image
-     * @return Certification
-     */
     public function setImage(?string $image): Certification
     {
         $this->image = $image;

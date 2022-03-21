@@ -35,37 +35,35 @@ class Education implements
     protected $user;
 
     /**
-     * @Assert\Length(max="200")
-     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=200)
      *
      * @var string
      */
+    #[Assert\Length(max: 200)]
+    #[Assert\NotBlank]
     protected $title;
 
     /**
-     * @Assert\Length(max="200")
-     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=200)
      *
      * @var string
      */
+    #[Assert\Length(max: 200)]
+    #[Assert\NotBlank]
     protected $institution;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(type="text")
-     *
      * @var string
      */
+    #[Assert\NotBlank]
     protected $description;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(type="date")
-     *
      * @var DateTimeInterface
      */
+    #[Assert\NotBlank]
     protected $periodStart;
 
     /**
@@ -75,72 +73,44 @@ class Education implements
      */
     protected $periodEnd;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Education
-     */
     public function setId(int $id): Education
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Education
-     */
     public function setTitle(string $title): Education
     {
         $this->title = $title;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getInstitution(): string
     {
         return $this->institution;
     }
 
-    /**
-     * @param string $institution
-     * @return Education
-     */
     public function setInstitution(string $institution): Education
     {
         $this->institution = $institution;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return Education
-     */
     public function setDescription(string $description): Education
     {
         $this->description = $description;
@@ -155,28 +125,17 @@ class Education implements
         return $this->periodStart;
     }
 
-    /**
-     * @param DateTimeInterface $periodStart
-     * @return Education
-     */
     public function setPeriodStart(DateTimeInterface $periodStart): Education
     {
         $this->periodStart = $periodStart;
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Education
-     */
     public function setPeriodEnd(?DateTimeInterface $periodEnd): Education
     {
         $this->periodEnd = $periodEnd;

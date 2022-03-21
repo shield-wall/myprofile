@@ -22,15 +22,15 @@ class SocialNetworking implements Stringable
     protected $id;
 
     /**
-     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
+    #[Assert\Length(max: 50)]
     protected $name;
 
     /**
-     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50)
      */
+    #[Assert\Length(max: 50)]
     protected $icon;
 
     /**

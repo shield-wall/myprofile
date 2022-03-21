@@ -13,23 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    /**
-     * @Route("/edit", name="edit", methods={"GET", "POST"})
-     *
-     * @param Request $request
-     * @param ProfileImageService $profileImageService
-     * @param BackgroundImageService $backgroundImageService
-     * @return Response
-     */
-    public function editAction(
-        Request $request,
-        ProfileImageService $profileImageService,
-        BackgroundImageService $backgroundImageService
-    ): Response {
+    #[Route(path: '/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function editAction(Request $request, ProfileImageService $profileImageService, BackgroundImageService $backgroundImageService) : Response
+    {
         $user = $this->getUser();
         $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $profileImageService->upload($user, $form->get('profile_image')->getData());
             $backgroundImageService->upload($user, $form->get('background_image')->getData());
@@ -38,24 +27,17 @@ class MainController extends AbstractController
             $this->addFlash('success', 'messages.item_saved');
             return $this->redirectToRoute('profile_edit');
         }
-
         return $this->render('profile/main.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-    /**
-     * @Route("/generate-curriculum", name="generate_curriculum", methods={"GET"})
-     *
-     * @param CurriculumService $curriculumService
-     * @return Response
-     */
-    public function generateCurriculumAction(CurriculumService $curriculumService): Response
+    #[Route(path: '/generate-curriculum', name: 'generate_curriculum', methods: ['GET'])]
+    public function generateCurriculumAction(CurriculumService $curriculumService) : Response
     {
         $user = $this->getUser();
         $curriculumService->makePdfOnTransloadit($user);
         $this->addFlash('success', 'messages.generate_curriculum');
-
         return $this->redirectToRoute('profile_edit');
     }
 }

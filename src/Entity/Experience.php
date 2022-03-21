@@ -31,37 +31,35 @@ class Experience
     protected $user;
 
     /**
-     * @Assert\Length(max="150")
-     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=150)
      *
      * @var string
      */
+    #[Assert\Length(max: 150)]
+    #[Assert\NotBlank]
     protected $title;
 
     /**
-     * @Assert\Length(max="50")
-     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=50)
      *
      * @var string
      */
+    #[Assert\Length(max: 50)]
+    #[Assert\NotBlank]
     protected $company;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(type="text")
-     *
      * @var $description
      */
+    #[Assert\NotBlank]
     protected $description;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(type="date")
-     *
      * @var DateTimeInterface
      */
+    #[Assert\NotBlank]
     protected $periodStart;
 
     /**
@@ -71,62 +69,38 @@ class Experience
      */
     protected $periodEnd;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     * @return Experience
-     */
     public function setUser(User $user): Experience
     {
         $this->user = $user;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Experience
-     */
     public function setTitle(string $title): Experience
     {
         $this->title = $title;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCompany(): string
     {
         return $this->company;
     }
 
-    /**
-     * @param string $company
-     * @return Experience
-     */
     public function setCompany(string $company): Experience
     {
         $this->company = $company;
@@ -159,28 +133,17 @@ class Experience
         return $this->periodStart;
     }
 
-    /**
-     * @param DateTimeInterface $periodStart
-     * @return Experience
-     */
     public function setPeriodStart(DateTimeInterface $periodStart): Experience
     {
         $this->periodStart = $periodStart;
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Experience
-     */
     public function setPeriodEnd(?DateTimeInterface $periodEnd): Experience
     {
         $this->periodEnd = $periodEnd;

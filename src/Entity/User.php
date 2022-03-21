@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
+use DateTimeInterface;
 use Stringable;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,9 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- * @UniqueEntity("slug")
- * @UniqueEntity("email")
  */
+#[UniqueEntity('slug')]
+#[UniqueEntity('email')]
 class User implements UserInterface, Stringable
 {
     /**
@@ -29,51 +31,51 @@ class User implements UserInterface, Stringable
      */
     protected $id;
     /**
-     * @Assert\Length(max="200")
-     * @Assert\Email
      * @ORM\Column(type="string", length=200, unique=true)
      *
      * @var string
      */
+    #[Assert\Length(max: 200)]
+    #[Assert\Email]
     protected $email;
     /**
-     * @Assert\NotBlank(groups={"registration"})
-     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
+    #[Assert\NotBlank(groups: ['registration'])]
+    #[Assert\Length(max: 50)]
     protected $firstName;
     /**
-     * @Assert\NotBlank(groups={"registration"})
-     * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
+    #[Assert\NotBlank(groups: ['registration'])]
+    #[Assert\Length(max: 50)]
     protected $lastName;
     /**
-     * @Assert\Length(max="50")
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
      */
+    #[Assert\Length(max: 50)]
     private $slug;
     /**
-     * @Assert\Length(max="250")
      * @ORM\Column(type="text", length=250, nullable=true)
      */
+    #[Assert\Length(max: 250)]
     protected $headline;
     /**
      * This field is used in user`s profile
      *
-     * @Assert\Length(max="100")
      * @ORM\Column(type="string", length=100, nullable=true)
      */
+    #[Assert\Length(max: 100)]
     protected $role;
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
      */
     protected $phone;
     /**
-     * @Assert\Length(max="20")
      * @ORM\Column(type="string",length=20, nullable=true)
      */
+    #[Assert\Length(max: 20)]
     protected $cell;
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
@@ -93,8 +95,8 @@ class User implements UserInterface, Stringable
     protected $city;
     /**
      * @ORM\Column(type="string", length=6, nullable=true)
-     * @Assert\Choice({"male", "female"})
      */
+    #[Assert\Choice(['male', 'female'])]
     protected $gender;
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -140,10 +142,8 @@ class User implements UserInterface, Stringable
      * @ORM\Column(type="string", length=255)
      */
     private string $password;
-    /**
-     * @Assert\NotBlank(groups={"registration", "resetPassword"})
-     * @Assert\Length(min=6)
-     */
+    #[Assert\NotBlank(groups: ['registration', 'resetPassword'])]
+    #[Assert\Length(min: 6)]
     private ?string $plainPassword = null;
     /**
      * @var string|null
@@ -173,24 +173,14 @@ class User implements UserInterface, Stringable
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
     }
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
-    /**
-     * @param string $email
-     * @return User
-     */
     public function setEmail(string $email): User
     {
         $this->email = $email;
@@ -231,7 +221,6 @@ class User implements UserInterface, Stringable
         return $this->educations;
     }
     /**
-     * @param Education $education
      * @return User
      */
     public function addEducations(Education $education)
@@ -250,7 +239,6 @@ class User implements UserInterface, Stringable
         return $this->experiences;
     }
     /**
-     * @param Experience $experience
      * @return User
      */
     public function addExperiences(Experience $experience)
@@ -269,7 +257,6 @@ class User implements UserInterface, Stringable
         return $this->skills;
     }
     /**
-     * @param Skill $skill
      * @return User
      */
     public function addSkills(Skill $skill)
@@ -288,7 +275,6 @@ class User implements UserInterface, Stringable
         return $this->certifications;
     }
     /**
-     * @param Certification $certification
      * @return User
      */
     public function addCertifications(Certification $certification)
@@ -499,7 +485,6 @@ class User implements UserInterface, Stringable
         return $this->keyWords;
     }
     /**
-     * @param string|null $keyWords
      * @return User
      */
     public function setKeyWords(?string $keyWords)
@@ -547,11 +532,17 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
-    public function getCreatedAt(): DateTime
+    /**
+     * @return DateTime|DateTimeImmutable
+     */
+    public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): DateTime
+    /**
+     * @return DateTime|DateTimeImmutable
+     */
+    public function getUpdatedAt(): DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -563,49 +554,28 @@ class User implements UserInterface, Stringable
 
         return array_unique($roles);
     }
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
-    /**
-     * @param string $password
-     * @return User
-     */
     public function setPassword(string $password): User
     {
         $this->password = $password;
         return $this;
     }
-    /**
-     * @return string|null
-     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
-    /**
-     * @param string|null $plainPassword
-     * @return User
-     */
     public function setPlainPassword(?string $plainPassword): User
     {
         $this->plainPassword = $plainPassword;
         return $this;
     }
-    /**
-     * @return string|null
-     */
     public function getSalt(): ?string
     {
         return $this->salt;
     }
-    /**
-     * @param string|null $salt
-     * @return User
-     */
     public function setSalt(?string $salt): User
     {
         $this->salt = $salt;
@@ -629,11 +599,8 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
-        return (string) $this->getUsername();
+        return $this->getUsername();
     }
 }
