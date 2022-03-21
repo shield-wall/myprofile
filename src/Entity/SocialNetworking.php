@@ -29,7 +29,7 @@ class SocialNetworking implements Stringable
     /**
      * @var Collection<UserSocialNetworking>
      */
-    #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'socialNetworking')]
+    #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
     public function __construct()

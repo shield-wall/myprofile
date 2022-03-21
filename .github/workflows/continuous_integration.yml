@@ -57,7 +57,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        command: [ 'ecs', 'container', 'rector', 'twig']
+        command:
+          - 'ecs'
+          - 'container'
+          - 'rector'
+          - 'twig'
+          - 'db:validate'
     needs: build
     container:
       image: 3lever/php:8.1.4-fpm-postgresql-dev

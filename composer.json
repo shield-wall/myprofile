@@ -114,6 +114,7 @@
         "lint:rector:fix": "vendor/bin/rector process",
         "lint:twig": "php bin/console lint:twig templates",
         "lint:container": "php bin/console lint:container",
+        "lint:db:validate": "php bin/console doctrine:schema:validate",
         "prod": [
             "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
             "@composer dump-autoload --optimize --no-dev"
