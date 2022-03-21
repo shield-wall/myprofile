@@ -104,7 +104,7 @@
         "lint_phpcs": "vendor/bin/phpcs",
         "lint_twig": "php bin/console lint:twig templates",
         "lint_container": "php bin/console lint:container",
-        "prod": "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
+        "prod": "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --optimize-autoloader",
         "staging": "@prod",
         "dev": "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
     },
