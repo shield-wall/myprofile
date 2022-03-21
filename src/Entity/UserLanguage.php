@@ -2,16 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\UserLanguageRepository;
+use App\EventListener\UpdateCurriculumListener;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UserLanguageRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
-class UserLanguage implements
-    EntityInterface,
-    HasUserInterface
+#[ORM\Entity(repositoryClass: UserLanguageRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
+class UserLanguage implements EntityInterface, HasUserInterface
 {
     public final const LEVELS = [
         'BEGINNER' => 'Beginner',
@@ -23,71 +21,51 @@ class UserLanguage implements
         'PROFICIENT/FLUENT' => 'Proficient / Fluent',
         'NATIVE' => 'Native',
     ];
-
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
     #[Assert\Length(max: 50)]
+    #[ORM\Column(type: 'string', length: 50)]
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
     #[Assert\Length(max: 50)]
+    #[ORM\Column(type: 'string', length: 50)]
     private $level;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="userLanguages")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
-
     public function getId(): int
     {
         return $this->id;
     }
-
     public function getName(): ?string
     {
         return $this->name;
     }
-
     public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
-
     public function getLevel(): ?string
     {
         return $this->level;
     }
-
     public function getLevelName(): ?string
     {
         return self::LEVELS[$this->getLevel()];
     }
-
     public function setLevel(string $level): self
     {
         $this->level = $level;
 
         return $this;
     }
-
     public function getUser(): UserInterface
     {
         return $this->user;
     }
-
     public function setUser(UserInterface $user): self
     {
         $this->user = $user;

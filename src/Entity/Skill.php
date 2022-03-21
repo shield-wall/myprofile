@@ -2,53 +2,33 @@
 
 namespace App\Entity;
 
+use App\Repository\SkillRepository;
+use App\EventListener\UpdateCurriculumListener;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Table(name="skill")
- * @ORM\Entity(repositoryClass="App\Repository\SkillRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
+#[ORM\Table(name: 'skill')]
+#[ORM\Entity(repositoryClass: SkillRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class Skill
 {
-    /**
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private int $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
+    #[ORM\Column(name: 'id', type: 'integer')]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    private readonly int $id;
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     protected $user;
-
-    /**
-     * @ORM\Column(name="name", type="string", length=50)
-     */
     #[Assert\Length(max: 50)]
+    #[ORM\Column(name: 'name', type: 'string', length: 50)]
     private $name;
-
-    /**
-     * @ORM\Column(name="level_experience", type="smallint")
-     */
     #[Assert\Range(min: 0, max: 100)]
+    #[ORM\Column(name: 'level_experience', type: 'smallint')]
     private int $levelExperience;
-
-    /**
-     * @ORM\Column(name="priority", type="smallint", nullable=true)
-     */
+    #[ORM\Column(name: 'priority', type: 'smallint', nullable: true)]
     private $priority;
-
-    /**
-     * @ORM\Column(name="status", type="boolean")
-     */
+    #[ORM\Column(name: 'status', type: 'boolean')]
     private bool $status = true;
-
-
     /**
      * Get id
      *
@@ -58,7 +38,6 @@ class Skill
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -71,7 +50,6 @@ class Skill
 
         return $this;
     }
-
     /**
      * Get name
      *
@@ -81,7 +59,6 @@ class Skill
     {
         return $this->name;
     }
-
     /**
      * Set levelExperience
      *
@@ -94,7 +71,6 @@ class Skill
 
         return $this;
     }
-
     /**
      * Get levelExperience
      *
@@ -104,7 +80,6 @@ class Skill
     {
         return $this->levelExperience;
     }
-
     /**
      * Set priority
      *
@@ -117,7 +92,6 @@ class Skill
 
         return $this;
     }
-
     /**
      * Get priority
      *
@@ -127,7 +101,6 @@ class Skill
     {
         return $this->priority;
     }
-
     /**
      * Set status
      *
@@ -140,7 +113,6 @@ class Skill
 
         return $this;
     }
-
     /**
      * Get status
      *
@@ -150,7 +122,6 @@ class Skill
     {
         return $this->status;
     }
-
     /**
      * @return Skill
      */
@@ -160,7 +131,6 @@ class Skill
 
         return $this;
     }
-
     /**
      * @return User
      */

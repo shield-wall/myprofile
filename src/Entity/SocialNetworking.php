@@ -2,52 +2,38 @@
 
 namespace App\Entity;
 
+use App\Repository\SocialNetworkingRepository;
+use App\EventListener\UpdateCurriculumListener;
 use Stringable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Table(name="social_networking")
- * @ORM\Entity(repositoryClass="App\Repository\SocialNetworkingRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
+#[ORM\Table(name: 'social_networking')]
+#[ORM\Entity(repositoryClass: SocialNetworkingRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class SocialNetworking implements Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected $id;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
     #[Assert\Length(max: 50)]
+    #[ORM\Column(type: 'string', length: 50)]
     protected $name;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
     #[Assert\Length(max: 50)]
+    #[ORM\Column(type: 'string', length: 50)]
     protected $icon;
-
-    /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="socialNetworking")
-     */
+    #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'socialNetworking')]
     protected $userSocialNetworks;
-
     public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
     }
-
     public function getId()
     {
         return $this->id;
     }
-
     /**
      * @return mixed
      */
@@ -55,7 +41,6 @@ class SocialNetworking implements Stringable
     {
         return $this->name;
     }
-
     /**
      * @param mixed $name
      * @return SocialNetworking
@@ -65,7 +50,6 @@ class SocialNetworking implements Stringable
         $this->name = $name;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -73,7 +57,6 @@ class SocialNetworking implements Stringable
     {
         return $this->icon;
     }
-
     /**
      * @param mixed $icon
      * @return SocialNetworking
@@ -83,7 +66,6 @@ class SocialNetworking implements Stringable
         $this->icon = $icon;
         return $this;
     }
-
     public function __toString(): string
     {
         return (string) $this->getName();
