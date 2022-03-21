@@ -62,7 +62,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
-        if ($user === null) {
+        if (!$user instanceof User) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use Symfony\Component\HttpFoundation\Response;
 use App\Form\ExperienceType;
 use App\Entity\Experience;
 use App\Repository\ExperienceRepository;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExperienceController extends AbstractController
 {
     #[Route(name: 'index', methods: ['GET'])]
-    public function indexAction(ExperienceRepository $experienceRepository)
+    public function indexAction(ExperienceRepository $experienceRepository): Response
     {
         $experiences = $experienceRepository->findBy(['user' => $this->getUser()]);
         return $this->render('profile/experience/index.html.twig', array(
@@ -25,7 +26,7 @@ class ExperienceController extends AbstractController
      * Creates a new experience entity.
      */
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $experience = new Experience();
         $experience->setUser($this->getUser());
@@ -48,7 +49,7 @@ class ExperienceController extends AbstractController
      * @Security("user == experience.getUser()")
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, Experience $experience)
+    public function editAction(Request $request, Experience $experience): Response
     {
         $form = $this->createForm(ExperienceType::class, $experience);
         $form->handleRequest($request);
@@ -67,7 +68,7 @@ class ExperienceController extends AbstractController
      * @Security("user == experience.getUser()")
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function deleteAction(Request $request, Experience $experience)
+    public function deleteAction(Request $request, Experience $experience): Response
     {
         if ($this->isCsrfTokenValid('delete' . $experience->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

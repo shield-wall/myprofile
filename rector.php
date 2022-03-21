@@ -31,10 +31,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::EARLY_RETURN);
     $containerConfigurator->import(SymfonyLevelSetList::UP_TO_SYMFONY_54);
     $containerConfigurator->import(SymfonySetList::SYMFONY_54);
-//    $containerConfigurator->import(SymfonySetList::SYMFONY_CODE_QUALITY);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_CODE_QUALITY);
 //    $containerConfigurator->import(SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION);
-//    $containerConfigurator->import(SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES);
-//    $containerConfigurator->import(SymfonySetList::SYMFONY_52_VALIDATOR_ATTRIBUTES);
+    $containerConfigurator->import(SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES);
+    $containerConfigurator->import(SymfonySetList::SYMFONY_52_VALIDATOR_ATTRIBUTES);
 //    $containerConfigurator->import(SymfonySetList::SYMFONY_50_TYPES);
 //    $containerConfigurator->import(SymfonySetList::SYMFONY_STRICT);
 

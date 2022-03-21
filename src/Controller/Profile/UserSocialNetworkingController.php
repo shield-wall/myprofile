@@ -58,7 +58,7 @@ class UserSocialNetworkingController extends AbstractController
      * @Security("user == userSocialNetworking.getUser()")
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, UserSocialNetworking $userSocialNetworking)
+    public function editAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
     {
         $form = $this->createForm(UserSocialNetworkingType::class, $userSocialNetworking);
         $form->handleRequest($request);

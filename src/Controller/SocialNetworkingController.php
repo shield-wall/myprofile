@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use App\Form\SocialNetworkingType;
 use Symfony\Component\Form\Form;
 use App\Entity\SocialNetworking;
@@ -17,7 +18,7 @@ class SocialNetworkingController extends AbstractController
      * Lists all socialNetworking entities.
      */
     #[Route(path: '/', name: 'index', methods: ['GET'])]
-    public function indexAction(SocialNetworkingRepository $socialNetworkingRepository)
+    public function indexAction(SocialNetworkingRepository $socialNetworkingRepository): Response
     {
         $socialNetworkings = $socialNetworkingRepository->findAll();
         return $this->render('socialnetworking/index.html.twig', array(
@@ -28,7 +29,7 @@ class SocialNetworkingController extends AbstractController
      * Creates a new socialNetworking entity.
      */
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $socialNetworking = new Socialnetworking();
         $form = $this->createForm(SocialNetworkingType::class, $socialNetworking);
@@ -49,7 +50,7 @@ class SocialNetworkingController extends AbstractController
      * Finds and displays a socialNetworking entity.
      */
     #[Route(path: '/{id}', name: 'show', methods: ['GET'])]
-    public function showAction(SocialNetworking $socialNetworking)
+    public function showAction(SocialNetworking $socialNetworking): Response
     {
         $deleteForm = $this->createDeleteForm($socialNetworking);
         return $this->render('socialnetworking/show.html.twig', array(
@@ -61,7 +62,7 @@ class SocialNetworkingController extends AbstractController
      * Displays a form to edit an existing socialNetworking entity.
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, SocialNetworking $socialNetworking)
+    public function editAction(Request $request, SocialNetworking $socialNetworking): Response
     {
         $deleteForm = $this->createDeleteForm($socialNetworking);
         $editForm = $this->createForm(SocialNetworkingType::class, $socialNetworking);
@@ -81,7 +82,7 @@ class SocialNetworkingController extends AbstractController
      * Deletes a socialNetworking entity.
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function deleteAction(Request $request, SocialNetworking $socialNetworking)
+    public function deleteAction(Request $request, SocialNetworking $socialNetworking): Response
     {
         $form = $this->createDeleteForm($socialNetworking);
         $form->handleRequest($request);
@@ -103,7 +104,7 @@ class SocialNetworkingController extends AbstractController
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_socialnetworking_delete', array('id' => $socialNetworking->getId())))
-            ->setMethod('DELETE')
+            ->setMethod(Request::METHOD_DELETE)
             ->getForm();
     }
 }

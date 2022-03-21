@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use Symfony\Component\HttpFoundation\Response;
 use App\Form\SkillType;
 use App\Entity\Skill;
 use App\Repository\SkillRepository;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SkillController extends AbstractController
 {
     #[Route(name: 'index', methods: ['GET'])]
-    public function indexAction(SkillRepository $skillRepository)
+    public function indexAction(SkillRepository $skillRepository): Response
     {
         $skills = $skillRepository->findBy(['user' => $this->getUser()]);
         return $this->render('profile/skill/index.html.twig', array(
@@ -22,7 +23,7 @@ class SkillController extends AbstractController
         ));
     }
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function newAction(Request $request)
+    public function newAction(Request $request): Response
     {
         $skill = new Skill();
         $skill->setUser($this->getUser());
@@ -45,7 +46,7 @@ class SkillController extends AbstractController
      * @Security("user == skill.getUser()")
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, Skill $skill)
+    public function editAction(Request $request, Skill $skill): Response
     {
         $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
@@ -64,7 +65,7 @@ class SkillController extends AbstractController
      * @Security("user == skill.getUser()")
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function deleteAction(Request $request, Skill $skill)
+    public function deleteAction(Request $request, Skill $skill): Response
     {
         if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

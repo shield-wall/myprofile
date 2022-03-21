@@ -103,8 +103,8 @@
         "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
         "test":"php -d memory_limit=1024M bin/phpunit",
         "lint:phpcs": "vendor/bin/phpcs",
-        "lint:rector": "vendor/bin/rector process src --dry-run",
-        "lint:rector:fix": "vendor/bin/rector process src",
+        "lint:rector": "vendor/bin/rector process --dry-run",
+        "lint:rector:fix": "vendor/bin/rector process",
         "lint:twig": "php bin/console lint:twig templates",
         "lint:container": "php bin/console lint:container",
         "prod": [
