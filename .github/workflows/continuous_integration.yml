@@ -168,6 +168,7 @@ jobs:
           run: |
             pwd
             ls -lha
+            ls -lha vendor
 
         - name: Web deploy
           uses: akhileshns/heroku-deploy@v3.12.12

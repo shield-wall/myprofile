@@ -29,19 +29,24 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-3-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             vendor
             node_modules
             public
           restore-keys: |
-            ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-2-build-optimize-
-            ${{ runner.os }}-2-
+            ${{ runner.os }}-3-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
+            ${{ runner.os }}-3-build-optimize-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-3-build-optimize-
+            ${{ runner.os }}-3-
 
       - name: Composer
         run: composer prod
+
+      - name: See files
+        run: |
+          pwd
+          ls -lha vendor
 
       - name: Webpack
         run: yarn prod
@@ -62,7 +67,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-3-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             vendor
             node_modules
@@ -72,6 +77,7 @@ jobs:
         run: |
           pwd
           ls -lha
+          ls -lha vendor
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
@@ -115,7 +121,7 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-2-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-3-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             vendor
             node_modules
