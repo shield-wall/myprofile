@@ -36,7 +36,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $submittedToken = $request->request->get('token');
-            if (!$this->isCsrfTokenValid('registration', $submittedToken)) {
+            if (! $this->isCsrfTokenValid('registration', $submittedToken)) {
                 $this->addFlash('danger', 'Invalid CSRF token.');
                 throw new InvalidCsrfTokenException();
             }

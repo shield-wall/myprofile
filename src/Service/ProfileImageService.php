@@ -7,13 +7,15 @@ use transloadit\Transloadit;
 
 class ProfileImageService
 {
-    public function __construct(private readonly Transloadit $transloadit, private readonly ParameterBagInterface $params)
-    {
+    public function __construct(
+        private readonly Transloadit $transloadit,
+        private readonly ParameterBagInterface $params
+    ) {
     }
 
     public function upload($user, $file)
     {
-        if (!$this->params->get('transloadit.delivery')) {
+        if (! $this->params->get('transloadit.delivery')) {
             return;
         }
 

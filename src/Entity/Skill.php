@@ -17,17 +17,22 @@ class Skill
     #[ORM\Id]
     #[ORM\GeneratedValue]
     private readonly int $id;
+
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
+
     #[Assert\Length(max: 50)]
     #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
     private ?string $name = null;
+
     #[Assert\Range(min: 0, max: 100)]
     #[ORM\Column(name: 'level_experience', type: Types::SMALLINT)]
     private int $levelExperience;
+
     #[ORM\Column(name: 'priority', type: Types::SMALLINT, nullable: true)]
     private ?int $priority = null;
+
     #[ORM\Column(name: 'status', type: Types::BOOLEAN)]
     private bool $status = true;
 

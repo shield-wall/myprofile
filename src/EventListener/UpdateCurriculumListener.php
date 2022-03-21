@@ -11,8 +11,10 @@ class UpdateCurriculumListener
 {
     private $user;
 
-    public function __construct(Security $security, private readonly CurriculumService $curriculumService)
-    {
+    public function __construct(
+        Security $security,
+        private readonly CurriculumService $curriculumService
+    ) {
         $this->user = $security->getUser();
     }
 
@@ -22,7 +24,7 @@ class UpdateCurriculumListener
             return;
         }
 
-        if (!$this->user instanceof UserInterface) {
+        if (! $this->user instanceof UserInterface) {
             return;
         }
 
@@ -32,7 +34,7 @@ class UpdateCurriculumListener
     public function postUpdate($entity)
     {
         // TODO when the user is creating a new account this variable come null.
-        if (!$this->user instanceof UserInterface) {
+        if (! $this->user instanceof UserInterface) {
             return;
         }
 

@@ -43,7 +43,7 @@ abstract class AbstractCrudController extends AbstractController
 
     public function delete(Request $request, EntityInterface $entity): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$entity->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $entity->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($entity);
             $entityManager->flush();

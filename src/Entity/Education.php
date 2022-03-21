@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Education implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
+
     /**
      * @var int
      */
@@ -22,12 +23,14 @@ class Education implements EntityInterface, HasUserInterface
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
+
     /**
      * @var UserInterface
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
+
     /**
      * @var string
      */
@@ -35,6 +38,7 @@ class Education implements EntityInterface, HasUserInterface
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 200)]
     protected ?string $title = null;
+
     /**
      * @var string
      */
@@ -42,18 +46,21 @@ class Education implements EntityInterface, HasUserInterface
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 200)]
     protected ?string $institution = null;
+
     /**
      * @var string
      */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     protected ?string $description = null;
+
     /**
      * @var DateTimeInterface
      */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected ?\DateTimeInterface $periodStart = null;
+
     /**
      * @var DateTimeInterface|null
      */

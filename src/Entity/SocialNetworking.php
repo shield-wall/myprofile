@@ -20,12 +20,15 @@ class SocialNetworking implements Stringable
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
+
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
     protected ?string $name = null;
+
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
     protected ?string $icon = null;
+
     /**
      * @var Collection<UserSocialNetworking>
      */

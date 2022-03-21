@@ -26,8 +26,12 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
     final public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UrlGeneratorInterface $urlGenerator, private readonly CsrfTokenManagerInterface $csrfTokenManager, private readonly UserPasswordHasherInterface $passwordEncoder)
-    {
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly CsrfTokenManagerInterface $csrfTokenManager,
+        private readonly UserPasswordHasherInterface $passwordEncoder
+    ) {
     }
 
     public function supports(Request $request)
@@ -57,13 +61,13 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
-        if (!$this->csrfTokenManager->isTokenValid($token)) {
+        if (! $this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }

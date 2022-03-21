@@ -13,6 +13,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::SYMFONY);
     $containerConfigurator->import(SetList::SYMFONY_RISKY);
     $containerConfigurator->import(SetList::DOCTRINE_ANNOTATIONS);
+    $containerConfigurator->import(SetList::SPACES);
 
     // B. standalone rule
     $services = $containerConfigurator->services();

@@ -22,16 +22,20 @@ class UserLanguage implements EntityInterface, HasUserInterface
         'PROFICIENT/FLUENT' => 'Proficient / Fluent',
         'NATIVE' => 'Native',
     ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
+
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
     private ?string $name = null;
+
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
     private ?string $level = null;
+
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;

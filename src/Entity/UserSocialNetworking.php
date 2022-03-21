@@ -23,18 +23,21 @@ class UserSocialNetworking
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
+
     /**
      * @var User
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
+
     /**
      * @var SocialNetworking|null
      */
     #[ORM\ManyToOne(targetEntity: SocialNetworking::class, fetch: 'EAGER', inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'social_networking_id', nullable: false)]
     protected $socialNetworking;
+
     /**
      * @var string
      */

@@ -11,8 +11,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SitemapSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private readonly UrlGeneratorInterface $urlGenerator, private readonly UserRepository $userRepository, private readonly array $locales)
-    {
+    public function __construct(
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly UserRepository $userRepository,
+        private readonly array $locales
+    ) {
     }
 
     public static function getSubscribedEvents(): array

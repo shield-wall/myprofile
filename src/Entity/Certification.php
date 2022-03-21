@@ -18,29 +18,37 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Certification implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
+
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     private readonly int $id;
+
     /**
      * @var UserInterface
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'certifications')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
+
     #[Assert\Length(max: 100)]
     #[ORM\Column(name: 'title', type: Types::STRING, length: 100)]
     private string $title;
+
     #[ORM\Column(name: 'period_start', type: Types::DATE_MUTABLE)]
     private \DateTimeInterface $periodStart;
+
     #[ORM\Column(name: 'period_end', type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $periodEnd = null;
+
     #[Assert\Length(max: 100)]
     #[ORM\Column(name: 'institution', type: Types::STRING, length: 100)]
     private string $institution;
+
     #[Assert\Length(max: 500)]
     #[ORM\Column(name: 'link', type: Types::STRING, length: 500, nullable: true)]
     private ?string $link = null;
+
     #[Assert\Length(max: 255)]
     #[ORM\Column(name: 'image', type: Types::STRING, length: 255, nullable: true)]
     private ?string $image = null;

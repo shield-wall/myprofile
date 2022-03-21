@@ -8,13 +8,16 @@ use transloadit\Transloadit;
 
 class CurriculumService
 {
-    public function __construct(private readonly Transloadit $transloadit, private readonly UrlGeneratorInterface $router, private readonly ParameterBagInterface $params)
-    {
+    public function __construct(
+        private readonly Transloadit $transloadit,
+        private readonly UrlGeneratorInterface $router,
+        private readonly ParameterBagInterface $params
+    ) {
     }
 
     public function makePdfOnTransloadit($user)
     {
-        if (!$this->params->get('transloadit.delivery')) {
+        if (! $this->params->get('transloadit.delivery')) {
             return;
         }
 

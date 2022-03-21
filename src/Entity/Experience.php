@@ -21,12 +21,14 @@ class Experience
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
+
     /**
      * @var User
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
+
     /**
      * @var string
      */
@@ -34,6 +36,7 @@ class Experience
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 150)]
     protected ?string $title = null;
+
     /**
      * @var string
      */
@@ -41,18 +44,21 @@ class Experience
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 50)]
     protected ?string $company = null;
+
     /**
      * @var $description
      */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     protected ?string $description = null;
+
     /**
      * @var DateTimeInterface
      */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected ?\DateTimeInterface $periodStart = null;
+
     /**
      * @var DateTimeInterface|null
      */

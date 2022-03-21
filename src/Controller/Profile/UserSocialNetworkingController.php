@@ -90,7 +90,7 @@ class UserSocialNetworkingController extends AbstractController
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
     public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$userSocialNetworking->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $userSocialNetworking->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($userSocialNetworking);
             $entityManager->flush();

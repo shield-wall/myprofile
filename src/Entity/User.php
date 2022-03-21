@@ -30,6 +30,7 @@ class User implements UserInterface, Stringable
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
+
     /**
      * @var string
      */
@@ -37,105 +38,132 @@ class User implements UserInterface, Stringable
     #[Assert\Email]
     #[ORM\Column(type: Types::STRING, length: 200, unique: true)]
     protected ?string $email = null;
+
     #[Assert\NotBlank(groups: ['registration'])]
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
     protected ?string $firstName = null;
+
     #[Assert\NotBlank(groups: ['registration'])]
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
     protected ?string $lastName = null;
+
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      */
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50, unique: true)]
     private ?string $slug = null;
+
     #[Assert\Length(max: 250)]
     #[ORM\Column(type: Types::TEXT, length: 250, nullable: true)]
     protected ?string $headline = null;
+
     /**
      * This field is used in user`s profile.
      */
     #[Assert\Length(max: 100)]
     #[ORM\Column(type: Types::STRING, length: 100, nullable: true)]
     protected ?string $role = null;
+
     #[ORM\Column(type: Types::STRING, length: 20, nullable: true)]
     protected ?string $phone = null;
+
     #[Assert\Length(max: 20)]
     #[ORM\Column(type: Types::STRING, length: 20, nullable: true)]
     protected ?string $cell = null;
+
     #[ORM\Column(type: Types::TEXT, length: 350, nullable: true)]
     protected ?string $summary = null;
+
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
     protected ?string $country = null;
+
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
     protected ?string $state = null;
+
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
     protected ?string $city = null;
+
     #[Assert\Choice(['male', 'female'])]
     #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
     protected ?string $gender = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     protected ?\DateTimeInterface $birthday = null;
+
     /**
      * @var Collection<UserSocialNetworking>
      */
     #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'user')]
     protected Collection $userSocialNetworks;
+
     /**
      * @var Collection<Education>
      */
     #[ORM\OneToMany(targetEntity: 'Education', mappedBy: 'user')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $educations;
+
     /**
      * @var Collection<Experience>
      */
     #[ORM\OneToMany(targetEntity: 'Experience', mappedBy: 'user')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $experiences;
+
     /**
      * @var Collection<Skill>
      */
     #[ORM\OneToMany(targetEntity: 'Skill', mappedBy: 'user')]
     #[ORM\OrderBy(['priority' => 'ASC'])]
     protected Collection $skills;
+
     /**
      * @var Collection<Certification>
      */
     #[ORM\OneToMany(targetEntity: 'Certification', mappedBy: 'user')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $certifications;
+
     #[ORM\Column(type: Types::STRING, length: 200, nullable: true)]
     protected ?string $keyWords = null;
+
     /**
      * @var Collection<UserLanguage>
      */
     #[ORM\OneToMany(targetEntity: 'UserLanguage', mappedBy: 'user')]
     private Collection $userLanguages;
+
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
+
     #[ORM\Column(type: Types::STRING, length: 255)]
     private string $password;
+
     #[Assert\NotBlank(groups: ['registration', 'resetPassword'])]
     #[Assert\Length(min: 6)]
     private ?string $plainPassword = null;
+
     /**
      * @var string|null
      */
     #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $salt = null;
+
     /**
      * @Gedmo\Timestampable(on="create")
      */
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
+
     /**
      * @Gedmo\Timestampable(on="update")
      */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
+
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $isVerified = false;
 
@@ -212,7 +240,7 @@ class User implements UserInterface, Stringable
      */
     public function addEducations(Education $education)
     {
-        if (!$this->educations->contains($education)) {
+        if (! $this->educations->contains($education)) {
             $this->educations->add($education);
         }
 
@@ -232,7 +260,7 @@ class User implements UserInterface, Stringable
      */
     public function addExperiences(Experience $experience)
     {
-        if (!$this->experiences->contains($experience)) {
+        if (! $this->experiences->contains($experience)) {
             $this->experiences->add($experience);
         }
 
@@ -252,7 +280,7 @@ class User implements UserInterface, Stringable
      */
     public function addSkills(Skill $skill)
     {
-        if (!$this->skills->contains($skill)) {
+        if (! $this->skills->contains($skill)) {
             $this->skills->add($skill);
         }
 
@@ -272,7 +300,7 @@ class User implements UserInterface, Stringable
      */
     public function addCertifications(Certification $certification)
     {
-        if (!$this->certifications->contains($certification)) {
+        if (! $this->certifications->contains($certification)) {
             $this->certifications->add($certification);
         }
 
@@ -562,7 +590,7 @@ class User implements UserInterface, Stringable
 
     public function addUserLanguage(UserLanguage $userLanguage): self
     {
-        if (!$this->userLanguages->contains($userLanguage)) {
+        if (! $this->userLanguages->contains($userLanguage)) {
             $this->userLanguages[] = $userLanguage;
             $userLanguage->setUser($this);
         }
