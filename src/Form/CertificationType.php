@@ -50,10 +50,10 @@ class CertificationType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Certification::class,
             'translation_domain' => 'MyProfile',
-        ));
+        ]);
     }
 
     /**

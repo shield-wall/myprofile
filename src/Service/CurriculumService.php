@@ -4,7 +4,6 @@ namespace App\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\User\User;
 use transloadit\Transloadit;
 
 class CurriculumService
@@ -24,12 +23,12 @@ class CurriculumService
         $this->transloadit->createAssembly([
             'params' => [
                 'template_id' => $this->params->get('transloadit.template_id.curriculum'),
-                "steps" => [
-                    "screenshot_en" => [
-                        "url" => $this->getAbsoluteUrl($user, 'en'),
+                'steps' => [
+                    'screenshot_en' => [
+                        'url' => $this->getAbsoluteUrl($user, 'en'),
                     ],
-                    "screenshot_pt_BR" => [
-                        "url" => $this->getAbsoluteUrl($user, 'pt_BR'),
+                    'screenshot_pt_BR' => [
+                        'url' => $this->getAbsoluteUrl($user, 'pt_BR'),
                     ],
                     'store' => [
                         'credentials' => $this->params->get('transloadit.credentials'),

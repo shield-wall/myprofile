@@ -14,34 +14,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class CertificationController extends AbstractCrudController
 {
     protected const PREFIX = 'certification';
+
     #[Route(name: 'index', methods: ['GET'])]
-    public function indexAction(CertificationRepository $certificationRepository) : Response
+    public function indexAction(CertificationRepository $certificationRepository): Response
     {
         return $this->index($certificationRepository);
     }
+
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function newAction(Request $request) : Response
+    public function newAction(Request $request): Response
     {
         $certification = new Certification();
+
         return $this->save($request, CertificationType::class, $certification);
     }
+
     /**
      * @IsGranted("ROLE_USER", subject="certification")
-     *
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, Certification $certification) : Response
+    public function editAction(Request $request, Certification $certification): Response
     {
         return $this->save($request, CertificationType::class, $certification);
     }
+
     /**
      * Deletes a certification entity.
      *
      * @IsGranted("ROLE_USER", subject="certification")
-     *
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function deleteAction(Request $request, Certification $certification) : Response
+    public function deleteAction(Request $request, Certification $certification): Response
     {
         return $this->delete($request, $certification);
     }

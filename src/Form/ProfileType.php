@@ -3,16 +3,18 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Symfony\Component\Form\Extension\Core\Type\{BirthdayType,
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\{
+    BirthdayType,
     ChoiceType,
     FileType,
     IntegerType,
-    TextareaType,
-    TextType};
+    TextType,
+    TextareaType
+};
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\AbstractType;
 
 class ProfileType extends AbstractType
 {
@@ -23,7 +25,6 @@ class ProfileType extends AbstractType
         $builder
             ->add('first_name', TextType::class, [
                 'label' => 'form.main.first_name',
-
             ])
             ->add('last_name', TextType::class, [
                 'label' => 'form.main.last_name',
@@ -40,7 +41,7 @@ class ProfileType extends AbstractType
                             'image/jpg',
                             'image/png',
                         ],
-                    ])
+                    ]),
                 ],
             ])
             ->add('background_image', FileType::class, [
@@ -55,7 +56,7 @@ class ProfileType extends AbstractType
                             'image/jpg',
                             'image/png',
                         ],
-                    ])
+                    ]),
                 ],
             ])
             ->add('slug', TextType::class, [

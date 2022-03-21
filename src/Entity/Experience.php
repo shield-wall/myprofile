@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ExperienceRepository;
 use App\EventListener\UpdateCurriculumListener;
+use App\Repository\ExperienceRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTimeInterface;
 
 #[ORM\Table(name: 'experience')]
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
@@ -14,7 +14,6 @@ use DateTimeInterface;
 class Experience
 {
     /**
-     *
      * @var int
      */
     #[ORM\Id]
@@ -22,7 +21,6 @@ class Experience
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected $id;
     /**
-     *
      * @var User
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
@@ -59,37 +57,48 @@ class Experience
      */
     #[ORM\Column(type: 'date', nullable: true)]
     protected $periodEnd;
+
     public function getId(): int
     {
         return $this->id;
     }
+
     public function getUser(): User
     {
         return $this->user;
     }
-    public function setUser(User $user): Experience
+
+    public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
+
     public function getTitle(): string
     {
         return $this->title;
     }
-    public function setTitle(string $title): Experience
+
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
+
     public function getCompany(): string
     {
         return $this->company;
     }
-    public function setCompany(string $company): Experience
+
+    public function setCompany(string $company): self
     {
         $this->company = $company;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -97,15 +106,19 @@ class Experience
     {
         return $this->description;
     }
+
     /**
      * @param mixed $description
+     *
      * @return Experience
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
+
     /**
      * @return DateTimeInterface
      */
@@ -113,18 +126,23 @@ class Experience
     {
         return $this->periodStart;
     }
-    public function setPeriodStart(DateTimeInterface $periodStart): Experience
+
+    public function setPeriodStart(DateTimeInterface $periodStart): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
+
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
-    public function setPeriodEnd(?DateTimeInterface $periodEnd): Experience
+
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
 }

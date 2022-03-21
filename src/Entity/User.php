@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use App\EventListener\UpdateCurriculumListener;
+use App\Repository\UserRepository;
+use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Stringable;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,7 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, Stringable
 {
     /**
-     *
      * @var int
      */
     #[ORM\Id]
@@ -55,7 +54,7 @@ class User implements UserInterface, Stringable
     #[ORM\Column(type: 'text', length: 250, nullable: true)]
     protected $headline;
     /**
-     * This field is used in user`s profile
+     * This field is used in user`s profile.
      */
     #[Assert\Length(max: 100)]
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
@@ -120,6 +119,7 @@ class User implements UserInterface, Stringable
     private $updatedAt;
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
+
     public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
@@ -129,29 +129,36 @@ class User implements UserInterface, Stringable
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
     }
+
     public function getId(): int
     {
         return $this->id;
     }
+
     public function getEmail(): string
     {
         return $this->email;
     }
-    public function setEmail(string $email): User
+
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
+
     public function getSlug()
     {
         return $this->slug;
     }
+
     public function setSlug($slug)
     {
         $this->slug = $slug;
 
         return $this;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -159,16 +166,20 @@ class User implements UserInterface, Stringable
     {
         return $this->userSocialNetworks;
     }
+
     public function setUserSocialNetworks(UserSocialNetworking $socialNetworking)
     {
         $socialNetworking->setUser($this);
         $this->getUserSocialNetworks()->add($socialNetworking);
     }
+
     public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking)
     {
         $this->getUserSocialNetworks()->removeElement($socialNetworking);
+
         return $this;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -176,6 +187,7 @@ class User implements UserInterface, Stringable
     {
         return $this->educations;
     }
+
     /**
      * @return User
      */
@@ -187,6 +199,7 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -194,6 +207,7 @@ class User implements UserInterface, Stringable
     {
         return $this->experiences;
     }
+
     /**
      * @return User
      */
@@ -205,6 +219,7 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -212,6 +227,7 @@ class User implements UserInterface, Stringable
     {
         return $this->skills;
     }
+
     /**
      * @return User
      */
@@ -223,6 +239,7 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -230,6 +247,7 @@ class User implements UserInterface, Stringable
     {
         return $this->certifications;
     }
+
     /**
      * @return User
      */
@@ -241,6 +259,7 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -248,15 +267,19 @@ class User implements UserInterface, Stringable
     {
         return $this->country;
     }
+
     /**
      * @param mixed $country
+     *
      * @return User
      */
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -264,15 +287,19 @@ class User implements UserInterface, Stringable
     {
         return $this->city;
     }
+
     /**
      * @param mixed $city
+     *
      * @return User
      */
     public function setCity($city)
     {
         $this->city = $city;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -280,15 +307,19 @@ class User implements UserInterface, Stringable
     {
         return $this->birthday;
     }
+
     /**
      * @param mixed $birthday
+     *
      * @return User
      */
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -296,15 +327,19 @@ class User implements UserInterface, Stringable
     {
         return $this->firstName;
     }
+
     /**
      * @param mixed $firstName
+     *
      * @return User
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -312,15 +347,19 @@ class User implements UserInterface, Stringable
     {
         return $this->lastName;
     }
+
     /**
      * @param mixed $lastName
+     *
      * @return User
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -328,15 +367,19 @@ class User implements UserInterface, Stringable
     {
         return $this->headline;
     }
+
     /**
      * @param mixed $headline
+     *
      * @return User
      */
     public function setHeadline($headline)
     {
         $this->headline = $headline;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -344,15 +387,19 @@ class User implements UserInterface, Stringable
     {
         return $this->role;
     }
+
     /**
      * @param mixed $role
+     *
      * @return User
      */
     public function setRole($role)
     {
         $this->role = $role;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -360,15 +407,19 @@ class User implements UserInterface, Stringable
     {
         return $this->cell;
     }
+
     /**
      * @param mixed $cell
+     *
      * @return User
      */
     public function setCell($cell)
     {
         $this->cell = $cell;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -376,15 +427,19 @@ class User implements UserInterface, Stringable
     {
         return $this->phone;
     }
+
     /**
      * @param mixed $phone
+     *
      * @return User
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -392,15 +447,19 @@ class User implements UserInterface, Stringable
     {
         return $this->gender;
     }
+
     /**
      * @param mixed $gender
+     *
      * @return User
      */
     public function setGender($gender)
     {
         $this->gender = $gender;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -408,15 +467,19 @@ class User implements UserInterface, Stringable
     {
         return $this->summary;
     }
+
     /**
      * @param mixed $summary
+     *
      * @return User
      */
     public function setSummary($summary)
     {
         $this->summary = $summary;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -424,15 +487,19 @@ class User implements UserInterface, Stringable
     {
         return $this->state;
     }
+
     /**
      * @param mixed $state
+     *
      * @return User
      */
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -440,26 +507,32 @@ class User implements UserInterface, Stringable
     {
         return $this->keyWords;
     }
+
     /**
      * @return User
      */
     public function setKeyWords(?string $keyWords)
     {
         $this->keyWords = $keyWords;
+
         return $this;
     }
+
     public function getCurriculumPath(): string
     {
         return sprintf('users/%s/curriculum/', md5($this->getEmail()));
     }
+
     public function getProfileImage(): string
     {
         return sprintf('users/%s/profile.webp', md5($this->getEmail()));
     }
+
     public function getBackgroundImage(): string
     {
         return sprintf('users/%s/background.webp', md5($this->getEmail()));
     }
+
     /**
      * @return Collection|UserLanguage[]
      */
@@ -467,6 +540,7 @@ class User implements UserInterface, Stringable
     {
         return $this->userLanguages;
     }
+
     public function addUserLanguage(UserLanguage $userLanguage): self
     {
         if (!$this->userLanguages->contains($userLanguage)) {
@@ -476,6 +550,7 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
+
     public function removeUserLanguage(UserLanguage $userLanguage): self
     {
         if ($this->userLanguages->contains($userLanguage)) {
@@ -488,6 +563,7 @@ class User implements UserInterface, Stringable
 
         return $this;
     }
+
     /**
      * @return DateTime|DateTimeImmutable
      */
@@ -495,6 +571,7 @@ class User implements UserInterface, Stringable
     {
         return $this->createdAt;
     }
+
     /**
      * @return DateTime|DateTimeImmutable
      */
@@ -502,6 +579,7 @@ class User implements UserInterface, Stringable
     {
         return $this->updatedAt;
     }
+
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -510,51 +588,65 @@ class User implements UserInterface, Stringable
 
         return array_unique($roles);
     }
+
     public function getPassword(): string
     {
         return $this->password;
     }
-    public function setPassword(string $password): User
+
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
+
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
-    public function setPlainPassword(?string $plainPassword): User
+
+    public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
         return $this;
     }
+
     public function getSalt(): ?string
     {
         return $this->salt;
     }
-    public function setSalt(?string $salt): User
+
+    public function setSalt(?string $salt): self
     {
         $this->salt = $salt;
+
         return $this;
     }
+
     public function getUsername()
     {
         return $this->getEmail();
     }
+
     public function eraseCredentials()
     {
         $this->plainPassword = null;
     }
+
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
+
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
 
         return $this;
     }
+
     public function __toString(): string
     {
         return $this->getUsername();

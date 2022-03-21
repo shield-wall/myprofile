@@ -15,15 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserLanguageController extends AbstractController
 {
     #[Route(name: 'index', methods: ['GET'])]
-    public function index(UserLanguageRepository $userLanguageRepository) : Response
+    public function index(UserLanguageRepository $userLanguageRepository): Response
     {
         $userLanguages = $userLanguageRepository->findBy(['user' => $this->getUser()]);
+
         return $this->render('profile/user_language/index.html.twig', [
             'user_languages' => $userLanguages,
         ]);
     }
+
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request) : Response
+    public function new(Request $request): Response
     {
         $userLanguage = new UserLanguage();
         $userLanguage->setUser($this->getUser());
@@ -35,18 +37,21 @@ class UserLanguageController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'messages.item_saved');
+
             return $this->redirectToRoute('profile_user_language_index');
         }
+
         return $this->render('profile/user_language/save.html.twig', [
             'profile_user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @IsGranted("ROLE_USER", subject="userLanguage")
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, UserLanguage $userLanguage) : Response
+    public function edit(Request $request, UserLanguage $userLanguage): Response
     {
         $form = $this->createForm(UserLanguageType::class, $userLanguage);
         $form->handleRequest($request);
@@ -54,26 +59,30 @@ class UserLanguageController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
+
             return $this->redirectToRoute('profile_user_language_index');
         }
+
         return $this->render('profile/user_language/save.html.twig', [
             'profile_user_language' => $userLanguage,
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @IsGranted("ROLE_USER", subject="userLanguage")
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function delete(Request $request, UserLanguage $userLanguage) : Response
+    public function delete(Request $request, UserLanguage $userLanguage): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $userLanguage->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$userLanguage->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($userLanguage);
             $entityManager->flush();
 
             $this->addFlash('success', 'messages.item_removed');
         }
+
         return $this->redirectToRoute('profile_user_language_index');
     }
 }

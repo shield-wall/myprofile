@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\EducationRepository;
 use App\EventListener\UpdateCurriculumListener;
+use App\Repository\EducationRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTimeInterface;
 
 #[ORM\Table(name: 'education')]
 #[ORM\Entity(repositoryClass: EducationRepository::class)]
@@ -15,7 +15,6 @@ class Education implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
     /**
-     *
      * @var int
      */
     #[ORM\Id]
@@ -23,7 +22,6 @@ class Education implements EntityInterface, HasUserInterface
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected $id;
     /**
-     *
      * @var UserInterface
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
@@ -60,42 +58,55 @@ class Education implements EntityInterface, HasUserInterface
      */
     #[ORM\Column(type: 'date', nullable: true)]
     protected $periodEnd;
+
     public function getId(): int
     {
         return $this->id;
     }
-    public function setId(int $id): Education
+
+    public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     public function getTitle(): string
     {
         return $this->title;
     }
-    public function setTitle(string $title): Education
+
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
+
     public function getInstitution(): string
     {
         return $this->institution;
     }
-    public function setInstitution(string $institution): Education
+
+    public function setInstitution(string $institution): self
     {
         $this->institution = $institution;
+
         return $this;
     }
+
     public function getDescription(): string
     {
         return $this->description;
     }
-    public function setDescription(string $description): Education
+
+    public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
+
     /**
      * @return DateTimeInterface
      */
@@ -103,18 +114,23 @@ class Education implements EntityInterface, HasUserInterface
     {
         return $this->periodStart;
     }
-    public function setPeriodStart(DateTimeInterface $periodStart): Education
+
+    public function setPeriodStart(DateTimeInterface $periodStart): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
+
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
-    public function setPeriodEnd(?DateTimeInterface $periodEnd): Education
+
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
 }

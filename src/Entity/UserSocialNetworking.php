@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\UserSocialNetworkingRepository;
 use App\EventListener\UpdateCurriculumListener;
+use App\Repository\UserSocialNetworkingRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class UserSocialNetworking
 {
     /**
-     *
      * @var int
      */
     #[ORM\Id]
@@ -23,14 +22,12 @@ class UserSocialNetworking
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected $id;
     /**
-     *
      * @var User
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     protected $user;
     /**
-     *
      * @var SocialNetworking|null
      */
     #[ORM\ManyToOne(targetEntity: 'SocialNetworking', inversedBy: 'userSocialNetworks', fetch: 'EAGER')]
@@ -42,35 +39,45 @@ class UserSocialNetworking
     #[Assert\Length(max: 200)]
     #[ORM\Column(type: 'string', length: 200)]
     protected $link;
+
     public function getId(): int
     {
         return $this->id;
     }
+
     public function getUser(): User
     {
         return $this->user;
     }
-    public function setUser(User $user): UserSocialNetworking
+
+    public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
+
     public function getSocialNetworking(): ?SocialNetworking
     {
         return $this->socialNetworking;
     }
-    public function setSocialNetworking(?SocialNetworking $socialNetworking): UserSocialNetworking
+
+    public function setSocialNetworking(?SocialNetworking $socialNetworking): self
     {
         $this->socialNetworking = $socialNetworking;
+
         return $this;
     }
+
     public function getLink(): string
     {
         return $this->link;
     }
-    public function setLink(string $link): UserSocialNetworking
+
+    public function setLink(string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
 }

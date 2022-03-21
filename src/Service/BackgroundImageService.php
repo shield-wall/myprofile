@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use transloadit\Transloadit;
 
 class BackgroundImageService
@@ -33,7 +32,7 @@ class BackgroundImageService
             ],
             'params' => [
                 'template_id' => $this->params->get('transloadit.template_id.image.background'),
-                "steps" => [
+                'steps' => [
                     'export' => [
                         'credentials' => $this->params->get('transloadit.credentials'),
                         'url_prefix' => $urlPrefix,

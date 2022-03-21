@@ -13,9 +13,9 @@ abstract class AbstractCrudController extends AbstractController
 {
     public function index(OwnerDataRepositoryInterface $repository): Response
     {
-        return $this->render(sprintf('profile/%s.html.twig', static::PREFIX), array(
+        return $this->render(sprintf('profile/%s.html.twig', static::PREFIX), [
             'data' => $repository->getOwnerData($this->getUser()),
-        ));
+        ]);
     }
 
     public function save(Request $request, string $formTypeClass, HasUserInterface $object): Response
@@ -37,13 +37,13 @@ abstract class AbstractCrudController extends AbstractController
         return $this->render('profile/save.html.twig', [
             'form' => $form->createView(),
             'back_path' => sprintf('profile_%s_index', static::PREFIX),
-            'title' => sprintf('form.%s.head.title', static::PREFIX)
+            'title' => sprintf('form.%s.head.title', static::PREFIX),
         ]);
     }
 
     public function delete(Request $request, EntityInterface $entity): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $entity->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$entity->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($entity);
             $entityManager->flush();

@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CertificationRepository;
 use App\EventListener\UpdateCurriculumListener;
+use App\Repository\CertificationRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTimeInterface;
 
 /**
- * Certification
+ * Certification.
  */
 #[ORM\Table(name: 'certification')]
 #[ORM\Entity(repositoryClass: CertificationRepository::class)]
@@ -22,7 +22,6 @@ class Certification implements EntityInterface, HasUserInterface
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     private readonly int $id;
     /**
-     *
      * @var UserInterface
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'certifications')]
@@ -44,19 +43,24 @@ class Certification implements EntityInterface, HasUserInterface
     #[Assert\Length(max: 255)]
     #[ORM\Column(name: 'image', type: 'string', length: 255, nullable: true)]
     private ?string $image = null;
+
     public function getId(): int
     {
         return $this->id;
     }
+
     public function getTitle(): string
     {
         return $this->title;
     }
-    public function setTitle(string $title): Certification
+
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
+
     /**
      * @return DateTimeInterface
      */
@@ -64,45 +68,59 @@ class Certification implements EntityInterface, HasUserInterface
     {
         return $this->periodStart;
     }
-    public function setPeriodStart(DateTimeInterface $periodStart): Certification
+
+    public function setPeriodStart(DateTimeInterface $periodStart): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
+
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
-    public function setPeriodEnd(?DateTimeInterface $periodEnd): Certification
+
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
+
     public function getInstitution(): string
     {
         return $this->institution;
     }
-    public function setInstitution(string $institution): Certification
+
+    public function setInstitution(string $institution): self
     {
         $this->institution = $institution;
+
         return $this;
     }
+
     public function getLink(): ?string
     {
         return $this->link;
     }
-    public function setLink(?string $link): Certification
+
+    public function setLink(?string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
+
     public function getImage(): ?string
     {
         return $this->image;
     }
-    public function setImage(?string $image): Certification
+
+    public function setImage(?string $image): self
     {
         $this->image = $image;
+
         return $this;
     }
 }

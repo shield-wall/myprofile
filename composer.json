@@ -42,13 +42,13 @@
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
         "rector/rector": "^0.12.18",
-        "squizlabs/php_codesniffer": "^3.5",
         "symfony/browser-kit": "^5.2",
         "symfony/css-selector": "^5.2",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/stopwatch": "^6.0",
-        "symfony/web-profiler-bundle": "^5.2"
+        "symfony/web-profiler-bundle": "^5.2",
+        "symplify/easy-coding-standard": "^10.1"
     },
     "config": {
         "preferred-install": {
@@ -102,7 +102,8 @@
         "db:migration:diff": "bin/console make:migration",
         "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
         "test":"php -d memory_limit=1024M bin/phpunit",
-        "lint:phpcs": "vendor/bin/phpcs",
+        "lint:ecs": "vendor/bin/ecs check src",
+        "lint:ecs:fix": "vendor/bin/ecs check src --fix",
         "lint:rector": "vendor/bin/rector process --dry-run",
         "lint:rector:fix": "vendor/bin/rector process",
         "lint:twig": "php bin/console lint:twig templates",

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\SocialNetworkingRepository;
 use App\EventListener\UpdateCurriculumListener;
-use Stringable;
+use App\Repository\SocialNetworkingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table(name: 'social_networking')]
@@ -26,14 +26,17 @@ class SocialNetworking implements Stringable
     protected $icon;
     #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'socialNetworking')]
     protected $userSocialNetworks;
+
     public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
     }
+
     public function getId()
     {
         return $this->id;
     }
+
     /**
      * @return mixed
      */
@@ -41,15 +44,19 @@ class SocialNetworking implements Stringable
     {
         return $this->name;
     }
+
     /**
      * @param mixed $name
+     *
      * @return SocialNetworking
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -57,15 +64,19 @@ class SocialNetworking implements Stringable
     {
         return $this->icon;
     }
+
     /**
      * @param mixed $icon
+     *
      * @return SocialNetworking
      */
     public function setIcon($icon)
     {
         $this->icon = $icon;
+
         return $this;
     }
+
     public function __toString(): string
     {
         return (string) $this->getName();

@@ -46,10 +46,10 @@ class EducationType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Education::class,
             'translation_domain' => 'MyProfile',
-        ));
+        ]);
     }
 
     /**

@@ -2,13 +2,13 @@
 
 namespace App\Controller\Profile;
 
-use Symfony\Component\HttpFoundation\Response;
-use App\Form\SkillType;
 use App\Entity\Skill;
+use App\Form\SkillType;
 use App\Repository\SkillRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/skill', name: 'skill_')]
@@ -18,10 +18,12 @@ class SkillController extends AbstractController
     public function indexAction(SkillRepository $skillRepository): Response
     {
         $skills = $skillRepository->findBy(['user' => $this->getUser()]);
-        return $this->render('profile/skill/index.html.twig', array(
+
+        return $this->render('profile/skill/index.html.twig', [
             'skills' => $skills,
-        ));
+        ]);
     }
+
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
     public function newAction(Request $request): Response
     {
@@ -35,13 +37,16 @@ class SkillController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
+
             return $this->redirectToRoute('profile_skill_index');
         }
-        return $this->render('profile/skill/save.html.twig', array(
+
+        return $this->render('profile/skill/save.html.twig', [
             'skill' => $skill,
             'form' => $form->createView(),
-        ));
+        ]);
     }
+
     /**
      * @Security("user == skill.getUser()")
      */
@@ -54,26 +59,30 @@ class SkillController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
+
             return $this->redirectToRoute('profile_skill_index');
         }
-        return $this->render('profile/skill/save.html.twig', array(
+
+        return $this->render('profile/skill/save.html.twig', [
             'skill' => $skill,
             'form' => $form->createView(),
-        ));
+        ]);
     }
+
     /**
      * @Security("user == skill.getUser()")
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
     public function deleteAction(Request $request, Skill $skill): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$skill->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($skill);
             $entityManager->flush();
 
             $this->addFlash('success', 'messages.item_removed');
         }
+
         return $this->redirectToRoute('profile_skill_index');
     }
 }

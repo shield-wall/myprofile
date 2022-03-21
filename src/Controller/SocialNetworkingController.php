@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use App\Form\SocialNetworkingType;
-use Symfony\Component\Form\Form;
 use App\Entity\SocialNetworking;
+use App\Form\SocialNetworkingType;
 use App\Repository\SocialNetworkingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/{_locale}/admin/socialnetworking', name: 'admin_socialnetworking_', defaults: ['_locale' => 'pt_BR'], requirements: ['_locale' => 'en|pt_BR'])]
@@ -21,10 +21,12 @@ class SocialNetworkingController extends AbstractController
     public function indexAction(SocialNetworkingRepository $socialNetworkingRepository): Response
     {
         $socialNetworkings = $socialNetworkingRepository->findAll();
-        return $this->render('socialnetworking/index.html.twig', array(
+
+        return $this->render('socialnetworking/index.html.twig', [
             'socialNetworkings' => $socialNetworkings,
-        ));
+        ]);
     }
+
     /**
      * Creates a new socialNetworking entity.
      */
@@ -41,11 +43,13 @@ class SocialNetworkingController extends AbstractController
 
             return $this->redirectToRoute('admin_socialnetworking_index');
         }
-        return $this->render('socialnetworking/new.html.twig', array(
+
+        return $this->render('socialnetworking/new.html.twig', [
             'socialNetworking' => $socialNetworking,
             'form' => $form->createView(),
-        ));
+        ]);
     }
+
     /**
      * Finds and displays a socialNetworking entity.
      */
@@ -53,11 +57,13 @@ class SocialNetworkingController extends AbstractController
     public function showAction(SocialNetworking $socialNetworking): Response
     {
         $deleteForm = $this->createDeleteForm($socialNetworking);
-        return $this->render('socialnetworking/show.html.twig', array(
+
+        return $this->render('socialnetworking/show.html.twig', [
             'socialNetworking' => $socialNetworking,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
+
     /**
      * Displays a form to edit an existing socialNetworking entity.
      */
@@ -70,14 +76,16 @@ class SocialNetworkingController extends AbstractController
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_socialnetworking_edit', array('id' => $socialNetworking->getId()));
+            return $this->redirectToRoute('admin_socialnetworking_edit', ['id' => $socialNetworking->getId()]);
         }
-        return $this->render('socialnetworking/edit.html.twig', array(
+
+        return $this->render('socialnetworking/edit.html.twig', [
             'socialNetworking' => $socialNetworking,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
+
     /**
      * Deletes a socialNetworking entity.
      */
@@ -91,8 +99,10 @@ class SocialNetworkingController extends AbstractController
             $em->remove($socialNetworking);
             $em->flush();
         }
+
         return $this->redirectToRoute('admin_socialnetworking_index');
     }
+
     /**
      * Creates a form to delete a socialNetworking entity.
      *
@@ -103,7 +113,7 @@ class SocialNetworkingController extends AbstractController
     private function createDeleteForm(SocialNetworking $socialNetworking)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_socialnetworking_delete', array('id' => $socialNetworking->getId())))
+            ->setAction($this->generateUrl('admin_socialnetworking_delete', ['id' => $socialNetworking->getId()]))
             ->setMethod(Request::METHOD_DELETE)
             ->getForm();
     }

@@ -55,6 +55,9 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: [ 'ecs', 'container', 'rector', 'twig']
     needs: build
     container:
       image: 3lever/php:8.1.4-fpm-postgresql-dev
@@ -75,15 +78,8 @@ jobs:
           pwd
           ls -lha
 
-      - name: Code Sniffer
-        run: composer lint_phpcs
-
-      - name: Twig
-        run: composer lint_twig
-
-      - name: Symfony Containers
-        run: composer lint_container
-
+      - name: Checking ${{ matrix.command }}
+        run: composer lint:${{ matrix.command }}
 
   test:
     name: Tests
@@ -124,7 +120,7 @@ jobs:
         run: composer db
 
       - name: Fixtures
-        run: composer fixtures
+        run: composer db:fixtures
 
       - name: See files
         run: |
@@ -196,7 +192,7 @@ jobs:
           run:  heroku addons:create heroku-postgresql --app $APP_NAME --name postgresql-$APP_NAME
 
         - name: Migrations
-          run: heroku run --app $APP_NAME composer migrate
+          run: heroku run --app $APP_NAME composer db:migration:apply
 
         - name: Fixtures
-          run: heroku run --app $APP_NAME composer fixtures
+          run: heroku run --app $APP_NAME composer db:fixtures

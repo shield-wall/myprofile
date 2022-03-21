@@ -2,13 +2,13 @@
 
 namespace App\Controller\Profile;
 
-use Symfony\Component\HttpFoundation\Response;
-use App\Form\ExperienceType;
 use App\Entity\Experience;
+use App\Form\ExperienceType;
 use App\Repository\ExperienceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/experience', name: 'experience_')]
@@ -18,10 +18,12 @@ class ExperienceController extends AbstractController
     public function indexAction(ExperienceRepository $experienceRepository): Response
     {
         $experiences = $experienceRepository->findBy(['user' => $this->getUser()]);
-        return $this->render('profile/experience/index.html.twig', array(
+
+        return $this->render('profile/experience/index.html.twig', [
             'experiences' => $experiences,
-        ));
+        ]);
     }
+
     /**
      * Creates a new experience entity.
      */
@@ -38,13 +40,16 @@ class ExperienceController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'messages.item_saved');
+
             return $this->redirectToRoute('profile_experience_index');
         }
-        return $this->render('profile/experience/save.html.twig', array(
+
+        return $this->render('profile/experience/save.html.twig', [
             'experience' => $experience,
             'form' => $form->createView(),
-        ));
+        ]);
     }
+
     /**
      * @Security("user == experience.getUser()")
      */
@@ -57,26 +62,30 @@ class ExperienceController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'messages.item_saved');
+
             return $this->redirectToRoute('profile_experience_index');
         }
-        return $this->render('profile/experience/save.html.twig', array(
+
+        return $this->render('profile/experience/save.html.twig', [
             'experience' => $experience,
             'form' => $form->createView(),
-        ));
+        ]);
     }
+
     /**
      * @Security("user == experience.getUser()")
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
     public function deleteAction(Request $request, Experience $experience): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $experience->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$experience->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($experience);
             $entityManager->flush();
 
             $this->addFlash('success', 'messages.item_removed');
         }
+
         return $this->redirectToRoute('profile_experience_index');
     }
 }

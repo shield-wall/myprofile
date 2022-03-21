@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
@@ -12,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
@@ -19,9 +19,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 /**
- *
- * Class RegistrationController
- * @package App\Controller
+ * Class RegistrationController.
  */
 #[Route(name: 'app_', defaults: ['_locale' => 'pt_BR'], priority: 10)]
 class RegistrationController extends AbstractController
@@ -29,8 +27,9 @@ class RegistrationController extends AbstractController
     public function __construct(private readonly EmailVerifier $emailVerifier)
     {
     }
+
     #[Route(path: '/register/{_locale}', name: 'register')]
-    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, FormAuthenticator $authenticator, TranslatorInterface $translator, string $mailerFrom, string $mailerFromName) : Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, FormAuthenticator $authenticator, TranslatorInterface $translator, string $mailerFrom, string $mailerFromName): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -76,12 +75,14 @@ class RegistrationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
         }
+
         return $this->render('security/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+
     #[Route(path: '/verify/email', name: 'verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator) : Response
+    public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // validate email confirmation link, sets User::isVerified=true and persists
@@ -93,6 +94,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
         $this->addFlash('success', $translator->trans('email.registration.is_verified'));
+
         return $this->redirectToRoute('app_login');
     }
 }

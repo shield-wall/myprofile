@@ -101,7 +101,7 @@ jobs:
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
 
       - name: Migrations
-        run: heroku run --app myprofile-${{ env.GITHUB_REF_SLUG_URL }} composer migrate
+        run: heroku run --app myprofile-${{ env.GITHUB_REF_SLUG_URL }} composer db:migration:apply
 
   deploy_prod:
     name: Deploy - Production
@@ -149,7 +149,7 @@ jobs:
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
 
       - name: Migrations
-        run: heroku run --app $APP_NAME composer migrate
+        run: heroku run --app $APP_NAME composer db:migration:apply
 
   sentry:
     name: Sentry

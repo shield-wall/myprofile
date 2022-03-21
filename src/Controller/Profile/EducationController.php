@@ -14,39 +14,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class EducationController extends AbstractCrudController
 {
     protected const PREFIX = 'education';
+
     /**
      * Lists all education entities.
-     *
-     *
      */
     #[Route(name: 'index', methods: ['GET'])]
-    public function indexAction(EducationRepository $educationRepository) : Response
+    public function indexAction(EducationRepository $educationRepository): Response
     {
         return $this->index($educationRepository);
     }
+
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function newAction(Request $request) : Response
+    public function newAction(Request $request): Response
     {
         $education = new Education();
+
         return $this->save($request, EducationType::class, $education);
     }
+
     /**
      * @Security("user == education.getUser()")
-     *
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, Education $education) : Response
+    public function editAction(Request $request, Education $education): Response
     {
         return $this->save($request, EducationType::class, $education);
     }
+
     /**
      * Deletes a education entity.
      *
      * @Security("user == education.getUser()")
-     *
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function deleteAction(Request $request, Education $education) : Response
+    public function deleteAction(Request $request, Education $education): Response
     {
         return $this->delete($request, $education);
     }

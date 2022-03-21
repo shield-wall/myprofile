@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
             'data_class' => User::class,
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'registration',
+            'csrf_token_id' => 'registration',
         ]);
     }
 }

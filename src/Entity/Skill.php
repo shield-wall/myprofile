@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\SkillRepository;
 use App\EventListener\UpdateCurriculumListener;
+use App\Repository\SkillRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -29,8 +29,9 @@ class Skill
     private $priority;
     #[ORM\Column(name: 'status', type: 'boolean')]
     private bool $status = true;
+
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -38,9 +39,9 @@ class Skill
     {
         return $this->id;
     }
+
     /**
-     * Set name
-     *
+     * Set name.
      *
      * @return Skill
      */
@@ -50,8 +51,9 @@ class Skill
 
         return $this;
     }
+
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -59,9 +61,9 @@ class Skill
     {
         return $this->name;
     }
+
     /**
-     * Set levelExperience
-     *
+     * Set levelExperience.
      *
      * @return Skill
      */
@@ -71,8 +73,9 @@ class Skill
 
         return $this;
     }
+
     /**
-     * Get levelExperience
+     * Get levelExperience.
      *
      * @return int
      */
@@ -80,9 +83,9 @@ class Skill
     {
         return $this->levelExperience;
     }
+
     /**
-     * Set priority
-     *
+     * Set priority.
      *
      * @return Skill
      */
@@ -92,8 +95,9 @@ class Skill
 
         return $this;
     }
+
     /**
-     * Get priority
+     * Get priority.
      *
      * @return int
      */
@@ -101,9 +105,9 @@ class Skill
     {
         return $this->priority;
     }
+
     /**
-     * Set status
-     *
+     * Set status.
      *
      * @return Skill
      */
@@ -113,8 +117,9 @@ class Skill
 
         return $this;
     }
+
     /**
-     * Get status
+     * Get status.
      *
      * @return bool
      */
@@ -122,6 +127,7 @@ class Skill
     {
         return $this->status;
     }
+
     /**
      * @return Skill
      */
@@ -131,6 +137,7 @@ class Skill
 
         return $this;
     }
+
     /**
      * @return User
      */

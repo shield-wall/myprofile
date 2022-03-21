@@ -2,10 +2,10 @@
 
 namespace App\EventListener;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\User;
 use App\Service\CurriculumService;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UpdateCurriculumListener
 {
@@ -31,7 +31,7 @@ class UpdateCurriculumListener
 
     public function postUpdate($entity)
     {
-        # TODO when the user is creating a new account this variable come null.
+        // TODO when the user is creating a new account this variable come null.
         if (!$this->user instanceof UserInterface) {
             return;
         }

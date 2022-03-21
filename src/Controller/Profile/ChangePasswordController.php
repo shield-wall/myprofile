@@ -2,17 +2,17 @@
 
 namespace App\Controller\Profile;
 
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Form\ChangePasswordAccountFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ChangePasswordController extends AbstractController
 {
     #[Route(path: '/change-password', name: 'change_password')]
-    public function __invoke(Request $request, UserPasswordHasherInterface $passwordEncoder) : Response
+    public function __invoke(Request $request, UserPasswordHasherInterface $passwordEncoder): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(ChangePasswordAccountFormType::class);
@@ -29,6 +29,7 @@ class ChangePasswordController extends AbstractController
 
             $this->addFlash('success', 'messages.item_saved');
         }
+
         return $this->render('profile/change-password.html.twig', [
             'form' => $form->createView(),
         ]);
