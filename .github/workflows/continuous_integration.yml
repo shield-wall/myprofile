@@ -62,7 +62,6 @@ jobs:
           - 'container'
           - 'rector'
           - 'twig'
-          - 'db:validate'
     needs: build
     container:
       image: 3lever/php:8.1.4-fpm-postgresql-dev
@@ -134,6 +133,9 @@ jobs:
 
       - name: Run Tests
         run: composer test
+
+      - name: Validate database schema
+        run: composer db:validate
 
       - name: Codecov
         uses: codecov/codecov-action@v1

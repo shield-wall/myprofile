@@ -107,6 +107,7 @@
         "db:fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "db:migration:diff": "bin/console make:migration",
         "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "db:validate": "php bin/console doctrine:schema:validate",
         "test":"php -d memory_limit=1024M bin/phpunit",
         "lint:ecs": "vendor/bin/ecs check src",
         "lint:ecs:fix": "vendor/bin/ecs check src --fix",
@@ -114,7 +115,6 @@
         "lint:rector:fix": "vendor/bin/rector process",
         "lint:twig": "php bin/console lint:twig templates",
         "lint:container": "php bin/console lint:container",
-        "lint:db:validate": "php bin/console doctrine:schema:validate",
         "prod": [
             "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
             "@composer dump-autoload --optimize --no-dev"
