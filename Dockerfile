@@ -22,8 +22,6 @@ ENV TRANSLOADIT_KEY=$TRANSLOADIT_KEY
 ENV TRANSLOADIT_SECRET=$TRANSLOADIT_SECRET
 ENV TRANSLOADIT_DELIVERY=$TRANSLOADIT_DELIVERY
 
-WORKDIR /app
-
 RUN apt-get install -y curl gnupg2 ca-certificates lsb-release \
     && echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list \
     && curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add - \
