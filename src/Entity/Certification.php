@@ -23,10 +23,8 @@ class Certification implements
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
@@ -39,48 +37,36 @@ class Certification implements
     /**
      * @Assert\Length(max="100")
      * @ORM\Column(name="title", type="string", length=100)
-     *
-     * @var string
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(name="period_start", type="date")
-     *
-     * @var DateTimeInterface
      */
-    private $periodStart;
+    private \DateTimeInterface $periodStart;
 
     /**
-     * @var DateTimeInterface|null
-     *
      * @ORM\Column(name="period_end", type="date", nullable=true)
      */
-    private $periodEnd;
+    private ?\DateTimeInterface $periodEnd = null;
 
     /**
      * @Assert\Length(max="100")
      * @ORM\Column(name="institution", type="string", length=100)
-     *
-     * @var string
      */
-    private $institution;
+    private string $institution;
 
     /**
      * @Assert\Length(max="500")
      * @ORM\Column(name="link", type="string", length=500, nullable=true)
-     *
-     * @var string|null
      */
-    private $link;
+    private ?string $link = null;
 
     /**
      * @Assert\Length(max="255")
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     *
-     * @var string|null
      */
-    private $image;
+    private ?string $image = null;
 
     /**
      * @return int

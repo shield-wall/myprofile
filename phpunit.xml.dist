@@ -23,10 +23,20 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <coverage cacheDirectory=".phpunit.cache/code-coverage"
+              processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
         </include>
+
+        <!-- Third files created by dependencies. -->
+        <exclude>
+            <file>src/Repository/ResetPasswordRequestRepository.php</file>
+        </exclude>
+
+        <report>
+            <clover outputFile="coverage.xml"/>
+        </report>
     </coverage>
 
     <listeners>

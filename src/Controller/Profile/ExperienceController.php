@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use App\Form\ExperienceType;
 use App\Entity\Experience;
 use App\Repository\ExperienceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -35,7 +36,7 @@ class ExperienceController extends AbstractController
     {
         $experience = new Experience();
         $experience->setUser($this->getUser());
-        $form = $this->createForm('App\Form\ExperienceType', $experience);
+        $form = $this->createForm(ExperienceType::class, $experience);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -59,7 +60,7 @@ class ExperienceController extends AbstractController
      */
     public function editAction(Request $request, Experience $experience)
     {
-        $form = $this->createForm('App\Form\ExperienceType', $experience);
+        $form = $this->createForm(ExperienceType::class, $experience);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

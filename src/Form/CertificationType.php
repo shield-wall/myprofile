@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Certification;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -50,7 +51,7 @@ class CertificationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Certification',
+            'data_class' => Certification::class,
             'translation_domain' => 'MyProfile',
         ));
     }

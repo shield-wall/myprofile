@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Stringable;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("slug")
  * @UniqueEntity("email")
  */
-class User implements UserInterface
+class User implements UserInterface, Stringable
 {
     /**
      * @ORM\Id
@@ -27,8 +28,6 @@ class User implements UserInterface
      * @var int
      */
     protected $id;
-
-
     /**
      * @Assert\Length(max="200")
      * @Assert\Email
@@ -37,34 +36,29 @@ class User implements UserInterface
      * @var string
      */
     protected $email;
-
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $firstName;
-
     /**
      * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max="50")
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $lastName;
-
     /**
      * @Assert\Length(max="50")
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      * @ORM\Column(type="string", length=50, unique=true)
      */
     private $slug;
-
     /**
      * @Assert\Length(max="250")
      * @ORM\Column(type="text", length=250, nullable=true)
      */
     protected $headline;
-
     /**
      * This field is used in user`s profile
      *
@@ -72,130 +66,104 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $role;
-
     /**
      * @ORM\Column(type="string",length=20, nullable=true)
      */
     protected $phone;
-
     /**
      * @Assert\Length(max="20")
      * @ORM\Column(type="string",length=20, nullable=true)
      */
     protected $cell;
-
     /**
      * @ORM\Column(type="text", length=350, nullable=true)
      */
     protected $summary;
-
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $country;
-
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $state;
-
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $city;
-
     /**
      * @ORM\Column(type="string", length=6, nullable=true)
      * @Assert\Choice({"male", "female"})
      */
     protected $gender;
-
     /**
      * @ORM\Column(type="date", nullable=true)
      */
     protected $birthday;
-
     /**
      * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="user")
      */
     protected $userSocialNetworks;
-
     /**
      * @ORM\OneToMany(targetEntity="Education", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
     protected $educations;
-
     /**
      * @ORM\OneToMany(targetEntity="Experience", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
     protected $experiences;
-
     /**
      * @ORM\OneToMany(targetEntity="Skill", mappedBy="user")
      * @ORM\OrderBy({"priority" = "ASC"})
      */
     protected $skills;
-
     /**
      * @ORM\OneToMany(targetEntity="Certification", mappedBy="user")
      * @ORM\OrderBy({"periodStart" = "DESC"})
      */
     protected $certifications;
-
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      */
     protected $keyWords;
-
     /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
      */
     private $userLanguages;
-
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
-
+    private array $roles = [];
     /**
-     * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
-
+    private string $password;
     /**
-     * @var string|null
      * @Assert\NotBlank(groups={"registration", "resetPassword"})
      * @Assert\Length(min=6)
      */
-    private $plainPassword;
-
-
+    private ?string $plainPassword = null;
     /**
      * @var string|null
      * @ORM\Column(type="string", nullable=true)
      */
     protected $salt;
-
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
-
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isVerified = false;
-
+    private bool $isVerified = false;
     public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
@@ -205,7 +173,6 @@ class User implements UserInterface
         $this->certifications = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
     }
-
     /**
      * @return int
      */
@@ -213,7 +180,6 @@ class User implements UserInterface
     {
         return $this->id;
     }
-
     /**
      * @return string
      */
@@ -221,7 +187,6 @@ class User implements UserInterface
     {
         return $this->email;
     }
-
     /**
      * @param string $email
      * @return User
@@ -231,19 +196,16 @@ class User implements UserInterface
         $this->email = $email;
         return $this;
     }
-
     public function getSlug()
     {
         return $this->slug;
     }
-
     public function setSlug($slug)
     {
         $this->slug = $slug;
 
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -251,19 +213,16 @@ class User implements UserInterface
     {
         return $this->userSocialNetworks;
     }
-
     public function setUserSocialNetworks(UserSocialNetworking $socialNetworking)
     {
         $socialNetworking->setUser($this);
         $this->getUserSocialNetworks()->add($socialNetworking);
     }
-
     public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking)
     {
         $this->getUserSocialNetworks()->removeElement($socialNetworking);
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -271,7 +230,6 @@ class User implements UserInterface
     {
         return $this->educations;
     }
-
     /**
      * @param Education $education
      * @return User
@@ -284,7 +242,6 @@ class User implements UserInterface
 
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -292,7 +249,6 @@ class User implements UserInterface
     {
         return $this->experiences;
     }
-
     /**
      * @param Experience $experience
      * @return User
@@ -305,7 +261,6 @@ class User implements UserInterface
 
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -313,7 +268,6 @@ class User implements UserInterface
     {
         return $this->skills;
     }
-
     /**
      * @param Skill $skill
      * @return User
@@ -326,7 +280,6 @@ class User implements UserInterface
 
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -334,7 +287,6 @@ class User implements UserInterface
     {
         return $this->certifications;
     }
-
     /**
      * @param Certification $certification
      * @return User
@@ -347,8 +299,6 @@ class User implements UserInterface
 
         return $this;
     }
-
-
     /**
      * @return mixed
      */
@@ -356,7 +306,6 @@ class User implements UserInterface
     {
         return $this->country;
     }
-
     /**
      * @param mixed $country
      * @return User
@@ -366,7 +315,6 @@ class User implements UserInterface
         $this->country = $country;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -374,7 +322,6 @@ class User implements UserInterface
     {
         return $this->city;
     }
-
     /**
      * @param mixed $city
      * @return User
@@ -384,7 +331,6 @@ class User implements UserInterface
         $this->city = $city;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -392,7 +338,6 @@ class User implements UserInterface
     {
         return $this->birthday;
     }
-
     /**
      * @param mixed $birthday
      * @return User
@@ -402,7 +347,6 @@ class User implements UserInterface
         $this->birthday = $birthday;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -410,7 +354,6 @@ class User implements UserInterface
     {
         return $this->firstName;
     }
-
     /**
      * @param mixed $firstName
      * @return User
@@ -420,7 +363,6 @@ class User implements UserInterface
         $this->firstName = $firstName;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -428,7 +370,6 @@ class User implements UserInterface
     {
         return $this->lastName;
     }
-
     /**
      * @param mixed $lastName
      * @return User
@@ -438,7 +379,6 @@ class User implements UserInterface
         $this->lastName = $lastName;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -446,7 +386,6 @@ class User implements UserInterface
     {
         return $this->headline;
     }
-
     /**
      * @param mixed $headline
      * @return User
@@ -456,7 +395,6 @@ class User implements UserInterface
         $this->headline = $headline;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -464,7 +402,6 @@ class User implements UserInterface
     {
         return $this->role;
     }
-
     /**
      * @param mixed $role
      * @return User
@@ -474,7 +411,6 @@ class User implements UserInterface
         $this->role = $role;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -482,7 +418,6 @@ class User implements UserInterface
     {
         return $this->cell;
     }
-
     /**
      * @param mixed $cell
      * @return User
@@ -492,7 +427,6 @@ class User implements UserInterface
         $this->cell = $cell;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -500,7 +434,6 @@ class User implements UserInterface
     {
         return $this->phone;
     }
-
     /**
      * @param mixed $phone
      * @return User
@@ -510,7 +443,6 @@ class User implements UserInterface
         $this->phone = $phone;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -518,7 +450,6 @@ class User implements UserInterface
     {
         return $this->gender;
     }
-
     /**
      * @param mixed $gender
      * @return User
@@ -528,7 +459,6 @@ class User implements UserInterface
         $this->gender = $gender;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -536,7 +466,6 @@ class User implements UserInterface
     {
         return $this->summary;
     }
-
     /**
      * @param mixed $summary
      * @return User
@@ -546,7 +475,6 @@ class User implements UserInterface
         $this->summary = $summary;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -554,7 +482,6 @@ class User implements UserInterface
     {
         return $this->state;
     }
-
     /**
      * @param mixed $state
      * @return User
@@ -564,7 +491,6 @@ class User implements UserInterface
         $this->state = $state;
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -572,7 +498,6 @@ class User implements UserInterface
     {
         return $this->keyWords;
     }
-
     /**
      * @param string|null $keyWords
      * @return User
@@ -582,22 +507,18 @@ class User implements UserInterface
         $this->keyWords = $keyWords;
         return $this;
     }
-
     public function getCurriculumPath(): string
     {
         return sprintf('users/%s/curriculum/', md5($this->getEmail()));
     }
-
     public function getProfileImage(): string
     {
         return sprintf('users/%s/profile.webp', md5($this->getEmail()));
     }
-
     public function getBackgroundImage(): string
     {
         return sprintf('users/%s/background.webp', md5($this->getEmail()));
     }
-
     /**
      * @return Collection|UserLanguage[]
      */
@@ -605,7 +526,6 @@ class User implements UserInterface
     {
         return $this->userLanguages;
     }
-
     public function addUserLanguage(UserLanguage $userLanguage): self
     {
         if (!$this->userLanguages->contains($userLanguage)) {
@@ -615,7 +535,6 @@ class User implements UserInterface
 
         return $this;
     }
-
     public function removeUserLanguage(UserLanguage $userLanguage): self
     {
         if ($this->userLanguages->contains($userLanguage)) {
@@ -628,17 +547,14 @@ class User implements UserInterface
 
         return $this;
     }
-
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
-
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
-
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -647,7 +563,6 @@ class User implements UserInterface
 
         return array_unique($roles);
     }
-
     /**
      * @return string
      */
@@ -655,7 +570,6 @@ class User implements UserInterface
     {
         return $this->password;
     }
-
     /**
      * @param string $password
      * @return User
@@ -665,7 +579,6 @@ class User implements UserInterface
         $this->password = $password;
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -673,7 +586,6 @@ class User implements UserInterface
     {
         return $this->plainPassword;
     }
-
     /**
      * @param string|null $plainPassword
      * @return User
@@ -683,7 +595,6 @@ class User implements UserInterface
         $this->plainPassword = $plainPassword;
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -691,7 +602,6 @@ class User implements UserInterface
     {
         return $this->salt;
     }
-
     /**
      * @param string|null $salt
      * @return User
@@ -701,34 +611,28 @@ class User implements UserInterface
         $this->salt = $salt;
         return $this;
     }
-
     public function getUsername()
     {
         return $this->getEmail();
     }
-
     public function eraseCredentials()
     {
         $this->plainPassword = null;
     }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
-
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
 
         return $this;
     }
-
-
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->getUsername();
     }

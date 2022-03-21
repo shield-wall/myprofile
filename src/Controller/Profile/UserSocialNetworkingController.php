@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use App\Form\UserSocialNetworkingType;
 use App\Entity\UserSocialNetworking;
 use App\Repository\UserSocialNetworkingRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -43,7 +44,7 @@ class UserSocialNetworkingController extends AbstractController
     {
         $userSocialNetworking = new Usersocialnetworking();
         $userSocialNetworking->setUser($this->getUser());
-        $form = $this->createForm('App\Form\UserSocialNetworkingType', $userSocialNetworking);
+        $form = $this->createForm(UserSocialNetworkingType::class, $userSocialNetworking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -69,7 +70,7 @@ class UserSocialNetworkingController extends AbstractController
      */
     public function editAction(Request $request, UserSocialNetworking $userSocialNetworking)
     {
-        $form = $this->createForm('App\Form\UserSocialNetworkingType', $userSocialNetworking);
+        $form = $this->createForm(UserSocialNetworkingType::class, $userSocialNetworking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

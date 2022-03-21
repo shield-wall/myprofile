@@ -41,6 +41,7 @@
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
+        "rector/rector": "^0.12.18",
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/browser-kit": "^5.2",
         "symfony/css-selector": "^5.2",
@@ -97,13 +98,15 @@
             "php bin/console doctrine:database:create  --if-not-exists",
             "@migrate"
         ],
-        "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
-        "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "db:fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "db:migration:diff": "bin/console make:migration",
-        "test":"php -d memory_limit=1024M bin/phpunit --coverage-clover coverage.xml",
-        "lint_phpcs": "vendor/bin/phpcs",
-        "lint_twig": "php bin/console lint:twig templates",
-        "lint_container": "php bin/console lint:container",
+        "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "test":"php -d memory_limit=1024M bin/phpunit",
+        "lint:phpcs": "vendor/bin/phpcs",
+        "lint:rector": "vendor/bin/rector process src --dry-run",
+        "lint:rector:fix": "vendor/bin/rector process src",
+        "lint:twig": "php bin/console lint:twig templates",
+        "lint:container": "php bin/console lint:container",
         "prod": [
             "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
             "@composer dump-autoload --optimize --no-dev"

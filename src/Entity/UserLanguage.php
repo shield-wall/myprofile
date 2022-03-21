@@ -13,7 +13,7 @@ class UserLanguage implements
     EntityInterface,
     HasUserInterface
 {
-    public const LEVELS = [
+    public final const LEVELS = [
         'BEGINNER' => 'Beginner',
         'ELEMENTARY' => 'Elementary',
         'PRE-INTERMEDIATE' => 'Pre-intermediate',

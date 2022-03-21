@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Stringable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\SocialNetworkingRepository")
  * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
  */
-class SocialNetworking
+class SocialNetworking implements Stringable
 {
     /**
      * @ORM\Id
@@ -83,8 +84,8 @@ class SocialNetworking
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getName();
+        return (string) $this->getName();
     }
 }

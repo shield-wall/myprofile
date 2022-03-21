@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Education;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -46,7 +47,7 @@ class EducationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Education',
+            'data_class' => Education::class,
             'translation_domain' => 'MyProfile',
         ));
     }

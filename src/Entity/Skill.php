@@ -13,13 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Skill
 {
     /**
-     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
@@ -34,11 +33,10 @@ class Skill
     private $name;
 
     /**
-     * @var int
      * @Assert\Range(min = 0, max = 100)
      * @ORM\Column(name="level_experience", type="smallint")
      */
-    private $levelExperience;
+    private int $levelExperience;
 
     /**
      * @ORM\Column(name="priority", type="smallint", nullable=true)
@@ -46,11 +44,9 @@ class Skill
     private $priority;
 
     /**
-     * @var bool
-     *
      * @ORM\Column(name="status", type="boolean")
      */
-    private $status = true;
+    private bool $status = true;
 
 
     /**

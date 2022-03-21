@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\SocialNetworkingType;
+use Symfony\Component\Form\Form;
 use App\Entity\SocialNetworking;
 use App\Repository\SocialNetworkingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,7 +42,7 @@ class SocialNetworkingController extends AbstractController
     public function newAction(Request $request)
     {
         $socialNetworking = new Socialnetworking();
-        $form = $this->createForm('App\Form\SocialNetworkingType', $socialNetworking);
+        $form = $this->createForm(SocialNetworkingType::class, $socialNetworking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -80,7 +82,7 @@ class SocialNetworkingController extends AbstractController
     public function editAction(Request $request, SocialNetworking $socialNetworking)
     {
         $deleteForm = $this->createDeleteForm($socialNetworking);
-        $editForm = $this->createForm('App\Form\SocialNetworkingType', $socialNetworking);
+        $editForm = $this->createForm(SocialNetworkingType::class, $socialNetworking);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -120,7 +122,7 @@ class SocialNetworkingController extends AbstractController
      *
      * @param SocialNetworking $socialNetworking The socialNetworking entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm(SocialNetworking $socialNetworking)
     {

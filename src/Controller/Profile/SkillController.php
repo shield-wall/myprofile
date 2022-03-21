@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use App\Form\SkillType;
 use App\Entity\Skill;
 use App\Repository\SkillRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -33,7 +34,7 @@ class SkillController extends AbstractController
     {
         $skill = new Skill();
         $skill->setUser($this->getUser());
-        $form = $this->createForm('App\Form\SkillType', $skill);
+        $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,7 +58,7 @@ class SkillController extends AbstractController
      */
     public function editAction(Request $request, Skill $skill)
     {
-        $form = $this->createForm('App\Form\SkillType', $skill);
+        $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

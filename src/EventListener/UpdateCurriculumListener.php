@@ -9,12 +9,10 @@ use Symfony\Component\Security\Core\Security;
 class UpdateCurriculumListener
 {
     private $user;
-    private $curriculumService;
 
-    public function __construct(Security $security, CurriculumService $curriculumService)
+    public function __construct(Security $security, private readonly CurriculumService $curriculumService)
     {
         $this->user = $security->getUser();
-        $this->curriculumService = $curriculumService;
     }
 
     public function postPersist($entity)

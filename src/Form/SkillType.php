@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Skill;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,7 +40,7 @@ class SkillType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Skill',
+            'data_class' => Skill::class,
             'translation_domain' => 'MyProfile',
         ]);
     }
