@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\Collection;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\SocialNetworkingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,17 +17,20 @@ use Symfony\Component\Validator\Constraints as Assert;
 class SocialNetworking implements Stringable
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    protected $id;
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50)]
-    protected $name;
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    protected ?string $name = null;
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50)]
-    protected $icon;
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    protected ?string $icon = null;
+    /**
+     * @var Collection<UserSocialNetworking>
+     */
     #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'socialNetworking')]
-    protected $userSocialNetworks;
+    protected Collection $userSocialNetworks;
 
     public function __construct()
     {

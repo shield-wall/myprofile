@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserRepository;
 use DateTime;
@@ -26,78 +27,96 @@ class User implements UserInterface, Stringable
      * @var int
      */
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    protected $id;
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
     /**
      * @var string
      */
     #[Assert\Length(max: 200)]
     #[Assert\Email]
-    #[ORM\Column(type: 'string', length: 200, unique: true)]
-    protected $email;
+    #[ORM\Column(type: Types::STRING, length: 200, unique: true)]
+    protected ?string $email = null;
     #[Assert\NotBlank(groups: ['registration'])]
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
-    protected $firstName;
+    #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
+    protected ?string $firstName = null;
     #[Assert\NotBlank(groups: ['registration'])]
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
-    protected $lastName;
+    #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
+    protected ?string $lastName = null;
     /**
      * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
      */
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50, unique: true)]
-    private $slug;
+    #[ORM\Column(type: Types::STRING, length: 50, unique: true)]
+    private ?string $slug = null;
     #[Assert\Length(max: 250)]
-    #[ORM\Column(type: 'text', length: 250, nullable: true)]
-    protected $headline;
+    #[ORM\Column(type: Types::TEXT, length: 250, nullable: true)]
+    protected ?string $headline = null;
     /**
      * This field is used in user`s profile.
      */
     #[Assert\Length(max: 100)]
-    #[ORM\Column(type: 'string', length: 100, nullable: true)]
-    protected $role;
-    #[ORM\Column(type: 'string', length: 20, nullable: true)]
-    protected $phone;
+    #[ORM\Column(type: Types::STRING, length: 100, nullable: true)]
+    protected ?string $role = null;
+    #[ORM\Column(type: Types::STRING, length: 20, nullable: true)]
+    protected ?string $phone = null;
     #[Assert\Length(max: 20)]
-    #[ORM\Column(type: 'string', length: 20, nullable: true)]
-    protected $cell;
-    #[ORM\Column(type: 'text', length: 350, nullable: true)]
-    protected $summary;
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
-    protected $country;
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
-    protected $state;
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
-    protected $city;
+    #[ORM\Column(type: Types::STRING, length: 20, nullable: true)]
+    protected ?string $cell = null;
+    #[ORM\Column(type: Types::TEXT, length: 350, nullable: true)]
+    protected ?string $summary = null;
+    #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
+    protected ?string $country = null;
+    #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
+    protected ?string $state = null;
+    #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
+    protected ?string $city = null;
     #[Assert\Choice(['male', 'female'])]
-    #[ORM\Column(type: 'string', length: 6, nullable: true)]
-    protected $gender;
-    #[ORM\Column(type: 'date', nullable: true)]
-    protected $birthday;
+    #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
+    protected ?string $gender = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    protected ?\DateTimeInterface $birthday = null;
+    /**
+     * @var Collection<UserSocialNetworking>
+     */
     #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'user')]
-    protected $userSocialNetworks;
+    protected Collection $userSocialNetworks;
+    /**
+     * @var Collection<Education>
+     */
     #[ORM\OneToMany(targetEntity: 'Education', mappedBy: 'user')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
-    protected $educations;
+    protected Collection $educations;
+    /**
+     * @var Collection<Experience>
+     */
     #[ORM\OneToMany(targetEntity: 'Experience', mappedBy: 'user')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
-    protected $experiences;
+    protected Collection $experiences;
+    /**
+     * @var Collection<Skill>
+     */
     #[ORM\OneToMany(targetEntity: 'Skill', mappedBy: 'user')]
     #[ORM\OrderBy(['priority' => 'ASC'])]
-    protected $skills;
+    protected Collection $skills;
+    /**
+     * @var Collection<Certification>
+     */
     #[ORM\OneToMany(targetEntity: 'Certification', mappedBy: 'user')]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
-    protected $certifications;
-    #[ORM\Column(type: 'string', length: 200, nullable: true)]
-    protected $keyWords;
+    protected Collection $certifications;
+    #[ORM\Column(type: Types::STRING, length: 200, nullable: true)]
+    protected ?string $keyWords = null;
+    /**
+     * @var Collection<UserLanguage>
+     */
     #[ORM\OneToMany(targetEntity: 'UserLanguage', mappedBy: 'user')]
-    private $userLanguages;
-    #[ORM\Column(type: 'json')]
+    private Collection $userLanguages;
+    #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $password;
     #[Assert\NotBlank(groups: ['registration', 'resetPassword'])]
     #[Assert\Length(min: 6)]
@@ -105,19 +124,19 @@ class User implements UserInterface, Stringable
     /**
      * @var string|null
      */
-    #[ORM\Column(type: 'string', nullable: true)]
-    protected $salt;
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    protected ?string $salt = null;
     /**
      * @Gedmo\Timestampable(on="create")
      */
-    #[ORM\Column(type: 'datetime')]
-    private $createdAt;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
     /**
      * @Gedmo\Timestampable(on="update")
      */
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private $updatedAt;
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $isVerified = false;
 
     public function __construct()

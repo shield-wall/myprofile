@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserSocialNetworkingRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +10,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity(fields: ['user', 'socialNetworking'], errorPath: 'socialNetworking')]
-#[ORM\Table(name: 'user_social_networking', uniqueConstraints: [new ORM\UniqueConstraint(name: 'relations_idx', columns: ['user_id', 'social_networking_id'])])]
+#[ORM\Table(name: 'user_social_networking')]
+#[ORM\UniqueConstraint(name: "relations_idx", columns: ['user_id', 'social_networking_id'])]
 #[ORM\Entity(repositoryClass: UserSocialNetworkingRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class UserSocialNetworking
@@ -18,27 +20,27 @@ class UserSocialNetworking
      * @var int
      */
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    protected $id;
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
     /**
      * @var User
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userSocialNetworks')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
     /**
      * @var SocialNetworking|null
      */
     #[ORM\ManyToOne(targetEntity: 'SocialNetworking', inversedBy: 'userSocialNetworks', fetch: 'EAGER')]
-    #[ORM\JoinColumn(name: 'social_networking_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\JoinColumn(name: 'social_networking_id', nullable: false)]
     protected $socialNetworking;
     /**
      * @var string
      */
     #[Assert\Length(max: 200)]
-    #[ORM\Column(type: 'string', length: 200)]
-    protected $link;
+    #[ORM\Column(type: Types::STRING, length: 200)]
+    protected ?string $link = null;
 
     public function getId(): int
     {

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\ExperienceRepository;
 use DateTimeInterface;
@@ -17,46 +18,46 @@ class Experience
      * @var int
      */
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
-    protected $id;
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
     /**
      * @var User
      */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
     /**
      * @var string
      */
     #[Assert\Length(max: 150)]
     #[Assert\NotBlank]
-    #[ORM\Column(type: 'string', length: 150)]
-    protected $title;
+    #[ORM\Column(type: Types::STRING, length: 150)]
+    protected ?string $title = null;
     /**
      * @var string
      */
     #[Assert\Length(max: 50)]
     #[Assert\NotBlank]
-    #[ORM\Column(type: 'string', length: 50)]
-    protected $company;
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    protected ?string $company = null;
     /**
      * @var $description
      */
     #[Assert\NotBlank]
-    #[ORM\Column(type: 'text')]
-    protected $description;
+    #[ORM\Column(type: Types::TEXT)]
+    protected ?string $description = null;
     /**
      * @var DateTimeInterface
      */
     #[Assert\NotBlank]
-    #[ORM\Column(type: 'date')]
-    protected $periodStart;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    protected ?\DateTimeInterface $periodStart = null;
     /**
      * @var DateTimeInterface|null
      */
-    #[ORM\Column(type: 'date', nullable: true)]
-    protected $periodEnd;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    protected ?\DateTimeInterface $periodEnd = null;
 
     public function getId(): int
     {

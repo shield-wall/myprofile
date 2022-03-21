@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\SkillRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,22 +13,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class Skill
 {
-    #[ORM\Column(name: 'id', type: 'integer')]
+    #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\GeneratedValue]
     private readonly int $id;
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
     #[Assert\Length(max: 50)]
-    #[ORM\Column(name: 'name', type: 'string', length: 50)]
-    private $name;
+    #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
+    private ?string $name = null;
     #[Assert\Range(min: 0, max: 100)]
-    #[ORM\Column(name: 'level_experience', type: 'smallint')]
+    #[ORM\Column(name: 'level_experience', type: Types::SMALLINT)]
     private int $levelExperience;
-    #[ORM\Column(name: 'priority', type: 'smallint', nullable: true)]
-    private $priority;
-    #[ORM\Column(name: 'status', type: 'boolean')]
+    #[ORM\Column(name: 'priority', type: Types::SMALLINT, nullable: true)]
+    private ?int $priority = null;
+    #[ORM\Column(name: 'status', type: Types::BOOLEAN)]
     private bool $status = true;
 
     /**

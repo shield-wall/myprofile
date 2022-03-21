@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserLanguageRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,14 +24,14 @@ class UserLanguage implements EntityInterface, HasUserInterface
     ];
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $id = null;
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50)]
-    private $name;
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    private ?string $name = null;
     #[Assert\Length(max: 50)]
-    #[ORM\Column(type: 'string', length: 50)]
-    private $level;
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    private ?string $level = null;
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;

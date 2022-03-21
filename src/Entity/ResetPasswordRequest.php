@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use App\Repository\ResetPasswordRequestRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,8 +15,8 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     use ResetPasswordRequestTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $id = null;
 
     public function __construct(#[ORM\ManyToOne(targetEntity: User::class)] #[ORM\JoinColumn(nullable: false)] private readonly object $user, DateTimeInterface $expiresAt, string $selector, string $hashedToken)
     {
