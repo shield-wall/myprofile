@@ -6,10 +6,6 @@
 [![Join the chat at https://gitter.im/myprofile_pro/Lobby][gitter_badge]][gitter_link] 
 [![License: GPL v3][licence_badge]][licence_link]
 
-The version 2.x is open for `bugfix` only, then please create branches from [2.x](https://github.com/eerison/myprofile/tree/2.x)
-
-new `features` must be implemented in the next major [3.0.0](https://github.com/eerison/myprofile/milestone/2) (using [master](https://github.com/eerison/myprofile/tree/master)) 
-
 ## Getting Started
 
   ["My Profile"](https://www.myprofile.pro/) is a project to goal of help people to create your professional web site and CV!
