@@ -177,6 +177,7 @@ jobs:
             heroku_app_name: $APP_NAME
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             usedocker: true
+            buildpack: "https://github.com/DataDog/heroku-buildpack-datadog.git"
             docker_build_args: |
               APP_ENV
               APP_DEBUG
@@ -190,6 +191,9 @@ jobs:
           env:
             APP_DEBUG: false
             GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+            DD_API_KEY: ${{secrets.DD_API_KEY}}
+            DD_AGENT_MAJOR_VERSION: 7
+            DD_SITE: datadoghq.com
 
         - name: Create Database
           continue-on-error: true
