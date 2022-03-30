@@ -35,7 +35,7 @@ class Skill
 
     #[ORM\Column(name: 'status', type: Types::BOOLEAN)]
     private bool $status = true;
-    
+
     public function getId(): int
     {
         return $this->id;
