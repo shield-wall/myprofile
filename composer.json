@@ -41,6 +41,7 @@
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
+        "phpstan/phpstan": "^1.5",
         "rector/rector": "^0.12.18",
         "symfony/browser-kit": "^5.2",
         "symfony/css-selector": "^5.2",
@@ -115,6 +116,7 @@
         "lint:rector:fix": "vendor/bin/rector process",
         "lint:twig": "php bin/console lint:twig templates",
         "lint:container": "php bin/console lint:container",
+        "lint:phpstan": "vendor/bin/phpstan analyse --ansi --memory-limit=-1 --debug",
         "prod": [
             "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
             "@composer dump-autoload --optimize --no-dev"

@@ -45,16 +45,10 @@ class Experience
     #[ORM\Column(type: Types::STRING, length: 50)]
     protected ?string $company = null;
 
-    /**
-     * @var $description
-     */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     protected ?string $description = null;
 
-    /**
-     * @var DateTimeInterface
-     */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected ?\DateTimeInterface $periodStart = null;
