@@ -16,20 +16,14 @@ class Education implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
 
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
 
-    /**
-     * @var UserInterface
-     */
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
     #[ORM\JoinColumn(name: 'user_id')]
-    protected $user;
+    protected ?UserInterface $user = null;
 
     /**
      * @var string

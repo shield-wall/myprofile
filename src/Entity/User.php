@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserRepository;
-use DateTime;
-use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,17 +21,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class User implements UserInterface, Stringable
 {
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
 
-    /**
-     * @var string
-     */
     #[Assert\Length(max: 200)]
     #[Assert\Email]
     #[ORM\Column(type: Types::STRING, length: 200, unique: true)]
@@ -96,34 +88,34 @@ class User implements UserInterface, Stringable
     /**
      * @var Collection<UserSocialNetworking>
      */
-    #[ORM\OneToMany(targetEntity: 'UserSocialNetworking', mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
     /**
      * @var Collection<Education>
      */
-    #[ORM\OneToMany(targetEntity: 'Education', mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Education::class)]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $educations;
 
     /**
      * @var Collection<Experience>
      */
-    #[ORM\OneToMany(targetEntity: 'Experience', mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Experience::class)]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $experiences;
 
     /**
      * @var Collection<Skill>
      */
-    #[ORM\OneToMany(targetEntity: 'Skill', mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Skill::class)]
     #[ORM\OrderBy(['priority' => 'ASC'])]
     protected Collection $skills;
 
     /**
      * @var Collection<Certification>
      */
-    #[ORM\OneToMany(targetEntity: 'Certification', mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Certification::class)]
     #[ORM\OrderBy(['periodStart' => 'DESC'])]
     protected Collection $certifications;
 
@@ -133,7 +125,7 @@ class User implements UserInterface, Stringable
     /**
      * @var Collection<UserLanguage>
      */
-    #[ORM\OneToMany(targetEntity: 'UserLanguage', mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguage::class)]
     private Collection $userLanguages;
 
     #[ORM\Column(type: Types::JSON)]
@@ -146,9 +138,6 @@ class User implements UserInterface, Stringable
     #[Assert\Length(min: 6)]
     private ?string $plainPassword = null;
 
-    /**
-     * @var string|null
-     */
     #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $salt = null;
 
@@ -194,22 +183,19 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug($slug)
+    public function setSlug($slug): static
     {
         $this->slug = $slug;
 
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getUserSocialNetworks()
+    public function getUserSocialNetworks(): Collection
     {
         return $this->userSocialNetworks;
     }
@@ -220,25 +206,19 @@ class User implements UserInterface, Stringable
         $this->getUserSocialNetworks()->add($socialNetworking);
     }
 
-    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking)
+    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking): static
     {
         $this->getUserSocialNetworks()->removeElement($socialNetworking);
 
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getEducations()
+    public function getEducations(): Collection
     {
         return $this->educations;
     }
 
-    /**
-     * @return User
-     */
-    public function addEducations(Education $education)
+    public function addEducations(Education $education): static
     {
         if (! $this->educations->contains($education)) {
             $this->educations->add($education);
@@ -247,18 +227,12 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getExperiences()
+    public function getExperiences(): Collection
     {
         return $this->experiences;
     }
 
-    /**
-     * @return User
-     */
-    public function addExperiences(Experience $experience)
+    public function addExperiences(Experience $experience): static
     {
         if (! $this->experiences->contains($experience)) {
             $this->experiences->add($experience);
@@ -267,18 +241,12 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getSkills()
+    public function getSkills(): Collection
     {
         return $this->skills;
     }
 
-    /**
-     * @return User
-     */
-    public function addSkills(Skill $skill)
+    public function addSkills(Skill $skill): static
     {
         if (! $this->skills->contains($skill)) {
             $this->skills->add($skill);
@@ -287,18 +255,12 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getCertifications()
+    public function getCertifications(): Collection
     {
         return $this->certifications;
     }
 
-    /**
-     * @return User
-     */
-    public function addCertifications(Certification $certification)
+    public function addCertifications(Certification $certification): static
     {
         if (! $this->certifications->contains($certification)) {
             $this->certifications->add($certification);
@@ -307,258 +269,156 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCountry()
+    public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * @param mixed $country
-     *
-     * @return User
-     */
-    public function setCountry($country)
+    public function setCountry($country): static
     {
         $this->country = $country;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCity()
+    public function getCity(): ?string
     {
         return $this->city;
     }
 
-    /**
-     * @param mixed $city
-     *
-     * @return User
-     */
-    public function setCity($city)
+    public function setCity($city): static
     {
         $this->city = $city;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBirthday()
+    public function getBirthday(): ?DateTimeInterface
     {
         return $this->birthday;
     }
 
-    /**
-     * @param mixed $birthday
-     *
-     * @return User
-     */
-    public function setBirthday($birthday)
+    public function setBirthday($birthday): static
     {
         $this->birthday = $birthday;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    /**
-     * @param mixed $firstName
-     *
-     * @return User
-     */
-    public function setFirstName($firstName)
+    public function setFirstName($firstName): static
     {
         $this->firstName = $firstName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    /**
-     * @param mixed $lastName
-     *
-     * @return User
-     */
-    public function setLastName($lastName)
+    public function setLastName($lastName): static
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHeadline()
+    public function getHeadline(): ?string
     {
         return $this->headline;
     }
 
-    /**
-     * @param mixed $headline
-     *
-     * @return User
-     */
-    public function setHeadline($headline)
+    public function setHeadline($headline): static
     {
         $this->headline = $headline;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRole()
+    public function getRole(): ?string
     {
         return $this->role;
     }
 
-    /**
-     * @param mixed $role
-     *
-     * @return User
-     */
-    public function setRole($role)
+    public function setRole($role): static
     {
         $this->role = $role;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCell()
+    public function getCell(): ?string
     {
         return $this->cell;
     }
 
-    /**
-     * @param mixed $cell
-     *
-     * @return User
-     */
-    public function setCell($cell)
+    public function setCell($cell): static
     {
         $this->cell = $cell;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPhone()
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    /**
-     * @param mixed $phone
-     *
-     * @return User
-     */
-    public function setPhone($phone)
+    public function setPhone($phone): static
     {
         $this->phone = $phone;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getGender()
+    public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    /**
-     * @param mixed $gender
-     *
-     * @return User
-     */
-    public function setGender($gender)
+    public function setGender($gender): static
     {
         $this->gender = $gender;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSummary()
+    public function getSummary(): ?string
     {
         return $this->summary;
     }
 
-    /**
-     * @param mixed $summary
-     *
-     * @return User
-     */
-    public function setSummary($summary)
+    public function setSummary($summary): static
     {
         $this->summary = $summary;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getState()
+    public function getState(): ?string
     {
         return $this->state;
     }
 
-    /**
-     * @param mixed $state
-     *
-     * @return User
-     */
-    public function setState($state)
+    public function setState($state): static
     {
         $this->state = $state;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getKeyWords(): ?string
     {
         return $this->keyWords;
     }
 
-    /**
-     * @return User
-     */
-    public function setKeyWords(?string $keyWords)
+    public function setKeyWords(?string $keyWords): static
     {
         $this->keyWords = $keyWords;
 
@@ -580,9 +440,6 @@ class User implements UserInterface, Stringable
         return sprintf('users/%s/background.webp', md5($this->getEmail()));
     }
 
-    /**
-     * @return Collection|UserLanguage[]
-     */
     public function getUserLanguages(): Collection
     {
         return $this->userLanguages;
@@ -611,17 +468,11 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    /**
-     * @return DateTime|DateTimeImmutable
-     */
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return DateTime|DateTimeImmutable
-     */
     public function getUpdatedAt(): DateTimeInterface
     {
         return $this->updatedAt;

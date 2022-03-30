@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 use Rector\Core\Configuration\Option;
-use Rector\DeadCode\Rector\Property\RemoveUnusedPrivatePropertyRector;
-use Rector\Doctrine\Rector\ClassMethod\ServiceEntityRepositoryParentCallToDIRector;
 use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\Php74\Rector\Property\TypedPropertyRector;
 use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
@@ -24,8 +22,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::SKIP, [
         UnionTypesRector::class,
-//        RemoveUnusedPrivatePropertyRector::class, // it was failing the pipelines.
-//        ServiceEntityRepositoryParentCallToDIRector::class, // it was failing the pipelines.
     ]);
 
     // Define what rule sets will be applied

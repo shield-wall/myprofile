@@ -96,7 +96,7 @@
         ],
         "db": [
             "php bin/console doctrine:database:create  --if-not-exists",
-            "@migrate"
+            "@db:migration:apply"
         ],
         "lint": [
             "@lint:ecs",

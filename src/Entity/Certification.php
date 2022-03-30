@@ -9,9 +9,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * Certification.
- */
 #[ORM\Table(name: 'certification')]
 #[ORM\Entity(repositoryClass: CertificationRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
@@ -24,12 +21,9 @@ class Certification implements EntityInterface, HasUserInterface
     #[ORM\GeneratedValue]
     private readonly int $id;
 
-    /**
-     * @var UserInterface
-     */
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'certifications')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'certifications')]
     #[ORM\JoinColumn(name: 'user_id')]
-    protected $user;
+    protected ?UserInterface $user = null;
 
     #[Assert\Length(max: 100)]
     #[ORM\Column(name: 'title', type: Types::STRING, length: 100)]
