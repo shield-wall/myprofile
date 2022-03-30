@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractCrudController extends AbstractController
 {
+    protected const PREFIX = null;
+
     public function index(OwnerDataRepositoryInterface $repository): Response
     {
         return $this->render(sprintf('profile/%s.html.twig', static::PREFIX), [

@@ -58,6 +58,7 @@ jobs:
     strategy:
       matrix:
         command:
+          - 'phpstan'
           - 'ecs'
           - 'container'
           - 'rector'
