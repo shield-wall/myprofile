@@ -11,7 +11,7 @@
     "bulma": "0.9",
     "jquery": "^3.5.0",
     "jquery.stellar": "^0.6.2",
-    "node-sass": "^6.0",
+    "node-sass": "^7.0",
     "popper.js": "^1.16.0",
     "sass-loader": "^10.2.1",
     "simple-scrollspy": "^2.0.3",
