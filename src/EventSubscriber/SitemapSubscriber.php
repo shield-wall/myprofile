@@ -4,22 +4,18 @@ namespace App\EventSubscriber;
 
 use App\Repository\UserRepository;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SitemapSubscriber implements EventSubscriberInterface
 {
-    private $urlGenerator;
-    private $userRepository;
-    private $locales;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, array $locales)
-    {
-        $this->urlGenerator = $urlGenerator;
-        $this->userRepository = $userRepository;
-        $this->locales = $locales;
+    public function __construct(
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly UserRepository $userRepository,
+        private readonly array $locales
+    ) {
     }
 
     public static function getSubscribedEvents(): array

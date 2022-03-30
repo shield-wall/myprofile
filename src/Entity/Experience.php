@@ -2,134 +2,107 @@
 
 namespace App\Entity;
 
+use App\EventListener\UpdateCurriculumListener;
+use App\Repository\ExperienceRepository;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTimeInterface;
 
-/**
- * @ORM\Table(name="experience")
- * @ORM\Entity(repositoryClass="App\Repository\ExperienceRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
+#[ORM\Table(name: 'experience')]
+#[ORM\Entity(repositoryClass: ExperienceRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class Experience
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
      * @var int
      */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="experiences")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
      * @var User
      */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
 
     /**
-     * @Assert\Length(max="150")
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=150)
-     *
      * @var string
      */
-    protected $title;
+    #[Assert\Length(max: 150)]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::STRING, length: 150)]
+    protected ?string $title = null;
 
     /**
-     * @Assert\Length(max="50")
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=50)
-     *
      * @var string
      */
-    protected $company;
+    #[Assert\Length(max: 50)]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    protected ?string $company = null;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\Column(type="text")
-     *
      * @var $description
      */
-    protected $description;
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::TEXT)]
+    protected ?string $description = null;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\Column(type="date")
-     *
      * @var DateTimeInterface
      */
-    protected $periodStart;
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    protected ?\DateTimeInterface $periodStart = null;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     *
      * @var DateTimeInterface|null
      */
-    protected $periodEnd;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    protected ?\DateTimeInterface $periodEnd = null;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     * @return Experience
-     */
-    public function setUser(User $user): Experience
+    public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Experience
-     */
-    public function setTitle(string $title): Experience
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCompany(): string
     {
         return $this->company;
     }
 
-    /**
-     * @param string $company
-     * @return Experience
-     */
-    public function setCompany(string $company): Experience
+    public function setCompany(string $company): self
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -143,11 +116,13 @@ class Experience
 
     /**
      * @param mixed $description
+     *
      * @return Experience
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -159,31 +134,22 @@ class Experience
         return $this->periodStart;
     }
 
-    /**
-     * @param DateTimeInterface $periodStart
-     * @return Experience
-     */
-    public function setPeriodStart(DateTimeInterface $periodStart): Experience
+    public function setPeriodStart(DateTimeInterface $periodStart): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Experience
-     */
-    public function setPeriodEnd(?DateTimeInterface $periodEnd): Experience
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
 }

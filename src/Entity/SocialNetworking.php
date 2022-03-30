@@ -2,40 +2,38 @@
 
 namespace App\Entity;
 
+use App\EventListener\UpdateCurriculumListener;
+use App\Repository\SocialNetworkingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Table(name="social_networking")
- * @ORM\Entity(repositoryClass="App\Repository\SocialNetworkingRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
-class SocialNetworking
+#[ORM\Table(name: 'social_networking')]
+#[ORM\Entity(repositoryClass: SocialNetworkingRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
+class SocialNetworking implements Stringable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
+
+    #[Assert\Length(max: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    protected ?string $name = null;
+
+    #[Assert\Length(max: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    protected ?string $icon = null;
 
     /**
-     * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
+     * @var Collection<UserSocialNetworking>
      */
-    protected $name;
-
-    /**
-     * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
-     */
-    protected $icon;
-
-    /**
-     * @ORM\OneToMany(targetEntity="UserSocialNetworking", mappedBy="socialNetworking")
-     */
-    protected $userSocialNetworks;
+    #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserSocialNetworking::class)]
+    protected Collection $userSocialNetworks;
 
     public function __construct()
     {
@@ -57,11 +55,13 @@ class SocialNetworking
 
     /**
      * @param mixed $name
+     *
      * @return SocialNetworking
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -75,16 +75,18 @@ class SocialNetworking
 
     /**
      * @param mixed $icon
+     *
      * @return SocialNetworking
      */
     public function setIcon($icon)
     {
         $this->icon = $icon;
+
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getName();
+        return (string) $this->getName();
     }
 }

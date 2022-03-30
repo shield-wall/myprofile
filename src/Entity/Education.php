@@ -2,148 +2,110 @@
 
 namespace App\Entity;
 
+use App\EventListener\UpdateCurriculumListener;
+use App\Repository\EducationRepository;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTimeInterface;
 
-/**
- * @ORM\Table(name="education")
- * @ORM\Entity(repositoryClass="App\Repository\EducationRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
-class Education implements
-    EntityInterface,
-    HasUserInterface
+#[ORM\Table(name: 'education')]
+#[ORM\Entity(repositoryClass: EducationRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
+class Education implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var int
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected ?int $id = null;
+
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
+    #[ORM\JoinColumn(name: 'user_id')]
+    protected ?UserInterface $user = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="educations")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
-     * @var UserInterface
-     */
-    protected $user;
-
-    /**
-     * @Assert\Length(max="200")
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=200)
-     *
      * @var string
      */
-    protected $title;
+    #[Assert\Length(max: 200)]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::STRING, length: 200)]
+    protected ?string $title = null;
 
     /**
-     * @Assert\Length(max="200")
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=200)
-     *
      * @var string
      */
-    protected $institution;
+    #[Assert\Length(max: 200)]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::STRING, length: 200)]
+    protected ?string $institution = null;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\Column(type="text")
-     *
      * @var string
      */
-    protected $description;
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::TEXT)]
+    protected ?string $description = null;
 
     /**
-     * @Assert\NotBlank()
-     * @ORM\Column(type="date")
-     *
      * @var DateTimeInterface
      */
-    protected $periodStart;
+    #[Assert\NotBlank]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    protected ?\DateTimeInterface $periodStart = null;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     *
      * @var DateTimeInterface|null
      */
-    protected $periodEnd;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    protected ?\DateTimeInterface $periodEnd = null;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Education
-     */
-    public function setId(int $id): Education
+    public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Education
-     */
-    public function setTitle(string $title): Education
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getInstitution(): string
     {
         return $this->institution;
     }
 
-    /**
-     * @param string $institution
-     * @return Education
-     */
-    public function setInstitution(string $institution): Education
+    public function setInstitution(string $institution): self
     {
         $this->institution = $institution;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return Education
-     */
-    public function setDescription(string $description): Education
+    public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -155,31 +117,22 @@ class Education implements
         return $this->periodStart;
     }
 
-    /**
-     * @param DateTimeInterface $periodStart
-     * @return Education
-     */
-    public function setPeriodStart(DateTimeInterface $periodStart): Education
+    public function setPeriodStart(DateTimeInterface $periodStart): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Education
-     */
-    public function setPeriodEnd(?DateTimeInterface $periodEnd): Education
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
 }

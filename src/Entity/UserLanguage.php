@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
+use App\EventListener\UpdateCurriculumListener;
+use App\Repository\UserLanguageRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UserLanguageRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
-class UserLanguage implements
-    EntityInterface,
-    HasUserInterface
+#[ORM\Entity(repositoryClass: UserLanguageRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
+class UserLanguage implements EntityInterface, HasUserInterface
 {
-    public const LEVELS = [
+    final public const LEVELS = [
         'BEGINNER' => 'Beginner',
         'ELEMENTARY' => 'Elementary',
         'PRE-INTERMEDIATE' => 'Pre-intermediate',
@@ -24,29 +23,21 @@ class UserLanguage implements
         'NATIVE' => 'Native',
     ];
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $id = null;
 
-    /**
-     * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
-     */
-    private $name;
+    #[Assert\Length(max: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    private ?string $name = null;
 
-    /**
-     * @Assert\Length(max="50")
-     * @ORM\Column(type="string", length=50)
-     */
-    private $level;
+    #[Assert\Length(max: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50)]
+    private ?string $level = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="userLanguages")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
 
     public function getId(): int

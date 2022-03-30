@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Experience;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -45,10 +46,10 @@ class ExperienceType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Experience',
+        $resolver->setDefaults([
+            'data_class' => Experience::class,
             'translation_domain' => 'MyProfile',
-        ));
+        ]);
     }
 
     /**

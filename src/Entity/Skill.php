@@ -2,59 +2,42 @@
 
 namespace App\Entity;
 
+use App\EventListener\UpdateCurriculumListener;
+use App\Repository\SkillRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Table(name="skill")
- * @ORM\Entity(repositoryClass="App\Repository\SkillRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
+#[ORM\Table(name: 'skill')]
+#[ORM\Entity(repositoryClass: SkillRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class Skill
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    #[ORM\Column(name: 'id', type: Types::INTEGER)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    private readonly int $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
+    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
+    #[ORM\JoinColumn(name: 'user_id')]
     protected $user;
 
-    /**
-     * @Assert\Length(max="50")
-     * @ORM\Column(name="name", type="string", length=50)
-     */
-    private $name;
+    #[Assert\Length(max: 50)]
+    #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
+    private ?string $name = null;
+
+    #[Assert\Range(min: 0, max: 100)]
+    #[ORM\Column(name: 'level_experience', type: Types::SMALLINT)]
+    private int $levelExperience;
+
+    #[ORM\Column(name: 'priority', type: Types::SMALLINT, nullable: true)]
+    private ?int $priority = null;
+
+    #[ORM\Column(name: 'status', type: Types::BOOLEAN)]
+    private bool $status = true;
 
     /**
-     * @var int
-     * @Assert\Range(min = 0, max = 100)
-     * @ORM\Column(name="level_experience", type="smallint")
-     */
-    private $levelExperience;
-
-    /**
-     * @ORM\Column(name="priority", type="smallint", nullable=true)
-     */
-    private $priority;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="status", type="boolean")
-     */
-    private $status = true;
-
-
-    /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -64,9 +47,7 @@ class Skill
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
+     * Set name.
      *
      * @return Skill
      */
@@ -78,7 +59,7 @@ class Skill
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -88,9 +69,7 @@ class Skill
     }
 
     /**
-     * Set levelExperience
-     *
-     * @param int $levelExperience
+     * Set levelExperience.
      *
      * @return Skill
      */
@@ -102,7 +81,7 @@ class Skill
     }
 
     /**
-     * Get levelExperience
+     * Get levelExperience.
      *
      * @return int
      */
@@ -112,9 +91,7 @@ class Skill
     }
 
     /**
-     * Set priority
-     *
-     * @param int $priority
+     * Set priority.
      *
      * @return Skill
      */
@@ -126,7 +103,7 @@ class Skill
     }
 
     /**
-     * Get priority
+     * Get priority.
      *
      * @return int
      */
@@ -136,9 +113,7 @@ class Skill
     }
 
     /**
-     * Set status
-     *
-     * @param bool $status
+     * Set status.
      *
      * @return Skill
      */
@@ -150,7 +125,7 @@ class Skill
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return bool
      */
@@ -160,8 +135,6 @@ class Skill
     }
 
     /**
-     * @param User $user
-     *
      * @return Skill
      */
     public function setUser(User $user)

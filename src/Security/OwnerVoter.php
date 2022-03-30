@@ -15,16 +15,13 @@ class OwnerVoter extends Voter
     }
 
     /**
-     * @param string $attribute
      * @param HasUserInterface $subject
-     * @param TokenInterface $token
-     * @return bool
      */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
 
-        if (!$user instanceof UserInterface) {
+        if (! $user instanceof UserInterface) {
             return false;
         }
 

@@ -8,18 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(name="app_", requirements={"_locale": "en|pt_BR"})
- */
+#[Route(name: 'app_', requirements: ['_locale' => 'en|pt_BR'])]
 class SiteController extends AbstractController
 {
-    /**
-     * @Route("/{_locale}", defaults={"_locale": "pt_BR"}, name="homepage")
-     *
-     * @param UserRepository $userRepository
-     * @return Response
-     */
-    public function homepage(UserRepository $userRepository)
+    #[Route(path: '/{_locale}', defaults: ['_locale' => 'pt_BR'], name: 'homepage')]
+    public function homepage(UserRepository $userRepository): Response
     {
         $users = $userRepository->findBy(['isVerified' => true], ['updatedAt' => 'desc'], 18);
 
@@ -28,13 +21,8 @@ class SiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{slug}/{_locale}", defaults={"_locale": "pt_BR"}, name="user_profile")
-     *
-     * @param User $user
-     * @return Response
-     */
-    public function userProfileAction(User $user)
+    #[Route(path: '/{slug}/{_locale}', defaults: ['_locale' => 'pt_BR'], name: 'user_profile')]
+    public function userProfileAction(User $user): Response
     {
         return $this->render('default/profile.html.twig', [
             'user' => $user,
@@ -45,13 +33,9 @@ class SiteController extends AbstractController
      * _locale need to be the last parameter because it'll be curriculum name.
      * I removed _locale default from Class because here it's required,
      *      but it can be resolved creating other controller.
-     *
-     * @Route("/{slug}/curriculum/{_locale}", name="curriculum")
-     *
-     * @param User $user
-     * @return Response
      */
-    public function curriculumAction(User $user)
+    #[Route(path: '/{slug}/curriculum/{_locale}', name: 'curriculum')]
+    public function curriculumAction(User $user): Response
     {
         $html = $this->renderView('curriculum/theme_01/index.html.twig', ['user' => $user]);
 

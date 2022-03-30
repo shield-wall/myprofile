@@ -5,16 +5,17 @@ namespace App\EventListener;
 use App\Entity\User;
 use App\Service\CurriculumService;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UpdateCurriculumListener
 {
     private $user;
-    private $curriculumService;
 
-    public function __construct(Security $security, CurriculumService $curriculumService)
-    {
+    public function __construct(
+        Security $security,
+        private readonly CurriculumService $curriculumService
+    ) {
         $this->user = $security->getUser();
-        $this->curriculumService = $curriculumService;
     }
 
     public function postPersist($entity)
@@ -23,7 +24,7 @@ class UpdateCurriculumListener
             return;
         }
 
-        if (null === $this->user) {
+        if (! $this->user instanceof UserInterface) {
             return;
         }
 
@@ -32,8 +33,8 @@ class UpdateCurriculumListener
 
     public function postUpdate($entity)
     {
-        # TODO when the user is creating a new account this variable come null.
-        if (null === $this->user) {
+        // TODO when the user is creating a new account this variable come null.
+        if (! $this->user instanceof UserInterface) {
             return;
         }
 

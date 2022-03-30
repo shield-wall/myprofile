@@ -4,28 +4,20 @@ namespace App\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\User\User;
 use transloadit\Transloadit;
 
 class CurriculumService
 {
-    private $router;
-    private $transloadit;
-    private $params;
-
     public function __construct(
-        Transloadit $transloadit,
-        UrlGeneratorInterface $router,
-        ParameterBagInterface $params
+        private readonly Transloadit $transloadit,
+        private readonly UrlGeneratorInterface $router,
+        private readonly ParameterBagInterface $params
     ) {
-        $this->router = $router;
-        $this->transloadit = $transloadit;
-        $this->params = $params;
     }
 
     public function makePdfOnTransloadit($user)
     {
-        if (!$this->params->get('transloadit.delivery')) {
+        if (! $this->params->get('transloadit.delivery')) {
             return;
         }
 
@@ -34,12 +26,12 @@ class CurriculumService
         $this->transloadit->createAssembly([
             'params' => [
                 'template_id' => $this->params->get('transloadit.template_id.curriculum'),
-                "steps" => [
-                    "screenshot_en" => [
-                        "url" => $this->getAbsoluteUrl($user, 'en'),
+                'steps' => [
+                    'screenshot_en' => [
+                        'url' => $this->getAbsoluteUrl($user, 'en'),
                     ],
-                    "screenshot_pt_BR" => [
-                        "url" => $this->getAbsoluteUrl($user, 'pt_BR'),
+                    'screenshot_pt_BR' => [
+                        'url' => $this->getAbsoluteUrl($user, 'pt_BR'),
                     ],
                     'store' => [
                         'credentials' => $this->params->get('transloadit.credentials'),

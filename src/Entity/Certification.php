@@ -2,109 +2,65 @@
 
 namespace App\Entity;
 
+use App\EventListener\UpdateCurriculumListener;
+use App\Repository\CertificationRepository;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use DateTimeInterface;
 
-/**
- * Certification
- *
- * @ORM\Table(name="certification")
- * @ORM\Entity(repositoryClass="App\Repository\CertificationRepository")
- * @ORM\EntityListeners({"App\EventListener\UpdateCurriculumListener"})
- */
-class Certification implements
-    EntityInterface,
-    HasUserInterface
+#[ORM\Table(name: 'certification')]
+#[ORM\Entity(repositoryClass: CertificationRepository::class)]
+#[ORM\EntityListeners([UpdateCurriculumListener::class])]
+class Certification implements EntityInterface, HasUserInterface
 {
     use HasUserTrait;
 
-    /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var int
-     */
-    private $id;
+    #[ORM\Column(name: 'id', type: Types::INTEGER)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    private readonly int $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="certifications")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *
-     * @var UserInterface
-     */
-    protected $user;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'certifications')]
+    #[ORM\JoinColumn(name: 'user_id')]
+    protected ?UserInterface $user = null;
 
-    /**
-     * @Assert\Length(max="100")
-     * @ORM\Column(name="title", type="string", length=100)
-     *
-     * @var string
-     */
-    private $title;
+    #[Assert\Length(max: 100)]
+    #[ORM\Column(name: 'title', type: Types::STRING, length: 100)]
+    private string $title;
 
-    /**
-     * @ORM\Column(name="period_start", type="date")
-     *
-     * @var DateTimeInterface
-     */
-    private $periodStart;
+    #[ORM\Column(name: 'period_start', type: Types::DATE_MUTABLE)]
+    private \DateTimeInterface $periodStart;
 
-    /**
-     * @var DateTimeInterface|null
-     *
-     * @ORM\Column(name="period_end", type="date", nullable=true)
-     */
-    private $periodEnd;
+    #[ORM\Column(name: 'period_end', type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $periodEnd = null;
 
-    /**
-     * @Assert\Length(max="100")
-     * @ORM\Column(name="institution", type="string", length=100)
-     *
-     * @var string
-     */
-    private $institution;
+    #[Assert\Length(max: 100)]
+    #[ORM\Column(name: 'institution', type: Types::STRING, length: 100)]
+    private string $institution;
 
-    /**
-     * @Assert\Length(max="500")
-     * @ORM\Column(name="link", type="string", length=500, nullable=true)
-     *
-     * @var string|null
-     */
-    private $link;
+    #[Assert\Length(max: 500)]
+    #[ORM\Column(name: 'link', type: Types::STRING, length: 500, nullable: true)]
+    private ?string $link = null;
 
-    /**
-     * @Assert\Length(max="255")
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
-     *
-     * @var string|null
-     */
-    private $image;
+    #[Assert\Length(max: 255)]
+    #[ORM\Column(name: 'image', type: Types::STRING, length: 255, nullable: true)]
+    private ?string $image = null;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Certification
-     */
-    public function setTitle(string $title): Certification
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -116,85 +72,58 @@ class Certification implements
         return $this->periodStart;
     }
 
-    /**
-     * @param DateTimeInterface $periodStart
-     * @return Certification
-     */
-    public function setPeriodStart(DateTimeInterface $periodStart): Certification
+    public function setPeriodStart(DateTimeInterface $periodStart): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPeriodEnd(): ?DateTimeInterface
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $periodEnd
-     * @return Certification
-     */
-    public function setPeriodEnd(?DateTimeInterface $periodEnd): Certification
+    public function setPeriodEnd(?DateTimeInterface $periodEnd): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getInstitution(): string
     {
         return $this->institution;
     }
 
-    /**
-     * @param string $institution
-     * @return Certification
-     */
-    public function setInstitution(string $institution): Certification
+    public function setInstitution(string $institution): self
     {
         $this->institution = $institution;
+
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * @param string|null $link
-     * @return Certification
-     */
-    public function setLink(?string $link): Certification
+    public function setLink(?string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getImage(): ?string
     {
         return $this->image;
     }
 
-    /**
-     * @param string|null $image
-     * @return Certification
-     */
-    public function setImage(?string $image): Certification
+    public function setImage(?string $image): self
     {
         $this->image = $image;
+
         return $this;
     }
 }

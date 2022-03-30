@@ -41,13 +41,14 @@
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
-        "squizlabs/php_codesniffer": "^3.5",
+        "rector/rector": "^0.12.18",
         "symfony/browser-kit": "^5.2",
         "symfony/css-selector": "^5.2",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/stopwatch": "^6.0",
-        "symfony/web-profiler-bundle": "^5.2"
+        "symfony/web-profiler-bundle": "^5.2",
+        "symplify/easy-coding-standard": "^10.1"
     },
     "config": {
         "preferred-install": {
@@ -95,15 +96,25 @@
         ],
         "db": [
             "php bin/console doctrine:database:create  --if-not-exists",
-            "@migrate"
+            "@db:migration:apply"
         ],
-        "fixtures": "bin/console hautelook:fixtures:load --no-interaction",
-        "migrate": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "lint": [
+            "@lint:ecs",
+            "@lint:rector",
+            "@lint:twig",
+            "@lint:container"
+        ],
+        "db:fixtures": "bin/console hautelook:fixtures:load --no-interaction",
         "db:migration:diff": "bin/console make:migration",
-        "test":"php -d memory_limit=1024M bin/phpunit --coverage-clover coverage.xml",
-        "lint_phpcs": "vendor/bin/phpcs",
-        "lint_twig": "php bin/console lint:twig templates",
-        "lint_container": "php bin/console lint:container",
+        "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
+        "db:validate": "php bin/console doctrine:schema:validate",
+        "test":"php -d memory_limit=1024M bin/phpunit",
+        "lint:ecs": "vendor/bin/ecs check src",
+        "lint:ecs:fix": "vendor/bin/ecs check src --fix",
+        "lint:rector": "vendor/bin/rector process --dry-run",
+        "lint:rector:fix": "vendor/bin/rector process",
+        "lint:twig": "php bin/console lint:twig templates",
+        "lint:container": "php bin/console lint:container",
         "prod": [
             "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
             "@composer dump-autoload --optimize --no-dev"

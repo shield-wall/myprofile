@@ -11,56 +11,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 /**
- * @Route(name="app_", defaults={"_locale": "pt_BR"}, priority="10")
- *
- * Class RegistrationController
- * @package App\Controller
+ * Class RegistrationController.
  */
+#[Route(name: 'app_', defaults: ['_locale' => 'pt_BR'], priority: 10)]
 class RegistrationController extends AbstractController
 {
-    private $emailVerifier;
-
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(private readonly EmailVerifier $emailVerifier)
     {
-        $this->emailVerifier = $emailVerifier;
     }
 
-    /**
-     * @Route("/register/{_locale}", name="register")
-     *
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler $guardHandler
-     * @param FormAuthenticator $authenticator
-     * @param TranslatorInterface $translator
-     * @param string $mailerFrom
-     * @param string $mailerFromName
-     * @return Response
-     */
-    public function register(
-        Request $request,
-        UserPasswordEncoderInterface $passwordEncoder,
-        GuardAuthenticatorHandler $guardHandler,
-        FormAuthenticator $authenticator,
-        TranslatorInterface $translator,
-        string $mailerFrom,
-        string $mailerFromName
-    ): Response {
+    #[Route(path: '/register/{_locale}', name: 'register')]
+    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, FormAuthenticator $authenticator, TranslatorInterface $translator, string $mailerFrom, string $mailerFromName): Response
+    {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $submittedToken = $request->request->get('token');
-            if (!$this->isCsrfTokenValid('registration', $submittedToken)) {
+            if (! $this->isCsrfTokenValid('registration', $submittedToken)) {
                 $this->addFlash('danger', 'Invalid CSRF token.');
                 throw new InvalidCsrfTokenException();
             }
@@ -105,17 +81,10 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/verify/email", name="verify_email")
-     *
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     * @return Response
-     */
+    #[Route(path: '/verify/email', name: 'verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
@@ -124,7 +93,6 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_register');
         }
-
         $this->addFlash('success', $translator->trans('email.registration.is_verified'));
 
         return $this->redirectToRoute('app_login');
