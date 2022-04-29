@@ -29,19 +29,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
-            bin/.phpunit
-            vendor
-            node_modules
-            public
+            ~/bin/.phpunit
+            ~/vendor
+            ~/node_modules
+            ~/public
+          key: build-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            build-yarn-${{ hashFiles('**/yarn.lock') }}-
+            build-
 
       - name: Composer
         run: composer dev
@@ -69,14 +67,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: build-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
           path: |
-            bin/.phpunit
-            vendor
-            node_modules
-            public
+            ~/bin/.phpunit
+            ~/vendor
+            ~/node_modules
+            ~/public
 
       - name: See files
         run: |
@@ -112,14 +110,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: build-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
           path: |
-            bin/.phpunit
-            vendor
-            node_modules
-            public
+            ~/bin/.phpunit
+            ~/vendor
+            ~/node_modules
+            ~/public
 
       - name: Setup Database
         run: composer db
@@ -159,14 +157,14 @@ jobs:
         - uses: actions/checkout@v2
         - uses: rlespinasse/github-slug-action@v3.x
 
-        - uses: actions/cache@v2
+        - uses: actions/cache@v3
           with:
-            key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+            key: build-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
             path: |
-              bin/.phpunit
-              vendor
-              node_modules
-              public
+              ~/bin/.phpunit
+              ~/vendor
+              ~/node_modules
+              ~/public
 
         - name: See files
           run: |

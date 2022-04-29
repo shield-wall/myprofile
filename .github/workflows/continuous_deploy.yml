@@ -27,18 +27,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-4-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: build-optimize-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
           path: |
-            vendor
-            node_modules
-            public
+            ~/vendor
+            ~/node_modules
+            ~/public
           restore-keys: |
-            ${{ runner.os }}-4-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            ${{ runner.os }}-4-build-optimize-${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-4-build-optimize-
-            ${{ runner.os }}-4-
+            build-optimize-yarn-${{ hashFiles('**/yarn.lock') }}-
+            build-optimize-
 
       - name: Composer
         run: composer prod
@@ -65,13 +63,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: rlespinasse/github-slug-action@v3.x
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-4-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: build-optimize-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
           path: |
-            vendor
-            node_modules
-            public
+            ~/vendor
+            ~/node_modules
+            ~/public
 
       - name: See files
         run: |
@@ -119,13 +117,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: rlespinasse/github-slug-action@v3.x
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-4-build-optimize-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: build-optimize-yarn-${{ hashFiles('**/yarn.lock') }}-composer-${{ hashFiles('**/composer.lock') }}
           path: |
-            vendor
-            node_modules
-            public
+            ~/vendor
+            ~/node_modules
+            ~/public
 
       - name: Web deploy
         uses: akhileshns/heroku-deploy@v3.12.12
