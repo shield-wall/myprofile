@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58187c056ebbc0b0a51230e142e3f80f",
+    "content-hash": "d4c24071994b0d44c89bc07d526b7c76",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -8845,6 +8845,56 @@
             "time": "2022-03-08T22:08:27+00:00"
         },
         {
+            "name": "threelever/curriculum-bundle",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/threelever/CurriculumBundle.git",
+                "reference": "ff445826f92eb43fba766a4fcf5dc8efc5bb9aa2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/threelever/CurriculumBundle/zipball/ff445826f92eb43fba766a4fcf5dc8efc5bb9aa2",
+                "reference": "ff445826f92eb43fba766a4fcf5dc8efc5bb9aa2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "symfony/translation": "^4.4|^5.4|^6.0",
+                "symfony/twig-bundle": "^4.4|^5.4|^6.0",
+                "symfony/webpack-encore-bundle": "^1.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "symfony/asset": "^6.0",
+                "symfony/framework-bundle": "^6.0",
+                "symfony/runtime": "^6.0",
+                "symfony/serializer-pack": "^1.1",
+                "symfony/yaml": "^6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Threelever\\CurriculumBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erison Silva"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/threelever/CurriculumBundle/issues",
+                "source": "https://github.com/threelever/CurriculumBundle/tree/main"
+            },
+            "time": "2022-06-15T09:54:57+00:00"
+        },
+        {
             "name": "transloadit/php-sdk",
             "version": "v2.1.0",
             "source": {
@@ -10558,7 +10608,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "threelever/curriculum-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

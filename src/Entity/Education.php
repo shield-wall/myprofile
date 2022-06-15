@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\EducationRepository;
+use App\ThirdCode\Contracts\EducationInterface;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'education')]
 #[ORM\Entity(repositoryClass: EducationRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class Education implements EntityInterface, HasUserInterface
+class Education implements EntityInterface, HasUserInterface, EducationInterface
 {
     use HasUserTrait;
 
@@ -134,5 +136,16 @@ class Education implements EntityInterface, HasUserInterface
         $this->periodEnd = $periodEnd;
 
         return $this;
+    }
+
+    public function getDateStarted(): DateTimeInterface
+    {
+        // @TODO make period started required.
+        return $this->getPeriodStart() ?? new DateTime();
+    }
+
+    public function getDateFinished(): ?DateTimeInterface
+    {
+        return $this->getPeriodEnd();
     }
 }

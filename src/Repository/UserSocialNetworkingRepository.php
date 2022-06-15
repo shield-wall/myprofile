@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\UserSocialNetworking;
+use App\Entity\UserUserSocialNetworking;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,6 +16,6 @@ class UserSocialNetworkingRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserSocialNetworking::class);
+        parent::__construct($registry, UserUserSocialNetworking::class);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\ExperienceRepository;
+use App\ThirdCode\Contracts\ExperienceInterface;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'experience')]
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class Experience
+class Experience implements ExperienceInterface
 {
     /**
      * @var int
@@ -100,20 +102,12 @@ class Experience
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param mixed $description
-     *
-     * @return Experience
-     */
-    public function setDescription($description)
+    public function setDescription(?string $description)
     {
         $this->description = $description;
 
@@ -145,5 +139,16 @@ class Experience
         $this->periodEnd = $periodEnd;
 
         return $this;
+    }
+
+    public function getDateStarted(): DateTimeInterface
+    {
+        //@TODO make period start required;
+        return $this->getPeriodStart() ?? new DateTime();
+    }
+
+    public function getDateFinished(): ?DateTimeInterface
+    {
+        return $this->getPeriodEnd();
     }
 }

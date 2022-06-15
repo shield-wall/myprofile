@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserLanguageRepository;
+use App\ThirdCode\Contracts\SpeakLanguageInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserLanguageRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class UserLanguage implements EntityInterface, HasUserInterface
+class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageInterface
 {
     final public const LEVELS = [
         'BEGINNER' => 'Beginner',
@@ -57,11 +58,13 @@ class UserLanguage implements EntityInterface, HasUserInterface
         return $this;
     }
 
-    public function getLevel(): ?string
+    public function getLevel(): string
     {
-        return $this->level;
+        //TODO make level required
+        return $this->level ?? '';
     }
 
+    //@TODO check if this field is still necessary.
     public function getLevelName(): ?string
     {
         return self::LEVELS[$this->getLevel()];
@@ -84,5 +87,11 @@ class UserLanguage implements EntityInterface, HasUserInterface
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getTitle(): string
+    {
+        //@TODO make name required!
+        return $this->getName() ?? '';
     }
 }

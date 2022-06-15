@@ -2,7 +2,7 @@
 
 namespace App\Controller\Profile;
 
-use App\Entity\UserSocialNetworking;
+use App\Entity\UserUserSocialNetworking;
 use App\Form\UserSocialNetworkingType;
 use App\Repository\UserSocialNetworkingRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -33,7 +33,7 @@ class UserSocialNetworkingController extends AbstractController
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
     public function newAction(Request $request): Response
     {
-        $userSocialNetworking = new Usersocialnetworking();
+        $userSocialNetworking = new UserUserSocialNetworking();
         $userSocialNetworking->setUser($this->getUser());
         $form = $this->createForm(UserSocialNetworkingType::class, $userSocialNetworking);
         $form->handleRequest($request);
@@ -59,7 +59,7 @@ class UserSocialNetworkingController extends AbstractController
      * @Security("user == userSocialNetworking.getUser()")
      */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function editAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
+    public function editAction(Request $request, UserUserSocialNetworking $userSocialNetworking): Response
     {
         $form = $this->createForm(UserSocialNetworkingType::class, $userSocialNetworking);
         $form->handleRequest($request);
@@ -88,7 +88,7 @@ class UserSocialNetworkingController extends AbstractController
      * @Security("user == userSocialNetworking.getUser()")
      */
     #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
-    public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
+    public function deleteAction(Request $request, UserUserSocialNetworking $userSocialNetworking): Response
     {
         if ($this->isCsrfTokenValid('delete' . $userSocialNetworking->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

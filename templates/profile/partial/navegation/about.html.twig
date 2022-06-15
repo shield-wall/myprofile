@@ -4,7 +4,7 @@
     <div class="columns is-multiline is-mobile is-centered">
         <div>
             {% include 'component/_image.html.twig' with {
-                'url': bucket_dns ~ '/' ~ bucket_name ~ '/' ~ app.user.getProfileImage(),
+                'url': app.user.getProfileImage(),
                 'urlDefault': bucket_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'
             } %}
         </div>

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\CertificationRepository;
+use App\ThirdCode\Contracts\CertificationInterface;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'certification')]
 #[ORM\Entity(repositoryClass: CertificationRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class Certification implements EntityInterface, HasUserInterface
+class Certification implements EntityInterface, HasUserInterface, CertificationInterface
 {
     use HasUserTrait;
 
@@ -125,5 +127,22 @@ class Certification implements EntityInterface, HasUserInterface
         $this->image = $image;
 
         return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->getImage();
+    }
+
+    public function getDateStarted(): DateTimeInterface
+    {
+        // @TODO make start date required.
+
+        return $this->getPeriodStart() ?? new DateTime();
+    }
+
+    public function getDateFinished(): ?DateTimeInterface
+    {
+        return $this->getPeriodEnd();
     }
 }

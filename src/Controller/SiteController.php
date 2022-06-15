@@ -4,6 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\ThirdCode\Contracts\AddressInterface;
+use App\ThirdCode\Contracts\CertificationInterface;
+use App\ThirdCode\Contracts\EducationInterface;
+use App\ThirdCode\Contracts\ExperienceInterface;
+use App\ThirdCode\Contracts\SkillInterface;
+use App\ThirdCode\Contracts\SpeakLanguageInterface;
+use App\ThirdCode\Contracts\UserInfoInterface;
+use App\ThirdCode\Contracts\UserSocialNetworkInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,8 +45,15 @@ class SiteController extends AbstractController
     #[Route(path: '/{slug}/curriculum/{_locale}', name: 'curriculum')]
     public function curriculumAction(User $user): Response
     {
-        $html = $this->renderView('curriculum/theme_01/index.html.twig', ['user' => $user]);
-
-        return new Response($html);
+        return $this->render('@!Curriculum/cv01/index.html.twig', [
+            AddressInterface::INDEX => $user,
+            CertificationInterface::INDEX => $user->getCertifications(),
+            EducationInterface::INDEX => $user->getEducations(),
+            ExperienceInterface::INDEX => $user->getExperiences(),
+            SkillInterface::INDEX => $user->getSkills(),
+            UserSocialNetworkInterface::INDEX => $user->getUserSocialNetworks(),
+            SpeakLanguageInterface::INDEX => $user->getUserLanguages(),
+            UserInfoInterface::INDEX => $user,
+        ]);
     }
 }

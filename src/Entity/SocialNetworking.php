@@ -30,9 +30,9 @@ class SocialNetworking implements Stringable
     protected ?string $icon = null;
 
     /**
-     * @var Collection<UserSocialNetworking>
+     * @var Collection<UserUserSocialNetworking>
      */
-    #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserSocialNetworking::class)]
+    #[ORM\OneToMany(mappedBy: 'socialNetworking', targetEntity: UserUserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
     public function __construct()

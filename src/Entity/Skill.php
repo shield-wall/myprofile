@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\SkillRepository;
+use App\ThirdCode\Contracts\SkillInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'skill')]
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class Skill
+class Skill implements SkillInterface
 {
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
@@ -145,5 +146,12 @@ class Skill
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function getTitle(): string
+    {
+        //@TODO make name required.
+
+        return $this->getName() ?? '';
     }
 }

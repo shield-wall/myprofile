@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserSocialNetworkingRepository;
+use App\ThirdCode\Contracts\UserSocialNetworkInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\UniqueConstraint(name: 'relations_idx', columns: ['user_id', 'social_networking_id'])]
 #[ORM\Entity(repositoryClass: UserSocialNetworkingRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class UserSocialNetworking
+class UserUserSocialNetworking implements UserSocialNetworkInterface
 {
     /**
      * @var int
@@ -84,5 +85,11 @@ class UserSocialNetworking
         $this->link = $link;
 
         return $this;
+    }
+
+    public function getIconClass(): string
+    {
+        //@TODO make icon field required!
+        return $this->getSocialNetworking()->getIcon() ?? 'far fa-circle';
     }
 }

@@ -4,12 +4,12 @@
     "sass": "^1.49.9"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "@symfony/webpack-encore": "^1.8",
     "@vizuaalog/bulmajs": "^0.11.0",
     "add": "^2.0.6",
     "bootstrap": "^4.3.1",
-    "bulma": "0.9",
+    "bulma": "^0.9.3",
     "jquery": "^3.5.0",
     "jquery.stellar": "^0.6.2",
     "popper.js": "^1.16.0",

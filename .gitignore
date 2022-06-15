@@ -4,6 +4,7 @@
 
 ###> doker ###
 .docker/database
+.docker/xdebug.ini
 ###> doker ###
 
 ###> symfony/framework-bundle ###
@@ -22,6 +23,7 @@ yarn-error.log
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
+/.phpunit.cache
 ###< symfony/phpunit-bridge ###
 
 ###> myprofile

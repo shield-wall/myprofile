@@ -17,7 +17,7 @@ class CurriculumService
 
     public function makePdfOnTransloadit($user)
     {
-        if (! $this->params->get('transloadit.delivery')) {
+        if (!$this->params->get('transloadit.delivery')) {
             return;
         }
 

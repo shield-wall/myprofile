@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\UserSocialNetworking;
+use App\Entity\UserUserSocialNetworking;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +25,7 @@ class UserSocialNetworkingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => UserSocialNetworking::class,
+            'data_class' => UserUserSocialNetworking::class,
             'translation_domain' => 'MyProfile',
         ]);
     }

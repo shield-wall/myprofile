@@ -29,6 +29,8 @@ services:
         bind:
             string $mailerFrom: '%mailer.from%'
             string $mailerFromName: '%mailer.from_name%'
+            string $cdnHostWithPrefix: '%cdn.dns%/%bucket.name%'
+            string $bucketHostWithPrefix: '%bucket.dns%/%bucket.name%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -60,8 +62,19 @@ services:
         tags:
             - { name: doctrine.orm.entity_listener, lazy: true }
 
+    App\EventListener\SetWebSiteInUserListener:
+        tags:
+            - { name: doctrine.orm.entity_listener, lazy: true }
+
     Sentry\Monolog\Handler:
         arguments:
             $hub: '@Sentry\State\HubInterface'
             $level: !php/const Monolog\Logger::ERROR
             $bubble: false
+
+    App\EventListener\SetHostImageEntityListener:
+        tags:
+            - name: 'doctrine.event_listener'
+              event: 'postLoad'
+              priority: 500
+              connection: 'default'

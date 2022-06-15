@@ -35,6 +35,7 @@
         "symfony/yaml": "^v5.2",
         "symfonycasts/reset-password-bundle": "^1.2",
         "symfonycasts/verify-email-bundle": "^1.2",
+        "threelever/curriculum-bundle": "dev-main",
         "transloadit/php-sdk": "^2.1",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
