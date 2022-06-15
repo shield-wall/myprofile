@@ -8868,12 +8868,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/threelever/CurriculumBundle.git",
-                "reference": "ff445826f92eb43fba766a4fcf5dc8efc5bb9aa2"
+                "reference": "323a21d273a8ac1bff1151a48eaa7c65bf07e46a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/threelever/CurriculumBundle/zipball/ff445826f92eb43fba766a4fcf5dc8efc5bb9aa2",
-                "reference": "ff445826f92eb43fba766a4fcf5dc8efc5bb9aa2",
+                "url": "https://api.github.com/repos/threelever/CurriculumBundle/zipball/323a21d273a8ac1bff1151a48eaa7c65bf07e46a",
+                "reference": "323a21d273a8ac1bff1151a48eaa7c65bf07e46a",
                 "shasum": ""
             },
             "require": {
@@ -8910,7 +8910,7 @@
                 "issues": "https://github.com/threelever/CurriculumBundle/issues",
                 "source": "https://github.com/threelever/CurriculumBundle/tree/main"
             },
-            "time": "2022-06-15T09:54:57+00:00"
+            "time": "2022-06-15T19:25:43+00:00"
         },
         {
             "name": "transloadit/php-sdk",
