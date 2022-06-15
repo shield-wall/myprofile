@@ -7,15 +7,21 @@ use transloadit\Transloadit;
 
 class BackgroundImageService
 {
+    /**
+     * @TODO pass all parameters as string and remove ParameterBagInterface
+     *      TODO 2 -> please provide some solution to use the same code of ProfileImageService
+     */
     public function __construct(
         private readonly Transloadit $transloadit,
-        private readonly ParameterBagInterface $params
+        private readonly ParameterBagInterface $params,
+        private readonly string $cdnHostWithPrefix,
+        private readonly string $bucketHostWithPrefix,
     ) {
     }
 
     public function upload($user, $file)
     {
-        if (! $this->params->get('transloadit.delivery')) {
+        if (!$this->params->get('transloadit.delivery')) {
             return;
         }
 
@@ -23,7 +29,7 @@ class BackgroundImageService
             return;
         }
 
-        $urlPrefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
+        $path = str_replace([$this->cdnHostWithPrefix, $this->bucketHostWithPrefix], '', $user->getBackgroundImage());
 
         $file->move($this->params->get('transloadit.tmp'), $file->getClientOriginalName());
         $fileFullPath = sprintf('%s/%s', $this->params->get('transloadit.tmp'), $file->getClientOriginalName());
@@ -37,8 +43,8 @@ class BackgroundImageService
                 'steps' => [
                     'export' => [
                         'credentials' => $this->params->get('transloadit.credentials'),
-                        'url_prefix' => $urlPrefix,
-                        'path' => $user->getBackgroundImage(),
+                        'url_prefix' => $this->cdnHostWithPrefix . '/',
+                        'path' => $path,
                     ],
                 ],
             ],

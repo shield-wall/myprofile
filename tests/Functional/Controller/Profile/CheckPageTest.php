@@ -27,8 +27,10 @@ class CheckPageTest extends WebTestCase
      */
     public function testCanCheckPage(string $url, string $field = null, string $value = null)
     {
+        $container = $this->client->getContainer();
+
         /** @var UserRepository $userRepository */
-        $userRepository = self::$container->get(UserRepository::class);
+        $userRepository = $container->get(UserRepository::class);
         $user = $userRepository->findOneBy(['email' => 'test@myprofile.pro']);
 
         $this->client->loginUser($user);
@@ -64,7 +66,8 @@ class CheckPageTest extends WebTestCase
      */
     public function testCannotAccessDataFromOtherUser(string $indexUrl)
     {
-        $userRepository = self::$container->get(UserRepository::class);
+        $container = $this->client->getContainer();
+        $userRepository = $container->get(UserRepository::class);
         $user1 = $userRepository->findOneBy(['email' => 'test@myprofile.pro']);
         $user2 = $userRepository->findOneBy(['email' => 'test2@myprofile.pro']);
 

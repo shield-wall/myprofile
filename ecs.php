@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
+use Symplify\EasyCodingStandard\ValueObject\Option;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     // A. full sets
@@ -14,6 +16,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::SYMFONY_RISKY);
     $containerConfigurator->import(SetList::DOCTRINE_ANNOTATIONS);
     $containerConfigurator->import(SetList::SPACES);
+
+    $parameters = $containerConfigurator->parameters();
+    $parameters->set(Option::SKIP, [
+        NotOperatorWithSuccessorSpaceFixer::class,
+    ]);
+
 
     // B. standalone rule
     $services = $containerConfigurator->services();

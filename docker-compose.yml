@@ -16,6 +16,7 @@ services:
       - .docker/common.env
     volumes:
       - ./:/app
+      - .docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     links:
       - db
 

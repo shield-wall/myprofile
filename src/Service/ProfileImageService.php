@@ -7,15 +7,20 @@ use transloadit\Transloadit;
 
 class ProfileImageService
 {
+    /**
+     * @TODO pass all parameters as string and remove ParameterBagInterface
+     */
     public function __construct(
         private readonly Transloadit $transloadit,
-        private readonly ParameterBagInterface $params
+        private readonly ParameterBagInterface $params,
+        private readonly string $cdnHostWithPrefix,
+        private readonly string $bucketHostWithPrefix,
     ) {
     }
 
     public function upload($user, $file)
     {
-        if (! $this->params->get('transloadit.delivery')) {
+        if (!$this->params->get('transloadit.delivery')) {
             return;
         }
 
@@ -23,10 +28,10 @@ class ProfileImageService
             return;
         }
 
-        $urlPrefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
-
         $file->move($this->params->get('transloadit.tmp'), $file->getClientOriginalName());
         $fileFullPath = sprintf('%s/%s', $this->params->get('transloadit.tmp'), $file->getClientOriginalName());
+
+        $path = str_replace([$this->cdnHostWithPrefix, $this->bucketHostWithPrefix], '', $user->getProfileImage());
 
         $this->transloadit->createAssembly([
             'files' => [
@@ -37,13 +42,18 @@ class ProfileImageService
                 'steps' => [
                     'export' => [
                         'credentials' => $this->params->get('transloadit.credentials'),
-                        'url_prefix' => $urlPrefix,
-                        'path' => $user->getProfileImage(),
+                        'url_prefix' => $this->cdnHostWithPrefix . '/',
+                        'path' => $path,
                     ],
                 ],
             ],
         ]);
 
+        $this->removeFile($fileFullPath);
+    }
+
+    protected function removeFile($fileFullPath): void
+    {
         unlink($fileFullPath);
     }
 }

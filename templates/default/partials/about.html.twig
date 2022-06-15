@@ -49,7 +49,7 @@
                 <div class="column is-4">
                     <div class="biography">
                         <div class="myphoto">
-                            <object data="{{ bucket_dns ~ '/' ~ bucket_name ~ '/' ~ user.getProfileImage()}}" id="image">
+                            <object data="{{ user.getProfileImage()}}" id="image">
 
                                 <!-- default image -->
                                 <img src="{{ cdn_dns ~ '/' ~ bucket_name ~ '/users/user-image-default.webp'}}" alt="profile image" id="image">

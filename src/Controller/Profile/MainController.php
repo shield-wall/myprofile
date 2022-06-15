@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use App\Entity\User;
 use App\Form\ProfileType;
 use App\Service\BackgroundImageService;
 use App\Service\CurriculumService;
@@ -16,7 +17,14 @@ class MainController extends AbstractController
     #[Route(path: '/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function editAction(Request $request, ProfileImageService $profileImageService, BackgroundImageService $backgroundImageService): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
+
+        $bucketImagePath = $this->changeCdnToBucket($user->getImage());
+        $bucketBackgroundPath = $this->changeCdnToBucket($user->getBackgroundImage());
+        $user->setImage($bucketImagePath);
+        $user->setBackgroundImage($bucketBackgroundPath);
+
         $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -37,10 +45,21 @@ class MainController extends AbstractController
     #[Route(path: '/generate-curriculum', name: 'generate_curriculum', methods: ['GET'])]
     public function generateCurriculumAction(CurriculumService $curriculumService): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
+        $bucketPath = $this->changeCdnToBucket($user->getImage());
+        $user->setImage($bucketPath);
         $curriculumService->makePdfOnTransloadit($user);
         $this->addFlash('success', 'messages.generate_curriculum');
 
         return $this->redirectToRoute('profile_edit');
+    }
+
+    /**
+     * @TODO please find a better solution for this workaround.
+     */
+    private function changeCdnToBucket(string $path): string
+    {
+        return str_replace('https://cdn', 'https://bucket', $path);
     }
 }

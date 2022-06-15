@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Contract\ImageEntityInterface;
+use App\Entity\Traits\HasImageEntity;
+use App\EventListener\SetWebSiteInUserListener;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\UserRepository;
+use App\ThirdCode\Contracts\UserInfoInterface;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,15 +16,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Stringable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity('slug')]
 #[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'fos_user')]
-#[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class User implements UserInterface, Stringable
+#[ORM\EntityListeners([UpdateCurriculumListener::class, SetWebSiteInUserListener::class])]
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringable, UserInfoInterface, ImageEntityInterface
 {
+    use HasImageEntity;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
@@ -86,9 +93,9 @@ class User implements UserInterface, Stringable
     protected ?\DateTimeInterface $birthday = null;
 
     /**
-     * @var Collection<UserSocialNetworking>
+     * @var Collection<UserUserSocialNetworking>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSocialNetworking::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserUserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
     /**
@@ -156,6 +163,10 @@ class User implements UserInterface, Stringable
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $isVerified = false;
 
+    private string $backgroundImage;
+
+    private string $website;
+
     public function __construct()
     {
         $this->userSocialNetworks = new ArrayCollection();
@@ -200,13 +211,13 @@ class User implements UserInterface, Stringable
         return $this->userSocialNetworks;
     }
 
-    public function setUserSocialNetworks(UserSocialNetworking $socialNetworking)
+    public function setUserSocialNetworks(UserUserSocialNetworking $socialNetworking)
     {
         $socialNetworking->setUser($this);
         $this->getUserSocialNetworks()->add($socialNetworking);
     }
 
-    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking): static
+    public function removeUserSocialNetworks(UserUserSocialNetworking $socialNetworking): static
     {
         $this->getUserSocialNetworks()->removeElement($socialNetworking);
 
@@ -220,7 +231,7 @@ class User implements UserInterface, Stringable
 
     public function addEducations(Education $education): static
     {
-        if (! $this->educations->contains($education)) {
+        if (!$this->educations->contains($education)) {
             $this->educations->add($education);
         }
 
@@ -234,7 +245,7 @@ class User implements UserInterface, Stringable
 
     public function addExperiences(Experience $experience): static
     {
-        if (! $this->experiences->contains($experience)) {
+        if (!$this->experiences->contains($experience)) {
             $this->experiences->add($experience);
         }
 
@@ -248,7 +259,7 @@ class User implements UserInterface, Stringable
 
     public function addSkills(Skill $skill): static
     {
-        if (! $this->skills->contains($skill)) {
+        if (!$this->skills->contains($skill)) {
             $this->skills->add($skill);
         }
 
@@ -262,7 +273,7 @@ class User implements UserInterface, Stringable
 
     public function addCertifications(Certification $certification): static
     {
-        if (! $this->certifications->contains($certification)) {
+        if (!$this->certifications->contains($certification)) {
             $this->certifications->add($certification);
         }
 
@@ -305,9 +316,11 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstName(): string
     {
-        return $this->firstName;
+        //@TODO make first name required
+
+        return $this->firstName ?? '';
     }
 
     public function setFirstName($firstName): static
@@ -317,9 +330,10 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLastName(): string
     {
-        return $this->lastName;
+        // @TODO make lastname Required.
+        return $this->lastName ?? '';
     }
 
     public function setLastName($lastName): static
@@ -432,12 +446,24 @@ class User implements UserInterface, Stringable
 
     public function getProfileImage(): string
     {
-        return sprintf('users/%s/profile.webp', md5($this->getEmail()));
+        return $this->getImage();
     }
 
     public function getBackgroundImage(): string
     {
-        return sprintf('users/%s/background.webp', md5($this->getEmail()));
+        return $this->backgroundImage ?? sprintf('/users/%s/background.webp', md5($this->getEmail()));
+    }
+
+    public function setBackgroundImage(string $image): static
+    {
+        $this->backgroundImage = $image;
+
+        return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image ?? sprintf('/users/%s/profile.webp', md5($this->getEmail()));
     }
 
     public function getUserLanguages(): Collection
@@ -447,7 +473,7 @@ class User implements UserInterface, Stringable
 
     public function addUserLanguage(UserLanguage $userLanguage): self
     {
-        if (! $this->userLanguages->contains($userLanguage)) {
+        if (!$this->userLanguages->contains($userLanguage)) {
             $this->userLanguages[] = $userLanguage;
             $userLanguage->setUser($this);
         }
@@ -523,9 +549,15 @@ class User implements UserInterface, Stringable
         return $this;
     }
 
-    public function getUsername()
+    // @TODO remove this in symfony 6
+    public function getUsername(): string
     {
-        return $this->getEmail();
+        return (string) $this->email;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
     }
 
     public function eraseCredentials()
@@ -548,5 +580,37 @@ class User implements UserInterface, Stringable
     public function __toString(): string
     {
         return $this->getUsername();
+    }
+
+    public function getPositionTitle(): string
+    {
+        return $this->getRole() ?? '';
+    }
+
+    public function getWebSite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebSite(?string $website): static
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    public function getPhone1(): ?string
+    {
+        return $this->getPhone();
+    }
+
+    public function getPhone2(): ?string
+    {
+        return $this->getCell();
+    }
+
+    public function getAbout(): ?string
+    {
+        return $this->getSummary();
     }
 }
