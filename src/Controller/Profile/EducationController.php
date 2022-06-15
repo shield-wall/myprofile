@@ -46,7 +46,7 @@ class EducationController extends AbstractCrudController
      *
      * @Security("user == education.getUser()")
      */
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Education $education): Response
     {
         return $this->delete($request, $education);

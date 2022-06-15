@@ -72,7 +72,7 @@ class SkillController extends AbstractController
     /**
      * @Security("user == skill.getUser()")
      */
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Skill $skill): Response
     {
         if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->get('_token'))) {

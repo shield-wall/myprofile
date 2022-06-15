@@ -72,7 +72,7 @@ class UserLanguageController extends AbstractController
     /**
      * @IsGranted("ROLE_USER", subject="userLanguage")
      */
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, UserLanguage $userLanguage): Response
     {
         if ($this->isCsrfTokenValid('delete' . $userLanguage->getId(), $request->request->get('_token'))) {

@@ -17,7 +17,7 @@ class Skill implements SkillInterface
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    private readonly int $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
     #[ORM\JoinColumn(name: 'user_id')]

@@ -21,7 +21,7 @@ class Certification implements EntityInterface, HasUserInterface, CertificationI
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    private readonly int $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'certifications')]
     #[ORM\JoinColumn(name: 'user_id')]
