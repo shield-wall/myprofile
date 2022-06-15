@@ -2,5 +2,3 @@ parameters:
     level: 1
     paths:
         - src
-    ignoreErrors:
-            - "#has an uninitialized readonly property \\$id. Assign it in the constructor.#"

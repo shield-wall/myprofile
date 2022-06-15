@@ -75,7 +75,7 @@ class ExperienceController extends AbstractController
     /**
      * @Security("user == experience.getUser()")
      */
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Experience $experience): Response
     {
         if ($this->isCsrfTokenValid('delete' . $experience->getId(), $request->request->get('_token'))) {

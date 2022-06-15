@@ -43,7 +43,7 @@ class CertificationController extends AbstractCrudController
      *
      * @IsGranted("ROLE_USER", subject="certification")
      */
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Certification $certification): Response
     {
         return $this->delete($request, $certification);

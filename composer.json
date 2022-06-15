@@ -101,6 +101,7 @@
             "@db:migration:apply"
         ],
         "lint": [
+            "@lint:phpstan",
             "@lint:ecs",
             "@lint:rector",
             "@lint:twig",

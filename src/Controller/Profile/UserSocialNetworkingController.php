@@ -87,7 +87,7 @@ class UserSocialNetworkingController extends AbstractController
      *
      * @Security("user == userSocialNetworking.getUser()")
      */
-    #[Route(path: '/{id}', name: 'delete', methods: ['DELETE'])]
+    #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, UserUserSocialNetworking $userSocialNetworking): Response
     {
         if ($this->isCsrfTokenValid('delete' . $userSocialNetworking->getId(), $request->request->get('_token'))) {
