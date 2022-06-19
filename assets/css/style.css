@@ -1413,31 +1413,6 @@ Icon for all respective meta
     left: 0;
 }
 
-/* === Hire Section === */
-.hire-section {
-    background: url(../images/hire-bg.jpg) no-repeat top center #F26651;
-    background-attachment: fixed;
-    background-size: cover;
-    color: #fff;
-}
-.hire-section-bg {
-    padding: 110px 0;
-    background: -webkit-linear-gradient(bottom, #F26651, rgb(185, 148, 127)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(top, #F26651, rgba(147, 148, 124, 0.41)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(top, #F26651, rgba(147, 148, 124, 0.41)); /*Fx 3.6-15*/
-    background: linear-gradient(to top, #F26651, rgba(147, 148, 124, 0.41)); /*Standard*/
-}
-
-.hire-section h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
-}
-
-.hire-section .btn {
-    padding: 9px 54px;
-}
-
-
 /* === Contact Section === */
 .contact-section  {
 
@@ -1662,74 +1637,6 @@ Icon for all respective meta
 .hobby-list span:nth-child(5),
 .hobby-list span:nth-child(6) {
     margin-bottom: 0;
-}
-
-
-
-/*SERVICE SECTION*/
-.service-section {
-    background: url(../images/service-bg.jpg) no-repeat center center;
-    background-size: cover;
-    padding:120px 0;
-}
-.service-section h2 {
-    color: #fff;
-}
-.service-wrap{
-    padding: 40px 0
-}
-.service-box {
-    text-align: center;
-    position: relative;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto;
-}
-.service-box::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    border: 1px solid #fff;
-    width: 180px;
-    height: 180px;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    border-radius: 15px;
-}
-.service-box i {
-    font-size: 40px;
-    color: #fff;
-    line-height: 100px;
-    z-index: 100;
-    position: relative;
-}
-.service-box h3 {
-    font-size: 18px;
-    line-height: 18px;
-    color: #fff;
-    z-index: 100;
-    position: relative;
-}
-.service-box:hover.service-box::after{
-    background: #fff;
-    border: 1px solid transparent;
-}
-.service-box:hover i,
-.service-box:hover h3{
-    color: #2c3e50;
-}
-.service-box i,
-.service-box h3,
-.service-box::after {
-    -webkit-transition: all 300ms;
-    -moz-transition: all 300ms;
-    -o-transition: all 300ms;
-    transition: all 300ms;
 }
 
 /*HOMEPAGE TWO*/

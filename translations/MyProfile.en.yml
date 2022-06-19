@@ -26,16 +26,6 @@ about:
     country: Country
     email: E-mail
 
-curriculum:
-    about: About
-    skills: Skills
-    main_skills: Main skills
-    education: Education
-    experiences: Experiences
-    certifications: Certifications
-    view_curriculum: View curriculum.
-    languages: Languages
-
 default:
   last_registrations: Look some curriculum vitae example
   send_message: Send message

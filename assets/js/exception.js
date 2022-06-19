@@ -1,4 +1,3 @@
 require('./image.js');
-require('../css/global.scss');
-require('bootstrap');
+require('../css/exception.scss');
 require('@fortawesome/fontawesome-free/css/all.min.css');
