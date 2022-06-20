@@ -28,16 +28,6 @@ about:
   country: País
   email: E-mail
 
-curriculum:
-  about: Sobre
-  skills: Habilidades
-  main_skills: Principais habilidades
-  education: Educação
-  experiences: Experiências
-  certifications: Certificações
-  view_curriculum: Visualizar currículo
-  languages: Idiomas
-
 default:
   last_registrations: Veja alguns exemplos de currículos
   send_message: Enviar mensagem
