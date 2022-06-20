@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,9 @@ class EmailVerifier
     ) {
     }
 
+    /**
+     * @param User $user
+     */
     public function sendEmailConfirmation(
         string $verifyEmailRouteName,
         UserInterface $user,
@@ -40,6 +44,7 @@ class EmailVerifier
     }
 
     /**
+     * @param User $user
      * @throws VerifyEmailExceptionInterface
      */
     public function handleEmailConfirmation(Request $request, UserInterface $user): void
