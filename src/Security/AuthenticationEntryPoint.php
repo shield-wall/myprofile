@@ -16,6 +16,7 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
+        /** @phpstan-ignore-next-line */
         $request
             ->getSession()
             ->getFlashBag()

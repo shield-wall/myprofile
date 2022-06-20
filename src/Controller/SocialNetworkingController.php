@@ -7,6 +7,7 @@ use App\Form\SocialNetworkingType;
 use App\Repository\SocialNetworkingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -103,14 +104,7 @@ class SocialNetworkingController extends AbstractController
         return $this->redirectToRoute('admin_socialnetworking_index');
     }
 
-    /**
-     * Creates a form to delete a socialNetworking entity.
-     *
-     * @param SocialNetworking $socialNetworking The socialNetworking entity
-     *
-     * @return Form The form
-     */
-    private function createDeleteForm(SocialNetworking $socialNetworking)
+    private function createDeleteForm(SocialNetworking $socialNetworking): FormInterface
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_socialnetworking_delete', ['id' => $socialNetworking->getId()]))
