@@ -11,7 +11,7 @@ services:
       - php
 
   php:
-    image: 3lever/php:8.1.4-fpm-postgresql-dev
+    image: 3lever/php:8.1.7-fpm-postgresql-dev
     env_file:
       - .docker/common.env
     volumes:
