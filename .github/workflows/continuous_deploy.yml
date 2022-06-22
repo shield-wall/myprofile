@@ -23,7 +23,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: 3lever/php:8.1.4-fpm-postgresql-dev
+      image: 3lever/php:8.1.7-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v2
 
@@ -60,7 +60,7 @@ jobs:
       url: https://myprofile-${{ env.GITHUB_REF_SLUG_URL }}.herokuapp.com
     needs: build
     container:
-      image: 3lever/php:8.1.4-fpm-postgresql-dev
+      image: 3lever/php:8.1.7-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v2
       - uses: rlespinasse/github-slug-action@v3.x
@@ -114,7 +114,7 @@ jobs:
       APP_NAME: prod-myprofile
     needs: build
     container:
-      image: 3lever/php:8.1.4-fpm-postgresql-dev
+      image: 3lever/php:8.1.7-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v2
       - uses: rlespinasse/github-slug-action@v3.x
