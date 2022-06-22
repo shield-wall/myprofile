@@ -37,9 +37,9 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
     #[ORM\Column(type: Types::STRING, length: 50)]
     private ?string $level = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userLanguages')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userLanguages')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?UserInterface $user = null;
 
     public function getId(): int
     {

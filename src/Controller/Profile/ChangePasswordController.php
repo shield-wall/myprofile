@@ -22,7 +22,7 @@ class ChangePasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Encode the plain password, and set it.
             $encodedPassword = $passwordEncoder->hashPassword(
-                $this->getUser(),
+                $user,
                 $form->get('plainPassword')->getData()
             );
 

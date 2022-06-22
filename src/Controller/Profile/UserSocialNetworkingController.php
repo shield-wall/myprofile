@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use App\Entity\User;
 use App\Entity\UserUserSocialNetworking;
 use App\Form\UserSocialNetworkingType;
 use App\Repository\UserSocialNetworkingRepository;
@@ -34,7 +35,9 @@ class UserSocialNetworkingController extends AbstractController
     public function newAction(Request $request): Response
     {
         $userSocialNetworking = new UserUserSocialNetworking();
-        $userSocialNetworking->setUser($this->getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+        $userSocialNetworking->setUser($user);
         $form = $this->createForm(UserSocialNetworkingType::class, $userSocialNetworking);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

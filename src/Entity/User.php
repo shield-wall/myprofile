@@ -481,19 +481,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this;
     }
 
-    public function removeUserLanguage(UserLanguage $userLanguage): self
-    {
-        if ($this->userLanguages->contains($userLanguage)) {
-            $this->userLanguages->removeElement($userLanguage);
-            // set the owning side to null (unless already changed)
-            if ($userLanguage->getUser() === $this) {
-                $userLanguage->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;

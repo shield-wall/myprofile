@@ -4,6 +4,7 @@ namespace App\Controller\Profile;
 
 use App\Entity\EntityInterface;
 use App\Entity\HasUserInterface;
+use App\Entity\User;
 use App\Repository\OwnerDataRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,14 +16,19 @@ abstract class AbstractCrudController extends AbstractController
 
     public function index(OwnerDataRepositoryInterface $repository): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
         return $this->render(sprintf('profile/%s.html.twig', static::PREFIX), [
-            'data' => $repository->getOwnerData($this->getUser()),
+            'data' => $repository->getOwnerData($user),
         ]);
     }
 
     public function save(Request $request, string $formTypeClass, HasUserInterface $object): Response
     {
-        $object->setUser($this->getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+        $object->setUser($user);
         $form = $this->createForm($formTypeClass, $object);
         $form->handleRequest($request);
 

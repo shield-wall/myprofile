@@ -53,7 +53,7 @@ form:
     edit_my_profile: editar meu perfil
 
   submit:
-    edit: Editar
+    edit: Salvar
     create: Cadastrar
     new: Novo
     back: Voltar

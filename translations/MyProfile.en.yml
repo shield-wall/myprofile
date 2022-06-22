@@ -51,7 +51,7 @@ form:
     edit_my_profile: Edit my profile
 
   submit:
-    edit: Edit
+    edit: Save
     create: Create
     new: New
     back: Back

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Profile;
 
+use App\Entity\User;
 use App\Entity\UserLanguage;
 use App\Form\UserLanguageType;
 use App\Repository\UserLanguageRepository;
@@ -28,7 +29,9 @@ class UserLanguageController extends AbstractController
     public function new(Request $request): Response
     {
         $userLanguage = new UserLanguage();
-        $userLanguage->setUser($this->getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+        $userLanguage->setUser($user);
         $form = $this->createForm(UserLanguageType::class, $userLanguage);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
