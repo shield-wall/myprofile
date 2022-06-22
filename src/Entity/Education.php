@@ -23,7 +23,7 @@ class Education implements EntityInterface, HasUserInterface, EducationInterface
     #[ORM\GeneratedValue]
     protected ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'educations')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'educations')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected ?UserInterface $user = null;
 

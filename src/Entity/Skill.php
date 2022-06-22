@@ -19,9 +19,9 @@ class Skill implements SkillInterface
     #[ORM\GeneratedValue]
     private int $id;
 
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'skills')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'skills')]
     #[ORM\JoinColumn(name: 'user_id')]
-    protected $user;
+    protected ?UserInterface $user = null;
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
@@ -125,20 +125,14 @@ class Skill implements SkillInterface
         return $this->status;
     }
 
-    /**
-     * @return Skill
-     */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser()
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }

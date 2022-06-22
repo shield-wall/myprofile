@@ -28,9 +28,9 @@ class UserUserSocialNetworking implements UserSocialNetworkInterface
     /**
      * @var User
      */
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'userSocialNetworks')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'user_id')]
-    protected $user;
+    protected ?UserInterface $user = null;
 
     /**
      * @var SocialNetworking|null

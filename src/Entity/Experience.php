@@ -27,9 +27,9 @@ class Experience implements ExperienceInterface
     /**
      * @var User
      */
-    #[ORM\ManyToOne(targetEntity: 'User', inversedBy: 'experiences')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'experiences')]
     #[ORM\JoinColumn(name: 'user_id')]
-    protected $user;
+    protected ?UserInterface $user = null;
 
     /**
      * @var string

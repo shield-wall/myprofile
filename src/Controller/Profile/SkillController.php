@@ -3,6 +3,7 @@
 namespace App\Controller\Profile;
 
 use App\Entity\Skill;
+use App\Entity\User;
 use App\Form\SkillType;
 use App\Repository\SkillRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -28,7 +29,9 @@ class SkillController extends AbstractController
     public function newAction(Request $request): Response
     {
         $skill = new Skill();
-        $skill->setUser($this->getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+        $skill->setUser($user);
         $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
