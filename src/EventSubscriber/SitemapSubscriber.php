@@ -11,6 +11,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SitemapSubscriber implements EventSubscriberInterface
 {
+    /**
+     * @param array<int, string> $locales
+     */
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly UserRepository $userRepository,
@@ -18,10 +21,13 @@ class SitemapSubscriber implements EventSubscriberInterface
     ) {
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function getSubscribedEvents(): array
     {
         return [
-            SitemapPopulateEvent::ON_SITEMAP_POPULATE => 'populate',
+            SitemapPopulateEvent::class => 'populate',
         ];
     }
 
@@ -45,7 +51,7 @@ class SitemapSubscriber implements EventSubscriberInterface
                             UrlGeneratorInterface::ABSOLUTE_URL
                         )
                     ),
-                    "profile_$locale"
+                    sprintf('profile_%s', $locale)
                 );
             }
         }
@@ -69,7 +75,7 @@ class SitemapSubscriber implements EventSubscriberInterface
                             UrlGeneratorInterface::ABSOLUTE_URL
                         )
                     ),
-                    "static_$locale"
+                    sprintf('static_%s', $locale)
                 );
             }
         }

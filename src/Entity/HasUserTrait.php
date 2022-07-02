@@ -11,7 +11,7 @@ trait HasUserTrait
         return $this->user;
     }
 
-    public function setUser(UserInterface $user)
+    public function setUser(UserInterface $user): static
     {
         $this->user = $user;
 

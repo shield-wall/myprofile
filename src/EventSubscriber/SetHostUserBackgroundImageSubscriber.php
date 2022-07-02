@@ -20,7 +20,7 @@ class SetHostUserBackgroundImageSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function postLoad(LifecycleEventArgs $args)
+    public function postLoad(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
 

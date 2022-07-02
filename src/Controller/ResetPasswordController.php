@@ -82,20 +82,23 @@ class ResetPasswordController extends AbstractController
 
             return $this->redirectToRoute('app_reset_password');
         }
+
         $token = $this->getTokenFromSession();
         if (null === $token) {
             throw $this->createNotFoundException('No reset password token found in the URL or in the session.');
         }
+
         try {
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
-        } catch (ResetPasswordExceptionInterface $e) {
+        } catch (ResetPasswordExceptionInterface $resetPasswordException) {
             $this->addFlash('danger', sprintf(
                 'There was a problem validating your reset request - %s',
-                $e->getReason()
+                $resetPasswordException->getReason()
             ));
 
             return $this->redirectToRoute('app_forgot_password_request');
         }
+
         // The token is valid; allow the user to change their password.
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
@@ -146,8 +149,8 @@ class ResetPasswordController extends AbstractController
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
-        } catch (ResetPasswordExceptionInterface $e) {
-            $this->addFlash('danger', $e->getReason());
+        } catch (ResetPasswordExceptionInterface $resetPasswordException) {
+            $this->addFlash('danger', $resetPasswordException->getReason());
 
             return $this->redirectToRoute('app_check_email');
         }
