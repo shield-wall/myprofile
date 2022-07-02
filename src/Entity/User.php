@@ -48,9 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\Column(type: Types::STRING, length: 50, nullable: true)]
     protected ?string $lastName = null;
 
-    /**
-     * @Gedmo\Slug(fields={"firstName", "lastName", "id"}, updatable=false, unique=false)
-     */
+    #[Gedmo\Slug(fields: ['firstName', 'lastName', 'id'])]
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50, unique: true)]
     private ?string $slug = null;
@@ -135,6 +133,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguage::class)]
     private Collection $userLanguages;
 
+    /**
+     * @var array<int, string>
+     */
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
@@ -148,15 +149,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $salt = null;
 
-    /**
-     * @Gedmo\Timestampable(on="create")
-     */
+    #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * @Gedmo\Timestampable(on="update")
-     */
+    #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -199,7 +196,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->slug;
     }
 
-    public function setSlug($slug): static
+    public function setSlug(string $slug): static
     {
         $this->slug = $slug;
 
@@ -211,10 +208,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->userSocialNetworks;
     }
 
-    public function setUserSocialNetworks(UserUserSocialNetworking $socialNetworking)
+    public function setUserSocialNetworks(UserUserSocialNetworking $socialNetworking): static
     {
         $socialNetworking->setUser($this);
         $this->getUserSocialNetworks()->add($socialNetworking);
+
+        return $this;
     }
 
     public function removeUserSocialNetworks(UserUserSocialNetworking $socialNetworking): static
@@ -285,7 +284,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->country;
     }
 
-    public function setCountry($country): static
+    public function setCountry(string $country): static
     {
         $this->country = $country;
 
@@ -297,7 +296,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->city;
     }
 
-    public function setCity($city): static
+    public function setCity(string $city): static
     {
         $this->city = $city;
 
@@ -309,7 +308,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->birthday;
     }
 
-    public function setBirthday($birthday): static
+    public function setBirthday(?DateTimeInterface $birthday): static
     {
         $this->birthday = $birthday;
 
@@ -323,7 +322,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->firstName ?? '';
     }
 
-    public function setFirstName($firstName): static
+    public function setFirstName(?string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -336,7 +335,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->lastName ?? '';
     }
 
-    public function setLastName($lastName): static
+    public function setLastName(?string $lastName): static
     {
         $this->lastName = $lastName;
 
@@ -348,7 +347,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->headline;
     }
 
-    public function setHeadline($headline): static
+    public function setHeadline(?string $headline): static
     {
         $this->headline = $headline;
 
@@ -360,7 +359,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->role;
     }
 
-    public function setRole($role): static
+    public function setRole(?string $role): static
     {
         $this->role = $role;
 
@@ -372,7 +371,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->cell;
     }
 
-    public function setCell($cell): static
+    public function setCell(?string $cell): static
     {
         $this->cell = $cell;
 
@@ -384,7 +383,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->phone;
     }
 
-    public function setPhone($phone): static
+    public function setPhone(?string $phone): static
     {
         $this->phone = $phone;
 
@@ -396,7 +395,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->gender;
     }
 
-    public function setGender($gender): static
+    public function setGender(?string $gender): static
     {
         $this->gender = $gender;
 
@@ -408,7 +407,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->summary;
     }
 
-    public function setSummary($summary): static
+    public function setSummary(?string $summary): static
     {
         $this->summary = $summary;
 
@@ -420,7 +419,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->state;
     }
 
-    public function setState($state): static
+    public function setState(?string $state): static
     {
         $this->state = $state;
 
@@ -547,7 +546,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return (string) $this->email;
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         $this->plainPassword = null;
     }

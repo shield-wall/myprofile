@@ -16,32 +16,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class Experience implements ExperienceInterface
 {
-    /**
-     * @var int
-     */
+    use HasUserTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
     protected ?int $id = null;
 
-    /**
-     * @var User
-     */
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'experiences')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected ?UserInterface $user = null;
 
-    /**
-     * @var string
-     */
     #[Assert\Length(max: 150)]
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 150)]
     protected ?string $title = null;
 
-    /**
-     * @var string
-     */
     #[Assert\Length(max: 50)]
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 50)]
@@ -55,27 +45,12 @@ class Experience implements ExperienceInterface
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected ?\DateTimeInterface $periodStart = null;
 
-    /**
-     * @var DateTimeInterface|null
-     */
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     protected ?\DateTimeInterface $periodEnd = null;
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     public function getTitle(): string
@@ -107,16 +82,13 @@ class Experience implements ExperienceInterface
         return $this->description;
     }
 
-    public function setDescription(?string $description)
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getPeriodStart(): ?DateTimeInterface
     {
         return $this->periodStart;

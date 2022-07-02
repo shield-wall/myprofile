@@ -6,6 +6,7 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -34,7 +35,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
     ) {
     }
 
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
         if (self::LOGIN_ROUTE !== $request->attributes->get('_route')) {
             return false;
@@ -43,13 +44,17 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $request->isMethod('POST');
     }
 
-    public function getCredentials(Request $request)
+    /**
+     * @return array<string, string>
+     */
+    public function getCredentials(Request $request): array
     {
         $credentials = [
             'email' => $request->request->get('email'),
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
+
         $request->getSession()->set(
             Security::LAST_USERNAME,
             $credentials['email']
@@ -58,7 +63,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $credentials;
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function getUser($credentials, UserProviderInterface $userProvider): UserInterface|null
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
@@ -77,21 +82,23 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
     /**
      * @param User $user
+     * @param array<string, string> $credentials
      */
-    public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $user): bool
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     * @param array<string, string> $credentials
      */
     public function getPassword($credentials): ?string
     {
         return $credentials['password'];
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): Response|null
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
@@ -100,7 +107,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return new RedirectResponse($this->urlGenerator->generate('profile_edit'));
     }
 
-    protected function getLoginUrl()
+    protected function getLoginUrl(): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }

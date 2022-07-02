@@ -40,45 +40,29 @@ class SocialNetworking implements Stringable
         $this->userSocialNetworks = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     *
-     * @return SocialNetworking
-     */
-    public function setName($name)
+    public function setName(?string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIcon()
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
 
-    /**
-     * @param mixed $icon
-     *
-     * @return SocialNetworking
-     */
-    public function setIcon($icon)
+    public function setIcon(?string $icon): static
     {
         $this->icon = $icon;
 

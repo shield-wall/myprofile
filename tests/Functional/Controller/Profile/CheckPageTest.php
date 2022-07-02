@@ -89,28 +89,28 @@ class CheckPageTest extends WebTestCase
     public function providerCheckPage(): Generator
     {
         #main
-        yield ['/profile/pt_BR/edit', 'app_user_profile[first_name]', 'Test'];
-        yield ['/profile/en/edit', 'app_user_profile[last_name]', 'Mock'];
+        yield ['/profile/pt_BR/edit', 'profile[first_name]', 'Test'];
+        yield ['/profile/en/edit', 'profile[last_name]', 'Mock'];
         #user's network
         yield ['/profile/pt_BR/usersocialnetworking'];
         yield ['/profile/en/usersocialnetworking'];
-        yield ['/profile/pt_BR/usersocialnetworking/new', 'App_usersocialnetworking[link]'];
-        yield ['/profile/en/usersocialnetworking/new', 'App_usersocialnetworking[socialNetworking]'];
+        yield ['/profile/pt_BR/usersocialnetworking/new', 'user_social_networking[link]'];
+        yield ['/profile/en/usersocialnetworking/new', 'user_social_networking[socialNetworking]'];
         #education
         yield ['/profile/pt_BR/education'];
         yield ['/profile/en/education'];
-        yield ['/profile/pt_BR/education/new', 'App_education[title]'];
-        yield ['/profile/en/education/new', 'App_education[institution]'];
+        yield ['/profile/pt_BR/education/new', 'education[title]'];
+        yield ['/profile/en/education/new', 'education[institution]'];
         #experience
         yield ['/profile/pt_BR/experience'];
         yield ['/profile/en/experience'];
-        yield ['/profile/pt_BR/experience/new', 'App_experience[title]'];
-        yield ['/profile/en/experience/new', 'App_experience[company]'];
+        yield ['/profile/pt_BR/experience/new', 'experience[title]'];
+        yield ['/profile/en/experience/new', 'experience[company]'];
         #certification
         yield ['/profile/pt_BR/certification'];
         yield ['/profile/en/certification'];
-        yield ['/profile/pt_BR/certification/new', 'App_certification[title]'];
-        yield ['/profile/en/certification/new', 'App_certification[institution]'];
+        yield ['/profile/pt_BR/certification/new', 'certification[title]'];
+        yield ['/profile/en/certification/new', 'certification[institution]'];
         #user`s language
         yield ['/profile/pt_BR/user-language'];
         yield ['/profile/en/user-language'];
@@ -119,8 +119,8 @@ class CheckPageTest extends WebTestCase
         #skill
         yield ['/profile/pt_BR/skill'];
         yield ['/profile/en/skill'];
-        yield ['/profile/pt_BR/skill/new', 'App_skill[name]'];
-        yield ['/profile/en/skill/new', 'App_skill[priority]'];
+        yield ['/profile/pt_BR/skill/new', 'skill[name]'];
+        yield ['/profile/en/skill/new', 'skill[priority]'];
         #change password
         yield ['/profile/pt_BR/change-password', 'change_password_account_form[plainPassword][first]'];
         yield ['/profile/en/change-password', 'change_password_account_form[plainPassword][second]'];

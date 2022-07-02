@@ -82,7 +82,7 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
         return $this->user;
     }
 
-    public function setUser(UserInterface $user): self
+    public function setUser(UserInterface $user): static
     {
         $this->user = $user;
 

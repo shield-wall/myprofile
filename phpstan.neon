@@ -1,6 +1,10 @@
 parameters:
-    level: 5
+    level: 6
     paths:
         - src
+    checkGenericClassInNonGenericObjectType: false
+    excludePaths:
+        analyseAndScan:
+            - src/EventListener/UpdateCurriculumListener.php
     ignoreErrors:
     		- '#\$id is never written, only read.#'

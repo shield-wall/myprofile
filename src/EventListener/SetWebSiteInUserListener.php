@@ -2,6 +2,7 @@
 
 namespace App\EventListener;
 
+use App\Entity\EntityInterface;
 use App\Entity\User;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -11,7 +12,10 @@ class SetWebSiteInUserListener
     {
     }
 
-    public function postLoad($entity)
+    /**
+     * @param EntityInterface $entity
+     */
+    public function postLoad($entity): void
     {
         if (!$entity instanceof User) {
             return;

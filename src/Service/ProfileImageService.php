@@ -2,7 +2,9 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use transloadit\Transloadit;
 
 class ProfileImageService
@@ -18,7 +20,7 @@ class ProfileImageService
     ) {
     }
 
-    public function upload($user, $file)
+    public function upload(User $user, ?UploadedFile $file): void
     {
         if (!$this->params->get('transloadit.delivery')) {
             return;
@@ -52,7 +54,7 @@ class ProfileImageService
         $this->removeFile($fileFullPath);
     }
 
-    protected function removeFile($fileFullPath): void
+    protected function removeFile(string $fileFullPath): void
     {
         unlink($fileFullPath);
     }
