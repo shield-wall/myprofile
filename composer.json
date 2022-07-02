@@ -94,7 +94,7 @@
         "initial": [
             "@dev",
             "@db",
-            "@fixtures"
+            "@db:fixtures"
         ],
         "db": [
             "php bin/console doctrine:database:create  --if-not-exists",
