@@ -6,6 +6,7 @@ use Rector\CodingStyle\Rector\ClassConst\VarConstantCommentRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Doctrine\Set\DoctrineSetList;
+use Rector\EarlyReturn\Rector\If_\ChangeOrIfReturnToEarlyReturnRector;
 use Rector\Php74\Rector\Property\TypedPropertyRector;
 use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
 use Rector\Set\ValueObject\SetList;
@@ -22,6 +23,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         UnionTypesRector::class,
         VarConstantCommentRector::class,
+        ChangeOrIfReturnToEarlyReturnRector::class,
     ]);
 
     // Define what rule sets will be applied

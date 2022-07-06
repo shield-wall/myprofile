@@ -18,6 +18,8 @@ security:
     message: Por favor, Informe seus dados para acessar sua conta
     remember_me: Permanecer conectado
     submit: Entrar
+    third_party:
+      google_button: Entrar com o google
   reset_password:
     title: Redefinir minha senha
     message: Informe seu email e nós enviaremos um link para você resetar sua senha
@@ -57,7 +59,7 @@ email:
 
 site:
   title_message: Crie seu currículo em PDF e site pessoal em poucos minutos!
-  registration: Criar meu currículo %year%
+  registration: Criar meu currículo com o google
   last_updates: Veja alguns exemplos de currículos
 
 messages:

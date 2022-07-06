@@ -1,0 +1,25 @@
+{% if button.type == 'submit' %}
+    <button type="submit" class="button {{ button.class | default('is-primary') }}">
+        {% if button.icon is defined %}
+            <span class="icon is-small">
+                <i class="{{ button.icon }}"></i>
+            </span>
+        {% endif %}
+        <span>{{ button.name|trans }}</span>
+    </button>
+{% endif %}
+
+{% if button.type == 'link' %}
+    <a href="{{ button.link }}" class="button is-text">{{ button.name|trans }}</a>
+{% endif %}
+
+{% if button.type == 'standart' %}
+    <a href="{{ button.link }}" class="button {{ button.class | default('') }}">
+        {% if button.icon %}
+            <span class="icon is-small">
+                <i class="{{ button.icon }}"></i>
+            </span>
+        {% endif %}
+        <span>{{ button.name|trans }}</span>
+    </a>
+{% endif %}

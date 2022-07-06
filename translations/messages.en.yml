@@ -18,6 +18,8 @@ security:
     message: Please login to access your account
     remember_me: Remember me
     submit: Log in
+    third_party:
+      google_button: login with google
   reset_password:
     title: Reset your password
     message: Enter your email address and we will send you a link to reset your password.
@@ -60,7 +62,7 @@ email:
 
 site:
   title_message: Make your curriculum vitae in PDF or personal website in few minutes!
-  registration: Make my curriculum vitae %year%
+  registration: Create my curriculum using google
   last_updates: Look some curriculum vitae example
 
 messages:

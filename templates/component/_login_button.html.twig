@@ -1,0 +1,13 @@
+<form action="{{ path('app_auth_third_party') }}" method="post">
+    <input type="hidden" name="token" value="{{ csrf_token('third-party-login') }}"/>
+
+    {% include 'component/_button.html.twig' with {
+        button : {
+            'type': 'submit',
+            'class': class,
+            'name': name,
+            'icon': 'fab fa-google',
+            'link': path('app_auth_third_party')
+        }
+    } %}
+</form>
