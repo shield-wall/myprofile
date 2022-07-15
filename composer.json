@@ -46,6 +46,7 @@
         "hautelook/alice-bundle": "^2.9",
         "phpstan/phpstan": "^1.5",
         "rector/rector": "^0.12.18",
+        "shield-w4ll/simple-authenticator": "dev-main",
         "symfony/browser-kit": "^5.2",
         "symfony/css-selector": "^5.2",
         "symfony/maker-bundle": "^1.14",

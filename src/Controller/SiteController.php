@@ -12,6 +12,7 @@ use App\ThirdCode\Contracts\SkillInterface;
 use App\ThirdCode\Contracts\SpeakLanguageInterface;
 use App\ThirdCode\Contracts\UserInfoInterface;
 use App\ThirdCode\Contracts\UserSocialNetworkInterface;
+use ShieldW4ll\SimpleAuthenticator\Form\SimpleAuthenticatorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,8 +26,14 @@ class SiteController extends AbstractController
     {
         $users = $userRepository->findBy(['isVerified' => true], ['updatedAt' => 'desc'], 18);
 
+        $simpleAuthenticatorForm = $this->createForm(SimpleAuthenticatorType::class, null, [
+            'action' => $this->generateUrl('simple_authenticator_login'),
+        ]);
+        $simpleAuthenticatorFromView = $simpleAuthenticatorForm->createView();
+
         return $this->render('site/index.html.twig', [
             'users' => $users,
+            'simpleAuthenticatorFrom' => $simpleAuthenticatorFromView,
         ]);
     }
 

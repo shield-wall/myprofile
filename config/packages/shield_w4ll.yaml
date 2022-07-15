@@ -1,0 +1,11 @@
+simple_authenticator:
+  route:
+    redirect_success: 'profile_edit'
+    redirect_failure: 'app_login'
+
+when@dev:
+  security:
+    firewalls:
+      main:
+        custom_authenticators:
+          - ShieldW4ll\SimpleAuthenticator\Security\EmailAuthenticator

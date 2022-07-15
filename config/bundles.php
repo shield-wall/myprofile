@@ -21,4 +21,5 @@ return [
     Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'test' => true],
     Hautelook\AliceBundle\HautelookAliceBundle::class => ['dev' => true, 'test' => true],
     Threelever\CurriculumBundle\CurriculumBundle::class => ['all' => true],
+    ShieldW4ll\SimpleAuthenticator\SimpleAuthenticatorBundle::class => ['dev' => true, 'test' => true],
 ];
