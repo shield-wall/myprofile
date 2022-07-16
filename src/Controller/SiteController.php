@@ -19,6 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(name: 'app_', requirements: ['_locale' => 'en|pt_BR'])]
 class SiteController extends AbstractController
 {
+    #[Route(path: '/{_locale}/privacy-policy', defaults: ['_locale' => 'pt_BR'], name: 'privacy_policy')]
+    public function privacyPolicy(): Response
+    {
+        return $this->render('site/private_policy.html.twig');
+    }
+
     #[Route(path: '/{_locale}', defaults: ['_locale' => 'pt_BR'], name: 'homepage')]
     public function homepage(UserRepository $userRepository): Response
     {
