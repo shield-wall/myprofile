@@ -4,6 +4,9 @@
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
 	<div class="navbar-brand">
+		<div class="p-4">
+			{% include 'component/_logo.html.twig' %}
+		</div>
 		<a href="{{ path('app_user_profile', {'slug': app.user.slug }) }}" class="navbar-item">
 			<span class="icon is-spaced">
 				<i class="fa fa-globe"></i>

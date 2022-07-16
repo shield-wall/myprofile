@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block metaTags %}{% endblock %}
         <title>{% block title %}{{ 'site.welcome' | trans }}{% endblock %} | My profile</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('build/images/favicon.webp') }}">
 
         <!-- Cloudflare Web Analytics -->
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fba6936b60de44fbb01bda1b66c393b3"}'></script>
