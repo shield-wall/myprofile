@@ -4,7 +4,6 @@
 
 ###> doker ###
 .docker/database
-.docker/xdebug.ini
 ###> doker ###
 
 ###> symfony/framework-bundle ###
