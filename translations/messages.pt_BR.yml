@@ -66,7 +66,6 @@ messages:
   item_saved: Salvo com sucesso!
   item_removed: Removido com sucesso!
   generate_curriculum: Estamos processando seu currículo e em alguns minutos ele estara disponível para você baixar.
-  verify_account: Você recebeu um email para validar sua conta, Por favor valide sua conta para usar todas as funcionalidades!
   empty_list:
     title: Você não tem nenhum registro cadastrado
     sub_title: Mas ei, você pode resolver isso clicando aqui

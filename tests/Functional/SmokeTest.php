@@ -10,8 +10,8 @@ it('checks if the page is loading', function (string $url, string $tag) {
 
     expect($crawler->filter($tag)->count())->toBeTruthy();
 })->with([
-    ['/', '#home-button-register'],
-    ['/en', '#home-button-register'],
+    ['/', '#logo'],
+    ['/en', '#logo'],
 
     ['/test-mock', '#home-title'],
     ['/test-mock/en', '#home-title'],
@@ -19,12 +19,6 @@ it('checks if the page is loading', function (string $url, string $tag) {
     ['/test-mock/curriculum/pt_BR', '#name'],
     ['/test-mock/curriculum/en', '#name'],
 
-    ['/login', '#page-title'],
-    ['/login/en', '#page-title'],
-
-    ['/register', '#page-title'],
-    ['/register/en', '#page-title'],
-
-    ['/reset-password', '#page-title'],
-    ['/reset-password/en', '#page-title'],
+    ['/login/pt_BR', '#logo'],
+    ['/login/en', '#logo'],
 ]);

@@ -74,7 +74,7 @@ it('is redirecting to login page when the user is not log in', function(string $
     $client->request(Request::METHOD_GET, $url);
     $response = $client->getResponse();
 
-    $absoluteUrlToLogin = 'http://localhost/login%s';
+    $absoluteUrlToLogin = '/login%s';
     $this->assertTrue(
         $response->isRedirect(sprintf($absoluteUrlToLogin, ''))
         || $response->isRedirect(sprintf($absoluteUrlToLogin, '/en')));

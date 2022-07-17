@@ -69,7 +69,6 @@ messages:
   item_saved: Save with success!
   item_removed: Removed with success!
   generate_curriculum: we're processing your curriculum and in few minutes it'll avaible to you download.
-  verify_account: You received an email to validate your account, Please valide your account to use all functionalites!
   empty_list:
     title: You have not any item
     sub_title: Hey, But you can resolve it, clicking here
