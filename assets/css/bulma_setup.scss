@@ -1,0 +1,35 @@
+@import '~bulma/sass/utilities/initial-variables';
+
+//Initial variaveis
+$body-background-color: $white-ter;
+$primary: $grey-dark;
+$link: $red;
+
+$input-arrow: $grey-dark;
+$input-focus-border-color: $grey-dark;
+$input-focus-box-shadow-color: rgba($grey-dark, 0.25);
+
+$table-background-color: $white-ter;
+
+.object-image {
+  @extend img
+}
+
+//Profile changes
+$navbar-item-color: $white;
+$navbar-background-color: $grey-dark;
+$navbar-item-hover-background-color:none;
+$navbar-dropdown-background-color:$grey-dark;
+
+$tabs-boxed-link-active-background-color: $white-ter;
+$tabs-boxed-link-radius: 10px;
+$tabs-link-color: $white;
+$tabs-link-hover-color: $red;
+
+$progress-bar-background-color: #2a2f35;
+
+$orange: #F26651;
+$orange-invert: #FFF;
+$custom-colors: ("orange": ($orange, $orange-invert));
+
+@import "~bulma/bulma";

@@ -9,12 +9,12 @@ Encore
     .addEntry('main', './assets/js/main.js')
     .addEntry('web_site_profile', './assets/js/profile.js')
     .addEntry('admin_profile', './assets/js/admin_profile.js')
-    .addEntry('exception', './assets/js/exception.js')
 
+    .addStyleEntry('exception', './assets/css/exception.scss')
     .addStyleEntry('style', './assets/css/style.scss')
     .addStyleEntry('profile', './assets/css/profile.scss')
     .addStyleEntry('web-site', './assets/css/web-site.scss')
-    .addStyleEntry('curriculumBundle', './assets/css/curriculum-bundle.scss')
+    .addStyleEntry('curriculumBundle', './assets/css/style.scss')
 
     .enableSingleRuntimeChunk()
 
