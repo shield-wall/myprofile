@@ -1,22 +1,12 @@
 <?php
 
-namespace App\Tests\Functional\Controller;
+declare(strict_types=1);
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class SiteControllerTest extends WebTestCase
+it('is checking the home page', function (string $url, string $registerTitle, string $loginTitle)
 {
-    /**
-     * @dataProvider homePageProvideData
-     *
-     * @param string $url
-     * @param string $registerTitle
-     * @param string $loginTitle
-     */
-    public function testCanSeeHomePage(string $url, string $registerTitle, string $loginTitle)
-    {
-        $client = static::createClient();
+        $client = $this->createClient();
 
         $crawler = $client->request(Request::METHOD_GET, $url);
         $this->assertResponseIsSuccessful();
@@ -24,14 +14,8 @@ class SiteControllerTest extends WebTestCase
 
         $loginButton = $crawler->filter('#google-button-authentication');
 
-        $this->assertGreaterThanOrEqual(1, $loginButton->count());
-    }
-
-    public function homePageProvideData()
-    {
-        return [
-            ['/', 'Registrar | My profile', 'Entrar | My profile'],
-            ['/en', 'Sign up | My profile', 'Welcome | My profile'],
-        ];
-    }
-}
+        expect($loginButton->count())->toBeGreaterThanOrEqual(1);
+})->with([
+    ['/', 'Registrar | My profile', 'Entrar | My profile'],
+    ['/en', 'Sign up | My profile', 'Welcome | My profile'],
+]);
