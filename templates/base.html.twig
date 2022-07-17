@@ -7,6 +7,11 @@
         <meta name="keywords" content="{% block keywords %}sites profissionais,curriculo,resume,fazer curriculo,gratis,my profile,meu site,modelo,modelo de curriculo,modelo de curriculo {{ 'now' | date('Y') }}, curriculum vitae{% endblock %}">
         <meta name="author" content="My Profile">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% if (app.environment != 'prod') %}
+        <meta name="robots" content="noindex">
+        {% endif %}
+
         {% block metaTags %}{% endblock %}
         <title>{% block title %}{{ 'site.welcome' | trans }}{% endblock %} | My profile</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('build/images/favicon.webp') }}">
@@ -17,7 +22,6 @@
 
         <script src="https://kit.fontawesome.com/a8322ae82c.js" crossorigin="anonymous"></script>
         {% block stylesheets %}{% endblock %}
-
     </head>
     <body>
         {% block body %}{% endblock %}
