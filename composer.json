@@ -42,6 +42,8 @@
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-mock": "^1.0",
         "phpstan/phpstan": "^1.5",
         "rector/rector": "^0.12.18",
         "symfony/browser-kit": "^5.2",
@@ -59,7 +61,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "pestphp/pest-plugin": true
         }
     },
     "autoload": {
@@ -111,7 +114,7 @@
         "db:migration:diff": "bin/console make:migration",
         "db:migration:apply": "bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction",
         "db:validate": "php bin/console doctrine:schema:validate",
-        "test":"php -d memory_limit=1024M bin/phpunit",
+        "test":"./vendor/bin/pest",
         "lint:ecs": "vendor/bin/ecs check src",
         "lint:ecs:fix": "vendor/bin/ecs check src --fix",
         "lint:rector": "vendor/bin/rector process --dry-run",

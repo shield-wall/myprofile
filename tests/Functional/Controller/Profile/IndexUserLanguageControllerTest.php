@@ -1,40 +1,26 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller\Profile;
 
-
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Generator;
 
-class IndexUserLanguageControllerTest extends WebTestCase
+it('is checking the user-language list page', function ($userEmail, $quantityOfLanguages)
 {
-    /**
-     * @param $userEmail
-     * @param $quantityOfLanguages
-     * @dataProvider usersProvider
-     */
-    public function testCanSeeMyLanguages($userEmail, $quantityOfLanguages)
-    {
-        $client = static::createClient();
+    $client = $this->createClient();
 
-        /** @var UserRepository $userRepository */
-        $userRepository = self::$container->get(UserRepository::class);
-        $user = $userRepository->findOneBy(['email' => $userEmail]);
+    /** @var UserRepository $userRepository */
+    $userRepository = $this->getContainer()->get(UserRepository::class);
+    $user = $userRepository->findOneBy(['email' => $userEmail]);
 
-        $client->loginUser($user);
-        $crawler = $client->request(Request::METHOD_GET, '/profile/pt_BR/user-language#language');
-        $this->assertResponseIsSuccessful();
+    $client->loginUser($user);
+    $crawler = $client->request(Request::METHOD_GET, '/profile/pt_BR/user-language#language');
+    $this->assertResponseIsSuccessful();
 
-        $this->assertEquals($quantityOfLanguages, $crawler->filter('tbody tr')->count());
-
-    }
-
-    public function usersProvider(): Generator
-    {
-        yield ['test@myprofile.pro', 1];
-        yield ['test2@myprofile.pro', 3];
-    }
-}
+    expect($crawler->filter('tbody tr')->count())->toBe($quantityOfLanguages);
+})->with([
+    ['test@myprofile.pro', 1],
+    ['test2@myprofile.pro', 3],
+]);
