@@ -259,27 +259,6 @@ hr {
     padding: 0;
 }
 
-/* LIST STYLE
--------------------------------------------------- */
-ul, ol {
-    margin     : 0;
-    padding    : 0;
-    list-style : none
-}
-
-ul.list-check li{
-    position: relative;
-    font-size: 18px;
-    line-height: 32px;
-}
-ul.list-check li::before {
-    content: "\f00c";
-    font-family: fontawesome;
-    color: #F26651;
-    margin-right: 10px;
-}
-
-
 /* === MAIN === */
 .section-padding {
 	padding: 120px 0 100px;
