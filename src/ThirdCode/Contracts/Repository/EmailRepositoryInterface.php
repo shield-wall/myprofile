@@ -6,5 +6,4 @@ use ShieldW4ll\SimpleAuthenticator\Repository\EmailRepositoryInterface as EmailR
 
 interface EmailRepositoryInterface extends EmailRepositoryInterfaceBase
 {
-
 }

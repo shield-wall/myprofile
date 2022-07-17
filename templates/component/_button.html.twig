@@ -1,5 +1,5 @@
 {% if button.type == 'submit' %}
-    <button type="submit" class="button {{ button.class | default('is-primary') }}">
+    <button type="submit" class="button {{ button.class | default('is-primary') }}" id="{{ button.id |default('') }}">
         {% if button.icon is defined %}
             <span class="icon is-small">
                 <i class="{{ button.icon }}"></i>

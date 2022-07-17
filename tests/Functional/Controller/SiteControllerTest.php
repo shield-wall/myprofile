@@ -22,14 +22,9 @@ class SiteControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertGreaterThan(0, $crawler->filter('#example-of-users .column')->count());
 
-        $loginLink = $crawler->filter('#home-button-login')->link();
-        $registerLink = $crawler->filter('#home-button-register')->link();
+        $loginButton = $crawler->filter('#google-button-authentication');
 
-        $client->click($registerLink);
-        $this->assertSelectorTextContains('title', $registerTitle);
-
-        $client->click($loginLink);
-        $this->assertSelectorTextContains('title', $loginTitle);
+        $this->assertGreaterThanOrEqual(1, $loginButton->count());
     }
 
     public function homePageProvideData()

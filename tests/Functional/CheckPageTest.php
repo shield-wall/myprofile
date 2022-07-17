@@ -17,42 +17,34 @@ class CheckPageTest extends WebTestCase
 
     /**
      * @dataProvider providerCheckPage
-     *
-     * @param string $url
-     * @param string $selectorTag
-     * @param string $selectorValue
      */
-    public function testCanCheckPage(string $url, string $selectorTag, string $selectorValue)
+    public function testCanCheckPage(string $url, string $selectorTag)
     {
         $this->client->request(Request::METHOD_GET, $url);
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains($selectorTag, $selectorValue);
+        $this->assertSelectorExists($selectorTag);
     }
 
     public function providerCheckPage(): Generator
     {
             #homepage
-            yield ['/', '#home-button-register', 'Criar meu currículo ' . date('Y')];
-            yield ['/en', '#home-button-register', 'Make my curriculum vitae ' . date('Y')];
+            yield ['/', '#logo'];
+            yield ['/en', '#logo'];
 
             #user profile
-            yield ['/test-mock', '#home-title', 'Test Mock'];
-            yield ['/test-mock/en', '#home-title', 'Test Mock'];
+            yield ['/test-mock', '#home-title'];
+            yield ['/test-mock/en', '#home-title'];
 
             #create curriculum
-            yield ['/test-mock/curriculum/pt_BR', '#name', 'Test Mock'];
-            yield ['/test-mock/curriculum/en', '#name', 'Test Mock'];
+            yield ['/test-mock/curriculum/pt_BR', '#name'];
+            yield ['/test-mock/curriculum/en', '#name'];
 
             #login
-            yield ['/login', '#page-title', 'Bem-vindo novamente!'];
-            yield ['/login/en', '#page-title', 'Welcome back!'];
+            yield ['/login/pt_BR', '#logo'];
+            yield ['/login/en', '#logo'];
 
-            #register
-            yield ['/register', '#page-title', 'Registre-se'];
-            yield ['/register/en', '#page-title', 'Hello, Friend!'];
-
-            #reset-password
-            yield ['/reset-password', '#page-title', 'Redefinir minha senha'];
-            yield ['/reset-password/en', '#page-title', 'Reset your password'];
+            #privacy-policy
+            yield ['/pt_BR/privacy-policy', '#logo'];
+            yield ['/en/privacy-policy', '#logo'];
     }
 }

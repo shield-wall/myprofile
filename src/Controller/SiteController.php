@@ -20,6 +20,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(name: 'app_', requirements: ['_locale' => 'en|pt_BR'])]
 class SiteController extends AbstractController
 {
+    #[Route(path: '/{_locale}/privacy-policy', name: 'privacy_policy', defaults: ['_locale' => 'pt_BR'])]
+    public function privacyPolicy(): Response
+    {
+        return $this->render('site/private_policy.html.twig');
+    }
+
     #[Route(path: '/{_locale}', name: 'homepage', defaults: ['_locale' => 'pt_BR'])]
     #[Route(path: '/login/{_locale}', name: 'login')]
     public function homepage(UserRepository $userRepository): Response
@@ -37,7 +43,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{slug}/{_locale}', defaults: ['_locale' => 'pt_BR'], name: 'user_profile')]
+    #[Route(path: '/{slug}/{_locale}', name: 'user_profile', defaults: ['_locale' => 'pt_BR'])]
     public function userProfileAction(User $user): Response
     {
         return $this->render('default/profile.html.twig', [
