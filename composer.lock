@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f589e334a5568c295903fb84d4f38818",
+    "content-hash": "8966fd7607e12b402610ce2d50e6c462",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3768,6 +3768,50 @@
                 }
             ],
             "time": "2022-05-30T12:09:35+00:00"
+        },
+        {
+            "name": "shield-w4ll/simple-authenticator",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shield-w4ll/simple-authenticator.git",
+                "reference": "5ab52c7564418fa84ada5b48e407c71e7712931f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shield-w4ll/simple-authenticator/zipball/5ab52c7564418fa84ada5b48e407c71e7712931f",
+                "reference": "5ab52c7564418fa84ada5b48e407c71e7712931f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "symfony/form": "^5.4 || ^6.1",
+                "symfony/http-client": "^5.4 || ^6.1",
+                "symfony/routing": "^5.4 || ^6.1",
+                "symfony/security-bundle": "^5.4 || ^6.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ShieldW4ll\\SimpleAuthenticator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shield Wall"
+                }
+            ],
+            "description": "Simple symfony authenticator",
+            "support": {
+                "issues": "https://github.com/shield-w4ll/simple-authenticator/issues",
+                "source": "https://github.com/shield-w4ll/simple-authenticator/tree/main"
+            },
+            "time": "2022-07-15T19:39:14+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -12239,50 +12283,6 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
-            "name": "shield-w4ll/simple-authenticator",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shield-w4ll/simple-authenticator.git",
-                "reference": "5ab52c7564418fa84ada5b48e407c71e7712931f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shield-w4ll/simple-authenticator/zipball/5ab52c7564418fa84ada5b48e407c71e7712931f",
-                "reference": "5ab52c7564418fa84ada5b48e407c71e7712931f",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1",
-                "symfony/form": "^5.4 || ^6.1",
-                "symfony/http-client": "^5.4 || ^6.1",
-                "symfony/routing": "^5.4 || ^6.1",
-                "symfony/security-bundle": "^5.4 || ^6.1"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ShieldW4ll\\SimpleAuthenticator\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Shield Wall"
-                }
-            ],
-            "description": "Simple symfony authenticator",
-            "support": {
-                "issues": "https://github.com/shield-w4ll/simple-authenticator/issues",
-                "source": "https://github.com/shield-w4ll/simple-authenticator/tree/main"
-            },
-            "time": "2022-07-15T19:39:14+00:00"
-        },
-        {
             "name": "symfony/browser-kit",
             "version": "v5.4.3",
             "source": {
@@ -13012,8 +13012,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "threelever/curriculum-bundle": 20,
-        "shield-w4ll/simple-authenticator": 20
+        "shield-w4ll/simple-authenticator": 20,
+        "threelever/curriculum-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
