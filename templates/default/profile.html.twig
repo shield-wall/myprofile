@@ -9,11 +9,10 @@
     <meta property="og:title" content="{{ user.firstName ~ ' ' ~ user. lastName }}" />
     <meta property="og:image" content="{{ user.getProfileImage()}}">
     <meta property="og:url" content="{{app.request.schemeAndHttpHost ~ path('app_user_profile', { 'slug': user.slug}) }}">
-
-    {{ encore_entry_link_tags('web-site') }}
 {% endblock %}
 
 {% block stylesheets %}
+    {{ encore_entry_link_tags('profile') }}
     {{ encore_entry_link_tags('web_site_profile') }}
 {% endblock %}
 
