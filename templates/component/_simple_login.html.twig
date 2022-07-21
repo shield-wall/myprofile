@@ -1,0 +1,14 @@
+{% if app.environment == 'dev' %}
+<div class="card mt-4">
+    <div class="card-content">
+        <div class="content">
+            <div class="notification is-warning">
+                <p>It's a <strong>dev</strong> functionality, if you want to log in with any use, just put the email bellow <i class="fas fa-smile-wink"></i></p>
+                <p>e.g: <strong><i class="fas fa-envelope"></i> test@myprofile.pro</strong></p>
+                <p>You can check the user list at: <strong><i class="fas fa-list"></i> fixtures/users.yaml</strong></p>
+            </div>
+            {{ form(simpleAuthenticatorFrom) }}
+        </div>
+    </div>
+</div>
+{% endif %}

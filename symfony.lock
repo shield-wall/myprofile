@@ -257,6 +257,9 @@
             "config/packages/sentry.yaml"
         ]
     },
+    "shield-w4ll/simple-authenticator": {
+        "version": "v0.1.0"
+    },
     "stof/doctrine-extensions-bundle": {
         "version": "1.7",
         "recipe": {

@@ -1,4 +1,5 @@
 security:
+    enable_authenticator_manager: true
     access_decision_manager:
         strategy: unanimous
         allow_if_all_abstain: false
@@ -23,29 +24,15 @@ security:
             security: false
         main:
             pattern: ^/
-            form_login:
-                csrf_token_generator: security.csrf.token_manager
-                login_path: app_login
-                default_target_path: profile_edit
+            lazy: true
             logout:
                 path: app_logout
                 target: app_login
+            entry_point: App\Security\AuthenticationEntryPoint
+            custom_authenticators:
+                - App\Security\ThirdPartyAuthenticator
 
-            anonymous: true
-            guard:
-                authenticators:
-                    - App\Security\FormAuthenticator
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -22,9 +22,10 @@
               <a class="navbar-item" href="{{ path('app_homepage', {'_locale': 'pt_BR'}) }}">Português</a>
               <a class="navbar-item" href="{{ path('app_homepage', {'_locale': 'en'}) }}">English</a>
               <span class="navbar-item">
-              <a class="button is-primary is-inverted is-outlined" href="{{ path('app_login') }}" id="home-button-login">
-                <span>{{ 'security.login.submit'|trans }}</span>
-              </a>
+                {% include 'component/_login_button.html.twig' with {
+                  name: 'security.login.third_party.google_button',
+                  class: 'is-fullwidth'
+                } %}
             </span>
             </div>
           </div>
@@ -40,9 +41,13 @@
               {{ 'site.title_message' | trans }}
             </h1>
             <h2 class="subtitle has-text-centered-mobile mt-6">
-              <a href="{{ path('app_register') }}" class="button is-medium is-primary is-inverted is-outlined" id="home-button-register">
-                {{ 'site.registration' | trans({'%year%': "now" | date('Y')}) }}
-              </a>
+              {% include 'component/_login_button.html.twig' with {
+                name: 'site.registration',
+                class: 'button is-medium is-primary is-inverted is-outlined'
+              } %}
+
+              {% include 'component/_simple_login.html.twig' %}
+
             </h2>
           </div>
         </div>

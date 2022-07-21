@@ -92,3 +92,9 @@
     {%- endif -%}
 {%- endblock form_errors -%}
 
+{% block submit_row -%}
+    <div class="column">
+        <div class="label is-invisible">Login</div>
+        {{- form_widget(form, {attr: {'class': 'button'}}) -}}
+    </div>
+{%- endblock submit_row %}

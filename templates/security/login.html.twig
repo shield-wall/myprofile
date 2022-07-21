@@ -7,91 +7,67 @@
 
 {% block security_content %}
 
-    <div class="columns is-multiline is-marginless">
+    <div class="columns">
         <div class="column">
-            {% if app.environment == 'dev' %}
-            <div class="notification is-primary is-full">
-                <button class="delete"></button>
-                <div class="is-size-6 mb-3">You can use this user to test!</div>
-                <div><i class="fa fa-user"></i> email: test@myprofile.pro</div>
-                <div><i class="fa fa-lock"></i> password: 123456</div>
-            </div>
-            {% endif %}
-            <form method="post" role="login">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <form action="{{ path('app_auth_third_party') }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('third-party-login') }}"/>
 
-                <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <label class="label required">{{ 'user.email'|trans }}</label>
-                            <div class="control has-icons-left">
-                                <input type="text" id="inputEmail" name="email" value="{{ last_username }}"
-                                       required="required" class="input" autofocus>
-                                <span class="icon is-small is-left">
-                                                <i class="fa fa-user" aria-hidden="true"></i>
-                                            </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <label class="label required">{{ 'user.password'|trans }}</label>
-                            <div class="control has-icons-left">
-                                <input type="password" id="inputPassword" name="password" value="{{ last_username }}"
-                                       required="required" class="input">
-                                <span class="icon is-small is-left">
-                                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                            </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <label class="checkbox" for="remember_me">
-                                <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                                {{ 'security.login.remember_me'|trans }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-
-                {% if error %}
-                    <div class="columns">
-                        <div class="column is-12">
-                            <span class="is-text has-text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
-                        </div>
-                    </div>
-                {% endif %}
-
-                <div class="columns">
-                    {% include 'component/_buttons.html.twig' with {
-                        buttons : [
-                            {
-                                'type': 'submit',
-                                'name': 'security.login.submit'
-                            },
-                            {
-                                'type': 'link',
-                                'name': 'security.registration.submit',
-                                'link': path('app_register')
-                            },
-                            {
-                                'type': 'link',
-                                'name': 'security.reset_password.submit',
-                                'link': path('app_forgot_password_request')
-                            },
-                        ]
-                    } %}
-                </div>
-
+                {% include 'component/_button.html.twig' with {
+                    button : {
+                        'type': 'submit',
+                        'class': 'is-fullwidth is-primary',
+                        'name': 'security.login.third_party.google_button',
+                        'icon': 'fab fa-google',
+                        'link': path('app_auth_third_party')
+                    }
+                } %}
             </form>
+
+{#            {% if app.environment == 'dev' %}#}
+{#                <div class="notification is-primary is-full">#}
+{#                    <button class="delete"></button>#}
+{#                    <div class="is-size-6 mb-3">You can use one of the users in <strong>fixtures/users.yaml</strong></div>#}
+{#                    <div><i class="fa fa-user"></i> e.g: <strong>test@myprofile.pro</strong></div>#}
+{#                </div>#}
+{#            {% endif %}#}
+{#            <form method="post" role="login">#}
+{#                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">#}
+
+{#                <div class="columns">#}
+{#                    <div class="column">#}
+{#                        <div class="field">#}
+{#                            <label class="label required">{{ 'user.email'|trans }}</label>#}
+{#                            <div class="control has-icons-left">#}
+{#                                <input type="text" id="inputEmail" name="email" value="{{ last_username }}"#}
+{#                                       required="required" class="input" autofocus>#}
+{#                                <span class="icon is-small is-left">#}
+{#                                                <i class="fa fa-user" aria-hidden="true"></i>#}
+{#                                            </span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                {% if error %}#}
+{#                    <div class="columns">#}
+{#                        <div class="column is-12">#}
+{#                            <span class="is-text has-text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endif %}#}
+
+{#                <div class="columns">#}
+{#                    {% include 'component/_buttons.html.twig' with {#}
+{#                        buttons : [#}
+{#                            {#}
+{#                                'type': 'submit',#}
+{#                                'name': 'security.login.submit'#}
+{#                            },#}
+{#                        ]#}
+{#                    } %}#}
+{#                </div>#}
+
+{#            </form>#}
         </div>
     </div>
 

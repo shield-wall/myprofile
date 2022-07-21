@@ -31,6 +31,8 @@ services:
             string $mailerFromName: '%mailer.from_name%'
             string $cdnHostWithPrefix: '%cdn.dns%/%bucket.name%'
             string $bucketHostWithPrefix: '%bucket.dns%/%bucket.name%'
+            League\OAuth2\Client\Provider\AbstractProvider $googleAuthProvider: '@League\OAuth2\Client\Provider\Google'
+#            ShieldW4ll\SimpleAuthenticator\Repository\EmailRepositoryInterface $emailRepository: '@App\Repository\UserRepository'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -78,3 +80,16 @@ services:
               event: 'postLoad'
               priority: 500
               connection: 'default'
+
+    League\OAuth2\Client\Provider\Google:
+        arguments:
+            - clientId: '%env(string:THIRD_PARTY___GOOGLE_CLIENT_ID)%'
+              clientSecret: '%env(string:THIRD_PARTY___GOOGLE_SECRET_ID)%'
+              redirectUri: '%env(string:THIRD_PARTY___GOOGLE_CALLBACK)%'
+#
+    ShieldW4ll\SimpleAuthenticator\Security\EmailAuthenticator:
+        arguments:
+            - '@Symfony\Component\Routing\Generator\UrlGeneratorInterface'
+            - '@App\Repository\UserRepository'
+            - '%shield_w4ll.simple_authenticator.route.redirect_success%'
+            - '%shield_w4ll.simple_authenticator.route.redirect_failure%'
