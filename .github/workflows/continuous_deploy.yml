@@ -99,6 +99,8 @@ jobs:
         env:
           APP_DEBUG: false
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+          THIRD_PARTY___GOOGLE_SECRET_ID: ${{secrets.THIRD_PARTY___GOOGLE_SECRET_ID}}
+          THIRD_PARTY___GOOGLE_CLIENT_ID: ${{secrets.THIRD_PARTY___GOOGLE_CLIENT_ID}}
 
       - name: Migrations
         run: heroku run --app myprofile-${{ env.GITHUB_REF_SLUG_URL }} composer db:migration:apply
@@ -147,6 +149,8 @@ jobs:
         env:
           APP_DEBUG: false
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
+          THIRD_PARTY___GOOGLE_SECRET_ID: ${{secrets.THIRD_PARTY___GOOGLE_SECRET_ID}}
+          THIRD_PARTY___GOOGLE_CLIENT_ID: ${{secrets.THIRD_PARTY___GOOGLE_CLIENT_ID}}
 
       - name: Migrations
         run: heroku run --app $APP_NAME composer db:migration:apply
