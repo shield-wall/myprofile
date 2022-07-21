@@ -21,6 +21,8 @@ ENV SENTRY_DSN=$SENTRY_DSN
 ENV TRANSLOADIT_KEY=$TRANSLOADIT_KEY
 ENV TRANSLOADIT_SECRET=$TRANSLOADIT_SECRET
 ENV TRANSLOADIT_DELIVERY=$TRANSLOADIT_DELIVERY
+ENV THIRD_PARTY___GOOGLE_SECRET_ID=$THIRD_PARTY___GOOGLE_SECRET_ID
+ENV THIRD_PARTY___GOOGLE_CLIENT_ID=$THIRD_PARTY___GOOGLE_CLIENT_ID
 
 RUN apt-get install -y curl gnupg2 ca-certificates lsb-release \
     && echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list \
