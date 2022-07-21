@@ -1,3 +1,9 @@
+when@test:
+  simple_authenticator:
+    route:
+      redirect_success: 'profile_edit'
+      redirect_failure: 'app_login'
+
 when@dev:
   simple_authenticator:
     route:
