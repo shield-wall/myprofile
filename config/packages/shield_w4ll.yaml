@@ -4,8 +4,8 @@ when@dev:
       redirect_success: 'profile_edit'
       redirect_failure: 'app_login'
 
-    security:
-      firewalls:
-        main:
-          custom_authenticators:
-            - ShieldW4ll\SimpleAuthenticator\Security\EmailAuthenticator
+  security:
+    firewalls:
+      main:
+        custom_authenticators:
+          - ShieldW4ll\SimpleAuthenticator\Security\EmailAuthenticator
