@@ -96,6 +96,8 @@ jobs:
             TRANSLOADIT_KEY
             TRANSLOADIT_SECRET
             TRANSLOADIT_DELIVERY
+            THIRD_PARTY___GOOGLE_SECRET_ID
+            THIRD_PARTY___GOOGLE_CLIENT_ID
         env:
           APP_DEBUG: false
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
@@ -146,6 +148,8 @@ jobs:
             TRANSLOADIT_KEY
             TRANSLOADIT_SECRET
             TRANSLOADIT_DELIVERY
+            THIRD_PARTY___GOOGLE_SECRET_ID
+            THIRD_PARTY___GOOGLE_CLIENT_ID
         env:
           APP_DEBUG: false
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
