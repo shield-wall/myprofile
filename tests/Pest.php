@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -29,8 +32,14 @@ uses(WebTestCase::class)->in('Functional');
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('hasHtmlTag', function (string $tag) {
+    $crawler = $this->value;
+
+    if (!$crawler instanceof Crawler) {
+        throw new Exception(sprintf('You need to pass %s object in expect', Crawler::class));
+    }
+
+    return expect($crawler->filter($tag)->count())->toBeTruthy();
 });
 
 /*
