@@ -22,7 +22,16 @@ class CurriculumService
             return;
         }
 
-        $urlPrefix = sprintf('%s/%s/', $this->params->get('cdn.dns'), $this->params->get('bucket.name'));
+        /**
+         * TODO inject those variables in __construct using symfony bind.
+         * @var string $cdnDns
+         */
+        $cdnDns = $this->params->get('cdn.dns');
+
+        /** @var string $bucketName */
+        $bucketName = $this->params->get('bucket.name');
+
+        $urlPrefix = sprintf('%s/%s/', $cdnDns, $bucketName);
 
         $this->transloadit->createAssembly([
             'params' => [

@@ -39,8 +39,8 @@ Xdebug is listening on port [10000](.docker/common.env)
 [ci_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_integration.yml?query=workflow%3AContinuous+Integration
 [cd_badge]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml/badge.svg
 [cd_link]: https://github.com/eerison/myprofile/actions/workflows/continuous_deploy.yml?query=workflow%3AContinuous+Deploy
-[phpstan_badge]: https://img.shields.io/badge/PHPStan-level%206-brightgreen.svg?style=flat
-[phpstan_link]: phpstan.neon
+[phpstan_badge]: https://img.shields.io/badge/PHPStan-level%207-brightgreen.svg?style=flat
+[phpstan_link]: https://github.com/eerison/myprofile/blob/2.x/phpstan.neon#L2
 [test_badge]: https://codecov.io/gh/eerison/myprofile/branch/2.x/graph/badge.svg?token=ZIW9RTWH1B
 [test_link]: https://codecov.io/gh/eerison/myprofile
 [licence_badge]: https://img.shields.io/badge/License-GPLv3-blue.svg

@@ -78,7 +78,7 @@ class SkillController extends AbstractController
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Skill $skill): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->getAlpha('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($skill);
             $entityManager->flush();

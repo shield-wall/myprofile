@@ -30,8 +30,14 @@ class ProfileImageService
             return;
         }
 
-        $file->move($this->params->get('transloadit.tmp'), $file->getClientOriginalName());
-        $fileFullPath = sprintf('%s/%s', $this->params->get('transloadit.tmp'), $file->getClientOriginalName());
+        /**
+         * TODO inject this variable in __constructor using symfony bind.
+         * @var string $transloaditTmp
+         */
+        $transloaditTmp = $this->params->get('transloadit.tmp');
+
+        $file->move($transloaditTmp, $file->getClientOriginalName());
+        $fileFullPath = sprintf('%s/%s', $transloaditTmp, $file->getClientOriginalName());
 
         $path = str_replace([$this->cdnHostWithPrefix, $this->bucketHostWithPrefix], '', $user->getProfileImage());
 

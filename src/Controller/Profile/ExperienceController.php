@@ -81,7 +81,7 @@ class ExperienceController extends AbstractController
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Experience $experience): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $experience->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $experience->getId(), $request->request->getAlpha('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($experience);
             $entityManager->flush();
