@@ -57,9 +57,6 @@ it('is checking if the page is loaded', function (string $url, string $field = n
         yield ['/profile/en/skill'];
         yield ['/profile/pt_BR/skill/new', 'skill[name]'];
         yield ['/profile/en/skill/new', 'skill[priority]'];
-        #change password
-        yield ['/profile/pt_BR/change-password', 'change_password_account_form[plainPassword][first]'];
-        yield ['/profile/en/change-password', 'change_password_account_form[plainPassword][second]'];
 });
 
 it('is redirecting to login page when the user is not log in', function(string $url) {
