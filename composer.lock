@@ -3775,12 +3775,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shield-w4ll/simple-authenticator.git",
-                "reference": "5ab52c7564418fa84ada5b48e407c71e7712931f"
+                "reference": "7d1a09b035d23fbd85d72f96658e6d183dabdda7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shield-w4ll/simple-authenticator/zipball/5ab52c7564418fa84ada5b48e407c71e7712931f",
-                "reference": "5ab52c7564418fa84ada5b48e407c71e7712931f",
+                "url": "https://api.github.com/repos/shield-w4ll/simple-authenticator/zipball/7d1a09b035d23fbd85d72f96658e6d183dabdda7",
+                "reference": "7d1a09b035d23fbd85d72f96658e6d183dabdda7",
                 "shasum": ""
             },
             "require": {
@@ -3811,7 +3811,7 @@
                 "issues": "https://github.com/shield-w4ll/simple-authenticator/issues",
                 "source": "https://github.com/shield-w4ll/simple-authenticator/tree/main"
             },
-            "time": "2022-07-15T19:39:14+00:00"
+            "time": "2022-07-21T17:51:20+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
