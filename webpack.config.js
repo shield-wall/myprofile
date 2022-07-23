@@ -14,7 +14,7 @@ Encore
     .addStyleEntry('style', './assets/css/style.scss')
     .addStyleEntry('profile', './assets/css/profile.scss')
     .addStyleEntry('web-site', './assets/css/web-site.scss')
-    .addStyleEntry('curriculumBundle', './assets/css/style.scss')
+    .addStyleEntry('curriculumBundle', './assets/css/curriculum.scss')
 
     .enableSingleRuntimeChunk()
 
