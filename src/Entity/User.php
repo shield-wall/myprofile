@@ -91,9 +91,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     protected ?\DateTimeInterface $birthday = null;
 
     /**
-     * @var Collection<UserUserSocialNetworking>
+     * @var Collection<UserSocialNetworking>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserUserSocialNetworking::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSocialNetworking::class)]
     protected Collection $userSocialNetworks;
 
     /**
@@ -208,7 +208,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->userSocialNetworks;
     }
 
-    public function setUserSocialNetworks(UserUserSocialNetworking $socialNetworking): static
+    public function setUserSocialNetworks(UserSocialNetworking $socialNetworking): static
     {
         $socialNetworking->setUser($this);
         $this->getUserSocialNetworks()->add($socialNetworking);
@@ -216,7 +216,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this;
     }
 
-    public function removeUserSocialNetworks(UserUserSocialNetworking $socialNetworking): static
+    public function removeUserSocialNetworks(UserSocialNetworking $socialNetworking): static
     {
         $this->getUserSocialNetworks()->removeElement($socialNetworking);
 

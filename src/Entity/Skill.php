@@ -12,8 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'skill')]
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class Skill implements SkillInterface
+class Skill implements SkillInterface, EntityInterface, HasUserInterface
 {
+    use HasUserTrait;
+
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -123,18 +125,6 @@ class Skill implements SkillInterface
     public function getStatus()
     {
         return $this->status;
-    }
-
-    public function setUser(UserInterface $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getUser(): ?UserInterface
-    {
-        return $this->user;
     }
 
     public function getTitle(): string

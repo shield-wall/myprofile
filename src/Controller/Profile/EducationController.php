@@ -15,9 +15,6 @@ class EducationController extends AbstractCrudController
 {
     protected const PREFIX = 'education';
 
-    /**
-     * Lists all education entities.
-     */
     #[Route(name: 'index', methods: ['GET'])]
     public function indexAction(EducationRepository $educationRepository): Response
     {
@@ -42,8 +39,6 @@ class EducationController extends AbstractCrudController
     }
 
     /**
-     * Deletes a education entity.
-     *
      * @Security("user == education.getUser()")
      */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]

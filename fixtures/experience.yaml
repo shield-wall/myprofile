@@ -1,13 +1,13 @@
-App\Entity\Education:
-  education_test:
+App\Entity\Experience:
+  experience_test:
     title: <jobTitle()>
-    institution: <name()>
-    description: <text(100)>
-    periodStart: <dateTimeBetween("-200 days", "now")>
-    user: '@user_test'
-  education{1..3}):
-    title: <jobTitle()>
-    institution: <name()>
+    company: <name()>
     description: <text(100)>
     periodStart: <dateTimeBetween("-200 days", "now")>
     user: '@user_profile'
+  experience{1..3}):
+    title: <jobTitle()>
+    company: <name()>
+    description: <text(100)>
+    periodStart: <dateTimeBetween("-200 days", "now")>
+    user: '@user_test'

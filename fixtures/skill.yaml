@@ -1,0 +1,12 @@
+App\Entity\Skill:
+  skill_1:
+    name: Skill profile
+    levelExperience: <numberBetween(1, 100)>
+    priority: <randomDigit()>
+    user: '@user_profile'
+
+  skill_2:
+    name: Skill profile
+    levelExperience: <numberBetween(1, 100)>
+    priority: <randomDigit()>
+    user: '@user_test'

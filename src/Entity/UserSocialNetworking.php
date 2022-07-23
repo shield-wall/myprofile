@@ -15,8 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\UniqueConstraint(name: 'relations_idx', columns: ['user_id', 'social_networking_id'])]
 #[ORM\Entity(repositoryClass: UserSocialNetworkingRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class UserUserSocialNetworking implements UserSocialNetworkInterface
+class UserSocialNetworking implements UserSocialNetworkInterface, EntityInterface, HasUserInterface
 {
+    use HasUserTrait;
+
     /**
      * @var int
      */
@@ -25,9 +27,6 @@ class UserUserSocialNetworking implements UserSocialNetworkInterface
     #[ORM\GeneratedValue]
     protected ?int $id = null;
 
-    /**
-     * @var User
-     */
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'user_id')]
     protected ?UserInterface $user = null;
@@ -49,18 +48,6 @@ class UserUserSocialNetworking implements UserSocialNetworkInterface
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     public function getSocialNetworking(): ?SocialNetworking

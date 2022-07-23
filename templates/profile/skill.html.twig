@@ -3,7 +3,7 @@
 
 {% block title %}{{'form.skill.head.title'|trans}}{% endblock %}
 {% block body %}
-    {% if skills %}
+    {% if data %}
         <div class="columns is-multiline">
             <div class="column is-2 is-offset-10">
                 {% include "profile/partial/form/button.html.twig" with {
@@ -24,17 +24,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for skill in skills %}
+                    {% for skill in data %}
                         {% set path = path('profile_skill_edit', { 'id': skill.id }) %}
                         <tr>
                             <td>{{ skill.priority }}</td>
                             <td>{{ skill.name }}</td>
                             <td class="is-hidden-touch">{{ skill.levelExperience }}</td>
-                            <td>
+                            <td class="table-list-actions">
                                 {% include "profile/partial/form/button.html.twig" with {
                                     'path': path,
                                     'icon': 'fa fa-pencil',
-                                    'class': 'is-text',
+                                    'class': 'is-text edit-button'
                                 } %}
 
                                 {% include "profile/partial/form/delete_button.html.twig" with {

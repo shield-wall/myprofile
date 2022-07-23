@@ -4,17 +4,18 @@
 {% block title %}{{'form.language.head.title'|trans}}{% endblock %}
 
 {% block body %}
-    {% if user_languages %}
+    {% if data %}
         <div class="columns is-multiline">
             <div class="column is-2 is-offset-10">
                 {% include "profile/partial/form/button.html.twig" with {
                     'path': path('profile_user_language_new'),
                     'name': 'form.submit.new'|trans,
                     'icon': 'fa fa-plus',
+                    'id': 'add-button'
                 } %}
             </div>
             <div class="column is-full">
-                <table class="table is-fullwidth">
+                <table class="table is-fullwidth" id="table-list">
                     <thead>
                     <tr>
                         <th>{{ 'form.language.name'|trans }}</th>
@@ -23,16 +24,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for language in user_languages %}
+                    {% for language in data %}
                         {% set path = path('profile_user_language_edit', { 'id': language.id }) %}
                         <tr>
                             <td>{{ language.name }}</td>
                             <td>{{ language.level }}</td>
-                            <td>
+                            <td class="table-list-actions">
                                 {% include "profile/partial/form/button.html.twig" with {
                                     'path': path,
                                     'icon': 'fa fa-pencil',
-                                    'class': 'is-text edit',
+                                    'class': 'is-text edit edit-button',
                                 } %}
 
                                 {% include "profile/partial/form/delete_button.html.twig" with {

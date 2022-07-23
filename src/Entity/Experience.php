@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'experience')]
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
-class Experience implements ExperienceInterface
+class Experience implements ExperienceInterface, EntityInterface, HasUserInterface
 {
     use HasUserTrait;
 

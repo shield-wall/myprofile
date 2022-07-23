@@ -31,11 +31,11 @@
 	</div>
 </div>
 
-<div class="button is-text has-text-danger" onclick="openModalRemoveItem('{{ path(router, {'id': id}) }}', '{{ csrf_token('delete' ~ id) }}')">
+<a href="#" class="button is-text has-text-danger delete-button" onclick="openModalRemoveItem('{{ path(router, {'id': id}) }}', '{{ csrf_token('delete' ~ id) }}')">
 	<span class="icon is-small">
 		<i class="fa fa-trash"></i>
 	</span>
-</div>
+</a>
 
 <script>
 	function openModalRemoveItem(path, csrf_token) {

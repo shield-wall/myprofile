@@ -3,52 +3,47 @@
 declare(strict_types=1);
 
 use App\Repository\UserRepository;
-use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Component\HttpFoundation\Request;
-use function Pest\Faker\faker;
-
-beforeAll(function () {
-    uses(ReloadDatabaseTrait::class);
-});
 
 beforeEach(function () {
     $client = $this->createClient();
 
     $container = $client->getContainer();
     $userRepository = $container->get(UserRepository::class);
-    $user = $userRepository->findOneBy(['email' => 'test@myprofile.pro']);
+    $user = $userRepository->findOneBy(['email' => 'test-profile@myprofile.pro']);
     $client->loginUser($user);
 
     $this->client = $client;
 });
 
-dataset('page_list', [
-    'skill' => [
-        '/profile/en/skill', [
-            'skill[name]' => faker()->colorName(),
-            'skill[levelExperience]' => faker()->numberBetween(0, 100),
-            'skill[priority]' => faker()->randomDigit(),
-        ]
-    ],
-]);
-
-it('can see the page list', function (string $listUrl) {
+it('is creating a new register', function (string $listUrl, array $formFields) {
     $crawler = $this->client->request(Request::METHOD_GET, $listUrl);
+    $rows = $crawler->filter('#table-list tbody tr')->count();
 
-    expect($crawler)->hasHtmlTag('#add-button');
+    //it's going to create page.
+    $this->client->clickLink('New');
+    $this->client->submitForm('New', $formFields);
 
-    $crawler = $this->client->clickLink('New');
+    $this->assertResponseRedirects($listUrl);
 
-    expect($crawler)
-        ->hasHtmlTag('form')
-        ->and($crawler)
-        ->hasHtmlTag('#submit-button');
+//    Checking if there is one more register.
+    $crawler = $this->client->request(Request::METHOD_GET, $listUrl);
+    expect($crawler->filter('#table-list tbody tr')->count())->toBe($rows+1);
+
 })->with('page_list');
 
-it('is creating a new register', function (string $listUrl, array $formFields) {
-    $this->client->request(Request::METHOD_GET, sprintf('%s/new', $listUrl));
+it('is updating an item', function (string $listUrl, array $formFields) {
+    //Page list
+    $crawler = $this->client->request(Request::METHOD_GET, $listUrl);
 
-    $this->client->submitForm('New', $formFields);
+    //going to edit page
+    $firstEditButtonLink = $crawler
+        ->filter('#table-list tbody tr')
+        ->filter('.table-list-actions .edit-button')
+        ->link();
+    $this->client->click($firstEditButtonLink);
+
+    $this->client->submitForm('Save', $formFields);
 
     $this->assertResponseRedirects($listUrl);
 })->with('page_list');

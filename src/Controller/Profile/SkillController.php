@@ -7,47 +7,27 @@ use App\Entity\User;
 use App\Form\SkillType;
 use App\Repository\SkillRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/skill', name: 'skill_')]
-class SkillController extends AbstractController
+class SkillController extends AbstractCrudController
 {
+    protected const PREFIX = 'skill';
+
     #[Route(name: 'index', methods: ['GET'])]
     public function indexAction(SkillRepository $skillRepository): Response
     {
-        $skills = $skillRepository->findBy(['user' => $this->getUser()]);
-
-        return $this->render('profile/skill/index.html.twig', [
-            'skills' => $skills,
-        ]);
+        return $this->index($skillRepository);
     }
 
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
     public function newAction(Request $request): Response
     {
         $skill = new Skill();
-        /** @var User $user */
-        $user = $this->getUser();
-        $skill->setUser($user);
-        $form = $this->createForm(SkillType::class, $skill);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($skill);
-            $em->flush();
 
-            $this->addFlash('success', 'messages.item_saved');
-
-            return $this->redirectToRoute('profile_skill_index');
-        }
-
-        return $this->render('profile/skill/save.html.twig', [
-            'skill' => $skill,
-            'form' => $form->createView(),
-        ]);
+        return $this->save($request, SkillType::class, $skill);
     }
 
     /**
@@ -56,20 +36,7 @@ class SkillController extends AbstractController
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function editAction(Request $request, Skill $skill): Response
     {
-        $form = $this->createForm(SkillType::class, $skill);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('success', 'messages.item_saved');
-
-            return $this->redirectToRoute('profile_skill_index');
-        }
-
-        return $this->render('profile/skill/save.html.twig', [
-            'skill' => $skill,
-            'form' => $form->createView(),
-        ]);
+        return $this->save($request, SkillType::class, $skill);
     }
 
     /**
@@ -78,14 +45,6 @@ class SkillController extends AbstractController
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
     public function deleteAction(Request $request, Skill $skill): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->getAlpha('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($skill);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'messages.item_removed');
-        }
-
-        return $this->redirectToRoute('profile_skill_index');
+        return $this->delete($request, $skill);
     }
 }

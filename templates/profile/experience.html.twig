@@ -3,7 +3,7 @@
 
 {% block title %}{{'form.experience.head.title'|trans}}{% endblock %}
 {% block body %}
-    {% if experiences %}
+    {% if data %}
         <div class="columns is-multiline">
             <div class="column is-2 is-offset-10">
                 {% include "profile/partial/form/button.html.twig" with {
@@ -13,7 +13,7 @@
                 } %}
             </div>
             <div class="column is-full">
-                <table class="table is-fullwidth">
+                <table class="table is-fullwidth" id="table-list">
                     <thead>
                     <tr>
 						<th>{{ 'form.experience.title'|trans }}</th>
@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for experience in experiences %}
+                    {% for experience in data %}
                         {% set path = path('profile_experience_edit', { 'id': experience.id }) %}
                         <tr>
                             <td>{{ experience.title }}</td>
@@ -39,11 +39,11 @@
                                     {{ experience.periodend|date('d/m/Y') }}
                                 {% endif %}
                             </td>
-                            <td>
+                            <td class="table-list-actions">
                                 {% include "profile/partial/form/button.html.twig" with {
                                     'path': path,
                                     'icon': 'fa fa-pencil',
-                                    'class': 'is-text',
+                                    'class': 'is-text edit-button'
                                 } %}
 
                                 {% include "profile/partial/form/delete_button.html.twig" with {

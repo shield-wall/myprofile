@@ -1,5 +1,7 @@
 when@dev: &dev
     hautelook_alice:
-        fixtures_path: fixtures
+        fixtures_path: 'fixtures'
+        root_dirs:
+            - '%kernel.project_dir%'
 
 when@test: *dev

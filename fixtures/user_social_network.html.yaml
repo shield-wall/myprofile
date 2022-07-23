@@ -1,0 +1,5 @@
+App\Entity\UserSocialNetworking:
+  user_social_network_1:
+    link: <url()>
+    socialNetworking: '@social_network_2'
+    user: '@user_profile'
