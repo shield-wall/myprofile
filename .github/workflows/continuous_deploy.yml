@@ -17,6 +17,8 @@ env:
   TRANSLOADIT_KEY: ${{ secrets.TRANSLOADIT_KEY }}
   TRANSLOADIT_SECRET: ${{ secrets.TRANSLOADIT_SECRET }}
   TRANSLOADIT_DELIVERY: 1
+  THIRD_PARTY___GOOGLE_CLIENT_ID: ${{secrets.THIRD_PARTY___GOOGLE_CLIENT_ID}}
+  THIRD_PARTY___GOOGLE_SECRET_ID: ${{secrets.THIRD_PARTY___GOOGLE_SECRET_ID}}
 
 jobs:
   build:
@@ -96,8 +98,8 @@ jobs:
             TRANSLOADIT_KEY
             TRANSLOADIT_SECRET
             TRANSLOADIT_DELIVERY
-            THIRD_PARTY___GOOGLE_SECRET_ID
             THIRD_PARTY___GOOGLE_CLIENT_ID
+            THIRD_PARTY___GOOGLE_SECRET_ID
         env:
           APP_DEBUG: false
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
@@ -146,8 +148,8 @@ jobs:
             TRANSLOADIT_KEY
             TRANSLOADIT_SECRET
             TRANSLOADIT_DELIVERY
-            THIRD_PARTY___GOOGLE_SECRET_ID
             THIRD_PARTY___GOOGLE_CLIENT_ID
+            THIRD_PARTY___GOOGLE_SECRET_ID
         env:
           APP_DEBUG: false
           GIT_REF: ${{ env.GITHUB_REF_SLUG }}
