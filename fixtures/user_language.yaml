@@ -12,6 +12,10 @@ App\Entity\UserLanguage:
     name: "<randomElement(<{names}>)>"
     level: "<randomElement(<{levels}>)>"
     user: '@user_test'
+  user_language_2:
+    name: "<randomElement(<{names}>)>"
+    level: "<randomElement(<{levels}>)>"
+    user: '@user_profile'
   user_language{1..3}):
     name: "<randomElement(<{names}>)>"
     level: "<randomElement(<{levels}>)>"

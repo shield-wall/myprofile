@@ -1,0 +1,8 @@
+App\Entity\SocialNetworking:
+  social_network_1:
+    name: Facebook
+    icon: fa-brands fa-facebook
+
+  social_network_2:
+    name: Github
+    icon: fa-brands fa-github

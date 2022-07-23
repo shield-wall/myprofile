@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
+use function Pest\Faker\faker;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -18,6 +21,58 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 uses(WebTestCase::class)->in('Functional');
 
+dataset('page_list', [
+    //TODO this test requires that refresh database.
+//    'User social network' => [
+//        '/profile/en/user-social-network',
+//        [
+//            'user_social_networking[link]' => faker()->url(),
+//        ],
+//    ],
+    'Education' => [
+        '/profile/en/education',
+        [
+            'education[title]' => faker()->jobTitle(),
+            'education[institution]' => faker()->name(),
+            'education[description]' => faker()->text(),
+            'education[period_start]' => faker()->date(),
+        ],
+    ],
+    'Experience' => [
+        '/profile/en/experience',
+        [
+            'experience[title]' => faker()->jobTitle(),
+            'experience[company]' => faker()->name(),
+            'experience[description]' => faker()->text(),
+            'experience[period_start]' => faker()->date(),
+        ],
+    ],
+    'Certification' => [
+        '/profile/en/certification',
+        [
+            'certification[title]' => faker()->jobTitle(),
+            'certification[institution]' => faker()->name(),
+            'certification[periodStart]' => faker()->date(),
+            'certification[link]' => faker()->url(),
+            'certification[image]' => faker()->imageUrl(),
+        ],
+    ],
+    'User language' => [
+        '/profile/en/user-language',
+        [
+            'user_language[name]' => faker()->name(),
+        ],
+    ],
+    'Skill' => [
+        '/profile/en/skill',
+        [
+            'skill[name]' => faker()->colorName(),
+            'skill[levelExperience]' => faker()->numberBetween(0, 100),
+            'skill[priority]' => faker()->numberBetween(0, 100),
+        ],
+    ],
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -29,8 +84,20 @@ uses(WebTestCase::class)->in('Functional');
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('toHaveTag', function (string $tag, $value = null) {
+    $crawler = $this->value;
+
+    if (!$crawler instanceof Crawler) {
+        throw new Exception(sprintf('You need to pass %s object in expect', Crawler::class));
+    }
+
+    $expect = expect($crawler->filter($tag)->text())->toBeTruthy();
+
+    if ($value) {
+        $expect->toBe($value);
+    }
+
+    return $expect;
 });
 
 /*

@@ -13,7 +13,7 @@
                 } %}
             </div>
             <div class="column is-full">
-                <table class="table is-fullwidth">
+                <table class="table is-fullwidth" id="table-list">
                     <thead>
                     <tr>
                         <th>{{ 'form.certification.title'|trans }}</th>
@@ -32,18 +32,18 @@
                             <td class="is-hidden-touch">{{ certification.institution }}</td>
                             <td class="is-hidden-touch">{% if certification.periodStart %}{{ certification.periodStart|date('d/m/Y') }}{% endif %}</td>
                             <td class="is-hidden-touch">{% if certification.periodEnd %}{{ certification.periodEnd|date('d/m/Y') }}{% endif %}</td>
-                            <td class="is-hidden-touch">
+                            <td class="is-hidden-touch table-list-actions">
                                 {% if certification.image %}
                                     <figure class="image is-32x32">
                                         <img class="is-rounded" src="{{ certification.image }}" />
                                     </figure>
                                 {% endif %}
                             </td>
-                            <td>
+                            <td class="table-list-actions">
                                 {% include "profile/partial/form/button.html.twig" with {
                                     'path': path,
                                     'icon': 'fa fa-pencil',
-                                    'class': 'is-text edit',
+                                    'class': 'is-text edit-button edit'
                                 } %}
 
                                 {% include "profile/partial/form/delete_button.html.twig" with {

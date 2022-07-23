@@ -3,11 +3,15 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\UserInterface;
 use App\ThirdCode\Contracts\Repository\EmailRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @method User[] findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null)
+ * @method User|null findOneBy(array $criteria, ?array $orderBy = null)
+ */
 class UserRepository extends ServiceEntityRepository implements EmailRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)

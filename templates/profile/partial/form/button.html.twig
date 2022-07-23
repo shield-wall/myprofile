@@ -1,8 +1,9 @@
 {% set name = name|default(null) %}
 {% set class = class|default('is-primary is-fullwidth') %}
 {% set icon = icon|default(false) %}
+{% set id = id|default(null) %}
 
-<a href="{{ path }}" class="button {{class}}">
+<a href="{{ path }}" class="button {{class}}" id="{{ id }}">
 	{% if icon %}
     <span class="icon is-small">
 		<i class="{{icon}}"></i>

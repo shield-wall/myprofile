@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\EntityListeners([UpdateCurriculumListener::class])]
 class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageInterface
 {
+    use HasUserTrait;
+
     final public const LEVELS = [
         'BEGINNER' => 'Beginner',
         'ELEMENTARY' => 'Elementary',
@@ -39,7 +41,7 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userLanguages')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?UserInterface $user = null;
+    protected ?UserInterface $user = null;
 
     public function getId(): int
     {
@@ -73,18 +75,6 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
     public function setLevel(string $level): self
     {
         $this->level = $level;
-
-        return $this;
-    }
-
-    public function getUser(): UserInterface
-    {
-        return $this->user;
-    }
-
-    public function setUser(UserInterface $user): static
-    {
-        $this->user = $user;
 
         return $this;
     }

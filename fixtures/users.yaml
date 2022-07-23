@@ -25,3 +25,10 @@ App\Entity\User:
       isVerified: false
       firstName: Test Not Verified
       LastName: Mock
+  user_profile:
+    slug: test-mock-user-profile
+    email: test-profile@myprofile.pro
+    password: '\$2y\$13\$cWjumzO7fzV1w59evVjFY.y/6ax5nRIXln2SSJ1yY9ml2KZU9sPA.'#123456
+    isVerified: true
+    firstName: Test
+    LastName: Profile

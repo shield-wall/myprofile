@@ -25,7 +25,7 @@
     {% else %}
     <div class="column is-2-tablet is-offset-10-tablet is-12-mobile">
     {% endif %}
-		<button type="submit" class="button is-primary is-fullwidth">
+		<button type="submit" class="button is-primary is-fullwidth" id="{{ id|default('submit-button') }}">
 			<span class="icon">
 				<i class="fa fa-{{icon}}"></i>
 			</span>

@@ -1,6 +1,6 @@
 {% trans_default_domain 'MyProfile' %}
 
-<div class="section is-multiline has-text-centered">
+<div class="section is-multiline has-text-centered" id="empty-list">
 	<div class="column is-half is-offset-one-quarter">
 		<div class="is-size-5">
 			<span class="icon">
@@ -17,7 +17,8 @@
         'path': path,
         'name': 'messages.empty_list.new_item'|trans,
         'icon': 'fa fa-laugh-beam',
-        'class': 'is-success'
+        'class': 'is-success',
+		'id': 'add-button'
     } %}
 	</div>
 </div>

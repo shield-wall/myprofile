@@ -28,10 +28,10 @@ it('is checking if the page is loaded', function (string $url, string $field = n
         yield ['/profile/pt_BR/edit', 'profile[first_name]', 'Test'];
         yield ['/profile/en/edit', 'profile[last_name]', 'Mock'];
         #user's network
-        yield ['/profile/pt_BR/usersocialnetworking'];
-        yield ['/profile/en/usersocialnetworking'];
-        yield ['/profile/pt_BR/usersocialnetworking/new', 'user_social_networking[link]'];
-        yield ['/profile/en/usersocialnetworking/new', 'user_social_networking[socialNetworking]'];
+        yield ['/profile/pt_BR/user-social-network'];
+        yield ['/profile/en/user-social-network'];
+        yield ['/profile/pt_BR/user-social-network/new', 'user_social_networking[link]'];
+        yield ['/profile/en/user-social-network/new', 'user_social_networking[link]'];
         #education
         yield ['/profile/pt_BR/education'];
         yield ['/profile/en/education'];
@@ -62,12 +62,6 @@ it('is checking if the page is loaded', function (string $url, string $field = n
         yield ['/profile/en/change-password', 'change_password_account_form[plainPassword][second]'];
 });
 
-dataset('page_list', [
-     ['/profile/en/certification'],
-     ['/profile/en/education'],
-     ['/profile/en/user-language'],
-]);
-
 it('is redirecting to login page when the user is not log in', function(string $url) {
     $client = $this->createClient();
 
@@ -93,7 +87,7 @@ it('is checking that the user can not access data/page from other user', functio
     $crawler = $client->request(Request::METHOD_GET, $indexUrl);
     $this->assertResponseIsSuccessful();
 
-    $link = $crawler->filter('.edit')->link();
+    $link = $crawler->filter('.edit-button')->link();
 
     $client->click($link);
     $this->assertResponseIsSuccessful();

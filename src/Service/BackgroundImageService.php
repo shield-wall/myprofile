@@ -33,18 +33,29 @@ class BackgroundImageService
 
         $path = str_replace([$this->cdnHostWithPrefix, $this->bucketHostWithPrefix], '', $user->getBackgroundImage());
 
-        $file->move($this->params->get('transloadit.tmp'), $file->getClientOriginalName());
-        $fileFullPath = sprintf('%s/%s', $this->params->get('transloadit.tmp'), $file->getClientOriginalName());
+        /**
+         * TODO inject this variable in construct using symfony bind.
+         *
+         * @var string $transloaditTmp
+         */
+        $transloaditTmp = $this->params->get('transloadit.tmp');
+        /** @var string $transloaditBackground */
+        $transloaditBackground = $this->params->get('transloadit.template_id.image.background');
+        /** @var string $transloaditCredentials */
+        $transloaditCredentials = $this->params->get('transloadit.credentials');
+
+        $file->move($transloaditTmp, $file->getClientOriginalName());
+        $fileFullPath = sprintf('%s/%s', $transloaditTmp, $file->getClientOriginalName());
 
         $this->transloadit->createAssembly([
             'files' => [
                 $fileFullPath,
             ],
             'params' => [
-                'template_id' => $this->params->get('transloadit.template_id.image.background'),
+                'template_id' => $transloaditBackground,
                 'steps' => [
                     'export' => [
-                        'credentials' => $this->params->get('transloadit.credentials'),
+                        'credentials' => $transloaditCredentials,
                         'url_prefix' => $this->cdnHostWithPrefix . '/',
                         'path' => $path,
                     ],
