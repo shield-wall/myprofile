@@ -7,6 +7,7 @@ use App\Form\ProfileType;
 use App\Service\BackgroundImageService;
 use App\Service\CurriculumService;
 use App\Service\ProfileImageService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $entityManager)
+    {
+    }
+
     #[Route(path: '/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function editAction(Request $request, ProfileImageService $profileImageService, BackgroundImageService $backgroundImageService): Response
     {
@@ -31,7 +36,8 @@ class MainController extends AbstractController
             $profileImageService->upload($user, $form->get('profile_image')->getData());
             $backgroundImageService->upload($user, $form->get('background_image')->getData());
 
-            $this->getDoctrine()->getManager()->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
             $this->addFlash('success', 'messages.item_saved');
 
             return $this->redirectToRoute('profile_edit');

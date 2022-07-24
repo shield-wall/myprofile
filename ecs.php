@@ -32,6 +32,6 @@ return static function (ECSConfig $ecsConfig): void {
             'syntax' => 'short',
         ]]);
     $services->set(CyclomaticComplexitySniff::class)
-        ->property('complexity', 0)
-        ->property('absoluteComplexity', 0);
+        ->property('complexity', 3)
+        ->property('absoluteComplexity', 3);
 };

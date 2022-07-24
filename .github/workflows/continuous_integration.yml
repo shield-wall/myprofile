@@ -25,7 +25,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: 3lever/php:8.1.7-fpm-postgresql-dev
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v2
 
@@ -65,7 +65,7 @@ jobs:
           - 'twig'
     needs: build
     container:
-      image: 3lever/php:8.1.7-fpm-postgresql-dev
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v2
 
@@ -95,7 +95,7 @@ jobs:
       MAILER_DSN: null://null
       XDEBUG_MODE: coverage
     container:
-      image: 3lever/php:8.1.7-fpm-postgresql-dev
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
     services:
       db:
         image: postgres
@@ -154,7 +154,7 @@ jobs:
       - lint
       - test
     container:
-      image: 3lever/php:8.1.7-fpm-postgresql-dev
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
         - uses: actions/checkout@v2
         - uses: rlespinasse/github-slug-action@v3.x

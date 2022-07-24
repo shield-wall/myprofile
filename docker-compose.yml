@@ -6,12 +6,12 @@ services:
     - ./:/app
     - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-    - 8000:80
+    - "8000:80"
     links:
       - php
 
   php:
-    image: 3lever/php:8.1.7-fpm-postgresql-dev
+    image: 3lever/php:8.1.8-fpm-postgresql-dev
     env_file:
       - .docker/common.env
     volumes:
@@ -30,4 +30,4 @@ services:
     volumes:
       - .docker/database/data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"

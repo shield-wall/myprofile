@@ -14,3 +14,8 @@ profile:
   type: annotation
   prefix: /profile/{_locale}
   name_prefix: profile_
+
+# it's a fake endpoint, ThirdPartyAuthenticator will handle it.
+app_auth_third_party__callback:
+  prefix: ^/
+  path: /auth-third-party/callback
