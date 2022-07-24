@@ -5,7 +5,7 @@ security:
         allow_if_all_abstain: false
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    encoders:
+    password_hashers:
         App\Entity\User: bcrypt
 
     role_hierarchy:
