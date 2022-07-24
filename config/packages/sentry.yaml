@@ -1,7 +1,10 @@
-sentry:
-    dsn: '%env(SENTRY_DSN)%'
-    register_error_listener: false
-    options:
-        environment: '%kernel.environment%'
-        send_default_pii: true
-        release: '%env(GIT_REF)%'
+when@prod: &prod
+    sentry:
+        dsn: '%env(SENTRY_DSN)%'
+        register_error_listener: false
+        options:
+            environment: '%kernel.environment%'
+            send_default_pii: true
+            release: '%env(GIT_REF)%'
+
+when@stage: *prod
