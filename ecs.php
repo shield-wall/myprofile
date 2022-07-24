@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -15,6 +16,8 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->import(SetList::CLEAN_CODE);
     $ecsConfig->import(SetList::DOCTRINE_ANNOTATIONS);
     $ecsConfig->import(SetList::SPACES);
+    $ecsConfig->import(SetList::COMMENTS);
+    $ecsConfig->import(SetList::NAMESPACES);
 
     $parameters = $ecsConfig->parameters();
     $parameters->set(Option::SKIP, [
@@ -28,4 +31,7 @@ return static function (ECSConfig $ecsConfig): void {
         ->call('configure', [[
             'syntax' => 'short',
         ]]);
+    $services->set(CyclomaticComplexitySniff::class)
+        ->property('complexity', 3)
+        ->property('absoluteComplexity', 3);
 };

@@ -2,7 +2,6 @@
 
 namespace App\Controller\Profile;
 
-use App\Entity\User;
 use App\Entity\UserLanguage;
 use App\Form\UserLanguageType;
 use App\Repository\UserLanguageRepository;
@@ -30,19 +29,15 @@ class UserLanguageController extends AbstractCrudController
         return $this->save($request, UserLanguageType::class, $userLanguage);
     }
 
-    /**
-     * @IsGranted("ROLE_USER", subject="userLanguage")
-     */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER', subject: 'userLanguage')]
     public function edit(Request $request, UserLanguage $userLanguage): Response
     {
         return $this->save($request, UserLanguageType::class, $userLanguage);
     }
 
-    /**
-     * @IsGranted("ROLE_USER", subject="userLanguage")
-     */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
+    #[IsGranted('ROLE_USER', subject: 'userLanguage')]
     public function deleteAction(Request $request, UserLanguage $userLanguage): Response
     {
         return $this->delete($request, $userLanguage);

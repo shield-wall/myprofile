@@ -5,19 +5,20 @@ namespace App\Controller;
 use App\Entity\SocialNetworking;
 use App\Form\SocialNetworkingType;
 use App\Repository\SocialNetworkingRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/{_locale}/admin/socialnetworking', name: 'admin_socialnetworking_', defaults: ['_locale' => 'pt_BR'], requirements: ['_locale' => 'en|pt_BR'])]
+#[Route(path: '/{_locale}/admin/socialnetworking', name: 'admin_socialnetworking_', requirements: ['_locale' => 'en|pt_BR'], defaults: ['_locale' => 'pt_BR'])]
 class SocialNetworkingController extends AbstractController
 {
-    /**
-     * Lists all socialNetworking entities.
-     */
+    public function __construct(private readonly EntityManagerInterface $entityManager)
+    {
+    }
+
     #[Route(path: '/', name: 'index', methods: ['GET'])]
     public function indexAction(SocialNetworkingRepository $socialNetworkingRepository): Response
     {
@@ -38,9 +39,8 @@ class SocialNetworkingController extends AbstractController
         $form = $this->createForm(SocialNetworkingType::class, $socialNetworking);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($socialNetworking);
-            $em->flush();
+            $this->entityManager->persist($socialNetworking);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('admin_socialnetworking_index');
         }
@@ -75,7 +75,8 @@ class SocialNetworkingController extends AbstractController
         $editForm = $this->createForm(SocialNetworkingType::class, $socialNetworking);
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->entityManager->persist($socialNetworking);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('admin_socialnetworking_edit', ['id' => $socialNetworking->getId()]);
         }
@@ -96,9 +97,8 @@ class SocialNetworkingController extends AbstractController
         $form = $this->createDeleteForm($socialNetworking);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($socialNetworking);
-            $em->flush();
+            $this->entityManager->remove($socialNetworking);
+            $this->entityManager->flush();
         }
 
         return $this->redirectToRoute('admin_socialnetworking_index');

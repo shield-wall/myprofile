@@ -46,7 +46,7 @@ class ThirdPartyAuthenticator extends AbstractAuthenticator
     {
         if ($request->get('error') || !$request->get('code')) {
             return new SelfValidatingPassport(
-                new UserBadge('', fn () => throw new UserNotFoundException())
+                new UserBadge('', static fn () => throw new UserNotFoundException())
             );
         }
 
@@ -62,7 +62,7 @@ class ThirdPartyAuthenticator extends AbstractAuthenticator
                 // TODO Refactor this method.
                 $user = $this->userRepository->findOneBy(['email' => $email]);
 
-                if ($user === null) {
+                if (!$user instanceof User) {
                     $user = new User();
                     $user
                         ->setFirstName($ownerDetails->getFirstName())

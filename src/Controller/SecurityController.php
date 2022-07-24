@@ -41,16 +41,8 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/auth-third-party', name: 'auth_third_party')]
-    #[Route(path: '/auth-third-party/callback', name: 'auth_third_party__callback')]
     public function authThirdParty(Request $request, AbstractProvider $googleAuthProvider): ?Response
     {
-        /**
-         * it's a fake endpoint who will handle this is the ThirdPartyAuthenticator.
-         */
-        if ('app_auth_third_party__callback' === $request->attributes->get('_route')) {
-            return null;
-        }
-
         if (null !== $this->getUser()) {
             return $this->redirectToRoute('profile_edit');
         }

@@ -1,3 +1,21 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+presta_sitemap:
+  resource: "@PrestaSitemapBundle/config/routing.yml"
+
+controllers:
+  resource: ../src/Controller/
+  type: annotation
+
+kernel:
+  resource: ../src/Kernel.php
+  type: annotation
+
+profile:
+  resource: ../src/Controller/Profile/
+  type: annotation
+  prefix: /profile/{_locale}
+  name_prefix: profile_
+
+# it's a fake endpoint, ThirdPartyAuthenticator will handle it.
+app_auth_third_party__callback:
+  prefix: ^/
+  path: /auth-third-party/callback

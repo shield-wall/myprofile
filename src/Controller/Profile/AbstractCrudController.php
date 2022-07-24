@@ -6,6 +6,7 @@ use App\Entity\EntityInterface;
 use App\Entity\HasUserInterface;
 use App\Entity\User;
 use App\Repository\OwnerDataRepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class AbstractCrudController extends AbstractController
 {
     protected const PREFIX = null;
+
+    //TODO check other solution to not inject entityManager here.
+    public function __construct(readonly private EntityManagerInterface $entityManager)
+    {
+    }
 
     public function index(OwnerDataRepositoryInterface $repository): Response
     {
@@ -33,9 +39,8 @@ abstract class AbstractCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($object);
-            $em->flush();
+            $this->entityManager->persist($object);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'messages.item_saved');
 
@@ -55,9 +60,8 @@ abstract class AbstractCrudController extends AbstractController
         $token = $request->request->get('_token');
 
         if ($this->isCsrfTokenValid('delete' . $entity->getId(), $token)) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($entity);
-            $entityManager->flush();
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'messages.item_removed');
         }

@@ -27,39 +27,24 @@ class Education implements EntityInterface, HasUserInterface, EducationInterface
     #[ORM\JoinColumn(name: 'user_id')]
     protected ?UserInterface $user = null;
 
-    /**
-     * @var string
-     */
     #[Assert\Length(max: 200)]
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 200)]
     protected ?string $title = null;
 
-    /**
-     * @var string
-     */
     #[Assert\Length(max: 200)]
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 200)]
     protected ?string $institution = null;
 
-    /**
-     * @var string
-     */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     protected ?string $description = null;
 
-    /**
-     * @var DateTimeInterface
-     */
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     protected ?\DateTimeInterface $periodStart = null;
 
-    /**
-     * @var DateTimeInterface|null
-     */
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     protected ?\DateTimeInterface $periodEnd = null;
 

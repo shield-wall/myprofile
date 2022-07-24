@@ -29,10 +29,8 @@ class CertificationController extends AbstractCrudController
         return $this->save($request, CertificationType::class, $certification);
     }
 
-    /**
-     * @IsGranted("ROLE_USER", subject="certification")
-     */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER', subject: 'certification')]
     public function editAction(Request $request, Certification $certification): Response
     {
         return $this->save($request, CertificationType::class, $certification);
@@ -40,10 +38,9 @@ class CertificationController extends AbstractCrudController
 
     /**
      * Deletes a certification entity.
-     *
-     * @IsGranted("ROLE_USER", subject="certification")
      */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
+    #[IsGranted('ROLE_USER', subject: 'certification')]
     public function deleteAction(Request $request, Certification $certification): Response
     {
         return $this->delete($request, $certification);
