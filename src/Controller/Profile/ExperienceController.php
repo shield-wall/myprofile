@@ -3,7 +3,6 @@
 namespace App\Controller\Profile;
 
 use App\Entity\Experience;
-use App\Entity\User;
 use App\Form\ExperienceType;
 use App\Repository\ExperienceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -30,19 +29,15 @@ class ExperienceController extends AbstractCrudController
         return $this->save($request, ExperienceType::class, $experience);
     }
 
-    /**
-     * @Security("user == experience.getUser()")
-     */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Security('user == experience.getUser()')]
     public function editAction(Request $request, Experience $experience): Response
     {
         return $this->save($request, ExperienceType::class, $experience);
     }
 
-    /**
-     * @Security("user == experience.getUser()")
-     */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
+    #[Security('user == experience.getUser()')]
     public function deleteAction(Request $request, Experience $experience): Response
     {
         return $this->delete($request, $experience);

@@ -2,7 +2,6 @@
 
 namespace App\Controller\Profile;
 
-use App\Entity\User;
 use App\Entity\UserSocialNetworking;
 use App\Form\UserSocialNetworkingType;
 use App\Repository\UserSocialNetworkingRepository;
@@ -30,19 +29,15 @@ class UserSocialNetworkingController extends AbstractCrudController
         return $this->save($request, UserSocialNetworkingType::class, $userSocialNetworking);
     }
 
-    /**
-     * @Security("user == userSocialNetworking.getUser()")
-     */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Security('user == userSocialNetworking.getUser()')]
     public function editAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
     {
         return $this->save($request, UserSocialNetworkingType::class, $userSocialNetworking);
     }
 
-    /**
-     * @Security("user == userSocialNetworking.getUser()")
-     */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
+    #[Security('user == userSocialNetworking.getUser()')]
     public function deleteAction(Request $request, UserSocialNetworking $userSocialNetworking): Response
     {
         return $this->delete($request, $userSocialNetworking);

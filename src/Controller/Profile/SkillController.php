@@ -3,7 +3,6 @@
 namespace App\Controller\Profile;
 
 use App\Entity\Skill;
-use App\Entity\User;
 use App\Form\SkillType;
 use App\Repository\SkillRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -30,19 +29,15 @@ class SkillController extends AbstractCrudController
         return $this->save($request, SkillType::class, $skill);
     }
 
-    /**
-     * @Security("user == skill.getUser()")
-     */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Security('user == skill.getUser()')]
     public function editAction(Request $request, Skill $skill): Response
     {
         return $this->save($request, SkillType::class, $skill);
     }
 
-    /**
-     * @Security("user == skill.getUser()")
-     */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
+    #[Security('user == skill.getUser()')]
     public function deleteAction(Request $request, Skill $skill): Response
     {
         return $this->delete($request, $skill);

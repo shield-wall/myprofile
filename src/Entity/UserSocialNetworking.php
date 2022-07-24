@@ -19,9 +19,6 @@ class UserSocialNetworking implements UserSocialNetworkInterface, EntityInterfac
 {
     use HasUserTrait;
 
-    /**
-     * @var int
-     */
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
@@ -31,16 +28,10 @@ class UserSocialNetworking implements UserSocialNetworkInterface, EntityInterfac
     #[ORM\JoinColumn(name: 'user_id')]
     protected ?UserInterface $user = null;
 
-    /**
-     * @var SocialNetworking|null
-     */
     #[ORM\ManyToOne(targetEntity: SocialNetworking::class, fetch: 'EAGER', inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'social_networking_id', nullable: false)]
     protected ?SocialNetworking $socialNetworking = null;
 
-    /**
-     * @var string
-     */
     #[Assert\Length(max: 200)]
     #[ORM\Column(type: Types::STRING, length: 200)]
     protected ?string $link = null;

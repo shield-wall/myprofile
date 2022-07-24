@@ -29,19 +29,15 @@ class EducationController extends AbstractCrudController
         return $this->save($request, EducationType::class, $education);
     }
 
-    /**
-     * @Security("user == education.getUser()")
-     */
     #[Route(path: '/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Security('user == education.getUser()')]
     public function editAction(Request $request, Education $education): Response
     {
         return $this->save($request, EducationType::class, $education);
     }
 
-    /**
-     * @Security("user == education.getUser()")
-     */
     #[Route(path: '/{id}/del', name: 'delete', methods: ['POST'])]
+    #[Security('user == education.getUser()')]
     public function deleteAction(Request $request, Education $education): Response
     {
         return $this->delete($request, $education);
