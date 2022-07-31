@@ -20,9 +20,19 @@ it('checks if the page is loading', function (string $url, string $tag) {
     'Curriculum (Portuguese)' => ['/test-mock/curriculum/pt_BR', '#name'],
     'Curriculum (English)' => ['/test-mock/curriculum/en', '#name'],
 
-    'Login (Portuguese)' => ['/login/pt_BR', '#logo'],
-    'Login (English)' => ['/login/en', '#logo'],
-
     'Privacy policy (Portuguese)' => ['/pt_BR/privacy-policy', '#privacy-policy-title'],
     'Privacy policy (English)' => ['/en/privacy-policy', '#privacy-policy-title'],
+]);
+
+it('is redirecting', function (string $url, string $redirectTo) {
+    $client = $this->createClient();
+    $client->request(Request::METHOD_GET, $url);
+
+    $this->assertResponseRedirects($redirectTo);
+})->with([
+    'Login (Portuguese)' => ['/login/pt_BR', '/'],
+    'Login (English)' => ['/login/en', '/en'],
+
+    'Logout (Portuguese)' => ['/logout/pt_BR', 'http://localhost/login'],
+    'Logout (English)' => ['/logout/en', 'http://localhost/login/en'],
 ]);
