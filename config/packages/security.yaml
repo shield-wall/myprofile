@@ -26,7 +26,7 @@ security:
             lazy: true
             logout:
                 path: app_logout
-                target: app_login
+                target: app_homepage
             entry_point: App\Security\AuthenticationEntryPoint
             custom_authenticators:
                 - App\Security\ThirdPartyAuthenticator

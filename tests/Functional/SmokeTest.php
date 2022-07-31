@@ -33,6 +33,6 @@ it('is redirecting', function (string $url, string $redirectTo) {
     'Login (Portuguese)' => ['/login/pt_BR', '/'],
     'Login (English)' => ['/login/en', '/en'],
 
-    'Logout (Portuguese)' => ['/logout/pt_BR', 'http://localhost/login'],
-    'Logout (English)' => ['/logout/en', 'http://localhost/login/en'],
+    'Logout (Portuguese)' => ['/logout/pt_BR', 'http://localhost/'],
+    'Logout (English)' => ['/logout/en', 'http://localhost/en'],
 ]);
