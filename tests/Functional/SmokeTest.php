@@ -11,15 +11,18 @@ it('checks if the page is loading', function (string $url, string $tag) {
 
     expect($crawler->filter($tag)->count())->toBeTruthy();
 })->with([
-    ['/', '#logo'],
-    ['/en', '#logo'],
+    'Homepage (Portuguese)' => ['/', '#logo'],
+    'Homepage (English)' =>['/en', '#logo'],
 
-    ['/test-mock', '#home-title'],
-    ['/test-mock/en', '#home-title'],
+    'Public user profile (Portuguese)' => ['/test-mock', '#home-title'],
+    'Public user profile (English)' => ['/test-mock/en', '#home-title'],
 
-    ['/test-mock/curriculum/pt_BR', '#name'],
-    ['/test-mock/curriculum/en', '#name'],
+    'Curriculum (Portuguese)' => ['/test-mock/curriculum/pt_BR', '#name'],
+    'Curriculum (English)' => ['/test-mock/curriculum/en', '#name'],
 
-    ['/login/pt_BR', '#logo'],
-    ['/login/en', '#logo'],
+    'Login (Portuguese)' => ['/login/pt_BR', '#logo'],
+    'Login (English)' => ['/login/en', '#logo'],
+
+    'Privacy policy (Portuguese)' => ['/pt_BR/privacy-policy', '#privacy-policy-title'],
+    'Privacy policy (English)' => ['/en/privacy-policy', '#privacy-policy-title'],
 ]);
