@@ -7,4 +7,11 @@ when@prod: &prod
             send_default_pii: true
             release: '%env(GIT_REF)%'
 
-when@stage: *prod
+    monolog:
+        handlers:
+            sentry:
+                type: sentry
+                level: !php/const Monolog\Logger::ERROR
+                hub_id: Sentry\State\HubInterface
+
+when@staging: *prod
