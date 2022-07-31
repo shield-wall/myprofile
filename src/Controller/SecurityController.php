@@ -10,28 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route(name: 'app_', defaults: ['_locale' => 'pt_BR'], priority: 10)]
 class SecurityController extends AbstractController
 {
-    public function __construct(private readonly LoggerInterface $logger)
-    {
-    }
-
     #[Route(path: '/login/{_locale}', name: 'login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(): Response
     {
         if (null !== $this->getUser()) {
             return $this->redirectToRoute('profile_edit');
         }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->redirectToRoute('app_homepage');
     }
 
     #[Route(path: '/logout/{_locale}', name: 'logout')]
@@ -41,8 +31,11 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/auth-third-party', name: 'auth_third_party')]
-    public function authThirdParty(Request $request, AbstractProvider $googleAuthProvider): ?Response
-    {
+    public function authThirdParty(
+        Request $request,
+        AbstractProvider $googleAuthProvider,
+        LoggerInterface $logger
+    ): ?Response {
         if (null !== $this->getUser()) {
             return $this->redirectToRoute('profile_edit');
         }
@@ -50,7 +43,7 @@ class SecurityController extends AbstractController
         $submittedToken = $request->get('token');
 
         if (!$this->isCsrfTokenValid('third-party-login', $submittedToken)) {
-            $this->logger->error('Invalid CSRF third party authentication');
+            $logger->error('Invalid CSRF third party authentication');
 
             throw new InvalidCsrfTokenException();
         }
