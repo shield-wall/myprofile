@@ -14,16 +14,6 @@ use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 #[Route(name: 'app_', defaults: ['_locale' => 'pt_BR'], priority: 10)]
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login/{_locale}', name: 'login')]
-    public function login(): Response
-    {
-        if (null !== $this->getUser()) {
-            return $this->redirectToRoute('profile_edit');
-        }
-
-        return $this->redirectToRoute('app_homepage');
-    }
-
     #[Route(path: '/logout/{_locale}', name: 'logout')]
     public function logout(): never
     {

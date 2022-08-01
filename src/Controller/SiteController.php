@@ -27,6 +27,7 @@ class SiteController extends AbstractController
     }
 
     #[Route(path: '/{_locale}', name: 'homepage', defaults: ['_locale' => 'pt_BR'])]
+    #[Route(path: '/login/{_locale}', name: 'login')]
     public function homepage(UserRepository $userRepository): Response
     {
         $users = $userRepository->findBy(['isVerified' => true], ['updatedAt' => 'desc'], 18);

@@ -22,17 +22,20 @@ it('checks if the page is loading', function (string $url, string $tag) {
 
     'Privacy policy (Portuguese)' => ['/pt_BR/privacy-policy', '#privacy-policy-title'],
     'Privacy policy (English)' => ['/en/privacy-policy', '#privacy-policy-title'],
+
+    'Login (Portuguese)' => ['/login/pt_BR', '#logo'],
+    'Login (English)' => ['/login/en', '#logo'],
 ]);
 
 it('is redirecting', function (string $url, string $redirectTo) {
     $client = $this->createClient();
     $client->request(Request::METHOD_GET, $url);
-
     $this->assertResponseRedirects($redirectTo);
-})->with([
-    'Login (Portuguese)' => ['/login/pt_BR', '/'],
-    'Login (English)' => ['/login/en', '/en'],
 
-    'Logout (Portuguese)' => ['/logout/pt_BR', 'http://localhost/'],
-    'Logout (English)' => ['/logout/en', 'http://localhost/en'],
+    //Avoid multi redirect.
+    $client->request(Request::METHOD_GET, $redirectTo);
+    expect($client->getResponse()->isRedirect())->toBeFalse();
+})->with([
+    'Logout (Portuguese)' => ['/logout/pt_BR', 'http://localhost/login/pt_BR'],
+    'Logout (English)' => ['/logout/en', 'http://localhost/login/en'],
 ]);
