@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 use Symfony\Component\HttpFoundation\Request;
 
-it('checks if the page is loading', function (string $url, string $tag) {
+it('checks if the page is loading', function (string $url, string $tag = null) {
     $client = $this->createClient();
     $crawler = $client->request(Request::METHOD_GET, $url);
     $this->assertResponseIsSuccessful();
 
-    expect($crawler->filter($tag)->count())->toBeTruthy();
+    if($tag) {
+        expect($crawler->filter($tag)->count())->toBeTruthy();
+    }
 })->with([
     'Homepage (Portuguese)' => ['/', '#logo'],
     'Homepage (English)' =>['/en', '#logo'],
@@ -25,6 +27,12 @@ it('checks if the page is loading', function (string $url, string $tag) {
 
     'Login (Portuguese)' => ['/login/pt_BR', '#logo'],
     'Login (English)' => ['/login/en', '#logo'],
+
+    'Main sitemap' => ['/sitemap.xml'],
+    'Static sitemap (English)' => ['/sitemap.static_en.xml'],
+    'Static sitemap (Portuguese)' => ['/sitemap.static_pt_BR.xml'],
+    'Profile sitemap (English)' => ['/sitemap.profile_en.xml'],
+    'Profile sitemap (Portuguese)' => ['/sitemap.profile_pt_BR.xml'],
 ]);
 
 it('is redirecting', function (string $url, string $redirectTo) {

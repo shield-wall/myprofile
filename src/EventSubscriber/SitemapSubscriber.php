@@ -61,7 +61,6 @@ class SitemapSubscriber implements EventSubscriberInterface
     {
         $staticRouters = [
             'app_homepage',
-            'app_register',
             'app_login',
         ];
 
