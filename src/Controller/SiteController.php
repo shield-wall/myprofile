@@ -26,6 +26,15 @@ class SiteController extends AbstractController
         return $this->render('site/private_policy.html.twig');
     }
 
+    #[Route(path: '/robots.txt', name: 'robots')]
+    public function robots(): Response
+    {
+        $response = $this->render('site/robots.txt.twig');
+        $response->headers->set('Content-Type', 'text/plain');
+
+        return $response;
+    }
+
     #[Route(path: '/{_locale}', name: 'homepage', defaults: ['_locale' => 'pt_BR'])]
     #[Route(path: '/login/{_locale}', name: 'login')]
     public function homepage(UserRepository $userRepository): Response
