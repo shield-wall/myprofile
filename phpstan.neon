@@ -6,5 +6,8 @@ parameters:
     excludePaths:
         analyseAndScan:
             - src/EventListener/UpdateCurriculumListener.php
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
     ignoreErrors:
-    		- '#\$id is never written, only read.#'
+        - '#is never written, only read.#'
+        - '#type mapping mismatch\: property can contain App\\Entity\\UserInterface#'

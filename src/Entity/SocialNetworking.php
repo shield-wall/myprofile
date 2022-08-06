@@ -23,11 +23,11 @@ class SocialNetworking implements Stringable
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
-    protected ?string $name = null;
+    protected string $name;
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
-    protected ?string $icon = null;
+    protected string $icon;
 
     /**
      * @var Collection<UserSocialNetworking>
@@ -45,24 +45,24 @@ class SocialNetworking implements Stringable
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(?string $name): static
+    public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getIcon(): ?string
+    public function getIcon(): string
     {
         return $this->icon;
     }
 
-    public function setIcon(?string $icon): static
+    public function setIcon(string $icon): static
     {
         $this->icon = $icon;
 
@@ -71,6 +71,6 @@ class SocialNetworking implements Stringable
 
     public function __toString(): string
     {
-        return (string) $this->getName();
+        return $this->getName();
     }
 }

@@ -33,22 +33,22 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
-    private ?string $name = null;
+    private string $name;
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]
-    private ?string $level = null;
+    private string $level;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userLanguages')]
     #[ORM\JoinColumn(nullable: false)]
-    protected ?UserInterface $user = null;
+    protected UserInterface $user;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -62,8 +62,7 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
 
     public function getLevel(): string
     {
-        //TODO make level required
-        return $this->level ?? '';
+        return $this->level;
     }
 
     //@TODO check if this field is still necessary.
@@ -81,7 +80,6 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
 
     public function getTitle(): string
     {
-        //@TODO make name required!
-        return $this->getName() ?? '';
+        return $this->getName();
     }
 }

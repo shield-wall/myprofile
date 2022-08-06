@@ -24,29 +24,28 @@ class Education implements EntityInterface, HasUserInterface, EducationInterface
     protected ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'educations')]
-    #[ORM\JoinColumn(name: 'user_id')]
-    protected ?UserInterface $user = null;
+    #[ORM\JoinColumn(name: 'user_id', nullable: false)]
+    protected UserInterface $user;
 
     #[Assert\Length(max: 200)]
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 200)]
-    protected ?string $title = null;
+    protected string $title;
 
     #[Assert\Length(max: 200)]
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 200)]
-    protected ?string $institution = null;
+    protected string $institution;
 
-    #[Assert\NotBlank]
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     protected ?string $description = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    protected ?\DateTimeInterface $periodStart = null;
+    protected DateTimeInterface $periodStart;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    protected ?\DateTimeInterface $periodEnd = null;
+    protected ?DateTimeInterface $periodEnd = null;
 
     public function getId(): int
     {
@@ -84,22 +83,19 @@ class Education implements EntityInterface, HasUserInterface, EducationInterface
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
-    public function getPeriodStart(): ?DateTimeInterface
+    public function getPeriodStart(): DateTimeInterface
     {
         return $this->periodStart;
     }
@@ -125,8 +121,7 @@ class Education implements EntityInterface, HasUserInterface, EducationInterface
 
     public function getDateStarted(): DateTimeInterface
     {
-        // @TODO make period started required.
-        return $this->getPeriodStart() ?? new DateTime();
+        return $this->getPeriodStart();
     }
 
     public function getDateFinished(): ?DateTimeInterface

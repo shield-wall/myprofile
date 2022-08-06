@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[Assert\Length(max: 200)]
     #[Assert\Email]
     #[ORM\Column(type: Types::STRING, length: 200, unique: true)]
-    protected ?string $email = null;
+    protected string $email;
 
     #[Assert\NotBlank(groups: ['registration'])]
     #[Assert\Length(max: 50)]
@@ -51,7 +51,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[Gedmo\Slug(fields: ['firstName', 'lastName', 'id'])]
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50, unique: true)]
-    private ?string $slug = null;
+    private string $slug;
 
     #[Assert\Length(max: 250)]
     #[ORM\Column(type: Types::TEXT, length: 250, nullable: true)]
@@ -151,11 +151,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
 
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    private DateTimeInterface $createdAt;
 
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?DateTimeInterface $updatedAt = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $isVerified = false;
@@ -191,7 +191,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -535,15 +535,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this;
     }
 
-    // @TODO remove this in symfony 6
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     public function eraseCredentials(): void
@@ -565,7 +559,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
 
     public function __toString(): string
     {
-        return $this->getUsername();
+        return $this->getUserIdentifier();
     }
 
     public function getPositionTitle(): string

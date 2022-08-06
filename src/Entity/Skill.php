@@ -22,12 +22,12 @@ class Skill implements SkillInterface, EntityInterface, HasUserInterface
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'skills')]
-    #[ORM\JoinColumn(name: 'user_id')]
-    protected ?UserInterface $user = null;
+    #[ORM\JoinColumn(name: 'user_id', nullable: false)]
+    protected UserInterface $user;
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(name: 'name', type: Types::STRING, length: 50)]
-    private ?string $name = null;
+    private string $name;
 
     #[Assert\Range(min: 0, max: 100)]
     #[ORM\Column(name: 'level_experience', type: Types::SMALLINT)]
@@ -44,93 +44,56 @@ class Skill implements SkillInterface, EntityInterface, HasUserInterface
         return $this->id;
     }
 
-    /**
-     * Set name.
-     *
-     * @return Skill
-     */
-    public function setName(string $name)
+    public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Set levelExperience.
-     *
-     * @return Skill
-     */
-    public function setLevelExperience(int $levelExperience)
+    public function setLevelExperience(int $levelExperience): static
     {
         $this->levelExperience = $levelExperience;
 
         return $this;
     }
 
-    /**
-     * Get levelExperience.
-     *
-     * @return int
-     */
-    public function getLevelExperience()
+    public function getLevelExperience(): int
     {
         return $this->levelExperience;
     }
 
-    /**
-     * Set priority.
-     *
-     * @return Skill
-     */
-    public function setPriority(int $priority)
+    public function setPriority(int $priority): static
     {
         $this->priority = $priority;
 
         return $this;
     }
 
-    /**
-     * Get priority.
-     *
-     * @return int
-     */
-    public function getPriority()
+    public function getPriority(): ?int
     {
         return $this->priority;
     }
 
-    /**
-     * Set status.
-     *
-     * @return Skill
-     */
-    public function setStatus(bool $status)
+    public function setStatus(bool $status): static
     {
         $this->status = $status;
 
         return $this;
     }
 
-    /**
-     * Get status.
-     *
-     * @return bool
-     */
-    public function getStatus()
+    public function getStatus(): bool
     {
         return $this->status;
     }
 
     public function getTitle(): string
     {
-        //@TODO make name required.
-
-        return $this->getName() ?? '';
+        return $this->getName();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Entity;
 
 trait HasUserTrait
 {
-    protected ?UserInterface $user = null;
+    protected UserInterface $user;
 
     public function getUser(): UserInterface
     {

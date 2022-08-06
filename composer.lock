@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a872bf3450782ba645e1a60238e220e",
+    "content-hash": "3d97597b8a393a7062c1e227bd1e05cb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -521,16 +521,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.3.7",
+            "version": "3.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "9f79d4650430b582f4598fe0954ef4d52fbc0a8a"
+                "reference": "f873a820227bc352d023791775a01f078a30dfe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/9f79d4650430b582f4598fe0954ef4d52fbc0a8a",
-                "reference": "9f79d4650430b582f4598fe0954ef4d52fbc0a8a",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/f873a820227bc352d023791775a01f078a30dfe1",
+                "reference": "f873a820227bc352d023791775a01f078a30dfe1",
                 "shasum": ""
             },
             "require": {
@@ -545,14 +545,14 @@
             "require-dev": {
                 "doctrine/coding-standard": "9.0.0",
                 "jetbrains/phpstorm-stubs": "2022.1",
-                "phpstan/phpstan": "1.7.13",
-                "phpstan/phpstan-strict-rules": "^1.2",
-                "phpunit/phpunit": "9.5.20",
-                "psalm/plugin-phpunit": "0.16.1",
-                "squizlabs/php_codesniffer": "3.7.0",
+                "phpstan/phpstan": "1.8.2",
+                "phpstan/phpstan-strict-rules": "^1.3",
+                "phpunit/phpunit": "9.5.21",
+                "psalm/plugin-phpunit": "0.17.0",
+                "squizlabs/php_codesniffer": "3.7.1",
                 "symfony/cache": "^5.2|^6.0",
                 "symfony/console": "^2.7|^3.0|^4.0|^5.0|^6.0",
-                "vimeo/psalm": "4.23.0"
+                "vimeo/psalm": "4.24.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -612,7 +612,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.3.7"
+                "source": "https://github.com/doctrine/dbal/tree/3.3.8"
             },
             "funding": [
                 {
@@ -628,7 +628,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-13T21:43:03+00:00"
+            "time": "2022-08-05T15:35:35+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -1202,16 +1202,16 @@
         },
         {
             "name": "doctrine/migrations",
-            "version": "3.5.1",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "c0a01ddead0ccaf0282f3f4fcaa026d11918a481"
+                "reference": "61c6ef3a10b7df43c3b6388a184754f26e58700a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/c0a01ddead0ccaf0282f3f4fcaa026d11918a481",
-                "reference": "c0a01ddead0ccaf0282f3f4fcaa026d11918a481",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/61c6ef3a10b7df43c3b6388a184754f26e58700a",
+                "reference": "61c6ef3a10b7df43c3b6388a184754f26e58700a",
                 "shasum": ""
             },
             "require": {
@@ -1291,7 +1291,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/migrations/issues",
-                "source": "https://github.com/doctrine/migrations/tree/3.5.1"
+                "source": "https://github.com/doctrine/migrations/tree/3.5.2"
             },
             "funding": [
                 {
@@ -1307,7 +1307,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-09T20:24:38+00:00"
+            "time": "2022-08-04T14:29:49+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -1410,20 +1410,19 @@
         },
         {
             "name": "doctrine/persistence",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "25ec98a8cbd1f850e60fdb62c0ef77c162da8704"
+                "reference": "ac6fce61f037d7e54dbb2435f5b5648d86548e23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/25ec98a8cbd1f850e60fdb62c0ef77c162da8704",
-                "reference": "25ec98a8cbd1f850e60fdb62c0ef77c162da8704",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/ac6fce61f037d7e54dbb2435f5b5648d86548e23",
+                "reference": "ac6fce61f037d7e54dbb2435f5b5648d86548e23",
                 "shasum": ""
             },
             "require": {
-                "doctrine/collections": "^1.0",
                 "doctrine/event-manager": "^1.0",
                 "php": "^7.2 || ^8.0",
                 "psr/cache": "^1.0 || ^2.0 || ^3.0"
@@ -1491,7 +1490,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/persistence/issues",
-                "source": "https://github.com/doctrine/persistence/tree/3.0.2"
+                "source": "https://github.com/doctrine/persistence/tree/3.0.3"
             },
             "funding": [
                 {
@@ -1507,7 +1506,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-06T06:10:05+00:00"
+            "time": "2022-08-04T21:14:21+00:00"
         },
         {
             "name": "doctrine/sql-formatter",
@@ -3769,8 +3768,57 @@
             "time": "2022-05-30T12:09:35+00:00"
         },
         {
+            "name": "shield-w4ll/curriculum-bundle",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shield-w4ll/CurriculumBundle.git",
+                "reference": "8f96d9d71bc597dbc8e05cd133771fe4e4427fa9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shield-w4ll/CurriculumBundle/zipball/8f96d9d71bc597dbc8e05cd133771fe4e4427fa9",
+                "reference": "8f96d9d71bc597dbc8e05cd133771fe4e4427fa9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "symfony/translation": "^4.4|^5.4|^6.0",
+                "symfony/twig-bundle": "^4.4|^5.4|^6.0",
+                "symfony/webpack-encore-bundle": "^1.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "symfony/asset": "^6.0",
+                "symfony/framework-bundle": "^6.0",
+                "symfony/runtime": "^6.0",
+                "symfony/serializer-pack": "^1.1",
+                "symfony/yaml": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ShieldW4ll\\CurriculumBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erison Silva"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/shield-w4ll/CurriculumBundle/issues",
+                "source": "https://github.com/shield-w4ll/CurriculumBundle/tree/v0.1.0"
+            },
+            "time": "2022-08-06T16:21:39+00:00"
+        },
+        {
             "name": "shield-w4ll/simple-authenticator",
-            "version": "dev-main",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shield-w4ll/simple-authenticator.git",
@@ -3789,7 +3837,6 @@
                 "symfony/routing": "^5.4 || ^6.1",
                 "symfony/security-bundle": "^5.4 || ^6.1"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -3808,7 +3855,7 @@
             "description": "Simple symfony authenticator",
             "support": {
                 "issues": "https://github.com/shield-w4ll/simple-authenticator/issues",
-                "source": "https://github.com/shield-w4ll/simple-authenticator/tree/main"
+                "source": "https://github.com/shield-w4ll/simple-authenticator/tree/v0.2.0"
             },
             "time": "2022-07-21T17:51:20+00:00"
         },
@@ -8788,56 +8835,6 @@
             "time": "2022-07-20T14:45:06+00:00"
         },
         {
-            "name": "threelever/curriculum-bundle",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/threelever/CurriculumBundle.git",
-                "reference": "53d32170d73b25710572916bb63a737b8c79d7dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/threelever/CurriculumBundle/zipball/53d32170d73b25710572916bb63a737b8c79d7dc",
-                "reference": "53d32170d73b25710572916bb63a737b8c79d7dc",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "symfony/translation": "^4.4|^5.4|^6.0",
-                "symfony/twig-bundle": "^4.4|^5.4|^6.0",
-                "symfony/webpack-encore-bundle": "^1.0"
-            },
-            "require-dev": {
-                "ext-json": "*",
-                "symfony/asset": "^6.0",
-                "symfony/framework-bundle": "^6.0",
-                "symfony/runtime": "^6.0",
-                "symfony/serializer-pack": "^1.1",
-                "symfony/yaml": "^6.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Threelever\\CurriculumBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Erison Silva"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/threelever/CurriculumBundle/issues",
-                "source": "https://github.com/threelever/CurriculumBundle/tree/main"
-            },
-            "time": "2022-06-18T12:35:48+00:00"
-        },
-        {
             "name": "transloadit/php-sdk",
             "version": "v2.1.0",
             "source": {
@@ -10550,6 +10547,51 @@
             "time": "2021-12-08T12:19:24+00:00"
         },
         {
+            "name": "phpstan/extension-installer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/extension-installer.git",
+                "reference": "66c7adc9dfa38b6b5838a9fb728b68a7d8348051"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/66c7adc9dfa38b6b5838a9fb728b68a7d8348051",
+                "reference": "66c7adc9dfa38b6b5838a9fb728b68a7d8348051",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1 || ^2.0",
+                "php": "^7.1 || ^8.0",
+                "phpstan/phpstan": ">=0.11.6"
+            },
+            "require-dev": {
+                "composer/composer": "^1.8",
+                "phing/phing": "^2.16.3",
+                "php-parallel-lint/php-parallel-lint": "^1.2.0",
+                "phpstan/phpstan-strict-rules": "^0.11 || ^0.12"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PHPStan\\ExtensionInstaller\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\ExtensionInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Composer plugin for automatic installation of PHPStan extensions",
+            "support": {
+                "issues": "https://github.com/phpstan/extension-installer/issues",
+                "source": "https://github.com/phpstan/extension-installer/tree/1.1.0"
+            },
+            "time": "2020-12-13T13:06:13+00:00"
+        },
+        {
             "name": "phpstan/phpstan",
             "version": "1.8.2",
             "source": {
@@ -10607,6 +10649,74 @@
                 }
             ],
             "time": "2022-07-20T09:57:31+00:00"
+        },
+        {
+            "name": "phpstan/phpstan-doctrine",
+            "version": "1.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan-doctrine.git",
+                "reference": "3ef6399761bb33fdfa0d5546d4b6e7d8811e8850"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/3ef6399761bb33fdfa0d5546d4b6e7d8811e8850",
+                "reference": "3ef6399761bb33fdfa0d5546d4b6e7d8811e8850",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0",
+                "phpstan/phpstan": "^1.8.0"
+            },
+            "conflict": {
+                "doctrine/collections": "<1.0",
+                "doctrine/common": "<2.7",
+                "doctrine/mongodb-odm": "<1.2",
+                "doctrine/orm": "<2.5",
+                "doctrine/persistence": "<1.3"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.11.0",
+                "doctrine/collections": "^1.6",
+                "doctrine/common": "^2.7 || ^3.0",
+                "doctrine/dbal": "^2.13.8 || ^3.3.3",
+                "doctrine/lexer": "^1.2.1",
+                "doctrine/mongodb-odm": "^1.3 || ^2.1",
+                "doctrine/orm": "^2.11.0",
+                "doctrine/persistence": "^1.3.8 || ^2.2.1",
+                "nesbot/carbon": "^2.49",
+                "nikic/php-parser": "^4.13.2",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "phpunit/phpunit": "^9.5.10",
+                "ramsey/uuid-doctrine": "^1.5.0",
+                "symfony/cache": "^4.4.35"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon",
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Doctrine extensions for PHPStan",
+            "support": {
+                "issues": "https://github.com/phpstan/phpstan-doctrine/issues",
+                "source": "https://github.com/phpstan/phpstan-doctrine/tree/1.3.11"
+            },
+            "time": "2022-07-20T14:54:37+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -11030,16 +11140,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.13.9",
+            "version": "0.13.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "d6319ec783876579b608840cdfe1d8b566c72f74"
+                "reference": "d1e069db8ad3b4aea2b968248370c21415e4c180"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/d6319ec783876579b608840cdfe1d8b566c72f74",
-                "reference": "d6319ec783876579b608840cdfe1d8b566c72f74",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/d1e069db8ad3b4aea2b968248370c21415e4c180",
+                "reference": "d1e069db8ad3b4aea2b968248370c21415e4c180",
                 "shasum": ""
             },
             "require": {
@@ -11078,7 +11188,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.13.9"
+                "source": "https://github.com/rectorphp/rector/tree/0.13.10"
             },
             "funding": [
                 {
@@ -11086,7 +11196,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-23T10:55:44+00:00"
+            "time": "2022-08-03T12:48:10+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -13011,10 +13121,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "shield-w4ll/simple-authenticator": 20,
-        "threelever/curriculum-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
