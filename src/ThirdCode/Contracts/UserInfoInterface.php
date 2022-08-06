@@ -2,7 +2,7 @@
 
 namespace App\ThirdCode\Contracts;
 
-use Threelever\CurriculumBundle\Contract\UserInfoInterface as BaseUserInfoInterface;
+use ShieldW4ll\CurriculumBundle\Contract\UserInfoInterface as BaseUserInfoInterface;
 
 interface UserInfoInterface extends BaseUserInfoInterface
 {

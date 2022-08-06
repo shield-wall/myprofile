@@ -66,6 +66,19 @@ jobs:
     needs: build
     container:
       image: 3lever/php:8.1.8-fpm-postgresql-dev
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: myprofile
+          POSTGRES_PASSWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2
 
@@ -77,6 +90,12 @@ jobs:
             vendor
             node_modules
             public
+
+      - name: Setup Database
+        run: composer db
+
+      - name: Fixtures
+        run: composer db:fixtures
 
       - name: See files
         run: |

@@ -10,7 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method User[] findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null)
- * @method User|null findOneBy(array $criteria, ?array $orderBy = null)
+ * @method UserInterface findOneBy(array $criteria, ?array $orderBy = null)
  */
 class UserRepository extends ServiceEntityRepository implements EmailRepositoryInterface
 {

@@ -255,6 +255,9 @@
             "config/packages/sentry.yaml"
         ]
     },
+    "shield-w4ll/curriculum-bundle": {
+        "version": "v0.1.0"
+    },
     "shield-w4ll/simple-authenticator": {
         "version": "v0.1.0"
     },
@@ -635,9 +638,6 @@
             "version": "1.0",
             "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
         }
-    },
-    "threelever/curriculum-bundle": {
-        "version": "dev-main"
     },
     "transloadit/php-sdk": {
         "version": "v2.1.0"

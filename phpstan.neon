@@ -1,10 +1,15 @@
 parameters:
-    level: 7
+    level: max
     paths:
         - src
     checkGenericClassInNonGenericObjectType: false
     excludePaths:
         analyseAndScan:
             - src/EventListener/UpdateCurriculumListener.php
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
     ignoreErrors:
-    		- '#\$id is never written, only read.#'
+        - '#is never written, only read.#'
+        - '#type mapping mismatch\: property can contain App\\Entity\\UserInterface#'

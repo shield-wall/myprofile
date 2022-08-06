@@ -22,31 +22,31 @@ class UserSocialNetworking implements UserSocialNetworkInterface, EntityInterfac
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    protected ?int $id = null;
+    protected int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userSocialNetworks')]
-    #[ORM\JoinColumn(name: 'user_id')]
-    protected ?UserInterface $user = null;
+    #[ORM\JoinColumn(name: 'user_id', nullable: false)]
+    protected UserInterface $user;
 
     #[ORM\ManyToOne(targetEntity: SocialNetworking::class, fetch: 'EAGER', inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'social_networking_id', nullable: false)]
-    protected ?SocialNetworking $socialNetworking = null;
+    protected SocialNetworking $socialNetworking;
 
     #[Assert\Length(max: 200)]
     #[ORM\Column(type: Types::STRING, length: 200)]
-    protected ?string $link = null;
+    protected string $link;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getSocialNetworking(): ?SocialNetworking
+    public function getSocialNetworking(): SocialNetworking
     {
         return $this->socialNetworking;
     }
 
-    public function setSocialNetworking(?SocialNetworking $socialNetworking): self
+    public function setSocialNetworking(SocialNetworking $socialNetworking): self
     {
         $this->socialNetworking = $socialNetworking;
 
@@ -67,7 +67,6 @@ class UserSocialNetworking implements UserSocialNetworkInterface, EntityInterfac
 
     public function getIconClass(): string
     {
-        //@TODO make icon field required!
-        return $this->getSocialNetworking()->getIcon() ?? 'far fa-circle';
+        return $this->socialNetworking->getIcon();
     }
 }

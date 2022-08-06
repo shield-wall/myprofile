@@ -9,6 +9,7 @@ use App\Service\CurriculumService;
 use App\Service\ProfileImageService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,8 +34,13 @@ class MainController extends AbstractController
         $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $profileImageService->upload($user, $form->get('profile_image')->getData());
-            $backgroundImageService->upload($user, $form->get('background_image')->getData());
+            /** @var ?UploadedFile $profileImage */
+            $profileImage = $form->get('profile_image')->getData();
+            /** @var ?UploadedFile $backgroundImage */
+            $backgroundImage = $form->get('background_image')->getData();
+
+            $profileImageService->upload($user, $profileImage);
+            $backgroundImageService->upload($user, $backgroundImage);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();

@@ -24,8 +24,8 @@ class Certification implements EntityInterface, HasUserInterface, CertificationI
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'certifications')]
-    #[ORM\JoinColumn(name: 'user_id')]
-    protected ?UserInterface $user = null;
+    #[ORM\JoinColumn(name: 'user_id', nullable: false)]
+    protected UserInterface $user;
 
     #[Assert\Length(max: 100)]
     #[ORM\Column(name: 'title', type: Types::STRING, length: 100)]

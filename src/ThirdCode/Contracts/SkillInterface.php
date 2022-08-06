@@ -2,7 +2,7 @@
 
 namespace App\ThirdCode\Contracts;
 
-use Threelever\CurriculumBundle\Contract\SkillInterface as BaseSkillInterface;
+use ShieldW4ll\CurriculumBundle\Contract\SkillInterface as BaseSkillInterface;
 
 interface SkillInterface extends BaseSkillInterface
 {
