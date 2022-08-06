@@ -33,6 +33,8 @@ it('checks if the page is loading', function (string $url, string $tag = null) {
     'Static sitemap (Portuguese)' => ['/sitemap.static_pt_BR.xml'],
     'Profile sitemap (English)' => ['/sitemap.profile_en.xml'],
     'Profile sitemap (Portuguese)' => ['/sitemap.profile_pt_BR.xml'],
+
+    'Robots txt' => ['/robots.txt'],
 ]);
 
 it('is redirecting', function (string $url, string $redirectTo) {
