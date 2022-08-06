@@ -30,6 +30,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('profile_edit');
         }
 
+        /** @var ?string $submittedToken */
         $submittedToken = $request->get('token');
 
         if (!$this->isCsrfTokenValid('third-party-login', $submittedToken)) {

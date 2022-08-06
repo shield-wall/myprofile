@@ -22,7 +22,7 @@ class UserSocialNetworking implements UserSocialNetworkInterface, EntityInterfac
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    protected ?int $id = null;
+    protected int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userSocialNetworks')]
     #[ORM\JoinColumn(name: 'user_id', nullable: false)]

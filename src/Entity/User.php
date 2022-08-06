@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    protected ?int $id = null;
+    protected int $id;
 
     #[Assert\Length(max: 200)]
     #[Assert\Email]
@@ -162,7 +162,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
 
     private string $backgroundImage;
 
-    private string $website;
+    private ?string $website = null;
 
     public function __construct()
     {
@@ -485,7 +485,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }

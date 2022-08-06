@@ -29,7 +29,7 @@ class UserLanguage implements EntityInterface, HasUserInterface, SpeakLanguageIn
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
-    private ?int $id = null;
+    private int $id;
 
     #[Assert\Length(max: 50)]
     #[ORM\Column(type: Types::STRING, length: 50)]

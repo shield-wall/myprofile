@@ -1,5 +1,5 @@
 parameters:
-    level: 7
+    level: max
     paths:
         - src
     checkGenericClassInNonGenericObjectType: false
@@ -8,10 +8,6 @@ parameters:
             - src/EventListener/UpdateCurriculumListener.php
     doctrine:
         objectManagerLoader: tests/object-manager.php
-    symfony:
-        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
-    scanDirectories:
-        - var/cache/dev/Symfony/Config
     ignoreErrors:
         - '#is never written, only read.#'
         - '#type mapping mismatch\: property can contain App\\Entity\\UserInterface#'

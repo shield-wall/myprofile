@@ -56,9 +56,11 @@ class ThirdPartyAuthenticator extends AbstractAuthenticator
 
         /** @var GoogleUser $ownerDetails */
         $ownerDetails = $this->provider->getResourceOwner($apiToken); //@phpstan-ignore-line
+        /** @var string $emailGoogle */
+        $emailGoogle = $ownerDetails->getEmail();
 
         return new SelfValidatingPassport(
-            new UserBadge($ownerDetails->getEmail(), function ($email) use ($ownerDetails) {
+            new UserBadge($emailGoogle, function (string $email) use ($ownerDetails) {
                 // TODO Refactor this method.
                 $user = $this->userRepository->findOneBy(['email' => $email]);
 
@@ -67,7 +69,7 @@ class ThirdPartyAuthenticator extends AbstractAuthenticator
                     $user
                         ->setFirstName($ownerDetails->getFirstName())
                         ->setLastName($ownerDetails->getLastName())
-                        ->setEmail($ownerDetails->getEmail())
+                        ->setEmail($email)
                         ->setIsVerified(true)
                     ;
 

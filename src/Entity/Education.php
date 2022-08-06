@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\EventListener\UpdateCurriculumListener;
 use App\Repository\EducationRepository;
 use App\ThirdCode\Contracts\EducationInterface;
-use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,7 +20,7 @@ class Education implements EntityInterface, HasUserInterface, EducationInterface
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    protected ?int $id = null;
+    protected int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'educations')]
     #[ORM\JoinColumn(name: 'user_id', nullable: false)]
