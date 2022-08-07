@@ -16,8 +16,8 @@ it('checks if the page is loading', function (string $url, string $tag = null) {
     'Homepage (Portuguese)' => ['/', '#logo'],
     'Homepage (English)' =>['/en', '#logo'],
 
-    'Public user card (Portuguese)' => ['/pt_BR/card/test-mock', '#card-page'],
-    'Public user card (English)' => ['/en/card/test-mock', '#card-page'],
+    'Public user profile (Portuguese)' => ['/test-mock', '#home-title'],
+    'Public user profile (English)' => ['/test-mock/en', '#home-title'],
 
     'Curriculum (Portuguese)' => ['/curriculum/test-mock/pt_BR', '#name'],
     'Curriculum (English)' => ['/curriculum/test-mock/en', '#name'],
@@ -48,4 +48,7 @@ it('is redirecting', function (string $url, string $redirectTo) {
 })->with([
     'Logout (Portuguese)' => ['/logout', 'http://localhost/login'],
     'Logout (English)' => ['/logout/en', 'http://localhost/login/en'],
+
+    'list all users - Admin' => ['/admin/en/user', '/login/en'],
+    'list all social network - Admin' => ['/admin/en/socialnetworking/', '/login/en'],
 ]);

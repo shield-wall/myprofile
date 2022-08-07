@@ -35,14 +35,6 @@ class SiteController extends AbstractController
         return $response;
     }
 
-    #[Route(path: '/{locale}/card/{slug}', name: 'card')]
-    public function card(User $user): Response
-    {
-        return $this->render('site/card.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
     #[Route(path: '/{_locale}', name: 'homepage', defaults: ['_locale' => 'pt_BR'])]
     #[Route(path: '/login/{_locale}', name: 'login', defaults: ['_locale' => 'pt_BR'])]
     public function homepage(UserRepository $userRepository): Response
@@ -57,14 +49,6 @@ class SiteController extends AbstractController
         return $this->render('site/index.html.twig', [
             'users' => $users,
             'simpleAuthenticatorFrom' => $simpleAuthenticatorFromView,
-        ]);
-    }
-
-    #[Route(path: '/aaa/{slug}/{_locale}', name: 'user_profile', defaults: ['_locale' => 'pt_BR'])]
-    public function userProfileAction(User $user): Response
-    {
-        return $this->render('default/profile.html.twig', [
-            'user' => $user,
         ]);
     }
 
@@ -85,6 +69,14 @@ class SiteController extends AbstractController
             UserSocialNetworkInterface::INDEX => $user->getUserSocialNetworks(),
             SpeakLanguageInterface::INDEX => $user->getUserLanguages(),
             UserInfoInterface::INDEX => $user,
+        ]);
+    }
+
+    #[Route(path: '/{slug}/{_locale}', name: 'user_profile', defaults: ['_locale' => 'pt_BR'])]
+    public function userProfileAction(User $user): Response
+    {
+        return $this->render('default/profile.html.twig', [
+            'user' => $user,
         ]);
     }
 }
