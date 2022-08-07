@@ -35,7 +35,7 @@ class SiteController extends AbstractController
         return $response;
     }
 
-    #[Route(path: '/{locale}/card/{slug}', name: 'card')]
+    #[Route(path: '/{_locale}/card/{slug}', name: 'card', defaults: ['_locale' => 'pt_BR'])]
     public function card(User $user): Response
     {
         return $this->render('site/card.html.twig', [

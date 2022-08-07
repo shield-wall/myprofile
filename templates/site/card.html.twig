@@ -1,5 +1,33 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets encore_entry_link_tags('web-site') %}
+
+{% block title %}{{ user.firstName ~ ' ' ~ user. lastName }}{% endblock %}
+
+{% block description %}{{ user.headline }}{% endblock %}
+
+{% block keywords %}{{ user.keyWords }}{% endblock %}
+{% block metaTags %}
+    <meta property="og:title" content="{{ user.getFirstName() ~ ' ' ~ user.getLastName() }}" />
+    <meta property="og:image" content="{{ user.getProfileImage()}}">
+    <meta property="og:url" content="{{app.request.schemeAndHttpHost ~ path('app_card', { 'slug': user.slug}) }}">
+{% endblock %}
+
 {% block body %}
-    <div id="card-page">gggg</div>
+    <div id="card-page">
+        <div id="homepageHero" class="hero is-fullheight">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="columns">
+                        <div class="column is-half is-offset-one-quarter">
+                            {% include 'component/_card.html.twig' with {'user': user} %}
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+
+        </div>
+    </div>
 {% endblock %}
