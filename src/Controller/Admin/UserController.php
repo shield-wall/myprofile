@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * User controller.
  */
-#[Route(path: '/admin/{_locale}/user', name: 'admin_user_')]
+#[Route(path: '/user', name: 'user_')]
 class UserController extends AbstractController
 {
     /**

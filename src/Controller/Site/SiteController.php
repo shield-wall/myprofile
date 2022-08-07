@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Site;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(name: 'app_', requirements: ['_locale' => 'en|pt_BR'])]
+#[Route(name: 'app_')]
 class SiteController extends AbstractController
 {
     #[Route(path: '/{_locale}/privacy-policy', name: 'privacy_policy', defaults: ['_locale' => 'pt_BR'])]
@@ -35,8 +35,16 @@ class SiteController extends AbstractController
         return $response;
     }
 
+    #[Route(path: '/{locale}/card/{slug}', name: 'card')]
+    public function card(User $user): Response
+    {
+        return $this->render('site/card.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
     #[Route(path: '/{_locale}', name: 'homepage', defaults: ['_locale' => 'pt_BR'])]
-    #[Route(path: '/login/{_locale}', name: 'login')]
+    #[Route(path: '/login/{_locale}', name: 'login', defaults: ['_locale' => 'pt_BR'])]
     public function homepage(UserRepository $userRepository): Response
     {
         $users = $userRepository->findBy(['isVerified' => true], ['updatedAt' => 'desc'], 18);
@@ -52,7 +60,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/{slug}/{_locale}', name: 'user_profile', defaults: ['_locale' => 'pt_BR'])]
+    #[Route(path: '/aaa/{slug}/{_locale}', name: 'user_profile', defaults: ['_locale' => 'pt_BR'])]
     public function userProfileAction(User $user): Response
     {
         return $this->render('default/profile.html.twig', [
@@ -65,7 +73,7 @@ class SiteController extends AbstractController
      * I removed _locale default from Class because here it's required,
      *      but it can be resolved creating other controller.
      */
-    #[Route(path: '/{slug}/curriculum/{_locale}', name: 'curriculum')]
+    #[Route(path: '/curriculum/{slug}/{_locale}', name: 'curriculum')]
     public function curriculumAction(User $user): Response
     {
         return $this->render('@!Curriculum/cv01/index.html.twig', [

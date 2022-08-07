@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\SocialNetworking;
 use App\Form\SocialNetworkingType;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/{_locale}/admin/socialnetworking', name: 'admin_socialnetworking_', requirements: ['_locale' => 'en|pt_BR'], defaults: ['_locale' => 'pt_BR'])]
+#[Route(path: '/socialnetworking', name: 'socialnetworking_')]
 class SocialNetworkingController extends AbstractController
 {
     public function __construct(private readonly EntityManagerInterface $entityManager)
