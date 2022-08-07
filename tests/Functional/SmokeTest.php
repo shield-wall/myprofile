@@ -19,13 +19,13 @@ it('checks if the page is loading', function (string $url, string $tag = null) {
     'Public user profile (Portuguese)' => ['/test-mock', '#home-title'],
     'Public user profile (English)' => ['/test-mock/en', '#home-title'],
 
-    'Curriculum (Portuguese)' => ['/test-mock/curriculum/pt_BR', '#name'],
-    'Curriculum (English)' => ['/test-mock/curriculum/en', '#name'],
+    'Curriculum (Portuguese)' => ['/curriculum/test-mock/pt_BR', '#name'],
+    'Curriculum (English)' => ['/curriculum/test-mock/en', '#name'],
 
     'Privacy policy (Portuguese)' => ['/pt_BR/privacy-policy', '#privacy-policy-title'],
     'Privacy policy (English)' => ['/en/privacy-policy', '#privacy-policy-title'],
 
-    'Login (Portuguese)' => ['/login/pt_BR', '#logo'],
+    'Login (Portuguese)' => ['/login', '#logo'],
     'Login (English)' => ['/login/en', '#logo'],
 
     'Main sitemap' => ['/sitemap.xml'],
@@ -46,6 +46,9 @@ it('is redirecting', function (string $url, string $redirectTo) {
     $client->request(Request::METHOD_GET, $redirectTo);
     expect($client->getResponse()->isRedirect())->toBeFalse();
 })->with([
-    'Logout (Portuguese)' => ['/logout/pt_BR', 'http://localhost/login/pt_BR'],
+    'Logout (Portuguese)' => ['/logout', 'http://localhost/login'],
     'Logout (English)' => ['/logout/en', 'http://localhost/login/en'],
+
+    'list all users - Admin' => ['/admin/en/user', '/login/en'],
+    'list all social network - Admin' => ['/admin/en/socialnetworking/', '/login/en'],
 ]);

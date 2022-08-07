@@ -1,19 +1,35 @@
 presta_sitemap:
   resource: "@PrestaSitemapBundle/config/routing.yml"
 
-controllers:
-  resource: ../src/Controller/
-  type: annotation
-
-kernel:
-  resource: ../src/Kernel.php
-  type: annotation
-
 profile:
   resource: ../src/Controller/Profile/
   type: annotation
   prefix: /profile/{_locale}
   name_prefix: profile_
+  requirements:
+    _locale: en|pt_BR
+  defaults:
+    _locale: pt_BR
+
+admin:
+  resource: ../src/Controller/Admin/
+  type: annotation
+  prefix: /admin/{_locale}
+  name_prefix: admin_
+  requirements:
+    _locale: en|pt_BR
+  defaults:
+    _locale: pt_BR
+
+site:
+  resource: ../src/Controller/Site/
+  type: annotation
+  requirements:
+    _locale: en|pt_BR
+
+kernel:
+  resource: ../src/Kernel.php
+  type: annotation
 
 # it's a fake endpoint, ThirdPartyAuthenticator will handle it.
 app_auth_third_party__callback:
