@@ -22,7 +22,7 @@ class SetWebSiteInUserListener
         }
 
         $webSite = $this->urlGenerator->generate('app_user_profile', ['slug' => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL);
-        $webSite = str_replace(['http', 'https', 'www'], '', $webSite);
+        $webSite = str_replace(['http://', 'https://', 'www'], '', $webSite);
 
         $entity->setWebSite($webSite);
     }
