@@ -15,6 +15,12 @@ beforeEach(function () {
 
     $this->client = $client;
 });
+it('is loading the list page', function (string $listUrl) {
+    $this->client->request(Request::METHOD_GET, $listUrl);
+    $this->assertResponseIsSuccessful();
+})->with([
+    'User social network' => '/profile/en/user-social-network',
+]);
 
 it('is creating a new register', function (string $listUrl, array $formFields) {
     $crawler = $this->client->request(Request::METHOD_GET, $listUrl);
