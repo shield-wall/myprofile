@@ -25,6 +25,7 @@
 					{% for userSocialNetworking in data %}
 						{% set path = path('profile_user-social-network_edit', { 'id': userSocialNetworking.id }) %}
 						<tr>
+							<td class="identify is-hidden">{{ userSocialNetworking.id }}</td>
 							<td>
 								<a href="{{path}}">
 									<i class="{{ userSocialNetworking.socialNetworking.icon }}"></i>

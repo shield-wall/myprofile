@@ -86,7 +86,7 @@ form:
     summary: Summary
     key_words: Keywords (separated by commas)
 
-  social_network:
+  user-social-network:
     head:
       title: Social network
     socialNetwork: Social network

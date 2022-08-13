@@ -23,12 +23,12 @@ uses(WebTestCase::class)->in('Functional');
 
 dataset('page_list', [
     //TODO this test requires that refresh database.
-//    'User social network' => [
-//        '/profile/en/user-social-network',
-//        [
-//            'user_social_networking[link]' => faker()->url(),
-//        ],
-//    ],
+    'User social network' => [
+        '/profile/en/user-social-network',
+        [
+            'user_social_networking[link]' => faker()->url(),
+        ],
+    ],
     'Education' => [
         '/profile/en/education',
         [
