@@ -1,54 +1,6 @@
-{% trans_default_domain 'MyProfile' %}
-
-<div class="modal" id="model_remove_item">
-	<div class="modal-background"></div>
-	<div class="modal-card">
-		<header class="modal-card-head">
-			<p class="modal-card-title">{{'form.modal.delete_item.title'|trans}}</p>
-		</header>
-		<section class="modal-card-body">
-			{{'form.modal.delete_item.message'|trans}}
-		</section>
-		<footer class="modal-card-foot">
-			<form method="post" action="" id="form_remove_item">
-				<input type="hidden" name="_method" value="DELETE">
-				<input type="hidden" name="_token" id="input_token_remove_item" value="">
-				<button class="button is-primary" type="submit">
-					<span class="icon">
-						<i class="fa fa-check"></i>
-					</span>
-					<span>{{'form.modal.delete_item.button.yes'|trans}}</span>
-				</button>
-
-				<div class="button is-danger is-spacing" onclick="closeModalRemoveItem()">
-					<span class="icon">
-						<i class="fa fa-close"></i>
-					</span>
-					<span>{{'form.modal.delete_item.button.no'|trans}}</span>
-				</div>
-			</form>
-		</footer>
-	</div>
-</div>
-
-<a href="#" class="button is-text has-text-danger delete-button" onclick="openModalRemoveItem('{{ path(router, {'id': id}) }}', '{{ csrf_token('delete' ~ id) }}')">
+<a href="#" class="button is-text has-text-danger delete-button" onclick="openModalRemoveItem('{{ path(router, {'id': id}) }}', '{{ csrf_token('delete_' ~ id) }}')">
 	<span class="icon is-small">
 		<i class="fa fa-trash"></i>
 	</span>
+	<span class="csrf_token is-hidden">{{ csrf_token('delete_' ~ id) }}</span>
 </a>
-
-<script>
-	function openModalRemoveItem(path, csrf_token) {
-        $modal = document.getElementById("model_remove_item");
-        $form = document.getElementById("form_remove_item");
-        $formToken = document.getElementById('input_token_remove_item');
-
-        $modal.classList.add("is-active");
-        $form.action = path;
-        $formToken.value = csrf_token;
-    }
-
-    function closeModalRemoveItem() {
-        document.getElementById("model_remove_item").classList.remove("is-active");
-    }
-</script>

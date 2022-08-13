@@ -27,6 +27,7 @@
                     {% for skill in data %}
                         {% set path = path('profile_skill_edit', { 'id': skill.id }) %}
                         <tr>
+                            <td class="identify is-hidden">{{ skill.id }}</td>
                             <td>{{ skill.priority }}</td>
                             <td>{{ skill.name }}</td>
                             <td class="is-hidden-touch">{{ skill.levelExperience }}</td>

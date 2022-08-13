@@ -26,7 +26,7 @@ abstract class AbstractCrudController extends AbstractController
         $user = $this->getUser();
 
         return $this->render(sprintf('profile/%s.html.twig', static::PREFIX), [
-            'data' => $repository->getOwnerData($user),
+            'data' => $repository->getOwnerData($user)
         ]);
     }
 
@@ -59,8 +59,8 @@ abstract class AbstractCrudController extends AbstractController
         /** @var string $token */
         $token = $request->request->get('_token');
 
-        if ($this->isCsrfTokenValid('delete' . $entity->getId(), $token)) {
-            $this->entityManager->persist($entity);
+        if ($this->isCsrfTokenValid('delete_' . $entity->getId(), $token)) {
+            $this->entityManager->remove($entity);
             $this->entityManager->flush();
 
             $this->addFlash('success', 'messages.item_removed');

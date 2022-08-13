@@ -9,3 +9,8 @@ App\Entity\Certification:
     institution: <lastName()>
     periodStart: <dateTimeBetween("-200 days", "now")>
     user: '@user_test_2'
+  certification{4..8}):
+    title: <firstName()>
+    institution: <lastName()>
+    periodStart: <dateTimeBetween("-200 days", "now")>
+    user: '@user_profile'

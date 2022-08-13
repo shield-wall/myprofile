@@ -28,6 +28,7 @@
                     {% for certification in data %}
                         {% set path = path('profile_certification_edit', { 'id': certification.id }) %}
                         <tr>
+                            <td class="identify is-hidden">{{ certification.id }}</td>
                             <td>{{ certification.title }}</td>
                             <td class="is-hidden-touch">{{ certification.institution }}</td>
                             <td class="is-hidden-touch">{% if certification.periodStart %}{{ certification.periodStart|date('d/m/Y') }}{% endif %}</td>

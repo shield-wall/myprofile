@@ -6,3 +6,7 @@ App\Entity\SocialNetworking:
   social_network_2:
     name: Github
     icon: fa-brands fa-github
+
+  social_network_3:
+    name: Linkedin
+    icon: fab fa-linkedin-in

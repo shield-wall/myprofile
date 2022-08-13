@@ -88,7 +88,7 @@ form:
     summary: Resumo
     key_words: Palavras chaves (separado por vírgulas)
 
-  social_network:
+  user-social-network:
     head:
       title: Rede social
     socialNetwork: Rede social

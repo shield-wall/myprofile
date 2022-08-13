@@ -27,6 +27,7 @@
                     {% for language in data %}
                         {% set path = path('profile_user_language_edit', { 'id': language.id }) %}
                         <tr>
+                            <td class="identify is-hidden">{{ language.id }}</td>
                             <td>{{ language.name }}</td>
                             <td>{{ language.level }}</td>
                             <td class="table-list-actions">

@@ -20,8 +20,11 @@
 		<div class="section">
 			<div class="columns is-centered">
 				<div class="column is-10">
+					{% include 'profile/partial/form/delete_modal.html.twig' %}
 					{% include 'profile/partial/flashmessages.html.twig' with { 'auto_hide': true } %}
-					{% block body %}{% endblock body %}
+					<div id="content-page">
+						{% block body %}{% endblock body %}
+					</div>
 				</div>
 			</div>
 		</div>

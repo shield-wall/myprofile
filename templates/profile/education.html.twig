@@ -27,6 +27,7 @@
 						{% for education in data %}
 							{% set path = path('profile_education_edit', { 'id': education.id }) %}
 							<tr>
+								<td class="identify is-hidden">{{ education.id }}</td>
 								<td>{{ education.title }}</td>
 								<td class="is-hidden-touch">{{ education.institution }}</td>
 								<td class="is-hidden-touch">

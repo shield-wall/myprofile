@@ -21,7 +21,7 @@ it('is checking if the page is loaded', function (string $url, string $field = n
     $this->assertResponseIsSuccessful();
 
     if ($field) {
-        $this->assertEquals($value, $crawler->filter('form')->form()->get($field)->getValue());
+        $this->assertEquals($value, $crawler->filter('#content-page form')->form()->get($field)->getValue());
     }
 })->with(function () {
         #main
@@ -77,7 +77,7 @@ it('is checking that the user can not access data/page from other user', functio
     $container = $this->getContainer();
 
     $userRepository = $container->get(UserRepository::class);
-    $user1 = $userRepository->findOneBy(['email' => 'test@myprofile.pro']);
+    $user1 = $userRepository->findOneBy(['email' => 'test-profile@myprofile.pro']);
     $user2 = $userRepository->findOneBy(['email' => 'test2@myprofile.pro']);
 
     $client->loginUser($user1);

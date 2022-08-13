@@ -27,6 +27,7 @@
                     {% for experience in data %}
                         {% set path = path('profile_experience_edit', { 'id': experience.id }) %}
                         <tr>
+                            <td class="identify is-hidden">{{ experience.id }}</td>
                             <td>{{ experience.title }}</td>
                             <td class="is-hidden-touch">{{ experience.company }}</td>
                             <td class="is-hidden-touch">
