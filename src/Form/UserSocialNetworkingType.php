@@ -26,7 +26,6 @@ class UserSocialNetworkingType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserSocialNetworking::class,
-            'translation_domain' => 'MyProfile',
         ]);
     }
 }

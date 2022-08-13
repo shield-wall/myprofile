@@ -28,7 +28,6 @@ class UserLanguageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserLanguage::class,
-            'translation_domain' => 'MyProfile',
         ]);
     }
 }

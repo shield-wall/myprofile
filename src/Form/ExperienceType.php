@@ -48,7 +48,6 @@ class ExperienceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Experience::class,
-            'translation_domain' => 'MyProfile',
         ]);
     }
 }
