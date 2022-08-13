@@ -53,3 +53,23 @@ it('is updating an item', function (string $listUrl, array $formFields) {
 
     $this->assertResponseRedirects($listUrl);
 })->with('page_list');
+
+it('is removing the item', function (string $listUrl) {
+    $crawler = $this->client->request(Request::METHOD_GET, $listUrl);
+    $rows = $crawler->filter('#table-list tbody tr');
+    $quantityOfRows = $rows->count();
+    $identity = $rows->first()->filter('.identify')->text();
+    $csrfToken = $rows->first()->filter('.csrf_token')->text();
+
+    expect($quantityOfRows)->toBeGreaterThan(0);
+
+    //Check if the register is in the list after remove.
+    $this->client->request(Request::METHOD_POST, sprintf('%s/%s/del', $listUrl, $identity), [
+        '_token' => $csrfToken,
+    ]);
+    $this->assertResponseRedirects($listUrl);
+
+    $crawler = $this->client->request(Request::METHOD_GET, $listUrl);
+    $rows = $crawler->filter('#table-list tbody tr');
+    expect($rows->count())->toBeLessThan($quantityOfRows);
+})->with('page_list');
