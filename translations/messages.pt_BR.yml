@@ -1,57 +1,9 @@
 page:
   title:
-    login: Entrar
-    registration: Registrar
-    reset_password: Redefinir senha
-    check_email: Email para redefinição de senha enviado
-    change_password: Trocar senha
     account:
       main: Principal
 
-security:
-  registration:
-    title: Registre-se
-    message: para usar todas as funcionalidades da aplicação
-    submit: Registrar
-  login:
-    title: Bem-vindo novamente!
-    message: Por favor, Informe seus dados para acessar sua conta
-    remember_me: Permanecer conectado
-    submit: Entrar
-    third_party:
-      google_button: Entrar com o google
-  reset_password:
-    title: Redefinir minha senha
-    message: Informe seu email e nós enviaremos um link para você resetar sua senha
-    submit: Redefinir senha
-  change_password:
-    message: |
-      Foi enviado um email contendo um link no qual você pode clicar para redefinir sua senha. Este link irá expirar em 1 hora.
-
-      Se você não receber um email, verifique sua pasta de spam ou <a href="%try_again_link%">tente novamente</a>.
-
-user:
-  first_name: Nome
-  last_name: Sobrenome
-  email: Email
-  password: Senha
-  password_confirmation: Repita a senha
-  current_password: Senha atual
-
 email:
-  registration:
-    subject: Por favor confirme seu email
-    title: Olá, %firstName% %lastName%
-    message: Estamos ansiosos para que você comece. Primeiro, você precisa confirmar sua conta. Basta pressionar o botão abaixo.
-    message_hidden: Estamos muito felizes em ter você aqui! Prepare-se para mergulhar em sua nova conta.
-    button: Confirme sua conta
-  reset_password:
-    success_message: Senha redefinida com sucesso!
-    subject: Sua solicitação de redefinição de senha
-    message: Recentemente, você solicitou a redefinição da senha da sua conta do My profile. Clique no link abaixo para redefini-la.
-    message_hidden: Redefina a senha da sua conta do My profile.
-    additional_info: Este link irá expirar em %hour% hora.
-    button: Resetar minha senha
   hello: Olá, %firstName% %lastName%
   link_suggestion: Se isso não funcionar, copie e cole o seguinte link no seu navegador
   help: Se você tiver alguma dúvida, responda a este email, estaremos sempre dispostos a ajudar.
@@ -61,6 +13,7 @@ site:
   title_message: Crie seu currículo em PDF e site pessoal em poucos minutos!
   registration: Continuar com o google
   last_updates: Veja alguns exemplos de currículos
+  welcome: Welcome
 
 messages:
   item_saved: Salvo com sucesso!
@@ -70,3 +23,142 @@ messages:
     title: Você não tem nenhum registro cadastrado
     sub_title: Mas ei, você pode resolver isso clicando aqui
     new_item: Novo registro
+
+navegation:
+  home: Início
+  about: Sobre
+  resume: Resumo
+  skills: Habilidades
+  portfolio: Portifólio
+  contact: Contato
+  education: Educação
+  experience: Experiência
+  registration: Criar meu currículo %year%
+  languages: Idiomas
+  social_network: Rede social
+  main: Principal
+  certification: Certificação
+  update_cv: Atualizar PDF
+  change_password: Trocar senha
+  sign_out: Sair
+  users_list: Lista de usuários
+  cv_download_en: CV em inglês
+  cv_download_pt_BR: CV em português
+
+about:
+  about: Sobre
+  objective: Objetivo
+  name: Nome
+  country: País
+  email: E-mail
+
+default:
+  last_registrations: Veja alguns exemplos de currículos
+  send_message: Enviar mensagem
+  send_me_message: Envie-me uma mensagem
+  download_resume: Download currículo
+  resume: Resumo
+  more_skills: Mais habilidades
+
+form:
+  default:
+    actions: Ações
+
+  login:
+    show_my_profile: visualizar meu perfil
+    edit_my_profile: editar meu perfil
+
+  submit:
+    edit: Salvar
+    create: Cadastrar
+    new: Novo
+    back: Voltar
+
+  modal:
+    delete_item:
+      title: Deletar registro
+      message: Você tem certeza que deseja deletar este item?
+      button:
+        yes: Sim
+        no: Não
+
+  main:
+    head:
+      title: Principal
+    first_name: Primeiro nome
+    last_name: Último Nome
+    profile_image: Imagem do perfil
+    background_image: Imagem de fundo
+    birthday: Aniversário
+    gender: Sexo
+    slug: Url do site
+    male: Masculino
+    female: Femenino
+    role: Cargo profissional
+    headline: Título
+    country: País
+    state: Estado
+    city: Cidade
+    phone: Telefone
+    cell: Celular
+    summary: Resumo
+    key_words: Palavras chaves (separado por vírgulas)
+
+  social_network:
+    head:
+      title: Rede social
+    socialNetwork: Rede social
+
+  user-social-network:
+    head:
+      title: Rede social
+
+  education:
+    head:
+      title: Educação
+    title: Nome do curso
+    institution: Instituição
+    description: Descrição
+    start_period: Início do periodo
+    end_period: Fim do periodo
+
+  experience:
+    head:
+      title: Experiências
+    title: Nome do cargo
+    description: Descrição
+    company: Empresa
+    start_period: Início do periodo
+    end_period: Fim do periodo
+
+  certification:
+    head:
+      title: Certificações
+    title: Título
+    institution: Instituição
+    image: Logo
+    image_url: Url da imagem
+    link: Link
+    start_period: Início do periodo
+    end_period: Fim do periodo
+
+  language:
+    head:
+      title: Idiomas
+    name: Idioma
+    level: Nível
+
+  user_language:
+    head:
+      title: Idiomas
+
+  skill:
+    head:
+      title: Habilidades
+    name: Nome
+    level_experience: Nível de experiência (%)
+    priority: Prioridade
+
+language:
+  english: Inglês
+  portuguese: Português

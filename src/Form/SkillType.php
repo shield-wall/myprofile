@@ -41,7 +41,6 @@ class SkillType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Skill::class,
-            'translation_domain' => 'MyProfile',
         ]);
     }
 }

@@ -1,58 +1,14 @@
 page:
   title:
-    login: Welcome
-    registration: Sign up
-    reset_password: Reset password
-    check_email: Password Reset Email Sent
-    change_password: Change password
     account:
       main: Main
 
 security:
-  registration:
-    title: Hello, Friend!
-    submit: Sign up
-    message: Enter your personal detail and start journey with us
   login:
-    title: Welcome back!
-    message: Please login to access your account
-    remember_me: Remember me
-    submit: Log in
     third_party:
       google_button: login with google
-  reset_password:
-    title: Reset your password
-    message: Enter your email address and we will send you a link to reset your password.
-    submit: Reset password
-  change_password:
-    message: |
-      An email has been sent that contains a link that you can click to reset your password. This link will expire in 1 hour.
-
-      If you don't receive an email please check your spam folder or <a href="%try_again_link%">try again</a>.
-
-user:
-  first_name: First Name
-  last_name: Last Name
-  email: Email
-  password: Password
-  password_confirmation: Repeat password
-  current_password: Current password
 
 email:
-  registration:
-    is_verified: Your email address has been verified.
-    subject: Please Confirm your Email
-    message: We're excited to have you get started. First, you need to confirm your account. Just press the button below.
-    message_hidden: We're thrilled to have you here! Get ready to dive into your new account.
-    additional_info: This link will expire in %hour% hour.
-    button: Confirm your account
-  reset_password:
-    success_message: Password reseted with success!
-    subject: Your password reset request
-    message: You recently requested to reset your password for your My profile account. Click the link below to reset it.
-    message_hidden: Reset your password for your My profile account.
-    additional_info: This link will expire in %hour% hour.
-    button: Reset my password
   hello: Hi, %firstName% %lastName%
   link_suggestion: If that does not work, copy and paste the following link in your browser
   help: If you have any questions, just reply to this email, we're always happy to help out.
@@ -61,8 +17,8 @@ email:
     My profile Team
 
 site:
+  welcome: Bem-vindo
   title_message: Make your curriculum vitae in PDF or personal website in few minutes!
-  registration: Continue with google
   last_updates: Look some curriculum vitae example
 
 messages:
@@ -74,3 +30,141 @@ messages:
     sub_title: Hey, But you can resolve it, clicking here
     new_item: New item
 
+#It was in Myprofile translation
+navegation:
+  home: Home
+  about: About
+  resume: Resume
+  skills: Skills
+  portfolio: Portfólio
+  contact: Contact
+  education: Education
+  experience: Experience
+  registration: Make my curriculum vitae %year%
+  languages: Languages
+  social_network: Social network
+  main: Main
+  certification: Certification
+  update_cv: Update PDF
+  change_password: Change password
+  sign_out: Sign out
+  users_list: User list
+  cv_download_en: CV in english
+  cv_download_pt_BR: CV in portuguese
+
+about:
+  about: About
+  objective: Objective
+  name: Name
+  country: Country
+  email: E-mail
+
+default:
+  last_registrations: Look some curriculum vitae example
+  send_message: Send message
+  send_me_message: Send me an message
+  download_resume: Download resume
+  resume: Resume
+  more_skills: More skills
+
+form:
+  default:
+    actions: Actions
+
+  login:
+    show_my_profile: Show my profile
+    edit_my_profile: Edit my profile
+
+  submit:
+    edit: Save
+    create: Create
+    new: New
+    back: Back
+
+  modal:
+    delete_item:
+      title: Delete item
+      message: Are you sure you want to delete this item?
+      button:
+        yes: Yes
+        no: No
+
+  main:
+    head:
+      title: Main
+    first_name: First name
+    last_name: Last name
+    profile_image: Profile image
+    background_image: Background image
+    birthday: Birthday
+    gender: Gender
+    slug: Site url
+    male: Male
+    female: Female
+    role: Professional Position
+    headline: Headline
+    country: Country
+    state: State
+    city: City
+    phone: Phone
+    cell: Cell
+    summary: Summary
+    key_words: Keywords (separated by commas)
+
+  social_network:
+    head:
+      title: Social network
+    socialNetwork: Social network
+
+  user-social-network:
+    head:
+      title: Social network
+
+  education:
+    head:
+      title: Educations
+    title: Course name
+    institution: Institution
+    description: Description
+    start_period: Start period
+    end_period: End period
+
+  experience:
+    head:
+      title: Experiences
+    title: Role name
+    company: Company
+    start_period: Start period
+    end_period: End period
+
+  certification:
+    head:
+      title: Certifications
+    title: Title
+    institution: Institution
+    image: Logo
+    image_url: Logo url
+    link: Link
+    start_period: Start period
+    end_period: End period
+
+  language:
+    head:
+      title: Languages
+    name: Language
+    level: Level
+
+  user_language:
+    head:
+      title: Languages
+
+  skill:
+    head:
+      title: Skills
+    name: Name
+    level_experience: Level experience (%)
+    priority: Priority
+
+language:
+  english: English
+  portuguese: Portuguese
