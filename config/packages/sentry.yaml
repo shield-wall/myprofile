@@ -6,6 +6,7 @@ when@prod: &prod
             environment: '%kernel.environment%'
             send_default_pii: true
             release: '%env(GIT_REF)%'
+            traces_sample_rate: 1.0
 
     monolog:
         handlers:
