@@ -1,0 +1,11 @@
+{#{{ dump(userInfo) }}#}
+{% extends 'base.html.twig' %}
+
+{% block javascripts encore_entry_script_tags('app') %}
+{% block title('Curriculum page') %}
+
+{% block body %}
+ <div {{ stimulus_controller('curriculum', {
+  'image-id': data1,
+ }) }}></div>
+{% endblock %}

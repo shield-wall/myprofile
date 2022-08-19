@@ -60,7 +60,8 @@ class SiteController extends AbstractController
     #[Route(path: '/curriculum/{slug}/{_locale}', name: 'curriculum')]
     public function curriculumAction(User $user): Response
     {
-        return $this->render('@!Curriculum/cv01/index.html.twig', [
+        return $this->render('site/curriculum.html.twig', [
+            'data1' => ['data1.2', 'data1.3', ['aaa']],
             AddressInterface::INDEX => $user,
             CertificationInterface::INDEX => $user->getCertifications(),
             EducationInterface::INDEX => $user->getEducations(),
