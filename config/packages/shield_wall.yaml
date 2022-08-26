@@ -14,4 +14,4 @@ when@dev:
     firewalls:
       main:
         custom_authenticators:
-          - ShieldW4ll\SimpleAuthenticator\Security\EmailAuthenticator
+          - ShieldWall\SimpleAuthenticator\Security\EmailAuthenticator

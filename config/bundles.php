@@ -18,6 +18,6 @@ return [
     Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle::class => ['dev' => true, 'test' => true],
     Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'test' => true],
     Hautelook\AliceBundle\HautelookAliceBundle::class => ['dev' => true, 'test' => true],
-    ShieldW4ll\SimpleAuthenticator\SimpleAuthenticatorBundle::class => ['dev' => true, 'test' => true],
-    ShieldW4ll\CurriculumBundle\CurriculumBundle::class => ['all' => true],
+    ShieldWall\SimpleAuthenticator\SimpleAuthenticatorBundle::class => ['dev' => true, 'test' => true],
+    ShieldWall\CurriculumBundle\CurriculumBundle::class => ['all' => true],
 ];

@@ -255,11 +255,11 @@
             "config/packages/sentry.yaml"
         ]
     },
-    "shield-w4ll/curriculum-bundle": {
-        "version": "v0.1.0"
+    "shield-wall/curriculum-bundle": {
+        "version": "v0.2.0"
     },
-    "shield-w4ll/simple-authenticator": {
-        "version": "v0.1.0"
+    "shield-wall/simple-authenticator": {
+        "version": "v0.3.2"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.7",

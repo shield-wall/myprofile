@@ -12,7 +12,7 @@ use App\ThirdCode\Contracts\SkillInterface;
 use App\ThirdCode\Contracts\SpeakLanguageInterface;
 use App\ThirdCode\Contracts\UserInfoInterface;
 use App\ThirdCode\Contracts\UserSocialNetworkInterface;
-use ShieldW4ll\SimpleAuthenticator\Form\SimpleAuthenticatorType;
+use ShieldWall\SimpleAuthenticator\Form\SimpleAuthenticatorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

@@ -2,7 +2,7 @@
 
 namespace App\ThirdCode\Contracts;
 
-use ShieldW4ll\CurriculumBundle\Contract\SocialNetworkInterface as BaseSocialNetworkInterface;
+use ShieldWall\CurriculumBundle\Contract\SocialNetworkInterface as BaseSocialNetworkInterface;
 
 interface UserSocialNetworkInterface extends BaseSocialNetworkInterface
 {
