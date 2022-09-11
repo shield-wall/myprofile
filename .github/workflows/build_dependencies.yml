@@ -1,4 +1,4 @@
-name: Build
+name: Build dependencies
 
 on:
   push:
@@ -16,6 +16,7 @@ env:
 
 jobs:
   build:
+    name: Build dependencies
     runs-on: ubuntu-latest
     container:
       image: 3lever/php:8.1.8-fpm-postgresql-dev
