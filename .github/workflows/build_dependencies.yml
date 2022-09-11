@@ -37,10 +37,10 @@ jobs:
             build-
 
       - name: Composer
-        run: composer $APP_ENV
+        run: composer ${APP_ENV}
 
       - name: Webpack
-        run: yarn $APP_ENV
+        run: yarn ${APP_ENV}
 
       - name: Phpunit version
         run: bin/phpunit --version
