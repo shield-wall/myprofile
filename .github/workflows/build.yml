@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - 2.x
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+env:
+  APP_ENV: ${{ secrets.APP_ENV }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          key: build-${{ APP_ENV }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            bin/.phpunit
+            vendor
+            node_modules
+            public
+          restore-keys: |
+            build-${{ APP_ENV }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
+            build-${{ APP_ENV }}-${{ hashFiles('**/yarn.lock') }}-
+            build-${{ APP_ENV }}-
+            build-
+
+      - name: Composer
+        run: composer $APP_ENV
+
+      - name: Webpack
+        run: yarn $APP_ENV
+
+      - name: Phpunit version
+        run: bin/phpunit --version
