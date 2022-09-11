@@ -15,32 +15,53 @@ env:
   APP_ENV: ${{ secrets.APP_ENV }}
 
 jobs:
-  build:
-    name: Build dependencies
+  build-backend:
+    name: Build backend
     runs-on: ubuntu-latest
     container:
       image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+
+      - name: Cache backend
+        id: cache-backend
+        uses: actions/cache@v3
         with:
-          key: build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
-            node_modules
-            public
           restore-keys: |
-            build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/symfony.lock') }}-
-            build-$APP_ENV-${{ hashFiles('**/yarn.lock') }}-
-            build-$APP_ENV-
-            build-
+            backend-${{ hashFiles('**/symfony.lock') }}-
+            backend-
 
       - name: Composer
-        run: composer ${APP_ENV}
+        run: composer $APP_ENV
 
       - name: Webpack
-        run: yarn ${APP_ENV}
+        run: yarn $APP_ENV
 
       - name: Phpunit version
         run: bin/phpunit --version
+
+  build-frontend:
+    name: Build frontend
+    runs-on: ubuntu-latest
+    container:
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache frontend
+        id: cache-frontend
+        uses: actions/cache@v3
+        with:
+          key: frontend-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            node_modules
+            public
+          restore-keys: |
+            frontend-
+
+      - name: Yarn
+        run: yarn $APP_ENV
