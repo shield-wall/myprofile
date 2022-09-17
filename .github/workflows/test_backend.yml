@@ -1,0 +1,58 @@
+name: Test backend
+
+on:
+  workflow_call: ~
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      APP_ENV: test
+      MAILER_DSN: null://null
+      XDEBUG_MODE: coverage
+    container:
+      image: 3lever/php:8.1.8-fpm-postgresql-dev
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: myprofile
+          POSTGRES_PASSWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/cache@v3
+        with:
+          key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          path: |
+            bin/.phpunit
+            vendor
+
+      - name: Setup Database
+        run: composer db
+
+      - name: Fixtures
+        run: composer db:fixtures
+
+      - name: See files
+        run: |
+          pwd
+          ls -lha
+
+      - name: Run Tests
+        run: composer test
+
+      - name: Validate database schema
+        run: composer db:validate
+
+      - name: Codecov
+        uses: codecov/codecov-action@v1
