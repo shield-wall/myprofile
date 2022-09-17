@@ -72,3 +72,9 @@ jobs:
     needs:
       - build-backend
       - build-frontend
+
+  deploy:
+    uses: eerison/myprofile/.github/workflows/deploy.yml@3.x
+    needs:
+      - lint_backend
+      - test_backend
