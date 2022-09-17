@@ -7,7 +7,6 @@ jobs:
   test:
     name: Test backend
     runs-on: ubuntu-latest
-    needs: build
     env:
       APP_ENV: test
       MAILER_DSN: null://null
@@ -30,12 +29,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: See files
+        run: |
+          pwd
+          ls -lha
+
       - uses: actions/cache@v3
         with:
           key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
+
+      - uses: actions/cache@v3
+        with:
+          key: frontend-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            node_modules
+            public
+          restore-keys: |
+            frontend-
 
       - name: Setup Database
         run: composer db
