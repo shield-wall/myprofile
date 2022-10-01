@@ -4,7 +4,8 @@ Encore
 // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
-    .setPublicPath('/build')
+    .setPublicPath('http://localhost:9000')
+    .setManifestKeyPrefix('build/')
 
     .addEntry('main', './assets/js/main.js')
     .addEntry('web_site_profile', './assets/js/profile.js')

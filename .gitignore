@@ -3,7 +3,7 @@
 ###> ide/jetbrains ###
 
 ###> doker ###
-.docker/database
+.docker
 ###> doker ###
 
 ###> symfony/framework-bundle ###

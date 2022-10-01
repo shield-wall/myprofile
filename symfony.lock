@@ -472,9 +472,6 @@
     "symfony/polyfill-php80": {
         "version": "v1.20.0"
     },
-    "symfony/polyfill-uuid": {
-        "version": "v1.22.1"
-    },
     "symfony/property-access": {
         "version": "v5.1.8"
     },

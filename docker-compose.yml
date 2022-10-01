@@ -1,24 +1,54 @@
 version: '3.8'
+
 services:
   web:
-    image: nginx:1.17
-    volumes:
-    - ./:/app
-    - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    image: bref/fpm-dev-gateway
     ports:
-    - "8000:80"
-    links:
+      - '8000:80'
+    volumes:
+      - ./public/index.php:/var/task/public/index.php:ro
+    depends_on:
       - php
+      - cdn
+    environment:
+      HANDLER: public/index.php
 
   php:
-    image: 3lever/php:8.1.8-fpm-postgresql-dev
-    env_file:
-      - .docker/common.env
+    image: bref/php-81-fpm-dev
     volumes:
-      - ./:/app
-      - .docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-    links:
+      - .:/var/task:ro
+    depends_on:
       - db
+
+  cdn:
+    image: halverneus/static-file-server
+    volumes:
+      - ./public/build:/web
+    ports:
+      - "9000:8080"
+    environment:
+      CORS: true
+
+  console:
+    image: bref/php-81
+    volumes:
+      - .:/var/task
+    entrypoint: php
+    depends_on:
+      - db
+
+  composer:
+    image: composer
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  node:
+    image: node
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
 
   db:
     image: postgres
