@@ -1,7 +1,8 @@
 {
   "devDependencies": {
     "file-loader": "^6.0.0",
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "serverless": "^3.22.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
@@ -15,14 +16,13 @@
     "popper.js": "^1.16.0",
     "sass-loader": "^13.0",
     "simple-scrollspy": "^2.0.3",
-    "smooth-scroll": "^16.1.3",
-    "yarn": "^1.22.0"
+    "smooth-scroll": "^16.1.3"
   },
   "scripts": {
-    "dev-server": "yarn && encore dev-server",
-    "dev": "yarn && encore dev",
-    "prod": "yarn && encore production --progress",
-    "stage": "yarn prod",
+    "dev-server": "npm install && encore dev-server",
+    "dev": "npm install && encore dev",
+    "prod": "npm install && encore production --progress",
+    "stage": "npm prod",
     "watch": "encore dev --watch"
   }
 }

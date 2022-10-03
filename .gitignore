@@ -33,3 +33,5 @@ coverage.xml
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+.serverless

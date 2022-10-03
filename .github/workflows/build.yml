@@ -53,15 +53,15 @@ jobs:
         id: cache-frontend
         uses: actions/cache@v3
         with:
-          key: frontend-${{ hashFiles('**/yarn.lock') }}
+          key: frontend-${{ hashFiles('**/package-lock.json') }}
           path: |
             node_modules
             public
           restore-keys: |
             frontend-
 
-      - name: Yarn
-        run: yarn $APP_ENV
+      - name: Npm
+        run: npm run $APP_ENV
 
   lint_backend:
     uses: eerison/myprofile/.github/workflows/lint_backend.yml@3.x

@@ -7,6 +7,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
+        "bref/bref": "^1.7",
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.11",
         "doctrine/doctrine-bundle": "^2.2",
