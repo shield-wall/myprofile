@@ -16,9 +16,15 @@ services:
   php:
     image: bref/php-81-fpm-dev
     volumes:
-      - .:/var/task:ro
+      - .:/var/task
     depends_on:
+      - dynamodb
       - db
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb:8000"
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
 
   cdn:
     image: halverneus/static-file-server
@@ -35,6 +41,7 @@ services:
       - .:/var/task
     entrypoint: php
     depends_on:
+      - dynamodb
       - db
 
   composer:
@@ -42,13 +49,32 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      - dynamodb
 
   node:
     image: node
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    restart: always
+    volumes:
+      - ./.docker/dynamodb:/home/dynamodblocal/data
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb:8000"
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb
 
   db:
     image: postgres

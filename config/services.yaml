@@ -93,3 +93,11 @@ services:
             - '@App\Repository\UserRepository'
             - '%shield_wall.simple_authenticator.route.redirect_success%'
             - '%shield_wall.simple_authenticator.route.redirect_failure%'
+
+    app.dynamodb_client:
+        class: AsyncAws\DynamoDb\DynamoDbClient
+        arguments:
+            - !php/const AsyncAws\Core\Configuration::OPTION_REGION: '%env(AWS_REGION)%'
+              !php/const AsyncAws\Core\Configuration::OPTION_ACCESS_KEY_ID: '%env(AWS_ACCESS_KEY_ID)%'
+              !php/const AsyncAws\Core\Configuration::OPTION_SECRET_ACCESS_KEY: '%env(AWS_SECRET_ACCESS_KEY)%'
+              !php/const AsyncAws\Core\Configuration::OPTION_ENDPOINT: '%env(DYNAMO_ENDPOINT)%'

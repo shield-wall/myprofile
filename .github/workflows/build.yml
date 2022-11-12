@@ -18,21 +18,26 @@ jobs:
   build-backend:
     name: Backend
     runs-on: ubuntu-latest
-    container:
-      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
 
       - name: Cache backend
         id: cache-backend
         uses: actions/cache@v3
         with:
-          key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
           restore-keys: |
-            backend-${{ hashFiles('**/symfony.lock') }}-
+            backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-
+            backend-$APP_ENV-
             backend-
 
       - name: Composer
@@ -44,20 +49,20 @@ jobs:
   build-frontend:
     name: Frontend
     runs-on: ubuntu-latest
-    container:
-      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
 
       - name: Cache frontend
         id: cache-frontend
         uses: actions/cache@v3
         with:
-          key: frontend-${{ hashFiles('**/package-lock.json') }}
+          key: frontend-$APP_ENV-${{ hashFiles('**/package-lock.json') }}
           path: |
             node_modules
             public
           restore-keys: |
+            frontend-$APP_ENV-
             frontend-
 
       - name: Npm

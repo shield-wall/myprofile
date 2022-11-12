@@ -6,26 +6,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container:
-      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v3
       - uses: rlespinasse/github-slug-action@v3.x
 
       - uses: actions/cache@v3
         with:
-          key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
 
       - uses: actions/cache@v3
         with:
-          key: frontend-${{ hashFiles('**/package-lock.json') }}
+          key: frontend-$APP_ENV-${{ hashFiles('**/package-lock.json') }}
           path: |
             node_modules
             public
           restore-keys: |
+            frontend-$APP_ENV-
             frontend-
 
       - name: See files
@@ -34,5 +33,13 @@ jobs:
           ls -lha
           ls -lha vendor
 
-      - name: Deploying
-        run: ls
+
+      - name: Serverless deploy
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy
+        env:
+#              SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          # or if using AWS credentials directly
+           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

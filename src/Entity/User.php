@@ -136,7 +136,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
     /**
      * @var array<int, string>
      */
-    #[ORM\Column(type: Types::JSON)]
+    #[ORM\Column(type: Types::STRING)]
     private array $roles = [];
 
     #[ORM\Column(type: Types::STRING, length: 255)]

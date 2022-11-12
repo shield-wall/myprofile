@@ -15,6 +15,7 @@
         "doctrine/orm": "^2.7",
         "league/oauth2-google": "^4.0",
         "presta/sitemap-bundle": "^3.0",
+        "rikudou/psr6-dynamo-db-bundle": "^3.0",
         "sensio/framework-extra-bundle": "^6.0",
         "sentry/sentry-symfony": "^4.0",
         "shield-wall/curriculum-bundle": "^0.3",

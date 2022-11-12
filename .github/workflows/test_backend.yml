@@ -9,10 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       APP_ENV: test
+      DATABASE_URL: postgres://myprofile:123456@localhost:5432/myprofile
       MAILER_DSN: null://null
       XDEBUG_MODE: coverage
-    container:
-      image: 3lever/php:8.1.8-fpm-postgresql-dev
     services:
       db:
         image: postgres
@@ -29,6 +28,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+
       - name: See files
         run: |
           pwd
@@ -36,14 +41,14 @@ jobs:
 
       - uses: actions/cache@v3
         with:
-          key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor
 
       - uses: actions/cache@v3
         with:
-          key: frontend-${{ hashFiles('**/package-lock.json') }}
+          key: frontend-$APP_ENV-${{ hashFiles('**/package-lock.json') }}
           path: |
             node_modules
             public

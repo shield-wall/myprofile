@@ -1,6 +1,8 @@
 {
   "devDependencies": {
+    "dynamodb-admin": "^4.4.1",
     "file-loader": "^6.0.0",
+    "npm": "^9.1.1",
     "sass": "^1.49.9",
     "serverless": "^3.22.0"
   },

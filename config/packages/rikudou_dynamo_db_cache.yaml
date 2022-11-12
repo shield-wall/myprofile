@@ -1,0 +1,7 @@
+rikudou_dynamo_db_cache:
+    table: '%env(DYNAMODB_CACHE_TABLE)%'
+    replace_default_adapter: true
+    client_service: app.dynamodb_client
+#    client_config:
+#        region: '%env(AWS_REGION)%'
+#        endpoint: 'https://localhost'

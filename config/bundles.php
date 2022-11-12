@@ -20,4 +20,5 @@ return [
     Hautelook\AliceBundle\HautelookAliceBundle::class => ['dev' => true, 'test' => true],
     ShieldWall\SimpleAuthenticator\SimpleAuthenticatorBundle::class => ['dev' => true, 'test' => true],
     ShieldWall\CurriculumBundle\CurriculumBundle::class => ['all' => true],
+    Rikudou\DynamoDbCacheBundle\RikudouDynamoDbCacheBundle::class => ['all' => true],
 ];
