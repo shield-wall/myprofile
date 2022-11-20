@@ -1,5 +1,11 @@
 # My Profile
 
+> **Warning**
+> As Heroku has removed the [free plans](https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq), and we didn't have enough time to migrate the new infra
+> prod system will be unavailable until we finish the migration.
+> 
+> Issue for the new major version: https://github.com/eerison/myprofile/issues/701
+
 [![Continuous Integration][ci_badge]][ci_link]
 [![Continuous Deploy][cd_badge]][cd_link]
 [![PhpStan][phpstan_badge]][phpstan_link]
