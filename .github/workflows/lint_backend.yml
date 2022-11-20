@@ -17,14 +17,18 @@ jobs:
           - 'twig'
           - 'translation en'
           - 'translation pt_BR'
-    container:
-      image: 3lever/php:8.1.8-fpm-postgresql-dev
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+
       - uses: actions/cache@v3
         with:
-          key: backend-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
+          key: backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-${{ hashFiles('**/composer.lock') }}
           path: |
             bin/.phpunit
             vendor

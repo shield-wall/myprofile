@@ -72,14 +72,14 @@ jobs:
     uses: eerison/myprofile/.github/workflows/lint_backend.yml@3.x
     needs: build-backend
 
-  test_backend:
-    uses: eerison/myprofile/.github/workflows/test_backend.yml@3.x
-    needs:
-      - build-backend
-      - build-frontend
+#  test_backend:
+#    uses: eerison/myprofile/.github/workflows/test_backend.yml@3.x
+#    needs:
+#      - build-backend
+#      - build-frontend
 
   deploy:
     uses: eerison/myprofile/.github/workflows/deploy.yml@3.x
     needs:
       - lint_backend
-      - test_backend
+#      - test_backend
