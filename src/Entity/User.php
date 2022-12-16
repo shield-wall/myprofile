@@ -137,7 +137,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
      * @var array<int, string>
      */
     #[ORM\Column(type: Types::STRING)]
-    private array $roles = [];
+    private string $roles = '';
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private string $password;
@@ -492,7 +492,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Stringa
 
     public function getRoles(): array
     {
-        $roles = $this->roles;
+        $roles = json_decode($this->roles, true);
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 

@@ -138,7 +138,7 @@
             "@composer dump-autoload --optimize --no-dev"
         ],
         "staging": "@prod",
-        "dev": "@composer install --no-ansi --no-interaction --no-progress --optimize-autoloader"
+        "dev": "@composer install --ignore-platform-reqs --no-ansi --no-interaction --no-progress --optimize-autoloader"
     },
     "extra": {
         "symfony": {

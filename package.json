@@ -22,9 +22,9 @@
   },
   "scripts": {
     "dev-server": "npm install && encore dev-server",
-    "dev": "npm install && encore dev",
-    "prod": "npm install && encore production --progress",
+    "dev": "npm install && npx encore dev",
+    "prod": "npm install && npx encore production --progress",
     "stage": "npm prod",
-    "watch": "encore dev --watch"
+    "watch": "npx encore dev --watch"
   }
 }
