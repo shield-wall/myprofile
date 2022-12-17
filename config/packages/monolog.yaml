@@ -52,4 +52,4 @@ when@prod: &prod
                 channels: [deprecation]
                 path: php://stderr
 
-when@staging: *prod
+when@stage: *prod

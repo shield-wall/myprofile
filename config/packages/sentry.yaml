@@ -15,4 +15,4 @@ when@prod: &prod
                 level: !php/const Monolog\Logger::ERROR
                 hub_id: Sentry\State\HubInterface
 
-when@staging: *prod
+when@stage: *prod
