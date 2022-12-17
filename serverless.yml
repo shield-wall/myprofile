@@ -25,6 +25,5 @@ package:
         - '!node_modules/**'
         - '!tests/**'
         - '!.docker/**'
-        - '!.var/**'
         - '!.phpunit.*'
         - '!.serverless/**'

@@ -32,6 +32,7 @@ jobs:
           path: |
             bin/.phpunit
             vendor
+            var
 
       - name: See files
         run: |

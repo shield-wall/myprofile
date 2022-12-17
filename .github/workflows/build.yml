@@ -5,12 +5,14 @@ on:
     branches:
       - master
       - 3.x
-      - 'releases/**'
   pull_request:
     types:
       - opened
       - reopened
       - synchronize
+  release:
+    types:
+      - created
 
 env:
   APP_ENV: ${{ secrets.APP_ENV }}
@@ -36,6 +38,7 @@ jobs:
           path: |
             bin/.phpunit
             vendor
+            var
           restore-keys: |
             backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-
             backend-$APP_ENV-
@@ -43,6 +46,8 @@ jobs:
 
       - name: Composer
         run: composer $APP_ENV
+
+      - run: bin/console cache:warmup
 
       - name: Phpunit version
         run: bin/phpunit --version
