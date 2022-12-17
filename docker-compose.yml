@@ -50,7 +50,7 @@ services:
       - .:/app
     depends_on:
       - dynamodb
-
+  
   node:
     image: node
     working_dir: /home/node/app
@@ -87,3 +87,12 @@ services:
       - .docker/database/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+  aws:
+    image: amazon/aws-cli
+    environment:
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb
