@@ -43,6 +43,8 @@ jobs:
             backend-$APP_ENV-${{ hashFiles('**/symfony.lock') }}-
             backend-$APP_ENV-
             backend-
+            
+      - run: echo ${{secrets.TEST_ENV}}
 
       - name: Composer
         run: composer $APP_ENV
