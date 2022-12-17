@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - 3.x
+      - 'releases/**'
   pull_request:
     types:
       - opened
@@ -79,6 +80,7 @@ jobs:
 #      - build-frontend
 
   deploy:
+    if: startsWith(github.ref, 'refs/pull/') != true
     uses: eerison/myprofile/.github/workflows/deploy.yml@3.x
     needs:
       - lint_backend
