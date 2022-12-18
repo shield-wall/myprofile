@@ -24,7 +24,7 @@
     "dev-server": "npm install && encore dev-server",
     "dev": "npm install && npx encore dev",
     "prod": "npm install && npx encore production --progress",
-    "stage": "npm prod",
+    "stage": "npm run prod",
     "watch": "npx encore dev --watch"
   }
 }

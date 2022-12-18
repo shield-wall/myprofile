@@ -2,15 +2,17 @@ name: Deploy
 
 on:
   workflow_call:
-    secrets:
-      AWS_ACCESS_KEY_ID:
-          required: true
-      AWS_SECRET_ACCESS_KEY:
-          required: true
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: ${{ secrets.APP_ENV }}
+    environment: ${{inputs.environment}}
     steps:
       - uses: actions/checkout@v3
       - uses: rlespinasse/github-slug-action@v3.x
@@ -43,7 +45,7 @@ jobs:
       - name: Serverless deploy
         uses: serverless/github-action@v3.1
         with:
-          args: deploy
+          args: deploy --stage ${{env.APP_ENV}}
         env:
 #              SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
           # or if using AWS credentials directly

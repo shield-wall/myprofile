@@ -1,44 +1,35 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-  release:
-    types:
-      - created
-
-env:
-  APP_ENV: ${{ secrets.APP_ENV }}
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
-  choosing_environment:
-     name: Choosing environment
-     runs-on: ubuntu-latest
-     steps:
-       - run: echo 123
-         if: ${{ github.event_name == 'push' }}
-         env:
-           environment_choosed: Staging
-         if: ${{ github.event_name == 'release' }}
-         env:
-           environment_choosed: Production
-         if: ${{ github.event_name == 'pull_request' }}
-         env:
-           environment_choosed: staging_pr
-
   build-backend:
     name: Backend
-    needs:
-      - choosing_environment 
+    environment: ${{inputs.environment}}
     runs-on: ubuntu-latest
-    environment: $environment_choosed
+    env:
+      DATABASE_URL: postgres://myprofile:123456@localhost:5432/myprofile
+      APP_ENV: ${{ secrets.APP_ENV }}
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_USER: myprofile
+          POSTGRES_PASSWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
+      - run: echo $APP_ENV  ${{ secrets.APP_ENV }}
       - uses: actions/checkout@v3
 
       - name: Setup PHP with tools
@@ -64,19 +55,14 @@ jobs:
       - name: Composer
         run: composer $APP_ENV
        
-      - run: echo ${{secrets.TEST_ENV}}
-
       - run: bin/console cache:warmup
-
-      - name: Phpunit version
-        run: bin/phpunit --version
 
   build-frontend:
     name: Frontend
-    needs:
-      - choosing_environment
-    environment: $environment_choosed
+    environment: ${{inputs.environment}}
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: ${{ secrets.APP_ENV }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -96,23 +82,3 @@ jobs:
       - name: Npm
         run: npm run $APP_ENV
 
-  lint_backend:
-    uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
-    needs: build-backend
-
-#  test_backend:
-#    uses: eerison/myprofile/.github/workflows/test_backend.yml@3.x
-#    needs:
-#      - build-backend
-#      - build-frontend
-
-  deploy:
-    if: startsWith(github.ref, 'refs/pull/') != true
-    uses: eerison/myprofile/.github/workflows/deploy.yml@master
-    environment: $environment_choosed
-    needs:
-      - lint_backend
-#      - test_backend
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 

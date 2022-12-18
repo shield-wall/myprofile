@@ -1,0 +1,28 @@
+name: Stage - Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    uses: eerison/myprofile/.github/workflows/build.yml@master
+    secrets: inherit
+    with:
+      environment: Staging
+
+  lint_backend:
+    uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
+    secrets: inherit
+    needs: build
+  
+  deploy:
+    uses: eerison/myprofile/.github/workflows/deploy.yml@master
+    secrets: inherit
+    with:
+      environment: Staging
+    needs:
+      - lint_backend
+#      - test_backend
+
