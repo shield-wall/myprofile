@@ -17,9 +17,27 @@ env:
   APP_ENV: ${{ secrets.APP_ENV }}
 
 jobs:
+  choosing_environment:
+     name: Choosing environment
+     runs-on: ubuntu-latest
+     steps:
+       - run: echo 123
+         if: ${{ github.event_name == 'push' }}
+         env:
+           environment_choosed: Staging
+         if: ${{ github.event_name == 'release' }}
+         env:
+           environment_choosed: Production
+         if: ${{ github.event_name == 'pull_request' }}
+         env:
+           environment_choosed: staging_pr
+
   build-backend:
     name: Backend
+    needs:
+      - choosing_environment 
     runs-on: ubuntu-latest
+    environment: $environment_choosed
     steps:
       - uses: actions/checkout@v3
 
@@ -45,6 +63,8 @@ jobs:
 
       - name: Composer
         run: composer $APP_ENV
+       
+      - run: echo ${{secrets.TEST_ENV}}
 
       - run: bin/console cache:warmup
 
@@ -53,6 +73,9 @@ jobs:
 
   build-frontend:
     name: Frontend
+    needs:
+      - choosing_environment
+    environment: $environment_choosed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -74,7 +97,7 @@ jobs:
         run: npm run $APP_ENV
 
   lint_backend:
-    uses: eerison/myprofile/.github/workflows/lint_backend.yml@3.x
+    uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
     needs: build-backend
 
 #  test_backend:
@@ -85,7 +108,8 @@ jobs:
 
   deploy:
     if: startsWith(github.ref, 'refs/pull/') != true
-    uses: eerison/myprofile/.github/workflows/deploy.yml@3.x
+    uses: eerison/myprofile/.github/workflows/deploy.yml@master
+    environment: $environment_choosed
     needs:
       - lint_backend
 #      - test_backend
