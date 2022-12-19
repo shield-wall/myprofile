@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     uses: eerison/myprofile/.github/workflows/build.yml@master
-    environment: staging_pr
     secrets: inherit
     with:
       environment: staging_pr
