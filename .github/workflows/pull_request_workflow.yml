@@ -11,8 +11,12 @@ jobs:
   build:
     uses: eerison/myprofile/.github/workflows/build.yml@master
     environment: staging_pr
+    secrets: inherit
+    with:
+      environment: staging_pr
 
   lint_backend:
     uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
+    secrets: inherit
     needs: build
 
