@@ -17,6 +17,8 @@ functions:
             - ${bref:layer.php-81-fpm}
         events:
             -   httpApi: '*'
+        environment:
+          APP_ENV: ${env:APP_ENV}
 
 resources: # CloudFormation template syntax from here on.
     Resources:
