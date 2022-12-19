@@ -20,7 +20,7 @@ functions:
 
 resources: # CloudFormation template syntax from here on.
     Resources:
-      usersTable:
+      cacheTable:
         Type: AWS::DynamoDB::Table
         Properties:
           TableName: cache
@@ -32,8 +32,8 @@ resources: # CloudFormation template syntax from here on.
               KeyType: HASH
           BillingMode: PAY_PER_REQUEST
           TimeToLiveSpecification:
-            -   AttributeName: tll
-                Enabled: true
+             AttributeName: tll
+             Enabled: true
 
 # Exclude files from deployment
 package:
