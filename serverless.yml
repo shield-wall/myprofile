@@ -18,6 +18,23 @@ functions:
         events:
             -   httpApi: '*'
 
+resources: # CloudFormation template syntax from here on.
+    Resources:
+      usersTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: cache
+          AttributeDefinitions:
+            - AttributeName: id
+              AttributeType: S
+          KeySchema:
+            - AttributeName: id
+              KeyType: HASH
+          BillingMode: PAY_PER_REQUEST
+          TimeToLiveSpecification:
+            -   AttributeName: tll
+                Enabled: true
+
 # Exclude files from deployment
 package:
     patterns:
