@@ -19,6 +19,7 @@ functions:
             -   httpApi: '*'
         environment:
           APP_ENV: ${env:APP_ENV}
+          DATABASE_URL: ${env:DATABASE_URL}
 
 resources: # CloudFormation template syntax from here on.
     Resources:
