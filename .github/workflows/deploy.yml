@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       APP_ENV: ${{ secrets.APP_ENV }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     environment: ${{inputs.environment}}
     steps:
       - uses: actions/checkout@v3
