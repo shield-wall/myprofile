@@ -20,6 +20,8 @@ functions:
         environment:
           APP_ENV: ${env:APP_ENV}
           DATABASE_URL: ${env:DATABASE_URL}
+          SENTRY_DSN: ${env:SENTRY_DSN}
+          GIT_REF: ${env:GIT_REF}
 
 resources: # CloudFormation template syntax from here on.
     Resources:

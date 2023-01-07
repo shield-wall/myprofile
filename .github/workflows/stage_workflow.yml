@@ -18,10 +18,13 @@ jobs:
     needs: build
   
   deploy:
+#    - uses: rlespinasse/github-slug-action@v3.x
     uses: eerison/myprofile/.github/workflows/deploy.yml@master
     secrets: inherit
     with:
       environment: Staging
+      git_ref: stage
+#        git_ref: ${{ env.GITHUB_REF_SLUG }}
     needs:
       - lint_backend
 #      - test_backend
