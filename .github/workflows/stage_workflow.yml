@@ -16,6 +16,8 @@ jobs:
     uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
     secrets: inherit
     needs: build
+    with:
+      environment: Staging
   
   deploy:
 #    - uses: rlespinasse/github-slug-action@v3.x

@@ -1,12 +1,19 @@
 name: Lint backend
 
 on:
-  workflow_call: ~
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: ${{ secrets.APP_ENV }}
+    environment: ${{inputs.environment}}
     strategy:
       matrix:
         command:
