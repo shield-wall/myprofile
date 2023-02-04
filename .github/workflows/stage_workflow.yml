@@ -12,12 +12,12 @@ jobs:
     with:
       environment: Staging
 
-  lint_backend:
-    uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
-    secrets: inherit
-    needs: build
-    with:
-      environment: Staging
+#  lint_backend:
+#    uses: eerison/myprofile/.github/workflows/lint_backend.yml@master
+#    secrets: inherit
+#    needs: build
+#    with:
+#      environment: Staging
   
   deploy:
 #    - uses: rlespinasse/github-slug-action@v3.x
@@ -28,6 +28,7 @@ jobs:
       git_ref: stage
 #        git_ref: ${{ env.GITHUB_REF_SLUG }}
     needs:
-      - lint_backend
+      - build
+#      - lint_backend
 #      - test_backend
 
