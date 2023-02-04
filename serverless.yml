@@ -4,6 +4,17 @@ provider:
     name: aws
     region: us-east-1
     runtime: provided.al2
+    iam:
+      role:
+        statements:
+          - Effect: Allow
+            Action:
+              - 'ec2:DescribeNetworkInterfaces'
+              - 'ec2:CreateNetworkInterface'
+              - 'ec2:DeleteNetworkInterface'
+              - 'ec2:DescribeInstance'
+              - 'ec2:AttachNetworkInterface'
+            Resource: '*'
 
 plugins:
     - ./vendor/bref/bref
