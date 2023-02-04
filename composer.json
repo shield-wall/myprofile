@@ -137,7 +137,7 @@
             "@composer install --no-ansi --prefer-dist --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
             "@composer dump-autoload --optimize --no-dev"
         ],
-        "stage": "@prod",
+        "stage": "@dev",
         "dev": "@composer install --ignore-platform-reqs --no-ansi --no-interaction --no-progress --optimize-autoloader"
     },
     "extra": {
