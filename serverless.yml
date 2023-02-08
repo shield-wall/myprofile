@@ -9,12 +9,13 @@ provider:
         statements:
           - Effect: Allow
             Action:
-              - 'ec2:DescribeNetworkInterfaces'
-              - 'ec2:CreateNetworkInterface'
-              - 'ec2:DeleteNetworkInterface'
-              - 'ec2:DescribeInstance'
-              - 'ec2:AttachNetworkInterface'
-            Resource: '*'
+              - 'dynamodb:Query'
+              - 'dynamodb:Scan'
+              - 'dynamodb:GetItem'
+              - 'dynamodb:PutItem'
+              - 'dynamodb:UpdateItem'
+              - 'dynamodb:DeleteItem'
+            Resource: "arn:aws:dynamodb:us-east-1:${env:AWS_ACCOUNT_ID}:table/cache"
 
 plugins:
     - ./vendor/bref/bref
@@ -54,7 +55,6 @@ resources: # CloudFormation template syntax from here on.
 # Exclude files from deployment
 package:
     patterns:
-        - '!public/build/**'
         - '!node_modules/**'
         - '!tests/**'
         - '!.docker/**'

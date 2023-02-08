@@ -16,6 +16,7 @@ jobs:
     env:
       APP_ENV: ${{ secrets.APP_ENV }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       GIT_REF: ${{inputs.git_ref}}
     environment: ${{inputs.environment}}
@@ -46,6 +47,7 @@ jobs:
           pwd
           ls -lha
           ls -lha vendor
+          npm run prod
 
 
       - name: Serverless deploy
