@@ -42,12 +42,26 @@ jobs:
             frontend-$APP_ENV-
             frontend-
 
-      - name: See files
-        run: |
-          pwd
-          ls -lha
-          ls -lha vendor
-          npm run prod
+      - name: Run npm
+        run: npm run ${{env.APP_ENV}}
+
+        # TODO try to use rclone
+      -   uses: actions/setup-python@v2
+          with:
+              python-version: '3.11'
+
+      -   name: Install dependencies
+          run: |
+              python -m pip install --upgrade pip
+              pip install awscli
+
+      -   name: Upload assets to bucket
+          run: |
+            aws s3 cp public/build s3://assets --endpoint-url  ${{env.ENDPOINT_URL}} --recursive
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}
+            ENDPOINT_URL: https://${{secrets.CLOUDFLARE_ACCOUNT_ID}}.r2.cloudflarestorage.com/myprofile-${{env.APP_ENV}}
 
 
       - name: Serverless deploy

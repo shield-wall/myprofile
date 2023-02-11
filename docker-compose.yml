@@ -56,6 +56,8 @@ services:
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
+    environment:
+        CDN_HOST: http://localhost:9000
 
   dynamodb:
     image: amazon/dynamodb-local

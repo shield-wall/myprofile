@@ -55,6 +55,7 @@ resources: # CloudFormation template syntax from here on.
 # Exclude files from deployment
 package:
     patterns:
+#        - '!public/build/**' TODO remove build from function
         - '!node_modules/**'
         - '!tests/**'
         - '!.docker/**'
