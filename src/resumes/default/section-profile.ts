@@ -26,7 +26,7 @@ export default function sectionProfile(resume: ResumeInterface) {
    
                     <div class="column">
                         <div class="tags">
-                            ${resume.skills.map((skill) => `<div class="tag is-dark">${skill.title}</div>`)}
+                            ${resume.skills.map((skill) => `<div class="tag is-dark">${skill}</div>`)}
                         </div>
                     </div>
                 </div>

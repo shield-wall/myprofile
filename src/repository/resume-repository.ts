@@ -1,12 +1,12 @@
-import fs from 'fs'
-import YAML from 'yaml'
-import {BasicInterface} from "../models/basic";
+import resumeJson from '../../data/json/data.json'
+import {ResumeInterface} from "../models/resume";
 
 export class ResumeRepository
 {
-    findCurrentUser(): BasicInterface
+    findCurrentResume(): ResumeInterface
     {
-        const file = fs.readFileSync('../data/user.yaml', 'utf8')
-        return YAML.parse(file)
+        let resume: ResumeInterface =  resumeJson;
+
+        return resume;
     }
 }

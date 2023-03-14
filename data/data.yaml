@@ -1,7 +1,7 @@
 basic:
     firstName: John
     lastName: Doe
-    photoUrl: ~
+    photoUrl: https://avatars.githubusercontent.com/u/6358755?v=4
     position: Software Developer
     about: >
         Hi, my name is John Doe. I'm just about the most boring type of person you could
@@ -17,23 +17,33 @@ basic:
         website: johndoe.com
         github: johnyD
     languages:
-        - title: Portuguese
-          level: Native
+        -   title: Portuguese
+            level: Native
 
-        - title: English
-          level: Intermediate
+        -   title: English
+            level: Intermediate
 
 # you may add more experiences by duplicating the template
-section-primary:
-    - title: Experience
-      icon: work
-      children:
-          - experience:
-                -   company: Company A
-                    position: Developer
-                    timeperiod: since January 2016
-                    description: Programming and watching cute cat videos.
-                    website: https://example.com
+primary-section:
+    -   title: Experience
+        icon: work
+        type: experience #experience , education, projects
+        children:
+            -   company: Company A
+                position: Developer
+                timeperiod: since January 2016
+                description: Programming and watching cute cat videos.
+                website: https://example.com
+
+    -   title: Education
+        icon: work
+        type: education #experience , education, projects
+        children:
+            -   company: Company A
+                position: Developer
+                timeperiod: since January 2016
+                description: Programming and watching cute cat videos.
+                website: https://example.com
 experience:
     -   company: Company A
         position: Developer
@@ -51,35 +61,30 @@ experience:
         timeperiod: March 2014 - December 2014
         description: Making coffee and baking cookies.
 
-education:
+educations:
     -   degree: Master of Arts
         institution: Harvard
-        timeperiod: March 2012 - December 2013
+        timePeriod: March 2012 - December 2013
         description: Major in Hacking and Computer Penetration, University A, New York, USA.
         website: https://example.com
 
     -   degree: Bachelor of Science
-        timeperiod: March 2009 - December 2011
+        institution: Harvard
+        timePeriod: March 2009 - December 2011
         description: Major in Engineering, University B, Los Angeles, USA.
+        website: ~
 
 # skill level goes from 0 to 100
 skills:
-    -   name: HTML5
-        level: 99
-    -   name: CSS3
-        level: 95
-    -   name: JavaScript
-        level: 97
-    -   name: Node.js
-        level: 93
-    -   name: Angular 2
-        level: 60
-    -   name: TypeScript
-        level: 80
-    -   name: ES.Next
-        level: 70
-    -   name: Docker
-        level: 99
+    - HTML5
+    - CSS3
+    - JavaScript
+    - Node.js
+    - Angular 2
+    - TypeScript
+    - ES.Next
+    - Docker
+
 
 knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual
     (English and Klingon).
@@ -105,3 +110,7 @@ contributions:
     -   name: best-resume-ever
         description: 👔 💼 Build fast 🚀 and easy multiple beautiful resumes.
         url: https://github.com/salomonelli/best-resume-ever
+
+
+##missing fileds
+simpleLists: [ ]
