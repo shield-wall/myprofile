@@ -5,5 +5,6 @@ export interface BasicInterface {
     lastName: string|null;
     photoUrl: string|null;
     position: string|null;
+    about: string|null;
     languages: LanguageInterface[];
 }
