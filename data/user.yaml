@@ -1,18 +1,39 @@
-name:
-    first: John
-    middle:
-    last: Doe
-about: Hi, my name is John Doe. I'm just about the most boring type of person you could
-    possibly imagine. I like collecting leaves from the tree in my back yard and documenting
-    each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
-position: Software Developer
+basic:
+    firstName: John
+    lastName: Doe
+    photoUrl: ~
+    position: Software Developer
+    about: >
+        Hi, my name is John Doe. I'm just about the most boring type of person you could
+        possibly imagine. I like collecting leaves from the tree in my back yard and documenting
+        each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
 
-birth:
-    year: 1990
-    location: New York
+    contact:
+        email: john.doe@email.com
+        phone: 0123 456789
+        city: Berlin
+        state: ~
+        country: Germany
+        website: johndoe.com
+        github: johnyD
+    languages:
+        - title: Portuguese
+          level: Native
+
+        - title: English
+          level: Intermediate
 
 # you may add more experiences by duplicating the template
-
+section-primary:
+    - title: Experience
+      icon: work
+      children:
+          - experience:
+                -   company: Company A
+                    position: Developer
+                    timeperiod: since January 2016
+                    description: Programming and watching cute cat videos.
+                    website: https://example.com
 experience:
     -   company: Company A
         position: Developer
@@ -32,6 +53,7 @@ experience:
 
 education:
     -   degree: Master of Arts
+        institution: Harvard
         timeperiod: March 2012 - December 2013
         description: Major in Hacking and Computer Penetration, University A, New York, USA.
         website: https://example.com
@@ -58,6 +80,7 @@ skills:
         level: 70
     -   name: Docker
         level: 99
+
 knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual
     (English and Klingon).
 
@@ -82,13 +105,3 @@ contributions:
     -   name: best-resume-ever
         description: 👔 💼 Build fast 🚀 and easy multiple beautiful resumes.
         url: https://github.com/salomonelli/best-resume-ever
-
-contact:
-    email: john.doe@email.com
-    phone: 0123 456789
-    street: 1234 Broadway
-    city: New York
-    website: johndoe.com
-    github: johnyD
-# en, de, fr, pt, ca, cn, it, es, th, pt-br, ru, sv, id, hu, pl, ja, ka, nl, he, zh-tw, lt, ko, el, nb-no
-lang: en
