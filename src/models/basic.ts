@@ -1,10 +1,47 @@
-import {LanguageInterface} from "./language";
+import {Language} from "./language";
+import {BasicType} from "../types/basic-type";
 
-export interface BasicInterface {
-    firstName: string|null;
-    lastName: string|null;
-    photoUrl: string|null;
-    position: string|null;
-    about: string|null;
-    languages: LanguageInterface[];
+export class Basic
+{
+    private readonly firstName: string|null;
+    private readonly lastName: string|null;
+    private readonly photoUrl: string|null;
+    private readonly position: string|null;
+    private readonly about: string|null;
+    private readonly languages: Language[];
+
+    constructor(basicType: BasicType) {
+        this.firstName = basicType.firstName;
+        this.lastName = basicType.lastName;
+        this.photoUrl = basicType.photoUrl;
+        this.position = basicType.position;
+        this.about = basicType.about;
+        this.languages = basicType
+            .languages
+            .map((language) => new Language(language));
+    }
+
+    getFirstName(): string|null {
+        return this.firstName;
+    }
+
+    getLastName(): string|null {
+        return this.lastName;
+    }
+
+    getPhotoUrl(): string|null {
+        return this.photoUrl;
+    }
+
+    getPosition(): string|null {
+        return this.position;
+    }
+
+    getAbout(): string|null {
+        return this.about;
+    }
+
+    getLanguages(): Language[] {
+        return this.languages;
+    }
 }

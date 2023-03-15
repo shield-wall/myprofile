@@ -46,21 +46,21 @@ primary-section:
                 timeperiod: since January 2016
                 description: Programming and watching cute cat videos.
                 website: https://example.com
-experience:
+experiences:
     -   company: Company A
         position: Developer
-        timeperiod: since January 2016
+        timePeriod: since January 2016
         description: Programming and watching cute cat videos.
         website: https://example.com
 
     -   company: Company B
         position: Frontend Developer
-        timeperiod: January 2015 - December 2015
+        timePeriod: January 2015 - December 2015
         description: Fulfillment of extremely important tasks.
 
     -   company: Company C
         position: Trainee
-        timeperiod: March 2014 - December 2014
+        timePeriod: March 2014 - December 2014
         description: Making coffee and baking cookies.
 
 educations:

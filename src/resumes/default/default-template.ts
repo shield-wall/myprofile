@@ -1,11 +1,11 @@
 import {ResumeTemplateInterface} from "../contracts/resume-template";
 import 'bulma/bulma.sass';
 import sectionProfile from "./section-profile";
-import {ResumeInterface} from "../../models/resume";
+import {Resume} from "../../models/resume";
 import sectionDetail from "./section-detail";
 
 export default class DefaultTemplate implements ResumeTemplateInterface {
-    constructor(private resume: ResumeInterface) {
+    constructor(private resume: Resume) {
         this.resume = resume;
     }
 

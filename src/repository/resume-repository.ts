@@ -1,12 +1,10 @@
 import resumeJson from '../../data/json/data.json'
-import {ResumeInterface} from "../models/resume";
+import {Resume} from "../models/resume";
 
 export class ResumeRepository
 {
-    findCurrentResume(): ResumeInterface
+    findCurrentResume(): Resume
     {
-        let resume: ResumeInterface =  resumeJson;
-
-        return resume;
+        return new Resume(resumeJson);
     }
 }
