@@ -3,6 +3,7 @@ import {Experience} from "./experience";
 import {ResumeType} from "../types/resume-type";
 import {Basic} from "./basic";
 import {SimpleList} from "./simple-list";
+import {Certification} from "./certification";
 
 export class Resume
 {
@@ -11,6 +12,7 @@ export class Resume
     private readonly simpleLists: SimpleList[];
     private readonly educations: Education[];
     private readonly experiences: Experience[];
+    private readonly certifications: Certification[];
 
     constructor(resumeType: ResumeType) {
         this.basic = new Basic(resumeType.basic);
@@ -27,6 +29,10 @@ export class Resume
         this.experiences = resumeType
             .experiences
             .map((experience) => new Experience(experience));
+
+        this.certifications = resumeType
+            .certifications
+            .map((certification) => new Certification(certification));
     }
 
     getBasic(): Basic {
@@ -47,5 +53,9 @@ export class Resume
 
     getSimpleLists(): SimpleList[] {
         return this.simpleLists;
+    }
+
+    getCertifications(): Certification[] {
+        return this.certifications;
     }
 }

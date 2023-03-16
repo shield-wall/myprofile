@@ -76,6 +76,12 @@ educations:
         description: Major in Engineering, University B, Los Angeles, USA.
         website: ~
 
+certifications:
+    -   title: Master of Arts
+        photoUrl: Harvard
+        timePeriod: March 2012 - December 2013
+        website: ~
+
 # skill level goes from 0 to 100
 skills:
     - HTML5
@@ -90,29 +96,6 @@ skills:
 
 knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual
     (English and Klingon).
-
-projects:
-    -   name: best-resume-ever
-        platform: Vue
-        timeperiod: February 2016
-        description: 👔 💼 Build fast 🚀 and easy multiple beautiful resumes and create your best CV ever! Made with Vue and LESS.
-        url: https://github.com/salomonelli/best-resume-ever
-
-# optional, not all resume templates have hobbies included
-hobbies:
-    -   name: Video Games
-        iconClass: fa fa-gamepad
-        url: https://example.com
-
-    -   name: Drawing
-        iconClass: fa fa-pencil
-        url: https://example.com
-
-contributions:
-    -   name: best-resume-ever
-        description: 👔 💼 Build fast 🚀 and easy multiple beautiful resumes.
-        url: https://github.com/salomonelli/best-resume-ever
-
 
 ##missing fileds
 simpleLists: [ ]

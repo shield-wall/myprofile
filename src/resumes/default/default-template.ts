@@ -1,5 +1,6 @@
-import {ResumeTemplateInterface} from "../contracts/resume-template";
+import {ResumeTemplateInterface} from "../resume-template-interface";
 import 'bulma/bulma.sass';
+import '@fortawesome/fontawesome-free/css/all.css';
 import sectionProfile from "./section-profile";
 import {Resume} from "../../models/resume";
 import sectionDetail from "./section-detail";

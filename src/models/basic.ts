@@ -1,7 +1,8 @@
 import {Language} from "./language";
 import {BasicType} from "../types/basic-type";
+import {PhotoUrlInterface} from "./photo-url-interface";
 
-export class Basic
+export class Basic implements PhotoUrlInterface
 {
     private readonly firstName: string|null;
     private readonly lastName: string|null;

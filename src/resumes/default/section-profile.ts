@@ -26,7 +26,11 @@ export default function sectionProfile(resume: Resume) {
    
                     <div class="column">
                         <div class="tags">
-                            ${resume.getSkills().map((skill) => `<div class="tag is-dark">${skill}</div>`)}
+                            ${
+                                resume.getSkills()
+                                    .map((skill) => `<div class="tag is-dark">${skill}</div>`)
+                                    .join('')
+                            }
                         </div>
                     </div>
                 </div>
@@ -42,7 +46,7 @@ export default function sectionProfile(resume: Resume) {
                               <span>${simpleList.getTitle()}</span>
                         </div>
                     `
-                })}
+                }).join('')}
             </div>
     
             <div class="column">
@@ -60,7 +64,7 @@ export default function sectionProfile(resume: Resume) {
                                 </div>
                             </div>
                             `
-                    })}
+                    }).join()}
                 </div>
             </div>
 
@@ -79,7 +83,7 @@ export default function sectionProfile(resume: Resume) {
                                 </div>
                             </div>
                             `
-                        })}
+                        }).join()}
                     </div>
                 </div>
             </div>
