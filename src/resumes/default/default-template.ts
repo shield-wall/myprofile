@@ -12,7 +12,7 @@ export default class DefaultTemplate implements ResumeTemplateInterface {
 
     template(): string {
         return `
-    <div class="columns">
+    <div class="columns m-3">
         <div class="column is-4">
             ${sectionProfile(this.resume)}
         </div>

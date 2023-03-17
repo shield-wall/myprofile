@@ -38,7 +38,7 @@ export default function sectionDetail(resume: Resume) {
                 ${
                     resume.getEducations()
                         .map((education) => boxDetail(education))
-                        .join()
+                        .join('')
                 }
             </section>
     </div>

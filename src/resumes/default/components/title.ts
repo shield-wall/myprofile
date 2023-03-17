@@ -1,4 +1,4 @@
-import {TitleInterface} from "../../../models/title";
+import {TitleInterface} from "../../../models/title-interface";
 
 export default function title(object: TitleInterface): string
 {
