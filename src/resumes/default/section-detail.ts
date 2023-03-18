@@ -1,5 +1,3 @@
-import title from "./components/title";
-import {Section} from "../../models/section";
 import boxDetail from "./components/box-detail";
 import {Resume} from "../../models/resume";
 import certifications from "./components/certifications";
@@ -25,7 +23,6 @@ export default function sectionDetail(resume: Resume) {
         </section>
 
             <section class="mt-4">
-                ${title(new Section('Experience', Icons['work']))}
                 ${
                     resume.getExperiences()
                         .map((experience) => boxDetail(experience))

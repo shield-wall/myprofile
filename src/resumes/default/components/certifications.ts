@@ -1,6 +1,4 @@
 import {Certification} from "../../../models/certification";
-import {Section} from "../../../models/section";
-import title from "./title";
 import {PhotoUrlInterface} from "../../../models/contracts/photo-url-interface";
 import {Icons} from "../../../components/icons";
 
@@ -43,8 +41,6 @@ export default function certifications(certifications: Certification[]): string|
     });
 
     return `
-        ${title(new Section('Certifications', Icons['certification']))}
-
         <div class="columns is-gapless is-multiline">
             ${content}
         </div>

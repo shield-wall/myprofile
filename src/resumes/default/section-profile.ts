@@ -1,7 +1,5 @@
 import {Resume} from "../../models/resume";
-import title from "./components/title";
-import {Icons} from "../../components/icons";
-import {Section} from "../../models/section";
+import {sections} from "./components/sections";
 
 export default function sectionProfile(resume: Resume) {
     let basic = resume.getBasic();
@@ -39,39 +37,11 @@ export default function sectionProfile(resume: Resume) {
                 </div>
             </div>
     
-            <div class="column">
-                ${resume.getSimpleLists().map((simpleList) => {
-                    return `
-                        <div class="icon-text">
-                              <span class="icon">
-                                <i class="${simpleList.getIcon()}"></i>
-                              </span>
-                              <span>${simpleList.getTitle()}</span>
-                        </div>
-                    `
-                }).join('')}
-            </div>
-    
-            <div class="column">
-                <div class="content">
-                    ${title(new Section('Education', Icons['education']))}
-                    ${resume.getEducations().map((education) => {
-                        return `
-                            <div class="mb-2">
-                                <div class="is-size-6 has-text-weight-bold">${education.getDegree()}</div>
-                                <div>${education.getInstitution()}</div>
-                                <div>
-                                    ${education.getTimePeriod()}
-                                </div>
-                            </div>
-                            `
-                    }).join('')}
-                </div>
-            </div>
+            
+            ${sections(resume.getSections())}
 
             <div class="column">
                 <div class="content">
-                    ${title(new Section('Languages', Icons['language']))}
                     <div class="is-flex is-flex-direction-column">
                         ${basic.getLanguages().map((language) => {
                             return `

@@ -2,37 +2,37 @@ import {Education} from "./education";
 import {Experience} from "./experience";
 import {ResumeType} from "../types/resume-type";
 import {Basic} from "./basic";
-import {SimpleList} from "./simple-list";
 import {Certification} from "./certification";
+import {Section} from "./section";
 
 export class Resume
 {
     private readonly basic: Basic;
     private readonly skills: string[];
-    private readonly simpleLists: SimpleList[];
     private readonly educations: Education[];
     private readonly experiences: Experience[];
     private readonly certifications: Certification[];
+    private readonly sections: Section[];
 
     constructor(resumeType: ResumeType) {
         this.basic = new Basic(resumeType.basic);
         this.skills = resumeType.skills;
 
-        this.simpleLists = resumeType
-            .simpleLists
-            .map((simpleList) => new SimpleList(simpleList));
-
         this.educations = resumeType
             .educations
-            .map((education) => new Education(education));
+            .map((educationType) => new Education(educationType));
 
         this.experiences = resumeType
             .experiences
-            .map((experience) => new Experience(experience));
+            .map((experienceType) => new Experience(experienceType));
 
         this.certifications = resumeType
             .certifications
-            .map((certification) => new Certification(certification));
+            .map((certificationType) => new Certification(certificationType));
+
+        this.sections = resumeType
+            .sectionTwo
+            .map((sectionType) => new Section(sectionType));
     }
 
     getBasic(): Basic {
@@ -51,11 +51,11 @@ export class Resume
         return this.experiences;
     }
 
-    getSimpleLists(): SimpleList[] {
-        return this.simpleLists;
-    }
-
     getCertifications(): Certification[] {
         return this.certifications;
+    }
+
+    getSections(): Section[] {
+        return this.sections;
     }
 }

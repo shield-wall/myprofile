@@ -73,5 +73,35 @@ skills:
 #    - ES.Next
 #    - Docker
 
-#it's not implemented yet,But please don't remove it.
-simpleLists: [ ]
+sectionTwo:
+    #[contact section]
+    -   layout: list
+        title: ~
+        icon: ~
+        children:
+            -   title: +49 123456789
+                icon: phone
+
+            -   title: email@gmail.com
+                icon: email
+
+            -   title: https://linkedin.com/eerison
+                icon: linkedin
+
+            -   title: https://github.com/eerison
+                icon: github
+
+    #[education section]
+    -   layout: shortDetail
+        title: Education
+        icon: education
+        children:
+            -   degree: Master of Arts
+                institution: Harvard
+                timePeriod: March 2012 - December 2013
+                description: Major in Hacking and Computer Penetration, University A, New York, USA.
+
+            -   degree: Bachelor of Science
+                institution: Harvard
+                timePeriod: March 2009 - December 2011
+                description: Major in Engineering, University B, Los Angeles, USA.
