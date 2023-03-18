@@ -7,8 +7,10 @@
         "dev": "npm run node:generate:json && vite --host 0.0.0.0 --port 3000",
         "build": "tsc && vite build",
         "preview": "vite preview",
+        "node:copy-data": "cp data/data.yaml.dist data/data.yaml",
         "node:generate:json": "ts-node ./node/parse.ts",
-        "node:generate:pdf": "ts-node ./node/pdf.ts"
+        "node:generate:pdf": "ts-node ./node/pdf.ts",
+        "node:init": "npm run node:copy-data && node:generate:json"
     },
     "devDependencies": {
         "ts-node": "^10.9.1",
