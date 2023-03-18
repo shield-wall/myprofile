@@ -16,7 +16,11 @@ function createJsonFile(json:string)
 
     fs.writeFile('./data/json/data.json', json,function (err) {
         if (err) throw err;
-        console.log("Data yaml converted to json file :)");
+        console.log(
+            '%s Your yaml file was successfully converted to json into "data/json/" folder ;) %s',
+            '\x1b[33m',
+            '\x1b[0m',
+        );
     });
 }
 

@@ -25,23 +25,14 @@ export default function sectionDetail(resume: Resume) {
         </section>
 
             <section class="mt-4">
-                ${title(new Section('Experience'))}
+                ${title(new Section('Experience', Icons['work']))}
                 ${
                     resume.getExperiences()
                         .map((experience) => boxDetail(experience))
                         .join('')
                 }
             </section>
-            
-           <section class="mt-4">
-                ${title(new Section('Educations'))}
-                ${
-                    resume.getEducations()
-                        .map((education) => boxDetail(education))
-                        .join('')
-                }
-            </section>
-    </div>
+        </div>
 
     <section class="mt-4">
         ${certifications(resume.getCertifications())}

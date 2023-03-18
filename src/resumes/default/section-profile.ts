@@ -1,4 +1,7 @@
 import {Resume} from "../../models/resume";
+import title from "./components/title";
+import {Icons} from "../../components/icons";
+import {Section} from "../../models/section";
 
 export default function sectionProfile(resume: Resume) {
     let basic = resume.getBasic();
@@ -50,13 +53,11 @@ export default function sectionProfile(resume: Resume) {
             </div>
     
             <div class="column">
-                <div class="content is-small">
-                    <h2>
-                        <i class="fas fa-graduation-cap"></i> Education
-                    </h2>
+                <div class="content">
+                    ${title(new Section('Education', Icons['education']))}
                     ${resume.getEducations().map((education) => {
                         return `
-                            <div>
+                            <div class="mb-2">
                                 <div class="is-size-6 has-text-weight-bold">${education.getDegree()}</div>
                                 <div>${education.getInstitution()}</div>
                                 <div>
@@ -64,15 +65,13 @@ export default function sectionProfile(resume: Resume) {
                                 </div>
                             </div>
                             `
-                    }).join()}
+                    }).join('')}
                 </div>
             </div>
 
             <div class="column">
-                <div class="content is-small">
-                    <h2>
-                        <i class="fas fa-language"></i> Languages
-                    </h2>
+                <div class="content">
+                    ${title(new Section('Languages', Icons['language']))}
                     <div class="is-flex is-flex-direction-column">
                         ${basic.getLanguages().map((language) => {
                             return `
@@ -83,7 +82,7 @@ export default function sectionProfile(resume: Resume) {
                                 </div>
                             </div>
                             `
-                        }).join()}
+                        }).join('')}
                     </div>
                 </div>
             </div>

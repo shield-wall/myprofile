@@ -1,14 +1,14 @@
-import {TitleInterface} from "../../../models/title-interface";
+import {Section} from "../../../models/section";
 
-export default function title(object: TitleInterface): string
+export default function title(section: Section): string
 {
     return `
                 <h4>
                     <span class="icon-text">
                         <span class="icon">
-                            <i class="fa fa-briefcase"></i>
+                            ${section.getIcon()}
                         </span>
-                        <span>${object.getTitle()}</span>
+                        <span>${section.getTitle()}</span>
                     </span>
                 </h4>
     `;

@@ -2,6 +2,7 @@ import {Certification} from "../../../models/certification";
 import {Section} from "../../../models/section";
 import title from "./title";
 import {PhotoUrlInterface} from "../../../models/photo-url-interface";
+import {Icons} from "../../../components/icons";
 
 export default function certifications(certifications: Certification[]): string|null {
 
@@ -11,9 +12,7 @@ export default function certifications(certifications: Certification[]): string|
     let logo = (object: PhotoUrlInterface) => {
         if(object.getPhotoUrl() === null)
             return `
-                 <div class="media-left">
-                    <i class="fa fa-certificate fa-4x"></i>
-                </div>
+                 <div class="media-left">${Icons['certification']}</div>
             `
 
         return `
@@ -44,7 +43,7 @@ export default function certifications(certifications: Certification[]): string|
     });
 
     return `
-        ${title(new Section('Certifications'))}
+        ${title(new Section('Certifications', Icons['certification']))}
 
         <div class="columns is-gapless is-multiline">
             ${content}

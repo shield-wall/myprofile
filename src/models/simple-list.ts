@@ -1,7 +1,8 @@
 import {SimpleListType} from "../types/simple-list-type";
 import {TitleInterface} from "./title-interface";
+import {IconInterface} from "./icon-interface";
 
-export class SimpleList implements TitleInterface
+export class SimpleList implements TitleInterface, IconInterface
 {
     private readonly title: string;
     private readonly icon: string;
@@ -15,7 +16,6 @@ export class SimpleList implements TitleInterface
         return this.title;
     }
 
-    // TODO use IconEnum
     getIcon(): string {
         return this.icon;
     }

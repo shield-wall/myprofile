@@ -37,6 +37,11 @@ import { fileURLToPath } from 'url';
 
     await browser.close();
 
+    console.log(
+        `%s Your pdf was generated in "data/pdf/" folder ;) %s`,
+        '\x1b[33m',
+        '\x1b[0m',
+        )
     return pdf;
 })();
 

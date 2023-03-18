@@ -10,7 +10,9 @@
         "node:copy-data": "cp data/data.yaml.dist data/data.yaml",
         "node:generate:json": "ts-node ./node/parse.ts",
         "node:generate:pdf": "ts-node ./node/pdf.ts",
-        "node:init": "npm run node:copy-data && node:generate:json"
+
+        "node:group:init": "npm run node:copy-data && npm run node:generate:json",
+        "node:group:pdf": "npm run node:generate:json && npm run node:generate:pdf"
     },
     "devDependencies": {
         "ts-node": "^10.9.1",

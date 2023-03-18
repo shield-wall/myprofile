@@ -26,26 +26,6 @@ basic:
             level: Intermediate
 
 # you may add more experiences by duplicating the template
-primary-section:
-    -   title: Experience
-        icon: work
-        type: experience #experience , education, projects
-        children:
-            -   company: Company A
-                position: Developer
-                timeperiod: since January 2016
-                description: Programming and watching cute cat videos.
-                website: https://example.com
-
-    -   title: Education
-        icon: work
-        type: education #experience , education, projects
-        children:
-            -   company: Company A
-                position: Developer
-                timeperiod: since January 2016
-                description: Programming and watching cute cat videos.
-                website: https://example.com
 experiences:
     -   company: Company A
         position: Developer
@@ -78,24 +58,20 @@ educations:
 
 certifications:
     -   title: Master of Arts
-        photoUrl: Harvard
+        photoUrl: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Google__CompTIA_Badge.jpg
         timePeriod: March 2012 - December 2013
         website: ~
 
-# skill level goes from 0 to 100
+# we suggest to list only 4 skills at the moment.
 skills:
     - HTML5
     - CSS3
     - JavaScript
     - Node.js
-    - Angular 2
-    - TypeScript
-    - ES.Next
-    - Docker
+#    - Angular 2
+#    - TypeScript
+#    - ES.Next
+#    - Docker
 
-
-knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual
-    (English and Klingon).
-
-##missing fileds
+#it's not implemented yet,But please don't remove it.
 simpleLists: [ ]
