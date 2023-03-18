@@ -1,4 +1,4 @@
-import {TitleInterface} from "./title-interface";
+import {TitleInterface} from "./contracts/title-interface";
 import {LanguageType} from "../types/language-type";
 
 export class Language implements TitleInterface

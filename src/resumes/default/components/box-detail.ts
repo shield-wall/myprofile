@@ -1,4 +1,4 @@
-import {DetailSectionInterface} from "../../../models/detail-section-interface";
+import {DetailSectionInterface} from "../../../models/contracts/detail-section-interface";
 
 export default function boxDetail(detailSection: DetailSectionInterface): string
 {

@@ -1,4 +1,4 @@
-import {DetailSectionInterface} from "./detail-section-interface";
+import {DetailSectionInterface} from "./contracts/detail-section-interface";
 import {ExperienceType} from "../types/experience-type";
 
 export class Experience implements DetailSectionInterface

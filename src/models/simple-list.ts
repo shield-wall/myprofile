@@ -1,6 +1,6 @@
 import {SimpleListType} from "../types/simple-list-type";
-import {TitleInterface} from "./title-interface";
-import {IconInterface} from "./icon-interface";
+import {TitleInterface} from "./contracts/title-interface";
+import {IconInterface} from "./contracts/icon-interface";
 
 export class SimpleList implements TitleInterface, IconInterface
 {

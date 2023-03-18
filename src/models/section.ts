@@ -1,5 +1,5 @@
-import {TitleInterface} from "./title-interface";
-import {IconInterface} from "./icon-interface";
+import {TitleInterface} from "./contracts/title-interface";
+import {IconInterface} from "./contracts/icon-interface";
 
 export class Section implements TitleInterface, IconInterface
 {

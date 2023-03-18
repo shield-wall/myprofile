@@ -1,7 +1,7 @@
 import {Certification} from "../../../models/certification";
 import {Section} from "../../../models/section";
 import title from "./title";
-import {PhotoUrlInterface} from "../../../models/photo-url-interface";
+import {PhotoUrlInterface} from "../../../models/contracts/photo-url-interface";
 import {Icons} from "../../../components/icons";
 
 export default function certifications(certifications: Certification[]): string|null {

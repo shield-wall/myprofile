@@ -1,6 +1,6 @@
-import {PhotoUrlInterface} from "./photo-url-interface";
+import {PhotoUrlInterface} from "./contracts/photo-url-interface";
 import {CertificationType} from "../types/certification-type";
-import {TitleInterface} from "./title-interface";
+import {TitleInterface} from "./contracts/title-interface";
 
 export class Certification implements PhotoUrlInterface, TitleInterface {
     private readonly title: string;

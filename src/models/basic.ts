@@ -1,6 +1,6 @@
 import {Language} from "./language";
 import {BasicType} from "../types/basic-type";
-import {PhotoUrlInterface} from "./photo-url-interface";
+import {PhotoUrlInterface} from "./contracts/photo-url-interface";
 
 export class Basic implements PhotoUrlInterface
 {
