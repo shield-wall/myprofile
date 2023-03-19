@@ -1,7 +1,6 @@
 {
-    "name": "myprofile-templates",
+    "name": "myprofile",
     "private": false,
-    "version": "0.0.0",
     "type": "module",
     "scripts": {
         "dev": "npm run node:generate:json && vite --host 0.0.0.0 --port 3000",

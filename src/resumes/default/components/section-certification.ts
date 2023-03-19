@@ -2,13 +2,9 @@ import {Certification} from "../../../models/certification";
 import {PhotoUrlInterface} from "../../../models/contracts/photo-url-interface";
 import {Icons} from "../../../components/icons";
 
-export default function certifications(certifications: Certification[]): string|null {
-
-    if(certifications.length === 0)
-        return null;
-
+export default function sectionCertification(certification: Certification): string {
     let logo = (object: PhotoUrlInterface) => {
-        if(object.getPhotoUrl() === null)
+        if (object.getPhotoUrl() === null)
             return `
                  <div class="media-left">${Icons['certification']}</div>
             `
@@ -22,9 +18,7 @@ export default function certifications(certifications: Certification[]): string|
         `
     };
 
-    let content = '';
-    certifications.forEach((certification) => {
-        content += `
+    return `
         <div class="column is-half">
                     <article class="media">
                         ${logo(certification)}
@@ -38,11 +32,5 @@ export default function certifications(certifications: Certification[]): string|
                     </article>
                 </div>
         `
-    });
 
-    return `
-        <div class="columns is-gapless is-multiline">
-            ${content}
-        </div>
-    `;
 }

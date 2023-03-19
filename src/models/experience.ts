@@ -28,7 +28,7 @@ export class Experience implements DetailSectionInterface
         return this.timePeriod;
     }
 
-    getDescription(): string {
+    getContent(): string {
         return this.description;
     }
 }

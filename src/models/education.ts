@@ -16,7 +16,7 @@ export class Education implements DetailSectionInterface
         this.degree = educationType.degree;
     }
 
-    getDescription(): string {
+    getContent(): string {
         return this.description;
     }
 
@@ -29,10 +29,6 @@ export class Education implements DetailSectionInterface
     }
 
     getTitle(): string {
-        return this.degree;
-    }
-
-    getDegree(): string {
         return this.degree;
     }
 }
