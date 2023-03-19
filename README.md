@@ -1,8 +1,6 @@
-Myprofile templates
-===================
-> **Warning**
-> 
-> This prohect is still in progress and will be moved to [myprofile](https://github.com/shield-wall/myprofile)
+<div style="text-align:center">
+  <img src="./doc/logo.webp">
+</div>
 
 # Examples
  - [Default](./data/examples/default.pdf)
