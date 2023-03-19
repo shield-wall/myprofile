@@ -1,4 +1,5 @@
 import {DetailSectionInterface} from "../../../models/contracts/detail-section-interface";
+import {markdown} from "../../../components/markdown";
 
 export default function boxDetail(detailSection: DetailSectionInterface): string
 {
@@ -12,6 +13,6 @@ export default function boxDetail(detailSection: DetailSectionInterface): string
             <div>${detailSection.getTimePeriod()}</div>
         </div>
     </div>
-    <div class="mt-2">${detailSection.getDescription().replace (/\n/g, "<br />")}</div>
+    <div class="mt-2">${markdown(detailSection.getDescription())}</div>
 </div>`;
 }

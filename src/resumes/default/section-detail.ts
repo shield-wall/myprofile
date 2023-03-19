@@ -2,6 +2,7 @@ import boxDetail from "./components/box-detail";
 import {Resume} from "../../models/resume";
 import certifications from "./components/certifications";
 import {Icons} from "../../components/icons";
+import {markdown} from "../../components/markdown";
 
 export default function sectionDetail(resume: Resume) {
     return `
@@ -18,7 +19,7 @@ export default function sectionDetail(resume: Resume) {
                 </span>
             </h4>
             <div>
-                ${resume.getBasic().getAbout()}
+                ${markdown(resume.getBasic().getAbout())}
             </div>
         </section>
 

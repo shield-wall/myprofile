@@ -5,6 +5,6 @@ export type BasicType = {
     lastName: string|null;
     photoUrl: string|null;
     position: string|null;
-    about: string|null;
+    about: string;
     languages: LanguageType[];
 }

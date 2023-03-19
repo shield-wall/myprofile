@@ -8,7 +8,7 @@ export class Basic implements PhotoUrlInterface
     private readonly lastName: string|null;
     private readonly photoUrl: string|null;
     private readonly position: string|null;
-    private readonly about: string|null;
+    private readonly about: string;
     private readonly languages: Language[];
 
     constructor(basicType: BasicType) {
@@ -38,7 +38,7 @@ export class Basic implements PhotoUrlInterface
         return this.position;
     }
 
-    getAbout(): string|null {
+    getAbout(): string {
         return this.about;
     }
 

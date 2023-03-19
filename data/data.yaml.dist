@@ -3,11 +3,15 @@ basic:
     lastName: Doe
     photoUrl: https://avatars.githubusercontent.com/u/6358755?v=4
     position: Software Developer
-    about: >
+    about: |
         Hi, my name is John Doe. I'm just about the most boring type of person you could
-        
-        possibly imagine. I like collecting leaves from the tree in my back yard and documenting
-        
+
+        **possibly** imagine. I like collecting leaves from the tree in my back yard and documenting
+
+        - item1
+        - item2
+        - item3
+
         each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
 
     contact:
@@ -30,7 +34,12 @@ experiences:
     -   company: Company A
         position: Developer
         timePeriod: since January 2016
-        description: Programming and watching cute cat videos.
+        description: |
+            ***Programming and watching cute cat videos.**
+
+            1. item1
+            1. item2
+            1. item3
         website: https://example.com
 
     -   company: Company B
@@ -47,7 +56,10 @@ educations:
     -   degree: Master of Arts
         institution: Harvard
         timePeriod: March 2012 - December 2013
-        description: Major in Hacking and Computer Penetration, University A, New York, USA.
+        description: |
+            **Major** in Hacking and Computer Penetration, University A, New York, USA.
+
+            markdown
         website: https://example.com
 
     -   degree: Bachelor of Science
@@ -99,9 +111,9 @@ sectionTwo:
             -   degree: Master of Arts
                 institution: Harvard
                 timePeriod: March 2012 - December 2013
-                description: Major in Hacking and Computer Penetration, University A, New York, USA.
+                description: Major in Hacking and Computer Penetration, University A, New York, **USA.**
 
             -   degree: Bachelor of Science
                 institution: Harvard
                 timePeriod: March 2009 - December 2011
-                description: Major in Engineering, University B, Los Angeles, USA.
+                description: Major in Engineering, University B, Los Angeles, **USA.**

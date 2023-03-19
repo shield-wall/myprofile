@@ -10,7 +10,6 @@
         "node:copy-data": "cp data/data.yaml.dist data/data.yaml",
         "node:generate:json": "ts-node ./node/parse.ts",
         "node:generate:pdf": "ts-node ./node/pdf.ts",
-
         "node:group:init": "npm run node:copy-data && npm run node:generate:json",
         "node:group:pdf": "npm run node:generate:json && npm run node:generate:pdf"
     },
@@ -21,8 +20,10 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.3.0",
+        "@types/marked": "^4.0.8",
         "@types/node": "^18.15.2",
         "bulma": "^0.9.4",
+        "marked": "^4.2.12",
         "puppeteer": "^19.7.5",
         "sass": "^1.59.2",
         "yaml": "^2.2.1"
