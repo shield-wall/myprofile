@@ -70,7 +70,3 @@ jobs:
                     name: resume
                     retention-days: 10
                     path: data/pdf/resume.pdf
-
-            -   uses: actions/download-artifact@v3
-                with:
-                    name: resume
