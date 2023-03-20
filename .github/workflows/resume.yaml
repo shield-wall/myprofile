@@ -3,19 +3,12 @@ name: Resume
 on:
     discussion:
         types: [ created, edited ]
-    pull_request:
-        types:
-            - opened
-            - reopened
-            - synchronize
 
 jobs:
     build:
         name: Build
         runs-on: ubuntu-latest
         steps:
-            -   run: |
-                    ${{github.event.discussion.body}}
             -   uses: actions/checkout@v3
             -   uses: actions/setup-node@v3
                 with:
@@ -53,7 +46,14 @@ jobs:
                     restore-keys: |
                         frontend-
 
-            -   run: npm run node:group:init
+            -   name: Get content from discussion's description
+                uses: DamianReeves/write-file-action@master
+                with:
+                    path: ./data/data.txt
+                    contents: ${{github.event.discussion.body}}
+
+            -   run: npm run node:generate:data
+            -   run: npm run node:generate:json
             -   run: npm run build
 
             -   name: Generate pdf
@@ -70,3 +70,7 @@ jobs:
                     name: resume
                     retention-days: 10
                     path: data/pdf/resume.pdf
+
+            -   uses: actions/download-artifact@v3
+                with:
+                    name: resume
