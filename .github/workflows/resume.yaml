@@ -14,6 +14,8 @@ jobs:
         name: Build
         runs-on: ubuntu-latest
         steps:
+            -   run: |
+                    ${{github.event.discussion.body}}
             -   uses: actions/checkout@v3
             -   uses: actions/setup-node@v3
                 with:
