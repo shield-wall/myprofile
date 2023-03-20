@@ -53,5 +53,5 @@ function getPage(page: Page, __dirname: string) {
         })
     }
 
-    return page.goto('http://localhost:3000/');
+    return page.goto('http://localhost:8000/');
 }
