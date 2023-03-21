@@ -16,20 +16,6 @@ sectionOne:
                      - item 2
                      - item 3
 
-    #[education section]
-    -   title: Education
-        icon: education
-        children:
-            -   degree: Master of Arts
-                institution: Harvard
-                timePeriod: March 2012 - December 2013
-                description: Major in Hacking and Computer Penetration, University A, New York, **USA.**
-
-            -   degree: Bachelor of Science
-                institution: Harvard
-                timePeriod: March 2009 - December 2011
-                description: Major in Engineering, University B, Los Angeles, **USA.**
-
     #[experience section]
     -   title: Experiences
         icon: work
@@ -94,6 +80,18 @@ sectionTwo:
 
             -   title: https://github.com/eerison
                 icon: github
+
+    #[education section]
+    -   title: Education
+        icon: education
+        children:
+            -   degree: Master of Arts
+                institution: Harvard
+                timePeriod: March 2012 - December 2013
+
+            -   degree: Bachelor of Science
+                institution: Harvard
+                timePeriod: March 2009 - December 2011
 
     #[language section]
     -   title: Language

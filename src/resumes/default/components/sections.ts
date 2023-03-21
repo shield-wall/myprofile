@@ -11,6 +11,7 @@ import boxDetail from "./box-detail";
 import {Experience} from "../../../models/experience";
 import {Certification} from "../../../models/certification";
 import sectionCertification from "./section-certification";
+import {sectionEducations} from "./section-educations";
 
 export function sections(sections: Section[]): string {
     let content = '';
@@ -38,7 +39,10 @@ function _section(section: Section) {
         if (item instanceof SimpleList)
             content += `<div>${sectionSimpleList(item)}</div>`;
 
-        if (item instanceof Education || item instanceof Experience)
+        if (item instanceof Education)
+            content += sectionEducations(item);
+
+        if (item instanceof Experience)
             content += `<div>${boxDetail(item)}</div>`
 
         if (item instanceof Content)
