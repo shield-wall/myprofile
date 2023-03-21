@@ -1,12 +1,9 @@
-#!/usr/bin/env node
-
 import fs from "fs";
 import YAML from "yaml";
 
 const file = fs.readFileSync('./data/data.yaml', 'utf8')
 let json =  JSON.stringify(YAML.parse(file), null, 4);
 createJsonFile(json)
-
 
 function createJsonFile(json:string)
 {
