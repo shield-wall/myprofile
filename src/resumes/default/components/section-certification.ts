@@ -21,13 +21,12 @@ export default function sectionCertification(
 	};
 
 	return `
-        <div class="column is-half">
+        <div class="column py-0 pb-1">
                     <article class="media">
                         ${logo(certification)}
-
                         <div class="media-content">
                             <div class="content is-small">
-                                <h4>${certification.getTitle()}</h4>
+                                <div class="has-text-weight-bold">${certification.getTitle()}</div>
                                 <div>${certification.getTimePeriod()}</div>
                             </div>
                         </div>

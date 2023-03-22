@@ -83,5 +83,5 @@ function _sectionCertification(section: Section): string {
 
 	if (content === "") return "";
 
-	return `<div class="columns is-gapless is-multiline">${content}</div>`;
+	return `<div class="columns is-multiline">${content}</div>`;
 }
