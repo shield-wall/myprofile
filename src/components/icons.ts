@@ -10,4 +10,5 @@ export const Icons = {
 	phone: `<i class="fa-solid fa-phone"></i>`,
 	rock: `<i class="fa-solid fa-rocket"></i>`,
 	xing: `<i class="fa-brands fa-xing"></i>`,
+	location: `<i class="fa-solid fa-location-dot"></i>`,
 };
