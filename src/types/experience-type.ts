@@ -3,4 +3,6 @@ export type ExperienceType = {
 	position: string;
 	timePeriod: string;
 	description: string;
+    photoUrl: string|null;
+    website: string|null;
 };

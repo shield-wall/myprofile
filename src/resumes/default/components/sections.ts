@@ -16,7 +16,7 @@ import { sectionEducations } from "./section-educations";
 export function sections(sections: Section[]): string {
 	let content = "";
 	sections.forEach((section: Section) => {
-		content += `<div class="column">
+		content += `<div class="column mt-4">
                         <div class="">
                             ${title(section)} 
                         </div>
@@ -48,7 +48,7 @@ function _section(section: Section) {
 					content += sectionEducations(item);
 
 				if (item instanceof Experience)
-					content += `<div>${boxDetail(item)}</div>`;
+					content += `<div class="timeline">${boxDetail(item)}</div>`;
 
 				if (item instanceof Content)
 					content += `<div>${sectionContent(item)}</div>`;

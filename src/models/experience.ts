@@ -6,12 +6,16 @@ export class Experience implements DetailSectionInterface {
 	private readonly position: string;
 	private readonly timePeriod: string;
 	private readonly description: string;
+	private readonly photoUrl: string | null;
+	private readonly website: string | null;
 
 	constructor(experienceType: ExperienceType) {
 		this.company = experienceType.company;
 		this.position = experienceType.position;
 		this.timePeriod = experienceType.timePeriod;
 		this.description = experienceType.description;
+		this.photoUrl = experienceType.photoUrl;
+		this.website = experienceType.website;
 	}
 
 	getTitle(): string {
@@ -29,4 +33,12 @@ export class Experience implements DetailSectionInterface {
 	getContent(): string {
 		return this.description;
 	}
+
+    getPhotoUrl(): string | null {
+        return this.photoUrl;
+    }
+
+    getWebsite(): string | null {
+        return this.website;
+    }
 }

@@ -30,16 +30,21 @@ sectionOne:
                     1. item2
                     1. item3
                 website: https://example.com
+                photoUrl: https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png
 
             -   company: Company B
                 position: Frontend Developer
                 timePeriod: January 2015 - December 2015
                 description: Fulfillment of extremely important tasks.
+                website: https://example.com
+                photoUrl: https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png
 
             -   company: Company C
                 position: Trainee
                 timePeriod: March 2014 - December 2014
                 description: Making coffee and baking cookies.
+                website: ~
+                photoUrl: ~
 
     #[certification section]
     -   title: Certifications
