@@ -1,5 +1,5 @@
 export type EducationType = {
-    degree: string
-    timePeriod: string
-    institution: string
-}
+	degree: string;
+	timePeriod: string;
+	institution: string;
+};

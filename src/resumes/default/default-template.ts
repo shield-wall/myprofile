@@ -1,18 +1,18 @@
-import {ResumeTemplateInterface} from "../resume-template-interface";
-import 'bulma/bulma.sass';
-import '@fortawesome/fontawesome-free/css/all.css';
+import { ResumeTemplateInterface } from "../resume-template-interface";
+import "./style.scss";
+import "@fortawesome/fontawesome-free/css/all.css";
 import sectionProfile from "./section-profile";
-import {Resume} from "../../models/resume";
+import { Resume } from "../../models/resume";
 import sectionDetail from "./section-detail";
 
 export default class DefaultTemplate implements ResumeTemplateInterface {
-    constructor(private resume: Resume) {
-        this.resume = resume;
-    }
+	constructor(private resume: Resume) {
+		this.resume = resume;
+	}
 
-    template(): string {
-        return `
-    <div class="columns m-3">
+	template(): string {
+		return `
+    <div class="columns p-3 m-0">
         <div class="column is-4">
             ${sectionProfile(this.resume)}
         </div>
@@ -21,6 +21,6 @@ export default class DefaultTemplate implements ResumeTemplateInterface {
             ${sectionDetail(this.resume)}
         </div>
     </div>
-    `
-    }
-};
+    `;
+	}
+}

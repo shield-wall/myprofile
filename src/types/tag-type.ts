@@ -1,3 +1,3 @@
 export type TagType = {
-    tag: string|string[];
-}
+	tag: string | string[];
+};

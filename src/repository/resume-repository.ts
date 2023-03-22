@@ -1,10 +1,8 @@
-import resumeJson from '../../data/json/data.json'
-import {Resume} from "../models/resume";
+import resumeJson from "../../data/json/data.json";
+import { Resume } from "../models/resume";
 
-export class ResumeRepository
-{
-    findCurrentResume(): Resume
-    {
-        return new Resume(resumeJson);
-    }
+export class ResumeRepository {
+	findCurrentResume(): Resume {
+		return new Resume(resumeJson);
+	}
 }

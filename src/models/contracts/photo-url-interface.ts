@@ -1,3 +1,3 @@
 export interface PhotoUrlInterface {
-    getPhotoUrl(): string|null;
+	getPhotoUrl(): string | null;
 }

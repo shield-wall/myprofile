@@ -1,8 +1,10 @@
-import {DetailSectionInterface} from "../../../models/contracts/detail-section-interface";
-import {sectionContent} from "./section-content";
+import { DetailSectionInterface } from "../../../models/contracts/detail-section-interface";
+import { sectionContent } from "./section-content";
 
-export default function boxDetail(detailSection: DetailSectionInterface): string {
-    return `
+export default function boxDetail(
+	detailSection: DetailSectionInterface
+): string {
+	return `
     <div class="column">
         <div class="is-flex is-justify-content-space-between">
             <div>

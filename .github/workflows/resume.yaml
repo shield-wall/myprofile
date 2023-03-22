@@ -2,71 +2,72 @@ name: Resume
 
 on:
     discussion:
-        types: [ created, edited ]
+        types: [created, edited]
 
 jobs:
     build:
         name: Build
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v3
-            -   uses: actions/setup-node@v3
-                with:
-                    node-version: 19
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 19
 
-            -   name: cache
-                id: cache-frontend
-                uses: actions/cache@v3
-                with:
-                    key: frontend-${{ hashFiles('**/package-lock.json') }}
-                    path: |
-                        node_modules
-                        .cache
-                    restore-keys: |
-                        frontend-
+            - name: cache
+              id: cache-frontend
+              uses: actions/cache@v3
+              with:
+                  key: frontend-${{ hashFiles('**/package-lock.json') }}
+                  path: |
+                      node_modules
+                      .cache
+                  restore-keys: |
+                      frontend-
 
-            -   run: npm install
+            - run: npm install
 
     pdf:
         runs-on: ubuntu-latest
         needs: build
         name: Generate pdf
         steps:
-            -   uses: actions/checkout@v3
-            -   uses: actions/setup-node@v3
-                with:
-                    node-version: 19
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 19
 
-            -   uses: actions/cache@v3
-                with:
-                    key: frontend-${{ hashFiles('**/package-lock.json') }}
-                    path: |
-                        node_modules
-                        .cache
-                    restore-keys: |
-                        frontend-
+            - uses: actions/cache@v3
+              with:
+                  key: frontend-${{ hashFiles('**/package-lock.json') }}
+                  path: |
+                      node_modules
+                      .cache
+                  restore-keys: |
+                      frontend-
 
-            -   name: Get content from discussion's description
-                uses: DamianReeves/write-file-action@master
-                with:
-                    path: ./data/data.txt
-                    contents: ${{github.event.discussion.body}}
+            - name: Get content from discussion's description
+              uses: DamianReeves/write-file-action@master
+              with:
+                  path: ./data/data.txt
+                  contents: ${{github.event.discussion.body}}
 
-            -   run: npm run node:generate:data
-            -   run: npm run node:generate:json
-            -   run: npm run build
+            - run: npm run node:generate:data
+            - run: npm run lint:check:yaml
+            - run: npm run node:generate:json
+            - run: npm run build
 
-            -   name: Generate pdf
-                run: |
-                    python3 -m http.server --directory dist &> /dev/null &
-                    pid=$!
-                    sleep 1
-                    npm run node:generate:pdf
-                    kill "${pid}"
+            - name: Generate pdf
+              run: |
+                  python3 -m http.server --directory dist &> /dev/null &
+                  pid=$!
+                  sleep 1
+                  npm run node:generate:pdf
+                  kill "${pid}"
 
-            -   name: Save resume pdf
-                uses: actions/upload-artifact@v3
-                with:
-                    name: resume
-                    retention-days: 10
-                    path: data/pdf/resume.pdf
+            - name: Save resume pdf
+              uses: actions/upload-artifact@v3
+              with:
+                  name: resume
+                  retention-days: 10
+                  path: data/pdf/resume.pdf

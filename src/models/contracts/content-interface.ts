@@ -1,3 +1,3 @@
 export interface ContentInterface {
-    getContent(): string;
+	getContent(): string;
 }

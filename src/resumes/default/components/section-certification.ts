@@ -1,24 +1,26 @@
-import {Certification} from "../../../models/certification";
-import {PhotoUrlInterface} from "../../../models/contracts/photo-url-interface";
-import {Icons} from "../../../components/icons";
+import { Certification } from "../../../models/certification";
+import { PhotoUrlInterface } from "../../../models/contracts/photo-url-interface";
+import { Icons } from "../../../components/icons";
 
-export default function sectionCertification(certification: Certification): string {
-    let logo = (object: PhotoUrlInterface) => {
-        if (object.getPhotoUrl() === null)
-            return `
-                 <div class="media-left">${Icons['certification']}</div>
-            `
+export default function sectionCertification(
+	certification: Certification
+): string {
+	const logo = (object: PhotoUrlInterface) => {
+		if (object.getPhotoUrl() === null)
+			return `
+                 <div class="media-left">${Icons["certification"]}</div>
+            `;
 
-        return `
+		return `
               <figure class="media-left">
                 <p class="image is-48x48">
                     <img src="${object.getPhotoUrl()}" alt="logo certification">
                 </p>
             </figure>
-        `
-    };
+        `;
+	};
 
-    return `
+	return `
         <div class="column is-half">
                     <article class="media">
                         ${logo(certification)}
@@ -31,6 +33,5 @@ export default function sectionCertification(certification: Certification): stri
                         </div>
                     </article>
                 </div>
-        `
-
+        `;
 }

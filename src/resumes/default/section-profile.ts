@@ -1,10 +1,10 @@
-import {Resume} from "../../models/resume";
-import {sections} from "./components/sections";
+import { Resume } from "../../models/resume";
+import { sections } from "./components/sections";
 
 export default function sectionProfile(resume: Resume) {
-    let basic = resume.getBasic();
+	const basic = resume.getBasic();
 
-    return `
+	return `
     <div class="hero is-fullheight">
         <div class="columns is-flex-direction-column">
         

@@ -3,13 +3,15 @@
 </p>
 
 # Examples
- - [Default](./data/examples/default.pdf)
+
+-   [Default](./data/examples/default.pdf)
 
 # Generate your resume
 
 Just create a new [Resume discussion](https://github.com/shield-wall/myprofile/discussions/new?category=resume) :smiley:.
 
 # Run locally
+
 I'm assuming that you have node 18 or higher installed in your machine.
 
 ```bash

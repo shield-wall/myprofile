@@ -1,9 +1,7 @@
-export interface IconInterface
-{
-    getIcon(): string;
+export interface IconInterface {
+	getIcon(): string;
 }
 
-export interface OptionalIconInterface
-{
-    getIcon(): string|null;
+export interface OptionalIconInterface {
+	getIcon(): string | null;
 }

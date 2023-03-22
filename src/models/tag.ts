@@ -1,13 +1,13 @@
-import {TagType} from "../types/tag-type";
+import { TagType } from "../types/tag-type";
 
 export class Tag {
-    private readonly tag: string|string[];
+	private readonly tag: string | string[];
 
-    constructor(tagType: TagType) {
-        this.tag = tagType.tag;
-    }
+	constructor(tagType: TagType) {
+		this.tag = tagType.tag;
+	}
 
-    getTag(): string|string[] {
-        return this.tag;
-    }
+	getTag(): string | string[] {
+		return this.tag;
+	}
 }
