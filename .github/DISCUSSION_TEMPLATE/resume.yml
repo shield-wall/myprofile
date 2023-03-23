@@ -151,6 +151,6 @@ body:
                                     photoUrl: https://user-images.githubusercontent.com/6358755/226969617-612c5fc9-1859-4708-9212-2cb36143fdfd.gif
                                     timePeriod: since November 2017
                                     website: ~            
-            ```
+              ```
       validations:
           required: true
