@@ -34,11 +34,13 @@ body:
                             icon: fileDescription
                             children:
                                 -   content: |
-                                        About me profile :)
-                    
-                                         - item **1**
-                                         - item 2
-                                         - item 3
+                                        **Lorem** *Ipsum* ~is~ _simply_ [dummy](https://www.google.com) text of the printing and typesetting industry. 
+                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                                        It has survived not only five centuries, but also the leap into electronic typesetting, 
+                                        remaining essentially unchanged. It was popularised in the 1960s with the release of 
+                                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
+                                        software like Aldus PageMaker including versions of Lorem Ipsum.
                     
                         #[experience section]
                         -   title: Experiences
@@ -74,6 +76,11 @@ body:
                         -   title: Certifications
                             icon: certification
                             children:
+                                -   title: Master of Arts
+                                    photoUrl: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Google__CompTIA_Badge.jpg
+                                    timePeriod: March 2012 - December 2013
+                                    website: ~
+                    
                                 -   title: Master of Arts
                                     photoUrl: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Google__CompTIA_Badge.jpg
                                     timePeriod: March 2012 - December 2013
@@ -121,14 +128,26 @@ body:
                                 -   degree: Bachelor of Science
                                     institution: Harvard
                                     timePeriod: March 2009 - December 2011
-                    
                         #[language section]
                         -   title: Language
                             icon: language
                             children:
                                 -   tag: ['English', 'Intermediate']
                                 -   tag: ['Portuguese', 'Native']
-            
+                    
+                        #[certification section]
+                        -   title: Certifications
+                            icon: certification
+                            children:
+                                -   title: Sumo logic certified fundamentals
+                                    photoUrl: https://user-images.githubusercontent.com/6358755/226971473-a3064429-9567-4cb9-80f2-77b332125a0e.png
+                                    timePeriod: December 2019 - December 2020
+                                    website: ~
+                    
+                                -   title: Zend Certified PHP Engineer 2017
+                                    photoUrl: https://user-images.githubusercontent.com/6358755/226969617-612c5fc9-1859-4708-9212-2cb36143fdfd.gif
+                                    timePeriod: since November 2017
+                                    website: ~            
             ```
       validations:
           required: true

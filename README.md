@@ -2,7 +2,7 @@
   <img src="./doc/logo.webp">
 </p>
 
-# Examples
+# Templates
 
 -   [Default](./data/examples/default.pdf)
 
