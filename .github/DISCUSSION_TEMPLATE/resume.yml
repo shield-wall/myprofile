@@ -8,9 +8,10 @@ body:
 
               1. :pencil: Update the resume with your data.
               1. :point_down: Click in the green button bellow (**Start discussion**) to save your resume.
-              1. :white_check_mark: Open [Action section](https://github.com/shield-wall/myprofile/actions/workflows/resume.yaml) in a new tab, and click on Resume process.(probably it's the first one).
-              1. :clock1: Wait until the process finish, and you will see a resume link on footer page.
-
+              1. :white_check_mark: Open [Action section](https://github.com/shield-wall/myprofile/actions/workflows/resume.yaml) in a new tab and wait the pipeline to finish.
+              1. After that your resume will be avalaibe in this url: https://bucket.myprofile.pro/users/{your_github_user_name}/resume.pdf
+                 e.g: https://bucket.myprofile.pro/users/eerison/resume.pdf
+              
               > **Note**
               > 
               > After you have the resume created, when you update **discussion's description** a new resume will be generate :white_check_mark:.
@@ -21,6 +22,8 @@ body:
           label: Resume structure
           description: "Please update the default values with your data."
           value: |
+              Resume url: https://bucket.myprofile.pro/users/{your_github_user_name}/resume.pdf
+
               ```yaml
                     basic:
                         firstName: John
