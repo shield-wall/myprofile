@@ -1,0 +1,25 @@
+name: Comment in discussion
+
+on:
+    workflow_call:
+        inputs:
+            discussionId:
+                type: string
+                required: true
+            body:
+                type: string
+                required: true
+
+jobs:
+    comment:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Comment in discussion
+                uses: shield-wall/comments@main
+                with:
+                    organization: 'shield-wall'
+                    repository: 'myprofile'
+#                    discussionId: ${{inputs.php_versions}}
+                    discussionId: ${{inputs.discussionId}}
+                    body: ${{inputs.body}}
+
