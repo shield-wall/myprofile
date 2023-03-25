@@ -16,7 +16,7 @@ jobs:
                 Your resume started to be processed :rocket:
                 :bell: When it's done we will notify you here 
                 
-                :star: Pipeline: https://github.com/shield-wall/myprofile/actions/runs/${{github.job}}
+                :star: Pipeline: https://github.com/shield-wall/myprofile/actions/runs/${{github.run_number}}
 
     resume:
         runs-on: ubuntu-latest
