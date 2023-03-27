@@ -83,7 +83,7 @@ jobs:
     discussion-comment-success:
         name: Success comment
         uses: shield-wall/myprofile/.github/workflows/discussion-comment.yaml@master
-        if: ${{ success() }} && github.event_name == 'discussion'
+        if: github.event_name == 'discussion' && needs.resume.result == 'success'
         needs: resume
         with:
             discussionId: ${{github.event.discussion.number}}
@@ -94,7 +94,7 @@ jobs:
     discussion-comment-failure:
         name: Failure comment
         uses: shield-wall/myprofile/.github/workflows/discussion-comment.yaml@master
-        if: ${{ failure() }} && github.event_name == 'discussion
+        if: ${{ always() }} && needs.resume.result == 'failure' && github.event_name == 'discussion
         needs: resume
         with:
             discussionId: ${{github.event.discussion.number}}
