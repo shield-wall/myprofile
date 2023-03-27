@@ -19,7 +19,6 @@ jobs:
                 with:
                     organization: 'shield-wall'
                     repository: 'myprofile'
-#                    discussionId: ${{inputs.php_versions}}
                     discussionId: ${{inputs.discussionId}}
                     body: ${{inputs.body}}
 

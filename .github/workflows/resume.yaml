@@ -8,6 +8,7 @@ on:
 
 jobs:
     discussion-comment-initial:
+        name: Initial comment
         uses: shield-wall/myprofile/.github/workflows/discussion-comment.yaml@master
         if: github.event_name == 'discussion'
         with:
@@ -22,6 +23,8 @@ jobs:
         runs-on: ubuntu-latest
         name: Generate pdf
         if: github.event_name == 'discussion' || github.event.label.name == 'template'
+        outputs:
+            yaml-lint: ${{ steps.yaml-lint-output.outputs.stdout }}
         steps:
             -   uses: actions/checkout@v3
             -   uses: actions/cache@v3
@@ -42,14 +45,23 @@ jobs:
                 with:
                     path: ./data/data.txt
                     contents: ${{github.event.discussion.body}}
-            -   run: |
-                    npm run node:generate:data
-                    npm run lint:check:yaml
-                if: github.event_name == 'discussion'
+
+            -   if: github.event_name == 'discussion'
+                run: npm run node:generate:data
 
             # Process from pull request.
-            -   run: npm run node:copy-data
-                if: github.event_name == 'pull_request'
+            -   if: github.event_name == 'pull_request'
+                run: npm run node:copy-data
+
+            - name: Yaml lint
+              continue-on-error: true
+              run: npm run lint:check:yaml > data/log/lint-yaml.txt
+
+            - name: Pass output lint to github output.
+              id: yaml-lint-output
+              uses: mathiasvr/command-output@v2.0.0
+              with:
+                run: cat data/log/lint-yaml.txt
 
             -   run: npm run node:generate:json
             -   run: npm run build
@@ -68,12 +80,29 @@ jobs:
                     CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
                     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
-    discussion-comment-final:
+    discussion-comment-success:
+        name: Success comment
         uses: shield-wall/myprofile/.github/workflows/discussion-comment.yaml@master
-        if: github.event_name == 'discussion'
+        if: github.event_name == 'discussion' && needs.resume.result == 'success'
         needs: resume
         with:
             discussionId: ${{github.event.discussion.number}}
             body: |
-                Your resume was processed with success :tada: :tada:
-                Resume link: https://bucket.myprofile.pro/users/${{github.actor}}/resume.pdf
+                :white_check_mark: Your resume was generated with success :tada: :tada:, you can access using the link bellow.
+                **:page_with_curl: https://bucket.myprofile.pro/users/${{github.actor}}/resume.pdf**
+
+    discussion-comment-failure:
+        name: Failure comment
+        uses: shield-wall/myprofile/.github/workflows/discussion-comment.yaml@master
+        if: ${{ always() }} && needs.resume.result == 'failure' && github.event_name == 'discussion
+        needs: resume
+        with:
+            discussionId: ${{github.event.discussion.number}}
+            body: |
+                :x: :bangbang: We couldn't generate your resume :disappointed_relieved: , we found out this issue related with your **yaml syntax**.
+                Please fix the **issue** bellow and after that **edit your discussion's description** to try again :arrows_clockwise: :wink:
+                
+                :point_down: :point_down:
+                ```bash
+                    ${{needs.resume.outputs.yaml-lint}}
+                ```
