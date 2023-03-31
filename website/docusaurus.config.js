@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
     title: 'My profile',
     tagline: 'Create your resume easily from github.',
-    favicon: 'img/favicon.ico',
+    favicon: 'img/logo_dark.svg',
     
     // Set the production url of your site here
     url: 'https://myprofile.pro',
