@@ -1,32 +1,12 @@
 <p align="center">
-  <img src="./doc/logo.webp">
+  <img src="./website/static/img/logo_readme.webp">
 </p>
-
-# Templates
-
--   [Default](./data/examples/default.pdf)
 
 # Generate your resume
 
 Just create a new [Resume discussion](https://github.com/shield-wall/myprofile/discussions/new?category=resume) :smiley:.
 
-# Run locally
+# Documentation
 
-I'm assuming that you have node 18 or higher installed in your machine.
+Check the full documentation clicking [here](https://myprofile.pro)
 
-```bash
-npm install
-npm run node:group:init
-npm run dev
-npm run node:group:pdf
-```
-
-### Preview
-
-you can edit resume data in **data/data.yaml**
-
-Note: you need to generate `json` and `pdf` again
-
-```bash
-npm run node:group:pdf
-```
