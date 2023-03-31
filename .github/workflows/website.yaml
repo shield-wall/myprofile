@@ -1,0 +1,44 @@
+name: Documentation
+
+on:
+    workflow_dispatch:
+    pull_request:
+        types: [ labeled ]
+
+jobs:
+    deploy-documentation:
+        if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'documentation'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            deployments: write
+        name: Deploy documentation
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: actions/setup-node@v3
+                with:
+                    node-version: 19
+
+            -   uses: actions/cache@v3
+                with:
+                    key: frontend-doc-${{ hashFiles('**/website/package-lock.json') }}
+                    path: |
+                        website/node_modules
+                        website/.docusaurus
+                    restore-keys: |
+                        frontend-doc-
+
+            -   name: Build documentation
+                run: |
+                    cd website
+                    npm install
+                    npm run build
+                    ls -lha
+
+            -   name: Deploy
+                uses: cloudflare/pages-action@1
+                with:
+                    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                    accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                    projectName: myprofile # e.g. 'my-project'
+                    directory: website/build # e.g. 'dist'k
