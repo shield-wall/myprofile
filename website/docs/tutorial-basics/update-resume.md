@@ -19,9 +19,3 @@ After you click on `Update discussion`, you just need to wait few minutes until 
 You can check [here](/#get-your-pdf) to know more about this process time.
 
 :::
-
-:::tip Resume url
-
-You can keep the **resume url** opened in a different browser's tab, And after update your resume, you just need to **refresh** the pdf page.
-
-:::

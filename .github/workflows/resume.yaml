@@ -87,9 +87,10 @@ jobs:
         needs: resume
         with:
             discussionId: ${{github.event.discussion.number}}
+#            discussionId: 755
             body: |
                 :white_check_mark: Your resume was generated with success :tada: :tada:, you can access using the link bellow.
-                **:page_with_curl: https://bucket.myprofile.pro/users/${{github.actor}}/resume.pdf**
+                **:page_with_curl: https://bucket.myprofile.pro/users/${{github.actor}}/resume.pdf?run_id=${{github.run_id}}**
 
     discussion-comment-failure:
         name: Failure comment
