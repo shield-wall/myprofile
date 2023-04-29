@@ -1,8 +1,20 @@
-import resume from "./resumes/resume";
-import defaultTemplate from "./resumes/default/default-template";
-import { ResumeRepository } from "./repository/resume-repository";
+import Markdoc from "@markdoc/markdoc";
+import "./style/main.scss";
 
-const repository = new ResumeRepository();
-const template = new defaultTemplate(repository.findCurrentResume());
+const tags = {
+    column: {
+        render: 'div class="myprofile-column"',
+        attributes: {}
+    },
+    div: {
+        render: 'div',
+        attributes: {}
+    }
+};
 
-resume(document.querySelector<HTMLDivElement>("#app")!, template);
+const source = await fetch('./../data/data.md').then(r => r.text());
+const ast = Markdoc.parse(source);
+const transform = Markdoc.transform(ast, {tags});
+const html = Markdoc.renderers.html(transform);
+
+document.querySelector<HTMLDivElement>("#app")!.innerHTML = html;

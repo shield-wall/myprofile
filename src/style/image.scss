@@ -1,0 +1,8 @@
+#profile-image {
+  @extend .image;
+  @extend .is-128x128;
+}
+
+#profile-image img {
+  @extend .is-rounded;
+}

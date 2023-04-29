@@ -1,0 +1,31 @@
+.myprofile-column .block {
+  h2::before {
+    margin-right: 5px;
+    font-family: "FontAwesome";
+  }
+}
+
+.myprofile-column {
+
+  .summary h2::before {
+    content: "\f15c"; //<i class="fa-regular fa-file-lines"></i>
+    font: var(--fa-font-regular);
+  }
+
+  .experience h2::before {
+    content: "\f0b1"; //<i class="fa-solid fa-briefcase"></i>
+  }
+
+  .education h2::before {
+    content: "\f19d"; //<i class="fa-solid fa-graduation-cap"></i>
+  }
+
+  .skill h2::before {
+    content: "\f135";
+  }
+}
+
+.myprofile-icon-circle {
+  font-family: "FontAwesome";
+  content: "\f111";
+}

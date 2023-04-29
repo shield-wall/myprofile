@@ -1,0 +1,10 @@
+.skill {
+  ul {
+    @extend .tags;
+
+    li {
+      @extend .tag;
+      @extend .is-dark;
+    }
+  }
+}

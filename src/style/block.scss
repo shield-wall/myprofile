@@ -1,0 +1,16 @@
+.myprofile-column .block {
+  h2 {
+    @extend .is-size-6;
+    @extend .has-text-weight-bold;
+    margin-bottom: 2px;
+  }
+
+  h3 {
+    @extend .has-text-weight-bold;
+    margin-top: 15px;
+  }
+
+  h4 {
+    @extend .tag
+  }
+}
