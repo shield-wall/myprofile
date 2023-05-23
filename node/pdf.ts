@@ -13,6 +13,7 @@ import { fileURLToPath } from "url";
 	const __dirname = dirname(__filename);
 
 	await getPage(page, __dirname);
+	await page.waitForSelector('img');
 
 	let pdfFolder = `${__dirname}/../data/pdf`;
 	if (!fs.existsSync(pdfFolder)) {

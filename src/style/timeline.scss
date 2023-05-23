@@ -1,20 +1,20 @@
 .myprofile-column {
-  .timeline::before {
+  .myprofile-timeline::before {
     content: "";
     height: 100%;
     left: 20px;
     position: absolute;
     top: 20px;
     width: 2px;
-    z-index: -1;
+    z-index: 1;
     @extend .has-background-grey-dark
   }
 
-  .timeline {
+  .myprofile-timeline {
     display: flex;
     position: relative;
 
-    .timeline-content {
+    .myprofile-content {
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       margin-top: -13px;
@@ -50,6 +50,7 @@
       @extend .image;
       @extend .is-24x24;
       @extend .has-background-white;
+      z-index: 11;
 
       img {
         margin: -27px 0 0 8px;
@@ -60,7 +61,7 @@
     blockquote:before {
       margin-top: 0;
       margin-left: 11px;
-      z-index: 2;
+      z-index: 10;
       @extend .has-text-grey-dark;
       @extend .myprofile-icon-circle;
       @extend .is-size-4;
