@@ -25,6 +25,12 @@ import { fileURLToPath } from "url";
 		// preferCSSPageSize: true,
 		path: `${pdfFolder}/resume.pdf`,
 		printBackground: true,
+		margin: {
+			top: "1cm",
+			right: "0.5cm",
+			bottom: "1cm",
+			left: "0.5cm"
+		},
 	});
 
 	await browser.close();

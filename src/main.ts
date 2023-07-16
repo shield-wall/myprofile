@@ -5,8 +5,8 @@ const config = {
     nodes: {
         softbreak: {
           transform() {
-            return ' ';
-          }
+            return new Markdoc.Tag('br');
+          },
         },
       },
     tags: {
@@ -16,7 +16,12 @@ const config = {
         block: {
             transform(node: Node, config: Config) {
                 const newConfig = node.transformAttributes(config);
-                newConfig.class += ' myprofile-block';
+
+                if (newConfig.class)
+                    newConfig.class += ' myprofile-block';
+                
+                if (!newConfig.class)  
+                    newConfig.class = ' myprofile-block'; 
 
                 return new Tag(
                     `div`,
@@ -30,6 +35,18 @@ const config = {
         },
         content: {
             render: 'div class="myprofile-content"'
+        },
+        text: {
+            transform(node: Node, config: Config) {
+                const newConfig = node.transformAttributes(config);
+                newConfig.class += ' content';
+
+                return new Tag(
+                    `div`,
+                    newConfig,
+                    node.transformChildren(config)
+                  );
+            }
         }
     }
 };

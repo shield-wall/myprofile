@@ -1,9 +1,10 @@
-.skill {
+.has-skill {
   ul {
     @extend .tags;
 
     li {
       @extend .tag;
+      @extend .is-small;
       @extend .is-dark;
     }
   }

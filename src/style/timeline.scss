@@ -18,31 +18,15 @@
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       margin-top: -13px;
-      padding: 0 0 15px 1rem;
+      padding: 0 0 35px 1rem;
 
       @extend .columns;
       @extend .is-multiline;
       @extend .mx-1;
+      @extend .content;
 
       h3 {
-        @extend .column;
-        @extend .p-0;
-      }
-
-      h4 {
-        @extend .column;
-        @extend .tag;
-        @extend .mt-4;
-        @extend .is-3
-      }
-
-      h5 {
-        font-style: italic;
-        font-size: 10px;
-        @extend .column;
-        @extend .p-0;
-        @extend .my-1;
-        @extend .is-full;
+        font-size: 15px;
       }
     }
 
@@ -53,18 +37,18 @@
       z-index: 11;
 
       img {
-        margin: -27px 0 0 8px;
+        margin: -25px 0 0 9px;
         @extend .is-rounded;
       }
     }
 
     blockquote:before {
       margin-top: 0;
-      margin-left: 11px;
+      margin-left: 13px;
       z-index: 10;
       @extend .has-text-grey-dark;
-      @extend .myprofile-icon-circle;
-      @extend .is-size-4;
+      @extend .icon-circle;
+      @extend .is-size-6;
     }
   }
 }

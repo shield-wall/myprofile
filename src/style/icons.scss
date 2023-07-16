@@ -1,31 +1,64 @@
-.myprofile-column .myprofile-block {
-  h2::before {
+.myprofile-column {
+  h2::before, li::before, blockquote::before {
     margin-right: 5px;
     font-family: "FontAwesome";
   }
-}
 
-.myprofile-column {
-
-  .summary h2::before {
+  .icon-file-description::before {
     content: "\f15c"; //<i class="fa-regular fa-file-lines"></i>
-    font: var(--fa-font-regular);
   }
 
-  .experience h2::before {
-    content: "\f0b1"; //<i class="fa-solid fa-briefcase"></i>
-  }
-
-  .education h2::before {
+  .icon-education::before {
     content: "\f19d"; //<i class="fa-solid fa-graduation-cap"></i>
   }
 
-  .skill h2::before {
+  .icon-rock::before {
     content: "\f135";
   }
-}
 
-.myprofile-icon-circle {
-  font-family: "FontAwesome";
-  content: "\f111";
+  .icon-linkedin::before {
+    content: "\f0e1";
+  }
+
+  .icon-location::before {
+    content: "\f3c5";
+  }
+
+  .icon-mail::before {
+    content: "\f0e0";
+  }
+
+  .icon-github::before {
+    content: "\f09b";
+  }
+
+  .icon-website::before {
+    content: "\f0c1";
+  }
+
+  .icon-work::before {
+    content: "\f0b1";
+  }
+
+  //tecnologies
+  .icon-php::before {
+    content: "\f457";
+  }
+
+  .icon-js::before {
+    content: "\f3b8";
+  }
+  .icon-mysql::before {
+    content: "\f1c0";
+  }
+  .icon-laravel::before {
+    content: "\f3bd";
+  }
+  .icon-symfony::before {
+    content: "\f83d";
+  }
+
+  .icon-circle {
+    content: "\f111";
+  }
 }

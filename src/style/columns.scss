@@ -1,9 +1,10 @@
 article {
-  @extend .columns
+  @extend .columns;
 }
 
 .myprofile-column {
   @extend .column;
+  padding: 0;
 }
 
 .myprofile-column:first-child {
