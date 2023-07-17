@@ -43,27 +43,13 @@ jobs:
                 if: github.event_name == 'discussion'
                 uses: DamianReeves/write-file-action@master
                 with:
-                    path: ./data/data.txt
+                    path: ./data/data.md
                     contents: ${{github.event.discussion.body}}
-
-            -   if: github.event_name == 'discussion'
-                run: npm run node:generate:data
 
             # Process from pull request.
             -   if: github.event_name == 'pull_request'
-                run: npm run node:copy-data
+                run: cp data/data.md.dist data/data.md
 
-            - name: Yaml lint
-              continue-on-error: true
-              run: npm run lint:check:yaml > data/log/lint-yaml.txt
-
-            - name: Pass output lint to github output.
-              id: yaml-lint-output
-              uses: mathiasvr/command-output@v2.0.0
-              with:
-                run: cat data/log/lint-yaml.txt
-
-            -   run: npm run node:generate:json
             -   run: npm run build
 
             -   name: Generate pdf

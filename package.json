@@ -3,7 +3,7 @@
 	"private": false,
 	"type": "module",
 	"scripts": {
-		"dev": "npm run node:generate:json && vite --host 0.0.0.0 --port 8000",
+		"dev": "cp data/data.md.dist data/data.md && vite --host 0.0.0.0 --port 8000",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"lint:check:yaml": "npx eslint data/data.yaml",
