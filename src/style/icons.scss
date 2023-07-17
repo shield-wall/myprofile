@@ -61,4 +61,12 @@
   .icon-circle {
     content: "\f111";
   }
+
+  .icon-certification::before {
+    content: "\f559"; //https://fontawesome.com/icons/award?f=classic&s=solid
+  }
+
+  .icon-language::before {
+    content: "\f086"; //https://fontawesome.com/icons/comments?f=classic&s=regular
+  }
 }

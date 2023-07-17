@@ -2,13 +2,6 @@ import Markdoc, { Config, Node, Tag } from "@markdoc/markdoc";
 import "./style/main.scss";
 
 const config = {
-    nodes: {
-        softbreak: {
-          transform() {
-            return new Markdoc.Tag('br');
-          },
-        },
-      },
     tags: {
         column: {
             render: 'div class="myprofile-column"',

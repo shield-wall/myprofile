@@ -27,9 +27,9 @@ import { fileURLToPath } from "url";
 		printBackground: true,
 		margin: {
 			top: "1cm",
-			right: "0.5cm",
+			right: "1cm",
 			bottom: "1cm",
-			left: "0.5cm"
+			left: "1cm"
 		},
 	});
 

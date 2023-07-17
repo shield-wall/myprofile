@@ -9,7 +9,7 @@
 
 {% /block %}
 
-{% block .is-list %}
+{% block .has-list %}
 - [linkedin.com/**eerison**](https://www.linkedin.com/in/eerison) {% .icon-linkedin %}
 - Berlin, Germany {% .icon-location %}
 - [hey@erison.work](mailto:hey@erison.work) {% .icon-mail %}
@@ -17,15 +17,53 @@
 - [blog.erison.work](https:blog.erison.work) {% .icon-website %}
 {% /block%}
 
-{% block .has-skill %}
+{% block .has-tag %}
 
 ## Skills {% .icon-rock %}
 
 - PHP {% .icon-php %}
-- Laravel {% .icon-laravel%}
+- Laravel {% .icon-laravel %}
 - Symfony {% .icon-symfony %}
-- MySQL {% .icon-mysql%}
-- JavaScript {% .icon-js%}
+- MySQL {% .icon-mysql %}
+- JavaScript {% .icon-js %}
+
+{% /block %}
+
+{% block %}
+
+## Certification {% .icon-certification %}
+
+
+> **Sumo logic certified fundamentals**
+> *December 2019 - December 2020*
+
+> ![Alt text](https://user-images.githubusercontent.com/6358755/226969617-612c5fc9-1859-4708-9212-2cb36143fdfd.gif)
+>> **Zend Certified PHP Engineer 2017**
+>> *since November 2017*
+{% /block %}
+
+{% block %}
+## Education {% .icon-education %}
+
+>**Master's Degree in Computer Science**
+>*Universidade Federal do Ceará*
+>*Fortaleza, Brazil*
+>*Mar 2012 - Dec 2014*
+
+>**Bachelor's Degree in Computer Science**
+>*Universidade Estadual do Ceará*
+>*Fortaleza, Brazil*
+> *Mar 2006 - Dec 2009*
+{% /block %}
+
+{% block .has-tags %}
+## Languages {% .icon-language %}
+
+**English**
+**Advanced**
+
+**Deutsch**
+**Beginnen**
 
 {% /block %}
 
@@ -59,7 +97,7 @@ and recently I started to play with [Tinygo][link_tinygo] for hobby project that
 
 > [![image](https://user-images.githubusercontent.com/6358755/227289068-b6c3e1f3-1f63-47a0-a214-77b0297263dc.jpeg)](#)
 
-{% content .has-content  %}
+{% content  %}
 ### Senior Software engineer
 #### Legal One
 ##### 2019 - present
@@ -92,28 +130,6 @@ Contributed to code reviews and testing efforts.
 
 {% /content %}
 {% /timeline %}
-{% /block %}
-
-
-{% block %}
-
-## Education {% .icon-education %}
-
-### Master's Degree in Computer Science
-#### Universidade Federal do Ceará
-##### Fortaleza, Brazil
-##### Mar 2012 - Dec 2014
-
-### Bachelor's Degree in Computer Science
-#### Universidade Estadual do Ceará
-##### Fortaleza, Brazil
-##### Mar 2006 - Dec 2009
-
-### Other courses
-
-- Alura
-- Rock Company
-- Trybe
 {% /block %}
 
 {% /column %}

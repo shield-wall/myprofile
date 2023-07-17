@@ -1,10 +1,35 @@
-.has-skill {
+.has-tag {
   ul {
     @extend .tags;
 
     li {
       @extend .tag;
       @extend .is-small;
+      @extend .is-dark;
+    }
+  }
+}
+
+.has-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  h2 {
+    flex-basis: 100% !important;
+  }
+
+  p {
+    @extend .tags;
+    @extend .has-addons;
+    margin-bottom: 5px !important;
+    margin-right: 5px !important;
+
+    strong {
+      @extend .tag;
+      margin: 0 !important;
+    }
+
+    strong:nth-child(2){
       @extend .is-dark;
     }
   }
