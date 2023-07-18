@@ -29,7 +29,7 @@
   }
 
   .icon-github::before {
-    content: "\f09b";
+    content: "\f09b"; //https://fontawesome.com/icons/github?f=brands&s=solid
   }
 
   .icon-website::before {
@@ -38,6 +38,30 @@
 
   .icon-work::before {
     content: "\f0b1";
+  }
+
+  .icon-circle {
+    content: "\f111";
+  }
+
+  .icon-certification::before {
+    content: "\f559"; //https://fontawesome.com/icons/award?f=classic&s=solid
+  }
+
+  .icon-language::before {
+    content: "\f086"; //https://fontawesome.com/icons/comments?f=classic&s=regular
+  }
+
+  .icon-cubes::before {
+    content: "\f1b3"; //https://fontawesome.com/icons/cubes?f=classic&s=solid
+  }
+
+  .icon-double-check::before {
+    content: "\f560"; //https://fontawesome.com/icons/check-double?f=classic&s=solid
+  }
+
+  .icon-heart::before {
+    content: "\f004"; //https://fontawesome.com/icons/heart?f=classic&s=solid
   }
 
   //tecnologies
@@ -58,15 +82,11 @@
     content: "\f83d";
   }
 
-  .icon-circle {
-    content: "\f111";
+  .icon-git-branch::before {
+    content: "\f126"; //https://fontawesome.com/icons/code-branch?f=classic&s=solid
   }
 
-  .icon-certification::before {
-    content: "\f559"; //https://fontawesome.com/icons/award?f=classic&s=solid
-  }
-
-  .icon-language::before {
-    content: "\f086"; //https://fontawesome.com/icons/comments?f=classic&s=regular
+  .icon-docker::before {
+    content: "\f395"; //https://fontawesome.com/icons/docker?f=brands&s=solid
   }
 }

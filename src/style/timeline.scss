@@ -33,12 +33,12 @@
     blockquote:first-child {
       @extend .image;
       @extend .is-24x24;
-      @extend .has-background-white;
-      z-index: 11;
+      z-index: 12;
 
       img {
-        margin: -22px 0 0 12px;
+        margin: -17px 0 0 11px;
         @extend .is-rounded;
+        @extend .has-background-white;
       }
     }
 
@@ -48,7 +48,7 @@
       z-index: 10;
       @extend .has-text-grey-dark;
       @extend .icon-circle;
-      @extend .is-size-6;
+      @extend .is-size-7;
     }
   }
 }
