@@ -1,5 +1,8 @@
-.myprofile-column {
-  .myprofile-timeline::before {
+.has-timeline {
+  h2 {
+    width: 100%;
+  }
+  >blockquote::before {
     content: "";
     height: 100%;
     left: 18px;
@@ -7,48 +10,45 @@
     top: 20px;
     width: 2px;
     z-index: 1;
-    @extend .has-background-grey-dark
+    @extend .has-background-grey-dark;
   }
 
-  .myprofile-timeline {
+  >blockquote {
     display: flex;
     position: relative;
+    margin-bottom: 10px;
 
-    .myprofile-content {
-      -ms-flex: 1 1 auto;
-      flex: 1 1 auto;
-      margin-top: -13px;
-      padding: 0 0 35px 1rem;
-
-      @extend .columns;
-      @extend .is-multiline;
-      @extend .mx-1;
-      @extend .content;
-
-      h3 {
-        font-size: 15px;
-      }
-    }
-
-    blockquote:first-child {
-      @extend .image;
-      @extend .is-24x24;
-      z-index: 12;
-
-      img {
-        margin: -19px 0 0 9px;
-        @extend .is-rounded;
-        @extend .has-background-white;
-      }
-    }
-
-    blockquote:before {
-      margin-top: 0;
+    >blockquote:nth-child(1)::before {
       margin-left: 13px;
       z-index: 10;
       @extend .has-text-grey-dark;
       @extend .icon-circle;
       @extend .is-size-7;
+    }
+
+    >blockquote blockquote:nth-child(1) p {
+      @extend .image;
+      @extend .is-24x24;
+      z-index: 12;
+
+      img {
+        margin: -19px 0 0 7px;
+        @extend .is-rounded;
+        @extend .has-background-white;
+      }
+    }
+
+    >blockquote blockquote:nth-child(2) {
+      margin-top: -40px;
+      margin-left: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    >blockquote blockquote:nth-child(3) {
+      @extend .content;
+      margin-left: 40px;
     }
   }
 }

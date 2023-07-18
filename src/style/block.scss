@@ -43,7 +43,7 @@
   }
 }
 
-.myprofile-block:not(.has-tags) {
+.myprofile-block:not(.has-tags):not(.has-timeline) {
   blockquote {
     @extend .column;
     padding: 0 !important;
