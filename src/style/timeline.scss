@@ -1,0 +1,54 @@
+.myprofile-column {
+  .myprofile-timeline::before {
+    content: "";
+    height: 100%;
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    width: 2px;
+    z-index: 1;
+    @extend .has-background-grey-dark
+  }
+
+  .myprofile-timeline {
+    display: flex;
+    position: relative;
+
+    .myprofile-content {
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      margin-top: -13px;
+      padding: 0 0 35px 1rem;
+
+      @extend .columns;
+      @extend .is-multiline;
+      @extend .mx-1;
+      @extend .content;
+
+      h3 {
+        font-size: 15px;
+      }
+    }
+
+    blockquote:first-child {
+      @extend .image;
+      @extend .is-24x24;
+      @extend .has-background-white;
+      z-index: 11;
+
+      img {
+        margin: -22px 0 0 12px;
+        @extend .is-rounded;
+      }
+    }
+
+    blockquote:before {
+      margin-top: 0;
+      margin-left: 13px;
+      z-index: 10;
+      @extend .has-text-grey-dark;
+      @extend .icon-circle;
+      @extend .is-size-6;
+    }
+  }
+}

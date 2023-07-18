@@ -3,12 +3,12 @@
 	"private": false,
 	"type": "module",
 	"scripts": {
-		"dev": "npm run node:generate:json && vite --host 0.0.0.0 --port 8000",
+		"dev": "npm run node:copy-data && npm run start",
+		"start": "vite --host 0.0.0.0 --port 8000",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"lint:check:yaml": "npx eslint data/data.yaml",
-        "cloud:bucket:object": "npx wrangler r2 object",
-		"node:copy-data": "cp data/data.yaml.dist data/data.yaml",
+		"cloud:bucket:object": "npx wrangler r2 object",
+		"node:copy-data": "cp data/data.md.dist public/data.md",
 		"node:generate:json": "ts-node ./node/parse.ts",
 		"node:generate:pdf": "ts-node ./node/pdf.ts",
 		"node:generate:data": "ts-node ./node/create-data.ts",
@@ -21,6 +21,7 @@
 		"eslint": "^8.36.0",
 		"eslint-plugin-yaml": "^0.5.0",
 		"eslint-plugin-yml": "^1.5.0",
+		"sass": "^1.62.1",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.9.3",
 		"vite": "^4.1.0",
@@ -28,12 +29,13 @@
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^6.3.0",
+		"@markdoc/markdoc": "^0.2.2",
 		"@types/marked": "^4.0.8",
 		"@types/node": "^18.15.2",
 		"bulma": "^0.9.4",
 		"marked": "^4.2.12",
+		"preact": "^10.13.2",
 		"puppeteer": "^19.7.5",
-		"sass": "^1.59.2",
-		"yaml": "^2.2.1"
+		"unplugin-markdoc": "^0.2.6"
 	}
 }

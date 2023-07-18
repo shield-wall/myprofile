@@ -1,0 +1,21 @@
+article {
+  @extend .columns;
+  font-size: 12pt;
+}
+
+.myprofile-column {
+  @extend .column;
+  padding: 0;
+}
+
+.myprofile-column:first-child {
+  @extend .is-one-third;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .myprofile-block {
+    align-self: flex-start;
+  }
+}
+

@@ -13,6 +13,7 @@ import { fileURLToPath } from "url";
 	const __dirname = dirname(__filename);
 
 	await getPage(page, __dirname);
+	await page.waitForSelector('img');
 
 	let pdfFolder = `${__dirname}/../data/pdf`;
 	if (!fs.existsSync(pdfFolder)) {
@@ -24,6 +25,12 @@ import { fileURLToPath } from "url";
 		// preferCSSPageSize: true,
 		path: `${pdfFolder}/resume.pdf`,
 		printBackground: true,
+		margin: {
+			top: "1cm",
+			right: "1cm",
+			bottom: "1cm",
+			left: "1cm"
+		},
 	});
 
 	await browser.close();

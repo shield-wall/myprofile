@@ -1,0 +1,74 @@
+.myprofile-block:not(.basic):not(.has-tag):not(.has-tags):not(.has-list):not(.has-timeline) {
+    @extend .content;
+    margin: 0 !important;
+}
+
+.myprofile-column .myprofile-block:not(.is-basic) {
+  margin-top: 10px; //TODO maybe .myprofile-block should be flex and use space-between
+
+  h2 {
+    @extend .is-size-6;
+    @extend .has-text-weight-bold;
+    margin: 10px 0 10px 0;
+  }
+}
+
+.myprofile-column:nth-child(2) .myprofile-block {
+
+  @extend .columns;
+  @extend .is-multiline;
+  @extend .mx-1;
+
+  h3, h4, h5 {
+    @extend .column;
+  }
+
+  h3 {
+    @extend .has-text-weight-bold;
+    @extend .p-0;
+    margin-top: 15px;
+  }
+
+  h4 {
+    @extend .tag;
+    @extend .is-3
+  }
+
+  h5 {
+    font-style: italic;
+    font-size: 10px;
+    @extend .p-0;
+    @extend .my-1;
+    @extend .is-full;
+  }
+}
+
+.myprofile-block:not(.has-tags) {
+  blockquote {
+    @extend .column;
+    padding: 0 !important;
+    background-color: white !important;
+    border: 0 !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10pt;
+
+    p {
+      margin-right: 5px;//TODO try to use space-between
+      display: flex;
+      flex-direction: column;
+
+      img {
+        @extend .image;
+        @extend .is-48x48;
+      }
+    }
+  }
+}
+
+blockquote {
+  padding: 0 !important;
+  background-color: white !important;
+  border: 0 !important;
+}
