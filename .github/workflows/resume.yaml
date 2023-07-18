@@ -43,12 +43,12 @@ jobs:
                 if: github.event_name == 'discussion'
                 uses: DamianReeves/write-file-action@master
                 with:
-                    path: ./data/data.md
+                    path: ./public/data.md
                     contents: ${{github.event.discussion.body}}
 
             # Process from pull request.
             -   if: github.event_name == 'pull_request'
-                run: cp data/data.md.dist data/data.md
+                run: cp data/data.md.dist public/data.md
 
             -   run: npm run build
 
@@ -56,7 +56,7 @@ jobs:
                 run: |
                     python3 -m http.server --directory dist &> /dev/null &
                     pid=$!
-                    sleep 1
+                    sleep 2
                     npm run node:generate:pdf
                     kill "${pid}"
 
