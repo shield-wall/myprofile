@@ -48,7 +48,7 @@ jobs:
 
             # Process from pull request.
             -   if: github.event_name == 'pull_request'
-                run: cp data/data.md.dist public/data.md
+                run: npm run node:copy-data
 
             -   run: npm run build
 

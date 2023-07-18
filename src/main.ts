@@ -1,6 +1,5 @@
 import Markdoc, { Config, Node, Tag } from "@markdoc/markdoc";
 import "./style/main.scss";
-// import {dataMarkdown} from "./../data/data.md";
 
 const config = {
     tags: {
@@ -47,7 +46,6 @@ const config = {
 
 
 const source = await fetch('data.md').then(r => r.text());
-// const source = dataMarkdown;
 const parse = Markdoc.parse(source);
 const transform = Markdoc.transform(parse, config);
 const html = Markdoc.renderers.html(transform);
