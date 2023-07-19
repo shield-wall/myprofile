@@ -16,7 +16,8 @@ body:
     - type: textarea
       id: improvements
       attributes:
-          description: "Please update the default values with your data."
+          label: Resume markdown
+          description: "After you create your discussion/resume, you can remove this extra linha created."
           value: |
                 {% column %}
 

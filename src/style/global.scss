@@ -7,4 +7,13 @@
     margin: auto;
     width: 794px;
     align-self: center;
+
+    >h3 {
+      font-size: 20px;
+      color: red;
+    }
+
+    >h3::after {
+      content: " <-- (Remove this line from your markdown, on github.)";
+    }
   }
