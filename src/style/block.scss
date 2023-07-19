@@ -7,9 +7,10 @@
   margin-top: 10px; //TODO maybe .myprofile-block should be flex and use space-between
 
   h2 {
-    @extend .is-size-6;
-    @extend .has-text-weight-bold;
+    font-size: 12pt !important;
+    font-weight: bolder;
     margin: 10px 0 10px 0;
+    width: 100%;
   }
 }
 

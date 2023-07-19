@@ -16,136 +16,120 @@ body:
     - type: textarea
       id: improvements
       attributes:
-          label: Resume structure
           description: "Please update the default values with your data."
           value: |
-              ```yaml
-                    basic:
-                        firstName: John
-                        lastName: Doe
-                        photoUrl: https://avatars.githubusercontent.com/u/6358755?v=4
-                        position: Software Developer
-                    
-                    sectionOne:
-                        #[about section]
-                        -   title: About
-                            icon: fileDescription
-                            children:
-                                -   content: |
-                                        **Lorem** *Ipsum* ~is~ _simply_ [dummy](https://www.google.com) text of the printing and typesetting industry. 
-                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                        It has survived not only five centuries, but also the leap into electronic typesetting, 
-                                        remaining essentially unchanged. It was popularised in the 1960s with the release of 
-                                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-                                        software like Aldus PageMaker including versions of Lorem Ipsum.
-                    
-                        #[experience section]
-                        -   title: Experiences
-                            icon: work
-                            children:
-                                -   company: Company A
-                                    position: Developer
-                                    timePeriod: since January 2016
-                                    description: |
-                                        ***Programming and watching cute cat videos.**
-                    
-                                        1. item1
-                                        1. item2
-                                        1. item3
-                                    website: https://example.com
-                                    photoUrl: https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png
-                    
-                                -   company: Company B
-                                    position: Frontend Developer
-                                    timePeriod: January 2015 - December 2015
-                                    description: Fulfillment of extremely important tasks.
-                                    website: https://example.com
-                                    photoUrl: https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png
-                    
-                                -   company: Company C
-                                    position: Trainee
-                                    timePeriod: March 2014 - December 2014
-                                    description: Making coffee and baking cookies.
-                                    website: ~
-                                    photoUrl: ~
-                    
-                        #[certification section]
-                        -   title: Certifications
-                            icon: certification
-                            children:
-                                -   title: Master of Arts
-                                    photoUrl: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Google__CompTIA_Badge.jpg
-                                    timePeriod: March 2012 - December 2013
-                                    website: ~
-                    
-                                -   title: Master of Arts
-                                    photoUrl: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Google__CompTIA_Badge.jpg
-                                    timePeriod: March 2012 - December 2013
-                                    website: ~
-                    
-                                -   title: Master of Arts
-                                    photoUrl: https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Google__CompTIA_Badge.jpg
-                                    timePeriod: March 2012 - December 2013
-                                    website: ~
-                    
-                    sectionTwo:
-                        #[skill section]
-                        -   title: ~
-                            icon: ~
-                            children:
-                                -   tag: HTML5
-                                -   tag: CSS3
-                                -   tag: JavaScript
-                                -   tag: Node.js
-                    
-                        #[contact section]
-                        -   title: ~
-                            icon: ~
-                            children:
-                                -   title: +49 123456789
-                                    icon: phone
-                    
-                                -   title: email@gmail.com
-                                    icon: email
-                    
-                                -   title: https://linkedin.com/eerison
-                                    icon: linkedin
-                    
-                                -   title: https://github.com/eerison
-                                    icon: github
-                    
-                        #[education section]
-                        -   title: Education
-                            icon: education
-                            children:
-                                -   degree: Master of Arts
-                                    institution: Harvard
-                                    timePeriod: March 2012 - December 2013
-                    
-                                -   degree: Bachelor of Science
-                                    institution: Harvard
-                                    timePeriod: March 2009 - December 2011
-                        #[language section]
-                        -   title: Language
-                            icon: language
-                            children:
-                                -   tag: ['English', 'Intermediate']
-                                -   tag: ['Portuguese', 'Native']
-                    
-                        #[certification section]
-                        -   title: Certifications
-                            icon: certification
-                            children:
-                                -   title: Sumo logic certified fundamentals
-                                    photoUrl: https://user-images.githubusercontent.com/6358755/226971473-a3064429-9567-4cb9-80f2-77b332125a0e.png
-                                    timePeriod: December 2019 - December 2020
-                                    website: ~
-                    
-                                -   title: Zend Certified PHP Engineer 2017
-                                    photoUrl: https://user-images.githubusercontent.com/6358755/226969617-612c5fc9-1859-4708-9212-2cb36143fdfd.gif
-                                    timePeriod: since November 2017
-                                    website: ~            
-              ```
+                {% column %}
+
+                {% block .basic %}
+                ![Profile Picture](https://user-images.githubusercontent.com/6358755/229285256-03f05195-33b1-477f-ac5a-155a6a26a8c5.png) {% #profile-image %}
+
+                # John Doe
+
+                ## Senior PHP Developer
+
+                {% /block %}
+
+                {% block .has-list %}
+                - [linkedin.com/**john-doe**](https://www.linkedin.com/in/eerison) {% .icon-linkedin %}
+                - Berlin, Germany {% .icon-location %}
+                - [hey@john.doe](mailto:hey@john-doe.com) {% .icon-mail %}
+                - [github.com/**john-doe**](https://your-link.com) {% .icon-github %}
+                - [blog.john-doe.com](https:blog.erison.work) {% .icon-website %}
+                {% /block%}
+
+                {% block .has-tag %}
+
+                ## Skills {% .icon-rock %}
+
+                - Symfony {% .icon-symfony %}
+                - PHP {% .icon-php %}
+                - Test {% .icon-double-check %}
+                - Git {% .icon-git-branch %}
+                - Docker {% .icon-docker %}
+                - Open source {% .icon-heart %}
+
+                {% /block %}
+
+                {% block %}
+
+                ## Courses & Certifications {% .icon-certification %}
+
+                > ![Certification Logo 1](https://github.com/shield-wall/myprofile/assets/6358755/a9b5f93b-4c2b-4479-98db-376260665ad5)
+                >> **Certification example 01**
+                >> *December 2019*
+
+                >
+                >> **Certification example 02**
+                >> *December 2020*
+                {% /block %}
+
+                {% block %}
+                ## Education {% .icon-education %}
+
+                >**Bachelor of Computer Science**
+                >*University XYZ*
+                >*March 2014 - July 2017*
+                {% /block %}
+
+                {% block .has-tags %}
+                ## Languages {% .icon-language %}
+
+                **English**
+                **Advanced**
+
+                **Deutsch**
+                **Beginnen**
+                {% /block %}
+
+                {% /column %}
+
+                {% column %}
+
+                {% block %}
+                ## Summary {% .icon-file-description %}
+
+                I'm a **Senior PHP Developer** with **5 years of experience** in developing web applications. My expertise lies in **building scalable and efficient PHP-based solutions** using frameworks like Laravel and Symfony. I have a strong understanding of **object-oriented programming**, **database design**, and **RESTful API development**.
+
+                Throughout my career, I have successfully delivered high-quality projects by following best practices such as **clean code**, **test-driven development (TDD)**, and **continuous integration**. I'm passionate about staying updated with the latest technologies and enjoy tackling complex challenges.
+
+                {% /block %}
+
+                {% block .has-timeline %}
+                ## Experience {% .icon-work %}
+
+                >>> [![Company logo 1](https://github.com/shield-wall/myprofile/assets/6358755/f9918622-d3ba-4ae9-abb4-fc184948779b)](https://www.google.com)
+                >>
+                >>> ### Senior Software Engineer
+                >>> #### Example Company
+                >>> ##### Since Jan 2023
+                >>
+                >>> Example Company is a leading software development firm specializing in cutting-edge technologies. As a Senior Software Engineer, I have been instrumental in designing and developing scalable and high-performance systems. I have worked on various projects, including the implementation of distributed systems and the integration of third-party APIs.
+                >>>
+                >>> Throughout my tenure, I have utilized modern technologies such as **Node.js**, **Docker**, and **Kubernetes** to ensure efficient deployment and scalability. Additionally, I have contributed to the team's success by conducting thorough code reviews, implementing best practices, and collaborating closely with cross-functional teams.
+
+                >>>
+                >>
+                >>> ### Software Developer
+                >>> #### ABC Corporation
+                >>> ##### May 2018 - Dec 2022
+                >>
+                >>> During my time at ABC Corporation, I gained valuable experience in technologies such as **JavaScript**, **React**, and **Node.js**. I actively participated in code reviews, agile development processes, and continuous integration to deliver high-quality software products on time.
+
+                {% /block %}
+
+                {% block %}
+
+                ## Courses & Certifications {% .icon-certification %}
+
+                > ![Certification Logo 1](https://github.com/shield-wall/myprofile/assets/6358755/a9b5f93b-4c2b-4479-98db-376260665ad5)
+                >> **Certification example 01**
+                >> *December 2019*
+
+                >
+                >> **Certification example 02**
+                >> *December 2020*
+                {% /block %}
+
+                {% /column %}
       validations:
           required: true
