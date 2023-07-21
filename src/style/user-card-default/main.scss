@@ -1,0 +1,111 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "../icons";
+
+$primary-color: hsl(0, 0%, 21%);
+$primary-light-color: hsl(0, 0%, 54%);
+$secondary-color: #fff;
+$logo: url(../../../website/static/img/avatar_black_50px.png);
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.myprofile-block {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.myprofile-block:not(.basic):not(.has-skill) {
+    display: none;
+}
+
+.myprofile-column:nth-child(1) {
+    width: 1200px;
+    height: 600px;
+    display: flex;
+}
+
+.myprofile-block.basic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    border-right: 5px solid $primary-color;
+    background-color: $primary-color;
+
+    h1 {
+        position: absolute;
+        top: 0;
+        left: 430px;
+        font-size: 50pt;
+        width: 800px;
+    }
+
+    h2 {
+        position: absolute;
+        top: 120px;
+        left: 430px;
+        font-size: 20pt;
+        color: $primary-light-color;
+        width: 800px;
+    }
+
+    h2::before {
+        @extend .icon-rock;
+    }
+
+    #profile-image {
+        img {
+            border-radius: 100%;
+        }
+    }
+}
+
+.myprofile-block.has-skill {
+    padding-left: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 800px;
+
+    h2 {
+        display: none;
+    }
+
+    ul {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        font-size: 30px;
+
+        li {
+            list-style-type: none;
+            width: auto;
+            background-color: $primary-color;
+            color: $secondary-color;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    }
+
+    ul li:nth-child(n+6) {
+        display: none;
+    }
+}
+
+.myprofile-block.has-skill ul::after {
+    content: " myprofile.pro";
+    // width: 50px;
+    height: 50px;
+    padding: 10px 0 0 40px;
+    background-image: $logo;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 530px;
+}
+

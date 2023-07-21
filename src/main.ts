@@ -1,5 +1,4 @@
 import Markdoc, { Config, Node, Tag } from "@markdoc/markdoc";
-import "./style/main.scss";
 
 const config = {
     tags: {

@@ -1,59 +1,54 @@
 {% column %}
 
 {% block .basic %}
-![Profile Picture](https://avatars.githubusercontent.com/u/6358755?v=4) {% #profile-image %}
+![Profile Picture](https://user-images.githubusercontent.com/6358755/229285256-03f05195-33b1-477f-ac5a-155a6a26a8c5.png) {% #profile-image %}
 
-# Erison Silva
+# John Doe
 
 ## Senior PHP Developer
 
 {% /block %}
 
 {% block .has-list %}
-- [linkedin.com/**eerison**](https://www.linkedin.com/in/eerison) {% .icon-linkedin %}
+- [linkedin.com/**john-doe**](https://www.linkedin.com/in/eerison) {% .icon-linkedin %}
 - Berlin, Germany {% .icon-location %}
-- [hey@erison.work](mailto:hey@erison.work) {% .icon-mail %}
-- [github.com/**eerison**][link_github_profile] {% .icon-github %}
-- [blog.erison.work](https:blog.erison.work) {% .icon-website %}
+- [hey@john.doe](mailto:hey@john-doe.com) {% .icon-mail %}
+- [github.com/**john-doe**](https://your-link.com) {% .icon-github %}
+- [blog.john-doe.com](https:blog.erison.work) {% .icon-website %}
 {% /block%}
 
-{% block .has-tag %}
+{% block .has-tag .has-skill %}
 
 ## Skills {% .icon-rock %}
 
-- PHP {% .icon-php %}
-- Laravel {% .icon-laravel %}
 - Symfony {% .icon-symfony %}
-- MySQL {% .icon-mysql %}
-- JavaScript {% .icon-js %}
+- PHP {% .icon-php %}
+- Test {% .icon-double-check %}
+- Git {% .icon-git-branch %}
+- Docker {% .icon-docker %}
+- Open source {% .icon-heart %}
 
 {% /block %}
 
 {% block %}
 
-## Certification {% .icon-certification %}
+## Courses & Certifications {% .icon-certification %}
 
+> ![Certification Logo 1](https://github.com/shield-wall/myprofile/assets/6358755/a9b5f93b-4c2b-4479-98db-376260665ad5)
+>> **Certification example 01**
+>> *December 2019*
 
-> **Sumo logic certified fundamentals**
-> *December 2019 - December 2020*
-
-> ![Alt text](https://user-images.githubusercontent.com/6358755/226969617-612c5fc9-1859-4708-9212-2cb36143fdfd.gif)
->> **Zend Certified PHP Engineer 2017**
->> *since November 2017*
+>
+>> **Certification example 02**
+>> *December 2020*
 {% /block %}
 
 {% block %}
 ## Education {% .icon-education %}
 
->**Master's Degree in Computer Science**
->*Universidade Federal do Ceará*
->*Fortaleza, Brazil*
->*Mar 2012 - Dec 2014*
-
->**Bachelor's Degree in Computer Science**
->*Universidade Estadual do Ceará*
->*Fortaleza, Brazil*
-> *Mar 2006 - Dec 2009*
+>**Bachelor of Computer Science**
+>*University XYZ*
+>*March 2014 - July 2017*
 {% /block %}
 
 {% block .has-tags %}
@@ -64,7 +59,6 @@
 
 **Deutsch**
 **Beginnen**
-
 {% /block %}
 
 {% /column %}
@@ -74,68 +68,46 @@
 {% block %}
 ## Summary {% .icon-file-description %}
 
-I'm a **Senior software engineer** with more then **10 years** of experience and work in different projects as Helpdesk, [Insurance for pets](https://petcopetwellness.com), [Video stream](https://flimmit.at/de/) for 3 countries 
-in Europe and many projects with Third party integration.
+I'm a **Senior PHP Developer** with **5 years of experience** in developing web applications. My expertise lies in **building scalable and efficient PHP-based solutions** using frameworks like Laravel and Symfony. I have a strong understanding of **object-oriented programming**, **database design**, and **RESTful API development**.
 
-I'm a professional that really like to **bring new technologies** to the project, care about **quality code**, 
-and In the past 3 yeas I've been working with different _open source projects_ such as [Sonata Page Bundle][link_sonata], 
-I was one of the most active maintainer for the [last **major** release][link_sonata_release_4_issue], 
-Then I invite you to check out my github [profile][link_github_profile], So you can have a good overview 
-
-how I handle Pull requests, issues and collaborate with OSS!
-BTW this resume was generate for one of my open source projects: [myprofile][link_github_myprofile]
-
-For the past years I've been working with **Symfony 3/4/5/6, PHP 7/8, Elastic search, Redis, Message queue** and so on, 
-and recently I started to play with [Tinygo][link_tinygo] for hobby project that involve hardware 🤓.
+Throughout my career, I have successfully delivered high-quality projects by following best practices such as **clean code**, **test-driven development (TDD)**, and **continuous integration**. I'm passionate about staying updated with the latest technologies and enjoy tackling complex challenges.
 
 {% /block %}
 
 {% block .has-timeline %}
 ## Experience {% .icon-work %}
 
-{% timeline %}
+>>> [![Company logo 1](https://github.com/shield-wall/myprofile/assets/6358755/f9918622-d3ba-4ae9-abb4-fc184948779b)](https://www.google.com)
+>>
+>>> ### Senior Software Engineer
+>>> #### Example Company
+>>> ##### Since Jan 2023
+>>
+>>> Example Company is a leading software development firm specializing in cutting-edge technologies. As a Senior Software Engineer, I have been instrumental in designing and developing scalable and high-performance systems. I have worked on various projects, including the implementation of distributed systems and the integration of third-party APIs.
+>>>
+>>> Throughout my tenure, I have utilized modern technologies such as **Node.js**, **Docker**, and **Kubernetes** to ensure efficient deployment and scalability. Additionally, I have contributed to the team's success by conducting thorough code reviews, implementing best practices, and collaborating closely with cross-functional teams.
 
-> [![image](https://user-images.githubusercontent.com/6358755/227289068-b6c3e1f3-1f63-47a0-a214-77b0297263dc.jpeg)](#)
+>>>
+>>
+>>> ### Software Developer
+>>> #### ABC Corporation
+>>> ##### May 2018 - Dec 2022
+>>
+>>> During my time at ABC Corporation, I gained valuable experience in technologies such as **JavaScript**, **React**, and **Node.js**. I actively participated in code reviews, agile development processes, and continuous integration to deliver high-quality software products on time.
 
-{% content  %}
-### Senior Software engineer
-#### Legal One
-##### 2019 - present
+{% /block %}
 
-- Lead a team of developers to build and maintain the company's main web application using PHP and Laravel.
-- Collaborated with the product team to implement new features and improve the user experience.
-- Worked closely with the [DevOps](#) team to deploy the application and ensure high availability. 
+{% block %}
 
-{% /content %}
-{% /timeline %}
+## Courses & Certifications {% .icon-certification %}
 
+> ![Certification Logo 1](https://github.com/shield-wall/myprofile/assets/6358755/a9b5f93b-4c2b-4479-98db-376260665ad5)
+>> **Certification example 01**
+>> *December 2019*
 
-{% timeline %}
-> 
-{% content %}
-### Senior php Developer 2
-#### Endava Berlin
-##### 2017 - 2019
-
-Worked on a project for a major telecommunications company, developing a high-availability web application using PHP and Laravel.
-
-Collaborated with a team of developers to design and implement new features.
-Contributed to code reviews and testing efforts. 
-
-1. aa
-1. 222
-1. aaa
-  
-  
-
-{% /content %}
-{% /timeline %}
+>
+>> **Certification example 02**
+>> *December 2020*
 {% /block %}
 
 {% /column %}
-
-[link_github_profile]: https://github.com/eerison
-[link_github_myprofile]: https://github.com/shield-wall/myprofile
-[link_sonata_release_4_issue]: https://github.com/sonata-project/SonataPageBundle/issues/1495
-[link_sonata]: https://github.com/sonata-project/SonataPageBundle
-[link_tinygo]: https://tinygo.org/
