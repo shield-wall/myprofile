@@ -43,7 +43,7 @@ The markdown bellow will generate the pdf above 👆! just create a [new discuss
 - [blog.john-doe.com](https:blog.erison.work) {% .icon-website %}
 {% /block%}
 
-{% block .has-tag %}
+{% block .has-tag .has-skill %}
 
 ## Skills {% .icon-rock %}
 

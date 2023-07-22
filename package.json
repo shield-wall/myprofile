@@ -9,11 +9,10 @@
 		"preview": "vite preview",
 		"cloud:bucket:object": "npx wrangler r2 object",
 		"node:copy-data": "cp data/data.md.dist public/data.md",
-		"node:generate:json": "ts-node ./node/parse.ts",
-		"node:generate:pdf": "ts-node ./node/pdf.ts",
-		"node:generate:data": "ts-node ./node/create-data.ts",
-		"node:group:init": "npm run node:copy-data && npm run node:generate:json",
-		"node:group:pdf": "npm run node:generate:json && npm run node:generate:pdf"
+		"node:generate:pdf": "ts-node ./node/file-generate.ts resume-default",
+		"node:generate:card": "ts-node ./node/file-generate.ts user-card-default webp",
+		"node:group:init": "npm run node:copy-data",
+		"node:group:pdf": "npm run node:generate:init && npm run node:generate:pdf"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "^7.21.3",
