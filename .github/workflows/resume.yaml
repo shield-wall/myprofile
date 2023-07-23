@@ -69,7 +69,7 @@ jobs:
                 run: |
                     npm run cloud:bucket:object put -- --file=data/files/resume-default.pdf myprofile/users/${{github.actor}}/resume-default.pdf
                     npm run cloud:bucket:object put -- --file=data/files/user-card-default.webp myprofile/users/${{github.actor}}/user-card-default.webp
-                    npm run cloud:bucket:object put -- --file=data/files/resume.html myprofile/users/${{github.actor}}/resume.html
+                    npm run cloud:bucket:object put -- --content-type=text/html --file=data/files/resume.html myprofile/users/${{github.actor}}/resume.html
 
                 env:
                     CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
