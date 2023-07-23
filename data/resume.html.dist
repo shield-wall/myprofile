@@ -18,13 +18,12 @@
     }
 
     object {
-      width: 100%;
       height: 100vh !important;
     }
   </style>
   <body onload="bodyCall()">
-    <object data="##PDF_URL##" onload="objectCall()">
-      <p id="message-download" style="display: block;">You can close this page or <a href="##PDF_URL##">download</a> again.</p>
+    <object data="##PDF_URL##" onload="objectCall()" width="100%" height="100px">
+      <p id="message-download">You can close this page or <a href="##PDF_URL##">download</a> again.</p>
     </object>
   </body>
 
