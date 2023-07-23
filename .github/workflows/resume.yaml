@@ -61,10 +61,16 @@ jobs:
                     npm run node:generate:card
                     kill "${pid}"
 
+                    cp data/resume.html.dist data/files/resume.html
+                    sed -i -E "s|##IMAGE_URL##|https://bucket.myprofile.pro/users/${{github.actor}}/user-card-default.webp?${{github.run_id}}|" data/files/resume.html
+                    sed -i -E "s|##PDF_URL##|https://bucket.myprofile.pro/users/${{github.actor}}/resume-default.pdf?${{github.run_id}}|" data/files/resume.html
+
             -   name: Upload files to bucket
                 run: |
                     npm run cloud:bucket:object put -- --file=data/files/resume-default.pdf myprofile/users/${{github.actor}}/resume-default.pdf
                     npm run cloud:bucket:object put -- --file=data/files/user-card-default.webp myprofile/users/${{github.actor}}/user-card-default.webp
+                    npm run cloud:bucket:object put -- --file=data/files/resume.html myprofile/users/${{github.actor}}/resume.html
+
                 env:
                     CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
                     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -79,7 +85,7 @@ jobs:
 #            discussionId: 755
             body: |
                 :white_check_mark: Your resume was generated with success :tada: :tada:, you can access using the link bellow.
-                **:page_with_curl: https://bucket.myprofile.pro/users/${{github.actor}}/resume-default.pdf?run_id=${{github.run_id}}**
+                **:page_with_curl: https://bucket.myprofile.pro/users/${{github.actor}}/resume.html?run_id=${{github.run_id}}**
 
     discussion-comment-failure:
         name: Failure comment

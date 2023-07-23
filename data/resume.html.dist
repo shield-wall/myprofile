@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myprofile - It is my resume, click in the link bellow to see my resume.</title>
+    <meta name="image" property="og:image" content="##IMAGE_URL##" />
+    <meta name="twitter:image" content="##IMAGE_URL##">
+    <meta name="twitter:site" content="@eerison">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Myprofile - It is my resume, click in the link bellow to see my resume.">
+    <meta name="twitter:description" content="Myprofile - It is my resume, click in the link bellow to see my resume.">
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    object {
+      width: 100%;
+      height: 100vh !important;
+    }
+  </style>
+  <body onload="bodyCall()">
+    <object data="##PDF_URL##" onload="objectCall()">
+      <p id="message-download" style="display: block;">You can close this page or <a href="##PDF_URL##">download</a> again.</p>
+    </object>
+  </body>
+
+  <script>
+    var objectTagLoaded = false;
+
+    function objectCall(){
+      objectTagLoaded = true
+    };
+
+    function bodyCall() {
+      if(!objectTagLoaded) {
+        setTimeout(function() {
+          window.opener = self;
+          window.close();
+          window.history.go(-1);
+        }, 3000);
+
+        window.location.replace("##PDF_URL##");
+      }
+    }
+  </script>
+</html>
