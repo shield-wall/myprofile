@@ -6,7 +6,8 @@
     <meta name="twitter:image" content="##IMAGE_URL##">
     <meta name="twitter:site" content="@eerison">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Myprofile - It is my resume, click in the link bellow to see my resume.">
+    <meta name="twitter:title" content="Myprofile - resume">
+    <meta name="twitter:description" content="Click on the link bellow to download.">
   </head>
   <style>
     body {
