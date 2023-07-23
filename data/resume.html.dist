@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Myprofile - It is my resume, click in the link bellow to see my resume.</title>
+    <meta charset="utf-8">
     <meta name="image" property="og:image" content="##IMAGE_URL##" />
     <meta name="twitter:image" content="##IMAGE_URL##">
     <meta name="twitter:site" content="@eerison">
