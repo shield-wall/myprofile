@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "npm run node:copy-data && npm run start",
-		"start": "vite --host 0.0.0.0 --port 8000",
+		"start": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"cloud:bucket:object": "npx wrangler r2 object",
@@ -27,8 +27,8 @@
 		"wrangler": "^2.13.0"
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-free": "^6.3.0",
 		"@markdoc/markdoc": "^0.2.2",
+		"@tabler/icons-webfont": "^2.34.0",
 		"@types/marked": "^4.0.8",
 		"@types/node": "^18.15.2",
 		"bulma": "^0.9.4",

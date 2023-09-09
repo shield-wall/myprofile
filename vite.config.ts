@@ -13,5 +13,12 @@ export default defineConfig({
               user_card: resolve(__dirname, 'user-card-default.html'),
             },
           },
+    },
+    server: {
+        host: true,
+        port: 8000,
+        watch: {
+            usePolling: true
+        }
     }
 });
