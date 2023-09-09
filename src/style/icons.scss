@@ -1,111 +1,130 @@
+// We are using icons from tabler-icons <3
+// https://tabler-icons.io/
+
+@import "node_modules/@tabler/icons-webfont/tabler-icons.scss";
+@import "node_modules/@tabler/icons-webfont/tabler-icons.css";
+
+
 .myprofile-column {
   h2::before, li::before, blockquote::before {
     margin-right: 5px;
-    font-family: "FontAwesome";
+    font-family: $ti-font-family;
+    font-weight: lighter;
   }
 
   .icon-file-description::before {
-    content: "\f15c"; //<i class="fa-regular fa-file-lines"></i>
+    content: $ti-icon-file-description
   }
 
   .icon-education::before {
-    content: "\f19d"; //<i class="fa-solid fa-graduation-cap"></i>
+    content: $ti-icon-school
   }
 
   .icon-rock::before {
-    content: "\f135";
+    content: $ti-icon-rocket
   }
 
+  // Social network
   .icon-linkedin::before {
-    content: "\f0e1";
+    content: $ti-icon-brand-linkedin;
+  }
+
+  .icon-xing::before {
+    content: $ti-icon-brand-xing;
   }
 
   .icon-location::before {
-    content: "\f3c5";
+    content: $ti-icon-map-pin;
   }
 
   .icon-mail::before {
-    content: "\f0e0";
+    content: $ti-icon-mail
   }
 
   .icon-github::before {
-    content: "\f09b"; //https://fontawesome.com/icons/github?f=brands&s=solid
+    content: $ti-icon-brand-github
   }
 
   .icon-website::before {
-    content: "\f0c1";
+    content: $ti-icon-link;
   }
 
   .icon-work::before {
-    content: "\f0b1";
+    content: $ti-icon-briefcase;
   }
 
   .icon-circle {
-    content: "\f111";
+    content: $ti-icon-circle-filled;
   }
 
   .icon-certification::before {
-    content: "\f559"; //https://fontawesome.com/icons/award?f=classic&s=solid
+    content: $ti-icon-certificate
   }
 
   .icon-language::before {
-    content: "\f086"; //https://fontawesome.com/icons/comments?f=classic&s=regular
+    content: $ti-icon-messages
   }
 
   .icon-cubes::before {
-    content: "\f1b3"; //https://fontawesome.com/icons/cubes?f=classic&s=solid
+    content: $ti-icon-box
   }
 
   .icon-double-check::before {
-    content: "\f560"; //https://fontawesome.com/icons/check-double?f=classic&s=solid
+    content: $ti-icon-checks
   }
 
   .icon-heart::before {
-    content: "\f004"; //https://fontawesome.com/icons/heart?f=classic&s=solid
+    content: $ti-icon-heart
   }
   .icon-phone::before {
-    content: "\f095"; //https://fontawesome.com/icons/phone?f=classic&s=solid
+    content: $ti-icon-phone-call
   }
 
   //tecnologies
   .icon-php::before {
-    content: "\f457";
+    content: $ti-icon-brand-php
   }
 
   .icon-js::before {
-    content: "\f3b8";
+    content: $ti-icon-brand-javascript
   }
+  .icon-typescript::before {
+    content: $ti-icon-brand-typescript;
+  }
+
   .icon-mysql::before {
     content: "\f1c0";
   }
+
   .icon-laravel::before {
-    content: "\f3bd";
+    content: $ti-icon-brand-laravel
   }
+
   .icon-symfony::before {
-    content: "\f83d";
+    content: $ti-icon-brand-symfony
   }
 
   .icon-git-branch::before {
-    content: "\f126"; //https://fontawesome.com/icons/code-branch?f=classic&s=solid
+    content: $ti-icon-brand-git
   }
 
   .icon-docker::before {
-    content: "\f395"; //https://fontawesome.com/icons/docker?f=brands&s=solid
+    content: $ti-icon-brand-docker
   }
 
   .icon-react::before {
-    content: "\f41b"; //https://fontawesome.com/icons/react?f=brands&s=solid
+    content: $ti-icon-brand-react
   }
 
   .icon-node-js::before {
-    content: "\f3d3"; //https://fontawesome.com/icons/node-js?f=brands&s=solid
+    content: $ti-icon-brand-nodejs
   }
 
   .icon-html5::before {
-    content: "\f13b"; //https://fontawesome.com/icons/html5?f=brands&s=solid
+    content: $ti-icon-brand-html5
   }
 
   .icon-css3::before {
-    content: "\f13c"; //https://fontawesome.com/icons/css3?f=brands&s=solid
+    content: $ti-icon-brand-css3;
   }
 }

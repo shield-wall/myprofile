@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: npm run dev # open the url http://localhost:8000/resume-default.html
+    ports:
+      - "8000:8000"
+
+  # generate pdf from docker is not working atm
+  # maybe it can help to fix it: https://dev.to/cloudx/how-to-use-puppeteer-inside-a-docker-container-568c
+  # if you want to generate locally unfurtunally you need to install node and npm locally
+  # Use the same node version of app container "line 4"
+    #pdf:
+    #image: ghcr.io/puppeteer/puppeteer:21.1.1
+    #working_dir: /app
+      #volumes:
+      #- ./:/app
+    #command: npm run node:generate:pdf
+      #links:
+      #- app
