@@ -16,3 +16,11 @@ Just create a new [Resume discussion](https://github.com/shield-wall/myprofile/d
 
 Check the full documentation clicking [here](https://myprofile.pro)
 
+#Example
+
+It's an example how your resume will be generated, to understand better how to move things in your resume check [here](https://myprofile.pro/structure/overview/)
+
+![Image example](website/docs/structure/img/resume-explain.png)
+
+Check here [here](https://bucket.myprofile.pro/users/eerison/resume.html) a real example.
+
