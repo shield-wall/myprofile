@@ -128,7 +128,23 @@
     content: $ti-icon-brand-css3;
   }
   
-  .icon-report::before {
+  .icon-report-analytics::before {
     content: $ti-icon-report-analytics;
+  }
+  
+  .icon-office::before {
+    content: $ti-icon-brand-office;
+  }
+
+  .icon-report::before {
+    content: $ti-icon-report;
+  }
+
+  .icon-user-group::before {
+    content: $ti-icon-users-group;
+  }
+
+  .icon-user-check::before {
+    content: $ti-icon-user-check;
   }
 }
