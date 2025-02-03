@@ -159,4 +159,8 @@
   .icon-network::before {
     content: $ti-icon-network;
   }
+
+  .icon-traefik::before {
+    content: $ti-icon-share;
+  }
 }
