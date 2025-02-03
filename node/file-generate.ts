@@ -5,7 +5,10 @@ import { fileURLToPath } from "url";
 
 (async () => {
 	const browser = await puppeteer.launch({
-		headless: true,
+		headless: "new",
+    args: [
+      '--no-sandbox',
+    ]
 	});
 	const page = await browser.newPage();
 
