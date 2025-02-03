@@ -147,4 +147,16 @@
   .icon-user-check::before {
     content: $ti-icon-user-check;
   }
+
+  .icon-cloudflare::before {
+    content: $ti-icon-brand-cloudflare;
+  }
+
+  .icon-pipeline::before {
+    content: $ti-icon-infinity;
+  }
+
+  .icon-network::before {
+    content: $ti-icon-network;
+  }
 }
