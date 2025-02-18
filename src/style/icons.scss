@@ -93,7 +93,7 @@
   }
 
   .icon-mysql::before {
-    content: "\f1c0";
+    content: $ti-icon-brand-mysql;
   }
 
   .icon-laravel::before {
@@ -162,5 +162,16 @@
 
   .icon-traefik::before {
     content: $ti-icon-share;
+  }
+
+  .icon-jest::before {
+    content: $ti-icon-joker;
+  }
+  .icon-phpunit::before {
+    content: $ti-icon-cube-spark;
+  }
+
+  .icon-ubuntu::before {
+    content: $ti-icon-brand-ubuntu;
   }
 }
