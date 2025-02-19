@@ -13,15 +13,15 @@
   }
 
   .icon-file-description::before {
-    content: $ti-icon-file-description
+    content: $ti-icon-file-description;
   }
 
   .icon-education::before {
-    content: $ti-icon-school
+    content: $ti-icon-school;
   }
 
   .icon-rock::before {
-    content: $ti-icon-rocket
+    content: $ti-icon-rocket;
   }
 
   // Social network
@@ -38,11 +38,11 @@
   }
 
   .icon-mail::before {
-    content: $ti-icon-mail
+    content: $ti-icon-mail;
   }
 
   .icon-github::before {
-    content: $ti-icon-brand-github
+    content: $ti-icon-brand-github;
   }
 
   .icon-website::before {
@@ -58,31 +58,34 @@
   }
 
   .icon-certification::before {
-    content: $ti-icon-certificate
+    content: $ti-icon-certificate;
   }
 
   .icon-language::before {
-    content: $ti-icon-messages
+    content: $ti-icon-messages;
   }
 
   .icon-cubes::before {
-    content: $ti-icon-box
+    content: $ti-icon-box;
   }
 
   .icon-double-check::before {
-    content: $ti-icon-checks
+    content: $ti-icon-checks;
   }
 
   .icon-heart::before {
-    content: $ti-icon-heart
+    content: $ti-icon-heart;
   }
   .icon-phone::before {
-    content: $ti-icon-phone-call
+    content: $ti-icon-phone-call;
+  }
+  .icon-whatsapp::before {
+    content: $ti-icon-brand-whatsapp;
   }
 
   //tecnologies
   .icon-php::before {
-    content: $ti-icon-brand-php
+    content: $ti-icon-brand-php;
   }
 
   .icon-js::before {
@@ -97,31 +100,31 @@
   }
 
   .icon-laravel::before {
-    content: $ti-icon-brand-laravel
+    content: $ti-icon-brand-laravel;
   }
 
   .icon-symfony::before {
-    content: $ti-icon-brand-symfony
+    content: $ti-icon-brand-symfony;
   }
 
   .icon-git-branch::before {
-    content: $ti-icon-brand-git
+    content: $ti-icon-brand-git;
   }
 
   .icon-docker::before {
-    content: $ti-icon-brand-docker
+    content: $ti-icon-brand-docker;
   }
 
   .icon-react::before {
-    content: $ti-icon-brand-react
+    content: $ti-icon-brand-react;
   }
 
   .icon-node-js::before {
-    content: $ti-icon-brand-nodejs
+    content: $ti-icon-brand-nodejs;
   }
 
   .icon-html5::before {
-    content: $ti-icon-brand-html5
+    content: $ti-icon-brand-html5;
   }
 
   .icon-css3::before {
