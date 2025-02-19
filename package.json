@@ -28,7 +28,7 @@
 	},
 	"dependencies": {
 		"@markdoc/markdoc": "^0.2.2",
-		"@tabler/icons-webfont": "^2.34.0",
+		"@tabler/icons-webfont": "^3.30.0",
 		"@types/marked": "^4.0.8",
 		"@types/node": "^18.15.2",
 		"bulma": "^0.9.4",
