@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 		headless: "new",
     args: [
       '--no-sandbox',
+      '--ignore-certificate-errors'
     ]
 	});
 	const page = await browser.newPage();
@@ -16,18 +17,16 @@ import { fileURLToPath } from "url";
 	const __dirname = dirname(__filename);
 
 	const fileToGenerate = process.argv[2];
-	let url = "http://localhost:8000/";
-	let fileName = "resume-default.pdf";
-	let fileType = "pdf";
-	let fileFolder = `${__dirname}/../data/files/`;
+  const fileType = process.argv[3] ?? 'pdf'
+  const hostname = process.argv[4] ?? 'localhost'
 
-	if (process.argv[3])
-		fileType = process.argv[3];
+	let url = `http://${hostname}:8000/`;
+	let fileName = "resume-default.pdf";
+	let fileFolder = `${__dirname}/../data/files/`;
 
 	if (!fs.existsSync(fileToGenerate)) {
 		url += `${fileToGenerate}.html`;
 		fileName = `${fileToGenerate}.${fileType}`;
-		
 	}
 
 	const filePath = fileFolder + fileName;
@@ -50,7 +49,7 @@ import { fileURLToPath } from "url";
 
 })();
 
-async function generateFile(page: Page, path: string, type: string): Promise<Buffer> {
+async function generateFile(page, path, type) {
 
 	if (type === 'pdf')
 		return await page.pdf({
@@ -73,7 +72,7 @@ async function generateFile(page: Page, path: string, type: string): Promise<Buf
 	});
 }
 
-function getPage(page: Page, __dirname: string, url: string) {
+function getPage(page, __dirname, url) {
 	if (process.argv[2] && process.argv[2] === "--file=true") {
 		const html = fs.readFileSync(`${__dirname}/../dist/index.html`, "utf8");
 		return page.setContent(html, {

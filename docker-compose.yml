@@ -1,22 +1,27 @@
 services:
   app:
     image: node:18
+    hostname: app
     working_dir: /app
     volumes:
       - ./:/app
     command: npm run dev-up
     ports:
       - "8000:8000"
+    networks:
+      - puppeteer
 
-  # generate pdf from docker is not working atm
-  # maybe it can help to fix it: https://dev.to/cloudx/how-to-use-puppeteer-inside-a-docker-container-568c
-  # if you want to generate locally unfurtunally you need to install node and npm locally
-  # Use the same node version of app container "line 4"
-    #pdf:
-    #image: ghcr.io/puppeteer/puppeteer:21.1.1
-    #working_dir: /app
-      #volumes:
-      #- ./:/app
-    #command: npm run node:generate:pdf
-      #links:
-      #- app
+  pdf:
+    image: ghcr.io/puppeteer/puppeteer:24.6.0
+    user: "node:node"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: npm run node:group:pdf pdf app
+    depends_on:
+      - app
+    networks:
+      - puppeteer
+
+networks:
+  puppeteer:
