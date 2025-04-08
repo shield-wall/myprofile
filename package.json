@@ -15,14 +15,8 @@
 		"node:group:pdf": "npm run node:group:init && npm run node:generate:pdf"
 	},
 	"devDependencies": {
-		"@babel/eslint-parser": "^7.21.3",
-		"@typescript-eslint/eslint-plugin": "^5.56.0",
 		"@vitejs/plugin-basic-ssl": "^2.0.0",
-		"eslint": "^8.36.0",
-		"eslint-plugin-yaml": "^0.5.0",
-		"eslint-plugin-yml": "^1.5.0",
 		"sass": "^1.62.1",
-		"ts-node": "^10.9.1",
 		"typescript": "^4.9.3",
 		"vite": "^6.2.5",
 		"wrangler": "^2.13.0"
