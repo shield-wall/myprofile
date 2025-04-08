@@ -5,7 +5,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    command: npm run dev-up
+    command: npm run dev
     ports:
       - "8000:8000"
     networks:

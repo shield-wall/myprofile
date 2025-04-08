@@ -4,7 +4,6 @@
 	"type": "module",
 	"scripts": {
 		"dev": "npm run node:copy-data && npm run start",
-		"dev-up": "npm i && npm run dev",
 		"start": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",

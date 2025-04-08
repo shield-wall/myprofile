@@ -3,23 +3,19 @@ sidebar_position: 1
 ---
 
 # How to run the project locally
-
-
-I'm assuming that you have node **18** or higher installed in your machine.
-
 ```bash
-npm install
-npm run node:group:init
-npm run dev
-npm run node:group:pdf
+docker compose run --rm app npm i
+docker compose up -d
 ```
 
 ### Preview
 
+Open https://localhost:8000 to visualise your CV.
+
 you can edit resume data in **data/data.yaml**
 
-Note: you need to generate `json` and `pdf` again
+Note: you need to generate a `pdf` again
 
 ```bash
-npm run node:group:pdf
+docker compose run --rm pdf
 ```
