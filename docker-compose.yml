@@ -1,11 +1,10 @@
-version: '3'
 services:
   app:
     image: node:18
     working_dir: /app
     volumes:
       - ./:/app
-    command: npm run dev # open the url http://localhost:8000/resume-default.html
+    command: npm run dev-up
     ports:
       - "8000:8000"
 
