@@ -4,27 +4,28 @@
 	"type": "module",
 	"scripts": {
 		"dev": "npm run node:copy-data && npm run start",
-    "dev-up": "npm i && npm run dev",
+		"dev-up": "npm i && npm run dev",
 		"start": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"cloud:bucket:object": "npx wrangler r2 object",
 		"node:copy-data": "cp data/data.md.dist public/data.md",
-		"node:generate:pdf": "ts-node ./node/file-generate.ts resume-default",
+		"node:generate:pdf": "node ./node/file-generate.js resume-default",
 		"node:generate:card": "ts-node ./node/file-generate.ts user-card-default webp",
 		"node:group:init": "npm run node:copy-data",
-		"node:group:pdf": "npm run node:generate:init && npm run node:generate:pdf"
+		"node:group:pdf": "npm run node:group:init && npm run node:generate:pdf"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "^7.21.3",
 		"@typescript-eslint/eslint-plugin": "^5.56.0",
+		"@vitejs/plugin-basic-ssl": "^2.0.0",
 		"eslint": "^8.36.0",
 		"eslint-plugin-yaml": "^0.5.0",
 		"eslint-plugin-yml": "^1.5.0",
 		"sass": "^1.62.1",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.9.3",
-		"vite": "^4.1.0",
+		"vite": "^6.2.5",
 		"wrangler": "^2.13.0"
 	},
 	"dependencies": {
@@ -35,7 +36,7 @@
 		"bulma": "^0.9.4",
 		"marked": "^4.2.12",
 		"preact": "^10.13.2",
-		"puppeteer": "^19.7.5",
+		"puppeteer": "^24.6.0",
 		"unplugin-markdoc": "^0.2.6"
 	}
 }
