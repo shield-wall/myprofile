@@ -1,6 +1,6 @@
 services:
   app:
-    image: node:18
+    image: node:22
     hostname: app
     working_dir: /app
     volumes:

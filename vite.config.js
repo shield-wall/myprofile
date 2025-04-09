@@ -4,7 +4,7 @@ import dns from 'node:dns'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default {
   plugins: [basicSsl({
       /** name of certification */
       name: 'test',
@@ -31,4 +31,4 @@ export default defineConfig({
             usePolling: true
         }
     }
-});
+};
