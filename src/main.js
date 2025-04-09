@@ -1,4 +1,4 @@
-import Markdoc, { Config, Node, Tag } from "@markdoc/markdoc";
+import Markdoc, { Node, Tag } from "@markdoc/markdoc";
 
 const config = {
     tags: {
@@ -6,7 +6,7 @@ const config = {
             render: 'div class="myprofile-column"',
         },
         block: {
-            transform(node: Node, config: Config) {
+            transform(node, config) {
                 const newConfig = node.transformAttributes(config);
 
                 if (newConfig.class)
@@ -29,7 +29,7 @@ const config = {
             render: 'div class="myprofile-content"'
         },
         text: {
-            transform(node: Node, config: Config) {
+            transform(node, config) {
                 const newConfig = node.transformAttributes(config);
                 newConfig.class += ' content';
 
@@ -49,4 +49,4 @@ const parse = Markdoc.parse(source);
 const transform = Markdoc.transform(parse, config);
 const html = Markdoc.renderers.html(transform);
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = html;
+document.querySelector("#app").innerHTML = html;
