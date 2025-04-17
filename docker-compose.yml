@@ -5,7 +5,8 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    command: npm run dev
+    command: run dev
+    entrypoint: yarn
     ports:
       - "8000:8000"
     networks:
@@ -17,7 +18,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    command: npm run node:group:pdf pdf app
+    command: yarn run node:group:pdf pdf app
     depends_on:
       - app
     networks:

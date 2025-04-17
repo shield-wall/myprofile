@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # How to run the project locally
 ```bash
-docker compose run --rm app npm i
+docker compose run --rm app install
 docker compose up -d
 ```
 
