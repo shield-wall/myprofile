@@ -1,7 +1,7 @@
 {
 	"name": "myprofile",
-	"private": false,
 	"type": "module",
+	"packageManager": "yarn@4.9.1",
 	"scripts": {
 		"dev": "yarn run node:copy-data && yarn run start",
 		"start": "vite",
@@ -12,10 +12,16 @@
 		"node:generate:pdf": "node ./node/file-generate.js resume-default",
 		"node:generate:card": "node ./node/file-generate.js user-card-default webp",
 		"node:group:init": "yarn run node:copy-data",
-		"node:group:pdf": "yarn run node:group:init && yarn run node:generate:pdf"
+		"node:group:pdf": "yarn run node:group:init && yarn run node:generate:pdf",
+		"lint": "yarn dlx eslint",
+		"lint:fix": "yarn dlx eslint --fix"
 	},
 	"devDependencies": {
+		"@eslint/css": "^0.6.0",
+		"@eslint/js": "^9.24.0",
 		"@vitejs/plugin-basic-ssl": "^2.0.0",
+		"eslint": "^9.24.0",
+		"globals": "^16.0.0",
 		"sass": "~1.62.1",
 		"vite": "^6.2.5",
 		"wrangler": "^4.9.0"
