@@ -3,7 +3,7 @@
 	"private": false,
 	"type": "module",
 	"scripts": {
-		"dev": "npm run node:copy-data && npm run start",
+		"dev": "yarn run node:copy-data && yarn run start",
 		"start": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -11,8 +11,8 @@
 		"node:copy-data": "cp data/data.md.dist public/data.md",
 		"node:generate:pdf": "node ./node/file-generate.js resume-default",
 		"node:generate:card": "node ./node/file-generate.js user-card-default webp",
-		"node:group:init": "npm run node:copy-data",
-		"node:group:pdf": "npm run node:group:init && npm run node:generate:pdf"
+		"node:group:init": "yarn run node:copy-data",
+		"node:group:pdf": "yarn run node:group:init && yarn run node:generate:pdf"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-basic-ssl": "^2.0.0",

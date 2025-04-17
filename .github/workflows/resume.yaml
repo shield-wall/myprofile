@@ -33,14 +33,14 @@ jobs:
                   node-version: 22
             -   uses: actions/cache@v3
                 with:
-                    key: frontend-${{ hashFiles('**/package-lock.json') }}
+                    key: frontend-${{ hashFiles('**/yarn.lock') }}
                     path: |
                         node_modules
                         .cache
                     restore-keys: |
                         frontend-
 
-            -   run: npm install
+            -   run: yarn install
 
             # Process from discussion.
             -   name: Get content from discussion's description
@@ -52,9 +52,9 @@ jobs:
 
             # Process from pull request.
             -   if: github.event_name == 'pull_request'
-                run: npm run node:copy-data
+                run: yarn run node:copy-data
 
-            -   run: npm run build
+            -   run: yarn run build
 
             -   name: Generate files
                 run: |
@@ -62,8 +62,8 @@ jobs:
                     pid=$!
                     sleep 1
                     node -v
-                    npm run node:generate:pdf
-                    npm run node:generate:card
+                    yarn run node:generate:pdf
+                    yarn run node:generate:card
                     kill "${pid}"
 
                     cp data/resume.html.dist data/files/resume.html
@@ -72,9 +72,9 @@ jobs:
 
             -   name: Upload files to bucket
                 run: |
-                    npm run cloud:bucket:object put -- --file=data/files/resume-default.pdf myprofile/users/${{github.actor}}/resume-default.pdf
-                    npm run cloud:bucket:object put -- --file=data/files/user-card-default.webp myprofile/users/${{github.actor}}/user-card-default.webp
-                    npm run cloud:bucket:object put -- --content-type=text/html --file=data/files/resume.html myprofile/users/${{github.actor}}/resume.html
+                    yarn run cloud:bucket:object put -- --file=data/files/resume-default.pdf myprofile/users/${{github.actor}}/resume-default.pdf
+                    yarn run cloud:bucket:object put -- --file=data/files/user-card-default.webp myprofile/users/${{github.actor}}/user-card-default.webp
+                    yarn run cloud:bucket:object put -- --content-type=text/html --file=data/files/resume.html myprofile/users/${{github.actor}}/resume.html
 
                 env:
                     CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
