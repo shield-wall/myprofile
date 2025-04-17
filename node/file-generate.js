@@ -1,4 +1,4 @@
-import puppeteer, { Page } from "puppeteer";
+import puppeteer from "puppeteer";
 import fs from "fs";
 import { dirname } from "path";
 import { fileURLToPath } from "url";

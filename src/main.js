@@ -1,4 +1,4 @@
-import Markdoc, { Node, Tag } from "@markdoc/markdoc";
+import Markdoc, { Tag } from "@markdoc/markdoc";
 
 const config = {
     tags: {
