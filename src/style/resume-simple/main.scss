@@ -1,0 +1,212 @@
+@import "bulma/bulma.sass";
+@import "../icons";
+
+$primary-color: hsl(0, 0%, 21%);
+$primary-light-color: hsl(0, 0%, 54%);
+
+#app article {
+    margin: auto;
+    width: 794px;
+    align-self: center;
+
+}
+
+#profile-image {
+    display: none;
+}
+
+.basic {
+    padding-top: 20px;
+
+    h2 {
+        padding-top: 0 !important;
+        text-transform: none !important;
+        font-weight: 500;
+        padding-bottom: 5px;
+    }
+}
+
+.myprofile-block {
+
+    h1 {
+        margin: 0;
+        color: $primary-color;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    h2 {
+
+        padding-top: 20px;
+        text-transform: uppercase;
+        color: $primary-light-color;
+        font-size: 16px;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        li {
+            padding-right: 10px;
+        }
+    }
+}
+
+.has-list {
+    padding-bottom: 4%;
+    border-bottom: 1px solid $primary-light-color;
+}
+
+.has-tag {
+    padding-bottom: 4%;
+
+    h2 {
+        text-transform: uppercase;
+    }
+
+    ul {
+        li {
+            @extend .tag;
+            @extend .is-small;
+            @extend .is-dark;
+            padding: 10px !important;
+            margin: 5px !important;
+        }
+
+    }
+}
+
+.has-tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    border-top: 1px solid $primary-light-color;
+
+    h2 {
+        flex-basis: 100% !important;
+    }
+
+
+    p {
+        @extend .tags;
+        @extend .has-addons;
+        margin-bottom: 5px !important;
+        padding-right: 20px;
+
+        strong {
+            @extend .tag;
+            margin: 0 !important;
+        }
+
+        strong:nth-child(2) {
+            @extend .is-dark;
+        }
+    }
+}
+
+.myprofile-block:not(.basic):not(.has-tag):not(.has-tags):not(.has-list):not(.has-timeline) {
+    border-top: 1px solid $primary-light-color;
+    padding-bottom: 20px;
+
+    blockquote {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        p {
+            font-style: italic;
+            color: $primary-light-color;
+
+            strong {
+                font-style: normal;
+            }
+
+            ::after {
+                content: "|";
+                padding: 0 6px 0 6px;
+            }
+
+            a {
+                display: none;
+            }
+
+            img {
+                display: none;
+            }
+        }
+    }
+}
+
+.myprofile-column:nth-child(2) {
+
+    .myprofile-block {
+        blockquote {
+
+            p {
+
+                img {
+                    display: none;
+                }
+            }
+
+
+            blockquote:nth-child(2) {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+                padding: 0;
+
+                h3 {
+                    font-weight: bold;
+
+                    ::after {
+                        content: "|";
+                        padding: 0 6px 0 6px;
+                    }
+                }
+
+                h4 {
+                    margin: 0;
+                    font-weight: normal;
+                    color: $primary-light-color;
+                }
+
+                h5 {
+                    flex: 100%;
+                    font-style: italic;
+                    color: $primary-light-color;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: $primary-color;
+                }
+            }
+
+            blockquote:nth-child(3) {
+                padding-bottom: 20px;
+
+                ul {
+                    padding-left: 18px;
+                    list-style-type: disc;
+                    flex-wrap: wrap;
+                }
+
+                li {
+                    margin: 2px 0 2px 0;
+                }
+            }
+        }
+    }
+}
+
+.myprofile-column:nth-child(2) .myprofile-block:last-child {
+    border-top: 1px solid $primary-light-color;
+}
+
+.has-timeline {
+    border-top: 1px solid $primary-light-color;
+}
