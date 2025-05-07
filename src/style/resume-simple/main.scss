@@ -6,18 +6,34 @@ $primary-dark-color: hsl(0, 0%, 21%);
 $primary-light-color: hsl(0, 0%, 54%);
 
 #app article {
+    padding-top: 20px;
     margin: auto;
     width: 794px;
     align-self: center;
 }
 
-#profile-image {
+%hidden {
     display: none;
 }
 
-.basic {
-    padding-top: 20px;
+#profile-image {
+    @extend %hidden;
+}
 
+%list-style {
+    display: list-item;
+    list-style-type: disc;
+    margin-left: 24px;
+}
+
+%pipe-separator {
+    content: "|";
+    padding-left: 6px;
+    padding-right: 6px;
+    color: $primary-dark-color;
+}
+
+.basic {
     h1 {
         margin: 0;
         color: $primary-color;
@@ -33,10 +49,6 @@ $primary-light-color: hsl(0, 0%, 54%);
 .has-list {
     border-top: 0 !important;
     padding-top: 5px;
-
-    a {
-        font-style: normal !important;
-    }
 }
 
 .myprofile-block:not(.basic) {
@@ -49,10 +61,10 @@ $primary-light-color: hsl(0, 0%, 54%);
         color: $primary-dark-color;
         font-size: 18px;
         font-weight: 700;
-    }
 
-    h2::before {
-        display: none;
+        &::before {
+            @extend %hidden;
+        }
     }
 
     ul {
@@ -73,12 +85,10 @@ $primary-light-color: hsl(0, 0%, 54%);
     }
 
     >blockquote {
-        display: list-item;
-        list-style-type: disc;
-        margin-left: 1.5em;
+        @extend %list-style;
 
         img {
-            display: none;
+            @extend %hidden;
         }
     }
 }
@@ -107,43 +117,33 @@ $primary-light-color: hsl(0, 0%, 54%);
             strong {
                 font-style: normal;
                 color: $primary-color;
+
+                &::after {
+                    @extend %pipe-separator;
+                }
             }
 
-            strong::after {
-                content: "|";
-                padding-left: 6px;
-                padding-right: 6px;
-                color: $primary-dark-color;
-            }
-
-            a {
-                display: none;
-            }
-
-            img {
-                display: none;
+            img, a {
+                @extend %hidden;
             }
         }
     }
 }
 
 .has-tags {
-
-
     p {
-        display: list-item;
-        list-style-type: disc;
-        margin-left: 1.5em;
+        @extend %list-style;
 
         strong:first-child {
             color: $primary-color;
             font-weight: 700;
-        }
 
-        strong:first-child::after {
-            content: "|";
-            padding: 0 6px 0 6px;
-            color: $primary-dark-color;
+            &::after {
+                content: "|";
+                padding-left: 6px;
+                padding-right: 6px;
+                color: $primary-dark-color;
+            }
         }
 
         strong:last-child {
@@ -163,13 +163,10 @@ $primary-light-color: hsl(0, 0%, 54%);
                 font-weight: 600;
                 color: $primary-color;
                 font-size: 18px;
-            }
 
-            h3::after {
-                content: "|";
-                padding-left: 6px;
-                padding-right: 6px;
-                color: $primary-dark-color;
+                &::after {
+                    @extend %pipe-separator;
+                }
             }
 
             h4 {
@@ -182,28 +179,13 @@ $primary-light-color: hsl(0, 0%, 54%);
                 flex: 100%;
                 color: $primary-light-color;
             }
-
-            a {
-                text-decoration: none;
-                color: $primary-color;
-            }
         }
 
         blockquote:nth-child(3) {
-
-            blockquote {
-                padding-top: 5px;
-            }
+            padding-top: 5px;
 
             ul {
-                padding-left: 18px;
-                list-style-type: disc;
-                flex-wrap: wrap;
-            }
-
-            li {
-                margin-top: 2px;
-                margin-bottom: 2px;
+                @extend %list-style;
             }
         }
     }
