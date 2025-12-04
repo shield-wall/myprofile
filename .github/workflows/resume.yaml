@@ -67,8 +67,8 @@ jobs:
                     kill "${pid}"
 
                     cp data/resume.html.dist data/files/resume.html
-                    sed -i -E "s|##IMAGE_URL##|https://bucket.myprofile.pro/users/${{github.actor}}/user-card-default.webp?${{github.run_id}}|" data/files/resume.html
-                    sed -i -E "s|##PDF_URL##|https://bucket.myprofile.pro/users/${{github.actor}}/resume-default.pdf?${{github.run_id}}|" data/files/resume.html
+                    sed -i -E "s|##IMAGE_URL##|https://bucket-myprofile.erison.work/users/${{github.actor}}/user-card-default.webp?${{github.run_id}}|" data/files/resume.html
+                    sed -i -E "s|##PDF_URL##|https://bucket-myprofile.erison.work/users/${{github.actor}}/resume-default.pdf?${{github.run_id}}|" data/files/resume.html
 
             -   name: Upload files to bucket
                 run: |
@@ -92,7 +92,7 @@ jobs:
                 ✅ **Your resume was generated successfully** 🎉🎉  
                 You can access it using the link below:
 
-                📄 **[View Resume](https://bucket.myprofile.pro/users/${{ github.actor }}/resume.html?run_id=${{ github.run_id }})**
+                📄 **[View Resume](https://bucket-myprofile.erison.work/users/${{ github.actor }}/resume.html?run_id=${{ github.run_id }})**
 
                 > [!TIP]
                 > To update your resume, click on `...`, select `Edit`, and modify the discussion’s body. Once saved, a new version of your resume will be automatically generated.
