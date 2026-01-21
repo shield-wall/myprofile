@@ -5,6 +5,18 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vitejs.dev/config/
 export default {
+  test: {
+    coverage: {
+    exclude: [
+      '**/node_modules/**',
+      '**/website/**',
+      '**/.cache/**',
+      '**/dist/**',
+      '**/.puppeteerrc.cjs',
+    ],
+      provider: 'istanbul' // or 'v8'
+    },
+  },
   plugins: [basicSsl({
       /** name of certification */
       name: 'test',

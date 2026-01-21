@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+coverage
 .cache
 .devServer
 .env

@@ -1,3 +1,5 @@
+import mainCssPath from './helpers/main-css-path';
+import yaml from 'js-yaml';
 import Markdoc, { Node, Tag } from "@markdoc/markdoc";
 
 const config = {
@@ -46,6 +48,9 @@ const config = {
 
 const source = await fetch('data.md').then(r => r.text());
 const parse = Markdoc.parse(source);
+
+await import('../style/' + mainCssPath(yaml.load(parse.attributes.frontmatter).template));
+
 const transform = Markdoc.transform(parse, config);
 const html = Markdoc.renderers.html(transform);
 

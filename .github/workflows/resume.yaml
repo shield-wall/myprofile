@@ -27,7 +27,6 @@ jobs:
             yaml-lint: ${{ steps.yaml-lint-output.outputs.stdout }}
         steps:
             -   uses: actions/checkout@v3
-            # https://github.com/TypeStrong/ts-node/issues/1997#issuecomment-1864051092
             -   uses: actions/setup-node@v4
                 with:
                   node-version: 22

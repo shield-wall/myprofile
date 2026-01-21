@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    types: [review_requested, opened, synchronize, reopened]
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    name: Quality
+    steps:
+      -   uses: actions/checkout@v3
+      -   uses: actions/setup-node@v4
+          with:
+            node-version: 22
+      -   uses: actions/cache@v3
+          with:
+              key: frontend-${{ hashFiles('**/yarn.lock') }}
+              path: |
+                  node_modules
+                  .cache
+              restore-keys: |
+                  frontend-
+
+      -   run: yarn install
+      -   run: yarn test:coverage
